@@ -3,8 +3,6 @@ categories: ["concepts"]
 tags: ["VPN", "concepts"]
 title: "VPN"
 date: 2022-12-19
-description: >
-  Trustgrid VPN
 ---
 
 ## Summary
