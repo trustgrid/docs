@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["node", "concepts"]
 title: "Node"
-linkTitle: "Nodes"
+linkTitle: "Node"
 date: 2022-12-07
 
 ---
