@@ -92,7 +92,7 @@ You can also start typing to filter what tag names are shown.
 
 ## Add a Tag
 
-1. On the Overview page of a [Cluster]({{<ref "docs/concepts/cluster">}}) or [Domain]({{<ref "docs/concepts/domain">}}), or on the Tags panel of a [Node]({{<ref "docs/concepts/node">}}) click “Add Tag”
+1. On the Overview page of a [Cluster]({{<ref "docs/concepts/cluster">}}) or [Domain]({{<ref "docs/domain">}}), or on the Tags panel of a [Node]({{<ref "docs/concepts/node">}}) click “Add Tag”
 
 2. The “Add Row” page will pop up with the Name field pre-selected. There will be a list of existing tag names for your org. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting `New selection: tagName`.
 
