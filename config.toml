@@ -60,7 +60,7 @@ id = "UA-00000000-0"
 
 [languages]
 [languages.en]
-title = "Trustgrid Docs"
+title = ""
 description = "Trustgrid Network Device and API documentation"
 languageName ="English"
 # Weight used for sorting.
