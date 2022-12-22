@@ -5,13 +5,28 @@ Add style overrides here
 */
 
 h1 {
-	font-size: 1.8rem;
+  font-size: 1.8rem;
 }
 
 h2 {
-	font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .td-navbar {
-	background: rgb(70, 110, 181);
+  background: rgba(48, 99, 142, 0.03);
+  .navbar-brand {
+    color: #aaa;
+  }
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #aaa;
+
+  .active {
+    color: #888;
+  }
+
+  :hover {
+    color: #888;
+  }
 }
