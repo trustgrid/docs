@@ -1,18 +1,18 @@
 ---
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
-title: "Domain Routes"
-date: 2022-12-19
+title: "Routes"
+date: 2022-12-21
 ---
 
 {{% pageinfo %}}
-Routes configured under [Domains]({{< ref "/docs/domain" >}}) determine to which [node]({{< ref "/docs/concepts/node" >}}) or [cluster]({{< ref "/docs/concepts/cluster" >}}) the Trustgrid virtual network should route traffic for a specific subnet.
+Routes are used to specify a destination [node]({{< ref "/docs/concepts/node" >}}) or [cluster]({{< ref "/docs/concepts/cluster" >}}) in a subnet or [domain]({{< ref "/docs/domain" >}}).
 {{% /pageinfo %}}
 
 ## Route Configuration
 
-1. Login to the portal and select [domains]({{< ref "/docs/domain" >}}) 
-2. Click the link to the desired domain under the Name column.
+1. In the Portal, navigate to your [domain]({{< ref "/docs/domain" >}}) and select Virtual Networks on the left.
+2. Select a virtual network, then select Routes on the left.
 3. Scroll down to the Virtual Networks section and select the Routes tab
 
 ![img](/docs/domain/routes-list.png)
@@ -20,7 +20,7 @@ Routes configured under [Domains]({{< ref "/docs/domain" >}}) determine to whi
 1. A route has 3 required and one optional field:
     
     {{< field-def "Destination" >}}
-This will be the name of the [node]({{< ref "/docs/concepts/node" >}}) or [cluster]({{< ref "/docs/concepts/cluster" >}}) that traffic will be routed to.  This list is auto-populated based on the nodes and clusters in the selected [domain]({{< ref "/docs/domain" >}}).
+This will be the name of the [node]({{< ref "/docs/concepts/node" >}}) or [cluster]({{< ref "/docs/concepts/cluster" >}}) that traffic will be routed to.  This list is auto-populated based on the nodes and clusters in the [domain]({{< ref "/docs/domain" >}}).
     {{< /field-def >}}
 
 
@@ -37,7 +37,7 @@ If there are multiple routes for the same virtual network the metric will determ
 
 Route failover allows a subnet to be routed to an alternate [node]({{< ref "/docs/concepts/node" >}}) or [cluster]({{< ref "/docs/concepts/cluster" >}}) in the event of a failure.  This can be automatic or performed manually.  
 
-## Prerequisites 
+### Prerequisites 
 
 In either configuration, the virtual network settings under VPN settings for the primary and backup destination [nodes]({{< ref "/docs/concepts/node" >}})/[clusters]({{< ref "/docs/concepts/cluster" >}}) must match. Including:
 
@@ -50,7 +50,7 @@ In either configuration, the virtual network settings under VPN settings for the
 - Virtual CIDR under Inside NAT Table
 ![img](/docs/domain/inside-nat-table.png)
 
-## Automatic Failover
+### Automatic Failover
   
 To have the route failover without manual intervention you must define two routes for the same subnet (Destination CIDR) with different metrics.  The lowest numerical metric will take precedence unless the Destination [node]({{< ref "/docs/concepts/node" >}}) or [cluster]({{< ref "/docs/concepts/cluster" >}}) is offline. 
 
@@ -58,7 +58,7 @@ In the below example configuration we want traffic for the 10.20.0.0/24 network 
 
 ![img](/docs/domain/automatic-failover.png)
 
-## Preventing Automated Failback or Forcing a Failover
+### Preventing Automated Failback or Forcing a Failover
 
 As mentioned above if multiple routes are configured traffic will route to Destination with the lowest metric number.  So if the primary Destination fails but then comes back online traffic will be routed back automatically. 
 
@@ -66,7 +66,7 @@ However, there are some circumstances where this is not desirable. For example, 
 
 **This can be done by updating the metrics to give the backup site a lower metric.**
 
-## Manual Failover
+### Manual Failover
 
 In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the [domain]({{< ref "/docs/domain" >}}).  To initiate a failover you'll need to update the Destination [cluster]({{< ref "/docs/concepts/cluster" >}})/[node]({{< ref "/docs/concepts/node" >}}). 
 
