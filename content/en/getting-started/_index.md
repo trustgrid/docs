@@ -1,11 +1,9 @@
 ---
-categories: ["Examples", "Placeholders"]
-tags: ["test","docs"] 
 title: "Getting Started"
 linkTitle: "Getting Started"
-weight: 2
-description: >
-  What does your user need to know to try your project?
+menu:
+  main:
+    weight: 10
 ---
 
 {{% pageinfo %}}
@@ -14,9 +12,9 @@ This is a placeholder page that shows you how to use this template site.
 
 Information in this section helps your user try your project themselves.
 
-* What do your users need to do to start using your project? This could include downloading/installation instructions, including any prerequisites or system requirements.
+- What do your users need to do to start using your project? This could include downloading/installation instructions, including any prerequisites or system requirements.
 
-* Introductory “Hello World” example, if appropriate. More complex tutorials should live in the Tutorials section.
+- Introductory “Hello World” example, if appropriate. More complex tutorials should live in the Tutorials section.
 
 Consider using the headings below for your getting started page. You can delete any that are not applicable to your project.
 
