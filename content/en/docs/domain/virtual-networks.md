@@ -30,8 +30,8 @@ Simple Host Communication
 
 - **NOTE:** A route would have to be added to the default gateway of 172.16.3.0/24 for 10.0.5.150 to route traffic for 10.0.5.0/24 through the gw of the Edge Node (172.16.0.5) data interface.
 
-![img](/docs/domain/virtual-networks-yay.png)
 
+![img](/docs/domain/virtual-networks-yay.png) 
 
 
 ## Virtual IP Addresses

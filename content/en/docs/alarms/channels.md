@@ -59,21 +59,35 @@ The [event]({{< ref "docs/alarms/events" >}}) data is delivered in JSON, as show
 {{< /highlight >}}
 
 ## Event Data Descriptions
-- NodeName (Line 1) - This is the name of the [node]({{< ref "docs/concepts/node" >}}) that the [event]({{< ref "docs/alarms/events" >}}) relates to.
+{{< field-def "Node Name (Line 1)" >}}
+This is the name of the [node]({{< ref "docs/concepts/node" >}}) that the [event]({{< ref "docs/alarms/events" >}}) relates to.
+{{< /field-def >}}
 
-- Expires (Line 2) - This is the Unix epoch time when this [event]({{< ref "docs/alarms/events" >}}) will expire and automatically resolve.
+{{< field-def "Expires (Line 2)" >}}
+This is the Unix epoch time when this [event]({{< ref "docs/alarms/events" >}}) will expire and automatically resolve.
+{{< /field-def >}} 
 
-- Level (Line 4) - This is the alert severity.
+{{< field-def "Level (Line 4)" >}}
+This is the alert severity.
+{{< /field-def >}}
 
-- EventType (Line 5) - Matches to the Event Types .
+{{< field-def "Event Type (Line 5)" >}}
+Matches to the Event Types .
+{{< /field-def >}}
 
-- timestamp (Line 21) - This is the Unix epoch time when the [event]({{< ref "docs/alarms/events" >}}) was first triggered.
+{{< field-def "Timestamp (Line 21)" >}}
+This is the Unix epoch time when the [event]({{< ref "docs/alarms/events" >}}) was first triggered.
+{{< /field-def >}}
 
-- channelID (Line 22) - This is the unique identifier of the Trustgrid channel that was used to deliver this message. You can match this to the URL of the Channel in the portal.
+{{< field-def "ChannelID (Line 22)" >}}
+This is the unique identifier of the Trustgrid channel that was used to deliver this message. You can match this to the URL of the Channel in the portal.
+{{< /field-def >}}
 
 ![img](/docs/alarms/random-link1.png)
 
-- alarmIDs (lines 26-28) - Since a channel can be used by more than one Alarm Filter this will return an array of 1 or more alarm filters that matched the [event]({{< ref "docs/alarms/events" >}}) and used this above channel. You can match this to the URL of the Alarm Filters in the portal. 
+{{< field-def "AlarmID (Lines 26-28)" >}}
+Since a channel can be used by more than one Alarm Filter this will return an array of 1 or more alarm filters that matched the [event]({{< ref "docs/alarms/events" >}}) and used this above channel. You can match this to the URL of the Alarm Filters in the portal.
+{{< /field-def >}} 
 
 ![img](/docs/alarms/random-link2.png)
 
