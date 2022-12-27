@@ -6,7 +6,7 @@ date: 2022-12-22
 ---
 
 {{% pageinfo %}}
-A network object allows naming a CIDR inside a VPN for easier rule management.
+A network object allows naming a CIDR inside a [VPN]({{< ref "docs/concepts/VPN" >}}) for easier rule management.
 {{% /pageinfo %}}
 
 A network object requires the following fields:

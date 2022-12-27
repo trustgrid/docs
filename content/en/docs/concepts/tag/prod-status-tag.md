@@ -1,16 +1,18 @@
 ---
 title: "Production Status Tags"
-date: 2022-12-07
-description: >
-  Production status tags for organizing large Trustgrid deployments
+date: 2022-12-27
 ---
 
-It is recommended that Customers use a Tag to indicate if nodes are currently in production or not. For example, you may wish to have a tag such as prod_status with possible values like
+{{% pageinfo %}}
+Production status tags are used for for organizing large Trustgrid deployments.
+{{% /pageinfo %}}
+
+It is recommended that Customers use a Tag to indicate if [nodes]({{< ref "docs/concepts/node" >}}) are currently in production or not. For example, you may wish to have a [tag]({{< ref "docs/concepts/tag" >}}) such as prod_status with possible values like
 
 - `deploying` for devices still being deployed
 - `production` for devices actively in user
 - `decommission` for devices that are being removed
 
 {{<alert>}}
-It’s important to have these tag names and values be consistent within the organization including case. `Production` and `production` would be viewed as two different values, e.g.
+It’s important to have these [tag]({{< ref "docs/concepts/tag" >}}) names and values be consistent within the organization including case. `Production` and `production` would be viewed as two different values, e.g.
 {{</alert>}}

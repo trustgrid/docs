@@ -4,7 +4,6 @@ Tags: ["edge nodes", "Networking", "deployment"]
 Date: 2022-12-26
 ---
 
-#### Table of Contents
 When deciding on an Edge deployment architecture, there are several key variables to consider:
 
 - Behind the Firewall or Beside the Firewall
@@ -13,9 +12,9 @@ When deciding on an Edge deployment architecture, there are several key variable
 
 - Multi-interface or single-interface
 
-- Layer 3 or Layer 4 Edge networking
+- Layer 3 or Layer 4 Edge [networking]({{< ref "docs/overview/networking" >}})
 
-Trustgrid supports unique configurations per site to minimize the changes required at the Edge network. The easiest scenario to deploy is a Layer 4, behind the firewall, single [node]({{< ref "docs/concepts/node" >}}) deployment. This is the standard recommendation.  When deployed behind a firewall, the firewall must allow egress traffic to Trustgrid's Cloud environment (see Network Requirements) and the network/s where the Gateway Nodes are installed.
+Trustgrid supports unique configurations per site to minimize the changes required at the Edge network. The easiest scenario to deploy is a Layer 4, behind the firewall, single [node]({{< ref "docs/concepts/node" >}}) deployment. This is the standard recommendation. When deployed behind a firewall, the firewall must allow egress traffic to Trustgrid's Cloud environment (see Network Requirements) and the [network(s)]({{< ref "docs/overview/networking" >}}) where the Gateway Nodes are installed.
 
 ### Beside a firewall
 In some scenarios, you may want to deploy your Trustgrid [node(s)]({{< ref "docs/concepts/node" >}}) beside the firewall. In this configuration, the management interface of each [node]({{< ref "docs/concepts/node" >}}) will be connected directly to the internet and the data interface will get connected to a LAN such as the inside/LAN network.
@@ -41,7 +40,7 @@ In some scenarios, you may want to deploy your Trustgrid [node(s)]({{< ref "docs
     - 2 DNS Servers
 
 ### Behind a firewall
-The most typical configuration for edge nodes is to place the nodes behind a firewall with the appropriate access controls in place to allow communication on the management interface.  In this configuration, the management configuration can be placed in a DMZ network and the data interface would get connected to a LAN such as the inside/LAN network.
+The most typical configuration for edge nodes is to place the [nodes]({{< ref "docs/concepts/node" >}}) behind a firewall with the appropriate access controls in place to allow communication on the management interface.  In this configuration, the management configuration can be placed in a DMZ network and the data interface would get connected to a LAN such as the inside/LAN network.
 
 ##### Edge network topology:
 
@@ -50,7 +49,7 @@ The most typical configuration for edge nodes is to place the nodes behind a fir
 #### Considerations in this configuration:
 - Multiple [nodes]({{< ref "docs/concepts/node" >}}) can NAT to a single public IP address.
 - Firewalls in front of gateway nodes must be configured to allow access to the IP:Port of the gateway [nodes]({{< ref "docs/concepts/node" >}}) from the public IP address(es) that the [node(s)]({{< ref "docs/concepts/node" >}}) NAT to.
-- The firewall must be configured to allow outbound traffic from the management interface of the [node(s)]({{< ref "docs/concepts/node" >}}) based on Trustgrid's network requirements.
+- The firewall must be configured to allow outbound traffic from the management interface of the [node(s)]({{< ref "docs/concepts/node" >}}) based on Trustgrid's [network]({{< ref "docs/overview/networking" >}}) requirements.
 
 #### Requirements to configure:
 - Standard
@@ -62,9 +61,9 @@ The most typical configuration for edge nodes is to place the nodes behind a fir
     - 2 Private IP Addresses
     - 1 Private IP Address for Cluster IP
     - 2 DNS Servers
-    - 
-### Firewalled [Nodes]({{< ref "docs/concepts/node" >}})
-Some organizations may choose to put the management interface behind a firewall and also put a firewall between the data interface and the local network.  
+
+### Firewalled Nodes
+Some organizations may choose to put the management interface behind a firewall and also put a firewall between the data interface and the local [network]({{< ref "docs/overview/networking" >}}).  
 
 ##### Edge network topology:
 
@@ -87,8 +86,8 @@ Some organizations may choose to put the management interface behind a firewall 
     - 1 Private IP Address for Cluster IP
     - 2 DNS Servers
 
-### On-a-stick - Single [node]({{< ref "docs/concepts/node" >}}) interface
-Our best practice recommendation is to separate the management and data traffic when possible, but in some cases the use of both network interfaces on edge nodes isn’t desirable.  The most common scenario for this configuration is when the edge network is a small, basic, network where utilizing both interfaces on the [node(s)]({{< ref "docs/concepts/node" >}}) would mean connecting both interfaces to the same network.  In this scenario, an on-a-stick configuration can be used.
+### On-a-stick - Single node interface
+Our best practice recommendation is to separate the management and data traffic when possible, but in some cases the use of both network interfaces on edge nodes isn’t desirable. The most common scenario for this configuration is when the edge network is a small, basic, network where utilizing both interfaces on the [node(s)]({{< ref "docs/concepts/node" >}}) would mean connecting both interfaces to the same network. In this scenario, an on-a-stick configuration can be used.
 
 ##### Edge network topology:
 
@@ -109,19 +108,19 @@ Our best practice recommendation is to separate the management and data traffic 
     - 2 DNS Servers
 
 ### Hosted FI core - Access to remote network via edge
-A common deployment scenario involves the need to access a network that is routable from the edge location, but outside of the network that the Trustgrid edge node is configured on.  An example of this is a financial institution with a hosted core that may be available from the financial institution over a connection such as a VPN or MPLS.
+A common deployment scenario involves the need to access a network that is routable from the edge location, but outside of the [network]({{< ref "docs/overview/networking" >}}) that the Trustgrid edge node is configured on. An example of this is a financial institution with a hosted core that may be available from the financial institution over a connection such as a VPN or MPLS.
 
 ##### Edge network topology:
 
 ![img](/docs/domain/edge-topology5.png)
 
 #### Considerations in this configuration:
-- Inside NAT(s) for the remote address should be added on the data interface to map the hosted core IP address(es) to virtual IPs on the Trustgrid virtual network.
+- Inside NAT(s) for the remote address should be added on the data interface to map the hosted core IP address(es) to virtual IPs on the [Trustgrid virtual network]({{< ref "docs/domain/virtual-networks" >}}).
 - In this scenario setting a [route]({{< ref "docs/domain/routes" >}}) on the data interface from the Trustgrid portal may be necessary.
 - In most cases the hosted core provider will need to allow access to the hosted core from any IP addresses associated with a [node's]({{< ref "docs/concepts/node" >}}) data interface.  This includes any IP addresses used in Outside NAT configurations as well as the cluster IP.
 
 
-### Outside NAT - Avoiding [routing]({{< ref "docs/domain/routes" >}}) at the edge
+### Outside NAT - Avoiding routing at the edge
 In some scenarios, it may not be desirable to have to add [routes]({{< ref "docs/domain/routes" >}}) on the edge network in order to [route]({{< ref "docs/domain/routes" >}}) traffic through the Trustgrid network.  We recommend using L4 proxy in these scenarios when possible, however outside NAT can be utilized to allow traffic to and from the edge network without adding [routes]({{< ref "docs/domain/routes" >}}) on the edge network. 
 
 ##### Edge network topology:
@@ -134,7 +133,7 @@ In some scenarios, it may not be desirable to have to add [routes]({{< ref "docs
 - In some cases it may be desirable to use multiple outside NATs in order to identify traffic from a gateway-side host using a unique source IP at the edge. Using more than a handful of outside NATs is not recommended as it may present a problem with connectivity during a HA failover situation.
 
 ### L3 to L4 Proxying - Function with 1 IP
-In deployments where only a few services need to be accessed via an edge node, it may make sense to deploy the edge node in a mode by which the edge node intercepts layer 3 TCP traffic and proxies the traffic to a TCP service defined in the L4 Proxy configuration. The advantage of configuring the edge node in this fashion is that the traffic effectively does a source pat out of the [node]({{< ref "docs/concepts/node" >}}) interface IP address, thus simplifying the network configuration at the edge node location. The edge node appears to the server as a single client machine accessing the server, rather than a range of different IP clients for which the network in that location must be configured to forward traffic to. One of the biggest differences between this and the previous outside nat configuration is that all traffic is coming from the single interface IP address, rather than a separate IP address.
+In deployments where only a few services need to be accessed via an edge node, it may make sense to deploy the edge node in a mode in which the edge node intercepts layer 3 TCP traffic and proxies the traffic to a TCP service defined in the L4 Proxy configuration. The advantage of configuring the edge node in this fashion is that the traffic effectively does a source pat out of the [node]({{< ref "docs/concepts/node" >}}) interface IP address, thus simplifying the network configuration at the edge node location. The edge node appears to the server as a single client machine accessing the server, rather than a range of different IP clients for which the network in that location must be configured to forward traffic to. One of the biggest differences between this and the previous outside nat configuration is that all traffic is coming from the single interface IP address, rather than a separate IP address.
 
 #### Considerations in this configuration:
 - In this configuration all traffic for a configured service will come from a single IP address. If you need to differentiate different clients by IP address, this configuration will not suffice.
