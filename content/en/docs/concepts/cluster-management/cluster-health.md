@@ -1,18 +1,18 @@
 ---
 Title: "Cluster Site Health State"
 Tags: ["concepts", "clusters", "cluster health", "cluster management"]
-Date: 2022-12-27
+Date: 2022-12-28
 ---
 
 {{% pageinfo %}}
-A healthy [cluster]({{< ref "docs/concepts/cluster">}}) should have two online Trustgrid [nodes]({{< ref "docs/concepts/node" >}}) in a healthy state. The Trustgrid control plane can monitor the member [nodes]({{< ref "docs/concepts/node" >}}) and generate events when their state changes such that the health of the [cluster]({{< ref "docs/concepts/cluster" >}}) is impacted. 
+A healthy [cluster]({{< ref "docs/concepts/cluster">}}) should have two online Trustgrid [nodes]({{< ref "docs/concepts/node" >}}) in a healthy state. The Trustgrid control plane can monitor the member [nodes]({{< ref "docs/concepts/node" >}}) and generate [events]({{< ref "docs/alarms/events" >}}) when their state changes such that the health of the [cluster]({{< ref "docs/concepts/cluster" >}}) is impacted. 
 {{% /pageinfo %}}
 
 ### Basics
 {{<alert>}}
 These events are based on the information reported by each member node to the control plane. Because of this:
 - There can be a delay between a change and the [Cluster]({{< ref "docs/concepts/cluster" >}}) Site Health events.
-- If member [nodes]({{< ref "docs/concepts/node" >}}) have issues preventing control plane connections but not impacting data plane or other services the events may not accurately reflect the state of the [cluster]({{< ref "docs/concepts/cluster" >}}).
+- If member [nodes]({{< ref "docs/concepts/node" >}}) have issues preventing control plane connections but not impacting data plane or other services the [events]({{< ref "docs/alarms/events" >}}) may not accurately reflect the state of the [cluster]({{< ref "docs/concepts/cluster" >}}).
 {{</alert>}}
 
 

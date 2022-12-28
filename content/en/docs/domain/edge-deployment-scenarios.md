@@ -1,7 +1,7 @@
 ---
 Title: "Edge Deployment Scenarios"
 Tags: ["edge nodes", "Networking", "deployment"]
-Date: 2022-12-26
+Date: 2022-12-28
 ---
 
 When deciding on an Edge deployment architecture, there are several key variables to consider:

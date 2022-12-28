@@ -18,7 +18,7 @@ Provides configuration updates to edge nodes.
 {{< /field-def >}}
 
 {{< field-def "Zuul" >}}
-Maintains persistent connection with [nodes]({{< ref "docs/concepts/node" >}}) for reporting, events, and updates.
+Maintains persistent connection with [nodes]({{< ref "docs/concepts/node" >}}) for reporting, [events]({{< ref "docs/alarms/events" >}}), and updates.
 {{< /field-def >}}
 
 {{< field-def "API" >}}

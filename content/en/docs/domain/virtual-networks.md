@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Virtual Networks"
-date: 2022-12-22
+date: 2022-12-28
 ---
 
 {{% pageinfo %}}
@@ -13,12 +13,12 @@ Trustgrid networks are assigned to [Domains]({{< ref "docs/domain" >}}). They de
 
 Virtual Networks - Layer 3 
 
- - Trustgrid uses a Virtual Network to traffic between Nodes. This avoids common 
+ - Trustgrid uses a Virtual Network to traffic between [Nodes]({{< ref "docs/concepts/node" >}}). This avoids common 
 challenges like conflicting subnets in large, non-centralized networks. 
 
 - Inside and Outside NATs are used to expose hosts for traffic
 
-- Routes may configured on the Nodes
+- [Routes]({{< ref "docs/domain/routes" >}}) may configured on the [Nodes]({{< ref "docs/concepts/node" >}})
 
 - ACLs can be applied
 
@@ -28,7 +28,7 @@ Simple Host Communication
 
 - An Outside Nat on the Edge Node that maps 10.0.1.150 to 10.0.5.150 would allow the Edge host (172.16.3.250) to communicate the Data Center host at 10.0.5.150.
 
-- **NOTE:** A route would have to be added to the default gateway of 172.16.3.0/24 for 10.0.5.150 to route traffic for 10.0.5.0/24 through the gw of the Edge Node (172.16.0.5) data interface.
+- **NOTE:** A [route]({{< ref "/docs/domain/routes" >}}) would have to be added to the default gateway of 172.16.3.0/24 for 10.0.5.150 to route traffic for 10.0.5.0/24 through the gw of the Edge Node (172.16.0.5) data interface.
 
 
 ![img](/docs/domain/virtual-networks-yay.png) 
@@ -36,7 +36,7 @@ Simple Host Communication
 
 ## Virtual IP Addresses
 
-Through the use of Inside and Outside NAT rules, local IP addresses to the Trustgrid [Node]({{< ref "docs/concepts/node" >}}) may be exposed on the network through a Virtual IP Address.  For instance, a local device may have a local IP address of 192.168.1.100, but you may want it to appear to other devices or applications on the virtual network as IP address 10.0.20.100. Virtual IP Subnets are also supported where each IP in a subnet is mapped to the corresponding IP in a virtual subnet.
+Through the use of Inside and Outside NAT rules, local IP addresses to the Trustgrid [Node]({{< ref "docs/concepts/node" >}}) may be exposed on the [network]({{< ref "docs/overview/networking" >}}) through a Virtual IP Address.  For instance, a local device may have a local IP address of 192.168.1.100, but you may want it to appear to other devices or applications on the virtual network as IP address 10.0.20.100. Virtual IP Subnets are also supported where each IP in a subnet is mapped to the corresponding IP in a virtual subnet.
 
 ## Inside NAT
 
@@ -44,7 +44,7 @@ Inside NATs are added to a network to expose hosts in the private network to aut
 
 ## Outside NAT
 
-The use of an Outside NAT can eliminate the need to create [routes]({{< ref "docs/domain/routes" >}}) on internal gateways. Outsides NATs translate address in Edge (remote) private networks to a privately addressable local IP. For example a host at 172.16.10.184/32 could be translated to 192.168.1.184/32.
+The use of an Outside NAT can eliminate the need to create [routes]({{< ref "/docs/domain/routes" >}}) on internal gateways. Outsides NATs translate address in Edge (remote) private networks to a privately addressable local IP. For example a host at 172.16.10.184/32 could be translated to 192.168.1.184/32.
 
 ## Routes
 
