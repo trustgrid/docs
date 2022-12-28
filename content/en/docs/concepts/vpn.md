@@ -10,18 +10,18 @@ Trustgrid utilizes Network Address Translation to alter the source and/or destin
 {{% /pageinfo %}}
 
 ### Outside NATs
-An Outside NAT will convert:
+An Outside NAT will Convert:
 
-- The **Source IP** address of traffic leaving the [Virtual Network]({{< ref "docs/domain/virtual-networks" >}}). This determines how traffic appears inside the local network. 
-- The **Destination IP** of traffic entering the [Virtual Network]({{< ref "docs/domain/virtual-networks" >}}).
+- The **Source IP** address of traffic leaving the [virtual network]({{< ref "docs/domain/virtual-networks" >}}). This determines how traffic appears inside the local network. 
+- The **Destination IP** of traffic entering the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).
 
-**An Outside NAT is required for all [nodes]({{< ref "node" >}})/[clusters]({{< ref "cluster" >}}) using the [Virtual Network]({{< ref "docs/domain/virtual-networks" >}}).**
+**An Outside NAT is required for all [nodes]({{< ref "node" >}})/[clusters]({{< ref "cluster" >}}) using the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).**
 
 ### Inside NATs
 An Inside NAT will convert:
 
-- The **Source IP** address of traffic entering the [Virtual Network]({{< ref "docs/domain/virtual-networks" >}}). 
-- The **Destination IP** address of traffic leaving the [Virtual Network]({{< ref "docs/domain/virtual-networks" >}}). 
+- The **Source IP** address of traffic entering the [virtual network]({{< ref "docs/domain/virtual-networks" >}}). 
+- The **Destination IP** address of traffic leaving the [virtual network]({{< ref "docs/domain/virtual-networks" >}}). 
 
 
 

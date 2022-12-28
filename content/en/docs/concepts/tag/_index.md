@@ -2,8 +2,7 @@
 categories: ["concepts"]
 tags: ["tag", "concepts"]
 title: "Tags"
-date: 2022-12-27
-
+date: 2022-12-28
 ---
 
 {{% pageinfo %}}
@@ -36,14 +35,14 @@ Tag names and values are case-sensitive and should only consist of letters, numb
 
 There are multiple ways to view [node]({{< ref "/docs/concepts/node" >}}) tags.
 
-#### Viewing Node Tags from the Node detail page
+#### Viewing Node Tags from the Node Detail Page
 
 After navigating to a specific [node’s]({{< ref "/docs/concepts/node" >}}) detail page you can view the tag by:
 
 Opening the Tags panel from the left side navigation bar:
 ![img](node-tags-yay4.png)
 
-Open the info panel by clicking "Info" in the top right or by clicking the ` (backtick) key
+Open the info panel by clicking `Info` in the top right or by clicking the ` (backtick) key
 ![img](info-panel-nodes2.png)
 
 ### Viewing Node Tags on the Nodes Table
@@ -59,7 +58,7 @@ Adding a tag as a column on a [nodes]({{< ref "/docs/concepts/node" >}}) table i
 
 ![img](add-column.png)
 
-3. Towards the bottom you will see all the available tags in the format `tag: tag-name`. Select the desired tag and click save.
+3. Towards the bottom you will see all the available tags in the format `tag: tag-name`. Select the desired tag and click `Save`.
 
 ![img](select-tag-column.png)
 
@@ -73,17 +72,17 @@ The [nodes]({{< ref "/docs/concepts/node" >}}) table can also be filtered to onl
 
 1. On the [nodes]({{< ref "/docs/concepts/node" >}}) table click `Actions` and select `Add Tag Filter` from the drop-down menu.
 
-![img](add-tag-filter2.png)
+![img](add-tag-filter-2.png)
 
-2. After clicking `Add Tag Filter`, select the tag Name field and you will see a list of tag names available. Select the desired tag.
+1. After clicking `Add Tag Filter`, select the tag-name field and you will see a list of tag-names available. Select the desired tag.
 
 ![img](pick-tag-filter-name2.png)
 
 You can also start typing to filter what tag names are shown.
 
-3. Select the tag Value field and you will see a list of available values. Select the desired value.
+3. Select the tag-value field and you will see a list of available values. Select the desired value.
 
-4. (Optional) Click `Add Tag Filter` to include an additional filter. Note that the two filters will be applied using AND so only [nodes]({{< ref "/docs/concepts/node" >}}) with both tag name:value combinations matching will be shown.
+4. (Optional) Click `Add Tag Filter` to include an additional filter. Note that the two filters will be applied using AND only [nodes]({{< ref "/docs/concepts/node" >}}) with both tag name:value combinations matching will be shown.
 
 5. Click `Apply Tag Filter` and the table will only show matching [nodes]({{< ref "/docs/concepts/node" >}}).
 
@@ -93,9 +92,9 @@ You can also start typing to filter what tag names are shown.
 
 #### Add a Tag
 
-1. On the Overview page of a [Cluster]({{<ref "docs/concepts/cluster">}}) or [Domain]({{<ref "docs/domain">}}), or on the tags panel of a [Node]({{<ref "docs/concepts/node">}}) click `Add Tag`.
+1. On the overview page of a [cluster]({{<ref "docs/concepts/cluster">}}) or [domain]({{<ref "docs/domain">}}), or on the tags panel of a [node]({{<ref "docs/concepts/node">}}) click `Add Tag`.
 
-2. The `Add Row` page will pop up with the Name field pre-selected. There will be a list of existing tag names for your org. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting `New selection: tagName`.
+2. The `Add Row` page will pop up with the name field pre-selected. There will be a list of existing tag names for your org. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting `New selection: tagName`.
 
 ![img](new-tag-name.png)
 
@@ -107,4 +106,4 @@ You can also start typing to filter what tag names are shown.
 
 ### Change a Tag
 
-# **THIS NEEDS CONTENT##
+# **THIS NEEDS CONTENT**

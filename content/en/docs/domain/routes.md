@@ -12,23 +12,23 @@ Routes configured under [Domains]({{< ref "docs/domain" >}}) determine to whic
 ## Route Configuration
 
 1. Login to the portal and select [`domains`]({{< ref "docs/domain" >}}).
-2. Click the link to the desired domain under the Name column.
-3. Scroll down to the [Virtual Networks]({{< ref "docs/domain/virtual-networks" >}}) section and select the `Routes` tab.
+2. Click the link to the desired domain under the "Name" column.
+3. Scroll down to the ["Virtual Networks"]({{< ref "docs/domain/virtual-networks" >}}) section and select the `Routes` tab.
 
 ![img](/docs/domain/routes-list.png)
 
-A route has 3 required fields:
+A Route has Three Required Fields:
 
 {{< field-def "Destination" >}}
 This will be the name of the [node]({{< ref "docs/concepts/node" >}}) or [cluster]({{< ref "docs/concepts/cluster" >}}) that traffic will be routed to. This list is auto-populated based on the nodes and clusters in the selected [domain]({{< ref "docs/domain" >}}).
 {{< /field-def >}}
 
 {{< field-def "Destination CIDR" >}}
-This is the CIDR notation of the [virtual network]({{< ref "docs/domain/virtual-networks" >}}) that should be routed to the above Destination [node]({{< ref "docs/concepts/node" >}}) or [cluster]({{< ref "docs/concepts/cluster" >}}).
+This is the CIDR notation of the [virtual network]({{< ref "docs/domain/virtual-networks" >}}) that should be routed to the above destination [node]({{< ref "docs/concepts/node" >}}) or [cluster]({{< ref "docs/concepts/cluster" >}}).
 {{< /field-def >}}
 
 {{< field-def "Metric" >}}
-If there are multiple routes for the same [virtual network]({{< ref "docs/domain/virtual-networks" >}}) the metric will determine which route will be used. The lowest number is the highest priority. See Automatic Failover below.
+If there are multiple routes for the same [virtual network]({{< ref "docs/domain/virtual-networks" >}}) the metric will determine which route will be used. The lowest number is the highest priority. See the "Automatic Failover" text below.
 {{< /field-def >}}
 
 ## Route Failover 
@@ -51,7 +51,7 @@ In either configuration, the [virtual network]({{< ref "docs/domain/virtual-netw
 
 ### Automatic Failover
 
-To have the route failover without manual intervention you must define two routes for the same subnet (Destination CIDR) with different metrics.  The lowest numerical metric will take precedence unless the Destination [node]({{< ref "docs/concepts/node" >}}) or [cluster]({{< ref "docs/concepts/cluster" >}}) is offline.
+To have the route failover without manual intervention you must define two routes for the same subnet (Destination CIDR) with different metrics.  The lowest numerical metric will take precedence unless the destination [node]({{< ref "docs/concepts/node" >}}) or [cluster]({{< ref "docs/concepts/cluster" >}}) is offline.
 
 In the below example configuration we want traffic for the 10.20.0.0/24 network to the `edge` [cluster]({{< ref "docs/concepts/cluster" >}}) first, and failover to the `edge-dr` [cluster]({{< ref "docs/concepts/cluster" >}}).
 
@@ -67,12 +67,12 @@ To preemptively reroute traffic to the backup site, update the backup route to h
 
 ### Manual Failover
 
-In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the [domain]({{< ref "docs/domain" >}}).  To initiate a failover you'll need to update the Destination [cluster]({{< ref "docs/concepts/cluster" >}})/[node]({{< ref "docs/concepts/node" >}}).
+In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the [domain]({{< ref "docs/domain" >}}).  To initiate a failover you'll need to update the destination [cluster]({{< ref "docs/concepts/cluster" >}})/[node]({{< ref "docs/concepts/node" >}}).
 
 1. Login to the Portal and select your domain.
-2. Click the link to the desired [domain]({{< ref "docs/domain" >}}) under the Name column.
-3. Scroll down to the [Virtual Networks]({{< ref "docs/domain/virtual-networks" >}}) section and select the Routes tab.
+2. Click the link to the desired [domain]({{< ref "docs/domain" >}}) under the "Name" column.
+3. Scroll down to the ["Virtual Networks"]({{< ref "docs/domain/virtual-networks" >}}) section and select the "Routes" tab.
 4. Find the route you wish to failover.
-5. Update the Destination device. (e.g. in the below you would switch from edge to edge-dr).
+5. Update the destination device. (e.g. in the below you would switch from edge to edge-dr).
    (add screenshot of instructions NEEDS TO BE FIXED)
 6. Click save.

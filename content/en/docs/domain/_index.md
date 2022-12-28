@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Domain"
-date: 2022-12-22
+date: 2022-12-28
 ---
 
 {{% pageinfo %}}

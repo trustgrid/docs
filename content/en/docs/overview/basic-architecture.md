@@ -2,7 +2,7 @@
 categories: ["overview"]
 tags: ["architecture"]
 title: "Basic Architecture"
-date: 2022-12-27
+date: 2022-12-28
 description: >
   Trustgrid basic architecture overview
 ---
@@ -32,7 +32,7 @@ The APT repository that stores all firmware, OS, and [node]({{< ref "docs/concep
 ### Edge Components
 
 {{< field-def "Node" >}}
-The software that provides core functionality in the edge including [networking]({{< ref "docs/overview/networking" >}}), [security]({{< ref "docs/overview/security" >}}), compute, and management features. Edge Nodes build outbound connections to Gateway Nodes.
+The software that provides core functionality in the edge including [networking]({{< ref "docs/overview/networking" >}}), [security]({{< ref "docs/overview/security" >}}), compute, and management features. Edge nodes build outbound connections to gateway nodes.
 {{< /field-def >}}
 
 ### Use Cases

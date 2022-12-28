@@ -15,7 +15,7 @@ All cloud management components are secured and monitored by Trustgrid. This inc
 
 ### Network Security is a Shared Responsibility
 
-Trustgrid is responsible for the [security]({{< ref "docs/overview/security" >}}) of all data plane traffic from the time it enters a Trustgrid [Node]({{< ref "docs/concepts/node" >}}) until the time it exits a Trustgrid [Node]({{< ref "/docs/concepts/node" >}}). Customers are responsible for the security of all network traffic eggressing from any Trustgrid [Node]({{< ref "/docs/concepts/node" >}}).
+Trustgrid is responsible for the [security]({{< ref "docs/overview/security" >}}) of all data plane traffic from the time it enters a Trustgrid [node]({{< ref "docs/concepts/node" >}}) until the time it exits a Trustgrid [node]({{< ref "/docs/concepts/node" >}}). Customers are responsible for the security of all network traffic eggressing from any Trustgrid [node]({{< ref "/docs/concepts/node" >}}).
 
 ### Trustgrid Teams with Customers for Edge Security
 
@@ -23,7 +23,7 @@ All virtual or hardware appliances are secured by Trustgrid. Trustgrid's ability
 
 ### Secure Gateway Nodes
 
-Trustgrid customer's should apply access controls to ingress traffic for Gateway Nodes. By restricting ingress access to Edge Node's IP ranges the system security is improved and many common attacks easily avoided.
+Trustgrid customer's should apply access controls to ingress traffic for gateway nodes. By restricting ingress access to edge node's IP ranges the system security is improved and many common attacks easily avoided.
 
 ### Encrypt Traffic with Customer Certificates
 

@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Applying Changes"
-date: 2022-12-22
+date: 2022-12-28
 ---
 
 {{% pageinfo %}}
@@ -19,4 +19,4 @@ After making changes to a [virtual network]({{< ref "docs/domain/virtual-network
 Individual changes can be rejected by clicking the delete icon at the top. 
 
 
-Once changes are applied, outstanding changes will disappear from the review page, and nodes will receive the configuration updates.
+Once changes are applied, outstanding changes will disappear from the review page, and [nodes]({{< ref "docs/concepts/node" >}}) will receive the configuration updates.

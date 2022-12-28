@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Network Groups"
-date: 2022-12-19
+date: 2022-12-28
 ---
 
 {{% pageinfo %}}

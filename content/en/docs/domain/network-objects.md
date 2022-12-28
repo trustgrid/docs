@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Network Objects"
-date: 2022-12-22
+date: 2022-12-28
 ---
 
 {{% pageinfo %}}
@@ -22,4 +22,4 @@ Specifically an IPv4 CIDR.
 ![img](/docs/domain/network-objects.png)
 
 
-Multiple network objects may be grouped into a [network group]({{< ref "docs/domain/network-groups" >}}).
+Multiple network objects may be clustered into a [network group]({{< ref "docs/domain/network-groups" >}}).

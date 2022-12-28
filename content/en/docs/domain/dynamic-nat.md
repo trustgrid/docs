@@ -1,7 +1,7 @@
 ---
 Title: "Dynamic NAT (catch-all)"
 Tags: ["dynamic-NAT", "Networking", "Networks"]
-Date: 2022-12-26
+Date: 2022-12-28
 ---
 
 {{% pageinfo %}}
