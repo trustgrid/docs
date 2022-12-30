@@ -55,3 +55,5 @@ Integrate thousands of edge datasets with a single API interface and ETL functio
 
 {{< field-def "Security" >}}
 Leverage Trustgrid's advanced [security]({{< ref "docs/overview/security" >}}) to protect against a wide range of threats.
+{{< /field-def >}}
+
