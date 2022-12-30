@@ -1,12 +1,11 @@
 ---
 title: "Trustgrid's Access to Nodes"
 weight: 2
-date: 2022-12-27
+date: 2022-12-30
 ---
-{{% pageinfo %}}
-By default, Trustgrid support has access to all [nodes]({{< ref "docs/concepts/node" >}}) via the Control Plane and subject to Trustgrid policy and procedures. Trustgrid customers can also choose if they want to prohibit Trustgrid support to access their [node]({{< ref "docs/concepts/node" >}}) for support purposes. This feature does not prevent automated management features such as patching/updating, logging, or authentication.
-{{% /pageinfo %}}
 
-Trustgrid customers can specify access to individual organizations and sub-organizations. If support is disabled at the organization, support for all sub-organizations and any native-parent-organization [nodes]({{< ref "docs/concepts/node" >}}) will be disallowed for users who belong to Trustgrid. If enabled on the parent-organization level, but disabled at the sub-organization level, [nodes]({{< ref "docs/concepts/node" >}}) that belong to that sub-organization will not allow Trustgrid staff remote access. This enables a Trustgrid customer to customize support access for each of their customers.
+By default, Trustgrid support has access to all [nodes]({{< ref "docs/concepts/node" >}}) via the Control Plane, subject to Trustgrid policies and procedures. Trustgrid customers may opt to disallow Trustgrid support access to their [nodes]({{< ref "docs/concepts/node" >}}). Disabling support access does not interfere with automated management features such as patching, updating, logging, or authentication.
 
-Changes to the supportable flag are audited.
+Changes to the support flag are audited.
+
+
