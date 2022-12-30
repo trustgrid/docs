@@ -23831,7 +23831,7 @@ h2 {
   font-size: 1.5rem; }
 
 .td-navbar {
-  background: rgba(48, 99, 142, 0.03); }
+  background: #fff; }
   .td-navbar .navbar-brand {
     color: #aaa; }
 

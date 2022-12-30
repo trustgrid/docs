@@ -11,8 +11,7 @@ description: >
 This is a placeholder page that shows you how to use this template site.
 {{% /pageinfo %}}
 
-
-The overview is where your users find out about your project. Depending on the size of your docset, you can have a separate overview page (like this one) or put your overview contents in the documentation landing page (like in the Docsy User Guide). 
+The overview is where your users find out about your project. Depending on the size of your docset, you can have a separate overview page (like this one) or put your overview contents in the documentation landing page (like in the Docsy User Guide).
 
 Try answering these questions for your user in this page:
 
@@ -21,7 +20,8 @@ Try answering these questions for your user in this page:
 Introduce your project, including what it does or lets you do, why you would use it, and its primary goal (and how it achieves it). This should be similar to your README description, though you can go into a little more detail here if you want.
 
 ### Why do I want it?
-Help your user know if your project will help them. Useful information can include: 
+
+Help your user know if your project will help them. Useful information can include:
 
 {{< field-def "What is it good for?" >}}
 What types of problems does your project solve? What are the benefits of using it?
@@ -39,6 +39,5 @@ Highlight any useful features that are coming soon.
 
 Give your users next steps from the overview. For example:
 
-* [Getting Started](/docs/getting-started/): Get started with a project here!
-* [Examples](/docs/examples/): Check out some example code from this link to build your project!
-
+- [Getting Started](/docs/getting-started/): Get started with a project here!
+- [Examples](/docs/examples/): Check out some example code from this link to build your project!
