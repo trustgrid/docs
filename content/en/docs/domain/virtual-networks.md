@@ -6,19 +6,19 @@ date: 2022-12-28
 ---
 
 {{% pageinfo %}}
-Trustgrid networks are assigned to [domains]({{< ref "docs/domain" >}}). They define an overlay network and routes for layer 3 connectivity. Trustgrid [nodes]({{< ref "docs/concepts/node" >}}) are then assigned to [networks]({{< ref "docs/overview/networking" >}}). Virtual Network Overlays work similarly to Amazon's VPCs but can span between clouds, datacenters, and between the cloud and the edge.
+Trustgrid networks are assigned to [domains]({{< ref "docs/domain" >}}). They define an overlay network and routes for layer 3 connectivity. Trustgrid [nodes]({{< ref "docs/node" >}}) are then assigned to [networks]({{< ref "docs/overview/networking" >}}). Virtual Network Overlays work similarly to Amazon's VPCs but can span between clouds, datacenters, and between the cloud and the edge.
 {{% /pageinfo %}}
 
 ### Virtual Network Overlay
 
-##### Virtual Networks - Layer 3 
+##### Virtual Networks - Layer 3
 
- - Trustgrid uses a virtual network to traffic between [nodes]({{< ref "docs/concepts/node" >}}). This avoids common 
-challenges like conflicting subnets in large, non-centralized networks. 
+- Trustgrid uses a virtual network to traffic between [nodes]({{< ref "docs/node" >}}). This avoids common
+  challenges like conflicting subnets in large, non-centralized networks.
 
 - Inside and outside NATs are used to expose hosts for traffic
 
-- [Routes]({{< ref "docs/domain/routes" >}}) may be configured on the [nodes]({{< ref "docs/concepts/node" >}})
+- [Routes]({{< ref "docs/domain/routes" >}}) may be configured on the [nodes]({{< ref "docs/node" >}})
 
 - ACLs can be applied
 
@@ -30,13 +30,11 @@ challenges like conflicting subnets in large, non-centralized networks.
 
 - **NOTE:** A [route]({{< ref "/docs/domain/routes" >}}) would have to be added to the default gateway of 172.16.3.0/24 for 10.0.5.150 to route traffic for 10.0.5.0/24 through the gw of the edge node (172.16.0.5) data interface.
 
-
-![img](/docs/domain/virtual-networks-yay.png) 
-
+![img](/docs/domain/virtual-networks-yay.png)
 
 ### Virtual IP Addresses
 
-Through the use of inside and outside NAT rules, local IP addresses to the Trustgrid [node]({{< ref "docs/concepts/node" >}}) may be exposed on the [network]({{< ref "docs/overview/networking" >}}) through a Virtual IP Address.  For instance, a local device may have a local IP address of 192.168.1.100, but you may want it to appear to other devices or applications on the virtual network as IP address 10.0.20.100. Virtual IP Subnets are also supported where each IP in a subnet is mapped to the corresponding IP in a virtual subnet.
+Through the use of inside and outside NAT rules, local IP addresses to the Trustgrid [node]({{< ref "docs/node" >}}) may be exposed on the [network]({{< ref "docs/overview/networking" >}}) through a Virtual IP Address. For instance, a local device may have a local IP address of 192.168.1.100, but you may want it to appear to other devices or applications on the virtual network as IP address 10.0.20.100. Virtual IP Subnets are also supported where each IP in a subnet is mapped to the corresponding IP in a virtual subnet.
 
 ### Inside NAT
 
@@ -52,6 +50,4 @@ The use of an outside NAT can eliminate the need to create [routes]({{< ref "/do
 
 ### Domains
 
-All Trustgrid [nodes]({{< ref "docs/concepts/node" >}})  are grouped into [domains]({{< ref "docs/domain" >}}). Communication is only possible within the [domain]({{< ref "docs/domain" >}}) a [node]({{< ref "docs/concepts/node" >}})  is deployed into. [Domains]({{< ref "docs/domain" >}}) operate as a security group for connectivity and a management group for bulk updates or changes. Virtual networks are assigned to individual [domains]({{< ref "docs/domain" >}}).
-
-
+All Trustgrid [nodes]({{< ref "docs/node" >}}) are grouped into [domains]({{< ref "docs/domain" >}}). Communication is only possible within the [domain]({{< ref "docs/domain" >}}) a [node]({{< ref "docs/node" >}}) is deployed into. [Domains]({{< ref "docs/domain" >}}) operate as a security group for connectivity and a management group for bulk updates or changes. Virtual networks are assigned to individual [domains]({{< ref "docs/domain" >}}).

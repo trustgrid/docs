@@ -7,7 +7,7 @@ date: 2022-12-28
 Production status tags are used for for organizing large Trustgrid deployments.
 {{% /pageinfo %}}
 
-It is recommended that customers use a [tag]({{< ref "docs/concepts/tag" >}}) to indicate if [nodes]({{< ref "docs/concepts/node" >}}) are currently in production or not. For example, you may wish to have a [tag]({{< ref "docs/concepts/tag" >}}) such as prod_status with possible values like
+It is recommended that customers use a [tag]({{< ref "docs/concepts/tag" >}}) to indicate if [nodes]({{< ref "docs/node" >}}) are currently in production or not. For example, you may wish to have a [tag]({{< ref "docs/concepts/tag" >}}) such as prod_status with possible values like
 
 - `deploying` for devices still being deployed
 - `production` for devices actively in user

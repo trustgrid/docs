@@ -11,10 +11,12 @@ The below processes should be used to move traffic between sites in event of a c
 {{<alert>}} In the examples below, xxxEdgeCluster is the primary site and xxx-edge3 is the secondary/disaster recovery site {{</alert>}}
 
 ### Manual Failover
-When a customer has selected manual failover, a portal user will need to adjust the destination of all [routes]({{< ref "docs/domain/routes" >}}) currently pointed at the failed site. 
+
+When a customer has selected manual failover, a portal user will need to adjust the destination of all [routes]({{< ref "docs/domain/routes" >}}) currently pointed at the failed site.
 
 #### Failing Over
-> There will usually be [routes]({{< ref "docs/domain/routes" >}}) for the [nodes']({{< ref "docs/concepts/node" >}}) Virtual Management IP. These should not be changed in this process.
+
+> There will usually be [routes]({{< ref "docs/domain/routes" >}}) for the [nodes']({{< ref "docs/node" >}}) Virtual Management IP. These should not be changed in this process.
 
 1. In the portal, navigate to `Domain` → `Virtual Networks` and then select the appropriate Virtual network.
 
@@ -36,14 +38,16 @@ When a customer has selected manual failover, a portal user will need to adjust 
 
 ![img](/docs/overview/operations-runbook/apply-changes.png)
 
-7. It may take 1-2 minutes for nodes to pull down the updated routing table. Once that has completed any new flow or connection will automatically be sent to the new destination node.  
+7. It may take 1-2 minutes for nodes to pull down the updated routing table. Once that has completed any new flow or connection will automatically be sent to the new destination node.
 
 {{<alert>}} If the node/cluster is still online at the primary site, and there are existing flows/connections they will persist at that site. To clear them restart the active node at the primary site. See the last step in the Forcing Failover section below for instructions.{{</alert>}}
 
 #### Failing Back
+
 To send traffic back to the primary site reverse the changes in the routing performed during the failover.
 
 ### Automatic Failover
+
 When a customer has selected automatic failover between sites there should be no intervention required if the primary site goes offline. The route table will be configured with multiple routes with different metrics. When determining where to send virtual traffic a node will select:
 
 - The most specific route - meaning if there is a route for 192.168.100.1/32 and another for 192.168.100.0/24, the /32 route will be preferred
@@ -52,8 +56,8 @@ When a customer has selected automatic failover between sites there should be no
 
 Below reflects a typical automatic failover configuration for a network
 
-
 #### Forcing Failover or Prevent Auto-Failback
+
 If it is necessary to move traffic to the secondary site without the primary site going offline follow the below process.
 
 Also, if a failure of the primary site has occurred and you want to ensure traffic does not automatically return to that site if it comes online (e.g. it is unstable) you can follow the same process.
@@ -82,16 +86,12 @@ You should see a change like below for each route adjusted. Click `Apply Changes
 
 8. Because the primary site is still online, you will need to restart the active node at that site to clear out any existing flows/connections.
 
-    a. If it's a cluster, navigate to the cluster and then select the currently active node from the overview page. If a single node site, navigate directly to that node.
+   a. If it's a cluster, navigate to the cluster and then select the currently active node from the overview page. If a single node site, navigate directly to that node.
 
-    b. From the toolbar select `Restart`
+   b. From the toolbar select `Restart`
 
-    c. Enter the node’s name and click `confirm`
+   c. Enter the node’s name and click `confirm`
 
 ### Restore Traffic to Primary Site
-To restore traffic to the primary site repeat the above steps but set the route for the primary site to have the lowest metric. 
 
- 
-
-
-
+To restore traffic to the primary site repeat the above steps but set the route for the primary site to have the lowest metric.

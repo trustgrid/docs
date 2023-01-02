@@ -16,7 +16,7 @@ A channel defines one or more method of delivering alert notifications to extern
 
 - OpsGenie - Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.
 
-{{<alert>}} For both PagerDuty and OpsGenie the integration will automatically resolve issues if an [event]({{< ref "docs/alarms/events" >}}) occurs that negates the initial triggering event. For example, if an [event]({{< ref "docs/alarms/events" >}}) is triggered by a Node Disconnect and the [node]({{< ref "docs/concepts/node" >}}) reconnects, the Node Connect [event]({{< ref "docs/alarms/events" >}}) will resolve the incident via the API. {{</alert>}}
+{{<alert>}} For both PagerDuty and OpsGenie the integration will automatically resolve issues if an [event]({{< ref "docs/alarms/events" >}}) occurs that negates the initial triggering event. For example, if an [event]({{< ref "docs/alarms/events" >}}) is triggered by a Node Disconnect and the [node]({{< ref "docs/node" >}}) reconnects, the Node Connect [event]({{< ref "docs/alarms/events" >}}) will resolve the incident via the API. {{</alert>}}
 
 - Slack - Trustgrid can post the [event]({{< ref "docs/alarms/events" >}}) data to a configured channel via a webhook.
 
@@ -63,7 +63,7 @@ The [event]({{< ref "docs/alarms/events" >}}) data is delivered in JSON, as show
 ### Event Data Descriptions
 
 {{< field-def "Node Name (Line 1)" >}}
-This is the name of the [node]({{< ref "docs/concepts/node" >}}) that the [event]({{< ref "docs/alarms/events" >}}) relates to.
+This is the name of the [node]({{< ref "docs/node" >}}) that the [event]({{< ref "docs/alarms/events" >}}) relates to.
 {{< /field-def >}}
 
 {{< field-def "Expires (Line 2)" >}}

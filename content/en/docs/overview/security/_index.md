@@ -2,8 +2,8 @@
 title: "Trustgrid Security"
 weight: 1
 date: 2022-12-30
-
 ---
+
 {{% pageinfo %}}
 Trustgrid’s mission is to replace aging Edge connectivity solutions with innovative, software defined solutions that integrate security and compliance in a way impossible for legacy solutions, while improving efficiency in deployment and life-cycle management.
 {{% /pageinfo %}}
@@ -14,13 +14,13 @@ Pre-shared keys (PSK) are the most common method for authenticated connectivity 
 
 ### Authorization
 
-Central to the security of the Trustgrid network is an authorization model derived from Google’s [Beyond Corp]( https://cloud.google.com/beyondcorp ) (aka Zero Trust from Forrester) initiative. This places an implicit deny on all traffic that cannot be configured to allow all traffic. Many breaches have been caused by allowing all traffic to overcome the burden of proper security configuration.
+Central to the security of the Trustgrid network is an authorization model derived from Google’s [Beyond Corp](https://cloud.google.com/beyondcorp) (aka Zero Trust from Forrester) initiative. This places an implicit deny on all traffic that cannot be configured to allow all traffic. Many breaches have been caused by allowing all traffic to overcome the burden of proper security configuration.
 
-Trustgrid uses a token to authorize communication between Trustgrid [nodes]({{< ref "/docs/concepts/node" >}}). 
+Trustgrid uses a token to authorize communication between Trustgrid [nodes]({{< ref "/docs/node" >}}).
 
 ### TLS Encryption
 
-All data on Trustgrid is encrypted from [node]({{< ref "/docs/concepts/node" >}}) to node using next generation encryption – TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement to IPSec VPN.
+All data on Trustgrid is encrypted from [node]({{< ref "/docs/node" >}}) to node using next generation encryption – TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement to IPSec VPN.
 
 ### Automated Management
 
