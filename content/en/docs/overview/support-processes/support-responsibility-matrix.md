@@ -45,7 +45,7 @@ Site with Trustgrid node(s) deployed and managed by the End-User.
 | --------------------------------------------------------------- | ---------------------- | ---------------------- | ---------------------- |
 | Trustgrid software or operating system issues                   | Full                   | None                   | None                   |
 | Control Plane Connectivity                                      | Shared                 | Shared - Customer Site | Shared - End-User Site |
-| Data Plane Connectivity                                         | Limited^1^**FOOTNOTE** | Shared                 | Shared                 |
+| Data Plane Connectivity                                         | Limited<sup>1</sup> | Shared                 | Shared                 |
 | Data Plane Performance                                          | Shared                 | Shared                 | Shared                 |
 | Power and physical network connectivity for Trustgrid Appliance | None                   | Full - Customer Site   | Full - End-User Site   |
 | Internet Service                                                | None                   | Full - Customer Site   | Full - End-User Site   |
@@ -54,7 +54,7 @@ Site with Trustgrid node(s) deployed and managed by the End-User.
 
 ---
 
-**FOOTNOTE**^1^Trustgrid can work with the Customer and End-User to confirm that the Trustgrid system is working as expected and provide additional information to aid in troubleshooting.
+<sup>1</sup>Trustgrid can work with the Customer and End-User to confirm that the Trustgrid system is working as expected and provide additional information to aid in troubleshooting.
 
 ### Tier One Support
 
