@@ -1,10 +1,12 @@
 ---
 tags: ["applications", "ztna"]
 title: "Access Policy"
-date: 2023-01-05
+date: 2023-01-06
 ---
 
+{{% pageinfo %}}
 An Access Policy is comprised of several rules that determine whether a user is permitted to access a ZTNA application. If no rule matches a user's access attempt, the attempt will be denied.
+{{% /pageinfo %}}
 
 Each rule has three types of criteria:
 
@@ -21,15 +23,25 @@ Rules are evaluated in the order they are listed in the policy. Rules may be mov
 
 INSERT SCREENSHOT
 
-# # Criteria
+### Criteria
 
-Use field defs for this:
-
-- Emails - a list of email addresses, comma separated. Eg, "user1@company.com, user2@company.com"
-- Country - the user's country, determined by their IP address
-- Emails ending in - a required email suffix, like "@company.com"
-- Everyone - this rule always matches
-- IDP Groups - a list of [IDP Groups](put-link-here) that the user must be a member of
-- IP Ranges - a list of IP ranges either in CIDR notation or a single IP address, comma separated. Eg, "10.10.44, 10.10.8.0/24"
+{{< field-def "Emails" >}}
+a list of email addresses, comma separated. Eg, "user1@company.com, user2@company.com"
+{{< /field-def >}}
+{{< field-def "Country" >}}
+the user's country, determined by their IP address
+{{< /field-def >}}
+{{< field-def "Emails ending in" >}}
+a required email suffix, like "@company.com"
+{{< /field-def >}}
+{{< field-def "Everyone" >}}
+this rule always matches
+{{< /field-def >}}
+{{< field-def "IDP Groups" >}}
+a list of [IDP Groups](put-link-here) that the user must be a member of
+{{< /field-def >}}
+{{< field-def "IP Ranges" >}}
+a list of IP ranges either in CIDR notation or a single IP address, comma separated. Eg, "10.10.44, 10.10.8.0/24"
+{{< /field-def >}}
 
 INSERT SCREENSHOT OF CRITERIA FILLED OUT
