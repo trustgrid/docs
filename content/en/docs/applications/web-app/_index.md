@@ -1,11 +1,11 @@
 ---
 tags: ["applications", "ztna"]
 title: "Web App"
-date: 2023-01-06
+date: 2023-01-11
 ---
 
 {{% pageinfo %}}
-A Web App is a ZTNA application that allows remote access to internal web applications. Services such as Jenkins (link) or JIRA (link) can be hosted internally but exposed to authorized users.
+A Web App is a ZTNA application that allows remote access to internal web applications. Services such as [Jenkins](https://www.jenkins.io/) or [JIRA](https://www.atlassian.com/software/jira) can be hosted internally but exposed to authorized users.
 {{% /pageinfo %}}
 
 #### General
@@ -43,10 +43,20 @@ the application's icon (optional) to show in the application dashboard
 - TLS Custom CA - only available if using Custom CA TLS verification. The CA certificate used to validate the application's certificate
 
 #### Security
-- Identity Provider - the Identity Provider [link] to authenticate users
+- Identity Provider - the [Identity Provider](https://portal.dev.trustgrid.io/#/identity-providers) to authenticate users
 - User session duration - How long a user's session will last before they are required to re-authenticate
 - Trust Mode:
-    - Discovery - all URLs accessed through the application will be permitted and listed in the [Trusted Links](insert link) section
+    - Discovery - all URLs accessed through the application will be permitted and listed in the [Trusted Links]({{< ref "docs/applications/web-app/trusted-links" >}}) section
     - Zero Trust - only URLs explicitly trusted by the application will be permitted
 
-SHOW HOW TO CREATE WEBAPP
+1. Click `Add Application`
+
+![img](add-app.png)
+
+2. Click the `Web Application` option
+
+![img](web1.png)
+
+3. Fill out all details in the sheet provided, then click `Save` when satisfied with the information entered
+
+![img](web-app.png)
