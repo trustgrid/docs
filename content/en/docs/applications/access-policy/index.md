@@ -41,7 +41,7 @@ a required email suffix, like "@company.com"
 this rule always matches
 {{< /field-def >}}
 {{< field-def "IDP Groups" >}}
-a list of [IDP Groups](put-link-here) that the user must be a member of
+a list of [IDP Groups](https://github.com/trustgrid/docs/issues/80 put-link-here) that the user must be a member of
 {{< /field-def >}}
 {{< field-def "IP Ranges" >}}
 a list of IP ranges either in CIDR notation or a single IP address, comma separated. Eg, "10.10.44, 10.10.8.0/24"
