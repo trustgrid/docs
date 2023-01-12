@@ -1,5 +1,5 @@
 ---
-Title: "Open IDs"
+Title: "OpenID"
 Date: 2023-1-12
 ---
 
