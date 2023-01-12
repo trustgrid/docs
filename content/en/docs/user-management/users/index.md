@@ -148,3 +148,9 @@ To view:
 3. The identity Providers will be listed in a table in the main panel. If no IdP is listed this indicates the user is using the Trustgrid native authentication system.
 
 ![img](identity.png)
+
+Currently changing password requires users to know to:
+
+1. Log out of the portal
+2. On the login page select `Forgot Password`
+3. Use the email from Auth0 to set a new password
