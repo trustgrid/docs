@@ -1,6 +1,6 @@
 ---
 Title: "Policies"
-Date: 2022-12-30
+Date: 2023-1-12
 ---
 
 {{% pageinfo %}}
@@ -72,33 +72,33 @@ Policies have a Resources section that allow the permissions granted to be limit
 
 ![img](resources.png)
 
-#### Trustgrid Resource Names or tgrn
+#### Trustgrid Resource Names or TGRN
 
 Trustgrid has adopted a resource naming convention that follows the basic format: `tgrn:tg::<service>:<resource-type>/<resource-id>`
 
-###### Wildcard tgrn
+###### Wildcard TGRN
 
-By default the Resources field is populated with `*` which grants permissions to all resources. This is included by default for new policies and would need to be removed to provide tgrn restricted permissions.
+By default the Resources field is populated with `*` which grants permissions to all resources. This is included by default for new policies and would need to be removed to provide TGRN restricted permissions.
 
-###### Node tgrn
+###### Node TGRN
 
 A node’s TGRN will start with the below prefix:
 `tgrn:tg::nodes:node/`
-To get the node’s complete tgrn you’ll need to append the node ID which is visible by navigating to the node and either copying from the URL or using the Node ID field in the Info visor drop down
+To get the node’s complete TGRN you’ll need to append the node ID which is visible by navigating to the node and either copying from the URL or using the Node ID field in the Info visor drop down
 
 ![img](node-tgrn.png)
 
-A complete [node]({{< ref "docs/node" >}}) tgrn looks like: `tgrn:tg::nodes:node/ab3550cf-f3da-4d90-b4b1-b870fc85c9c7`
+A complete [node]({{< ref "docs/node" >}}) TGRN looks like: `tgrn:tg::nodes:node/ab3550cf-f3da-4d90-b4b1-b870fc85c9c7`
 
-#### Cluster tgrn
+#### Cluster TGRN
 
-Cluster tgrn start with the prefix:
+Cluster TGRN start with the prefix:
 `tgrn:tg::nodes:cluster/`
 This is followed by the cluster’s fully qualified domain name (fqdn) which is the combination of the cluster name and your organizations trustgrid domain. This visible in the URL when you navigate to a cluster in the portal.
 
 ![img](cluster-tgrn.png)
 
-A complete [cluster]({{< ref "docs/cluster" >}}) tgrn looks like: `tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io`
+A complete [cluster]({{< ref "docs/cluster" >}}) TGRN looks like: `tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io`
 
 ### Policy Management
 
