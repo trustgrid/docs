@@ -1,5 +1,5 @@
 ---
-Title: "Identity Providers (IDPs)"
+Title: "Identity Providers"
 Date: 2023-1-12
 ---
 {{% pageinfo %}}
