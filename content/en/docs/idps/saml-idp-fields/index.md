@@ -1,5 +1,5 @@
 ---
-Title: "SAML Identity Provider Fields"
+Title: "SAML"
 Date: 2023-1-12
 ---
 When configuring a SAML IDP, the provider will often provide a metadata XML file to simplify configuration. If provided, you can upload that on the SAML configuration page, which will automatically populate the fields necessary for SAML authentication.
