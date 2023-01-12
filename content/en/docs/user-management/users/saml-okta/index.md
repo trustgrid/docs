@@ -1,5 +1,5 @@
 ---
-Title: "Enable SAML Authentication to Trustgrid Portal using Okta"
+Title: "Enable SAML with Okta"
 Date: 2023-1-12
 ---
 In Okta, switch to the Classic UI to be able to configure SAML applications.
