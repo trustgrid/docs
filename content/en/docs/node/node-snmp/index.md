@@ -1,5 +1,5 @@
 ---
-Title: "Configure SNMP on an Edge Node"
+Title: "SNMP"
 Date: 2023-1-12
 ---
 {{% pageinfo %}}
