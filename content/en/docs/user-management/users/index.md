@@ -149,8 +149,3 @@ To view:
 
 ![img](identity.png)
 
-Currently changing password requires users to know to:
-
-1. Log out of the portal
-2. On the login page select `Forgot Password`
-3. Use the email from Auth0 to set a new password
