@@ -24,4 +24,4 @@ Learn how to [create an account]({{< ref "getting-started" >}}) and [create a no
 
 # Tutorials
 
-Learn how to [failover a cluster]({{< ref "tutorials/ztna-wireguard" >}}) or [deploy a ZTNA gateway]({{< ref "tutorials/deploy-ztna-gateway" >}}).
+Learn how to [reboot a node]({{< ref "tutorials/reboot-node" >}}) or [restart a node]({{< ref "tutorials/restart-node" >}}).

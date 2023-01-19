@@ -43,7 +43,7 @@ This is the interface on which the SNMP service will listen. This should always 
 
 ![img](system-config.png)
 
-Query the SNMP Service
+#### Query the SNMP Service
 The SNMP Service is listening on the IP address of the Interface chosen along with the Virtual Management IP if configured. The example below is a snmpwalk from a client on the same layer 2 network that the data nic of the edge node resides in.
 
 To query the SNMP service you can use a tool like snmpwalk or similar.  
