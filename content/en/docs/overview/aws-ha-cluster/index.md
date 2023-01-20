@@ -1,5 +1,5 @@
 ---
-Title: "AWS Requirements for HA Wiregaurd Cluster"
+Title: "AWS Requirements for HA Wireguard Cluster"
 Date: 2023-1-6
 ---
 
