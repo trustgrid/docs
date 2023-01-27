@@ -10,7 +10,8 @@ The [Node overview page](https://portal.dev.trustgrid.io/#/node/a9f1fedd-a474-45
 Supported time windows are selectable at the top. VPN and network statistics can be targeted to specific virtual networks and interfaces.
 
 ![img](node-overview.png)
-(More node stats info below where the screenshot is)
+
+![img](node-overview2.png)
 
 {{< field-def "Node Performance" >}}
 shows CPU, disk, and memory usage percentages
