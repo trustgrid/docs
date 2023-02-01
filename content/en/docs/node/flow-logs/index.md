@@ -94,3 +94,28 @@ The prefix to use when writing objects. If the prefix is, "prefix", then files w
 {{< /field-def >}}
 
 After saving credentials, Trustgrid will attempt to write an empty file named `validation` to the bucket and prefix provided. Any errors will be displayed on the page.
+
+#### Example IAM Policy for S3 Export
+Below is an example IAM policy with the required permissions to push flow logs to your S3 bucket.  Be sure you replace `example-flowlogs` in lines 13 & 14 with the name of your bucket.
+<pre class="line-numbers language-json" data-line="13-14">
+<code>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:PutObject",
+                "s3:ListBucket",
+                "s3:ListMultipartUploadParts"
+            ],
+            "Resource": [
+                "arn:aws:s3:::example-flowlogs/*",
+                "arn:aws:s3:::example-flowlogs"
+            ]
+        }
+    ]
+}
+</code></pre>
+
+
