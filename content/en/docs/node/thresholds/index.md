@@ -1,5 +1,5 @@
 ---
-tags: ["domain", "concepts"]
+tags: ["node", "concepts"]
 title: "Thresholds"
 date: 2023-2-3
 ---
