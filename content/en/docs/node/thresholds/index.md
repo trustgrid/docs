@@ -5,14 +5,16 @@ date: 2023-2-3
 ---
 
 {{% pageinfo %}}
-Thresholds provide a way to trigger events when different measurements exceed a given value. Thresholds configured at the domain level apply to all nodes in the domain, except when overridden. Events will be of type `Metric Threshold Violation`.
+Thresholds provide a way to trigger events when different measurements exceed a given value. Thresholds configured at the node level can override [Domain Thresholds]({{< ref "/docs/domain/thresholds" >}}).
 {{% /pageinfo %}}
 
-To view thresholds, a user will need `domains::read` permissions. To configure them, they will need `domains::configure:threshold` permissions.
+To view and configure thresholds, a user will need `nodes::configure::thresholds` permissions.
 
-Navigate to your domain, and click `Thresholds` on the left.
+Navigate to a node, and click `Thresholds` under the `System` section.
 
 ![img](list.png)
+
+Note that overridden thresholds have a yellow square icon next to them.
 
 ### Load Thresholds
 
@@ -43,7 +45,7 @@ The name of the threshold. This will be available in generated events.
 {{< /field-def >}}
 
 {{< field-def "Telemetry" >}}
-The metric to monitor. Currently only latency (measured in milliseconds) is available.
+The metric to monitor. Options are latency (ms), bandwidth in (Mbps), and bandwidth out (Mbps).
 {{< /field-def >}}
 
 {{< field-def "Threshold" >}}
@@ -55,5 +57,5 @@ The time period to measure. If the threshold is exceeded for this duration, an e
 {{< /field-def >}}
 
 {{< field-def "Target" >}}
-The target node to measure the latency to. Each node will measure the latency to the target node.
+For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.
 {{< /field-def >}}
