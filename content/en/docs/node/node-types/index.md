@@ -7,9 +7,7 @@ date: 2022-12-19
 
 ### Gateway Nodes
 
-Gateway Nodes accept incoming TLS tunnels from Edge Nodes. Traffic on these tunnels is bidirectional, as permitted by ACLs or policy. Gateway Nodes usually require a firewall change to permit the incoming traffic. Gateway Nodes are identical to Edge Nodes but with a gateway configuration applied. Gateway Nodes do not connect to other Gateway Nodes unless a Hub Gateway [Node]({{< ref "docs/node" >}}) is specified in the [node]({{< ref "docs/node" >}}) configuration.
-
-**BROKENLINK Configure as a Gateway Node.** (FIX IN WIKI)
+Gateway Nodes accept incoming TLS tunnels from Edge Nodes. Traffic on these tunnels is bidirectional, as permitted by ACLs or policy. Gateway Nodes usually require a firewall change to permit the incoming traffic. Gateway Nodes are identical to Edge Nodes but with a gateway configuration applied. Gateway nodes only connect to other gateways if one is of type `hub`. Read more about [gateway configuration]({{< ref "docs/node/gateway" >}}).
 
 ### Edge Nodes
 
