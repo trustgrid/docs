@@ -23830,10 +23830,25 @@ h1 {
 h2 {
   font-size: 1.5rem; }
 
+#td-cover-block-0 {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)); }
+
 .td-navbar {
-  background: #fff; }
+  background: #fff !important; }
   .td-navbar .navbar-brand {
     color: #aaa; }
+
+.td-search .td-search__icon {
+  color: #797676; }
+
+.td-search .td-search__input {
+  color: #aaa;
+  border: 1px solid #ccc; }
+  .td-search .td-search__input ::placeholder {
+    color: #aaa; }
+
+.td-navbar-cover .nav-link {
+  text-shadow: none; }
 
 .navbar-dark .navbar-nav .nav-link {
   color: #aaa; }

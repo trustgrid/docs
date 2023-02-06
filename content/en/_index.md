@@ -3,25 +3,34 @@ title: "Documentation"
 linkTitle: "Documentation"
 ---
 
-<br/>
-<br/>
-<br/>
-<br/>
+{{< blocks/cover image_anchor="top" height="min" color="primary" >}}
+<img src="/img/logo.svg" style="height: 5em; margin-bottom: 2em;"/>
 
-Look here for explanations and usage information for the Trustgrid Platform.
+<h2>Connect cloud applications to data in any environment</h2>
+<a
+	class="btn btn-lg btn-primary font-weight-bold my-4"
+	href="/docs/overview"
+>
+Start here
+</a>
+{{</blocks/cover>}}
+
+<div class="container" style="margin-top: 3em;">
 
 # Documentation
 
 An explanation of the building blocks and core concepts for building with Trustgrid.
 
-- [Concepts]({{< ref "/docs/concepts" >}})
-- [Nodes]({{< ref "/docs/node" >}})
-- [Clusters]({{< ref "/docs/cluster" >}})
+- [Concepts]({{< ref "/docs/concepts" >}}) - core concepts for building with Trustgrid
+- [Nodes]({{< ref "/docs/node" >}}) - every device or service that connects to Trustgrid is a node
+- [Clusters]({{< ref "/docs/cluster" >}}) - pair nodes together for HA
+</div>
 
-# Getting Started
+<div class="container" style="margin-top: 3em;">
 
-Learn how to [create an account]({{< ref "getting-started" >}}) and [create a node]({{< ref "getting-started" >}}).
+# Tools
 
-# Tutorials
+- [Swagger API](https://portal.trustgrid.io/api-docs/ui)
+- [Terraform Provider](https://registry.terraform.io/providers/trustgrid/tg/latest)
 
-Learn how to [reboot a node]({{< ref "tutorials/reboot-node" >}}) or [restart a node]({{< ref "tutorials/restart-node" >}}).
+</div>
