@@ -10,8 +10,11 @@ The sniff interface traffic tool performs a traffic capture on the selected node
 ## Accessing & Using Sniff Interface Traffic
 
 1. Login to the Trustgrid portal and navigate to the Node from which you want to capture traffic.
-1. Scroll down to the Configuration section and select the Network tab.
-1. From the Interface Tool, drop-down menu select Sniff Interface Traffic ![img](network-tools.png)
+1. Select `Interfaces` under the `Network` section.
+1. Click the Sniff Traffic button
+
+   ![img](network-tools.png)
+
 1. Set the appropriate parameters.  
    {{<field-def "iface">}}The interface name{{</field-def>}}
    {{<field-def "filter">}}The tool utilizes [TCPDump filtering syntax](https://www.tcpdump.org/manpages/pcap-filter.7.html), which can help isolate interesting traffic. The below filter would show only ICMP and TCP traffic{{</field-def>}}
