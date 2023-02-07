@@ -1,6 +1,7 @@
 ---
-Title: "Documents"
-Date: 1-27-2023
+title: "Documents"
+date: 1-27-2023
+weight: 4
 ---
 
 {{% pageinfo %}}
@@ -10,4 +11,4 @@ Trustgrid and customers can share documents securely in the Documents section.
 ![img](documents.png)
 
 Adding or deleting documents requires `documents::modify` permissions. Downloading and viewing documents requires `documents::read` permissions.
-(show how to add and delete and download a document). 
+(show how to add and delete and download a document).

@@ -1,7 +1,9 @@
 ---
-Title: "Identity Providers"
-Date: 2023-1-12
+title: "Identity Providers"
+date: 2023-1-12
+weight: 9
 ---
+
 {{% pageinfo %}}
 The Trustgrid Portal can integrate with external identity providers. The identity providers added to the Portal may be used for ZTNA access and/or Portal authentication.
 {{% /pageinfo %}}
