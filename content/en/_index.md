@@ -11,7 +11,7 @@ linkTitle: "Documentation"
 	class="btn btn-lg btn-primary font-weight-bold my-4"
 	href="/docs/overview"
 >
-Start here
+Start Here
 </a>
 {{</blocks/cover>}}
 
