@@ -18,4 +18,4 @@ Once a peer is selected, the monitoring section will populate with reelvant data
 
 ![img](monitoring.png)
 
-Hop data is only available for nodes that have hop monitoring enabled. See [Monitoring Network Hops to Peers]({{< ref "/tutorials/monitoring-network-hops-to-peers" >}}).
+Hop data is only available for nodes that have hop monitoring enabled. See [Monitoring Network Hops to Peers]({{< ref "/tutorials/gateway-tools/monitoring-network-hops-to-peers" >}}).
