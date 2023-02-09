@@ -15,22 +15,28 @@ Connectors are configured under the Networking > Connectors tab of the node or c
 
 ![Layer 4 - Add a connector](connector.png)
 
-**Protocol:**
+{{< field-def "Protocol" >}}
 The protocol that the listener for the connector will use. Options are TCP, UDP, FTP, and TFTP.
+{{< /field-def >}}
 
 > FTP must operate in passive mode when using L4 services and connectors.
 
-**Listen Interface:**
+{{< field-def "Listen Interface" >}}
 The interface that you want the connector to listen on. If set to "All", the connector will listen on 0.0.0.0.
+{{< /field-def >}}
 
-**Listen Port:**
+{{< field-def "Listen Port" >}}
 The port that you want the connector to listen on.
+{{< /field-def >}}
 
-**Remote Node:**
+{{< field-def "Remote Node" >}}
 The remote node or cluster that traffic will be proxied to.
+{{< /field-def >}}
 
-**Remote Service:**
+{{< field-def "Remote Service" >}}
 Either the friendly name of [service]({{< ref "docs/node/services" >}}) that is defined on the remote node, or the IP:Port of the remote service to connect to.
+{{< /field-def >}}
 
-**Rate Limit (Mb/s):**
+{{< field-def "Rate Limit (Mb/s)" >}}
 The maximum amount of throughput that will be allowed to traverse the tunnel when connecting to the connector. This can be used to prevent saturating the connection at either the local or remote sites.
+{{< /field-def >}}
