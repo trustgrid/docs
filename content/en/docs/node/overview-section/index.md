@@ -13,21 +13,23 @@ Supported time windows are selectable at the top. VPN and network statistics can
 
 ![img](node-overview2.png)
 
-{{< field-def "Node Performance" >}}
+{{<fields>}}
+{{<field "Node Performance" >}}
 shows CPU, disk, and memory usage percentages
-{{< /field-def >}}
-{{< field-def "VPN Traffic Volume" >}}
+{{</field >}}
+{{<field "VPN Traffic Volume" >}}
 shows data usage sent and received, across all VPNs and for the selected virtual network
-{{< /field-def >}}
-{{< field-def "Traffic Volume" >}}
+{{</field >}}
+{{<field "Traffic Volume" >}}
 shows data sent and receives, across all interfaces and for the selected interface
-{{< /field-def >}}
-{{< field-def "Connected Peers" >}}
+{{</field >}}
+{{<field "Connected Peers" >}}
 shows the number of other nodes connected. This will change based on the node type - gateways connect to all edge nodes, while edge nodes only connect to gateways.(LINK HUB GATEWAY PAGE WHEN DOCUMENTED)
-{{< /field-def >}}
-{{< field-def "VPN Flows" >}}
+{{</field >}}
+{{<field "VPN Flows" >}}
 shows new and active flows, across all VPNs and for the selected virtual network
-{{< /field-def >}}
-{{< field-def "TCP Errors" >}}
+{{</field >}}
+{{<field "TCP Errors" >}}
 shows TCP errors across all interfaces
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}

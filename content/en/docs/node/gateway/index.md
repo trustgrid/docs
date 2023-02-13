@@ -25,79 +25,85 @@ Navigate to a node and select `Gateway` under the `System` section.
 
 ![img](public-config.png)
 
-{{< field-def "Status" >}}
+{{<fields>}}
+{{<field "Status" >}}
 Either `Enabled` or `Disabled` - when enabled, the node will listen and accept connections from other nodes.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "UDP Enabled" >}}
+{{<field "UDP Enabled" >}}
 Whether to allow UDP tunnels to be established through this gateway.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Public IP or DNS" >}}
+{{<field "Public IP or DNS" >}}
 The public IP or DNS name of the gateway. This is the address that other nodes will use to connect to this gateway.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Port" >}}
+{{<field "Port" >}}
 The port that the gateway will listen on. This is the port that other nodes will use to connect to this gateway.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "UDP Port" >}}
+{{<field "UDP Port" >}}
 The port that the gateway will listen on for UDP tunnels. This is the port that other nodes will use to connect to this gateway.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Max Ingress Mbps" >}}
+{{<field "Max Ingress Mbps" >}}
 The ingress bandwidth limit for the gateway. Connections will be throttled when this limit is reached.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Certificate" >}}
+{{<field "Certificate" >}}
 When using DNS for gateway connections, you may specify an uploaded [certificate]({{ ref "/docs/certificate" }}) to use for TLS connections.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Gateway Type" >}}
+{{<field "Gateway Type" >}}
 The type of gateway. See [Gateway Types](#gateway-types) for more information.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Monitor Network Hops to Peers" >}}
+{{<field "Monitor Network Hops to Peers" >}}
 Whether to monitor latency to peers through this gateway. This can have a performance impact and is not recommended for high-traffic gateways.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ### Client Settings
-
-{{< field-def "Max Egress Mbps" >}}
-The egress bandwidth limit for the gateway. Connections will be throttled when this limit is reached.
-{{< /field-def >}}
 
 Private gateways only allow connectivity from listed and enabled clients. To add a client, use the typeahead textbox at the bottom of the clients table and select the desired node.
 
 ![img](clients.png)
 
+{{<fields>}}
+{{<field "Max Egress Mbps" >}}
+The egress bandwidth limit for the gateway. Connections will be throttled when this limit is reached.
+{{</field >}}
+{{</fields>}}
+
 #### MPLS Traffic
 
 Gateways of all types allow configuring paths for MPLS traffic.
 
-{{< field-def "Name" >}}
+{{<fields>}}
+{{<field "Name" >}}
 A name for the path.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Gateway Node" >}}
+{{<field "Gateway Node" >}}
 Gateway for which the path is applicable.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Host IP" >}}
+{{<field "Host IP" >}}
 Destination IP address for the path.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Host Port" >}}
+{{<field "Host Port" >}}
 Destination port for the path.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Local IP" >}}
+{{<field "Local IP" >}}
 Bind the connection to this IP address.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Use as Default" >}}
+{{<field "Use as Default" >}}
 Make this the default path for the gateway.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ## Gateway Tools
 

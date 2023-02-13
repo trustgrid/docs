@@ -16,12 +16,14 @@ This domain can be used to directly access the Portal, and unauthenticated users
 
 Four different types of identity providers are supported: AzureAD, GSuite, OpenID, and SAML.
 
-{{< field-def "Type" >}}
+{{<fields>}}
+{{<field "Type" >}}
 the identity provider type.
-{{< /field-def >}}
-{{< field-def "Name" >}}
+{{</field >}}
+{{<field "Name" >}}
 used inside the portal when associating an identity provider with a ZTNA application
-{{< /field-def >}}
-{{< field-def "Use for Portal Auth" >}}
+{{</field >}}
+{{<field "Use for Portal Auth" >}}
 whether or not this provider should be the default authentication provider. Only one provider can be used for Portal authentication.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}

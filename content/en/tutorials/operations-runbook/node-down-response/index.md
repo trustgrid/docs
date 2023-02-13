@@ -66,14 +66,14 @@ Before troubleshooting why a [node]({{< ref "docs/node" >}}) is down we should d
 
 Because Trustgrid provides independent control and data planes, there are a few ways it can manifest as “down”:
 
-{{< field-def "Control Plane Down" >}}
+{{<field "Control Plane Down" >}}
 The [node]({{< ref "docs/node" >}}) appears offline from within the Trustgrid portal. This indicates that the [node]({{< ref "docs/node" >}}) shutdown or has not sent a heartbeat notification to Trustgrid within the past 10 minutes.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Data Plane Down" >}}
+{{<field "Data Plane Down" >}}
 The [node]({{< ref "docs/node" >}}) appears online from within the portal but reports it is unable to connect to one or more gateway nodes. This can be indicated by the Data Plane Status indicator when viewing the [node]({{< ref "docs/node" >}}) in the portal, or by receiving a “Gateway Connectivity Health Check” failure [event]({{< ref "docs/alarms/events" >}}) notification. Both of these only work if the Control Plane is currently working.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Both Control and Data Plane Down" >}}
+{{<field "Both Control and Data Plane Down" >}}
 In this situation the [node]({{< ref "docs/node" >}}) appears down in the Trustgrid Portal and users/applications are unable to reach services across the data plane between the Gateway and Edge sites. This is the most common scenario. While the Data Plane is most critical for the services provided across the device, first priority should be restoring the Control Plane connection so that additional troubleshooting tools are available. Often this process also uncovers the reason the data plane is down.
-{{< /field-def >}}
+{{</field >}}

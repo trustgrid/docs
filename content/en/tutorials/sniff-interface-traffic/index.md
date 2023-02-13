@@ -30,8 +30,8 @@ Because of the risk of data being visible, there are several restrictions and co
    ![img](network-tools.png)
 
 1. Set the appropriate parameters.  
-   {{<field-def "iface">}}The interface name{{</field-def>}}
-   {{<field-def "filter">}}The tool utilizes [TCPDump filtering syntax](https://www.tcpdump.org/manpages/pcap-filter.7.html), which can help isolate interesting traffic. The below filter would show only ICMP and TCP traffic{{</field-def>}}
+   {{<field "iface">}}The interface name{{</field>}}
+   {{<field "filter">}}The tool utilizes [TCPDump filtering syntax](https://www.tcpdump.org/manpages/pcap-filter.7.html), which can help isolate interesting traffic. The below filter would show only ICMP and TCP traffic{{</field>}}
    ![img](filters.png)
 1. Click `Execute` to view the captured traffic
 

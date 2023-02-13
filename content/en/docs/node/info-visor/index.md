@@ -7,53 +7,55 @@ You can view at-a-glance node information from the info visor, either by clickin
 
 ![img](visor.png)
 
-{{< field-def "Control Plane" >}}
+{{<fields>}}
+{{<field "Control Plane" >}}
 Indicates whether the node is connected to the Trustgrid control plane
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Data Plane" >}}
+{{<field "Data Plane" >}}
 Indicates whether the node is connected to its gateways
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Status" >}}
+{{<field "Status" >}}
 Enabled nodes will connect to gateways and the Trustgrid mesh network. If a node is disabled, it will connect only to the control plane and wait to be enabled. Disabled nodes do not pass traffic and do not support remote management.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Last Heartbeat" >}}
+{{<field "Last Heartbeat" >}}
 The last time the node sent a heartbeat to the control plane
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Device Type" >}}
+{{<field "Device Type" >}}
 The type of hardware or virtualization of the node
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Upgrade Status" >}}
+{{<field "Upgrade Status" >}}
 Information about the last upgrade request sent to the node
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Tags" >}}
+{{<field "Tags" >}}
 Tags applied to the node
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Public IP" >}}
+{{<field "Public IP" >}}
 The WAN IP through which the node has connected to the control plane. You may toggle the lock icon to pin the IP address. Attempts to connect to the control plane from a different IP from the locked IP address will be denied
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Version" >}}
+{{<field "Version" >}}
 The node software version
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Name" >}}
+{{<field "Name" >}}
 The node name
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Node ID" >}}
+{{<field "Node ID" >}}
 The node's unique ID
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Package Version" >}}
+{{<field "Package Version" >}}
 The node software package version
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ### Open Alerts
 

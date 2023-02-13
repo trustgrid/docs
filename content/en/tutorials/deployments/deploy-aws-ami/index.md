@@ -58,15 +58,15 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
 
 ## Instance Configuration
 
-{{<field-def "Stack Name">}}
+{{<field "Stack Name">}}
 Unique name to describe this deployment
-{{</field-def>}}
+{{</field>}}
 
-{{<field-def "Instance Type">}}
+{{<field "Instance Type">}}
 Set the instance type of the EC2 instance to deploy (bigger instances cost more)
-{{</field-def>}}
+{{</field>}}
 
-{{<field-def "Host IAM Role">}}
+{{<field "Host IAM Role">}}
 An EC2 associated role that allows creating and writing to CloudWatch logs. Only the role name itself is required.
 
 The role needs these IAM privileges: `logs:CreateLogGroup`, `logs:CreateLogStream`, `logs:PutLogEvents`, `logs:DescribeLogStreams` on resource `arn:aws:logs:*:*:*`
@@ -113,45 +113,45 @@ Route Table Policy
 **NOTE**: Set the Resource field to the ARN of the Routing Table associated with the data NICs of the instance.
 
 **CloudWatch Note**: We will create log groups named /trustgrid/var/log/syslog and /trustgrid/var/log/trustgrid/tg-default.log.
-{{</field-def>}}
+{{</field>}}
 
-{{<field-def "SSH Keypair">}}
+{{<field "SSH Keypair">}}
 SSH keypair to SSH to the instance as ubuntu user if necessary
 
 **NOTE**: SSH access requires a security group change allowing access. We strongly recommend that SSH is not allowed from anywhere (0.0.0.0/0).
-{{</field-def>}}
+{{</field>}}
 
 ## Management Configuration
 
-{{<field-def "Security Group">}}
+{{<field "Security Group">}}
 Needs to allow outbound traffic to other gateways and our public IP range, at a minimum. If it's a gateway node, needs to allow inbound access on desired gateway port.
-{{</field-def>}}
+{{</field>}}
 
-{{<field-def "Subnet">}}
+{{<field "Subnet">}}
 The VPC subnet to put the EC2 instance in. This needs to be a subnet with public IP enables (the instance will automatically claim one; the Auto-Assign Public IP does not need to be enabled)
-{{</field-def>}}
+{{</field>}}
 
 ## Data Path Configuration
 
-{{<field-def "Security Group">}}
+{{<field "Security Group">}}
 The security group for the data path - needs to allow outbound communication to other gateways, and inbound communication on its gateway port
-{{</field-def>}}
+{{</field>}}
 
-{{<field-def "Subnet">}}
+{{<field "Subnet">}}
 The VPC subnet to put the data interface in - if it's a cloud-accessible gateway, should be a public subnet, if it's only for internal AWS traffic, can be a private subnet. Will need outbound access either through IGW or NAT GW.
-{{</field-def>}}
+{{</field>}}
 
-{{<field-def "Data IP">}}
+{{<field "Data IP">}}
 The private IP for the data path - must belong to the subnet
-{{</field-def>}}
+{{</field>}}
 
 ## Trustgrid Configuration
 
-{{<field-def "Security Group">}}
+{{<field "Security Group">}}
 Copy/paste the license from the portal.
 
 Note: It is critical that you copy/paste the license correctly.
-{{</field-def>}}
+{{</field>}}
 
 {{<alert>}}If you are not a direct Trustgrid customer please work with your vendor to get these licenses generated and sent to you.{{</alert>}}
 

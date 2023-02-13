@@ -19,12 +19,12 @@ Navigate to the `VPN` section for your node or cluster, and select `Actions`->`A
 
 ![img](attach-network.png)
 
-{{<field-def "Network">}}The network name (defined on the domain) to attach{{</field-def>}}
+{{<field "Network">}}The network name (defined on the domain) to attach{{</field>}}
 
-{{<field-def "Network CIDR">}}The network CIDR{{</field-def>}}
+{{<field "Network CIDR">}}The network CIDR{{</field>}}
 
-{{<field-def "Validation CIDR">}}The network route CIDR{{</field-def>}}
+{{<field "Validation CIDR">}}The network route CIDR{{</field>}}
 
-{{<field-def "Virtual Management IP">}}The virtual IP address to use in this network{{</field-def>}}
+{{<field "Virtual Management IP">}}The virtual IP address to use in this network{{</field>}}
 
 Once attached, navigate into the network to manage the VPN configuration.

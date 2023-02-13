@@ -19,17 +19,19 @@ Routes configured under [Domains]({{< ref "docs/domain" >}}) determine to whic
 
 A Route has Three Required Fields:
 
-{{< field-def "Destination" >}}
+{{<fields>}}
+{{<field "Destination" >}}
 This will be the name of the [node]({{< ref "docs/node" >}}) or [cluster]({{< ref "docs/cluster" >}}) that traffic will be routed to. This list is auto-populated based on the nodes and clusters in the selected [domain]({{< ref "docs/domain" >}}).
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Destination CIDR" >}}
+{{<field "Destination CIDR" >}}
 This is the CIDR notation of the [virtual network]({{< ref "docs/domain/virtual-networks" >}}) that should be routed to the above destination [node]({{< ref "docs/node" >}}) or [cluster]({{< ref "docs/cluster" >}}).
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Metric" >}}
+{{<field "Metric" >}}
 If there are multiple routes for the same [virtual network]({{< ref "docs/domain/virtual-networks" >}}) the metric will determine which route will be used. The lowest number is the highest priority. See the "Automatic Failover" text below.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ## Route Failover 
 
@@ -40,11 +42,11 @@ Route failover allows a subnet to be routed to an alternate [node]({{< ref "/doc
 In either configuration, the [virtual network]({{< ref "docs/domain/virtual-networks" >}}) settings under [VPN]({{< ref "docs/concepts/VPN" >}}) settings for the primary and backup destination [nodes]({{< ref "docs/node" >}})/[clusters]({{< ref "docs/cluster" >}}) must match. Including:
 
 - Network Virtual Route
-  
+
   ![img](virtual-network-route.png)
 
 - Network Group under Outside NAT Table
-  
+
   ![img](outside-nat-table.png)
 
 - Virtual CIDR under Inside NAT Table

@@ -11,5 +11,5 @@ Nodes can act as DNS servers for the virtual network. Find DNS definitions and c
 
 Upstream servers will be used to answer DNS queries for domains that are not in the virtual network.
 
-{{<field-def "Host IP Address">}}The upstream DNS server's IP address{{</field-def>}}
-{{<field-def "Host Port">}}The upstream DNS server's port (usually 53){{</field-def>}}
+{{<field "Host IP Address">}}The upstream DNS server's IP address{{</field>}}
+{{<field "Host Port">}}The upstream DNS server's port (usually 53){{</field>}}

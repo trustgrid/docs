@@ -11,13 +11,15 @@ A network object allows naming a CIDR inside a [VPN]({{< ref "docs/concepts/VPN"
 
 A network object requires the following fields:
 
-{{< field-def "Name" >}}
+{{<fields>}}
+{{<field "Name" >}}
 The label to use when referencing this object.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "CIDR" >}}
+{{<field "CIDR" >}}
 Specifically an IPv4 CIDR.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ![img](network-objects.png)
 

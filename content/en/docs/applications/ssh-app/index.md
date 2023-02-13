@@ -8,22 +8,26 @@ date: 2023-01-11
 A SSH app is a ZTNA application that allows remote access to internal SSH servers. SSH servers can be hosted internally but exposed to authorized users.
 {{% /pageinfo %}}
 
-#### General
-{{< field-def "Name" >}}
+## General
+
+{{<fields>}}
+{{<field "Name" >}}
 app name
-{{< /field-def >}}
-{{< field-def "Description" >}}
+{{</field >}}
+{{<field "Description" >}}
 app description
-{{< /field-def >}}
-{{< field-def "Icon" >}}
+{{</field >}}
+{{<field "Icon" >}}
 the application's icon (optional) to show in the application dashboard
-{{< /field-def >}}
-section: Connectivity
+{{</field >}}
+{{</fields>}}
+
+## Connectivity
 
 - Connectivity type:
-    - local to gateway - the application is hosted on the same network as the gateway
-    - remote node - the application is hosted on an edge node's network
-    - virtual network - the application is accessible over the Trustgrid virtual network from the ZTNA gateway
+  - local to gateway - the application is hosted on the same network as the gateway
+  - remote node - the application is hosted on an edge node's network
+  - virtual network - the application is accessible over the Trustgrid virtual network from the ZTNA gateway
 - ZTNA Gateway - the ZTNA gateway node that will be used to connect to the application
 - Destination Node - only available if connectivity type is Remote Node. The edge node with access to the application
 - VRF - only available if connectivity type is Remote Node. The VRF used to connect to the application.
@@ -34,7 +38,7 @@ section: Connectivity
 - Virtual Network - only available if connectivity type is Virtual Network. The virtual network that will be used to connect to the application
 - Client Virtual IP - only available if connectivity type is Virtual Network. The virtual IP address that will be used to connect to the application
 
-#### Security
+## Security
 
 - Identity Provider - the [Identity Provider](https://portal.dev.trustgrid.io/#/identity-providers) to authenticate users
 

@@ -62,35 +62,37 @@ The [event]({{< ref "docs/alarms/events" >}}) data is delivered in JSON, as show
 
 ### Event Data Descriptions
 
-{{< field-def "Node Name (Line 1)" >}}
+{{<fields>}}
+{{<field "Node Name (Line 1)" >}}
 This is the name of the [node]({{< ref "docs/node" >}}) that the [event]({{< ref "docs/alarms/events" >}}) relates to.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Expires (Line 2)" >}}
+{{<field "Expires (Line 2)" >}}
 This is the Unix epoch time when this [event]({{< ref "docs/alarms/events" >}}) will expire and automatically resolve.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Level (Line 4)" >}}
+{{<field "Level (Line 4)" >}}
 This is the alert severity.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Event Type (Line 5)" >}}
+{{<field "Event Type (Line 5)" >}}
 Matches to the [event types]({{< ref "docs/alarms/event-types" >}}).
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Timestamp (Line 21)" >}}
+{{<field "Timestamp (Line 21)" >}}
 This is the Unix epoch time when the [event]({{< ref "docs/alarms/events" >}}) was first triggered.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "ChannelID (Line 22)" >}}
+{{<field "ChannelID (Line 22)" >}}
 This is the unique identifier of the Trustgrid channel that was used to deliver this message. You can match this to the URL of the channel in the portal.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ![img](random-link1.png)
 
-{{< field-def "AlarmID (Lines 26-28)" >}}
+{{<field "AlarmID (Lines 26-28)" >}}
 Since a channel can be used by more than one [alarm filter]({{< ref "alarm-filters" >}}) this will return an array of 1 or more alarm filters that matched the [event]({{< ref "events" >}}) and used this above channel. You can match this to the URL of the [alarm filters]({{< ref "alarm-filters" >}}) in the portal.
-{{< /field-def >}}
+{{</field >}}
 
 ![img](random-link2.png)
 

@@ -8,37 +8,36 @@ date: 2022-12-28
 {{% pageinfo %}}
 An access policy is a list of rules that each allow, reject, or drop traffic at the [VPN]({{< ref "docs/concepts/VPN" >}}) level.
 {{% /pageinfo %}}
- 
+
 If no rules are defined, traffic will not pass through the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).
 
+**A rule can match traffic based on the following fields:**
 
- **A rule can match traffic based on the following fields:**
-
-
-{{< field-def "Action" >}}
+{{<fields>}}
+{{<field "Action" >}}
 Whether to ALLOW, DROP, or REJECT the traffic.
-{{< /field-def >}}
-  
-{{< field-def "Protocol" >}}
+{{</field >}}
+
+{{<field "Protocol" >}}
 You can choose ANY, UDP, ICMP, or TCP.
-{{< /field-def >}}
-  
-{{< field-def "Source" >}}
+{{</field >}}
+
+{{<field "Source" >}}
 The source of the traffic. You can select a [network object]({{< ref "docs/domain/network-objects" >}}), a [network group]({{< ref "docs/domain/network-groups" >}}), or provide a CIDR.
-{{< /field-def >}}
-  
-{{< field-def "Destination" >}}
+{{</field >}}
+
+{{<field "Destination" >}}
 The destination of the traffic. You can select a [network object]({{< ref "docs/domain/network-objects" >}}), a [network group]({{< ref "docs/domain/network-groups" >}}), or provide a CIDR.
-{{< /field-def >}} 
+{{</field >}}
 
-{{< field-def "Line Number" >}}
+{{<field "Line Number" >}}
 Rules are evaluated starting with the lowest numbered rule. Once a rule matches, later rules are ignored even if they might also match the traffic. **(confirm w/ Steven)**
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Port Range">}}
+{{<field "Port Range">}}
 For TCP and UDP traffic, you can specify a port (e.g., 80) or a range (e.g., 8000-9000).
-{{< /field-def >}}
-
+{{</field >}}
+{{</fields>}}
 
 ![img](access-policy.png)
 

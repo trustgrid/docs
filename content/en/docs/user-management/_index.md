@@ -16,21 +16,3 @@ User Management is used to securely control access to Trustgrid resources. Ident
    c. Trustgrid generated API token
 2. Permissions are determined via one or more attached policies
 3. These permissions are evaluated as the user makes requests against either via Trustgrid Portal or API
-
-#### Management Panels
-
-{{< field-def "Users" >}}
-Used to manage users and attach and detach policies
-{{< /field-def >}}
-
-{{< field-def "Groups" >}}
-Used to manage groups (Trustgrid-native or IdP-synced)
-{{< /field-def >}}
-
-{{< field-def "API Access" >}}
-Used to generate or change API-tokens for the current authenticated user
-{{< /field-def >}}
-
-{{< field-def "Policies" >}}
-Used to view or define policies that determine effective permissions
-{{< /field-def >}}

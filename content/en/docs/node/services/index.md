@@ -15,24 +15,26 @@ Services are configured under the Networking > Services tab of the node or clust
 
 ![Layer 4 - Add a service](service.png)
 
-{{< field-def "Protocol" >}}
+{{<fields>}}
+{{<field "Protocol" >}}
 The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, along with pre-defined default ports for RDP, SSH, and VNC.
-{{< /field-def >}}
+{{</field >}}
 
 > FTP must operate in passive mode when using L4 services and connectors
 
-{{< field-def "Service Name" >}}
+{{<field "Service Name" >}}
 A friendly name for the service that will be used in the Remote Service field of a [connector]({{< ref "docs/node/connectors" >}}).
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Host" >}}
+{{<field "Host" >}}
 The IP of the host to connect to.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Port" >}}
+{{<field "Port" >}}
 The port to connect to on the host.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Health Check" >}}
+{{<field "Health Check" >}}
 A health check can be configured for TCP services. The health check will attempt a TCP connectivity check once per minute. After 5 consecutive failures, an Outbound L4 Service Health Check alert will be triggered and clustered nodes will be marked as unhealthy. Clustered nodes will return to a Healthy status after 5 consecitive connection attempts are successful.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}

@@ -13,35 +13,36 @@ SNMP is configured under the SNMP tab of the configuration section of the node i
 
 Configure all fields and click save. Then set the status to enabled which will start the SNMP service on the node.
 
-{{< field-def "Status" >}}
+{{<fields>}}
+{{<field "Status" >}}
 Set to enabled to start SNMP service. Setting to disabled will retain the configuration but stop the SNMP service on the node.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Engine ID" >}}
+{{<field "Engine ID" >}}
 Automatically generated
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Username" >}}
+{{<field "Username" >}}
 Create SNMP Username to be used by snmp client
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Auth Protocol" >}}
+{{<field "Auth Protocol" >}}
 Select MD5 or SHA
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Auth Passphrase" >}}
+{{<field "Auth Passphrase" >}}
 Configure authentication passphrase of eight or more characters
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Privacy Protocol" >}}
+{{<field "Privacy Protocol" >}}
 Select between DES, AES128
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Port" >}}
+{{<field "Port" >}}
 SNMP service runs on UDP port 161 by default. Specify an alternate port number to run the service on an alternate UDP port.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Interface" >}}
+{{<field "Interface" >}}
 This is the interface on which the SNMP service will listen. This should always be set to an interface behind the firewall.
 
 - Loopback - This will listen only on virtual management IPs. Useful for monitoring across the virtual network overlay (e.g. snmp collector is in the remote network)
@@ -49,8 +50,10 @@ This is the interface on which the SNMP service will listen. This should always 
 - ETH0 for single interface setups. Note: if enabled on a WAN interface with public IP SNMP port 161 will show as available on the internet
 
 - ETH1 for dual interface setups
-  {{< /field-def >}}
 
+{{</field >}}
+
+{{</fields>}}
 ![img](system-config.png)
 
 #### Query the SNMP Service

@@ -12,14 +12,14 @@ Trustgrid allows importing of self-managed certificates that can encrypt traffic
 
 #### Adding a Certificate
 
-{{<field-def "Certificate body">}}
+{{<field "Certificate body">}}
 The certificate body, in PEM format.
-{{</field-def >}}
-{{<field-def "Certificate chain">}}
+{{</field >}}
+{{<field "Certificate chain">}}
 The certificate authority's chain, in PEM format.
-{{</field-def>}}
-{{<field-def "Private key">}}
+{{</field>}}
+{{<field "Private key">}}
 The certificate's private key, in PEM format.
-{{</field-def>}}
+{{</field>}}
 
 Once uploaded, the sensitive certificate details will not be available via the API, but the parsed information from the certificate, such as FQDN, the expiry date, and any warnings about the certificate, will be available in the table.

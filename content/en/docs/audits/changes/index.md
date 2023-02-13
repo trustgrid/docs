@@ -13,12 +13,14 @@ Changes can be viewed for a specific node and for the entire organization. To vi
 
 The following information is shown for each change:
 
-{{< field-def "Date" >}}When the change was made{{</field-def>}}
-{{< field-def "IP" >}}The IP address from which the change originated{{</field-def>}}
-{{< field-def "Event" >}}The type of change (delete/create/change/action). Note that for some entities where the entire entity is re-sent to the API, a change may show `create` instead of `change`.{{</field-def>}}
-{{< field-def "Details" >}}Information about the change. Typically will include the item's ID and a brief summary of the changes made.{{</field-def>}}
-{{< field-def "User Name" >}}The user who made the change{{</field-def>}}
-{{< field-def "Item Type" >}}The type of item changed{{</field-def>}}
+{{<fields>}}
+{{<field "Date" >}}When the change was made{{</field>}}
+{{<field "IP" >}}The IP address from which the change originated{{</field>}}
+{{<field "Event" >}}The type of change (delete/create/change/action). Note that for some entities where the entire entity is re-sent to the API, a change may show `create` instead of `change`.{{</field>}}
+{{<field "Details" >}}Information about the change. Typically will include the item's ID and a brief summary of the changes made.{{</field>}}
+{{<field "User Name" >}}The user who made the change{{</field>}}
+{{<field "Item Type" >}}The type of item changed{{</field>}}
+{{</fields>}}
 
 Viewing configuration changes requires `audits::read:config` permissions.
 

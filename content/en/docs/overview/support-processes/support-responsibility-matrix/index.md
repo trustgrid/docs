@@ -23,34 +23,34 @@ End Users own and operate a physical, virtual or cloud environment in which the 
 
 ### Terminology
 
-{{< field-def "Trustgrid Management Portal" >}}
+{{<field "Trustgrid Management Portal" >}}
 Cloud-based system used to remotely manage, monitor, and configure Trustgrid Nodes.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Trustgrid Node" >}}
+{{<field "Trustgrid Node" >}}
 Appliance running Trustgrid’s software to facilitate Trustgrid Connect, EdgeCompute, and RemoteAccess services. These appliances could be deployed on physical devices or as virtual machines. The appliance consists of the Trustgrid software and the underlying operating system (OS).
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Customer Site" >}}
+{{<field "Customer Site" >}}
 Site with Trustgrid node(s) deployed and managed by the Customer.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "End-User Site" >}}
+{{<field "End-User Site" >}}
 Site with Trustgrid node(s) deployed and managed by the End-User.
-{{< /field-def >}}
+{{</field >}}
 
 ### Support Matrix
 
-| Issue Type                                                      | Trustgrid              | Customer               | End-User               |
-| --------------------------------------------------------------- | ---------------------- | ---------------------- | ---------------------- |
-| Trustgrid software or operating system issues                   | Full                   | None                   | None                   |
-| Control Plane Connectivity                                      | Shared                 | Shared - Customer Site | Shared - End-User Site |
+| Issue Type                                                      | Trustgrid           | Customer               | End-User               |
+| --------------------------------------------------------------- | ------------------- | ---------------------- | ---------------------- |
+| Trustgrid software or operating system issues                   | Full                | None                   | None                   |
+| Control Plane Connectivity                                      | Shared              | Shared - Customer Site | Shared - End-User Site |
 | Data Plane Connectivity                                         | Limited<sup>1</sup> | Shared                 | Shared                 |
-| Data Plane Performance                                          | Shared                 | Shared                 | Shared                 |
-| Power and physical network connectivity for Trustgrid Appliance | None                   | Full - Customer Site   | Full - End-User Site   |
-| Internet Service                                                | None                   | Full - Customer Site   | Full - End-User Site   |
-| Internet Side Firewall                                          | None                   | Full - Customer Site   | Full - End-User Site   |
-| Local networking including switching and firewall               | None                   | Full - Customer Site   | Full - End-User Site   |
+| Data Plane Performance                                          | Shared              | Shared                 | Shared                 |
+| Power and physical network connectivity for Trustgrid Appliance | None                | Full - Customer Site   | Full - End-User Site   |
+| Internet Service                                                | None                | Full - Customer Site   | Full - End-User Site   |
+| Internet Side Firewall                                          | None                | Full - Customer Site   | Full - End-User Site   |
+| Local networking including switching and firewall               | None                | Full - Customer Site   | Full - End-User Site   |
 
 ---
 

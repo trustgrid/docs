@@ -18,10 +18,12 @@ Clicking the `Test` button will send the event through your configured alarms to
 
 #### Event Times
 
-{{< field-def "Generated Time" >}}
+{{<fields>}}
+{{<field "Generated Time" >}}
 The time the event was created.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Received Time" >}}
+{{<field "Received Time" >}}
 The time the event was received by the control plane. This can be later than the generated time in the event of a network disruption, for eample.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}

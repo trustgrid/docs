@@ -10,12 +10,14 @@ An Access Policy is comprised of several rules that determine whether a user is 
 
 Each rule has three types of criteria:
 
-{{< field-def "Include" >}}
+{{<fields>}}
+{{<field "Include" >}}
 criteria in this section are logically OR'd together. For a rule to apply to an access attempt, at least one of the include criteria must match.
-{{< field-def "Exception" >}}
+{{<field "Exception" >}}
 criteria in this section are logically NOT'd. If any exception criterion matches, the rule will not apply to the access attempt.
-{{< field-def "Require" >}}
+{{<field "Require" >}}
 criteria in this section are logically AND'd. ALL of the require criteria must match for the rule to apply to the access attempt.
+{{</fields>}}
 
 Rules also have an action:
 
@@ -28,23 +30,25 @@ Rules are evaluated in the order they are listed in the policy. Rules may be mov
 
 ### Criteria
 
-{{< field-def "Emails" >}}
+{{<fields>}}
+{{<field "Emails" >}}
 a list of email addresses, comma separated. Eg, "user1@company.com, user2@company.com"
-{{< /field-def >}}
-{{< field-def "Country" >}}
+{{</field >}}
+{{<field "Country" >}}
 the user's country, determined by their IP address
-{{< /field-def >}}
-{{< field-def "Emails ending in" >}}
+{{</field >}}
+{{<field "Emails ending in" >}}
 a required email suffix, like "@company.com"
-{{< /field-def >}}
-{{< field-def "Everyone" >}}
+{{</field >}}
+{{<field "Everyone" >}}
 this rule always matches
-{{< /field-def >}}
-{{< field-def "IDP Groups" >}}
+{{</field >}}
+{{<field "IDP Groups" >}}
 a list of [IDP Groups](https://github.com/trustgrid/docs/issues/80 put-link-here) that the user must be a member of
-{{< /field-def >}}
-{{< field-def "IP Ranges" >}}
+{{</field >}}
+{{<field "IP Ranges" >}}
 a list of IP ranges either in CIDR notation or a single IP address, comma separated. Eg, "10.10.44, 10.10.8.0/24"
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ![img](criteria.png)

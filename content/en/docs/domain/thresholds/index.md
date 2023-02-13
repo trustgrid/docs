@@ -18,42 +18,46 @@ Navigate to your domain, and click `Thresholds` on the left.
 
 Load thresholds measure the health of the node itself.
 
-{{< field-def "Name" >}}
+{{<fields>}}
+{{<field "Name" >}}
 The name of the threshold. This will be available in generated events.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Telemetry" >}}
+{{<field "Telemetry" >}}
 The metric to monitor. Options are CPU usage (%), memory usage (%), disk usage (%), and embryonic flows (absolute count).
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Threshold" >}}
+{{<field "Threshold" >}}
 The value that must be exceeded for an event to be generated.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Duration" >}}
+{{<field "Duration" >}}
 The time period to measure. If the threshold is exceeded for this duration, an event will be generated.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 ### Network Thresholds
 
 Network thresholds measure the health of the network from the node's perspective.
 
-{{< field-def "Name" >}}
+{{<fields>}}
+{{<field "Name" >}}
 The name of the threshold. This will be available in generated events.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Telemetry" >}}
+{{<field "Telemetry" >}}
 The metric to monitor. Currently only latency (measured in milliseconds) is available.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Threshold" >}}
+{{<field "Threshold" >}}
 The value that must be exceeded for an event to be generated.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Duration" >}}
+{{<field "Duration" >}}
 The time period to measure. If the threshold is exceeded for this duration, an event will be generated.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "Target" >}}
+{{<field "Target" >}}
 The target node to measure the latency to. Each node will measure the latency to the target node.
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}

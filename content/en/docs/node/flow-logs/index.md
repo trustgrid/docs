@@ -13,40 +13,41 @@ By default, newest flows will be shown first.
 
 ![img](flow-logs-table.png)
 
-{{< field-def "Start Time" >}}
+{{<fields>}}
+{{<field "Start Time" >}}
 The time the flow started
-{{< /field-def >}}
-{{< field-def "End Time" >}}
+{{</field >}}
+{{<field "End Time" >}}
 The time the flow ended
-{{< /field-def >}}
-{{< field-def "Protocol" >}}
+{{</field >}}
+{{<field "Protocol" >}}
 The protocol used
-{{< /field-def >}}
-{{< field-def "Source Node" >}}
+{{</field >}}
+{{<field "Source Node" >}}
 The node that initiated the flow
-{{< /field-def >}}
-{{< field-def "Source IP" >}}
+{{</field >}}
+{{<field "Source IP" >}}
 The IP address through which the node initiated the flow
-{{< /field-def >}}
-{{< field-def "Source Port" >}}
+{{</field >}}
+{{<field "Source Port" >}}
 The port through which the node initiated the flow
-{{< /field-def >}}
-{{< field-def "Dest Node" >}}
+{{</field >}}
+{{<field "Dest Node" >}}
 The node that received the flow
-{{< /field-def >}}
-{{< field-def "Dest IP" >}}
+{{</field >}}
+{{<field "Dest IP" >}}
 The IP address to which traffic was sent
-{{< /field-def >}}
-{{< field-def "Dest Port" >}}
+{{</field >}}
+{{<field "Dest Port" >}}
 The port to which traffic was sent
-{{< /field-def >}}
-{{< field-def "Recv Bytes" >}}
+{{</field >}}
+{{<field "Recv Bytes" >}}
 Bytes received at the source node
-{{< /field-def >}}
-{{< field-def "Sent Bytes" >}}
+{{</field >}}
+{{<field "Sent Bytes" >}}
 Bytes sent from the source node
-{{< /field-def >}}
-{{< field-def "TCP Flags" >}}
+{{</field >}}
+{{<field "TCP Flags" >}}
 TCP Flags set during the flow:
 
 - SYN - sync packet
@@ -55,7 +56,10 @@ TCP Flags set during the flow:
 - URG - urgent packet
 - FIN - finish packet
 - RST - reset packet
-  {{< /field-def >}}
+
+{{</field >}}
+
+{{</fields>}}
 
 ### Advanced Search
 
@@ -73,30 +77,34 @@ On the Operations->Flow Logs page, configure credentials to export flows.
 
 ![img](s3-export.png)
 
-{{< field-def "S3 Access Key" >}}
+{{<fields>}}
+{{<field "S3 Access Key" >}}
 The access key to use when making S3 API calls to the target bucket
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "S3 Secret Key" >}}
+{{<field "S3 Secret Key" >}}
 The secret key to use when making S3 API calls to the target bucket
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "S3 Bucket" >}}
+{{<field "S3 Bucket" >}}
 The bucket name. You must own the S3 bucket and the access credentials must be allowed to write to the bucket.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "S3 Region" >}}
+{{<field "S3 Region" >}}
 The region of the S3 bucket. This is used to determine the endpoint to use when making S3 API calls.
-{{< /field-def >}}
+{{</field >}}
 
-{{< field-def "S3 Prefix" >}}
+{{<field "S3 Prefix" >}}
 The prefix to use when writing objects. If the prefix is, "prefix", then files will be written to s3://your-bucket/prefix/tg-flow-logs-YYYY-MM-DD.csv.gz
-{{< /field-def >}}
+{{</field >}}
+{{</fields>}}
 
 After saving credentials, Trustgrid will attempt to write an empty file named `validation` to the bucket and prefix provided. Any errors will be displayed on the page.
 
 #### Example IAM Policy for S3 Export
-Below is an example IAM policy with the required permissions to push flow logs to your S3 bucket.  Be sure you replace `example-flowlogs` in lines 13 & 14 with the name of your bucket.
+
+Below is an example IAM policy with the required permissions to push flow logs to your S3 bucket. Be sure you replace `example-flowlogs` in lines 13 & 14 with the name of your bucket.
+
 <pre class="line-numbers language-json" data-line="13-14">
 <code>{
     "Version": "2012-10-17",
@@ -117,5 +125,3 @@ Below is an example IAM policy with the required permissions to push flow logs t
     ]
 }
 </code></pre>
-
-

@@ -11,8 +11,8 @@ The cluster heartbeat defines a persistent connection between cluster members. T
 
 ![img](heartbeat.png)
 
-{{<field-def "host">}}The IP (bound to an interface) on which heartbeat communication will occur{{</field-def>}}
+{{<field "host">}}The IP (bound to an interface) on which heartbeat communication will occur{{</field>}}
 
-{{<field-def "port">}}The port on which heartbeat communication will occur{{</field-def>}}
+{{<field "port">}}The port on which heartbeat communication will occur{{</field>}}
 
 {{<alert>}}The same interface should be selected for all cluster members{{</alert>}}
