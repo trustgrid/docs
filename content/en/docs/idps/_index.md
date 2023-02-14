@@ -14,7 +14,7 @@ To use an identity provider for Portal authentication, first configure the authe
 
 This domain can be used to directly access the Portal, and unauthenticated users will be redirected to your chosen identity provider.
 
-Four different types of identity providers are supported: AzureAD, GSuite, OpenID, and SAML.
+Four different types of identity providers are supported: Azure AD, G Suite, OpenID, and SAML.
 
 {{<fields>}}
 {{<field "Type" >}}
