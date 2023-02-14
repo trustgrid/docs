@@ -1,6 +1,6 @@
 ---
 Title: "WAN Interface IP Change"
-Date: 2023-1-4
+linkTitle: "WAN Interface IP Change"
 ---
 
 {{% pageinfo %}}

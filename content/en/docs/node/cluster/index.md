@@ -1,6 +1,6 @@
 ---
 title: "Cluster"
-date: 2022-2-13
+linkTitle: "Cluster"
 ---
 
 {{<alert>}}Cluster configuration is only available for nodes that are members of a [cluster]({{<ref "docs/cluster">}}).{{</alert>}}

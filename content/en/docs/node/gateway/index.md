@@ -1,6 +1,6 @@
 ---
 Title: "Gateway"
-Date: 2-1-2023
+linkTitle: "Gateway"
 ---
 
 {{% pageinfo %}}

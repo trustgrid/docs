@@ -1,7 +1,7 @@
 ---
 tags: ["node", "concepts"]
 title: "Thresholds"
-date: 2023-2-3
+linkTitle: "Thresholds"
 ---
 
 {{% pageinfo %}}

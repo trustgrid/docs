@@ -2,7 +2,7 @@
 categories: ["node"]
 tags: ["layer 4", "networking"]
 title: "Connectors"
-date: 2023-02-09
+linkTitle: "Connectors"
 ---
 
 {{% pageinfo %}}

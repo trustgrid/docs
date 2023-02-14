@@ -1,6 +1,6 @@
 ---
 Title: "Info Visor"
-Date: 2-1-2023
+linkTitle: "Info Visor"
 ---
 
 You can view at-a-glance node information from the info visor, either by clicking `Info` at the top right of the node view, or pressing the back tick key.

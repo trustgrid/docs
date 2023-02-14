@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["node", "concepts"]
 title: "Node Types"
-date: 2022-12-19
+linkTitle: "Node Types"
 ---
 
 ### Gateway Nodes

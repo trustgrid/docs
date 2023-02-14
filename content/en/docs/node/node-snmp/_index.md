@@ -1,6 +1,6 @@
 ---
 Title: "SNMP"
-Date: 2023-1-12
+linkTitle: "SNMP"
 ---
 
 {{% pageinfo %}}

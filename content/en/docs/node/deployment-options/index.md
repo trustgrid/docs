@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["node", "concepts"]
 title: "Node Deployment Options"
-date: 2022-12-28
+linkTitle: "Node Deployment Options"
 ---
 
 ### Virtual Appliance
