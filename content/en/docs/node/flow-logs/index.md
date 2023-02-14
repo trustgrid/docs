@@ -71,57 +71,43 @@ In addition, the ordering can be changed so that oldest flows (or flows closest 
 
 ### Exporting Flow Logs
 
-Trustgrid can export flow logs to any S3 compatible bucket. Exports are run every 24 hours.
-
-On the Operations->Flow Logs page, configure credentials to export flows.
+Trustgrid can export flow logs to any S3 bucket. Set your bucket name and apply the policy provided, and then Trustgrid will configure replication for your flow logs into your bucket.
 
 ![img](s3-export.png)
 
 {{<fields>}}
-{{<field "S3 Access Key" >}}
-The access key to use when making S3 API calls to the target bucket
-{{</field >}}
-
-{{<field "S3 Secret Key" >}}
-The secret key to use when making S3 API calls to the target bucket
-{{</field >}}
-
 {{<field "S3 Bucket" >}}
-The bucket name. You must own the S3 bucket and the access credentials must be allowed to write to the bucket.
-{{</field >}}
-
-{{<field "S3 Region" >}}
-The region of the S3 bucket. This is used to determine the endpoint to use when making S3 API calls.
-{{</field >}}
-
-{{<field "S3 Prefix" >}}
-The prefix to use when writing objects. If the prefix is, "prefix", then files will be written to s3://your-bucket/prefix/tg-flow-logs-YYYY-MM-DD.csv.gz
+The bucket name. You must own the S3 bucket and apply the policy in AWS to allow Trustgrid to replicate files to the bucket.
 {{</field >}}
 {{</fields>}}
 
-After saving credentials, Trustgrid will attempt to write an empty file named `validation` to the bucket and prefix provided. Any errors will be displayed on the page.
-
 #### Example IAM Policy for S3 Export
 
-Below is an example IAM policy with the required permissions to push flow logs to your S3 bucket. Be sure you replace `example-flowlogs` in lines 13 & 14 with the name of your bucket.
+Below is an example IAM policy with the required permissions to push flow logs to your S3 bucket. Be sure you replace `example-flowlogs` in lines 19 & 20 with the name of your bucket.
 
-<pre class="line-numbers language-json" data-line="13-14">
+<pre class="line-numbers language-json" data-line="19-20">
 <code>{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutObject",
-                "s3:ListBucket",
-                "s3:ListMultipartUploadParts"
-            ],
-            "Resource": [
-                "arn:aws:s3:::example-flowlogs/*",
-                "arn:aws:s3:::example-flowlogs"
-            ]
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "allow-tg-writes",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::079972220921:root"
+      },
+      "Action": [
+        "s3:ReplicateObject",
+        "s3:ReplicateDelete",
+        "s3:ReplicateTags",
+        "s3:List*",
+        "s3:GetBucketVersioning",
+        "s3:PutBucketVersioning"
+      ],
+      "Resource": [
+        "arn:aws:s3:::example-flowlogs",
+        "arn:aws:s3:::example-flowlogs/*"
+      ]
+    }
+  ]
 }
 </code></pre>
