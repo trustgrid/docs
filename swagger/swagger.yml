@@ -1,0 +1,5283 @@
+---
+# HEADS UP! This document can be edited, or you can use the peer main.go to add your API
+# definitions with a bit more strong typing. The two are merged when it's built as a container,
+# and spat out as a swagger.json.
+
+swagger: "2.0"
+info:
+  version: 1.0.0
+  title: Trustgrid Management API
+schemes:
+  - https
+host: api.trustgrid.io
+
+paths:
+  "/user":
+    get:
+      description: |
+        Get all users
+
+        ---
+
+        Note: changes to users sometimes take a few minutes to appear while being indexed
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/UserModel"
+    post:
+      description: Invite a user
+      parameters:
+        - name: user
+          in: body
+          schema:
+            "$ref": "#/definitions/InviteUserModel"
+      consumes:
+        - application/json
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/user/{email}":
+    parameters:
+      - name: email
+        in: path
+        required: true
+        type: string
+        description: User email
+    delete:
+      description: Delete a user
+      consumes:
+        - application/json
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Cannot delete root user
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/cluster":
+    get:
+      description: Get all clusters
+      tags:
+        - Cluster
+      produces:
+        - application/json
+      parameters:
+        - name: withConfig
+          in: query
+          required: false
+          type: boolean
+          description: If specified, the nodes will return with their associated configuration.
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/ClusterModel"
+    post:
+      description: |
+        Create a cluster
+      parameters:
+        - name: cluster
+          in: body
+          schema:
+            "$ref": "#/definitions/CreateClusterModel"
+      consumes:
+        - application/json
+      tags:
+        - Cluster
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/cluster/{clusterFQDN}/active/{nodeID}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Designate the specified node as the active cluster member
+
+      tags:
+        - Cluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/cluster/{clusterFQDN}/config/network":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+    put:
+      description: |
+        Update network configuration for a given cluster
+
+        ---
+
+        Requires `node::configure:network` permissions
+      tags:
+        - Cluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Network Config
+          schema:
+            type: object
+            properties:
+              tunnels:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - name
+                    - enabled
+                    - mtu
+                  properties:
+                    name:
+                      type: string
+                    enabled:
+                      type: boolean
+                    description:
+                      type: string
+                    vrf:
+                      type: string
+                    ip:
+                      type: string
+                    mtu:
+                      type: number
+                      minimum: 1000
+                      maximum: 10000
+                    destination:
+                      type: string
+                    ike:
+                      type: number
+                      enum:
+                        - 1
+                        - 2
+                    localId:
+                      type: string
+                    remoteId:
+                      type: string
+                    ikeCipher:
+                      type: string
+                      enum:
+                        - aes128-sha1
+                        - aes128-sha256
+                        - aes256-sha1
+                        - aes256-sha256
+                    ikeGroup:
+                      type: number
+                      enum:
+                        - 2
+                        - 5
+                        - 14
+                        - 15
+                        - 16
+                    ipsecCipher:
+                      type: string
+                      enum:
+                        - aes128-sha1
+                        - aes128-sha256
+                        - aes256-sha1
+                        - aes256-sha256
+                    pfs:
+                      type: number
+                      enum:
+                        - 0
+                        - 2
+                        - 5
+                        - 14
+                        - 15
+                        - 16
+                    psk:
+                      type: string
+                    dpdInterval:
+                      type: number
+                    dpdRetries:
+                      type: number
+                    rekeyInterval:
+                      type: number
+                    replayWindow:
+                      type: number
+                      enum:
+                        - 32
+                        - 64
+                        - 128
+                        - 256
+                        - 512
+                        - 1024
+                        - 2048
+                        - 4096
+                        - 8192
+                    networkId:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - ipsec
+                        - gre
+                        - vnet
+                        - wireguard
+                    publicKey:
+                      type: string
+                    presharedKey:
+                      type: string
+              interfaces:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - nic
+                  properties:
+                    subInterfaces:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - vlanID
+                          - ip
+                        properties:
+                          vlanID:
+                            type: number
+                            description: VLAN ID
+                            minimum: 1
+                            maximum: 4094
+                            default: 1
+                            example: 1
+                          description:
+                            type: string
+                            description: Interface description
+                            example: My interface
+                          vrf:
+                            type: string
+                            description: VRF name
+                            example: default
+                          ip:
+                            type: string
+                            description: sub-interface IP
+                          routes:
+                            type: array
+                            items:
+                              type: object
+                              required:
+                                - route
+                              properties:
+                                route:
+                                  type: string
+                                  description: Route CIDR
+                                  example: 192.168.10.0/24
+                                next:
+                                  type: string
+                                  description: Next hop
+                                  example: 192.168.10.10
+                                description:
+                                  type: string
+                                  description: Route description
+                                  example: My route
+                    nic:
+                      type: string
+                      description: Network interface name
+                      example: eth0
+                    dhcp:
+                      type: boolean
+                      description: Enable DHCP
+                      default: false
+                      example: false
+                    description:
+                      type: string
+                      description: Interface description
+                      example: My interface
+                    virtual:
+                      type: boolean
+                      description: Whether the interface is virtual
+                      default: false
+                      example: false
+                    vrf:
+                      type: string
+                      description: VRF name
+                      example: default
+                    mtu:
+                      type: number
+                      description: MTU
+                      minimum: 1300
+                      maximum: 9001
+                      example: 1500
+                    duplex:
+                      type: string
+                      description: Interface duplex
+                      enum:
+                        - full
+                        - half
+                    speed:
+                      type: number
+                      description: Interface speed
+                    ip:
+                      type: string
+                      description: Interface IP
+                    clusterIP:
+                      type: string
+                      description: Cluster IP
+                    gateway:
+                      type: string
+                      description: Gateway IP
+                    dhcpPool:
+                      type: string
+                      description: DHCP pool
+                    dns:
+                      type: array
+                      items:
+                        type: string
+                        description: DNS servers
+                    clusterRoutes:
+                      type: array
+                      items:
+                        type: object
+                        description: Cluster routes
+                        required:
+                          - route
+                        properties:
+                          route:
+                            type: string
+                            description: Route CIDR
+                            example: 192.168.10.0/24
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                    clusterRouteTables:
+                      type: array
+                      items:
+                        type: string
+                        description: Cluster route tables
+                    cloudRoutes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          route:
+                            type: string
+                            description: Route CIDR
+                            example: 192.168.10.0/24
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                    routes:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - route
+                        properties:
+                          route:
+                            type: string
+                            description: Route CIDR
+                            example: 192.168.10.0/24
+                          next:
+                            type: string
+                            description: Next hop
+                            example: 192.168.10.10
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                    mode:
+                      type: string
+                      description: Interface mode
+                      enum:
+                        - auto
+                        - manual
+              routes:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - dest
+                  properties:
+                    dest:
+                      type: string
+                    via:
+                      type: string
+                      description: Next hop IP address
+                    dev:
+                      type: string
+                    metric:
+                      type: number
+                      minimum: 1
+                      maximum: 200
+                      description: Route metric
+                    description:
+                      type: string
+              nats:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    source:
+                      type: string
+                      description: NAT source IP CIDR
+                    dest:
+                      type: string
+                      description: NAT destination IP CIDR
+                    toSource:
+                      type: string
+                      description: Translated source IP CIDR
+                    toDest:
+                      type: string
+                      description: Translated dest IP CIDR
+                    masquerade:
+                      type: boolean
+                    description:
+                      type: string
+                      description: NAT description
+              acls:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line:
+                      type: number
+                      minimum: 1
+                      maximum: 32768
+                      description: Line number
+                    protocol:
+                      type: string
+                      enum:
+                        - any
+                        - icmp
+                        - tcp
+                        - udp
+                    source:
+                      type: string
+                      description: Source IP CIDR
+                    dest:
+                      type: string
+                      description: Destination IP CIDR
+                    ports:
+                      type: string
+                      description: Port or port range
+                    action:
+                      type: string
+                      enum:
+                        - allow
+                        - drop
+                        - reject
+                    description:
+                      type: string
+                  required:
+                    - protocol
+                    - source
+                    - dest
+                    - action
+              rules:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line:
+                      type: number
+                      minimum: 1
+                      maximum: 32768
+                      description: Rule number
+                    protocol:
+                      type: string
+                      enum:
+                        - any
+                        - icmp
+                        - tcp
+                        - udp
+                    in:
+                      type: string
+                    source:
+                      type: string
+                      description: Source IP CIDR or `public` or `private`
+                    dest:
+                      type: string
+                      description: Destination IP CIDR or `public` or `private`
+                    ports:
+                      type: string
+                      description: Port or port range
+                    action:
+                      type: string
+                      enum:
+                        - accept
+                        - drop
+                        - reject
+                        - forward
+                        - dnat
+                    iface:
+                      type: string
+                      description: Interface name
+                    vrf:
+                      type: string
+                      description: VRF name
+                    snat:
+                      type: boolean
+                      description: Enable SNAT
+                    dnat:
+                      type: string
+                      description: DNAT IP address
+                    dmac:
+                      type: string
+                      description: DNAT MAC address
+                    description:
+                      type: string
+                      description: Rule description
+                  required:
+                    - protocol
+                    - source
+                    - dest
+                    - action
+              vrfs:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: VRF name
+                    description:
+                      type: string
+                      description: VRF description
+                    forwarding:
+                      type: boolean
+                    routes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          dest:
+                            type: string
+                            description: Route CIDR
+                          via:
+                            type: string
+                            description: Next hop IP address
+                          dev:
+                            type: string
+                            description: Device name
+                          metric:
+                            type: number
+                            minimum: 1
+                            maximum: 200
+                            description: Route metric
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                        required:
+                          - dest
+                    nats:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          source:
+                            type: string
+                            description: NAT source IP CIDR
+                          dest:
+                            type: string
+                            description: NAT destination IP CIDR
+                          toSource:
+                            type: string
+                            description: Translated source IP CIDR
+                          toDest:
+                            type: string
+                            description: Translated dest IP CIDR
+                          masquerade:
+                            type: boolean
+                            description: Enable masquerade
+                          description:
+                            type: string
+                            description: NAT description
+                    acls:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          line:
+                            type: number
+                            minimum: 1
+                            maximum: 32768
+                            description: Line number
+                          protocol:
+                            type: string
+                            enum:
+                              - any
+                              - icmp
+                              - tcp
+                              - udp
+                          source:
+                            type: string
+                            description: Source IP CIDR
+                          dest:
+                            type: string
+                            description: Destination IP CIDR
+                          ports:
+                            type: string
+                            description: Port or port range
+                          action:
+                            type: string
+                            enum:
+                              - allow
+                              - drop
+                              - reject
+                          description:
+                            type: string
+                            description: ACL description
+                        required:
+                          - protocol
+                          - source
+                          - dest
+                          - action
+                    rules:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          line:
+                            type: number
+                            minimum: 1
+                            maximum: 32768
+                            description: Rule number
+                          protocol:
+                            type: string
+                            enum:
+                              - any
+                              - icmp
+                              - tcp
+                              - udp
+                          in:
+                            type: string
+                          source:
+                            type: string
+                            description: Source IP CIDR or `public` or `private`
+                          dest:
+                            type: string
+                            description: Destination IP CIDR or `public` or `private`
+                          ports:
+                            type: string
+                            description: Port or port range
+                          action:
+                            type: string
+                            enum:
+                              - accept
+                              - drop
+                              - reject
+                              - forward
+                              - dnat
+                          iface:
+                            type: string
+                            description: Interface name
+                          vrf:
+                            type: string
+                            description: VRF name
+                          snat:
+                            type: boolean
+                            description: Enable SNAT
+                          dnat:
+                            type: string
+                            description: DNAT IP address
+                          dmac:
+                            type: string
+                            description: DNAT MAC address
+                          description:
+                            type: string
+                            description: Rule description
+                        required:
+                          - protocol
+                          - source
+                          - dest
+                          - action
+                  required:
+                    - name
+              darkMode:
+                type: boolean
+              forwarding:
+                type: boolean
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/cluster/{clusterFQDN}/config/services":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+    put:
+      description: |
+        Update services configuration for a given cluster
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Cluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/cluster/{clusterFQDN}/config/connectors":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+    put:
+      description: |
+        Update connectors configuration for a given cluster
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Cluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/cluster/{clusterFQDN}/tag/{tagName}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: tagName
+        in: path
+        required: true
+        type: string
+        description: Tag name
+    put:
+      description: Set a tag on a cluster
+      tags:
+        - Cluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: tag
+          required: true
+          schema:
+            "$ref": "#/definitions/TagValueModel"
+      responses:
+        200:
+          description: OK
+    delete:
+      description: Delete a tag from a cluster
+      tags:
+        - Cluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/cluster/{clusterFQDN}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+    get:
+      description: Get a cluster
+      tags:
+        - Cluster
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/ClusterModel"
+        404:
+          description: Cluster not found
+    delete:
+      description: Delete a cluster
+      tags:
+        - Cluster
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    put:
+      description: Update a cluster
+      tags:
+        - Cluster
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: ClusterModel
+          required: true
+          schema:
+            "$ref": "#/definitions/ClusterModel"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  # VPN services
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/service":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Gets all VPN services
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnClusterServiceModel"
+    post:
+      description: Creates a VPN Service
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: service
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnServiceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/service/{uid}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Service ID
+    put:
+      description: Update a Service
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: service
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnServiceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a Service
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network routes
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/route":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's routes
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnClusterRouteModel"
+
+    post:
+      description: Creates a VPN route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/route/{uid}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Route ID
+    put:
+      description: Update a VPN route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/dynamic/export-route":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's dynamic export routes
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnClusterRouteModel"
+
+    post:
+      description: Creates a VPN export route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/dynamic/export-route/{uid}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Route ID
+    put:
+      description: Update a VPN export route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN export route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/dynamic/import-route":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's dynamic import routes
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnClusterRouteModel"
+
+    post:
+      description: Creates a VPN import route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/dynamic/import-route/{uid}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Route ID
+    put:
+      description: Update a VPN import route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN import route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network interfaces
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/interface":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's interfaces
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnClusterInterfaceModel"
+    post:
+      description: Create a VPN interface
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: iface
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnInterfaceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/interface/{interfaceName}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: interfaceName
+        in: path
+        required: true
+        type: string
+        description: Interface name
+    put:
+      description: Update a VPN interface
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: iface
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnInterfaceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN interface
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network dns
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/dns":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnClusterDnsModel"
+    post:
+      description: Create a VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: dns
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnDnsUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    put:
+      description: Update a VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: dns
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnDnsUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network wireguard
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}/wireguard":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN WireGuard configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnClusterWireguardModel"
+    put:
+      description: Update the VPN WireGuard configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: wg
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnWireguardUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN WireGuard configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN Network get/delete/updatecreate
+
+  "/v2/cluster/{clusterFQDN}/vpn/{networkName}":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Returns information about a VPN network
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnClusterNetworkInventoryModel"
+    put:
+      description: Update a VPN network - this change is not staged and will immediately affect the node
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: network
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnNetworkUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Deletes a vpn network - this change is not staged and will immediately affect the node
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+
+  "/v2/cluster/{clusterFQDN}/vpn":
+    parameters:
+      - "$ref": "#/parameters/clusterFQDN"
+    get:
+      description: Returns all the VPN networks
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/VpnClusterNetworkModel"
+    post:
+      description: Attach a VPN network
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: network
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/VpnNetworkUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnClusterNetworkInventoryModel"
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/node/license":
+    parameters:
+      - name: name
+        in: query
+        required: true
+        type: string
+        description: node name
+    get:
+      description: Get a license to register a node
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: License body
+          schema:
+            type: string
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/node/{nodeID}/tag/{tagName}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: tagName
+        in: path
+        required: true
+        type: string
+        description: Tag name
+    put:
+      description: Set a tag on a node
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: tag
+          required: true
+          schema:
+            "$ref": "#/definitions/TagValueModel"
+      responses:
+        200:
+          description: OK
+    delete:
+      description: Delete a tag from a node
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/lock":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+
+  "/node/{nodeID}/trigger/{event}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: event
+        in: path
+        required: true
+        type: string
+    post:
+      description: Trigger an event on a node
+      tags:
+        - Node
+      produces:
+        - application/json
+      parameters:
+        - name: wait
+          in: query
+          required: false
+          type: string
+          description: If present, the request will return the node's event output
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/core":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update cluster configuration for a given node
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/cluster":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update cluster configuration for a given node
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/alert":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update alert configuration for a given node
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/snmp":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update SNMP configuration for a given node
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/ztnagw":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update ZTNA gateway configuration for a given node
+
+        Note that this endpoint used to be `apigw`. The config section is still named `apigw`.
+        ---
+
+        "WireGuard" is a registered trademark of Jason A. Donenfeld.
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: ZTNA config
+          schema:
+            type: object
+            example:
+              enabled: true
+              host: myztnahost.mycompany.com
+              port: 9927
+              cert: myztnahost.mycompany.com
+              wireguardEnabled: true
+              wireguardPort: 9926
+              wireguardEndpoint: myztnahost.mycompany.com
+            properties:
+              enabled:
+                type: boolean
+                description: Enable this plugin
+              host:
+                type: string
+                description: ZTNA gateway host
+              port:
+                type: number
+                description: ZTNA gateway port
+                minimum: 1
+                maximum: 65535
+              cert:
+                type: string
+                description: ZTNA gateway certificate (FQDN)
+              wireguardEnabled:
+                type: boolean
+                description: Enable wireguard
+              wireguardPort:
+                type: number
+                description: WireGuard port
+                minimum: 1
+                maximum: 65535
+              wireguardEndpoint:
+                type: string
+                description: WireGuard endpoint
+                format: hostname
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/network":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update network configuration for a given node
+
+        ---
+
+        Requires `node::configure:network` permissions
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Network Config
+          schema:
+            type: object
+            properties:
+              tunnels:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - name
+                    - enabled
+                    - mtu
+                  properties:
+                    name:
+                      type: string
+                    enabled:
+                      type: boolean
+                    description:
+                      type: string
+                    vrf:
+                      type: string
+                    ip:
+                      type: string
+                    mtu:
+                      type: number
+                      minimum: 1000
+                      maximum: 10000
+                    destination:
+                      type: string
+                    ike:
+                      type: number
+                      enum:
+                        - 1
+                        - 2
+                    localId:
+                      type: string
+                    remoteId:
+                      type: string
+                    ikeCipher:
+                      type: string
+                      enum:
+                        - aes128-sha1
+                        - aes128-sha256
+                        - aes256-sha1
+                        - aes256-sha256
+                    ikeGroup:
+                      type: number
+                      enum:
+                        - 2
+                        - 5
+                        - 14
+                        - 15
+                        - 16
+                    ipsecCipher:
+                      type: string
+                      enum:
+                        - aes128-sha1
+                        - aes128-sha256
+                        - aes256-sha1
+                        - aes256-sha256
+                    pfs:
+                      type: number
+                      enum:
+                        - 0
+                        - 2
+                        - 5
+                        - 14
+                        - 15
+                        - 16
+                    psk:
+                      type: string
+                    dpdInterval:
+                      type: number
+                    dpdRetries:
+                      type: number
+                    rekeyInterval:
+                      type: number
+                    replayWindow:
+                      type: number
+                      enum:
+                        - 32
+                        - 64
+                        - 128
+                        - 256
+                        - 512
+                        - 1024
+                        - 2048
+                        - 4096
+                        - 8192
+                    networkId:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - ipsec
+                        - gre
+                        - vnet
+                        - wireguard
+                    publicKey:
+                      type: string
+                    presharedKey:
+                      type: string
+              interfaces:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - nic
+                  properties:
+                    subInterfaces:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - vlanID
+                          - ip
+                        properties:
+                          vlanID:
+                            type: number
+                            description: VLAN ID
+                            minimum: 1
+                            maximum: 4094
+                            default: 1
+                            example: 1
+                          description:
+                            type: string
+                            description: Interface description
+                            example: My interface
+                          vrf:
+                            type: string
+                            description: VRF name
+                            example: default
+                          ip:
+                            type: string
+                            description: sub-interface IP
+                          routes:
+                            type: array
+                            items:
+                              type: object
+                              required:
+                                - route
+                              properties:
+                                route:
+                                  type: string
+                                  description: Route CIDR
+                                  example: 192.168.10.0/24
+                                next:
+                                  type: string
+                                  description: Next hop
+                                  example: 192.168.10.10
+                                description:
+                                  type: string
+                                  description: Route description
+                                  example: My route
+                    nic:
+                      type: string
+                      description: Network interface name
+                      example: eth0
+                    dhcp:
+                      type: boolean
+                      description: Enable DHCP
+                      default: false
+                      example: false
+                    description:
+                      type: string
+                      description: Interface description
+                      example: My interface
+                    virtual:
+                      type: boolean
+                      description: Whether the interface is virtual
+                      default: false
+                      example: false
+                    vrf:
+                      type: string
+                      description: VRF name
+                      example: default
+                    mtu:
+                      type: number
+                      description: MTU
+                      minimum: 1300
+                      maximum: 9001
+                      example: 1500
+                    duplex:
+                      type: string
+                      description: Interface duplex
+                      enum:
+                        - full
+                        - half
+                    speed:
+                      type: number
+                      description: Interface speed
+                    ip:
+                      type: string
+                      description: Interface IP
+                    clusterIP:
+                      type: string
+                      description: Cluster IP
+                    gateway:
+                      type: string
+                      description: Gateway IP
+                    dhcpPool:
+                      type: string
+                      description: DHCP pool
+                    dns:
+                      type: array
+                      items:
+                        type: string
+                        description: DNS servers
+                    clusterRoutes:
+                      type: array
+                      items:
+                        type: object
+                        description: Cluster routes
+                        required:
+                          - route
+                        properties:
+                          route:
+                            type: string
+                            description: Route CIDR
+                            example: 192.168.10.0/24
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                    clusterRouteTables:
+                      type: array
+                      items:
+                        type: string
+                        description: Cluster route tables
+                    cloudRoutes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          route:
+                            type: string
+                            description: Route CIDR
+                            example: 192.168.10.0/24
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                    routes:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - route
+                        properties:
+                          route:
+                            type: string
+                            description: Route CIDR
+                            example: 192.168.10.0/24
+                          next:
+                            type: string
+                            description: Next hop
+                            example: 192.168.10.10
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                    mode:
+                      type: string
+                      description: Interface mode
+                      enum:
+                        - auto
+                        - manual
+              routes:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - dest
+                  properties:
+                    dest:
+                      type: string
+                    via:
+                      type: string
+                      description: Next hop IP address
+                    dev:
+                      type: string
+                    metric:
+                      type: number
+                      minimum: 1
+                      maximum: 200
+                      description: Route metric
+                    description:
+                      type: string
+              nats:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    source:
+                      type: string
+                      description: NAT source IP CIDR
+                    dest:
+                      type: string
+                      description: NAT destination IP CIDR
+                    toSource:
+                      type: string
+                      description: Translated source IP CIDR
+                    toDest:
+                      type: string
+                      description: Translated dest IP CIDR
+                    masquerade:
+                      type: boolean
+                    description:
+                      type: string
+                      description: NAT description
+              acls:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line:
+                      type: number
+                      minimum: 1
+                      maximum: 32768
+                      description: Line number
+                    protocol:
+                      type: string
+                      enum:
+                        - any
+                        - icmp
+                        - tcp
+                        - udp
+                    source:
+                      type: string
+                      description: Source IP CIDR
+                    dest:
+                      type: string
+                      description: Destination IP CIDR
+                    ports:
+                      type: string
+                      description: Port or port range
+                    action:
+                      type: string
+                      enum:
+                        - allow
+                        - drop
+                        - reject
+                    description:
+                      type: string
+                  required:
+                    - protocol
+                    - source
+                    - dest
+                    - action
+              rules:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line:
+                      type: number
+                      minimum: 1
+                      maximum: 32768
+                      description: Rule number
+                    protocol:
+                      type: string
+                      enum:
+                        - any
+                        - icmp
+                        - tcp
+                        - udp
+                    in:
+                      type: string
+                    source:
+                      type: string
+                      description: Source IP CIDR or `public` or `private`
+                    dest:
+                      type: string
+                      description: Destination IP CIDR or `public` or `private`
+                    ports:
+                      type: string
+                      description: Port or port range
+                    action:
+                      type: string
+                      enum:
+                        - accept
+                        - drop
+                        - reject
+                        - forward
+                        - dnat
+                    iface:
+                      type: string
+                      description: Interface name
+                    vrf:
+                      type: string
+                      description: VRF name
+                    snat:
+                      type: boolean
+                      description: Enable SNAT
+                    dnat:
+                      type: string
+                      description: DNAT IP address
+                    dmac:
+                      type: string
+                      description: DNAT MAC address
+                    description:
+                      type: string
+                      description: Rule description
+                  required:
+                    - protocol
+                    - source
+                    - dest
+                    - action
+              vrfs:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: VRF name
+                    description:
+                      type: string
+                      description: VRF description
+                    forwarding:
+                      type: boolean
+                    routes:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          dest:
+                            type: string
+                            description: Route CIDR
+                          via:
+                            type: string
+                            description: Next hop IP address
+                          dev:
+                            type: string
+                            description: Device name
+                          metric:
+                            type: number
+                            minimum: 1
+                            maximum: 200
+                            description: Route metric
+                          description:
+                            type: string
+                            description: Route description
+                            example: My route
+                        required:
+                          - dest
+                    nats:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          source:
+                            type: string
+                            description: NAT source IP CIDR
+                          dest:
+                            type: string
+                            description: NAT destination IP CIDR
+                          toSource:
+                            type: string
+                            description: Translated source IP CIDR
+                          toDest:
+                            type: string
+                            description: Translated dest IP CIDR
+                          masquerade:
+                            type: boolean
+                            description: Enable masquerade
+                          description:
+                            type: string
+                            description: NAT description
+                    acls:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          line:
+                            type: number
+                            minimum: 1
+                            maximum: 32768
+                            description: Line number
+                          protocol:
+                            type: string
+                            enum:
+                              - any
+                              - icmp
+                              - tcp
+                              - udp
+                          source:
+                            type: string
+                            description: Source IP CIDR
+                          dest:
+                            type: string
+                            description: Destination IP CIDR
+                          ports:
+                            type: string
+                            description: Port or port range
+                          action:
+                            type: string
+                            enum:
+                              - allow
+                              - drop
+                              - reject
+                          description:
+                            type: string
+                            description: ACL description
+                        required:
+                          - protocol
+                          - source
+                          - dest
+                          - action
+                    rules:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          line:
+                            type: number
+                            minimum: 1
+                            maximum: 32768
+                            description: Rule number
+                          protocol:
+                            type: string
+                            enum:
+                              - any
+                              - icmp
+                              - tcp
+                              - udp
+                          in:
+                            type: string
+                          source:
+                            type: string
+                            description: Source IP CIDR or `public` or `private`
+                          dest:
+                            type: string
+                            description: Destination IP CIDR or `public` or `private`
+                          ports:
+                            type: string
+                            description: Port or port range
+                          action:
+                            type: string
+                            enum:
+                              - accept
+                              - drop
+                              - reject
+                              - forward
+                              - dnat
+                          iface:
+                            type: string
+                            description: Interface name
+                          vrf:
+                            type: string
+                            description: VRF name
+                          snat:
+                            type: boolean
+                            description: Enable SNAT
+                          dnat:
+                            type: string
+                            description: DNAT IP address
+                          dmac:
+                            type: string
+                            description: DNAT MAC address
+                          description:
+                            type: string
+                            description: Rule description
+                        required:
+                          - protocol
+                          - source
+                          - dest
+                          - action
+                  required:
+                    - name
+              darkMode:
+                type: boolean
+              forwarding:
+                type: boolean
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/services":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update services configuration for a given node
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+
+  "/node/{nodeID}/config/connectors":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    put:
+      description: |
+        Update connectors configuration for a given node
+
+        ---
+
+        Note: request body will be validated by JSON schema of the plugin
+      tags:
+        - Node
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: config
+          in: body
+          required: true
+          description: Config body
+          schema:
+            type: object
+      responses:
+        200:
+          description: OK
+
+  "/v2/node/{nodeID}/plugin-logs/gateway-details":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: startDate
+        in: query
+        required: true
+        type: number
+        description: Unix timestamp
+      - name: endDate
+        in: query
+        required: true
+        type: number
+        description: Unix timestamp
+    get:
+      tags:
+        - Node
+      description: |
+        Get gateway connection telemetry logs for a given node
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                stats:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      maxRtt:
+                        type: number
+                        description: Max round-trip time measured for this interval
+                      meanRtt:
+                        type: number
+                        description: Mean round-trip time measured for this interval
+                      minRtt:
+                        type: number
+                        description: Min round-trip time measured for this interval
+                      node:
+                        type: string
+                        description: Node RTT being measured
+                      numRtt:
+                        type: number
+                        description: Number of RTTs measured for this interval
+                      stdRtt:
+                        type: number
+                        description: Standard deviation of RTTs measured for this interval
+                      time:
+                        type: number
+                        description: Unix timestamp, in milliseconds, of the start of the interval
+                      hops:
+                        type: array
+                        description: Network hop telemetry, if available
+                        items:
+                          type: object
+                          properties:
+                            fqdn:
+                              type: string
+                            hop:
+                              type: number
+                            ip:
+                              type: string
+                            maxRtt:
+                              type: number
+                            meanRtt:
+                              type: number
+                            minRtt:
+                              type: number
+                            numRtt:
+                              type: number
+
+  # VPN services
+  "/v2/node/{nodeID}/vpn/{networkName}/service":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Gets all VPN services
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnNodeServiceModel"
+    post:
+      description: Creates a VPN Service
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: service
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnServiceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/vpn/{networkName}/service/{uid}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Service ID
+    put:
+      description: Update a Service
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: service
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnServiceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a Service
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network routes
+  "/v2/node/{nodeID}/vpn/{networkName}/route":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's routes
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnNodeRouteModel"
+
+    post:
+      description: Creates a VPN route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/vpn/{networkName}/route/{uid}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Route ID
+    put:
+      description: Update a VPN route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/node/{nodeID}/vpn/{networkName}/dynamic/export-route":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's dynamic export routes
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnNodeRouteModel"
+
+    post:
+      description: Creates a VPN export route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/vpn/{networkName}/dynamic/export-route/{uid}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Route ID
+    put:
+      description: Update a VPN export route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN export route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/node/{nodeID}/vpn/{networkName}/dynamic/import-route":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's dynamic import routes
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnNodeRouteModel"
+
+    post:
+      description: Creates a VPN import route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/vpn/{networkName}/dynamic/import-route/{uid}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Route ID
+    put:
+      description: Update a VPN import route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: route
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnRouteUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN import route
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network interfaces
+  "/v2/node/{nodeID}/vpn/{networkName}/interface":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN's interfaces
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/VpnNodeInterfaceModel"
+    post:
+      description: Create a VPN interface
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: iface
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnInterfaceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/vpn/{networkName}/interface/{interfaceName}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+      - name: interfaceName
+        in: path
+        required: true
+        type: string
+        description: Interface name
+    put:
+      description: Update a VPN interface
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: iface
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnInterfaceUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN interface
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network dns
+  "/v2/node/{nodeID}/vpn/{networkName}/dns":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnNodeDnsModel"
+    post:
+      description: Create a VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: dns
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnDnsUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    put:
+      description: Update a VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: dns
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnDnsUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN Dns configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # VPN network wireguard
+  "/v2/node/{nodeID}/vpn/{networkName}/wireguard":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Get All VPN WireGuard configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnNodeWireguardModel"
+    put:
+      description: Update the VPN WireGuard configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: wg
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnWireguardUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete a VPN WireGuard configuration
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/node/{nodeID}/vpn/{networkName}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: networkName
+        in: path
+        required: true
+        type: string
+        description: Network name
+    get:
+      description: Returns information about a VPN network
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnNodeNetworkInventoryModel"
+    put:
+      description: Update a VPN network - this change is not staged and will immediately affect the node
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: network
+          in: body
+          schema:
+            "$ref": "#/definitions/VpnNetworkUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Deletes a vpn network - this change is not staged and will immediately affect the node
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+
+  "/v2/node/{nodeID}/kvm/machine":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    get:
+      description: |
+        List KVM machines
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMMachine"
+    post:
+      description: |
+        Create a KVM machines
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      parameters:
+        - name: machine
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/KVMMachine"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/KVMMachine"
+    delete:
+      description: |
+        Delete a KVM machine from a node
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+    put:
+      description: |
+        Update a KVM machine
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      parameters:
+        - name: machine
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/KVMMachine"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/config":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    put:
+      description: |
+        Update a KVM machine config
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      parameters:
+        - name: config
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/KVMMachineConfig"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/vrf":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get VRF config for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/KVMVRF"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/interface":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get interfaces for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMInterface"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/virtual-network":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get virtual networks for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMVirtualNetwork"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/volume":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get volumes for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMVolumeConfig"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/port-mapping":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get port mappings for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMPortMapping"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/cpu":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get CPU config for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMCPUConfig"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/memory":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get memory config for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMMemoryConfig"
+
+  "/v2/node/{nodeID}/kvm/machine/{id}/cloud-init":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Machine UID
+    get:
+      description: |
+        Get cloud init config for a KVM machine
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMCloudInit"
+
+  "/v2/node/{nodeID}/kvm/volume":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    get:
+      description: |
+        List volumes
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMVolume"
+    post:
+      description: |
+        Create a volume
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      parameters:
+        - name: volume
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/KVMVolume"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/kvm/volume/{name}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: name
+        in: path
+        required: true
+        type: string
+        description: Volume name
+    get:
+      description: |
+        Get a volume
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/KVMVolume"
+    delete:
+      description: |
+        Delete a volume
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+
+  "/v2/node/{nodeID}/kvm/image":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    get:
+      description: |
+        List KVM images
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/KVMImage"
+    post:
+      description: |
+        Create an image
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      parameters:
+        - name: image
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/KVMImage"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/node/{nodeID}/kvm/image/{id}":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+      - name: id
+        in: path
+        required: true
+        type: string
+        description: Image ID
+    get:
+      description: |
+        Get an image
+
+        ---
+
+        Requires `node-kvm::read` permissions
+      produces:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/KVMImage"
+    put:
+      description: |
+        Update an image
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      parameters:
+        - name: image
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/KVMImage"
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/KVMImage"
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: |
+        Delete an image
+
+        ---
+
+        Requires `node-kvm::modify` permissions
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      tags:
+        - Node
+        - KVM
+      responses:
+        200:
+          description: OK
+
+  "/v2/node/{nodeID}/vpn":
+    parameters:
+      - "$ref": "#/parameters/nodeID"
+    get:
+      description: Returns all the VPN networks
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/VpnNodeNetworkModel"
+    post:
+      description: Attach a VPN network
+      produces:
+        - application/json
+      tags:
+        - VPN Network
+      parameters:
+        - name: network
+          in: body
+          required: true
+          schema:
+            "$ref": "#/definitions/VpnNetworkUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/VpnNodeNetworkInventoryModel"
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/org/mine":
+    get:
+      description: Get your current Org
+      tags:
+        - Org
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/OrgModel"
+        404:
+          description: Org not found
+
+  "/repositories":
+    get:
+      description: Get all repositories
+      tags:
+        - Repositories
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/RepositoryModel"
+
+  "/repositories/{reponame}":
+    parameters:
+      - name: reponame
+        in: path
+        required: true
+        type: string
+    get:
+      description: Get information for a repository
+      tags:
+        - Repositories
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/RepositoryTagModel"
+    delete:
+      description: Delete a repository
+      tags:
+        - Repositories
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/repositories/{reponame}/{tag}":
+    parameters:
+      - name: reponame
+        in: path
+        required: true
+        type: string
+      - name: tag
+        in: path
+        required: true
+        type: string
+    delete:
+      description: Delete a repository tag
+      tags:
+        - Repositories
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/alarm":
+    get:
+      description: Get alarms
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/AlarmModel"
+    post:
+      description: Create alarm
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      parameters:
+        - name: alarm
+          in: body
+          required: true
+          description: Alarm body
+          schema:
+            "$ref": "#/definitions/AlarmModel"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+  "/v2/alarm/suppression":
+    get:
+      description: Get scheduled alert suppression window
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/AlertSuppressionModel"
+    post:
+      description: Create an alert suppression window
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      parameters:
+        - name: channel
+          in: body
+          required: true
+          description: Alarm channel body
+          schema:
+            "$ref": "#/definitions/AlertSuppressionModel"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Cancel or end alert suppression window
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/alarm/{uid}":
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        type: string
+    get:
+      description: Get alarm
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/AlarmModel"
+    put:
+      description: Update alarm
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      parameters:
+        - name: channel
+          in: body
+          required: true
+          description: Alarm body
+          schema:
+            "$ref": "#/definitions/AlarmModel"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Delete alarm
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/event":
+    get:
+      description: Get all events
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/EventModel"
+
+  "/v2/event/{nodeId}":
+    parameters:
+      - name: nodeId
+        in: path
+        required: true
+        type: string
+    get:
+      description: Get all events for node
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/EventModel"
+
+  "/v2/event/{nodeId}/{eventId}":
+    parameters:
+      - name: nodeId
+        in: path
+        required: true
+        type: string
+      - name: eventId
+        in: path
+        required: true
+        type: string
+    post:
+      description: Test an event against alarms
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/alarm-channel":
+    get:
+      description: Returns available alarm channels
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/AlarmChannelModel"
+    post:
+      description: Creates an alarm channel
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      parameters:
+        - name: channel
+          in: body
+          required: true
+          description: Alarm channel body
+          schema:
+            "$ref": "#/definitions/AlarmChannelModel"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/alarm-channel/{uid}":
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        type: string
+    get:
+      description: Returns the alarm channel with the given uid
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/AlarmChannelModel"
+    put:
+      description: Updates the alarm channel with the given uid
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      parameters:
+        - name: channel
+          in: body
+          required: true
+          description: Alarm channel body
+          schema:
+            "$ref": "#/definitions/AlarmChannelModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation error
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      description: Updates the alarm channel with the given uid
+      tags:
+        - Alarms
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # Orders
+  "/provisioning/api/v1/orders":
+    get:
+      tags:
+        - Orders
+      description: Get all orders. The responses for orders from this API request are not fully hydrated (eg, no nodes).
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/OrderModel"
+    post:
+      tags:
+        - Orders
+      description: Create an order. Omitted fields are not updated.
+      parameters:
+        - name: order
+          in: body
+          schema:
+            "$ref": "#/definitions/OrderModel"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/provisioning/api/v1/orders/{uid}":
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        type: string
+    get:
+      tags:
+        - Orders
+      description: Get an order
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/OrderModel"
+    put:
+      tags:
+        - Orders
+      description: Update an order. Omitted fields are not updated.
+      produces:
+        - application/json
+      parameters:
+        - name: order
+          in: body
+          schema:
+            "$ref": "#/definitions/OrderModel"
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/provisioning/api/v1/orders/{uid}/comment":
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        type: string
+    post:
+      tags:
+        - Orders
+      description: Add a comment
+      produces:
+        - application/json
+      parameters:
+        - name: comment body
+          in: body
+          schema:
+            type: object
+            properties:
+              body:
+                type: string
+      responses:
+        200:
+          description: OK
+
+  "/provisioning/api/v1/orders/{uid}/flag":
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        type: string
+    put:
+      description: Flag an order
+      tags:
+        - Orders
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+    delete:
+      tags:
+        - Orders
+      description: Unflag an order
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  # Identity Providers
+  "/v2/idp":
+    get:
+      tags:
+        - IDP
+      description: Get all Identity Providers
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/IdentityProviderModel"
+    post:
+      tags:
+        - IDP
+      parameters:
+        - name: idp
+          in: body
+          schema:
+            "$ref": "#/definitions/IdentityProviderUpdateModel"
+      description: Creates a network identity provider
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+
+  "/v2/idp/{uid}":
+    parameters:
+      - name: uid
+        in: path
+        required: true
+        type: string
+        description: Identity provider UID
+    get:
+      tags:
+        - IDP
+      description: Get an Identity Provider
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            "$ref": "#/definitions/IdentityProviderModel"
+    put:
+      tags:
+        - IDP
+      description: Update an identity provider
+      produces:
+        - application/json
+      parameters:
+        - name: idp
+          in: body
+          schema:
+            "$ref": "#/definitions/IdentityProviderUpdateModel"
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+        422:
+          description: Validation Failed
+          schema:
+            "$ref": "#/definitions/ValidationFailed"
+    delete:
+      tags:
+        - IDP
+      description: Delete an identity provider
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+securityDefinitions:
+  JWTAuthorizer:
+    type: apiKey
+    name: Authorization
+    in: header
+
+security:
+  - JWTAuthorizer: []
+
+parameters:
+  nodeID:
+    name: nodeID
+    in: path
+    required: true
+    type: string
+    description: Node ID
+
+  clusterFQDN:
+    name: clusterFQDN
+    in: path
+    required: true
+    type: string
+    description: Cluster FQDN
+
+definitions:
+  IdentityProviderUpdateModel:
+    type: object
+    properties:
+      name:
+        type: string
+      clientId:
+        type: string
+      uri:
+        type: string
+      description:
+        type: string
+
+  IdentityProviderModel:
+    allOf:
+      - $ref: "#/definitions/IdentityProviderUpdateModel"
+      - type: object
+        properties:
+          uid:
+            type: string
+
+  EventModel:
+    title: Event
+    type: object
+    properties:
+      uid:
+        type: string
+      nodeId:
+        type: string
+      nodeName:
+        type: string
+      eventType:
+        type: string
+      message:
+        type: string
+      receivedTime:
+        type: number
+        description: Ingest time of the event
+      timestamp:
+        type: number
+        description: Creation time of the event
+
+  AlarmModel:
+    title: Alarm
+    type: object
+    required:
+      - name
+    properties:
+      uid:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      operator:
+        type: string
+        description: any/all/none
+      tags:
+        type: array
+        items:
+          type: string
+        description: Tags expressed as key=value to match
+      types:
+        type: array
+        items:
+          type: string
+        description: Event types to match
+      nodes:
+        type: array
+        items:
+          type: string
+        description: Node names to match
+      threshold:
+        type: string
+        description: INFO/WARNING/ERROR/CRITICAL
+      freetext:
+        type: string
+        description: text to match
+      channels:
+        type: array
+        items:
+          type: string
+        description: Channel IDs to broadcast alerts to
+
+  AlertSuppressionModel:
+    title: AlertSuppression
+    type: object
+    required:
+      - start
+      - end
+    properties:
+      start:
+        type: string
+        format: date-time
+      end:
+        type: string
+        format: date-time
+      description:
+        type: string
+
+  AlarmChannelModel:
+    title: AlarmChannel
+    type: object
+    required:
+      - name
+    properties:
+      uid:
+        type: string
+      name:
+        type: string
+      emails:
+        type: string
+      slackWebhook:
+        type: string
+      slackChannel:
+        type: string
+      pagerduty:
+        type: string
+      opsGenie:
+        type: string
+      msTeams:
+        type: string
+      genericWebhook:
+        type: string
+
+  RepositoryModel:
+    title: RepositoryModel
+    type: object
+    properties:
+      name:
+        type: string
+
+  RepositoryTagModel:
+    title: RepositoryTagModel
+    type: object
+    properties:
+      name:
+        type: string
+
+  InviteUserModel:
+    type: object
+    properties:
+      email:
+        type: string
+        description: User's email
+      org:
+        type: string
+        description: Organization ID
+    required:
+      - email
+      - org
+    title: InviteUserModel
+  UserModel:
+    type: object
+    properties:
+      email:
+        type: string
+        description: User's email
+    title: UserModel
+  CreateClusterModel:
+    type: object
+    required:
+      - name
+      - domain
+    properties:
+      name:
+        type: string
+        description: Cluster name
+    title: CreateClusterModel
+
+  TagValueModel:
+    type: object
+    required:
+      - value
+    properties:
+      value:
+        type: string
+        description: Tag value
+    title: TagValueModel
+
+  ClusterModel:
+    type: object
+    properties:
+      fqdn:
+        type: string
+        description: Cluster FQDN
+      name:
+        type: string
+        description: Cluster name
+      domain:
+        type: string
+        description: Cluster domain
+      config:
+        type: object
+        description: Cluster Configuration
+      health:
+        type: string
+        description: Cluster health
+        enum:
+          - healthy
+          - unhealthy
+          - offline
+          - unknown
+      mode:
+        type: string
+        description: Cluster Failback Mode
+        enum:
+          - autoFailback
+          - manualFailback
+    title: ClusterModel
+
+  OrgModel:
+    type: object
+    required:
+      - description
+      - name
+    properties:
+      uid:
+        type: string
+        description: Org ID
+      domain:
+        type: string
+        description: Org root domain
+      name:
+        type: string
+        description: Org name
+      s3_access_key:
+        type: string
+        description: S3 access key for log exports
+      s3_region:
+        type: string
+        description: S3 region for log exports
+      s3_prefix:
+        type: string
+        description: S3 key prefix for log exports
+      s3_bucket:
+        type: string
+        description: S3 bucket for log exports
+    title: OrgModel
+
+  VpnRouteUpdateModel:
+    type: object
+    properties:
+      node:
+        type: string
+      networkCidr:
+        type: string
+      metric:
+        type: number
+      description:
+        type: string
+      path:
+        type: string
+
+  VpnNodeRouteModel:
+    allOf:
+      - $ref: "#/definitions/VpnRouteUpdateModel"
+      - type: object
+        properties:
+          uid:
+            type: string
+          nodeUid:
+            type: string
+          networkName:
+            type: string
+
+  VpnClusterRouteModel:
+    allOf:
+      - $ref: "#/definitions/VpnRouteUpdateModel"
+      - type: object
+        properties:
+          uid:
+            type: string
+          fqdn:
+            type: string
+          networkName:
+            type: string
+
+  VpnServiceUpdateModel:
+    type: object
+    properties:
+      ip:
+        type: string
+      port:
+        type: number
+      name:
+        type: string
+
+  VpnNodeServiceModel:
+    allOf:
+      - $ref: "#/definitions/VpnServiceUpdateModel"
+      - type: object
+        properties:
+          uid:
+            type: string
+          nodeUid:
+            type: string
+          networkName:
+            type: string
+
+  VpnClusterServiceModel:
+    allOf:
+      - $ref: "#/definitions/VpnServiceUpdateModel"
+      - type: object
+        properties:
+          uid:
+            type: string
+          fqdn:
+            type: string
+          networkName:
+            type: string
+
+  VpnInterfaceUpdateModel:
+    type: object
+    properties:
+      interfaceName:
+        type: string
+      inDefaultRoute:
+        type: boolean
+      outDefaultRoute:
+        type: boolean
+      insideNats:
+        type: array
+        items:
+          type: object
+          properties:
+            localCidr:
+              type: string
+            networkCidr:
+              type: string
+            description:
+              type: string
+      outsideNats:
+        type: array
+        items:
+          type: object
+          properties:
+            localCidr:
+              type: string
+            networkCidr:
+              type: string
+            networkGroup:
+              type: string
+            description:
+              type: string
+
+  VpnNodeInterfaceModel:
+    allOf:
+      - $ref: "#/definitions/VpnInterfaceUpdateModel"
+      - type: object
+        properties:
+          interfaceName:
+            type: string
+          nodeUid:
+            type: string
+          networkName:
+            type: string
+
+  VpnClusterInterfaceModel:
+    allOf:
+      - $ref: "#/definitions/VpnInterfaceUpdateModel"
+      - type: object
+        properties:
+          interfaceName:
+            type: string
+          fqdn:
+            type: string
+          networkName:
+            type: string
+
+  VpnDnsUpdateModel:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+      upstream:
+        type: array
+        items:
+          type: string
+
+  VpnNodeDnsModel:
+    allOf:
+      - $ref: "#/definitions/VpnDnsUpdateModel"
+      - type: object
+        properties:
+          nodeUid:
+            type: string
+          networkName:
+            type: string
+
+  VpnClusterDnsModel:
+    allOf:
+      - $ref: "#/definitions/VpnDnsUpdateModel"
+      - type: object
+        properties:
+          fqdn:
+            type: string
+          networkName:
+            type: string
+
+  VpnWireguardUpdateModel:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+      port:
+        type: number
+      clients:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            defaultRouting:
+              type: boolean
+            presharedKey:
+              type: string
+            publicKey:
+              type: string
+            insideNats:
+              type: array
+              items:
+                type: object
+                properties:
+                  localCidr:
+                    type: string
+                  networkCidr:
+                    type: string
+                  description:
+                    type: string
+            outsideNats:
+              type: array
+              items:
+                type: object
+                properties:
+                  localCidr:
+                    type: string
+                  networkCidr:
+                    type: string
+                  networkGroup:
+                    type: string
+                  description:
+                    type: string
+
+  VpnNodeWireguardModel:
+    allOf:
+      - $ref: "#/definitions/VpnWireguardUpdateModel"
+      - type: object
+        properties:
+          nodeUid:
+            type: string
+          networkName:
+            type: string
+
+  VpnClusterWireguardModel:
+    allOf:
+      - $ref: "#/definitions/VpnWireguardUpdateModel"
+      - type: object
+        properties:
+          fqdn:
+            type: string
+          networkName:
+            type: string
+
+  VpnNetworkUpdateModel:
+    type: object
+    properties:
+      name:
+        type: string
+      ip:
+        type: string
+      route:
+        type: string
+
+  VpnNodeNetworkModel:
+    allOf:
+      - $ref: "#/definitions/VpnNetworkUpdateModel"
+      - type: object
+        properties:
+          nodeUid:
+            type: string
+          networkName:
+            type: string
+
+  VpnClusterNetworkModel:
+    allOf:
+      - $ref: "#/definitions/VpnNetworkUpdateModel"
+      - type: object
+        properties:
+          fqdn:
+            type: string
+          networkName:
+            type: string
+
+  VpnNodeNetworkInventoryModel:
+    type: object
+    properties:
+      route:
+        type: string
+      routes:
+        type: array
+        items:
+          $ref: "#/definitions/VpnNodeRouteModel"
+      exportRoutes:
+        type: array
+        items:
+          $ref: "#/definitions/VpnNodeRouteModel"
+      importRoutes:
+        type: array
+        items:
+          $ref: "#/definitions/VpnNodeRouteModel"
+      services:
+        type: array
+        items:
+          $ref: "#/definitions/VpnNodeServiceModel"
+      interfaces:
+        type: array
+        items:
+          $ref: "#/definitions/VpnNodeInterfaceModel"
+      dns:
+        $ref: "#/definitions/VpnNodeDnsModel"
+      wireguard:
+        $ref: "#/definitions/VpnNodeWireguardModel"
+
+  VpnClusterNetworkInventoryModel:
+    type: object
+    properties:
+      route:
+        type: string
+      routes:
+        type: array
+        items:
+          $ref: "#/definitions/VpnClusterRouteModel"
+      exportRoutes:
+        type: array
+        items:
+          $ref: "#/definitions/VpnNodeRouteModel"
+      importRoutes:
+        type: array
+        items:
+          $ref: "#/definitions/VpnNodeRouteModel"
+      services:
+        type: array
+        items:
+          $ref: "#/definitions/VpnClusterServiceModel"
+      interfaces:
+        type: array
+        items:
+          $ref: "#/definitions/VpnClusterInterfaceModel"
+      dns:
+        $ref: "#/definitions/VpnClusterDnsModel"
+      wireguard:
+        $ref: "#/definitions/VpnClusterWireguardModel"
+
+  KVMMachine:
+    type: object
+    example:
+      id: 5d8f8f8f-8f8f-8f8f-8f8f-8f8f8f8f8f8f
+      name: linux-vm
+      description: My Linux VM
+      image: 2383ca19-baab-4e81-8b14-cff320525af5
+      stopTimeout: 120
+      autoStart: false
+    properties:
+      id:
+        type: string
+        description: Unique ID of the machine
+      name:
+        type: string
+        description: Name of the machine
+      description:
+        type: string
+        description: Description of the machine
+      image:
+        type: string
+        description: ID of the image for the machine
+      stopTimeout:
+        type: number
+        description: Timeout in seconds for the machine to stop gracefully
+      autoStart:
+        type: boolean
+        description: Whether the machine should be started automatically after deploy
+
+  KVMVRF:
+    type: object
+    description: VRF configuration for the machine
+    example:
+      name: default
+    properties:
+      name:
+        type: string
+        description: Name of the VRF
+
+  KVMInterface:
+    type: object
+    example:
+      uid: 5d8f8f8f-8f8f-8f8f-8f8f-8f8f8f8f8f8f
+      name: wan0
+      ip: 10.10.10.10
+    properties:
+      uid:
+        type: string
+        description: Unique ID of the interface
+      name:
+        type: string
+        description: Name of the interface
+      dest:
+        type: string
+        description: Internal destination of the interface
+
+  KVMImage:
+    type: object
+    example:
+      description: My Win10 KVM image
+      displayName: KVM App
+      id: 5d8f8f8f-8f8f-8f8f-8f8f-8f8f8f8f8f8f
+      location: /win2020-server.qcow2
+      os: win10
+    properties:
+      description:
+        type: string
+        description: Description of the image
+      displayName:
+        type: string
+        description: Display name of the image
+      id:
+        type: string
+        description: Unique ID of the image
+      location:
+        type: string
+        description: Location of the image on the node
+      os:
+        type: string
+        description: OS type of the image
+
+  KVMVolume:
+    type: object
+    example:
+      encrypted: true
+      name: my-volume
+      size: 1000000000
+      provisionType: thin
+    properties:
+      encrypted:
+        type: boolean
+        description: Whether the volume should be encrypted
+      name:
+        type: string
+        description: Name of the volume
+      size:
+        type: number
+        description: Size of the volume in bytes
+      provisionType:
+        type: string
+        description: Provisiong method for the volume
+        enum:
+          - thin
+          - lazy
+          - eager
+
+  KVMVolumeConfig:
+    type: object
+    description: Volume to attach to the VM
+    example:
+      name: extra-disk
+    properties:
+      name:
+        type: string
+        description: Name of the volume
+
+  KVMPortMapping:
+    type: object
+    description: Port mapping for the machine
+    example:
+      uid: 5d8f8f8f-8f8f-8f8f-8f8f-8f8f8f8f8f8f
+      protocol: TCP
+      iface: wan0
+      hostPort: 8080
+      containerPort: 80
+    properties:
+      uid:
+        type: string
+        description: Unique ID of the port mapping
+      protocol:
+        type: string
+        description: Protocol of the port mapping
+        enum:
+          - TCP
+          - UDP
+      iface:
+        type: string
+        description: Interface of the port mapping
+      hostPort:
+        type: number
+        description: Host port
+      containerPort:
+        type: number
+        description: VM port
+
+  KVMVirtualNetwork:
+    type: object
+    description: Virtual network to attach to the VM
+    example:
+      uid: 5d8f8f8f-8f8f-8f8f-8f8f-8f8f8f8f8f8f
+      network: my-vnet
+      ip: 10.10.10.10
+      allowOutbound: false
+    properties:
+      uid:
+        type: string
+        description: Unique ID of the virtual network association
+      network:
+        type: string
+        description: ID of the virtual network
+      ip:
+        type: string
+        description: VM virtual IP
+      allowOutbound:
+        type: boolean
+        description: Whether to allow outbound traffic
+
+  KVMCPUConfig:
+    type: object
+    description: CPU configuration for the machine
+    example:
+      num: 2
+    properties:
+      num:
+        type: number
+        description: Number of CPUs
+
+  KVMMemoryConfig:
+    type: object
+    description: Memory configuration for the machine
+    example:
+      mem: 4
+      unit: GB
+    properties:
+      mem:
+        type: number
+        description: Amount of memory for the machine
+      unit:
+        type: string
+        description: Unit for mem provided
+        enum:
+          - b
+          - KB
+          - MB
+          - GB
+
+  KVMCloudInit:
+    type: object
+    description: Cloud init data
+    example:
+      userData: |
+        #cloud-config
+
+        set_timezone: America/Boise
+    properties:
+      userData:
+        type: string
+        description: User data to be injected into the machine
+      metaData:
+        type: string
+        description: Metadata to be injected into the machine
+
+  KVMMachineConfig:
+    type: object
+    properties:
+      volumes:
+        type: array
+        description: List of volumes to attach to the machine
+        items:
+          "$ref": "#/definitions/KVMVolumeConfig"
+
+      portMappings:
+        type: array
+        description: Host ports to map to virtual machine ports
+        items:
+          "$ref": "#/definitions/KVMPortMapping"
+
+      virtualNetworks:
+        type: array
+        description: List of virtual networks to attach to the machine
+        items:
+          "$ref": "#/definitions/KVMVirtualNetwork"
+
+      vrf:
+        $ref: "#/definitions/KVMVRF"
+
+      cpu:
+        $ref: "#/definitions/KVMCPUConfig"
+
+      memory:
+        $ref: "#/definitions/KVMMemoryConfig"
+
+      cloudInit:
+        $ref: "#/definitions/KVMCloudInit"
+
+      interfaces:
+        type: array
+        description: List of virtual interfaces for the VM
+        items:
+          "$ref": "#/definitions/KVMInterface"
+
+  OrderModel:
+    type: object
+    properties:
+      uid:
+        type: string
+      orderNum:
+        description: System-wide unique order number
+        type: number
+      customerRefNum:
+        type: string
+      ha:
+        description: True when this order is for an HA pair
+        type: boolean
+      siteType:
+        description: Site deployment type
+        type: string
+        enum:
+          - primary
+          - secondary
+          - test
+      interfacesCount:
+        description: Number of interfaces to configure per node
+        type: number
+        minimum: 1
+        maximum: 2
+      nodeCount:
+        description: Number of nodes needed to fulfill order
+        type: number
+        minimum: 1
+        maximum: 2
+      nodes:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+            dns1:
+              type: string
+            dns2:
+              type: string
+            interfaces:
+              type: array
+              items:
+                type: object
+                properties:
+                  dhcp:
+                    type: boolean
+                  ip:
+                    type: string
+                  subnet:
+                    type: string
+                  gateway:
+                    type: string
+      nats:
+        type: array
+        items:
+          type: object
+          properties:
+            localCidr:
+              type: string
+              description: Local CIDR
+            networkCidr:
+              type: string
+              description: Network CIDR
+            description:
+              type: string
+              description: Description
+      notes:
+        type: string
+      endUserAccountNum:
+        type: string
+      contactName:
+        type: string
+      contactEmail:
+        type: string
+      contactPhone:
+        type: string
+      companyName:
+        type: string
+      technicalContactName:
+        type: string
+      technicalContactEmail:
+        type: string
+      technicalContactPhone:
+        type: string
+      address1:
+        type: string
+      address2:
+        type: string
+      city:
+        type: string
+      state:
+        type: string
+      zip:
+        type: string
+      attn:
+        type: string
+      locationName:
+        type: string
+      nodeName:
+        type: string
+      domain:
+        type: string
+      applianceType:
+        type: string
+      clusterIp:
+        type: string
+      routedNetworks:
+        type: string
+      dueDate:
+        type: string
+      comments:
+        type: array
+        items:
+          type: object
+      status:
+        description: Order status. API-side holistic validations apply to orders whose status is in provisioning, qa, shipped, delivered, installed, and in production.
+        type: string
+        enum:
+          - new
+          - gathering info
+          - pending feedback
+          - info received
+          - provisioning
+          - qa
+          - shipped
+          - delivered
+          - installed
+          - in production
+          - archived
+          - cancelled
+      flagged:
+        type: boolean

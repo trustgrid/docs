@@ -23870,4 +23870,8 @@ h5 {
   margin-top: 3rem;
   font-size: 1.2rem; }
 
+.title .version {
+  color: black;
+  background-color: #7d8492; }
+
 /*# sourceMappingURL=main.css.map */

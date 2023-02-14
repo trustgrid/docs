@@ -1,5 +1,6 @@
+.PHONY: swagger
 
-build:
+build: swagger
 	hugo --minify
 
 publish:
@@ -10,3 +11,7 @@ run:
 
 clean:
 	rm -rf public
+
+swagger:
+	$(MAKE) -C swagger gen-swagger
+	cp swagger/swagger.json static

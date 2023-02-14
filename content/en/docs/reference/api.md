@@ -1,11 +1,8 @@
 ---
 title: "API"
+type: swagger
 linkTitle: "API Swagger"
-date: 2017-01-05
-description: >
-  API documentation in swagger format
+date: 2023-2-15
 ---
 
-{{% pageinfo %}}
-This is how you use the portal API.
-{{% /pageinfo %}}
+{{<swaggerui src="swagger.json">}}
