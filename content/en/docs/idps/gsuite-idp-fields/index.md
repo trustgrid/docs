@@ -14,9 +14,9 @@ Once the integration has been successful, the user sync selection will be presen
 
 ![img](sync_gsuite.png)
 
-- Sync all users - Syncs all available G Suite users along with all the groups associated to the users
-- Sync users from specific groups - Syncs all users from the selected groups
-- Disconnect G Suite - Deletes all users and groups and removes the G Suite integration
+- Sync all users - Syncs all available users along with all the groups associated to the users.
+- Sync users from specific groups - Syncs all users from the selected groups.
+- Disconnect G Suite - Deletes all users and groups and removes the G Suite integration.
 
 {{<alert color="info">}}
 - Once the initial manual sync has occurred, automatic synchronization will happen once a day.
