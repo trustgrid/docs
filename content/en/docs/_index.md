@@ -1,7 +1,7 @@
 
 ---
-title: "Documentation"
-linkTitle: "Documentation"
+title: "Reference"
+linkTitle: "Reference"
 weight: 20
 menu:
   main:
