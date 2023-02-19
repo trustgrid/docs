@@ -21,10 +21,35 @@ These events are based on the information reported by each member node to the co
 
 The Trustgrid will now display one of three states in the portal:
 
-| State         | Meaning                                                                                                                                                        |
-| ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Healthy**   | Both members are online with a single member active.                                                                                                           |
-| **Unhealthy** | There is at least one online and healthy member of the [cluster]({{<ref "docs/clusters" >}}) with the active role AND one or more of these conditions is true: |
-|               | - One of the [cluster]({{<ref "docs/clusters" >}}) members is offline, unhealthy or disabled                                                                   |
-|               | - There are **two** [cluster]({{<ref "docs/clusters" >}}) members with the active role                                                                         |
-| **Offline**   | Both [nodes]({{<ref "docs/nodes">}}) are offline, unhealthy or disabled.                                                                                       |
+<table>
+  <tbody>
+    <tr>
+      <th>State</th>
+      <th>Meaning</th>
+    </tr>
+    <tr>
+      <th>Healthy</th>
+      <td>Both members are online with a single member active.</td>
+    </tr>
+    <tr>
+      <th>Unhealthy</th>
+      <td>
+{{% markdown %}}
+There is at least one online and healthy member of the [cluster]({{<ref "docs/clusters" >}}) with the active role AND one or more of these conditions is true: 
+
+* One of the [cluster]({{<ref "docs/clusters" >}}) members is offline, unhealthy or disabled
+* There are **two** [cluster]({{<ref "docs/clusters" >}}) members with the active role
+{{% /markdown %}}
+</td>
+    </tr>
+    <tr>
+      <th>Offline</th>
+      <td>
+{{% markdown %}}
+Both [nodes]({{<ref "docs/nodes">}}) are offline, unhealthy or disabled.
+{{% /markdown %}}
+
+</td>
+</tr>
+</tbody>
+</table>
