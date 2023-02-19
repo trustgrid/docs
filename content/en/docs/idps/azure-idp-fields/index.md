@@ -6,7 +6,7 @@ linkTitle: "Azure AD"
 
 #### Setup
 
-Setting up the Azure AD integration requires the configuration of an Azure App registration.  See [Azure App registration configuration]({{< ref "#azure-app-registration-configuration" >}}).
+Setting up the Azure AD integration requires the configuration of an Azure App registration.  See [Azure App registration configuration]({{<ref "#azure-app-registration-configuration" >}}).
 
 ![img](azure_ad_config.png) 
 

@@ -21,9 +21,9 @@ Start Here
 
 An explanation of the building blocks and core concepts for building with Trustgrid.
 
-- [Concepts]({{< ref "/docs/concepts" >}}) - core concepts for building with Trustgrid
-- [Nodes]({{< ref "/docs/node" >}}) - every device or service that connects to Trustgrid is a node
-- [Clusters]({{< ref "/docs/cluster" >}}) - pair nodes together for HA
+- [Concepts]({{<ref "/docs/concepts" >}}) - core concepts for building with Trustgrid
+- [Nodes]({{<ref "/docs/nodes" >}}) - every device or service that connects to Trustgrid is a node
+- [Clusters]({{<ref "/docs/clusters" >}}) - pair nodes together for HA
 </div>
 
 <div class="container" style="margin-top: 3em;">

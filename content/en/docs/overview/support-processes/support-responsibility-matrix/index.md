@@ -62,7 +62,7 @@ The customer’s support team should be the end-user’s first point of contact.
 
 Example tasks include:
 
-- Troubleshooting offline Trustgrid [nodes]({{< ref "docs/node" >}})
+- Troubleshooting offline Trustgrid [nodes]({{<ref "docs/nodes" >}})
 - Changing Trustgrid node IP addresses
 - Adding, modifying and testing NATs on Edge devices
 - Modifying interface and domain routes, including facilitating failover between sites

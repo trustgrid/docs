@@ -15,7 +15,7 @@ All cloud management components are secured and monitored by Trustgrid. This inc
 
 #### Network Security is a Shared Responsibility
 
-Trustgrid is responsible for the security of all data plane traffic from the time it enters a Trustgrid [node]({{< ref "docs/node" >}}) until the time it exits a Trustgrid [node]({{< ref "/docs/node" >}}). Customers are responsible for the security of all network traffic eggressing from any Trustgrid [node]({{< ref "/docs/node" >}}).
+Trustgrid is responsible for the security of all data plane traffic from the time it enters a Trustgrid [node]({{<ref "docs/nodes" >}}) until the time it exits a Trustgrid [node]({{<ref "/docs/nodes" >}}). Customers are responsible for the security of all network traffic eggressing from any Trustgrid [node]({{<ref "/docs/nodes" >}}).
 
 #### Trustgrid Teams with Customers for Edge Security
 

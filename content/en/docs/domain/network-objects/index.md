@@ -6,7 +6,7 @@ date: 2023-1-9
 ---
 
 {{% pageinfo %}}
-A network object allows naming a CIDR inside a [VPN]({{< ref "docs/concepts/VPN" >}}) for easier rule management.
+A network object allows naming a CIDR inside a [VPN]({{<ref "docs/concepts/VPN" >}}) for easier rule management.
 {{% /pageinfo %}}
 
 A network object requires the following fields:
@@ -23,4 +23,4 @@ Specifically an IPv4 CIDR.
 
 ![img](network-objects.png)
 
-Multiple network objects may be clustered into a [network group]({{< ref "docs/domain/network-groups" >}}).
+Multiple network objects may be clustered into a [network group]({{<ref "docs/domain/network-groups" >}}).

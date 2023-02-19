@@ -12,11 +12,11 @@ The below processes should be used to move traffic between sites in event of a c
 
 ### Manual Failover
 
-When a customer has selected manual failover, a portal user will need to adjust the destination of all [routes]({{< ref "docs/domain/routes" >}}) currently pointed at the failed site.
+When a customer has selected manual failover, a portal user will need to adjust the destination of all [routes]({{<ref "docs/domain/routes" >}}) currently pointed at the failed site.
 
 #### Failing Over
 
-> There will usually be [routes]({{< ref "docs/domain/routes" >}}) for the [nodes']({{< ref "docs/node" >}}) Virtual Management IP. These should not be changed in this process.
+> There will usually be [routes]({{<ref "docs/domain/routes" >}}) for the [nodes']({{<ref "docs/nodes" >}}) Virtual Management IP. These should not be changed in this process.
 
 1. In the portal, navigate to `Domain` → `Virtual Networks` and then select the appropriate Virtual network.
 
@@ -34,7 +34,7 @@ When a customer has selected manual failover, a portal user will need to adjust 
 
 1. Click `Save`. Then select `Review Changes`.
 
-2. You should see a modified [route]({{< ref "docs/domain/routes" >}}) for each network you adjusted showing the previous and current destination. If everything looks correct click `Apply Changes`.
+2. You should see a modified [route]({{<ref "docs/domain/routes" >}}) for each network you adjusted showing the previous and current destination. If everything looks correct click `Apply Changes`.
 
 ![img](apply-changes.png)
 

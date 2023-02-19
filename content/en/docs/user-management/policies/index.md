@@ -88,7 +88,7 @@ To get the node’s complete TGRN you’ll need to append the node ID which is v
 
 ![img](node-tgrn.png)
 
-A complete [node]({{< ref "docs/node" >}}) TGRN looks like: `tgrn:tg::nodes:node/ab3550cf-f3da-4d90-b4b1-b870fc85c9c7`
+A complete [node]({{<ref "docs/nodes" >}}) TGRN looks like: `tgrn:tg::nodes:node/ab3550cf-f3da-4d90-b4b1-b870fc85c9c7`
 
 #### Cluster TGRN
 
@@ -98,7 +98,7 @@ This is followed by the cluster’s fully qualified domain name (fqdn) which is 
 
 ![img](cluster-tgrn.png)
 
-A complete [cluster]({{< ref "docs/cluster" >}}) TGRN looks like: `tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io`
+A complete [cluster]({{<ref "docs/clusters" >}}) TGRN looks like: `tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io`
 
 ### Policy Management
 

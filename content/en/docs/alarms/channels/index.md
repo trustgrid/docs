@@ -16,17 +16,17 @@ A channel defines one or more method of delivering alert notifications to extern
 
 - OpsGenie - Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.
 
-{{<alert>}} For both PagerDuty and OpsGenie the integration will automatically resolve issues if an [event]({{< ref "docs/alarms/events" >}}) occurs that negates the initial triggering event. For example, if an [event]({{< ref "docs/alarms/events" >}}) is triggered by a Node Disconnect and the [node]({{< ref "docs/node" >}}) reconnects, the Node Connect [event]({{< ref "docs/alarms/events" >}}) will resolve the incident via the API. {{</alert>}}
+{{<alert>}} For both PagerDuty and OpsGenie the integration will automatically resolve issues if an [event]({{<ref "docs/alarms/events" >}}) occurs that negates the initial triggering event. For example, if an [event]({{<ref "docs/alarms/events" >}}) is triggered by a Node Disconnect and the [node]({{<ref "docs/nodes" >}}) reconnects, the Node Connect [event]({{<ref "docs/alarms/events" >}}) will resolve the incident via the API. {{</alert>}}
 
-- Slack - Trustgrid can post the [event]({{< ref "docs/alarms/events" >}}) data to a configured channel via a webhook.
+- Slack - Trustgrid can post the [event]({{<ref "docs/alarms/events" >}}) data to a configured channel via a webhook.
 
-- Microsoft Teams - Trustgrid can post [event]({{< ref "docs/alarms/events" >}}) data to a configure Teams channel via an incoming webhook
+- Microsoft Teams - Trustgrid can post [event]({{<ref "docs/alarms/events" >}}) data to a configure Teams channel via an incoming webhook
 
-{{<alert>}} Only a single Slack or Teams channel can be targeted by a Trustgrid channel. However, you can create multiple Trustgrid channels if you wish to post the [event]({{< ref "docs/alarms/events" >}}) data to more than one Slack/Teams channel. {{</alert>}}
+{{<alert>}} Only a single Slack or Teams channel can be targeted by a Trustgrid channel. However, you can create multiple Trustgrid channels if you wish to post the [event]({{<ref "docs/alarms/events" >}}) data to more than one Slack/Teams channel. {{</alert>}}
 
 ### Example Event Data
 
-The [event]({{< ref "docs/alarms/events" >}}) data is delivered in JSON, as shown below, which depending on the integration can allow for additional parsing.
+The [event]({{<ref "docs/alarms/events" >}}) data is delivered in JSON, as shown below, which depending on the integration can allow for additional parsing.
 
 {{< highlight json >}}
 {
@@ -64,11 +64,11 @@ The [event]({{< ref "docs/alarms/events" >}}) data is delivered in JSON, as show
 
 {{<fields>}}
 {{<field "Node Name (Line 1)" >}}
-This is the name of the [node]({{< ref "docs/node" >}}) that the [event]({{< ref "docs/alarms/events" >}}) relates to.
+This is the name of the [node]({{<ref "docs/nodes" >}}) that the [event]({{<ref "docs/alarms/events" >}}) relates to.
 {{</field >}}
 
 {{<field "Expires (Line 2)" >}}
-This is the Unix epoch time when this [event]({{< ref "docs/alarms/events" >}}) will expire and automatically resolve.
+This is the Unix epoch time when this [event]({{<ref "docs/alarms/events" >}}) will expire and automatically resolve.
 {{</field >}}
 
 {{<field "Level (Line 4)" >}}
@@ -76,11 +76,11 @@ This is the alert severity.
 {{</field >}}
 
 {{<field "Event Type (Line 5)" >}}
-Matches to the [event types]({{< ref "docs/alarms/event-types" >}}).
+Matches to the [event types]({{<ref "docs/alarms/event-types" >}}).
 {{</field >}}
 
 {{<field "Timestamp (Line 21)" >}}
-This is the Unix epoch time when the [event]({{< ref "docs/alarms/events" >}}) was first triggered.
+This is the Unix epoch time when the [event]({{<ref "docs/alarms/events" >}}) was first triggered.
 {{</field >}}
 
 {{<field "ChannelID (Line 22)" >}}
@@ -91,9 +91,9 @@ This is the unique identifier of the Trustgrid channel that was used to deliver 
 ![img](random-link1.png)
 
 {{<field "AlarmID (Lines 26-28)" >}}
-Since a channel can be used by more than one [alarm filter]({{< ref "alarm-filters" >}}) this will return an array of 1 or more alarm filters that matched the [event]({{< ref "events" >}}) and used this above channel. You can match this to the URL of the [alarm filters]({{< ref "alarm-filters" >}}) in the portal.
+Since a channel can be used by more than one [alarm filter]({{<ref "alarm-filters" >}}) this will return an array of 1 or more alarm filters that matched the [event]({{<ref "events" >}}) and used this above channel. You can match this to the URL of the [alarm filters]({{<ref "alarm-filters" >}}) in the portal.
 {{</field >}}
 
 ![img](random-link2.png)
 
-This can be handy for determining which filter or filters' criteria matched the [event]({{< ref "docs/alarms/events" >}}) and sent the notification through this channel.
+This can be handy for determining which filter or filters' criteria matched the [event]({{<ref "docs/alarms/events" >}}) and sent the notification through this channel.

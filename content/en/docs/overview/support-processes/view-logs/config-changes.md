@@ -5,9 +5,9 @@ Date: 2022-12-30
 
 - Changes to the following configurations are audited:
   - API
-  - [Cluster]({{< ref "docs/cluster" >}})
-  - [Node]({{< ref "docs/node" >}})
-  - [Domain]({{< ref "docs/domain" >}})
+  - [Cluster]({{<ref "docs/clusters" >}})
+  - [Node]({{<ref "docs/nodes" >}})
+  - [Domain]({{<ref "docs/domain" >}})
   - Certificate
   - Org
   - Profile

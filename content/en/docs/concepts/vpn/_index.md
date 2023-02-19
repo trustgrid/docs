@@ -6,21 +6,21 @@ date: 2022-12-27
 ---
 
 {{% pageinfo %}}
-Trustgrid utilizes Network Address Translation to alter the source and/or destination IP address of Layer 3 traffic as it enters or leaves the Virtual Private Network (VPN). These NATs are defined under either an individual [node]({{< ref "docs/node" >}}) or at the [cluster]({{< ref "docs/cluster" >}}) level. If a [node]({{< ref "docs/node" >}}) is part of a [cluster]({{< ref "docs/cluster" >}}) only the NATs defined at the [cluster]({{< ref "docs/cluster" >}}) level will be effective.
+Trustgrid utilizes Network Address Translation to alter the source and/or destination IP address of Layer 3 traffic as it enters or leaves the Virtual Private Network (VPN). These NATs are defined under either an individual [node]({{<ref "docs/nodes" >}}) or at the [cluster]({{<ref "docs/clusters" >}}) level. If a [node]({{<ref "docs/nodes" >}}) is part of a [cluster]({{<ref "docs/clusters" >}}) only the NATs defined at the [cluster]({{<ref "docs/clusters" >}}) level will be effective.
 {{% /pageinfo %}}
 
 ### Outside NATs
 
 An Outside NAT will Convert:
 
-- The **Source IP** address of traffic leaving the [virtual network]({{< ref "docs/domain/virtual-networks" >}}). This determines how traffic appears inside the local network.
-- The **Destination IP** of traffic entering the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).
+- The **Source IP** address of traffic leaving the [virtual network]({{<ref "docs/domain/virtual-networks" >}}). This determines how traffic appears inside the local network.
+- The **Destination IP** of traffic entering the [virtual network]({{<ref "docs/domain/virtual-networks" >}}).
 
-**An Outside NAT is required for all [nodes]({{< ref "docs/node" >}})/[clusters]({{< ref "docs/cluster" >}}) using the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).**
+**An Outside NAT is required for all [nodes]({{<ref "docs/nodes" >}})/[clusters]({{<ref "docs/clusters" >}}) using the [virtual network]({{<ref "docs/domain/virtual-networks" >}}).**
 
 ### Inside NATs
 
 An Inside NAT will convert:
 
-- The **Source IP** address of traffic entering the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).
-- The **Destination IP** address of traffic leaving the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).
+- The **Source IP** address of traffic entering the [virtual network]({{<ref "docs/domain/virtual-networks" >}}).
+- The **Destination IP** address of traffic leaving the [virtual network]({{<ref "docs/domain/virtual-networks" >}}).

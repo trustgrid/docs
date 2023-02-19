@@ -6,10 +6,10 @@ date: 2022-12-28
 ---
 
 {{% pageinfo %}}
-An access policy is a list of rules that each allow, reject, or drop traffic at the [VPN]({{< ref "docs/concepts/VPN" >}}) level.
+An access policy is a list of rules that each allow, reject, or drop traffic at the [VPN]({{<ref "docs/concepts/VPN" >}}) level.
 {{% /pageinfo %}}
 
-If no rules are defined, traffic will not pass through the [virtual network]({{< ref "docs/domain/virtual-networks" >}}).
+If no rules are defined, traffic will not pass through the [virtual network]({{<ref "docs/domain/virtual-networks" >}}).
 
 **A rule can match traffic based on the following fields:**
 
@@ -23,11 +23,11 @@ You can choose ANY, UDP, ICMP, or TCP.
 {{</field >}}
 
 {{<field "Source" >}}
-The source of the traffic. You can select a [network object]({{< ref "docs/domain/network-objects" >}}), a [network group]({{< ref "docs/domain/network-groups" >}}), or provide a CIDR.
+The source of the traffic. You can select a [network object]({{<ref "docs/domain/network-objects" >}}), a [network group]({{<ref "docs/domain/network-groups" >}}), or provide a CIDR.
 {{</field >}}
 
 {{<field "Destination" >}}
-The destination of the traffic. You can select a [network object]({{< ref "docs/domain/network-objects" >}}), a [network group]({{< ref "docs/domain/network-groups" >}}), or provide a CIDR.
+The destination of the traffic. You can select a [network object]({{<ref "docs/domain/network-objects" >}}), a [network group]({{<ref "docs/domain/network-groups" >}}), or provide a CIDR.
 {{</field >}}
 
 {{<field "Line Number" >}}

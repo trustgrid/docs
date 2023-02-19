@@ -8,8 +8,6 @@ menu:
     weight: 20
 ---
 
-{{ range .Data.Pages.ByTitle }}
-
 {{% pageinfo %}}
 This is a placeholder page that shows you how to use this template site.
 {{% /pageinfo %}}

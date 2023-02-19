@@ -16,5 +16,5 @@ For more issues involving multiple nodes, review [Domain Node Events](need link 
 2. View `Events` across the organization
 
 ![img](alerts-page.png)
-Types]]({{< ref "docs/alarms/event-types" >}})
+Types]]({{<ref "docs/alarms/event-types" >}})
 

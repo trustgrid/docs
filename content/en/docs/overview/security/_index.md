@@ -16,11 +16,11 @@ Pre-shared keys (PSK) are the most common method for authenticated connectivity 
 
 Central to the security of the Trustgrid network is an authorization model derived from Google’s [Beyond Corp](https://cloud.google.com/beyondcorp) (aka Zero Trust from Forrester) initiative. This places an implicit deny on all traffic that cannot be configured to allow all traffic. Many breaches have been caused by allowing all traffic to overcome the burden of proper security configuration.
 
-Trustgrid uses a token to authorize communication between Trustgrid [nodes]({{< ref "/docs/node" >}}).
+Trustgrid uses a token to authorize communication between Trustgrid [nodes]({{<ref "/docs/nodes" >}}).
 
 ### TLS Encryption
 
-All data on Trustgrid is encrypted from [node]({{< ref "/docs/node" >}}) to node using next generation encryption – TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement to IPSec VPN.
+All data on Trustgrid is encrypted from [node]({{<ref "/docs/nodes" >}}) to node using next generation encryption – TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement to IPSec VPN.
 
 ### Automated Management
 

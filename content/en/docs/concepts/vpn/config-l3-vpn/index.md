@@ -7,14 +7,14 @@ The VPN feature enables routing of IP packets by utilizing a virtual IP space th
 
 The Trustgrid VPN feature provides the capability to securely route IP packets between remote networks.  In this configuration, Trustgrid nodes can operate as a distributed mesh virtual private network (VPN) that can allow applications to access remote data and services at layer 3 (L3) of the network OSI model.  This is done by defining a virtual L3 network (similar to an Amazon VPC) and then selecting how local node networks are exposed and translated into the the virtual address space.
 
-The following steps illustrate how to configure the Trustgrid VPN feature and will need to be configured on all [nodes]({{< ref "docs/node" >}})/[clusters]({{< ref "docs/cluster" >}}) that need to communicate across the virtual network.
+The following steps illustrate how to configure the Trustgrid VPN feature and will need to be configured on all [nodes]({{<ref "docs/nodes" >}})/[clusters]({{<ref "docs/clusters" >}}) that need to communicate across the virtual network.
 
 1. Create the Virtual Network 
 Under `Domains` -> `Domain` -> `Virtual Networks` create the `Virtual Network`. All gateway/edge nodes deployed and attached to this virtual network will need to be assigned a subnet out of this IP space. It is important to ensure the CIDR created is large enough to encompass all future node deployments. In this example the entire IPV4 space is being used. This IP space is only applicable to the individual virtual network therefore if there are multiple virtual networks there is no overlap or conflict in IP space allocation.
 
 ![img](create-vn.png)
 
-2. Create [Routes]({{< ref "docs/domain/routes" >}}) for the desired Virtual CIDR with the destination being either a single node or a cluster if an HA deployment. 
+2. Create [Routes]({{<ref "docs/domain/routes" >}}) for the desired Virtual CIDR with the destination being either a single node or a cluster if an HA deployment. 
 
 ![img](create-vn2.png)
 

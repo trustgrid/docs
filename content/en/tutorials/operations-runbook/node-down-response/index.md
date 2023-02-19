@@ -5,7 +5,7 @@ Tags: ["node", "troubleshoot", "help"]
 ---
 
 {{% pageinfo %}}
-This process is intended to help customer support personnel quickly identify the scope of a [node]({{< ref "docs/node" >}}) down problem and get services back online as quickly as possible.
+This process is intended to help customer support personnel quickly identify the scope of a [node]({{<ref "docs/nodes" >}}) down problem and get services back online as quickly as possible.
 {{% /pageinfo %}}
 
 ### Node Down Triage
@@ -24,11 +24,11 @@ This process is intended to help customer support personnel quickly identify the
 
 ### Determine Production Status of the Trustgrid Node
 
-Use the [Production Status Tags]({{< ref "docs/concepts/tag/prod-status-tag" >}}}) to determine if the [node]({{< ref "docs/node" >}}) is in use and expected to be online.
+Use the [Production Status Tags]({{<ref "/docs/nodes/tags/prod-status-tag" >}}}) to determine if the [node]({{<ref "docs/nodes" >}}) is in use and expected to be online.
 
 ### Confirm High Availability or Disaster Recover is Functioning
 
-Before troubleshooting why a [node]({{< ref "docs/node" >}}) is down we should determine if the services it provided can be provided in the interim by a cluster member or devices at a secondary/disaster-recovery site.
+Before troubleshooting why a [node]({{<ref "docs/nodes" >}}) is down we should determine if the services it provided can be provided in the interim by a cluster member or devices at a secondary/disaster-recovery site.
 
 ##### Is the Node a Cluster Member
 
@@ -48,7 +48,7 @@ Before troubleshooting why a [node]({{< ref "docs/node" >}}) is down we should d
 
 ##### Is there a Secondary / DR Site for this Node/Cluster?
 
-- Are the [nodes]({{< ref "docs/node" >}}) deployed at the secondary site online in the Trustgrid?
+- Are the [nodes]({{<ref "docs/nodes" >}}) deployed at the secondary site online in the Trustgrid?
 
   - If No:
 
@@ -67,13 +67,13 @@ Before troubleshooting why a [node]({{< ref "docs/node" >}}) is down we should d
 Because Trustgrid provides independent control and data planes, there are a few ways it can manifest as “down”:
 
 {{<field "Control Plane Down" >}}
-The [node]({{< ref "docs/node" >}}) appears offline from within the Trustgrid portal. This indicates that the [node]({{< ref "docs/node" >}}) shutdown or has not sent a heartbeat notification to Trustgrid within the past 10 minutes.
+The [node]({{<ref "docs/nodes" >}}) appears offline from within the Trustgrid portal. This indicates that the [node]({{<ref "docs/nodes" >}}) shutdown or has not sent a heartbeat notification to Trustgrid within the past 10 minutes.
 {{</field >}}
 
 {{<field "Data Plane Down" >}}
-The [node]({{< ref "docs/node" >}}) appears online from within the portal but reports it is unable to connect to one or more gateway nodes. This can be indicated by the Data Plane Status indicator when viewing the [node]({{< ref "docs/node" >}}) in the portal, or by receiving a “Gateway Connectivity Health Check” failure [event]({{< ref "docs/alarms/events" >}}) notification. Both of these only work if the Control Plane is currently working.
+The [node]({{<ref "docs/nodes" >}}) appears online from within the portal but reports it is unable to connect to one or more gateway nodes. This can be indicated by the Data Plane Status indicator when viewing the [node]({{<ref "docs/nodes" >}}) in the portal, or by receiving a “Gateway Connectivity Health Check” failure [event]({{<ref "docs/alarms/events" >}}) notification. Both of these only work if the Control Plane is currently working.
 {{</field >}}
 
 {{<field "Both Control and Data Plane Down" >}}
-In this situation the [node]({{< ref "docs/node" >}}) appears down in the Trustgrid Portal and users/applications are unable to reach services across the data plane between the Gateway and Edge sites. This is the most common scenario. While the Data Plane is most critical for the services provided across the device, first priority should be restoring the Control Plane connection so that additional troubleshooting tools are available. Often this process also uncovers the reason the data plane is down.
+In this situation the [node]({{<ref "docs/nodes" >}}) appears down in the Trustgrid Portal and users/applications are unable to reach services across the data plane between the Gateway and Edge sites. This is the most common scenario. While the Data Plane is most critical for the services provided across the device, first priority should be restoring the Control Plane connection so that additional troubleshooting tools are available. Often this process also uncovers the reason the data plane is down.
 {{</field >}}

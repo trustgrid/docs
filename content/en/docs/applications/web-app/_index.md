@@ -51,7 +51,7 @@ the application's icon (optional) to show in the application dashboard
 - Identity Provider - the [Identity Provider](https://portal.dev.trustgrid.io/#/identity-providers) to authenticate users
 - User session duration - How long a user's session will last before they are required to re-authenticate
 - Trust Mode:
-  - Discovery - all URLs accessed through the application will be permitted and listed in the [Trusted Links]({{< ref "docs/applications/web-app/trusted-links" >}}) section
+  - Discovery - all URLs accessed through the application will be permitted and listed in the [Trusted Links]({{<ref "docs/applications/web-app/trusted-links" >}}) section
   - Zero Trust - only URLs explicitly trusted by the application will be permitted
 
 1. Click `Add Application`

@@ -5,14 +5,14 @@ Tags: ["cluster", "help", "troubleshoot"]
 ---
 
 {{% pageinfo %}}
-When the active (master) member of the [cluster]({{< ref "docs/cluster" >}}) goes unhealthy the standby member will take over the active role. This process should be automatic and not require manual intervention. However, in certain circumstances, such as the unexpected failover of a public gateway, it is worth investigating to confirm traffic is in a healthy state.
+When the active (master) member of the [cluster]({{<ref "docs/clusters" >}}) goes unhealthy the standby member will take over the active role. This process should be automatic and not require manual intervention. However, in certain circumstances, such as the unexpected failover of a public gateway, it is worth investigating to confirm traffic is in a healthy state.
 {{% /pageinfo %}}
 
 ### Possible Messages
 
 - Master role assumed - failover
 
-  - Indicates the master role has moved from the designated master (primary) to the backup/secondary [node]({{< ref "docs/node" >}})
+  - Indicates the master role has moved from the designated master (primary) to the backup/secondary [node]({{<ref "docs/nodes" >}})
 
 - Master role reclaimed by expected master
 
@@ -22,21 +22,21 @@ When the active (master) member of the [cluster]({{< ref "docs/cluster" >}}) goe
 
 Below is a brief description events that occur during a failover process:
 
-- The [node]({{< ref "docs/node" >}}) assuming the master role will ARP to the network that it now owns the [Cluster]({{< ref "docs/cluster" >}}) Virtual IP (VIP)
+- The [node]({{<ref "docs/nodes" >}}) assuming the master role will ARP to the network that it now owns the [Cluster]({{<ref "docs/clusters" >}}) Virtual IP (VIP)
 
-- The [Domain route]({{< ref "docs/domain/routes" >}}) table will update that the assuming [node]({{< ref "docs/node" >}}) should receive all traffic for the [cluster]({{< ref "docs/cluster" >}}) (_clustername-master_)
+- The [Domain route]({{<ref "docs/domain/routes" >}}) table will update that the assuming [node]({{<ref "docs/nodes" >}}) should receive all traffic for the [cluster]({{<ref "docs/clusters" >}}) (_clustername-master_)
 
-- The assuming [node]({{< ref "docs/node" >}}) will load all NAT entries associated with the [cluster]({{< ref "docs/cluster" >}})
+- The assuming [node]({{<ref "docs/nodes" >}}) will load all NAT entries associated with the [cluster]({{<ref "docs/clusters" >}})
 
 ### Response Process
 
 After a failover or failback it is necessary to verify that traffic is flowing appropriately.
 
-1. Login to the portal and navigate to the affected [cluster’s]({{< ref "docs/cluster" >}}) page
+1. Login to the portal and navigate to the affected [cluster’s]({{<ref "docs/clusters" >}}) page
 
-2. Verify that only a single [node]({{< ref "docs/node" >}}) shows as master
+2. Verify that only a single [node]({{<ref "docs/nodes" >}}) shows as master
 
-3. On the `Configuration` → `Network` tab note the [cluster]({{< ref "docs/cluster" >}}) VIP
+3. On the `Configuration` → `Network` tab note the [cluster]({{<ref "docs/clusters" >}}) VIP
 
 ![img](cluster-virtual-ip2.png)
 
