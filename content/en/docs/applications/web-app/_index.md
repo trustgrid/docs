@@ -48,7 +48,7 @@ the application's icon (optional) to show in the application dashboard
 
 #### Security
 
-- Identity Provider - the [Identity Provider](https://portal.dev.trustgrid.io/#/identity-providers) to authenticate users
+- Identity Provider - the [Identity Provider]({{<ref "docs/idps" >}}) to authenticate users
 - User session duration - How long a user's session will last before they are required to re-authenticate
 - Trust Mode:
   - Discovery - all URLs accessed through the application will be permitted and listed in the [Trusted Links]({{<ref "docs/applications/web-app/trusted-links" >}}) section

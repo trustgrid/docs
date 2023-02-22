@@ -15,4 +15,4 @@ Trustgrid provides several ZTNA application types that allow remote access to in
 
 Each application has an [Access Policy]({{<ref "docs/applications/access-policy" >}}) and a [Visibility]({{<ref "docs/applications/visibility" >}}) list. For a user to connect to a ZTNA application, they must (1) be permitted access by the application's Access Policy and (2) be able to see the application.
 
-Access to an application is authenticated through an [Identity Provider](https://portal.dev.trustgrid.io/#/identity-providers) (IdP).
+Access to an application is authenticated through an [Identity Provider]({{<ref "docs/idps" >}}) (IdP).
