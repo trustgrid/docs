@@ -34,7 +34,8 @@ the application's icon (optional) to show in the application dashboard
 
 - Internal server hostname or IP - the internal hostname or IP address of the SSH server and port number
 - Virtual Network - only available if connectivity type is Virtual Network. The virtual network that will be used to connect to the application
-- Client Virtual IP - only available if connectivity type is Virtual Network. The virtual IP address that will be used to connect to the application
+- Client Virtual IP - only available if connectivity type is Virtual Network -defaults to the virtual management IP of the ZTNA gateway if it exists. The source virtual IP address that will be used to connect to the application
+- Virtual server hostname or IP - only available if connectifity type is Virtual Network. The destination virtual IP address and port number that will be used to connect to the application
 
 #### Security
 
