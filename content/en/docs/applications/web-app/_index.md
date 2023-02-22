@@ -39,7 +39,7 @@ the application's icon (optional) to show in the application dashboard
 - VRF - only available if connectivity type is Remote Node. The VRF used to connect to the application.
 - Virtual server URL - the internal URL of the application
 - Virtual Network - only available if connectivity type is Virtual Network. The virtual network that will be used to connect to the application
-- Client Virtual IP - only available if connectivity type is Virtual Network. The virtual IP address that will be used to connect to the application
+- Client Virtual IP - only available if connectivity type is Virtual Network - defaults to the virtual management IP of the ZTNA gateway if it exists. The virtual IP address that will be used to connect to the application
 - TLS verification
   - none - no TLS verification is performed
   - custom CA - Trustgrid will validate the application's certificate against the provided CA

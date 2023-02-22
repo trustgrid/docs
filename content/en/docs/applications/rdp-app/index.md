@@ -39,7 +39,7 @@ the application's icon (optional) to show in the application dashboard
 
 #### Security
 
-- Identity Provider - the [Identity Provider]({{<ref "docs/idps" >}})) to authenticate users
+- Identity Provider - the [Identity Provider]({{<ref "docs/idps" >}}) to authenticate users
 
 1. Click `Add Application`
 
