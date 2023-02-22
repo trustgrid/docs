@@ -34,7 +34,6 @@ the application's icon (optional) to show in the application dashboard
 
 - Internal server hostname or IP - the internal hostname or IP address of the SSH server and port number
 
-- Virtual server URL - the internal URL of the application
 - Virtual Network - only available if connectivity type is Virtual Network. The virtual network that will be used to connect to the application
 - Client Virtual IP - only available if connectivity type is Virtual Network. The virtual IP address that will be used to connect to the application
 
