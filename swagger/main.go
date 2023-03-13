@@ -835,6 +835,41 @@ func addNodeConfigAPIs(api *s.API) {
 		Response(422, "Validation failed", validationFailure)
 }
 
+func addIDPAPI(api *s.API) {
+	idpID := s.NewParam("idpID", "IDP ID", s.P_Path, s.P_Required)
+	idp := api.Path("/v2/idp").Produces("application/json").Consumes("application/json").Tag("IDP")
+	saml := idp.Path("/saml").PathParam(idpID)
+
+	samlConfig := api.Model("SAML Config").
+		Prop("loginUrl", s.NewSchema("Login URL", s.S_String, s.S_Example("https://idp-login-url"))).
+		Prop("issuer", s.NewSchema("Issuer", s.S_String, s.S_Example("https://your-issuer-url"))).
+		Prop("cert", s.NewSchema("Certificate", s.S_String, s.S_Example("your-idp-cert"))).
+		Prop("token_expiration", s.NewSchema("Token expiration", s.S_Number, s.S_Example(3600))).
+		Ref()
+
+	saml.Put("Set SAML settings for an IDP").
+		Permission("identity-providers::modify").
+		Param(s.NewParam("config", "SAML config", s.P_Body, s.P_Schema(samlConfig))).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+
+	openID := idp.Path("/openid").PathParam(idpID)
+	openIDConfig := api.Model("OpenID Config").
+		Prop("clientId", s.NewSchema("Client ID", s.S_String, s.S_Example("some-client-id"))).
+		Prop("secret", s.NewSchema("Client secret", s.S_String, s.S_Example("some-client-secret"))).
+		Prop("issuer", s.NewSchema("Issuer", s.S_String, s.S_Example("https://your-issuer-url"))).
+		Prop("authEndpoint", s.NewSchema("Auth endpoint", s.S_String, s.S_Example("https://your-endpoint-url"))).
+		Prop("tokenEndpoint", s.NewSchema("Token endpoint", s.S_String, s.S_Example("https://your-token-url"))).
+		Prop("userInfoEndpoint", s.NewSchema("User info endpoint", s.S_String, s.S_Example("https://your-user-info-url"))).
+		Ref()
+
+	openID.Put("Set OpenID settings for an IDP").
+		Permission("identity-providers::modify").
+		Param(s.NewParam("config", "OpenID config", s.P_Body, s.P_Schema(openIDConfig))).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+}
+
 func addExecAPI(api *s.API) {
 	node := api.Path("/v2/node").PathParam(params.nodeID).Path("/exec").Produces("application/json").Consumes("application/json").Tag("Compute")
 	cluster := api.Path("/v2/cluster").PathParam(params.clusterFQDN).Path("/exec").Produces("application/json").Consumes("application/json").Tag("Compute")
@@ -1147,6 +1182,7 @@ func main() {
 	addNodeConfigAPIs(api)
 	addNodeDatastoreAPI(api)
 	addExecAPI(api)
+	addIDPAPI(api)
 	addSwaggerYML(api)
 
 	out, err := json.MarshalIndent(api, "", "  ")

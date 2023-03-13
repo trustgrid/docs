@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "f090da17-9848-4443-a811-34d26e36e309",
+                    "example": "b116cae9-f3b2-479d-b816-80110d9256f9",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1678655517,
+                    "example": 1678743734,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "f400c451-6130-49ff-bc2c-7d83a0cb071f",
+                    "example": "c2e81341-4ff5-4e74-beb4-8b4285447a42",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "400fa255-2586-4586-8013-9f2934770393",
+                    "example": "791eb00b-bc26-4a78-b72a-6f4a997a92f7",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "400fa255-2586-4586-8013-9f2934770393",
+                    "example": "791eb00b-bc26-4a78-b72a-6f4a997a92f7",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "400fa255-2586-4586-8013-9f2934770393",
+                    "example": "791eb00b-bc26-4a78-b72a-6f4a997a92f7",
                     "type": "object"
                   }
                 },
@@ -8214,7 +8214,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Creates a network identity provider",
+        "description": "Creates an identity provider",
         "parameters": [
           {
             "in": "body",
@@ -8235,6 +8235,106 @@
             "description": "Validation Failed",
             "schema": {
               "$ref": "#/definitions/ValidationFailed"
+            }
+          }
+        },
+        "tags": [
+          "IDP"
+        ]
+      }
+    },
+    "/v2/idp/openid/{idpID}": {
+      "parameters": [
+        {
+          "description": "IDP ID",
+          "in": "path",
+          "name": "idpID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Set OpenID settings for an IDP\n\n---\n\nRequires `identity-providers::modify` permission.",
+        "parameters": [
+          {
+            "description": "OpenID config",
+            "in": "body",
+            "name": "config",
+            "schema": {
+              "$ref": "#/definitions/OpenIDConfig"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "IDP"
+        ]
+      }
+    },
+    "/v2/idp/saml/{idpID}": {
+      "parameters": [
+        {
+          "description": "IDP ID",
+          "in": "path",
+          "name": "idpID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Set SAML settings for an IDP\n\n---\n\nRequires `identity-providers::modify` permission.",
+        "parameters": [
+          {
+            "description": "SAML config",
+            "in": "body",
+            "name": "config",
+            "schema": {
+              "$ref": "#/definitions/SAMLConfig"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
             }
           }
         },
@@ -11389,7 +11489,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "f090da17-9848-4443-a811-34d26e36e309",
+          "example": "b116cae9-f3b2-479d-b816-80110d9256f9",
           "type": "string"
         },
         "timestamp": {
@@ -11447,7 +11547,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "f090da17-9848-4443-a811-34d26e36e309",
+          "example": "b116cae9-f3b2-479d-b816-80110d9256f9",
           "type": "string"
         },
         "nodeName": {
@@ -11650,7 +11750,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "94590101-c9b7-4033-91a2-8bbf0f042bed",
+          "example": "df4999a0-1c72-40b1-b20b-e7dc7e6a6721",
           "type": "string"
         },
         "image": {
@@ -11807,7 +11907,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "078f0ba8-d391-4277-91d8-dc8c4ce6b892",
+          "example": "a4e8dc1e-1c66-4ace-b3c4-e3c0bdbd3ea0",
           "type": "string"
         }
       },
@@ -11950,7 +12050,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "d5fb3a93-86ba-48e6-a047-aa429ddc94e9",
+          "example": "0da063b9-fea7-48bb-88ea-23618cae608f",
           "type": "string"
         }
       },
@@ -11985,7 +12085,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "d1890e21-8d56-4366-a1c6-a5ab5ac83504",
+          "example": "ff311b88-c2cb-4f3d-82f8-4757ca11f642",
           "type": "string"
         }
       },
@@ -12040,7 +12140,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "076f2fd5-755c-4794-8ed6-4dc148692675",
+          "example": "efb2003d-6751-4c31-aa50-196f02f61292",
           "type": "string"
         }
       },
@@ -12860,11 +12960,48 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "f090da17-9848-4443-a811-34d26e36e309",
+          "example": "b116cae9-f3b2-479d-b816-80110d9256f9",
           "type": "string"
         }
       },
       "title": "Node",
+      "type": "object"
+    },
+    "OpenIDConfig": {
+      "description": "OpenID Config",
+      "properties": {
+        "authEndpoint": {
+          "description": "Auth endpoint",
+          "example": "https://your-endpoint-url",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Client ID",
+          "example": "some-client-id",
+          "type": "string"
+        },
+        "issuer": {
+          "description": "Issuer",
+          "example": "https://your-issuer-url",
+          "type": "string"
+        },
+        "secret": {
+          "description": "Client secret",
+          "example": "some-client-secret",
+          "type": "string"
+        },
+        "tokenEndpoint": {
+          "description": "Token endpoint",
+          "example": "https://your-token-url",
+          "type": "string"
+        },
+        "userInfoEndpoint": {
+          "description": "User info endpoint",
+          "example": "https://your-user-info-url",
+          "type": "string"
+        }
+      },
+      "title": "OpenID Config",
       "type": "object"
     },
     "OrderModel": {
@@ -13111,6 +13248,33 @@
         }
       },
       "title": "RepositoryTagModel",
+      "type": "object"
+    },
+    "SAMLConfig": {
+      "description": "SAML Config",
+      "properties": {
+        "cert": {
+          "description": "Certificate",
+          "example": "your-idp-cert",
+          "type": "string"
+        },
+        "issuer": {
+          "description": "Issuer",
+          "example": "https://your-issuer-url",
+          "type": "string"
+        },
+        "loginUrl": {
+          "description": "Login URL",
+          "example": "https://idp-login-url",
+          "type": "string"
+        },
+        "token_expiration": {
+          "description": "Token expiration",
+          "example": 3600,
+          "type": "number"
+        }
+      },
+      "title": "SAML Config",
       "type": "object"
     },
     "Tag": {

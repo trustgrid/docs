@@ -4302,7 +4302,7 @@ paths:
           in: body
           schema:
             "$ref": "#/definitions/IdentityProviderUpdateModel"
-      description: Creates a network identity provider
+      description: Creates an identity provider
       produces:
         - application/json
       consumes:
