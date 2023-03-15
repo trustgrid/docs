@@ -40,8 +40,6 @@ An explanation of the building blocks and core concepts for building with Trustg
 
 # Tools
 
-# TODO fix this link
-
 - [Swagger API](https://portal.trustgrid.io/api-docs/ui)
 - [Terraform Provider](https://registry.terraform.io/providers/trustgrid/tg/latest)
 - [Status Page](https://status.trustgrid.io/)
