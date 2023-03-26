@@ -1680,33 +1680,6 @@ paths:
         200:
           description: OK
 
-  "/node/{nodeID}/config/core":
-    parameters:
-      - "$ref": "#/parameters/nodeID"
-    put:
-      description: |
-        Update cluster configuration for a given node
-
-        ---
-
-        Note: request body will be validated by JSON schema of the plugin
-      tags:
-        - Node
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: config
-          in: body
-          required: true
-          description: Config body
-          schema:
-            type: object
-      responses:
-        200:
-          description: OK
-
   "/node/{nodeID}/config/cluster":
     parameters:
       - "$ref": "#/parameters/nodeID"
