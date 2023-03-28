@@ -12,6 +12,60 @@ schemes:
 host: api.trustgrid.io
 
 paths:
+  "/stats/realtime/usage":
+    get:
+      tags:
+        - Node
+      summary: Retrieve usage data for nodes
+      description: Returns an array of usage data buckets for specified nodes within the specified time range and interval.
+      parameters:
+        - in: query
+          name: relative_start
+          type: string
+          description: The relative start time for the data (e.g., "-7 days").
+        - in: query
+          name: relative_end
+          type: string
+          description: The relative end time for the data (e.g., "now").
+        - in: query
+          name: intervalInMinutes
+          type: string
+          description: The size of the time buckets in minutes.
+        - in: query
+          name: start
+          type: integer
+          format: int64
+          description: The start time for the data in Unix timestamp format (if not using relative_start).
+        - in: query
+          name: end
+          type: integer
+          format: int64
+          description: The end time for the data in Unix timestamp format (if not using relative_end).
+        - in: query
+          name: filters
+          type: string
+          description: The filters to apply when querying for nodes, like tags.
+      responses:
+        200:
+          description: An array of usage data buckets.
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                t:
+                  type: integer
+                  format: int64
+                  description: The time of the bucket in Unix timestamp format.
+                count:
+                  type: integer
+                  format: int64
+                  description: The number of flows in the bucket.
+                bytes:
+                  type: integer
+                  format: int64
+                  description: The number of bytes in the bucket.
+
   "/user":
     get:
       description: |

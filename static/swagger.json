@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+                    "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1679867618,
+                    "example": 1680046179,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "68bd71b1-7c89-45ef-9425-d411175032a3",
+                    "example": "4931acbe-738f-4328-813b-5a3d7f6cbc5b",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "74cc18a6-b194-4972-972b-0b9e9f2b8a78",
+                    "example": "0e0e6e3b-bae8-4370-b8d7-c3a3bebfa1a4",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "74cc18a6-b194-4972-972b-0b9e9f2b8a78",
+                    "example": "0e0e6e3b-bae8-4370-b8d7-c3a3bebfa1a4",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "74cc18a6-b194-4972-972b-0b9e9f2b8a78",
+                    "example": "0e0e6e3b-bae8-4370-b8d7-c3a3bebfa1a4",
                     "type": "object"
                   }
                 },
@@ -3597,6 +3597,80 @@
           "type": "string"
         }
       ]
+    },
+    "/usage": {
+      "get": {
+        "description": "Returns an array of usage data buckets for specified nodes within the specified time range and interval.",
+        "parameters": [
+          {
+            "description": "The relative start time for the data (e.g., \"-7 days\").",
+            "in": "query",
+            "name": "relative_start",
+            "type": "string"
+          },
+          {
+            "description": "The relative end time for the data (e.g., \"now\").",
+            "in": "query",
+            "name": "relative_end",
+            "type": "string"
+          },
+          {
+            "description": "The size of the time buckets in minutes.",
+            "in": "query",
+            "name": "intervalInMinutes",
+            "type": "string"
+          },
+          {
+            "description": "The start time for the data in Unix timestamp format (if not using relative_start).",
+            "format": "int64",
+            "in": "query",
+            "name": "start",
+            "type": "integer"
+          },
+          {
+            "description": "The end time for the data in Unix timestamp format (if not using relative_end).",
+            "format": "int64",
+            "in": "query",
+            "name": "end",
+            "type": "integer"
+          },
+          {
+            "description": "The filters to apply when querying for nodes, like tags.",
+            "in": "query",
+            "name": "filters",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of usage data buckets.",
+            "schema": {
+              "items": {
+                "properties": {
+                  "bytes": {
+                    "description": "The number of bytes in the bucket.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "count": {
+                    "description": "The number of flows in the bucket.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "t": {
+                    "description": "The time of the bucket in Unix timestamp format.",
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Retrieve usage data for nodes"
+      }
     },
     "/user": {
       "get": {
@@ -11454,7 +11528,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+          "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
           "type": "string"
         },
         "timestamp": {
@@ -11512,7 +11586,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+          "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
           "type": "string"
         },
         "nodeName": {
@@ -11599,8 +11673,8 @@
         }
       },
       "required": [
-        "action",
-        "name"
+        "name",
+        "action"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -11638,8 +11712,8 @@
         }
       },
       "required": [
-        "private_key",
-        "chain"
+        "chain",
+        "private_key"
       ],
       "title": "CertificateParts",
       "type": "object"
@@ -11715,7 +11789,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "8e8d66f0-fb30-4083-932f-1c275e402593",
+          "example": "77521297-7ed7-48a1-8e4a-512d210679b4",
           "type": "string"
         },
         "image": {
@@ -11872,7 +11946,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "ccd64e12-5b6f-4b1e-85d1-eb1a66eb1071",
+          "example": "79c3fd05-1969-4f1a-8ca5-aaded161c57a",
           "type": "string"
         }
       },
@@ -12015,7 +12089,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "d429105e-54ac-4acb-9b9b-b4758fae96e3",
+          "example": "1d2095bf-b076-4a3c-b161-edf71c806301",
           "type": "string"
         }
       },
@@ -12050,7 +12124,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "386881de-01dc-4336-a93f-2f60be44ac13",
+          "example": "9fc2d66a-77bd-4d65-b30b-287c5d5f0ca7",
           "type": "string"
         }
       },
@@ -12105,7 +12179,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "bff8c9f5-152f-4785-889a-632afbdb0948",
+          "example": "0ab2375d-c162-48ad-a7ec-971a4275ef5f",
           "type": "string"
         }
       },
@@ -12925,7 +12999,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+          "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
           "type": "string"
         }
       },

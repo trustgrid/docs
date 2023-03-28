@@ -14,4 +14,3 @@ clean:
 
 swagger:
 	$(MAKE) -C swagger gen-swagger
-	cp swagger/swagger.json static
