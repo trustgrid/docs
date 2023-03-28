@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
+                    "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1680046179,
+                    "example": 1680046353,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "4931acbe-738f-4328-813b-5a3d7f6cbc5b",
+                    "example": "570adb57-ac23-47dc-b0f3-cfe3bcf31da8",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "0e0e6e3b-bae8-4370-b8d7-c3a3bebfa1a4",
+                    "example": "2d0969be-7edc-4f15-bc29-75e12a98e4bd",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "0e0e6e3b-bae8-4370-b8d7-c3a3bebfa1a4",
+                    "example": "2d0969be-7edc-4f15-bc29-75e12a98e4bd",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "0e0e6e3b-bae8-4370-b8d7-c3a3bebfa1a4",
+                    "example": "2d0969be-7edc-4f15-bc29-75e12a98e4bd",
                     "type": "object"
                   }
                 },
@@ -3545,60 +3545,7 @@
         }
       ]
     },
-    "/tags": {
-      "get": {
-        "description": "List tags",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "items": {
-                "$ref": "#/definitions/Tag"
-              },
-              "type": "array"
-            }
-          }
-        },
-        "tags": [
-          "Tags"
-        ]
-      }
-    },
-    "/tags/{tagName}": {
-      "get": {
-        "description": "Get a tag by name",
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Tag"
-            }
-          },
-          "404": {
-            "description": "Tag not found"
-          }
-        },
-        "tags": [
-          "Tags"
-        ]
-      },
-      "parameters": [
-        {
-          "description": "Tag name",
-          "in": "path",
-          "name": "tagName",
-          "required": true,
-          "type": "string"
-        }
-      ]
-    },
-    "/usage": {
+    "/stats/realtime/usage": {
       "get": {
         "description": "Returns an array of usage data buckets for specified nodes within the specified time range and interval.",
         "parameters": [
@@ -3669,8 +3616,64 @@
             }
           }
         },
-        "summary": "Retrieve usage data for nodes"
+        "summary": "Retrieve usage data for nodes",
+        "tags": [
+          "Node"
+        ]
       }
+    },
+    "/tags": {
+      "get": {
+        "description": "List tags",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Tag"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Tags"
+        ]
+      }
+    },
+    "/tags/{tagName}": {
+      "get": {
+        "description": "Get a tag by name",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Tag"
+            }
+          },
+          "404": {
+            "description": "Tag not found"
+          }
+        },
+        "tags": [
+          "Tags"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Tag name",
+          "in": "path",
+          "name": "tagName",
+          "required": true,
+          "type": "string"
+        }
+      ]
     },
     "/user": {
       "get": {
@@ -11528,7 +11531,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
+          "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
           "type": "string"
         },
         "timestamp": {
@@ -11586,7 +11589,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
+          "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
           "type": "string"
         },
         "nodeName": {
@@ -11789,7 +11792,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "77521297-7ed7-48a1-8e4a-512d210679b4",
+          "example": "3b03bae3-3496-4daf-a5a4-920fae60e3e6",
           "type": "string"
         },
         "image": {
@@ -11946,7 +11949,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "79c3fd05-1969-4f1a-8ca5-aaded161c57a",
+          "example": "48a687fd-c4b6-4e44-a5d3-2d3ef9e25b96",
           "type": "string"
         }
       },
@@ -12089,7 +12092,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "1d2095bf-b076-4a3c-b161-edf71c806301",
+          "example": "76045581-5838-4334-82ed-9a816b3dc992",
           "type": "string"
         }
       },
@@ -12124,7 +12127,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "9fc2d66a-77bd-4d65-b30b-287c5d5f0ca7",
+          "example": "b6497bd9-bc26-48a0-8266-b6da74c03f8d",
           "type": "string"
         }
       },
@@ -12179,7 +12182,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "0ab2375d-c162-48ad-a7ec-971a4275ef5f",
+          "example": "271ad5b8-7e94-4d21-8f9f-ab57e92fd638",
           "type": "string"
         }
       },
@@ -12352,9 +12355,9 @@
         }
       },
       "required": [
-        "protocol",
         "source",
-        "dest"
+        "dest",
+        "protocol"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -12999,7 +13002,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "ceeee846-5af0-470d-85bf-714620e7f92f",
+          "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
           "type": "string"
         }
       },
