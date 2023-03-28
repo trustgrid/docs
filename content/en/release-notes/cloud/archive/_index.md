@@ -1,6 +1,6 @@
 ---
 title: "Cloud Release Archive"
 linkTitle: "Cloud Release Archive"
-type: blog
+type: docs
 sidebard_menu_foldable: true
 ---
