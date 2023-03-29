@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
+                    "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1680046353,
+                    "example": 1680131242,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "570adb57-ac23-47dc-b0f3-cfe3bcf31da8",
+                    "example": "45f925cf-3d3f-4b90-a760-dc8aeda94eb6",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "2d0969be-7edc-4f15-bc29-75e12a98e4bd",
+                    "example": "9037ac52-05f3-4bfe-8586-d07e1a89a2da",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "2d0969be-7edc-4f15-bc29-75e12a98e4bd",
+                    "example": "9037ac52-05f3-4bfe-8586-d07e1a89a2da",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "2d0969be-7edc-4f15-bc29-75e12a98e4bd",
+                    "example": "9037ac52-05f3-4bfe-8586-d07e1a89a2da",
                     "type": "object"
                   }
                 },
@@ -1796,6 +1796,225 @@
         },
         "tags": [
           "Domain"
+        ]
+      }
+    },
+    "/group": {
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "responses": {
+          "200": {
+            "description": "List of groups",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Group"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "List all groups in an organization",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      },
+      "post": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "The group object to be created",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group successfully created"
+          }
+        },
+        "summary": "Create a new group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{groupId}/members/{email}": {
+      "delete": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "ID of the group to remove a member from",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Email of the member to be removed",
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member successfully removed from the group"
+          }
+        },
+        "summary": "Remove a member from a group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{uid}": {
+      "delete": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "ID of the group to delete",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group successfully deleted"
+          }
+        },
+        "summary": "Delete a group by UID",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      },
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "parameters": [
+          {
+            "description": "UID of the group to retrieve",
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The group object",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "404": {
+            "description": "Group does not exist"
+          }
+        },
+        "summary": "Retrieve a group by UID",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{uid}/idps": {
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "parameters": [
+          {
+            "description": "UID of the group",
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Identity Providers",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/IdpGroup"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "List all Identity Providers for a group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{uid}/members": {
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "parameters": [
+          {
+            "description": "UID of the group",
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of group members",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GroupMember"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "List all members of a group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      },
+      "post": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "ID of the group to add a member to",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The group member object to be added",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GroupMember"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member successfully added to the group"
+          }
+        },
+        "summary": "Add a member to a group",
+        "tags": [
+          "User",
+          "Group"
         ]
       }
     },
@@ -11531,7 +11750,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
+          "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
           "type": "string"
         },
         "timestamp": {
@@ -11589,7 +11808,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
+          "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
           "type": "string"
         },
         "nodeName": {
@@ -11715,8 +11934,8 @@
         }
       },
       "required": [
-        "chain",
-        "private_key"
+        "private_key",
+        "chain"
       ],
       "title": "CertificateParts",
       "type": "object"
@@ -11792,7 +12011,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "3b03bae3-3496-4daf-a5a4-920fae60e3e6",
+          "example": "6e513552-df80-40fd-9ad8-3baccc291fc1",
           "type": "string"
         },
         "image": {
@@ -11949,7 +12168,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "48a687fd-c4b6-4e44-a5d3-2d3ef9e25b96",
+          "example": "c5f5bac7-446d-4f3d-9353-a50e1828b26d",
           "type": "string"
         }
       },
@@ -12092,7 +12311,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "76045581-5838-4334-82ed-9a816b3dc992",
+          "example": "df640699-411a-47fe-af3b-40d9304ba1ac",
           "type": "string"
         }
       },
@@ -12127,7 +12346,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "b6497bd9-bc26-48a0-8266-b6da74c03f8d",
+          "example": "c5c5c30f-df73-4026-b8cd-a69e98d0253b",
           "type": "string"
         }
       },
@@ -12182,7 +12401,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "271ad5b8-7e94-4d21-8f9f-ab57e92fd638",
+          "example": "60e31a0b-8b58-4864-8c24-aeaa0bed866b",
           "type": "string"
         }
       },
@@ -12355,9 +12574,9 @@
         }
       },
       "required": [
-        "source",
         "dest",
-        "protocol"
+        "protocol",
+        "source"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -12601,6 +12820,35 @@
       "title": "Event",
       "type": "object"
     },
+    "Group": {
+      "properties": {
+        "description": {
+          "nullable": true,
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GroupMember": {
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IdentityProviderModel": {
       "allOf": [
         {
@@ -12628,6 +12876,21 @@
           "type": "string"
         },
         "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdpGroup": {
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "groupReferenceId": {
+          "nullable": true,
+          "type": "string"
+        },
+        "idp": {
           "type": "string"
         }
       },
@@ -13002,7 +13265,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "58836f7d-2d2e-4fb8-8621-435312d9ea67",
+          "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
           "type": "string"
         }
       },

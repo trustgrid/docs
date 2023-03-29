@@ -66,6 +66,159 @@ paths:
                   format: int64
                   description: The number of bytes in the bucket.
 
+  /group/{uid}:
+    get:
+      summary: Retrieve a group by UID
+      description: Requires `groups::read` permissions
+      tags:
+        - User
+        - Group
+      parameters:
+        - name: uid
+          in: path
+          description: UID of the group to retrieve
+          required: true
+          type: string
+      responses:
+        200:
+          description: The group object
+          schema:
+            $ref: '#/definitions/Group'
+        404:
+          description: Group does not exist
+    delete:
+      tags:
+        - User
+        - Group
+      summary: Delete a group by UID
+      description: Requires `groups::modify` permissions
+      parameters:
+        - name: groupId
+          in: path
+          description: ID of the group to delete
+          required: true
+          type: string
+      responses:
+        200:
+          description: Group successfully deleted
+
+  /group:
+    get:
+      tags:
+        - User
+        - Group
+      summary: List all groups in an organization
+      description: Requires `groups::read` permissions
+      responses:
+        200:
+          description: List of groups
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Group'
+    post:
+      tags:
+        - User
+        - Group
+      summary: Create a new group
+      description: Requires `groups::modify` permissions
+      parameters:
+        - name: body
+          in: body
+          description: The group object to be created
+          required: true
+          schema:
+            $ref: '#/definitions/Group'
+      responses:
+        200:
+          description: Group successfully created
+
+  /group/{uid}/idps:
+    get:
+      summary: List all Identity Providers for a group
+      description: Requires `groups::read` permissions
+      tags:
+        - User
+        - Group
+      parameters:
+        - name: uid
+          in: path
+          description: UID of the group
+          required: true
+          type: string
+      responses:
+        200:
+          description: List of Identity Providers
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/IdpGroup'
+
+  /group/{uid}/members:
+    get:
+      summary: List all members of a group
+      description: Requires `groups::read` permissions
+      tags:
+        - User
+        - Group
+      parameters:
+        - name: uid
+          in: path
+          description: UID of the group
+          required: true
+          type: string
+      responses:
+        200:
+          description: List of group members
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GroupMember'
+    post:
+      summary: Add a member to a group
+      description: Requires `groups::modify` permissions
+      tags:
+        - User
+        - Group
+      parameters:
+        - name: groupId
+          in: path
+          description: ID of the group to add a member to
+          required: true
+          type: string
+        - name: body
+          in: body
+          description: The group member object to be added
+          required: true
+          schema:
+            $ref: '#/definitions/GroupMember'
+      responses:
+        200:
+          description: Member successfully added to the group
+
+  /group/{groupId}/members/{email}:
+    delete:
+      tags:
+        - User
+        - Group
+      summary: Remove a member from a group
+      description: Requires `groups::modify` permissions
+      parameters:
+        - name: groupId
+          in: path
+          description: ID of the group to remove a member from
+          required: true
+          type: string
+        - name: email
+          in: path
+          description: Email of the member to be removed
+          required: true
+          type: string
+      responses:
+        200:
+          description: Member successfully removed from the group
+
+
   "/user":
     get:
       description: |
@@ -5343,3 +5496,35 @@ definitions:
           - cancelled
       flagged:
         type: boolean
+
+  Group:
+    type: object
+    properties:
+      uid:
+        type: string
+      referenceId:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+        nullable: true
+
+  GroupMember:
+    type: object
+    properties:
+      group:
+        type: string
+      user:
+        type: string
+
+  IdpGroup:
+    type: object
+    properties:
+      groupReferenceId:
+        type: string
+        nullable: true
+      idp:
+        type: string
+      group:
+        type: string
