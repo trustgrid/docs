@@ -20,14 +20,20 @@ The `Interface` dropdown at the top allows you to select which interface to mana
 
 This interface is always used to build the outbound TLS tunnels for control and data plane connectivity. If the node is deployed in a single interface configuration, this interface will also be used for local network connectivity.
 
-### ETH1 - LAN Interface
+### ETH# - LAN Interface
 
-Used in two-interface configurations for local network connectivity.
+Used in configurations with more than one interface for local network connectivity.
+
+#### VLAN Subinterface 
+ Virtual under a physical LAN interface that will apply a VLAN tag to traffic
+
 
 ## Configuration
 
 {{<fields>}}
 {{<field "Hardware Address">}}MAC address of the interface.{{</field>}}
+{{<field "Interface VRF">}}Selects to which [VRF]({{<ref "/docs/nodes/vrfs">}}) the interface is attached.{{</field>}}
+{{<field "VLAN ID (Subinterfaces Only)">}} Sets the VLAN ID/tag for the subinterface.{{</field>}}
 {{<field "IP Assignment (ETH0 only)">}}
 * DHCP - requires a DHCP server or relay in the same broadcast domain as the interface connection
 * Static - configured using the fields below
@@ -38,6 +44,10 @@ Used in two-interface configurations for local network connectivity.
 * ETH1 - This is only used in a 2-interface setup to access local resources outside the interface's configured network. Routes must be defined.{{</field>}}
 {{<field "DNS Server 1/2 IP (ETH0 only)">}}Used to resolve DNS names to connect to the Trustgrid control plane.{{</field>}}
 {{<field "Cluster Virtual IP">}}Used in [clusters]({{<ref "/docs/clusters">}}), this IP address is moved between member nodes based on the active cluster member. It can be used to route traffic between the virtual and local networks. This IP address can only be changed within the cluster interfaces page.{{</field>}}
+{{<field "Auto-Negotiation">}}Sets if the interface will use auto-negotiation to determine the speed and duplex settings. Values can be AUTO _(default)_ or MANUAL.{{</field>}}
+{{<field "Duplex">}}Locked unless Auto-Negotiation set to MANUAL. Sets the interface to either FULL _(default)_ or HALF duplex{{</field>}}
+{{<field "Speed">}}Locked unless Auto-Negotiation set to MANUAL. Sets the interface to 10, 100, 1000 Mbps. {{</field>}}
+{{<field "Ignore Health Check">}} Value can be Disable _(default)_ or Enable. If set to Enable, the interface's link status will no longer be used by the node to determine its [cluster member health state]({{<ref "/docs/clusters/#cluster-member-health-conditions">}}). Useful if a single node has a network connection it's peer does not such as an alternate WAN path.  {{</field>}}
 {{</fields>}}
 
 ## Interface Routes
@@ -60,3 +70,11 @@ These routes are used to access networks that are not in the same network as a c
 1. Repeat steps 2-4 with any additional routes.
 1. Click the `Save` button.
 
+## Additional IPs
+IP address entries added to the list below will be bound to the current interface.
+{{<alert type="note">}}Only visible on LAN interfaces and Subinterfaces{{</alert>}}
+
+## Advanced Network Settings
+{{<fields>}}
+{{<field "Dark Mode">}}Value can be Disable _(default)_ or Enable. When set to Enable the node will restrict ICMP responses so that it will not respond to ICMP (Ping) echo requests or respond to failed TCP/UDP connection attempts with reset or ICMP Destination Port Unreachable {{</field>}}
+{{</fields>}}
