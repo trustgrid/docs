@@ -1,4 +1,6 @@
-<tr>
-    <th>{{ .Get 0 }}</th>
+{{ $header := .Get 0 }}
+{{ $id := $header | urlize }}
+<tr id="{{ $id }}">
+    <th>{{ $header }}</th>
     <td>{{ .Inner | markdownify }}</td>
 </tr>
