@@ -24,7 +24,9 @@ A public gateway should be secured with a firewall to prevent unauthorized acces
 
 Navigate to a node and select `Gateway` under the `System` section.
 
-![img](public-config.png)
+### Server Settings
+
+{{<tgimg src="public-config.png" caption="Gateway Server settings" alt="input table with all Trustgrid gateway server options" width="90%">}}
 
 {{<fields>}}
 {{<field "Status" >}}
@@ -64,11 +66,19 @@ Whether to monitor latency to peers through this gateway. This can have a perfor
 {{</field >}}
 {{</fields>}}
 
-### Client Settings
-
+#### Gateway Clients
 Private gateways only allow connectivity from listed and enabled clients. To add a client, use the typeahead textbox at the bottom of the clients table and select the desired node.
+{{<fields>}}
+{{<field Client>}}Name of a node that should connect to this private gateway{{</field>}}
+{{<field Enabled>}}Values are Enabled _(default)_ or Disabled. If set to Enabled the client node will attempt to connect.{{</field>}}
+{{</fields>}}
 
-![img](clients.png)
+
+### Client Settings
+Settings in this section define how the node connects to gateway servers as a client
+
+{{<tgimg src="clients.png" caption="Gateway client settings" width="90%" alt="table of gateway client settings">}}
+
 
 {{<fields>}}
 {{<field "Max Egress Mbps" >}}
@@ -76,9 +86,9 @@ The egress bandwidth limit for the gateway. Connections will be throttled when t
 {{</field >}}
 {{</fields>}}
 
-#### MPLS Traffic
+#### Gateway Paths
 
-Gateways of all types allow configuring paths for MPLS traffic.
+Allows you to define alternate paths to a gateway server
 
 {{<fields>}}
 {{<field "Name" >}}
@@ -98,11 +108,12 @@ Destination port for the path.
 {{</field >}}
 
 {{<field "Local IP" >}}
-Bind the connection to this IP address.
+Use this local IP as the source IP for the connection to the gateway.
 {{</field >}}
 
 {{<field "Use as Default" >}}
-Make this the default path for the gateway.
+* True - Will not attempt to connect to the configured Gateway Node using the WAN interface IP and Default Gateway path.
+* False - Will attempt to connect to the Gateway node using both this defined path **and** the WAN Interface IP and Default Gateway path.
 {{</field >}}
 {{</fields>}}
 
@@ -110,8 +121,8 @@ Make this the default path for the gateway.
 
 To see detailed messages about gateway traffic, select the `Troubleshoot Gateway Traffic` option from the services menu under `Gateway Tools`.
 
-![img](launch-troubleshoot-gateway-traffic.png)
+{{<tgimg src="launch-troubleshoot-gateway-traffic.png" caption="Troubleshoot Gateway Traffic dialog" alt="Troubleshoot gateway Traffic dialog with options of Local, Peer and Service" width="50%">}}
 
 This will open a new window with live diagnostic messages about traffic
 
-![img](troubleshoot-gateway-traffic.png)
+{{<tgimg src="troubleshoot-gateway-traffic.png" caption="Output of Troubleshoot Gateway tool" alt="terminal output showing gateway log messages between two Trustgrid nodes" width="80%">}}
