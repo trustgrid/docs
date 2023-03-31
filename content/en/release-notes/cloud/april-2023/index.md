@@ -45,3 +45,5 @@ Additionally, in the Advanced Search there is a new option to select the `Flow L
 
 ### Flow Log S3 Export
 Previously Trustgrid had a mechanism to export flow logs to an AWS S3 bucket on a nightly basis.  This was determined to be insufficient for our customers who wanted closer to real-time access to this data. With this release Trustgrid can configur near real-time S3 to S3 replication with our new [Flow Log Export]({{<ref "/docs/operations/flow-logs#flow-log-export">}}) system. 
+
+## Node Upgrades
