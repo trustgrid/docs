@@ -34,9 +34,14 @@ Just like with container configuration import, the source must match the destina
 {{< /alert >}}
 
 ## Flow Logs
+
+### Flow Log Ordering
 Our flow logs have historically been searched starting with the oldest in the time range first. This sometimes forced you to load more results multiple times to see the most current information. With this release we now can search either with oldest or newest first. By default the Flow Logs page will now show the last two hours with the most recent first. 
 
 Additionally, in the Advanced Search there is a new option to select the `Flow Log Order` depending on your needs.
 
 
 {{< tgimg src="FlowLogOrderOption.png" caption="Flow Log Order selector" width="50%">}}
+
+### Flow Log S3 Export
+Previously Trustgrid had a mechanism to export flow logs to an AWS S3 bucket on a nightly basis.  This was determined to be insufficient for our customers who wanted closer to real-time access to this data. With this release Trustgrid can configur near real-time S3 to S3 replication with our new [Flow Log Export]({{<ref "/docs/operations/flow-logs#flow-log-export">}}) system. 

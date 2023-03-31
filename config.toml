@@ -189,3 +189,5 @@ enable = true
     path = "github.com/google/docsy/dependencies"
     disable = false    
 
+[params.mermaid]
+  enable = true
