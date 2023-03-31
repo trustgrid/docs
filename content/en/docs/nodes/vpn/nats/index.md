@@ -1,5 +1,5 @@
 ---
-title: "NATs"
+title: "Network Address Translation (NATs)"
 date: 2023-2-14
 ---
 
@@ -7,11 +7,24 @@ date: 2023-2-14
 NATs allow Trustgrid to alter the source and/or destination IP address of layer 3 traffic as it enters or leaves the VPN.
 {{% /pageinfo %}}
 
+
 ## Adding an Interface
 
 NATs are scoped to an interface. Add an interface from the `Actions` menu.
 
-![img](add-interface.png)
+{{<tgimg src="add-interface.png" caption="Add Interface dialog" alt="Dialog to add interface. Options to select an interface, provide a description">}}
+
+{{<fields>}}
+{{<field "Network Interface">}}Select the desired interface from the drop down list of those available on the node or cluster. {{</field>}}
+{{<field "Description">}}User friendly description of this interface attachment. This field is initially populated with the description from the selected interface. {{</field>}}
+{{<field "Traffic Matching mode">}} This option is only available if the the attached virtual network does not have NO-NAT mode enabled.
+* Traffic not matching a NAT should be denied on this interface. 
+* Inbound traffic not matching a NAT should be allowed on this interface. 
+* Outbound traffic not matching a NAT should be allowed on this interface.
+{{</field>}}
+{{<field "Outside NAT Table">}}Used to define [outside NATs](#outside-nats){{</field>}}
+{{<field "Inside NAT Table">}}Used to define [inside NATs](#inside-nats){{</field>}}
+{{</fields>}}
 
 ## Inside NATs
 
@@ -35,6 +48,6 @@ By default, when a device on the local network of a node receives traffic from a
 {{<field "Local CIDR">}}The local IP address or addresses that the network addresses should be mapped to, also entered in CIDR format.{{</field>}}
 {{</fields>}}
 
-{{<alert>}}An outside NAT is required for all nodes and clusters using the virtual network{{</alert>}}
+{{<alert type="note">}}An outside NAT is required for all nodes and clusters attached to a virtual network unless the virtual network is in NO-NAT mode.{{</alert>}}
 
 Note there are situations where it may be desirable to make multiple remote devices masquerade as one local IP address though the use of port address translation (PAT). This can be achieved by defining an outside nat in which the network CIDR contains a larger address space than the local CIDR. For instance, an entry with network CIDR 10.0.1.0/24 and local CIDR 192.168.100.10 would make all remote devices with network IP addresses in 10.0.1.0/24 appear as IP address 192.168.100.10 on the local network.
