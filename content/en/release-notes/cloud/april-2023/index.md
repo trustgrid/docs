@@ -3,10 +3,6 @@ title: April 2023 Release Notes
 linkTitle: 'April 2023'
 type: docs
 date: 2023-04-04
-resources:
-   - src: FlowLogOrderOption.png
-     params:
-       byline: "Flow Log Order Selector"   
 
 ----
 ## Documentation 
@@ -15,6 +11,9 @@ Trustgrid is moving away from our documentation previously hosted on Confluence 
 As a start, we've created a link called Documentation under the Management section of the main navigation bar that will open the docs in a new tab.
 
 Additionally, we've created a section for release notes that will allow you to monitor release for [Control Plane](https://docs.trustgrid.io/release-notes/cloud/) and [Node](https://docs.trustgrid.io/release-notes/node/) releases via RSS feeds going forward. 
+
+## Cluster Configuration
+Prior to this release it was necessary to navigate to each member node and configure the [cluster heartbeat]({{<ref "/docs/nodes/cluster#heartbeat">}}) IP and port **after** it was added to the cluster.  In this release a prompt has been added to the ["Add Node" flow]({{<ref "/docs/clusters/manage-members#add-members">}}) that will allow you to configure these settings as part of adding the node to the cluster. 
 
 ## Data Plane Stats
 This release further improves on our recent addition of data plane telemetry information.
