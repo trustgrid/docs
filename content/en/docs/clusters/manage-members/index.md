@@ -14,7 +14,7 @@ This will add the selected node to the cluster and gain any configuration define
 {{<tgimg src="config-heart1.png" width="60%" caption="Prompt to configure heartbeat settings" alt="Prompt to configure heartbeat settings">}}
    1. No - The node is added to the cluster and you will manually need to navigate to the [node's cluster settings]({{<ref "/docs/nodes/cluster">}}) and configure the heartbeat before it will be healthy.
    2. Yes - The configuration prompt allows you to set the [Heartbeat]({{<ref "/docs/nodes/cluster#heartbeat">}}) and, optionally, the [Status Endpoint]({{<ref "/docs/nodes/cluster#status-endpoint">}}) settings.
-   {{<tgimg src="config-heart2.png">}}
+   {{<tgimg src="config-heart2.png" width="60%" caption="Heartbeat and Status Endpoint settings" alt="Dialog to enter heartbeat IP and port, and status endpoint port">}}
 
 
 
@@ -23,5 +23,5 @@ Removing a node from a cluster will remove the cluster heartbeat and endpoint se
 
 1. Select the desired node from the member table.
 2. Click Action > Remove Node.
-{{<tgimg src="remove-node.png" width="40%">}}
+{{<tgimg src="remove-node.png" width="30%" caption="Remove Node option from Actions">}}
 3. Confirm you want to remove the node by clicking Yes.

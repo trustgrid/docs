@@ -12,6 +12,10 @@ As a start, we've created a link called Documentation under the Management secti
 
 Additionally, we've created a section for release notes that will allow you to monitor release for [Control Plane](https://docs.trustgrid.io/release-notes/cloud/) and [Node](https://docs.trustgrid.io/release-notes/node/) releases via RSS feeds going forward. 
 
+### Swagger API Documentation Move
+As part of this change we are moving our API documentation from https://portal.trustgrid.io/api-docs/ to https://docs.trustgrid.io/docs/api/. This will allow updating this documentation outside our normal release process. 
+
+
 ## Cluster Configuration
 Prior to this release it was necessary to navigate to each member node and configure the [cluster heartbeat]({{<ref "/docs/nodes/cluster#heartbeat">}}) IP and port **after** it was added to the cluster.  In this release a prompt has been added to the ["Add Node" flow]({{<ref "/docs/clusters/manage-members#add-members">}}) that will allow you to configure these settings as part of adding the node to the cluster. 
 
@@ -19,6 +23,11 @@ Prior to this release it was necessary to navigate to each member node and confi
 This release further improves on our recent addition of data plane telemetry information.
 * Show data plane telemetry for offline nodes
 * Show data plane telemetry for connections between public and private gateways
+
+## Virtual Network Route Table
+Virtual Network Route Tables can now be sorted by Destination, Destination CIDR or Metric.  This can make it much easier to view and understand how routes are configured. 
+
+{{<tgimg src="sorted-routes.png" width="80%" caption="Virtual Network Routes sorted by destination" alt="Table with multiple routes listing their Destination device, Destination CIDR, Metric and Description. Sorted by the destination device.">}}
 
 ## Container Import
 ### Disable Imported Containers
@@ -46,4 +55,20 @@ Additionally, in the Advanced Search there is a new option to select the `Flow L
 ### Flow Log S3 Export
 Previously Trustgrid had a mechanism to export flow logs to an AWS S3 bucket on a nightly basis.  This was determined to be insufficient for our customers who wanted closer to real-time access to this data. With this release Trustgrid can configur near real-time S3 to S3 replication with our new [Flow Log Export]({{<ref "/docs/operations/flow-logs#flow-log-export">}}) system. 
 
-## Node Upgrades
+### Flow CSV Export Date Format
+Trustgrid has long supported the option to export your current view of the Flow Logs to a CSV file.  However, the format of dates was difficult to parse using most spreadsheet applications. With this release both the start time and end time (if available) is reported in a human readable format like `dd-mm-yyyy hh:mm:ss.000` and in Unix Timestamp Milliseconds (MS).  This should make analysis of the records much easier and more precise. 
+
+{{<tgimg src="flow-log-csv-date.png" width="40%" caption="Example CSV export" alt="text CSV export example showing 'startTime' and 'startTimeMS' fields">}}
+
+
+## Upgrade Improvements
+### Multi-Node Upgrades
+Upgrading multiple nodes used to require navigating to each node one at a time, clicking the upgrade button and then entering the node's name.   This prevented accidental upgrades but was difficult for managing large environments.  With this release users with the `nodes::service:node-upgrade` and `nodes::upgrade` permissions will have the ability to select multiple nodes from the Nodes table and then select "Upgrade" from the "Actions" menu.
+{{<tgimg src="multi-node-upgrade.png" width="30%" caption="Multi-Node Upgrade Action" alt="Nodes table with two nodes selected, with the Actions dropdown showing the Upgrade option">}}
+
+### Upgrade Status 
+Starting with the node release dated `1.5.20220412-1238` nodes began reporting their upgrade status (In Process, Complete, Failed) to the Trustgrid cloud.  With this release this information and the date of the last change in status is displayed in the Info tab of nodes.
+{{<tgimg src="upgrade-status.png" width="50%" caption="Upgrade Status section" alt="Table showing upgrade status of Complete and the completion time">}}
+
+
+
