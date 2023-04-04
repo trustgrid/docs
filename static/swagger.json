@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+                    "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1679867618,
+                    "example": 1680131242,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "68bd71b1-7c89-45ef-9425-d411175032a3",
+                    "example": "45f925cf-3d3f-4b90-a760-dc8aeda94eb6",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "74cc18a6-b194-4972-972b-0b9e9f2b8a78",
+                    "example": "9037ac52-05f3-4bfe-8586-d07e1a89a2da",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "74cc18a6-b194-4972-972b-0b9e9f2b8a78",
+                    "example": "9037ac52-05f3-4bfe-8586-d07e1a89a2da",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "74cc18a6-b194-4972-972b-0b9e9f2b8a78",
+                    "example": "9037ac52-05f3-4bfe-8586-d07e1a89a2da",
                     "type": "object"
                   }
                 },
@@ -1796,6 +1796,225 @@
         },
         "tags": [
           "Domain"
+        ]
+      }
+    },
+    "/group": {
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "responses": {
+          "200": {
+            "description": "List of groups",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Group"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "List all groups in an organization",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      },
+      "post": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "The group object to be created",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group successfully created"
+          }
+        },
+        "summary": "Create a new group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{groupId}/members/{email}": {
+      "delete": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "ID of the group to remove a member from",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Email of the member to be removed",
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member successfully removed from the group"
+          }
+        },
+        "summary": "Remove a member from a group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{uid}": {
+      "delete": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "ID of the group to delete",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Group successfully deleted"
+          }
+        },
+        "summary": "Delete a group by UID",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      },
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "parameters": [
+          {
+            "description": "UID of the group to retrieve",
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The group object",
+            "schema": {
+              "$ref": "#/definitions/Group"
+            }
+          },
+          "404": {
+            "description": "Group does not exist"
+          }
+        },
+        "summary": "Retrieve a group by UID",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{uid}/idps": {
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "parameters": [
+          {
+            "description": "UID of the group",
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Identity Providers",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/IdpGroup"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "List all Identity Providers for a group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      }
+    },
+    "/group/{uid}/members": {
+      "get": {
+        "description": "Requires `groups::read` permissions",
+        "parameters": [
+          {
+            "description": "UID of the group",
+            "in": "path",
+            "name": "uid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of group members",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GroupMember"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "List all members of a group",
+        "tags": [
+          "User",
+          "Group"
+        ]
+      },
+      "post": {
+        "description": "Requires `groups::modify` permissions",
+        "parameters": [
+          {
+            "description": "ID of the group to add a member to",
+            "in": "path",
+            "name": "groupId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "The group member object to be added",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/GroupMember"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Member successfully added to the group"
+          }
+        },
+        "summary": "Add a member to a group",
+        "tags": [
+          "User",
+          "Group"
         ]
       }
     },
@@ -3544,6 +3763,83 @@
           "type": "string"
         }
       ]
+    },
+    "/stats/realtime/usage": {
+      "get": {
+        "description": "Returns an array of usage data buckets for specified nodes within the specified time range and interval.",
+        "parameters": [
+          {
+            "description": "The relative start time for the data (e.g., \"-7 days\").",
+            "in": "query",
+            "name": "relative_start",
+            "type": "string"
+          },
+          {
+            "description": "The relative end time for the data (e.g., \"now\").",
+            "in": "query",
+            "name": "relative_end",
+            "type": "string"
+          },
+          {
+            "description": "The size of the time buckets in minutes.",
+            "in": "query",
+            "name": "intervalInMinutes",
+            "type": "string"
+          },
+          {
+            "description": "The start time for the data in Unix timestamp format (if not using relative_start).",
+            "format": "int64",
+            "in": "query",
+            "name": "start",
+            "type": "integer"
+          },
+          {
+            "description": "The end time for the data in Unix timestamp format (if not using relative_end).",
+            "format": "int64",
+            "in": "query",
+            "name": "end",
+            "type": "integer"
+          },
+          {
+            "description": "The filters to apply when querying for nodes, like tags.",
+            "in": "query",
+            "name": "filters",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An array of usage data buckets.",
+            "schema": {
+              "items": {
+                "properties": {
+                  "bytes": {
+                    "description": "The number of bytes in the bucket.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "count": {
+                    "description": "The number of flows in the bucket.",
+                    "format": "int64",
+                    "type": "integer"
+                  },
+                  "t": {
+                    "description": "The time of the bucket in Unix timestamp format.",
+                    "format": "int64",
+                    "type": "integer"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "summary": "Retrieve usage data for nodes",
+        "tags": [
+          "Node"
+        ]
+      }
     },
     "/tags": {
       "get": {
@@ -11454,7 +11750,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+          "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
           "type": "string"
         },
         "timestamp": {
@@ -11512,7 +11808,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+          "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
           "type": "string"
         },
         "nodeName": {
@@ -11599,8 +11895,8 @@
         }
       },
       "required": [
-        "action",
-        "name"
+        "name",
+        "action"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -11715,7 +12011,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "8e8d66f0-fb30-4083-932f-1c275e402593",
+          "example": "6e513552-df80-40fd-9ad8-3baccc291fc1",
           "type": "string"
         },
         "image": {
@@ -11872,7 +12168,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "ccd64e12-5b6f-4b1e-85d1-eb1a66eb1071",
+          "example": "c5f5bac7-446d-4f3d-9353-a50e1828b26d",
           "type": "string"
         }
       },
@@ -12015,7 +12311,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "d429105e-54ac-4acb-9b9b-b4758fae96e3",
+          "example": "df640699-411a-47fe-af3b-40d9304ba1ac",
           "type": "string"
         }
       },
@@ -12050,7 +12346,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "386881de-01dc-4336-a93f-2f60be44ac13",
+          "example": "c5c5c30f-df73-4026-b8cd-a69e98d0253b",
           "type": "string"
         }
       },
@@ -12105,7 +12401,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "bff8c9f5-152f-4785-889a-632afbdb0948",
+          "example": "60e31a0b-8b58-4864-8c24-aeaa0bed866b",
           "type": "string"
         }
       },
@@ -12278,9 +12574,9 @@
         }
       },
       "required": [
+        "dest",
         "protocol",
-        "source",
-        "dest"
+        "source"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -12524,6 +12820,35 @@
       "title": "Event",
       "type": "object"
     },
+    "Group": {
+      "properties": {
+        "description": {
+          "nullable": true,
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GroupMember": {
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IdentityProviderModel": {
       "allOf": [
         {
@@ -12551,6 +12876,21 @@
           "type": "string"
         },
         "uri": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IdpGroup": {
+      "properties": {
+        "group": {
+          "type": "string"
+        },
+        "groupReferenceId": {
+          "nullable": true,
+          "type": "string"
+        },
+        "idp": {
           "type": "string"
         }
       },
@@ -12925,7 +13265,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "2b91e940-8050-4e30-8fcc-a34765588cb5",
+          "example": "4c66bbed-6921-45c8-948f-ab729cba4318",
           "type": "string"
         }
       },
