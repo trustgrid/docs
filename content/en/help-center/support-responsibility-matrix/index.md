@@ -23,6 +23,7 @@ End Users own and operate a physical, virtual or cloud environment in which the 
 
 ### Terminology
 
+{{<fields>}}
 {{<field "Trustgrid Management Portal" >}}
 Cloud-based system used to remotely manage, monitor, and configure Trustgrid Nodes.
 {{</field >}}
@@ -38,6 +39,7 @@ Site with Trustgrid node(s) deployed and managed by the Customer.
 {{<field "End-User Site" >}}
 Site with Trustgrid node(s) deployed and managed by the End-User.
 {{</field >}}
+{{</fields>}}
 
 ### Support Matrix
 

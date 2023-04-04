@@ -8,6 +8,7 @@ When configuring a SAML IDP, the provider will often provide a metadata XML file
 {{<fields>}}
 {{<field "Issuer">}}
 A URL that will point to the IDP, typically with some identifying information so the IDP can determine the source of the request. This will be provided by your SAML identity provider.
+{{</field>}}
 {{<field "Login URL">}}
 A URL that will initiate the login process. This will be provided by your SAML identity provider.
 {{</field>}}
