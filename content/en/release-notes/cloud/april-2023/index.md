@@ -71,4 +71,6 @@ Starting with the node release dated `1.5.20220412-1238` nodes began reporting t
 {{<tgimg src="upgrade-status.png" width="50%" caption="Upgrade Status section" alt="Table showing upgrade status of Complete and the completion time">}}
 
 
-
+## Portal Access Permission
+With this release there is a new permission `portal::access` that controls if a user is allowed (or denied) to authenticate into the Trustgrid management portal. This permission was automatically added to all [built-in Trustgrid Managed policies]({{<ref "docs/user-management/policies#trustgrid-managed-policy-descriptions" >}}), but any custom defined policies that are intended to be used on their own will need to add this permission if management portal access is desired.
+{{<tgimg src="portal-access.png" width="30%" caption="Portal Access Permission" alt="Filtered list of permissions showing Portal section with portal::access allowed">}}
