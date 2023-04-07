@@ -72,6 +72,8 @@ Policies have a Resources section that allow the permissions granted to be limit
 
 ![img](resources.png)
 
+{{<alert color="warning">}} In order to grant users access to the portal a second policy is required granting the `portal::access` permission to the `*` resource.  {{</alert>}}
+
 #### Trustgrid Resource Names or TGRN
 
 Trustgrid has adopted a resource naming convention that follows the basic format: `tgrn:tg::<service>:<resource-type>/<resource-id>`
