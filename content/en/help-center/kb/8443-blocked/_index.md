@@ -6,9 +6,9 @@ title: Edge Node Behavior When Port 8443 is blocked
 
 - Node will not connect to the portal
 - Packet capture shows the following behavior:
-- - DNS request and response for gatekeeper.trustgrid.io and zuul.trustgrid.io
-- - TCP connection attempt to port 8443 on the returned IP address with no response
-- - A 2 minute delay before the above cycle repeats
+    - DNS request and response for gatekeeper.trustgrid.io and zuul.trustgrid.io
+    - TCP connection attempt to port 8443 on the returned IP address with no response
+    - A 2 minute delay before the above cycle repeats
 
 ## Cause
 
