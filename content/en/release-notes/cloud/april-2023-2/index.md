@@ -2,7 +2,7 @@
 title: April 2023 Second Release Notes
 linkTitle: 'April 2023 Second Release'
 type: docs
-date: 2023-04-15
+date: 2023-04-12
 ---
 
 ## Issues Fixed
