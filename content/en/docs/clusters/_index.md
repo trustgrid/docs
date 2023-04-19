@@ -68,13 +68,15 @@ A node may be designated as the preferred active member by selecting the node an
 
 The `Configured Master` field will change immediately, but the `Current Master` may take a minute to reflect the change as the nodes process the change and notify the control plane.
 
-### Cluster Member Health
+## Cluster Member Health
 
 There may be situations where both cluster members are online and can communicate with each other, but external conditions exist that make a node unsuitable to hold the active role. The Trustgrid node service monitors for such conditions and will make a node as unhealthy if one occurs. The node will release the active role and its standby member will take over if it is online and healthy.
 
 When the condition clears the node will declare itself healthy and inform its partner member. Depending on the cluster mode it may reclaim the active role.
 
-#### Cluster Member Health Conditions
+### Cluster Member Health Conditions
+
+- Loss of [cluster heartbeat]({{<ref "#cluster-heartbeat-communication">}}) communication - If a node cannot communicate with its partner nodes on the configured IP and port it will declare that partner node unhealthy and claim the active role if it has not already.
 
 - Interface Link (Up/Down) State - Any interface configured with an IP address in the Trustgrid is monitored for a successful connection to another network device
 
@@ -84,6 +86,8 @@ When the condition clears the node will declare itself healthy and inform its pa
 - Upstream Internet Issues - If a Trustgrid node is unable to build connections to both the Trustgrid control plane AND data plane connections to its gateways the node will be marked as unhealthy. This does require all the connections to be failing before it is triggered
 
   - Example: If an upstream internet provider or device experiences failure the node will not be able to provide any services.
+
+- WAN Interface DHCP failure - If the WAN interface is configured to use DHCP and it does not receive a DHCP lease it will mark itself unhealthy.
 
 - Layer 4 (L4 Proxy) Service Health Check - TCP L4 Proxy Services can be configured to regularly perform health checks to confirm a successful connection can be made. If these checks fail 5 times in a row the service will mark the cluster member as unhealthy.
   - Example: If each cluster member’s LAN interface is connected to a different switch and one switch fails that member will be unable to connect to any IP:ports dependent on that path.  
