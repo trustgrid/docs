@@ -13,4 +13,5 @@ Several improvements where made around our change auditing system including:
 * Changes to a policy will now show what resources are covered by the policy.
 
 ## Flow Log Advanced Search
-With this release you can now set the source or destination node to `local` for an Advanced Flow Log Search.  this
+With this release you can now set the source or destination node to `local` for an Advanced Flow Log Search. This will cover flows that do not traverse the data plane, such as traffic that is forwarded between interfaces.
+
