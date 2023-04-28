@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Knowledge Base</title><link>https://docs.trustgrid.io/help-center/kb/</link><description>Recent content in Knowledge Base on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 05 Jan 2017 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/help-center/kb/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Site Requirements</title><link>https://docs.trustgrid.io/help-center/kb/site-requirements/</link><pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/site-requirements/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Knowledge Base</title><link>https://docs.trustgrid.io/help-center/kb/</link><description>Recent content in Knowledge Base on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 21 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/help-center/kb/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Site Requirements</title><link>https://docs.trustgrid.io/help-center/kb/site-requirements/</link><pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/site-requirements/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) and management infrastructure built in AWS. Nodes create tunnels to other nodes for data transfer, and to the management infrastructure for control. All tunnels are TLS connections and must be permitted by any firewall between&lt;/p>
 &lt;/div>
@@ -20,102 +20,7 @@ Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a st
 &lt;p>At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.&lt;/p>
 &lt;p>Hardware devices are recommended to be connected to ports configured for 1000 Mbps and full duplex with auto negotiation on.&lt;/p>
 &lt;h2 id="gateway-node-network-requirements">Gateway Node Network Requirements&lt;/h2>
-&lt;p>In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway.&lt;/p></description></item><item><title>Help-Center: Edge Node Behavior When DNS Resolution Fails</title><link>https://docs.trustgrid.io/help-center/kb/dns-failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/dns-failure/</guid><description>
-&lt;h2 id="symptoms">Symptoms&lt;/h2>
-&lt;ul>
-&lt;li>Node does not connect to the Portal&lt;/li>
-&lt;li>Packet captures show repeated DNS queries for gatekeeper.trustgrid.io but no response&lt;/li>
-&lt;/ul>
-&lt;h2 id="cause">Cause&lt;/h2>
-&lt;ul>
-&lt;li>DNS servers configured on edge node are not accessible&lt;/li>
-&lt;li>A firewall is blocking TCP/UDP port 53 between the edge node and the configured DNS&lt;/li>
-&lt;li>DNS servers configured on edge node cannot resolve public DNS entries for the trustgrid.io domain&lt;/li>
-&lt;/ul>
-&lt;h2 id="troubleshooting-steps">Troubleshooting Steps&lt;/h2>
-&lt;ul>
-&lt;li>Determine the configured DNS Servers - Connecting a monitor to the node will display the current IP configuration including the DNS Servers as shown below: &lt;img src="dns.png" alt="img">&lt;/li>
-&lt;li>(If possible) Capture traffic between the edge node and the internet and confirm you see both a DNS query (usually for gatekeeper.trustgrid.io) &lt;strong>AND&lt;/strong> response &lt;img src="pcap.png" alt="img">&lt;/li>
-&lt;/ul>
-&lt;h2 id="resolution">Resolution&lt;/h2>
-&lt;ul>
-&lt;li>Ensure the edge node can make TCP/UDP connection on port 53 to the configured DNS server&lt;/li>
-&lt;li>If using private DNS server ensure they have forwarders configured that can resolve trustgrid.io DNS records&lt;/li>
-&lt;li>If configured DNS servers are incorrect the node will need to be manually reconfigured. Contact Trustgrid Support for assistance&lt;/li>
-&lt;/ul></description></item><item><title>Help-Center: Edge Node Behavior When Port 443 is blocked</title><link>https://docs.trustgrid.io/help-center/kb/443-blocked/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/443-blocked/</guid><description>
-&lt;h2 id="symptoms">Symptoms&lt;/h2>
-&lt;ul>
-&lt;li>Node will not update either automatically or when manually triggered&lt;/li>
-&lt;/ul>
-&lt;h2 id="cause">Cause&lt;/h2>
-&lt;ul>
-&lt;li>The Trustgrid edge node cannot connect to repo.trustgrid.io on port 443 to update packages&lt;/li>
-&lt;/ul>
-&lt;h2 id="resolution">Resolution&lt;/h2>
-&lt;ul>
-&lt;li>Confirm the node can resolve repo.trustgrid.io&lt;/li>
-&lt;li>Ensure the node can connect to repo.trustgrid.io:443&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/help-center/kb/ssl-tls-tampering/">Verify no DPI-SSL or HTTPS proxy&lt;/a> is interfereing with the SSL certificate for repo.trustgrid.io&lt;/li>
-&lt;/ul></description></item><item><title>Help-Center: Edge Node Behavior When Port 8443 is blocked</title><link>https://docs.trustgrid.io/help-center/kb/8443-blocked/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/8443-blocked/</guid><description>
-&lt;h2 id="symptoms">Symptoms&lt;/h2>
-&lt;ul>
-&lt;li>Node will not connect to the portal&lt;/li>
-&lt;li>Packet capture shows the following behavior:
-&lt;ul>
-&lt;li>DNS request and response for gatekeeper.trustgrid.io and zuul.trustgrid.io&lt;/li>
-&lt;li>TCP connection attempt to port 8443 on the returned IP address with no response&lt;/li>
-&lt;li>A 2 minute delay before the above cycle repeats&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="cause">Cause&lt;/h2>
-&lt;ul>
-&lt;li>The Trustgrid edge node cannot connect to the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/">Trustgrid control plane&lt;/a> over 8443&lt;/li>
-&lt;/ul>
-&lt;h2 id="verification">Verification&lt;/h2>
-&lt;ul>
-&lt;li>Place a device in the same network (or assume the IP address of) the edge node. Confirm you can make a successful connection to gatekeeper.trustgrid.io:8443 using telnet, netcat or similar tool&lt;/li>
-&lt;/ul>
-&lt;h2 id="resolution">Resolution&lt;/h2>
-&lt;ul>
-&lt;li>Adjust firewall settings to ensure TCP traffic over port 8443 is allowed to all of the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/">Trustgrid control plane&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>Help-Center: Edge Node Behavior When SSL / TLS Certificate is Altered</title><link>https://docs.trustgrid.io/help-center/kb/ssl-tls-tampering/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/ssl-tls-tampering/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Products that alter SSL/TLS certificate chains will prevent the node from functioning normally.&lt;/p>
-&lt;/div>
-&lt;h2 id="symptoms">Symptoms&lt;/h2>
-&lt;ul>
-&lt;li>Node will not connect - This will occur if the SSL/TLS chain is altered on port 8443&lt;/li>
-&lt;li>Node will not update - This will occur if the SSL/TLS chain is altered on port 443&lt;/li>
-&lt;li>Packet captures will show something like the below repeating:&lt;/li>
-&lt;li>
-&lt;ul>
-&lt;li>TLS “Client Hello”&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;ul>
-&lt;li>Server (Trustgrid IP) will send a reset (RST) &lt;img src="pcap.png" alt="img">&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="cause">Cause&lt;/h2>
-&lt;p>The integrity of communication is a critical feature of Trustgrid’s network solution. Any product that alters the SSL certificate chain will prevent the node from functioning normally.&lt;/p>
-&lt;p>Typically this is caused by a security appliance (Next Generation Firewall or Web Proxy) doing some form of SSL Decryption (e.g. DPI-SSL, HTTPS inspection)&lt;/p>
-&lt;h2 id="verification">Verification&lt;/h2>
-&lt;p>To verify this is indeed occurring you can run the below command from the Trustgrid terminal:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>openssl s_client -connect repo.trustgrid.io:443 -showcerts
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This example is testing connectivity to the Trustgrid repository used for updates. You can replace &lt;code>repo.trustgrid.io:443&lt;/code> with &lt;code>gatekeeper.trustgrid.io:8443&lt;/code> to test connectivity to a Trustgrid service over 8443.&lt;/p>
-&lt;p>After running you will need to scroll back to the top to see the first certificate in the chain&lt;/p>
-&lt;p>If the certificate chain is being altered you will see something like the below where Trustgrid is not the first entry:&lt;/p>
-&lt;p>&lt;img src="openssl.png" alt="img">&lt;/p>
-&lt;p>The correct certiticate chain should look like:&lt;/p>
-&lt;p>&lt;img src="cert.png" alt="img">&lt;/p>
-&lt;h2 id="resolution">Resolution&lt;/h2>
-&lt;ul>
-&lt;li>Traffic on ports 443 and 8443 between the Trustgrid node and the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/">Trustgrid public IPs&lt;/a> and/or *.trustgrid.io must be excluded from any SSL/TLS decryption/inspection&lt;/li>
-&lt;li>After excluding the traffic, restart the edge node&lt;/li>
-&lt;/ul></description></item><item><title>Help-Center: Edge Node Startup &amp; Update Communication Process</title><link>https://docs.trustgrid.io/help-center/kb/startup-process/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/startup-process/</guid><description>
+&lt;p>In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway.&lt;/p></description></item><item><title>Help-Center: Edge Node Startup</title><link>https://docs.trustgrid.io/help-center/kb/startup-process/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/startup-process/</guid><description>
 &lt;h2 id="startup-process">Startup Process&lt;/h2>
 &lt;ol>
 &lt;li>ARP for the default gateway&lt;/li>
@@ -126,7 +31,7 @@ Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a st
 &lt;/li>
 &lt;li>The node will initiate a connection to port 8443 on the IP addresses returned and start a TLS handshake.&lt;/li>
 &lt;li>After a successfully TLS handshake, the node will show as connected in the Trustgrid Portal&lt;/li>
-&lt;/ol>
+&lt;/ol></description></item><item><title>Help-Center: Node Upgrade Process</title><link>https://docs.trustgrid.io/help-center/kb/upgrade-process/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/upgrade-process/</guid><description>
 &lt;h2 id="update-process">Update Process&lt;/h2>
 &lt;ol>
 &lt;li>DNS request for A record of repo.trustgrid.io
@@ -134,6 +39,167 @@ Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a st
 &lt;li>The response will be IPs in the Trustgrid AWS networks, &lt;code>35.171.100.16/28&lt;/code> (us-east-1) or &lt;code>34.223.12.192/28&lt;/code> (us-west-2)&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;li>The node will initiate a connection to port 443 on the ip address returned for repo.trustgrid.io&lt;/li>
+&lt;li>The node will initiate a connection to &lt;strong>port 443&lt;/strong> on the ip address returned for repo.trustgrid.io&lt;/li>
 &lt;li>The update process will download any updated packages using port&lt;/li>
-&lt;/ol></description></item></channel></rss>
+&lt;/ol>
+&lt;h2 id="potential-issues">Potential Issues&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.trustgrid.io/help-center/kb/upgrade-process/443-blocked/">Confirm connectivity on Port 443&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/help-center/kb/startup-process/ssl-tls-tampering/">Verify no DPI-SSL or HTTPS proxy&lt;/a> is interfering with the SSL certificate for repo.trustgrid.io&lt;/li>
+&lt;/ul></description></item><item><title>Help-Center: WAN/ISP Redundancy Configurations</title><link>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</link><pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+The sections below provide examples of how Trustgrid nodes can be deployed to provide WAN/ISP redundancy
+&lt;/div>
+&lt;h2 id="behind-firewallrouter-with-multiple-isp-connections">Behind Firewall/Router with Multiple ISP Connections&lt;/h2>
+&lt;p>In this configuration the Trustgrid WAN interfaces are behind a firewall or router that has two independent ISP connections to provide internet access.&lt;/p>
+&lt;p>The firewall or router is responsible for either failing over outbound traffic in the event of an ISP failure, or to route different nodes to utilize specific ISP connections.&lt;/p>
+&lt;p>The WAN interface of the Trustgrid node would utilize &lt;strong>private IPs&lt;/strong> in this configuration that are NAT&amp;rsquo;d to public IPs by the firewall/router.
+&lt;div class="alert alert-info" role="alert">
+&lt;p>This is the only configuration that:&lt;/p>
+&lt;ul>
+&lt;li>Supports &lt;strong>Single Node&lt;/strong> deployments&lt;/li>
+&lt;li>Supports &lt;strong>Single Interface&lt;/strong> configurations&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+This configuration is &lt;strong>not recommended for nodes acting as gateways&lt;/strong>. In this configuration devices are NAT&amp;rsquo;d to a different public IP depending on which ISP is active. A gateway node can only announce a single IP or DNS address for its clients to connect to. It would be possible to announce a DNS record and some form of dynamic DNS health check to update the record if the ISP changed. But that change would have to propagate which could take some time.
+&lt;/div>
+&lt;h3 id="single-node-behind-firewall">Single Node Behind Firewall&lt;/h3>
+&lt;p>This configuration shows a single node connected to a firewall or router that has two ISP connected to it.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> snLAN
+subgraph sn [Single Node]
+snWAN[WAN\nInterface]
+snLAN[LAN\nInterface]
+snLAN ~~~ snWAN
+end
+firewall["Firewall/Router"]
+dmzNet[[DMZ\n Network]]
+firewall == Primary==> ISP1([ISP 1])
+firewall -. Failover/Backup .-> ISP2([ISP 2])
+snWAN --> dmzNet --> firewall
+classDef tgnode fill:#346ed9,color:white
+class sn tgnode
+&lt;/div>
+&lt;h3 id="clustered-nodes-behind-firewall">Clustered Nodes Behind Firewall&lt;/h3>
+&lt;p>This configuration shows a cluster of Trustgrid nodes connected to a firewall or router that has two ISPs connected to it.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+dmzNet[[DMZ\n Network]]
+firewall["Firewall/Router"]
+firewall == Primary==> ISP1([ISP 1])
+firewall -. Failover/Backup .-> ISP2([ISP 2])
+cl1WAN &amp; cl2WAN --> dmzNet --> firewall
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div>
+&lt;h2 id="cluster-wan-interface-to-different-networks">Cluster WAN Interface to Different Networks&lt;/h2>
+&lt;p>Another method of providing redundancy takes advantage of Trustgrid &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustering&lt;/a> by connecting each member of the cluster to a different ISP on their WAN interface. This could be done by:&lt;/p>
+&lt;ul>
+&lt;li>Directly attaching each member WAN interface to a different ISP handoff&lt;/li>
+&lt;li>Connecting each member WAN interface to different DMZ private networks configured to use different ISPs for internet access&lt;/li>
+&lt;li>A combination of public and private WAN networks&lt;/li>
+&lt;/ul>
+&lt;p>In this configuration, the master/active member of the node will determine which ISP is being utilized. If one ISP is preferred you will need to have operational procedures in place to ensure the member node connected to it stays the master node. It is recommended that you keep the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-mode">cluster mode configured as Automatic Failback&lt;/a> and your organization establishes a &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">tag&lt;/a> to designate the preferred member.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+Because the WAN interfaces are on different networks, this configuration &lt;strong>requires at least one additional LAN interface&lt;/strong> to be configured for accessing internal resources and providing the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-heartbeat-communication">cluster heartbeat&lt;/a> communication
+&lt;/div>
+&lt;h3 id="cluster-wan-direct-connections-to-multiple-isps">Cluster WAN Direct Connections to Multiple ISPs&lt;/h3>
+&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface directly connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected directly to another ISP.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+cl1WAN ==> ISP1([ISP 1])
+cl2WAN ==> ISP2([ISP 2])
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div>
+&lt;h3 id="cluster-wan-to-separate-dmz-networks">Cluster WAN to separate DMZ networks&lt;/h3>
+&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to one DMZ/private network that is behind a firewall connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected to a second DMZ network behind a separate firewall connected to a different ISP.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+dmzNet1[[DMZ\n Network 1]]
+dmzNet2[[DMZ\n Network 2]]
+firewall1["Firewall/Router 1"]
+firewall2["Firewall/Router 2"]
+cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
+cl2WAN --> dmzNet2 --> firewall2 ==> ISP2([ISP 2])
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+Note: While shown with two separate firewall/routers, this could also be accomplished with a single firewall/router configured to route each DMZ network to a different ISP.
+&lt;/div>
+&lt;h3 id="cluster-wan-using-mix-of-public-and-dmz-networks">Cluster WAN using mix of public and DMZ networks&lt;/h3>
+&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to a private DMZ network behind a firewall that is using ISP 1. Cluster-Node2&amp;rsquo;s WAN interface is connected directly to ISP 2.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+dmzNet1[[DMZ\n Network 1]]
+firewall1["Firewall/Router 1"]
+cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
+cl2WAN ==> ISP2([ISP 2])
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div></description></item></channel></rss>

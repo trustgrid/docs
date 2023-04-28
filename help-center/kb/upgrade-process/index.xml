@@ -1,0 +1,15 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Upgrade Process</title><link>https://docs.trustgrid.io/help-center/kb/upgrade-process/</link><description>Recent content in Node Upgrade Process on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/help-center/kb/upgrade-process/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Node Behavior When Port 443 is blocked</title><link>https://docs.trustgrid.io/help-center/kb/upgrade-process/443-blocked/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/upgrade-process/443-blocked/</guid><description>
+&lt;h2 id="symptoms">Symptoms&lt;/h2>
+&lt;ul>
+&lt;li>Node will not update either automatically or when manually triggered&lt;/li>
+&lt;li>Node will not be able to pull down container images from the organization repository&lt;/li>
+&lt;/ul>
+&lt;h2 id="cause">Cause&lt;/h2>
+&lt;ul>
+&lt;li>The Trustgrid node cannot connect to repo.trustgrid.io on port 443 to update packages&lt;/li>
+&lt;/ul>
+&lt;h2 id="resolution">Resolution&lt;/h2>
+&lt;ul>
+&lt;li>Confirm the node can resolve repo.trustgrid.io&lt;/li>
+&lt;li>Ensure the node can connect to repo.trustgrid.io:443&lt;/li>
+&lt;/ul></description></item></channel></rss>

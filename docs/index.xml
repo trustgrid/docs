@@ -1194,7 +1194,29 @@ Change entry for active member change
 &lt;td>For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Network Groups</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</guid><description>
+&lt;/table></description></item><item><title>Help-Center: Site Requirements</title><link>https://docs.trustgrid.io/help-center/kb/site-requirements/</link><pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/site-requirements/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) and management infrastructure built in AWS. Nodes create tunnels to other nodes for data transfer, and to the management infrastructure for control. All tunnels are TLS connections and must be permitted by any firewall between&lt;/p>
+&lt;/div>
+&lt;h3 id="network-requirements-for-all-nodes">Network Requirements for All Nodes&lt;/h3>
+&lt;p>In order to connect to the Trustgrid Control Plane, the following outbound traffic must be allowed from the node’s configured primary interface IP address&lt;/p>
+&lt;ul>
+&lt;li>TCP Port 443 and TCP/UDP 8443 to:
+&lt;ul>
+&lt;li>35.171.100.16/28&lt;/li>
+&lt;li>34.223.12.192/28&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>TCP/UDP Port 53 to the configured DNS servers. These DNS servers must be accessible from the WAN/outside interface IP and be able to resolve DNS requests for the trustgrid.io domain&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-info" role="alert">
+Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a standard instance metadata server in public clouds such as AWS and Azure. This connectivity is not required outside these providers.
+&lt;/div>
+&lt;h3 id="recommendations">Recommendations&lt;/h3>
+&lt;p>At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.&lt;/p>
+&lt;p>Hardware devices are recommended to be connected to ports configured for 1000 Mbps and full duplex with auto negotiation on.&lt;/p>
+&lt;h2 id="gateway-node-network-requirements">Gateway Node Network Requirements&lt;/h2>
+&lt;p>In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway.&lt;/p></description></item><item><title>Docs: Network Groups</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A network group is a list of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network objects&lt;/a> that allows for easier rule management.&lt;/p>
 &lt;/div>
@@ -1565,7 +1587,163 @@ Example of a saved route
 &lt;p>After making changes to a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>, you can review outstanding changes. A list of changes will show who made each change, with a before/after table if appropriate.&lt;/p>
 &lt;p>&lt;img src="outstanding-changes.png" alt="img">&lt;/p>
 &lt;p>Individual changes can be rejected by clicking the delete icon at the top.&lt;/p>
-&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Release-Notes: April 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</link><pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</guid><description>
+&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Help-Center: WAN/ISP Redundancy Configurations</title><link>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</link><pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+The sections below provide examples of how Trustgrid nodes can be deployed to provide WAN/ISP redundancy
+&lt;/div>
+&lt;h2 id="behind-firewallrouter-with-multiple-isp-connections">Behind Firewall/Router with Multiple ISP Connections&lt;/h2>
+&lt;p>In this configuration the Trustgrid WAN interfaces are behind a firewall or router that has two independent ISP connections to provide internet access.&lt;/p>
+&lt;p>The firewall or router is responsible for either failing over outbound traffic in the event of an ISP failure, or to route different nodes to utilize specific ISP connections.&lt;/p>
+&lt;p>The WAN interface of the Trustgrid node would utilize &lt;strong>private IPs&lt;/strong> in this configuration that are NAT&amp;rsquo;d to public IPs by the firewall/router.
+&lt;div class="alert alert-info" role="alert">
+&lt;p>This is the only configuration that:&lt;/p>
+&lt;ul>
+&lt;li>Supports &lt;strong>Single Node&lt;/strong> deployments&lt;/li>
+&lt;li>Supports &lt;strong>Single Interface&lt;/strong> configurations&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+This configuration is &lt;strong>not recommended for nodes acting as gateways&lt;/strong>. In this configuration devices are NAT&amp;rsquo;d to a different public IP depending on which ISP is active. A gateway node can only announce a single IP or DNS address for its clients to connect to. It would be possible to announce a DNS record and some form of dynamic DNS health check to update the record if the ISP changed. But that change would have to propagate which could take some time.
+&lt;/div>
+&lt;h3 id="single-node-behind-firewall">Single Node Behind Firewall&lt;/h3>
+&lt;p>This configuration shows a single node connected to a firewall or router that has two ISP connected to it.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> snLAN
+subgraph sn [Single Node]
+snWAN[WAN\nInterface]
+snLAN[LAN\nInterface]
+snLAN ~~~ snWAN
+end
+firewall["Firewall/Router"]
+dmzNet[[DMZ\n Network]]
+firewall == Primary==> ISP1([ISP 1])
+firewall -. Failover/Backup .-> ISP2([ISP 2])
+snWAN --> dmzNet --> firewall
+classDef tgnode fill:#346ed9,color:white
+class sn tgnode
+&lt;/div>
+&lt;h3 id="clustered-nodes-behind-firewall">Clustered Nodes Behind Firewall&lt;/h3>
+&lt;p>This configuration shows a cluster of Trustgrid nodes connected to a firewall or router that has two ISPs connected to it.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+dmzNet[[DMZ\n Network]]
+firewall["Firewall/Router"]
+firewall == Primary==> ISP1([ISP 1])
+firewall -. Failover/Backup .-> ISP2([ISP 2])
+cl1WAN &amp; cl2WAN --> dmzNet --> firewall
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div>
+&lt;h2 id="cluster-wan-interface-to-different-networks">Cluster WAN Interface to Different Networks&lt;/h2>
+&lt;p>Another method of providing redundancy takes advantage of Trustgrid &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustering&lt;/a> by connecting each member of the cluster to a different ISP on their WAN interface. This could be done by:&lt;/p>
+&lt;ul>
+&lt;li>Directly attaching each member WAN interface to a different ISP handoff&lt;/li>
+&lt;li>Connecting each member WAN interface to different DMZ private networks configured to use different ISPs for internet access&lt;/li>
+&lt;li>A combination of public and private WAN networks&lt;/li>
+&lt;/ul>
+&lt;p>In this configuration, the master/active member of the node will determine which ISP is being utilized. If one ISP is preferred you will need to have operational procedures in place to ensure the member node connected to it stays the master node. It is recommended that you keep the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-mode">cluster mode configured as Automatic Failback&lt;/a> and your organization establishes a &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">tag&lt;/a> to designate the preferred member.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+Because the WAN interfaces are on different networks, this configuration &lt;strong>requires at least one additional LAN interface&lt;/strong> to be configured for accessing internal resources and providing the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-heartbeat-communication">cluster heartbeat&lt;/a> communication
+&lt;/div>
+&lt;h3 id="cluster-wan-direct-connections-to-multiple-isps">Cluster WAN Direct Connections to Multiple ISPs&lt;/h3>
+&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface directly connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected directly to another ISP.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+cl1WAN ==> ISP1([ISP 1])
+cl2WAN ==> ISP2([ISP 2])
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div>
+&lt;h3 id="cluster-wan-to-separate-dmz-networks">Cluster WAN to separate DMZ networks&lt;/h3>
+&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to one DMZ/private network that is behind a firewall connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected to a second DMZ network behind a separate firewall connected to a different ISP.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+dmzNet1[[DMZ\n Network 1]]
+dmzNet2[[DMZ\n Network 2]]
+firewall1["Firewall/Router 1"]
+firewall2["Firewall/Router 2"]
+cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
+cl2WAN --> dmzNet2 --> firewall2 ==> ISP2([ISP 2])
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+Note: While shown with two separate firewall/routers, this could also be accomplished with a single firewall/router configured to route each DMZ network to a different ISP.
+&lt;/div>
+&lt;h3 id="cluster-wan-using-mix-of-public-and-dmz-networks">Cluster WAN using mix of public and DMZ networks&lt;/h3>
+&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to a private DMZ network behind a firewall that is using ISP 1. Cluster-Node2&amp;rsquo;s WAN interface is connected directly to ISP 2.&lt;/p>
+&lt;div class="mermaid">graph LR
+intHost[Internal Hosts]
+intNet[[Internal\n Network]]
+intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
+subgraph cluster [" "]
+subgraph Cluster-Node1
+cl1WAN[WAN\nInterface]
+cl1LAN[LAN\nInterface]
+cl1LAN ~~~ cl1WAN
+end
+subgraph Cluster-Node2
+cl2WAN[WAN\nInterface]
+cl2LAN[LAN\nInterface]
+cl2LAN ~~~ cl2WAN
+end
+end
+dmzNet1[[DMZ\n Network 1]]
+firewall1["Firewall/Router 1"]
+cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
+cl2WAN ==> ISP2([ISP 2])
+classDef tgnode fill:#346ed9,color:white
+class Cluster-Node1,Cluster-Node2 tgnode
+style cluster fill:#c8c8c8
+&lt;/div></description></item><item><title>Release-Notes: April 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</link><pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</guid><description>
 &lt;h2 id="issues-fixed">Issues Fixed&lt;/h2>
 &lt;p>This minor release fixes the following issues:&lt;/p>
 &lt;ul>
@@ -2025,33 +2203,4 @@ Users can be added to the group by:&lt;/p>
 &lt;li>Audits record the event type (add/remove/change), the user name, the IP address, and the date of the change&lt;/li>
 &lt;li>Audits are kept for 30 days&lt;/li>
 &lt;li>Audits can be downloaded as CSV on the operations page&lt;/li>
-&lt;/ul></description></item><item><title>Help-Center: View Node Update Events</title><link>https://docs.trustgrid.io/help-center/view-logs/node-update-events/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/view-logs/node-update-events/</guid><description>
-&lt;ul>
-&lt;li>View node update events on the Operations page&lt;/li>
-&lt;li>Node update events are kept for 30 days&lt;/li>
-&lt;li>You can download a CSV of the node updates from the Operations page&lt;/li>
-&lt;li>All Trustgrid node agent updates and OS package updates are logged&lt;/li>
-&lt;/ul></description></item><item><title>Help-Center: View User Authentication Events</title><link>https://docs.trustgrid.io/help-center/view-logs/user-authentication/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/view-logs/user-authentication/</guid><description>
-&lt;ul>
-&lt;li>For every authentication event, we log:
-&lt;ul>
-&lt;li>user agent&lt;/li>
-&lt;li>user id&lt;/li>
-&lt;li>user name&lt;/li>
-&lt;li>IP address&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>User authentication events include:
-&lt;ul>
-&lt;li>Failed login attempts&lt;/li>
-&lt;li>Successful login attempts&lt;/li>
-&lt;li>API interactions&lt;/li>
-&lt;li>Successful sign ups&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>You can download all of the events for a 30 day period in the Operations page&lt;/li>
-&lt;li>Authentication events are kept for 30 days&lt;/li>
-&lt;/ul>
-&lt;div class="alert alert-primary" role="alert">
-If your organization is utilizing a third-party identity provider via SAML or OpenID, that provider is responsible for providing and storing authentication log records
-&lt;/div></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
