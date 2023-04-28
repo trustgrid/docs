@@ -3,21 +3,21 @@ categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Routes"
 date: 2023-1-9
+weight: 30
 ---
 
 {{% pageinfo %}}
 Routes configured under [Domains]({{<ref "docs/domain" >}}) determine to which [node]({{<ref "docs/nodes" >}}) or [cluster]({{<ref "docs/clusters" >}}) the [Trustgrid virtual network]({{<ref "docs/domain/virtual-networks" >}}) should route traffic for a specific subnet.
 {{% /pageinfo %}}
 
-## Route Configuration
+## Virtual Network Routes
+Routes defined a the virtual network level allow creating a global route table shared with all nodes and clusters attached to the virtual network. This table is then used to evaluate where to send VPN traffic for a specified destination CIDR.
 
-1. Login to the portal and select [`domains`]({{<ref "docs/domain" >}}).
-2. Click the link to the desired domain under the "Name" column.
-3. Scroll down to the ["Virtual Networks"]({{<ref "docs/domain/virtual-networks" >}}) section and select the `Routes` tab.
 
 ![img](routes-list.png)
 
-A Route has Three Required Fields:
+### Route Fields
+A Route has the following fields:
 
 {{<fields>}}
 {{<field "Destination" >}}
@@ -31,7 +31,34 @@ This is the CIDR notation of the [virtual network]({{<ref "docs/domain/virtual-n
 {{<field "Metric" >}}
 If there are multiple routes for the same [virtual network]({{<ref "docs/domain/virtual-networks" >}}) the metric will determine which route will be used. The lowest number is the highest priority. See the "Automatic Failover" text below.
 {{</field >}}
+
+{{<field "Description">}} (Optional) This field can be used to provide additional information about the purpose of the route.  e.g. it could label a route as a DR route indicating that in normal circumstances it would have a higher metric than a primary route.
+{{</field>}}
+
 {{</fields>}}
+## Managing Virtual Network Routes
+
+### Adding Virtual Network Routes
+
+1. Navigate to Domain > Virtual Networks and select the desired Virtual Network.
+1. The Routes table is selected by default{{<tgimg src="vnet-route-table.png" width="40%" caption="Virtual Network > Routes" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu">}} {{<alert color="info">}} Tip: Use the search field to filter the list of routes so you can see the routes you are adding. You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes you are adding.{{</alert>}}
+1. Click the add route button.{{<tgimg src="add-route-button.png" width="40%" caption="Add route button">}}
+1. Provide the desired route information in the [fields](#route-fields) <ol type="A"><li>Select the destination cluster or node</li><li>Enter the destination network in CIDR notation. For a single IP use /32.</li><li>Enter a metric between 1 and 200.</li><li>Optionally, provide a description.</li></ol>{{<tgimg src="new-route-entry.png" width="80%">}}
+1. Repeat the above two steps for any additional routes you wish to add.
+1. Click the Save button. {{<tgimg src="save-button.png" width="20%" caption="Save route button">}}
+1. There should be a notification saying "Routes Updated" but you will need to [review and apply changes]({{<ref "/docs/domain/virtual-networks/review-changes">}}) before the changes are actually be published to nodes in your environment. {{<tgimg src="saved-route.png" width="50%" caption="Example of a saved route">}}
+    
+{{<alert color="warning">}} As stated above, the route changes are not actually implemented until you click the Apply button the [Review Changes]({{<ref "./review-changes">}}) panel. {{</alert>}}
+
+### Deleting Virtual Network Routes
+
+1. Navigate to Domain > Virtual Networks and select the desired Virtual Network.
+1. The Routes table is selected by default{{<tgimg src="vnet-route-table.png" width="40%" caption="Virtual Network > Routes" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu">}} 
+1. Use the search field to filter the list of routes. {{<alert color="info">}}You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes so you can delete them.{{</alert>}}
+1. Click the red X on the far right of the route being removed. {{<tgimg src="delete-route.png">}}
+1. Repeat the above two steps for any additional routes you wish to add.
+1. Click the Save button. {{<tgimg src="save-button.png" width="20%" caption="Save route button">}}
+1. There should be a notification saying "Routes Updated" but you will need to [review and apply changes]({{<ref "/docs/domain/virtual-networks/review-changes">}}) before the changes are actually be published to nodes in your environment. {{<tgimg src="saved-route.png" width="50%" caption="Example of a saved route">}}
 
 ## Route Failover 
 

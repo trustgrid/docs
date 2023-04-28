@@ -1,7 +1,8 @@
 ---
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
-title: "Applying Changes"
+title: "Review Changes"
+weight: 100
 date: 2023-1-9
 ---
 
