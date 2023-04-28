@@ -844,7 +844,31 @@ Only visible on LAN interfaces and Subinterfaces
 &lt;li>Order Status Change&lt;/li>
 &lt;li>Order Customer Update&lt;/li>
 &lt;/ul>
-&lt;p>These events can then be sent to existing or newly defined &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a>.&lt;/p></description></item><item><title>Release-Notes: October</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2022/october/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2022/october/</guid><description>
+&lt;p>These events can then be sent to existing or newly defined &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a>.&lt;/p></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>A network object allows naming a CIDR inside a VPN for easier rule management.&lt;/p>
+&lt;/div>
+&lt;p>A network object requires the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>The label to use when referencing this object.&lt;/td>
+&lt;/tr>
+&lt;tr id="cidr">
+&lt;th>CIDR&lt;/th>
+&lt;td>Specifically an IPv4 CIDR.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="network-objects.png" alt="img">&lt;/p>
+&lt;p>Multiple network objects may be clustered into a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>.&lt;/p></description></item><item><title>Release-Notes: October</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2022/october/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2022/october/</guid><description>
 &lt;h2 id="cluster-improvements">Cluster Improvements&lt;/h2>
 &lt;h3 id="cluster-site-health-state">Cluster Site Health State&lt;/h3>
 &lt;p>With this release we introduce the concept of &lt;a href="https://docs.trustgrid.io/docs/clusters/cluster-health/">Cluster Site Health State&lt;/a>. This addition makes it more obvious when there is an issue with a cluster at a site and possible to configure &lt;a href="https://docs.trustgrid.io/docs/alarms/alarm-filters/">alarm filters&lt;/a> to notify your team when changes occur.&lt;/p>
@@ -1170,7 +1194,14 @@ Change entry for active member change
 &lt;td>For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vrfs/</guid><description>
+&lt;/table></description></item><item><title>Docs: Network Groups</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>A network group is a list of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network objects&lt;/a> that allows for easier rule management.&lt;/p>
+&lt;/div>
+&lt;p>A network group requires a name to be set. This will be used to reference the group in &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">access policy&lt;/a> rules.&lt;/p>
+&lt;p>&lt;img src="network-groups2.png" alt="img">&lt;/p>
+&lt;p>Navigating into a network group allows management of the group’s member objects.&lt;/p>
+&lt;p>&lt;img src="member-network-objects.png" alt="img">&lt;/p></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vrfs/</guid><description>
 &lt;h3 id="overview">Overview&lt;/h3>
 &lt;p>VRFs can be used route / nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated to an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as ipsec or gre. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
 &lt;p>For standard use cases of source nat and/or destination nat creating a route and a NAT is sufficient. Traffic rules can be used for more advanced controls. An applicable ACL is required for any traffic to pass as a zero trust methodology is applied.&lt;/p>
@@ -1327,7 +1358,214 @@ If the line numbers were reversed the virtual network rule would never be matche
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>&lt;em>“WireGuard” is a registered trademark of Jason A. Donenfeld.&lt;/em>&lt;/p></description></item><item><title>Release-Notes: April 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</link><pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</guid><description>
+&lt;p>&lt;em>“WireGuard” is a registered trademark of Jason A. Donenfeld.&lt;/em>&lt;/p></description></item><item><title>Docs: Routes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>Routes configured under &lt;a href="https://docs.trustgrid.io/docs/domain/">Domains&lt;/a> determine to which &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">Trustgrid virtual network&lt;/a> should route traffic for a specific subnet.&lt;/p>
+&lt;/div>
+&lt;h2 id="virtual-network-routes">Virtual Network Routes&lt;/h2>
+&lt;p>Routes defined a the virtual network level allow creating a global route table shared with all nodes and clusters attached to the virtual network. This table is then used to evaluate where to send VPN traffic for a specified destination CIDR.&lt;/p>
+&lt;p>&lt;img src="routes-list.png" alt="img">&lt;/p>
+&lt;h3 id="route-fields">Route Fields&lt;/h3>
+&lt;p>A Route has the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="destination">
+&lt;th>Destination&lt;/th>
+&lt;td>This will be the name of the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> that traffic will be routed to. This list is auto-populated based on the nodes and clusters in the selected &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.&lt;/td>
+&lt;/tr>
+&lt;tr id="destination-cidr">
+&lt;th>Destination CIDR&lt;/th>
+&lt;td>This is the CIDR notation of the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> that should be routed to the above destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/td>
+&lt;/tr>
+&lt;tr id="metric">
+&lt;th>Metric&lt;/th>
+&lt;td>If there are multiple routes for the same &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> the metric will determine which route will be used. The lowest number is the highest priority. See the &amp;ldquo;Automatic Failover&amp;rdquo; text below.&lt;/td>
+&lt;/tr>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>(Optional) This field can be used to provide additional information about the purpose of the route. e.g. it could label a route as a DR route indicating that in normal circumstances it would have a higher metric than a primary route.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="managing-virtual-network-routes">Managing Virtual Network Routes&lt;/h2>
+&lt;h3 id="adding-virtual-network-routes">Adding Virtual Network Routes&lt;/h3>
+&lt;ol>
+&lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
+&lt;li>The Routes table is selected by default
+&lt;figure class="centered-image">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Virtual Network &amp;gt; Routes
+&lt;/figcaption>
+&lt;/figure>
+&lt;div class="alert alert-info" role="alert">
+Tip: Use the search field to filter the list of routes so you can see the routes you are adding. You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes you are adding.
+&lt;/div>
+&lt;/li>
+&lt;li>Click the add route button.
+&lt;figure class="centered-image">
+&lt;img src="add-route-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add route button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Provide the desired route information in the &lt;a href="#route-fields">fields&lt;/a> &lt;ol type="A">&lt;li>Select the destination cluster or node&lt;/li>&lt;li>Enter the destination network in CIDR notation. For a single IP use /32.&lt;/li>&lt;li>Enter a metric between 1 and 200.&lt;/li>&lt;li>Optionally, provide a description.&lt;/li>&lt;/ol>
+&lt;figure class="centered-image">
+&lt;img src="new-route-entry.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
+&lt;li>Click the Save button.
+&lt;figure class="centered-image">
+&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Save route button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;figure class="centered-image">
+&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example of a saved route
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;div class="alert alert-warning" role="alert">
+As stated above, the route changes are not actually implemented until you click the Apply button the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review Changes&lt;/a> panel.
+&lt;/div>
+&lt;h3 id="deleting-virtual-network-routes">Deleting Virtual Network Routes&lt;/h3>
+&lt;ol>
+&lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
+&lt;li>The Routes table is selected by default
+&lt;figure class="centered-image">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Virtual Network &amp;gt; Routes
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Use the search field to filter the list of routes.
+&lt;div class="alert alert-info" role="alert">
+You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes so you can delete them.
+&lt;/div>
+&lt;/li>
+&lt;li>Click the red X on the far right of the route being removed.
+&lt;figure class="centered-image">
+&lt;img src="delete-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;/figure>
+&lt;/li>
+&lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
+&lt;li>Click the Save button.
+&lt;figure class="centered-image">
+&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Save route button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;figure class="centered-image">
+&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example of a saved route
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="route-failover">Route Failover &lt;/h2>
+&lt;p>Route failover allows a subnet to be routed to an alternate &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> in the event of a failure.  This can be automatic or performed manually.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites &lt;/h3>
+&lt;p>In either configuration, the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> settings under VPN settings for the primary and backup destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/clusters/">clusters&lt;/a> must match. Including:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Network Virtual Route&lt;/p>
+&lt;p>&lt;img src="virtual-network-route.png" alt="img">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Network Group under Outside NAT Table&lt;/p>
+&lt;p>&lt;img src="outside-nat-table.png" alt="img">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Virtual CIDR under Inside NAT Table&lt;/p>
+&lt;p>&lt;img src="inside-nat-table.png" alt="img">&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="automatic-failover">Automatic Failover&lt;/h3>
+&lt;p>To have the route failover without manual intervention you must define two routes for the same subnet (Destination CIDR) with different metrics.  The lowest numerical metric will take precedence unless the destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> is offline.&lt;/p>
+&lt;p>In the below example configuration we want traffic for the 10.20.0.0/24 network to the &lt;code>edge&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> first, and failover to the &lt;code>edge-dr&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="automatic-failover.png" alt="img">&lt;/p>
+&lt;h3 id="preventing-automated-failback-or-forcing-a-failover">Preventing Automated Failback or Forcing a Failover&lt;/h3>
+&lt;p>As mentioned above if multiple routes are configured traffic will route to destination with the lowest metric number. So if the primary destination fails but then comes back online traffic will be routed back automatically.&lt;/p>
+&lt;p>However, there are some circumstances where this is not desirable. For example, if the primary site is unstable you may wish to keep traffic at the backup site until the primary is stabilized. Alternately, you may wish to preemptively reroute traffic to the backup site in advance of planned maintenance at the primary site.&lt;/p>
+&lt;p>To preemptively reroute traffic to the backup site, update the backup route to have a lower metric than the primary route.&lt;/p>
+&lt;h3 id="manual-failover">Manual Failover&lt;/h3>
+&lt;p>In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.  To initiate a failover you&amp;rsquo;ll need to update the destination &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a>.&lt;/p>
+&lt;ol>
+&lt;li>Login to the Portal and select your domain.&lt;/li>
+&lt;li>Click the link to the desired &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> under the &amp;ldquo;Name&amp;rdquo; column.&lt;/li>
+&lt;li>Scroll down to the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">&amp;ldquo;Virtual Networks&amp;rdquo;&lt;/a> section and select the &amp;ldquo;Routes&amp;rdquo; tab.&lt;/li>
+&lt;li>Find the route you wish to failover.&lt;/li>
+&lt;li>Update the destination device. (e.g. in the below you would switch from edge to edge-dr).
+&lt;img src="update-destination.png" alt="Update Destination">&lt;/li>
+&lt;li>Click save.&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>An access policy is a list of rules that each allow, reject, or drop traffic at the VPN level.&lt;/p>
+&lt;/div>
+&lt;p>If no rules are defined, traffic will not pass through the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>.&lt;/p>
+&lt;p>&lt;strong>A rule can match traffic based on the following fields:&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="action">
+&lt;th>Action&lt;/th>
+&lt;td>Whether to ALLOW, DROP, or REJECT the traffic.&lt;/td>
+&lt;/tr>
+&lt;tr id="protocol">
+&lt;th>Protocol&lt;/th>
+&lt;td>You can choose ANY, UDP, ICMP, or TCP.&lt;/td>
+&lt;/tr>
+&lt;tr id="source">
+&lt;th>Source&lt;/th>
+&lt;td>The source of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
+&lt;/tr>
+&lt;tr id="destination">
+&lt;th>Destination&lt;/th>
+&lt;td>The destination of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
+&lt;/tr>
+&lt;tr id="line-number">
+&lt;th>Line Number&lt;/th>
+&lt;td>Rules are evaluated starting with the lowest numbered rule. Once a rule matches, later rules are ignored even if they might also match the traffic.&lt;/td>
+&lt;/tr>
+&lt;tr id="port-range">
+&lt;th>Port Range&lt;/th>
+&lt;td>For TCP and UDP traffic, you can specify a port (e.g., 80) or a range (e.g., 8000-9000).&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
+&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>Because changes to a domain &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> affect &lt;em>all&lt;/em> &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> configuration changes must be reviewed before applied, and are applied all at once.&lt;/p>
+&lt;/div>
+&lt;p>After making changes to a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>, you can review outstanding changes. A list of changes will show who made each change, with a before/after table if appropriate.&lt;/p>
+&lt;p>&lt;img src="outstanding-changes.png" alt="img">&lt;/p>
+&lt;p>Individual changes can be rejected by clicking the delete icon at the top.&lt;/p>
+&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Release-Notes: April 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</link><pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</guid><description>
 &lt;h2 id="issues-fixed">Issues Fixed&lt;/h2>
 &lt;p>This minor release fixes the following issues:&lt;/p>
 &lt;ul>
@@ -1816,275 +2054,4 @@ Users can be added to the group by:&lt;/p>
 &lt;/ul>
 &lt;div class="alert alert-primary" role="alert">
 If your organization is utilizing a third-party identity provider via SAML or OpenID, that provider is responsible for providing and storing authentication log records
-&lt;/div></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>An access policy is a list of rules that each allow, reject, or drop traffic at the VPN level.&lt;/p>
-&lt;/div>
-&lt;p>If no rules are defined, traffic will not pass through the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>.&lt;/p>
-&lt;p>&lt;strong>A rule can match traffic based on the following fields:&lt;/strong>&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="action">
-&lt;th>Action&lt;/th>
-&lt;td>Whether to ALLOW, DROP, or REJECT the traffic.&lt;/td>
-&lt;/tr>
-&lt;tr id="protocol">
-&lt;th>Protocol&lt;/th>
-&lt;td>You can choose ANY, UDP, ICMP, or TCP.&lt;/td>
-&lt;/tr>
-&lt;tr id="source">
-&lt;th>Source&lt;/th>
-&lt;td>The source of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
-&lt;/tr>
-&lt;tr id="destination">
-&lt;th>Destination&lt;/th>
-&lt;td>The destination of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
-&lt;/tr>
-&lt;tr id="line-number">
-&lt;th>Line Number&lt;/th>
-&lt;td>Rules are evaluated starting with the lowest numbered rule. Once a rule matches, later rules are ignored even if they might also match the traffic.&lt;/td>
-&lt;/tr>
-&lt;tr id="port-range">
-&lt;th>Port Range&lt;/th>
-&lt;td>For TCP and UDP traffic, you can specify a port (e.g., 80) or a range (e.g., 8000-9000).&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
-&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Docs: Alarm Filters</title><link>https://docs.trustgrid.io/docs/alarms/alarm-filters/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/alarms/alarm-filters/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Alarm Filters are used to determine which &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> trigger notifications and to define which &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a> should receive those notifications.&lt;/p>
-&lt;/div>
-&lt;p>Alarm filters have the following fields:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="name">
-&lt;th>Name&lt;/th>
-&lt;td>The name should be unique.&lt;/td>
-&lt;/tr>
-&lt;tr id="description">
-&lt;th>Description&lt;/th>
-&lt;td>The description is displayed in the alarm filters table.&lt;/td>
-&lt;/tr>
-&lt;tr id="enabled">
-&lt;th>Enabled&lt;/th>
-&lt;td>An alarm filter must be enabled for matching &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> to be sent to the selected &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channel&lt;/a>. Deselecting the check box can be handy if you wish to suppress a specific type of &lt;a href="https://docs.trustgrid.io/docs/alarms/">alarm&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="channels">
-&lt;th>Channels&lt;/th>
-&lt;td>This section determines which &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a> matching &lt;a href="https://docs.trustgrid.io/docs/alarms/">alarms&lt;/a> will be sent to.&lt;/td>
-&lt;/tr>
-&lt;tr id="criteria">
-&lt;th>Criteria&lt;/th>
-&lt;td>&lt;p>The criteria determine which &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> will match the filter. These conditions can be set as:&lt;/p>
-&lt;ul>
-&lt;li>All (default) - All specified criteria must be true to match. Equivalent to a boolean AND condition.&lt;/li>
-&lt;li>Any - Only one criteria must be true to match. Equivalent to a boolean OR condition.&lt;/li>
-&lt;li>None - The specified criteria must be false to match. Equivalent to a boolean NOT of the criteria ANDed together.&lt;/li>
-&lt;/ul>
-&lt;/td>
-&lt;/tr>
-&lt;tr id="node-name">
-&lt;th>Node Name&lt;/th>
-&lt;td>The &amp;ldquo;Node Name&amp;rdquo; criteria llows you to select one or more specific &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> names. Note, even if the filter is set to &lt;code>All&lt;/code>, the filter will match any of the selected &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> names is associated with the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="event-type">
-&lt;th>Event Type&lt;/th>
-&lt;td>The &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">&amp;ldquo;Event Type&amp;rdquo;&lt;/a> criteria determines which &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> will match the filter. Note, even if the filter is set to &lt;code>All&lt;/code>, the filter will match any of the selected &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">event types&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="tag-matches">
-&lt;th>Tag Matches&lt;/th>
-&lt;td>&lt;p>The &amp;ldquo;Tag Matches&amp;rdquo; criteria allows you to use &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">tag&lt;/a> name/value pairs to determine if the filter should match &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a>. For examples, you may what production devices to send to a high priority &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channel&lt;/a> such as PagerDuty or OpsGenie. If your &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> have a tag to indicating “prod_status=production”, you can select that name/value pair from the list to properly filter your &lt;a href="https://docs.trustgrid.io/docs/alarms/">alarms&lt;/a>.&lt;/p>
-&lt;p>&lt;img src="tag-matches.png" alt="img">&lt;/p>
-&lt;/td>
-&lt;/tr>
-&lt;tr id="severity">
-&lt;th>Severity&lt;/th>
-&lt;td>&lt;p>Each &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> type has a severity level associated with it. This filter will match any &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> with the selected severity type or higher. This is the only mandatory criteria.&lt;/p>
-&lt;p>The severity levels are:&lt;/p>
-&lt;ol>
-&lt;li>INFO&lt;/li>
-&lt;li>WARNING&lt;/li>
-&lt;li>ERROR&lt;/li>
-&lt;li>CRITICAL&lt;/li>
-&lt;/ol>
-&lt;p>For example, if you select the severity level of WARNING the filter will match WARNING, ERROR and CRITICAL &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a>.&lt;/p>
-&lt;p>Some events have a corresponding &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> that will automatically resolve the alert in the portal and in some &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a> such as PagerDuty. The corresponding event may have a different severity level, so make sure you select the lower severity for the criteria. e.g. &lt;a href="https://docs.trustgrid.io/docs/nodes/">Node&lt;/a> Disconnect is a WARNING but &lt;a href="https://docs.trustgrid.io/docs/nodes/">Node&lt;/a> Connect which resolves it is only INFO. So you’d need to select both &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">Event Types&lt;/a> and set the severity to INFO.&lt;/p>
-&lt;/td>
-&lt;/tr>
-&lt;tr id="contains-text">
-&lt;th>Contains Text&lt;/th>
-&lt;td>&lt;p>This field will accept any single string of text to match to the contents of an &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a>. For example, if all your gateways include &lt;code>-gw&lt;/code> in the name you could enter that without quotes in the field and it would match any &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> that includes that text in the event payload. This criteria can also be used if there is another aspect of the node included in the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> payload that doesn’t match the criteria above. To see the entire payload of an &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> configure a less specific payload and send to an email &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channel&lt;/a> to see the JSON.&lt;/p>
-&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> payload includes the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node’s&lt;/a> unique identifier (UID) which is a string of generated text and numbers. If your &amp;ldquo;Contains Text&amp;rdquo; criteria is too short, there is a chance a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> UID will also match unexpectedly.&lt;/p>
-&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Alert Suppression</title><link>https://docs.trustgrid.io/docs/alarms/alert-suppression/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/alarms/alert-suppression/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Maintenance and other planned disruptive activity can generate a large amount of alerts and notifications for no value. The Trustgrid system allows you to define alert suppression windows during which no alerts are triggered.&lt;/p>
-&lt;/div>
-&lt;h2 id="define-alert-suppression-window">Define Alert Suppression Window&lt;/h2>
-&lt;ol>
-&lt;li>
-&lt;p>Navigate to &lt;code>Alarms&lt;/code> -&amp;gt; &lt;code>Alert Suppression&lt;/code>.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Enter a message to users. During the window this will be displayed on the dashboard when users first log in.&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="message-to-users.png" alt="img">&lt;/p>
-&lt;ol start="3">
-&lt;li>Select a duration between 1 and 4 hours for your window.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="duration.png" alt="img">&lt;/p>
-&lt;ol start="4">
-&lt;li>From the calendar select the date that you want the window to start.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="calendar-time.png" alt="img">&lt;/p>
-&lt;ol start="5">
-&lt;li>From the drop down, select the hour that you want the window to begin. This time will be set based off your browser’s current timezone setting. This uses the 24 hour clock (e.g. 0 = 12 am, 14 = 2pm, etc.)&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="schedule-time1.png" alt="img">&lt;/p>
-&lt;ol start="6">
-&lt;li>Click the &lt;code>Schedule&lt;/code> button. You will see a notification that the window has been scheduled and a notice of when it will begin.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="alert-suppression.png" alt="img">&lt;/p>
-&lt;p>To update a scheduled window, make the desired changes and click the &lt;code>Update&lt;/code> button.&lt;/p>
-&lt;h2 id="cancel-alert-suppression-window">Cancel Alert Suppression Window&lt;/h2>
-&lt;ol>
-&lt;li>
-&lt;p>Navigate to &lt;code>Alarms&lt;/code> -&amp;gt; &lt;code>Alert Suppression&lt;/code>.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>You should see a notification with the scheduled window at the top. Confirm this is the window you wish to cancel.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Click the &lt;code>Cancel Schedule&lt;/code> button.&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="cancel.png" alt="img">&lt;/p>
-&lt;ol start="4">
-&lt;li>You should be notified that the window has been canceled.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="removal.png" alt="img">&lt;/p>
-&lt;h2 id="limitations">Limitations&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>Only a single window can be scheduled at any one time.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Suppression windows apply to all devices across the entire organization.&lt;/p>
-&lt;/li>
-&lt;/ul></description></item><item><title>Docs: Channels</title><link>https://docs.trustgrid.io/docs/alarms/channels/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/alarms/channels/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>A channel defines one or more method of delivering alert notifications to external systems.&lt;/p>
-&lt;/div>
-&lt;h3 id="notification-delivery-channels">Notification Delivery Channels&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>Email - One or more email address (comma separated) that will receive messages from &lt;a href="mailto:alerts@trustgrid.io">alerts@trustgrid.io&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>PagerDuty - Trustgrid will generate an incident via the PagerDuty API if provided a valid API routing key.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>OpsGenie - Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;div class="alert alert-primary" role="alert">
-For both PagerDuty and OpsGenie the integration will automatically resolve issues if an &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> occurs that negates the initial triggering event. For example, if an &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> is triggered by a Node Disconnect and the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> reconnects, the Node Connect &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> will resolve the incident via the API.
-&lt;/div>
-&lt;ul>
-&lt;li>
-&lt;p>Slack - Trustgrid can post the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to a configured channel via a webhook.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Microsoft Teams - Trustgrid can post &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to a configured Teams channel via an incoming webhook&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;div class="alert alert-primary" role="alert">
-Only a single Slack or Teams channel can be targeted by a Trustgrid channel. However, you can create multiple Trustgrid channels if you wish to post the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to more than one Slack/Teams channel.
-&lt;/div>
-&lt;h3 id="example-event-data">Example Event Data&lt;/h3>
-&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data is delivered in JSON, as shown below, which depending on the integration can allow for additional parsing.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;nodeName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">Name&lt;/span> &lt;span style="color:#a40000">of&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">node&lt;/span> &lt;span style="color:#a40000">that&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">relates&lt;/span> &lt;span style="color:#a40000">to&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;expires&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1604801325&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">Unix&lt;/span> &lt;span style="color:#a40000">epoch&lt;/span> &lt;span style="color:#a40000">timestamp&lt;/span> &lt;span style="color:#a40000">when&lt;/span> &lt;span style="color:#a40000">this&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">will&lt;/span> &lt;span style="color:#a40000">expire&lt;/span> &lt;span style="color:#a40000">and&lt;/span> &lt;span style="color:#a40000">automatically&lt;/span> &lt;span style="color:#a40000">resolve&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;level&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;INFO&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">Alert&lt;/span> &lt;span style="color:#a40000">severity&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;eventType&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Node Disconnect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">Matches&lt;/span> &lt;span style="color:#a40000">to&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">types&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;source&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;EKG&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;message&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Node disconnected&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;type&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Alert&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;orgId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;8e1c2c05-2c86-4b1b-a0cc-############&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;GS1PK&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Org#8e1c2c05-2c86-4b1b-a0cc-############&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_ct&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;uid&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;1jwV1R2R6itQUjPza9yqTE8a8zu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;GS1SK&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Alert#1jwV1R2R6itQUjPza9yqTE8a8zu&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_md&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{},&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;domain&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;example.trustgrid.io&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;SK&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Alert#Node Disconnect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;_tp&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Alert&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;PK&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Node#0895b104-5434-447b-8577-############&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;state&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;UNKNOWN&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;nodeId&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;0895b104-5434-447b-8577-############&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;timestamp&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1604714923&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">Unix&lt;/span> &lt;span style="color:#a40000">epoch&lt;/span> &lt;span style="color:#a40000">timestamp&lt;/span> &lt;span style="color:#a40000">when&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">was&lt;/span> &lt;span style="color:#a40000">first&lt;/span> &lt;span style="color:#a40000">triggered&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;channelID&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;bc47ca84-1d04-454b-bedc-a55d1a917c0e&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">The&lt;/span> &lt;span style="color:#a40000">unique&lt;/span> &lt;span style="color:#a40000">id&lt;/span> &lt;span style="color:#a40000">of&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">channel&lt;/span> &lt;span style="color:#a40000">used&lt;/span> &lt;span style="color:#a40000">to&lt;/span> &lt;span style="color:#a40000">deliver&lt;/span> &lt;span style="color:#a40000">this&lt;/span> &lt;span style="color:#a40000">message.&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;notes&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Text from Description Field&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;alarmIDs&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">A&lt;/span> &lt;span style="color:#a40000">list&lt;/span> &lt;span style="color:#a40000">of&lt;/span> &lt;span style="color:#a40000">alarm&lt;/span> &lt;span style="color:#a40000">filters&lt;/span> &lt;span style="color:#a40000">that&lt;/span> &lt;span style="color:#a40000">matched&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;be324011-4bea-4392-a06a-541646decd39&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Docs: Cluster Site Health State</title><link>https://docs.trustgrid.io/docs/clusters/cluster-health/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/clusters/cluster-health/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>A healthy &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> should have two online Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> in a healthy state. The Trustgrid control plane can monitor the member &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> and generate &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> when their state changes such that the health of the &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> is impacted.&lt;/p>
-&lt;/div>
-&lt;h3 id="basics">Basics&lt;/h3>
-&lt;div class="alert alert-primary" role="alert">
-&lt;p>These events are based on the information reported by each member node to the control plane. Because of this:&lt;/p>
-&lt;ul>
-&lt;li>There can be a delay between a change and the &lt;a href="https://docs.trustgrid.io/docs/clusters/">Cluster&lt;/a> Site Health events.&lt;/li>
-&lt;li>If member &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> have issues preventing control plane connections but not impacting data plane or other services the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> may not accurately reflect the state of the &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/li>
-&lt;/ul>
-&lt;/div>
-&lt;h3 id="cluster-health-state">Cluster Health State&lt;/h3>
-&lt;p>The Trustgrid will now display one of three states in the portal:&lt;/p>
-&lt;table>
-&lt;tbody>
-&lt;tr>
-&lt;th>State&lt;/th>
-&lt;th>Meaning&lt;/th>
-&lt;/tr>
-&lt;tr>
-&lt;th>Healthy&lt;/th>
-&lt;td>Both members are online with a single member active.&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;th>Unhealthy&lt;/th>
-&lt;td>
-&lt;p>There is at least one online and healthy member of the &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> with the active role AND one or more of these conditions is true:&lt;/p>
-&lt;ul>
-&lt;li>One of the &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> members is offline, unhealthy or disabled&lt;/li>
-&lt;li>There are &lt;strong>two&lt;/strong> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> members with the active role&lt;/li>
-&lt;/ul>
-&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;th>Offline&lt;/th>
-&lt;td>
-&lt;p>Both &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> are offline, unhealthy or disabled.&lt;/p>
-&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table></description></item></channel></rss>
+&lt;/div></description></item></channel></rss>

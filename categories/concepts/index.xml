@@ -2,7 +2,31 @@
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A domain is the logical grouping of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> inside an organization.&lt;/p>
 &lt;/div>
-&lt;p>Domains are a logical grouping of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, allowing configuration of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual networks&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/thresholds/">node thresholds&lt;/a>. Each Trustgrid deployment has a single domain.&lt;/p></description></item><item><title>Docs: Nodes</title><link>https://docs.trustgrid.io/docs/nodes/</link><pubDate>Wed, 07 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/</guid><description>
+&lt;p>Domains are a logical grouping of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, allowing configuration of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual networks&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/thresholds/">node thresholds&lt;/a>. Each Trustgrid deployment has a single domain.&lt;/p></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>A network object allows naming a CIDR inside a VPN for easier rule management.&lt;/p>
+&lt;/div>
+&lt;p>A network object requires the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>The label to use when referencing this object.&lt;/td>
+&lt;/tr>
+&lt;tr id="cidr">
+&lt;th>CIDR&lt;/th>
+&lt;td>Specifically an IPv4 CIDR.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;img src="network-objects.png" alt="img">&lt;/p>
+&lt;p>Multiple network objects may be clustered into a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>.&lt;/p></description></item><item><title>Docs: Nodes</title><link>https://docs.trustgrid.io/docs/nodes/</link><pubDate>Wed, 07 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A node is an instance of software used for building connections, managing compute resources, and deploying software.&lt;/p>
 &lt;/div>
@@ -51,7 +75,173 @@
 &lt;p>Click &lt;code>Apply Tag Filter&lt;/code> and the table will only show matching nodes.&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="applied-filters2.png" alt="img">&lt;/p></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
+&lt;p>&lt;img src="applied-filters2.png" alt="img">&lt;/p></description></item><item><title>Docs: Network Groups</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>A network group is a list of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network objects&lt;/a> that allows for easier rule management.&lt;/p>
+&lt;/div>
+&lt;p>A network group requires a name to be set. This will be used to reference the group in &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">access policy&lt;/a> rules.&lt;/p>
+&lt;p>&lt;img src="network-groups2.png" alt="img">&lt;/p>
+&lt;p>Navigating into a network group allows management of the group’s member objects.&lt;/p>
+&lt;p>&lt;img src="member-network-objects.png" alt="img">&lt;/p></description></item><item><title>Docs: Routes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>Routes configured under &lt;a href="https://docs.trustgrid.io/docs/domain/">Domains&lt;/a> determine to which &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">Trustgrid virtual network&lt;/a> should route traffic for a specific subnet.&lt;/p>
+&lt;/div>
+&lt;h2 id="virtual-network-routes">Virtual Network Routes&lt;/h2>
+&lt;p>Routes defined a the virtual network level allow creating a global route table shared with all nodes and clusters attached to the virtual network. This table is then used to evaluate where to send VPN traffic for a specified destination CIDR.&lt;/p>
+&lt;p>&lt;img src="routes-list.png" alt="img">&lt;/p>
+&lt;h3 id="route-fields">Route Fields&lt;/h3>
+&lt;p>A Route has the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="destination">
+&lt;th>Destination&lt;/th>
+&lt;td>This will be the name of the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> that traffic will be routed to. This list is auto-populated based on the nodes and clusters in the selected &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.&lt;/td>
+&lt;/tr>
+&lt;tr id="destination-cidr">
+&lt;th>Destination CIDR&lt;/th>
+&lt;td>This is the CIDR notation of the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> that should be routed to the above destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/td>
+&lt;/tr>
+&lt;tr id="metric">
+&lt;th>Metric&lt;/th>
+&lt;td>If there are multiple routes for the same &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> the metric will determine which route will be used. The lowest number is the highest priority. See the &amp;ldquo;Automatic Failover&amp;rdquo; text below.&lt;/td>
+&lt;/tr>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>(Optional) This field can be used to provide additional information about the purpose of the route. e.g. it could label a route as a DR route indicating that in normal circumstances it would have a higher metric than a primary route.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="managing-virtual-network-routes">Managing Virtual Network Routes&lt;/h2>
+&lt;h3 id="adding-virtual-network-routes">Adding Virtual Network Routes&lt;/h3>
+&lt;ol>
+&lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
+&lt;li>The Routes table is selected by default
+&lt;figure class="centered-image">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Virtual Network &amp;gt; Routes
+&lt;/figcaption>
+&lt;/figure>
+&lt;div class="alert alert-info" role="alert">
+Tip: Use the search field to filter the list of routes so you can see the routes you are adding. You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes you are adding.
+&lt;/div>
+&lt;/li>
+&lt;li>Click the add route button.
+&lt;figure class="centered-image">
+&lt;img src="add-route-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add route button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Provide the desired route information in the &lt;a href="#route-fields">fields&lt;/a> &lt;ol type="A">&lt;li>Select the destination cluster or node&lt;/li>&lt;li>Enter the destination network in CIDR notation. For a single IP use /32.&lt;/li>&lt;li>Enter a metric between 1 and 200.&lt;/li>&lt;li>Optionally, provide a description.&lt;/li>&lt;/ol>
+&lt;figure class="centered-image">
+&lt;img src="new-route-entry.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
+&lt;li>Click the Save button.
+&lt;figure class="centered-image">
+&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Save route button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;figure class="centered-image">
+&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example of a saved route
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;div class="alert alert-warning" role="alert">
+As stated above, the route changes are not actually implemented until you click the Apply button the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review Changes&lt;/a> panel.
+&lt;/div>
+&lt;h3 id="deleting-virtual-network-routes">Deleting Virtual Network Routes&lt;/h3>
+&lt;ol>
+&lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
+&lt;li>The Routes table is selected by default
+&lt;figure class="centered-image">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Virtual Network &amp;gt; Routes
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Use the search field to filter the list of routes.
+&lt;div class="alert alert-info" role="alert">
+You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes so you can delete them.
+&lt;/div>
+&lt;/li>
+&lt;li>Click the red X on the far right of the route being removed.
+&lt;figure class="centered-image">
+&lt;img src="delete-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;/figure>
+&lt;/li>
+&lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
+&lt;li>Click the Save button.
+&lt;figure class="centered-image">
+&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Save route button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;figure class="centered-image">
+&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example of a saved route
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="route-failover">Route Failover &lt;/h2>
+&lt;p>Route failover allows a subnet to be routed to an alternate &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> in the event of a failure.  This can be automatic or performed manually.&lt;/p>
+&lt;h3 id="prerequisites">Prerequisites &lt;/h3>
+&lt;p>In either configuration, the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> settings under VPN settings for the primary and backup destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/clusters/">clusters&lt;/a> must match. Including:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Network Virtual Route&lt;/p>
+&lt;p>&lt;img src="virtual-network-route.png" alt="img">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Network Group under Outside NAT Table&lt;/p>
+&lt;p>&lt;img src="outside-nat-table.png" alt="img">&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Virtual CIDR under Inside NAT Table&lt;/p>
+&lt;p>&lt;img src="inside-nat-table.png" alt="img">&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="automatic-failover">Automatic Failover&lt;/h3>
+&lt;p>To have the route failover without manual intervention you must define two routes for the same subnet (Destination CIDR) with different metrics.  The lowest numerical metric will take precedence unless the destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> is offline.&lt;/p>
+&lt;p>In the below example configuration we want traffic for the 10.20.0.0/24 network to the &lt;code>edge&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> first, and failover to the &lt;code>edge-dr&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/p>
+&lt;p>&lt;img src="automatic-failover.png" alt="img">&lt;/p>
+&lt;h3 id="preventing-automated-failback-or-forcing-a-failover">Preventing Automated Failback or Forcing a Failover&lt;/h3>
+&lt;p>As mentioned above if multiple routes are configured traffic will route to destination with the lowest metric number. So if the primary destination fails but then comes back online traffic will be routed back automatically.&lt;/p>
+&lt;p>However, there are some circumstances where this is not desirable. For example, if the primary site is unstable you may wish to keep traffic at the backup site until the primary is stabilized. Alternately, you may wish to preemptively reroute traffic to the backup site in advance of planned maintenance at the primary site.&lt;/p>
+&lt;p>To preemptively reroute traffic to the backup site, update the backup route to have a lower metric than the primary route.&lt;/p>
+&lt;h3 id="manual-failover">Manual Failover&lt;/h3>
+&lt;p>In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.  To initiate a failover you&amp;rsquo;ll need to update the destination &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a>.&lt;/p>
+&lt;ol>
+&lt;li>Login to the Portal and select your domain.&lt;/li>
+&lt;li>Click the link to the desired &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> under the &amp;ldquo;Name&amp;rdquo; column.&lt;/li>
+&lt;li>Scroll down to the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">&amp;ldquo;Virtual Networks&amp;rdquo;&lt;/a> section and select the &amp;ldquo;Routes&amp;rdquo; tab.&lt;/li>
+&lt;li>Find the route you wish to failover.&lt;/li>
+&lt;li>Update the destination device. (e.g. in the below you would switch from edge to edge-dr).
+&lt;img src="update-destination.png" alt="Update Destination">&lt;/li>
+&lt;li>Click save.&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>An access policy is a list of rules that each allow, reject, or drop traffic at the VPN level.&lt;/p>
 &lt;/div>
@@ -92,115 +282,14 @@
 &lt;/tbody>
 &lt;/table>
 &lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
-&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Tutorials: Applying Changes</title><link>https://docs.trustgrid.io/tutorials/applying-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/applying-changes/</guid><description>
+&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Because changes to a domain &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> affect &lt;em>all&lt;/em> &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> configuration changes must be reviewed before applied, and are applied all at once.&lt;/p>
 &lt;/div>
 &lt;p>After making changes to a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>, you can review outstanding changes. A list of changes will show who made each change, with a before/after table if appropriate.&lt;/p>
 &lt;p>&lt;img src="outstanding-changes.png" alt="img">&lt;/p>
 &lt;p>Individual changes can be rejected by clicking the delete icon at the top.&lt;/p>
-&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Docs: Network Groups</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>A network group is a list of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network objects&lt;/a> that allows for easier rule management.&lt;/p>
-&lt;/div>
-&lt;p>A network group requires a name to be set. This will be used to reference the group in &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">access policy&lt;/a> rules.&lt;/p>
-&lt;p>&lt;img src="network-groups2.png" alt="img">&lt;/p>
-&lt;p>Navigating into a network group allows management of the group’s member objects.&lt;/p>
-&lt;p>&lt;img src="member-network-objects.png" alt="img">&lt;/p></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>A network object allows naming a CIDR inside a VPN for easier rule management.&lt;/p>
-&lt;/div>
-&lt;p>A network object requires the following fields:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="name">
-&lt;th>Name&lt;/th>
-&lt;td>The label to use when referencing this object.&lt;/td>
-&lt;/tr>
-&lt;tr id="cidr">
-&lt;th>CIDR&lt;/th>
-&lt;td>Specifically an IPv4 CIDR.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;img src="network-objects.png" alt="img">&lt;/p>
-&lt;p>Multiple network objects may be clustered into a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>.&lt;/p></description></item><item><title>Docs: Routes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Routes configured under &lt;a href="https://docs.trustgrid.io/docs/domain/">Domains&lt;/a> determine to which &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">Trustgrid virtual network&lt;/a> should route traffic for a specific subnet.&lt;/p>
-&lt;/div>
-&lt;h2 id="route-configuration">Route Configuration&lt;/h2>
-&lt;ol>
-&lt;li>Login to the portal and select &lt;a href="https://docs.trustgrid.io/docs/domain/">&lt;code>domains&lt;/code>&lt;/a>.&lt;/li>
-&lt;li>Click the link to the desired domain under the &amp;ldquo;Name&amp;rdquo; column.&lt;/li>
-&lt;li>Scroll down to the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">&amp;ldquo;Virtual Networks&amp;rdquo;&lt;/a> section and select the &lt;code>Routes&lt;/code> tab.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="routes-list.png" alt="img">&lt;/p>
-&lt;p>A Route has Three Required Fields:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="destination">
-&lt;th>Destination&lt;/th>
-&lt;td>This will be the name of the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> that traffic will be routed to. This list is auto-populated based on the nodes and clusters in the selected &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="destination-cidr">
-&lt;th>Destination CIDR&lt;/th>
-&lt;td>This is the CIDR notation of the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> that should be routed to the above destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="metric">
-&lt;th>Metric&lt;/th>
-&lt;td>If there are multiple routes for the same &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> the metric will determine which route will be used. The lowest number is the highest priority. See the &amp;ldquo;Automatic Failover&amp;rdquo; text below.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="route-failover">Route Failover &lt;/h2>
-&lt;p>Route failover allows a subnet to be routed to an alternate &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> in the event of a failure.  This can be automatic or performed manually.&lt;/p>
-&lt;h3 id="prerequisites">Prerequisites &lt;/h3>
-&lt;p>In either configuration, the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> settings under VPN settings for the primary and backup destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/clusters/">clusters&lt;/a> must match. Including:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>Network Virtual Route&lt;/p>
-&lt;p>&lt;img src="virtual-network-route.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Network Group under Outside NAT Table&lt;/p>
-&lt;p>&lt;img src="outside-nat-table.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual CIDR under Inside NAT Table&lt;/p>
-&lt;p>&lt;img src="inside-nat-table.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="automatic-failover">Automatic Failover&lt;/h3>
-&lt;p>To have the route failover without manual intervention you must define two routes for the same subnet (Destination CIDR) with different metrics.  The lowest numerical metric will take precedence unless the destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> is offline.&lt;/p>
-&lt;p>In the below example configuration we want traffic for the 10.20.0.0/24 network to the &lt;code>edge&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> first, and failover to the &lt;code>edge-dr&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/p>
-&lt;p>&lt;img src="automatic-failover.png" alt="img">&lt;/p>
-&lt;h3 id="preventing-automated-failback-or-forcing-a-failover">Preventing Automated Failback or Forcing a Failover&lt;/h3>
-&lt;p>As mentioned above if multiple routes are configured traffic will route to destination with the lowest metric number. So if the primary destination fails but then comes back online traffic will be routed back automatically.&lt;/p>
-&lt;p>However, there are some circumstances where this is not desirable. For example, if the primary site is unstable you may wish to keep traffic at the backup site until the primary is stabilized. Alternately, you may wish to preemptively reroute traffic to the backup site in advance of planned maintenance at the primary site.&lt;/p>
-&lt;p>To preemptively reroute traffic to the backup site, update the backup route to have a lower metric than the primary route.&lt;/p>
-&lt;h3 id="manual-failover">Manual Failover&lt;/h3>
-&lt;p>In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.  To initiate a failover you&amp;rsquo;ll need to update the destination &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a>.&lt;/p>
-&lt;ol>
-&lt;li>Login to the Portal and select your domain.&lt;/li>
-&lt;li>Click the link to the desired &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> under the &amp;ldquo;Name&amp;rdquo; column.&lt;/li>
-&lt;li>Scroll down to the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">&amp;ldquo;Virtual Networks&amp;rdquo;&lt;/a> section and select the &amp;ldquo;Routes&amp;rdquo; tab.&lt;/li>
-&lt;li>Find the route you wish to failover.&lt;/li>
-&lt;li>Update the destination device. (e.g. in the below you would switch from edge to edge-dr).
-&lt;img src="update-destination.png" alt="Update Destination">&lt;/li>
-&lt;li>Click save.&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/</guid><description>
+&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Docs: Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Virtual networks define an overlay network and routes for layer 3 connectivity. Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> are then assigned to networks. Virtual network overlays work similarly to Amazon&amp;rsquo;s VPCs but can span between clouds, data centers, and the edge.&lt;/p>
 &lt;/div>
