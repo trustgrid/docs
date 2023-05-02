@@ -3,6 +3,7 @@ title: "Changing Node Status (Enabling / Disabling)"
 linkTitle: "Changing Node Status"
 date: 2023-04-28
 description: "Describes the process of enabling or disabling a Trustgrid node and the impacts of such a change"
+weight: 10
 ---
 
 Trustgrid nodes can be in two states:
