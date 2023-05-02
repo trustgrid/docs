@@ -844,7 +844,54 @@ Only visible on LAN interfaces and Subinterfaces
 &lt;li>Order Status Change&lt;/li>
 &lt;li>Order Customer Update&lt;/li>
 &lt;/ul>
-&lt;p>These events can then be sent to existing or newly defined &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a>.&lt;/p></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
+&lt;p>These events can then be sent to existing or newly defined &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a>.&lt;/p></description></item><item><title>Tutorials: Changing Node Status (Enabling / Disabling)</title><link>https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/</guid><description>
+&lt;p>Trustgrid nodes can be in two states:&lt;/p>
+&lt;ul>
+&lt;li>Enabled - In this state the node will connected to the Trustgrid Control Plane and any Data Plane gateways the node is configured to use.&lt;/li>
+&lt;li>Disabled - This is a reduced functionality state that cause the node to only attempt to connect to the Trustgrid control plane. It can be managed to a limited extent but many other Trustgrid features will not function in this state&lt;/li>
+&lt;/ul>
+&lt;p>Disabling a node allows for additional security if a device is in transport and can also be used as an easily reversible way of verifying a node is no longer in use before fully deleting the node.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+Changing the node status will trigger a restart of the Trustgrid node service.
+&lt;/div>
+&lt;h2 id="disablingenabling-from-info-tab">Disabling/Enabling from Info Tab&lt;/h2>
+&lt;p>If disabling or enabling a single node you can:&lt;/p>
+&lt;ol>
+&lt;li>Navigate to that node in the Trustgrid portal.&lt;/li>
+&lt;li>Open the &lt;strong>Info&lt;/strong> tab by clicking the dropdown in the top-right, or hitting the &lt;code>`&lt;/code> key.&lt;/li>
+&lt;li>From the Status dropdown change to Disable or Enable
+&lt;figure class="centered-image">
+&lt;img src="info-tab-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Info tab with Status dropdown
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="disablingenabling-from-nodes-table">Disabling/Enabling from Nodes Table&lt;/h2>
+&lt;p>If disabling or enabling multiple nodes it is easier to do so from the Nodes table&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the nodes table.&lt;/li>
+&lt;li>(Optional) Use the search box to filter the displayed nodes.
+&lt;div class="alert alert-warning" role="alert">
+Note that if you change this any selected nodes will be de-selected.
+&lt;/div>
+&lt;/li>
+&lt;li>Use the checkbox on the left to select the nodes you wish to disable or enable.&lt;/li>
+&lt;li>From the Actions dropdown select either &lt;strong>Enable&lt;/strong> or &lt;strong>Disable&lt;/strong>
+&lt;figure class="centered-image">
+&lt;img src="nodes-table-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Status actions on Nodes table
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="disablingenabling-via-terraform">Disabling/Enabling via Terraform&lt;/h2>
+&lt;p>Nodes can be enabled or disabled via the Trustgrid published Terraform provider using the &lt;a href="https://registry.terraform.io/providers/trustgrid/tg/latest/docs/resources/node_state/" target="_blank">tg_node_state&lt;/a> resource.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+The Trustgrid API refers to this state via the &lt;code>status&lt;/code> attribute. The value &lt;code>ACTIVE&lt;/code> means the node is &lt;strong>enabled&lt;/strong> and the value &lt;code>INACTIVE&lt;/code> indicates the node is currently &lt;strong>disabled&lt;/strong>
+&lt;/div></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A network object allows naming a CIDR inside a VPN for easier rule management.&lt;/p>
 &lt;/div>
@@ -1223,7 +1270,46 @@ Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a st
 &lt;p>A network group requires a name to be set. This will be used to reference the group in &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">access policy&lt;/a> rules.&lt;/p>
 &lt;p>&lt;img src="network-groups2.png" alt="img">&lt;/p>
 &lt;p>Navigating into a network group allows management of the group’s member objects.&lt;/p>
-&lt;p>&lt;img src="member-network-objects.png" alt="img">&lt;/p></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vrfs/</guid><description>
+&lt;p>&lt;img src="member-network-objects.png" alt="img">&lt;/p></description></item><item><title>Tutorials: Restart the Trustgrid Service on a Node</title><link>https://docs.trustgrid.io/tutorials/management-tasks/restart-node/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/restart-node/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>Restarting the Trustgrid service is faster than a full node reboot and resolves many non-recurring problems.&lt;/p>
+&lt;/div>
+&lt;ol>
+&lt;li>
+&lt;p>Go to the &lt;code>Node&lt;/code> detail page for the node affected.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Select &lt;code>Restart&lt;/code> located in the top right corner of the page&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="restart1.png" alt="img">&lt;/p>
+&lt;ol start="3">
+&lt;li>After clicking, type in the name of the node and click &lt;code>Confirm&lt;/code> to execute the action&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="execute2.png" alt="img">&lt;/p>
+&lt;ol start="4">
+&lt;li>
+&lt;p>the node agent will restart (Node host will not restart)&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Expect the node to alert for disconnection and connection.&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>Tutorials: Reboot a Node</title><link>https://docs.trustgrid.io/tutorials/management-tasks/reboot-node/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/reboot-node/</guid><description>
+&lt;ol>
+&lt;li>Click on the Node from the node page you wish to reboot&lt;/li>
+&lt;li>Select &lt;code>Reboot&lt;/code> from the top right corner of the page&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="reboot.png" alt="img">&lt;/p>
+&lt;ol start="3">
+&lt;li>Type in the name of the node in the text box, and click the confirmation button&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="execute.png" alt="img">&lt;/p>
+&lt;ol start="4">
+&lt;li>The node will reboot within 60 seconds&lt;/li>
+&lt;li>Node agent will start automatically on reboot&lt;/li>
+&lt;li>Expect the node to alert for disconnect/connect&lt;/li>
+&lt;li>Does not require a cloud gateway&lt;/li>
+&lt;/ol></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vrfs/</guid><description>
 &lt;h3 id="overview">Overview&lt;/h3>
 &lt;p>VRFs can be used route / nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated to an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as ipsec or gre. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
 &lt;p>For standard use cases of source nat and/or destination nat creating a route and a NAT is sufficient. Traffic rules can be used for more advanced controls. An applicable ACL is required for any traffic to pass as a zero trust methodology is applied.&lt;/p>
@@ -1580,7 +1666,68 @@ Example of a saved route
 &lt;/tbody>
 &lt;/table>
 &lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
-&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
+&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Tutorials: Deleting Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</guid><description>
+&lt;div class="alert alert-danger" role="alert">
+&lt;strong>Be advised:&lt;/strong> Deleting a node is an irreversible action. Delete nodes only after you are certain it is no longer needed.
+&lt;/div>
+&lt;h2 id="best-practices">Best Practices&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Disable the node(s)&lt;/a> for several days prior to deleting. This way if it is discovered that it is still needed it is simple to re-enable.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/prod-status-tag/">Update any status tag&lt;/a> to indicate the node(s) is being decommissioned.&lt;/li>
+&lt;li>Before deleting, &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the node as a destination. While these can be removed later, they will be easier to find while the node is still listed as the destination.&lt;/li>
+&lt;/ul>
+&lt;h2 id="deleting-nodes">Deleting Nodes&lt;/h2>
+&lt;ol>
+&lt;li>If the node(s) is not already disabled, &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">disable the node(s)&lt;/a> &lt;strong>See best practice above before proceeding&lt;/strong>&lt;/li>
+&lt;li>If the node(s) is a member of a cluster, &lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#remove-member">remove the node(s) from the cluster&lt;/a>.&lt;/li>
+&lt;li>Navigate to the Nodes table and select the target node(s).
+&lt;div class="alert alert-info" role="alert">
+Optionally, Use the search to filter the displayed nodes.
+&lt;/div>
+&lt;/li>
+&lt;li>From the Actions menu select the Delete option.
+&lt;figure class="centered-image">
+&lt;img src="delete-node-action.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Delete node action
+&lt;/figcaption>
+&lt;/figure>
+&lt;ol>
+&lt;li>If deleting a single node, you will be prompted to enter the name of the node about to be deleted to confirm.&lt;/li>
+&lt;li>If deleting multiple nodes, you will be prompted to enter &lt;code>DELETE&lt;/code> to confirm.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></description></item><item><title>Tutorials: Deleting Trustgrid Clusters</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-clusters/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-clusters/</guid><description>
+&lt;div class="alert alert-danger" role="alert">
+&lt;strong>Be advised:&lt;/strong> Deleting a cluster is an irreversible action. Delete clusters only after you are certain they are no longer needed.
+&lt;/div>
+&lt;h2 id="best-practices">Best Practices&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#remove-member">Remove all members&lt;/a> for a period of time to ensure the configuration is no longer needed.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/prod-status-tag/">Update any status tag&lt;/a> to indicate the cluster(s) is being decommissioned.&lt;/li>
+&lt;li>Before deleting, &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the cluster as a destination. While these can be removed later, they will be easier to find while the cluster is still listed as the destination.&lt;/li>
+&lt;/ul>
+&lt;h2 id="deleting-clusters">Deleting Clusters&lt;/h2>
+&lt;ol>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#remove-member">Remove the node(s) from the cluster&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the cluster as a destination. &lt;strong>See best practices above&lt;/strong>&lt;/li>
+&lt;li>Navigate to the Cluster table and select the target cluster(s).
+&lt;div class="alert alert-info" role="alert">
+Optionally, Use the search to filter the displayed clusters.
+&lt;/div>
+&lt;/li>
+&lt;li>From the Actions menu select the Delete option.
+&lt;figure class="centered-image">
+&lt;img src="delete-cluster-action.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Delete cluster action
+&lt;/figcaption>
+&lt;/figure>
+&lt;ol>
+&lt;li>If deleting a single cluster, you will be prompted to enter the fully-qualified domain name (fqdn) of the cluster about to be deleted to confirm.&lt;/li>
+&lt;li>If deleting multiple clusters, you will be prompted to enter &lt;code>DELETE&lt;/code> to confirm.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Because changes to a domain &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> affect &lt;em>all&lt;/em> &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> configuration changes must be reviewed before applied, and are applied all at once.&lt;/p>
 &lt;/div>
@@ -1743,84 +1890,7 @@ cl2WAN ==> ISP2([ISP 2])
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
 style cluster fill:#c8c8c8
-&lt;/div></description></item><item><title>Tutorials: Changing Node Status (Enabling / Disabling)</title><link>https://docs.trustgrid.io/tutorials/operations-runbook/node-management/changing-node-status/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/operations-runbook/node-management/changing-node-status/</guid><description>
-&lt;p>Trustgrid nodes can be in two states:&lt;/p>
-&lt;ul>
-&lt;li>Enabled - In this state the node will connected to the Trustgrid Control Plane and any Data Plane gateways the node is configured to use.&lt;/li>
-&lt;li>Disabled - This is a reduced functionality state that cause the node to only attempt to connect to the Trustgrid control plane. It can be managed to a limited extent but many other Trustgrid features will not function in this state&lt;/li>
-&lt;/ul>
-&lt;p>Disabling a node allows for additional security if a device is in transport and can also be used as an easily reversible way of verifying a node is no longer in use before fully deleting the node.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-Changing the node status will trigger a restart of the Trustgrid node service.
-&lt;/div>
-&lt;h2 id="disablingenabling-from-info-tab">Disabling/Enabling from Info Tab&lt;/h2>
-&lt;p>If disabling or enabling a single node you can:&lt;/p>
-&lt;ol>
-&lt;li>Navigate to that node in the Trustgrid portal.&lt;/li>
-&lt;li>Open the &lt;strong>Info&lt;/strong> tab by clicking the dropdown in the top-right, or hitting the &lt;code>`&lt;/code> key.&lt;/li>
-&lt;li>From the Status dropdown change to Disable or Enable
-&lt;figure class="centered-image">
-&lt;img src="info-tab-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Info tab with Status dropdown
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="disablingenabling-from-nodes-table">Disabling/Enabling from Nodes Table&lt;/h2>
-&lt;p>If disabling or enabling multiple nodes it is easier to do so from the Nodes table&lt;/p>
-&lt;ol>
-&lt;li>Navigate to the nodes table.&lt;/li>
-&lt;li>(Optional) Use the search box to filter the displayed nodes.
-&lt;div class="alert alert-warning" role="alert">
-Note that if you change this any selected nodes will be de-selected.
-&lt;/div>
-&lt;/li>
-&lt;li>Use the checkbox on the left to select the nodes you wish to disable or enable.&lt;/li>
-&lt;li>From the Actions dropdown select either &lt;strong>Enable&lt;/strong> or &lt;strong>Disable&lt;/strong>
-&lt;figure class="centered-image">
-&lt;img src="nodes-table-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Status actions on Nodes table
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="disablingenabling-via-terraform">Disabling/Enabling via Terraform&lt;/h2>
-&lt;p>Nodes can be enabled or disabled via the Trustgrid published Terraform provider using the &lt;a href="https://registry.terraform.io/providers/trustgrid/tg/latest/docs/resources/node_state/" target="_blank">tg_node_state&lt;/a> resource.&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-The Trustgrid API refers to this state via the &lt;code>status&lt;/code> attribute. The value &lt;code>ACTIVE&lt;/code> means the node is &lt;strong>enabled&lt;/strong> and the value &lt;code>INACTIVE&lt;/code> indicates the node is currently &lt;strong>disabled&lt;/strong>
-&lt;/div></description></item><item><title>Tutorials: Deleting Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/operations-runbook/node-management/deleting-nodes/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/operations-runbook/node-management/deleting-nodes/</guid><description>
-&lt;div class="alert alert-danger" role="alert">
-&lt;strong>Be advised:&lt;/strong> Deleting a node is an irreversible action. Delete nodes only after you are certain it is no longer needed.
-&lt;/div>
-&lt;h2 id="best-practices">Best Practices&lt;/h2>
-&lt;ul>
-&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/node-management/changing-node-status/">Disable the node(s)&lt;/a> for several days prior to deleting. This way if it is discovered that it is still needed it is simple to re-enable.&lt;/li>
-&lt;li>Before deleting, &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the node as a destination. While these can be removed later, they will be easier to find while the node is still listed as the destination.&lt;/li>
-&lt;/ul>
-&lt;h2 id="deleting-nodes">Deleting Nodes&lt;/h2>
-&lt;ol>
-&lt;li>If the node(s) is not already disabled, &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/node-management/changing-node-status/">disable the node(s)&lt;/a> &lt;strong>See best practice above before proceeding&lt;/strong>&lt;/li>
-&lt;li>If the node(s) is a member of a cluster, &lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#remove-member">remove the node(s) from the cluster&lt;/a>.&lt;/li>
-&lt;li>Navigate to the Nodes table and select the target node(s).
-&lt;div class="alert alert-info" role="alert">
-Optionally, Use the search to filter the displayed nodes.
-&lt;/div>
-&lt;/li>
-&lt;li>From the Actions menu select the Delete option.
-&lt;figure class="centered-image">
-&lt;img src="delete-node-action.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Delete node action
-&lt;/figcaption>
-&lt;/figure>
-&lt;ol>
-&lt;li>If deleting a single node, you will be prompted to enter the name of the node about to be deleted to confirm.&lt;/li>
-&lt;li>If deleting multiple nodes, you will be prompted to enter &lt;code>DELETE&lt;/code> to confirm.&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ol></description></item><item><title>Release-Notes: April 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</link><pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</guid><description>
+&lt;/div></description></item><item><title>Release-Notes: April 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</link><pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</guid><description>
 &lt;h2 id="issues-fixed">Issues Fixed&lt;/h2>
 &lt;p>This minor release fixes the following issues:&lt;/p>
 &lt;ul>
@@ -2208,51 +2278,4 @@ The &lt;code>portal::access&lt;/code> must be applied with Resource scope of &lt
 &lt;ol start="3">
 &lt;li>Fill out all details in the sheet provided, then click &lt;code>Save&lt;/code> when satisfied with the information entered&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="vnc-app.png" alt="img">&lt;/p></description></item><item><title>Help-Center: Authorization to Request Support</title><link>https://docs.trustgrid.io/help-center/request-support/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/request-support/</guid><description>
-&lt;p>To prevent unauthorized users from potentially compromising the control plane, Trustgrid has implemented a policy to approve customers&amp;rsquo; staff for access to technical support services. Trustgrid will not refuse support completely in cases when unauthorized staff request it, but will limit the disclosure of confidential information and will refuse to make configuration changes without approval from an authorized support contact.&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>All staff who request support must have a portal login.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Trustgrid support staff will not execute any change requested by staff that exceeds that staff members access to portal.&lt;/p>
-&lt;p>a. Monitor Access: Staff can alert of issues and request remote assistance but no change in the portal can be requested or made.&lt;/p>
-&lt;p>b. Operator Access: Staff can alert of issues and request remote assistance but only changes limited to the Operator role can be requested.&lt;/p>
-&lt;p>c. Administrator Access: Staff can request any system change.&lt;/p>
-&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Groups</title><link>https://docs.trustgrid.io/docs/user-management/groups/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/groups/</guid><description>
-&lt;p>&lt;img src="group-ss.png" alt="img">&lt;/p>
-&lt;p>User Management Groups defined can be used to make Remote Access applications visible to users.&lt;/p>
-&lt;p>There are two sources for Groups&lt;/p>
-&lt;h4 id="trustgrid-native-groups">Trustgrid-native Groups&lt;/h4>
-&lt;p>These groups are created in the portal via the &lt;code>Add Group&lt;/code> button.
-Users can be added to the group by:&lt;/p>
-&lt;ol>
-&lt;li>From the &lt;code>Groups&lt;/code> page you can select the group, then click &lt;code>Add Member&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="add-to-group.png" alt="img">&lt;/p>
-&lt;ol start="2">
-&lt;li>From the &lt;code>user&lt;/code> section, search for and add the email address of the desired user.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="user-email.png" alt="img">&lt;/p>
-&lt;ol start="3">
-&lt;li>Click &lt;code>Save&lt;/code> and repeat process to add other users.&lt;/li>
-&lt;/ol>
-&lt;h4 id="identity-provider-synchronized-groups">Identity Provider-Synchronized Groups&lt;/h4>
-&lt;p>These groups are create based on Identity Provider (IdP) configuration for select IdPs (currently Gsuite and Azure OpenID). The IdP can be configured to sync all or select groups, and the sync process will update the group membership automatically.&lt;/p>
-&lt;blockquote>
-&lt;p>if users are added to an IdP-synced group in the Trustgrid portal they will automatically be removed the next time they sync runs.&lt;/p>
-&lt;/blockquote></description></item><item><title>Getting-Started: Networking</title><link>https://docs.trustgrid.io/getting-started/networking/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/networking/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Trustgrid delivers a software defined wide area network (SD-WAN) that enables connectivity between cloud environments, data centers, and edge or on-premise hosts. Our robust networking feature set provides layer 3 and layer 4 network overlays with cloud management tools.&lt;/p>
-&lt;/div>
-&lt;h3 id="types-of-connectivity">Types of Connectivity&lt;/h3>
-&lt;p>Trustgrid establishes mutual TLS tunnels between &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> using mutual authentication. These tunnels between edge nodes and gateway nodes constitute the data plane of a Trustgrid network. Over this tunnel two distinct types of connectivity are supported, Layer 3 and Layer 4. Layer 3 supports &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">routed&lt;/a> traffic and Network Address Translation (NAT) to replicate traditional WAN connections. Trustgrid&amp;rsquo;s Layer 4 networking uses reverse proxies to map local IP-port number combinations to remote hosts. Each connectivity type has distinct advantages and may be used for either gateway nodes or edge nodes.&lt;/p>
-&lt;h3 id="layer-3-overview">Layer 3 Overview&lt;/h3>
-&lt;p>The Trustgrid VPN feature provides the capability to securely route IP packets between networks. In this configuration, Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> can operate as a distributed mesh virtual private network (VPN) that can allow applications to access remote data and services at layer 3 (L3) of the network OSI model. This is done by defining a virtual L3 network (similar to an Amazon VPC) and then selecting how edge node networks are exposed and translated into the the virtual address space.&lt;/p>
-&lt;p>Layer 3 configuration is required for all Trustgrid networking deployments on the Gateway (data center / cloud) side. This allows the use of L3 or Layer 4 configurations for edge node deployments. Layer 3 connectivity enables easy support of many hosts at each side of the connection. This allows the replication of existing &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">routes&lt;/a> and subnets to minimize reconfiguration of any remote or local networks.&lt;/p>
-&lt;p>Layer 3 edge configuration is ideal in situations where there is an incomplete understanding of all traffic (source and destination hosts/ports) as it supports more permissive ACLs. It is required when using stateful protocols (except FTP) and other protocols such as SIP.&lt;/p>
-&lt;p>All gateway nodes must be deployed using L3 networking in a two interface (management/data NIC) configuration.&lt;/p>
-&lt;h3 id="layer-4-overview">Layer 4 Overview&lt;/h3>
-&lt;p>Trustgrid Layer 4 (L4) is only supported in edge configurations. Layer 4 networking enables a reverse proxy connection between the Gateway Node IP address:port number that maps directly to an on-premise host:port. Specific network plug-ins support stateful features like FTP using L4 connectivity. With Trustgrid&amp;rsquo;s L4 networks there is no concern of overlapping local IP subnets on either end of the tunnel because Trustgrid proxies the traffic. The source of all TCP/UDP traffic is the edge node interface, not the originating host. This is transparent to the hosts on either side.&lt;/p>
-&lt;p>Layer 4 connectivity offers slightly better performance than L3 in specific types of traffic and is ideal when there is a single or few remote/edge hosts that are being accessed with deterministic traffic. Layer 4 edge nodes are usually easier to deploy at an edge site as they can avoid the configuration of a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> overlay (NATs, ACLs, &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">Routes&lt;/a>, etc). Remote sites that desire to view the actual source of traffic should use Layer 3 for edge configurations as the source IP for all traffic in a Layer 4 connection is the edge node&amp;rsquo;s data IP address.&lt;/p></description></item></channel></rss>
+&lt;p>&lt;img src="vnc-app.png" alt="img">&lt;/p></description></item></channel></rss>

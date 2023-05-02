@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "aebf9b69-b887-4dc3-977f-2dc92120878a",
+                    "example": "4bf1559d-41fa-4253-9582-f42716193f62",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1682967500,
+                    "example": 1683056430,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "24fb61cb-a582-451e-b592-cf9c5806cc7f",
+                    "example": "3035f261-e558-4226-b4d8-1bc77cc6d90f",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "afd989f2-e14a-4bbe-9732-ca74c27da37c",
+                    "example": "74ea71b5-b86a-419e-836d-c6146cfb239e",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "afd989f2-e14a-4bbe-9732-ca74c27da37c",
+                    "example": "74ea71b5-b86a-419e-836d-c6146cfb239e",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "afd989f2-e14a-4bbe-9732-ca74c27da37c",
+                    "example": "74ea71b5-b86a-419e-836d-c6146cfb239e",
                     "type": "object"
                   }
                 },
@@ -11750,7 +11750,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "aebf9b69-b887-4dc3-977f-2dc92120878a",
+          "example": "4bf1559d-41fa-4253-9582-f42716193f62",
           "type": "string"
         },
         "timestamp": {
@@ -11808,7 +11808,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "aebf9b69-b887-4dc3-977f-2dc92120878a",
+          "example": "4bf1559d-41fa-4253-9582-f42716193f62",
           "type": "string"
         },
         "nodeName": {
@@ -11895,8 +11895,8 @@
         }
       },
       "required": [
-        "action",
-        "name"
+        "name",
+        "action"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -12011,7 +12011,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "cd001361-df2c-474e-84ca-8831b9e64e9e",
+          "example": "265e48a0-9859-41bf-bcfe-26806fc4a6b9",
           "type": "string"
         },
         "image": {
@@ -12168,7 +12168,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "b6ad0b65-dfe9-4ec9-b2d3-1b43df0aa228",
+          "example": "0757b3b3-5001-445d-a57e-19900f9cd387",
           "type": "string"
         }
       },
@@ -12311,7 +12311,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "b81c9fe4-3f9a-4b9c-b2b8-eb4a4707b598",
+          "example": "493c6538-6713-4a75-b61c-0d700166fb0e",
           "type": "string"
         }
       },
@@ -12346,7 +12346,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "583aa502-bf90-4267-9cd9-d9e1a1041695",
+          "example": "bf5ca933-36eb-46c9-9edf-e094d87bd423",
           "type": "string"
         }
       },
@@ -12401,7 +12401,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "65c7b5a6-ebf0-42d7-8ff2-29bae00bef81",
+          "example": "c050f77f-fa2f-4439-a950-eab6cd490da5",
           "type": "string"
         }
       },
@@ -12574,9 +12574,9 @@
         }
       },
       "required": [
-        "protocol",
         "source",
-        "dest"
+        "dest",
+        "protocol"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -13265,7 +13265,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "aebf9b69-b887-4dc3-977f-2dc92120878a",
+          "example": "4bf1559d-41fa-4253-9582-f42716193f62",
           "type": "string"
         }
       },
