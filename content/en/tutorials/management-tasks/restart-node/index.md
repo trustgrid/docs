@@ -1,6 +1,9 @@
 ---
+linkTitle: Restart Node
 Title: "Restart the Trustgrid Service on a Node"
 Date: 2023-1-9
+weight: 20
+description: Describes how to restart the Trustgrid service on a node appliance
 ---
 
 {{% pageinfo %}}

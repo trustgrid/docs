@@ -1,6 +1,9 @@
 ---
+linkTitle: Reboot Node
 Title: "Reboot a Node"
 Date: 2023-1-9
+weight: 21
+description: Describes how to completely reboot a node appliance including the operating system
 ---
 
 1. Click on the Node from the node page you wish to reboot
