@@ -30,7 +30,7 @@ The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, 
 
 
 {{<field "Service Name" >}}
-A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/connectors" >}}). Can only contain only letters, numbers, and the `-` character.
+A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/connectors" >}}). Can only contain letters, numbers, and the `-` character.
 {{</field >}}
 
 {{<field "Host" >}}
@@ -46,7 +46,7 @@ The port to connect to on the host.
 {{</field>}}
 
 {{<field "Test Connectivity">}}
-Shows only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and  display success or failure.
+Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.
 {{<tgimg src="service-test-connectivity.png" width="80%">}}
 {{</field>}}
 
