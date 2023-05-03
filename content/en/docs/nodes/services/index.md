@@ -14,17 +14,23 @@ Services are configured in conjunction with [connectors]({{<ref "docs/nodes/conn
 
 Services are configured under the Networking > Services tab of the node or cluster configuration section in the Trustgrid Portal.
 
-![Layer 4 - Add a service](service.png)
+{{<tgimg src="service.png" width="40%" caption="Add Service dialogue" alt="Dialogue to add a service with fields for enabled" >}}
 
 {{<fields>}}
+{{<field "Enabled">}}
+Values: Yes or No. Allows each service to be individually disabled if desired"
+{{</field>}}
+
 {{<field "Protocol" >}}
 The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, along with pre-defined default ports for RDP, SSH, and VNC.
+
+> FTP must operate in passive mode when using L4 services and connectors.
 {{</field >}}
 
-> FTP must operate in passive mode when using L4 services and connectors
+
 
 {{<field "Service Name" >}}
-A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/connectors" >}}).
+A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/connectors" >}}). Can only container letters, numbers, and the `-` character.
 {{</field >}}
 
 {{<field "Host" >}}
@@ -35,7 +41,13 @@ The IP of the host to connect to.
 The port to connect to on the host.
 {{</field >}}
 
-{{<field "Health Check" >}}
-A health check can be configured for TCP services. The health check will attempt a TCP connectivity check once per minute. After 5 consecutive failures, an Outbound L4 Service Health Check alert will be triggered and clustered nodes will be marked as unhealthy. Clustered nodes will return to a Healthy status after 5 consecitive connection attempts are successful.
-{{</field >}}
+{{<field "Description">}}
+(Optional) User friendly description of the service.
+{{</field>}}
+
+{{<field "Test Connectivity">}}
+Show only on the Services table for TCP Protocol services. When client the node will attempt a TCP port connection test to the configured host and port, and then display success or failure.
+{{<tgimg src="service-test-connectivity.png" width="80%">}}
+{{</field>}}
+
 {{</fields>}}

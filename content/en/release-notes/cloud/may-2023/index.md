@@ -20,6 +20,16 @@ Several improvements where made around our change auditing system including:
 * Change records can now be replicated into a customer's AWS S3 bucket. This works much like the existing [S3 Flow Log Export]({{<ref "/docs/operations/flow-logs#flow-log-export">}}) and requires the same bucket policy and versioning settings.  To have this setup contact Trustgrid support. 
 * Changes to Container settings now include the name of the container instead of its unique ID.
 * Changes to a policy will now show what resources are covered by the policy.
+* Group deletion is now audited with name.
+* Authentication records using a configured [Identity Provider(IdP)]({{<ref src="/docs/idps">}}) now include the IdP used.
+* The advanced search now allows you to select more object types.
+
+## L4 Proxy UI Improvements
+This release also makes several improvements to the UI for configuring and managing our Layer 4 (L4) proxy [Services]({{<ref "/docs/nodes/services">}}) and [Connectors]({{<ref "/docs/nodes/connectors">}}). 
+
+These improvement include:
+* More consistency in the names of fields between the add/edit prompt and the table listings.
+* The addition of links to [automatically test connectivity of a TCP service]({{<ref "/docs/nodes/services#test-connectivity">}}) and [sniff traffic for a connector listening port]({{<ref "/docs/nodes/connectors#sniff-traffic">}})
 
 ## Flow Log Advanced Search
 With this release you can now set the source or destination node to `local` for an Advanced Flow Log Search. This will cover flows that do not traverse the data plane, such as traffic that is forwarded between interfaces.
