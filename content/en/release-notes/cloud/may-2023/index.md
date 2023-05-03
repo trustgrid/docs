@@ -40,3 +40,8 @@ Previously when an [event]({{<ref "/docs/alarms/events">}}) was forwarded to a [
 
 With this selected message will appear in Slack like the below example.
 {{<tgimg src="/docs/alarms/channels/formatted-slack-example.png" width="80%" caption="Example formatted slack event">}}
+
+## Wireguard Tunnel Client Config
+This release adds an [example Wireguard client configuration]({{<ref "/docs/nodes/tunnels/wireguard#example-client-config">}}) to both the add and update dialogues for Wireguard tunnel interfaces. 
+
+{{<tgimg src="/docs/nodes/tunnels/wireguard/wireguard-tunnel-example-config.png" width="90%" caption="Example auto-generated Wireguard client configuration">}}
