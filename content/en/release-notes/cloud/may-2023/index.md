@@ -6,6 +6,14 @@ date: 2023-05-07
 description: May Release focusing on Audit and UI improvements, plus bug fixes
 ---
 
+## Accessibility Improvements
+Prior to this release we used only the color red to indicate if the control or data plane was disconnected.  We now use different icons to indicate there is an issue with connectivity.
+### Control Plane Disconnected 
+{{<tgimg src="control-plane-disconnected.png" caption="Control Plane Disconnect icon" alt="Red circle with an exclamation mark(!) inside to indicate control plane disconnected">}}
+
+### Data Plane Disconnected
+{{<tgimg src="data-plane-disconnected.png" caption="Data Plane Disconnected icon" alt="Red triangle with an exclamation mark(!) to indicate data plane is disconnected ">}}
+
 ## Change Audit Improvements
 Several improvements where made around our change auditing system including:
 * Tag changes are now Audited.
