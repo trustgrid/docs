@@ -30,7 +30,7 @@ The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, 
 
 
 {{<field "Service Name" >}}
-A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/connectors" >}}). Can only container letters, numbers, and the `-` character.
+A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/connectors" >}}). Can only contain letters, numbers, and the `-` character.
 {{</field >}}
 
 {{<field "Host" >}}
