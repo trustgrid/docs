@@ -46,7 +46,7 @@ The port to connect to on the host.
 {{</field>}}
 
 {{<field "Test Connectivity">}}
-Show only on the Services table for TCP Protocol services. When client the node will attempt a TCP port connection test to the configured host and port, and then display success or failure.
+Shows only on the Services table for TCP Protocol services. When client the node will attempt a TCP port connection test to the configured host and port, and then display success or failure.
 {{<tgimg src="service-test-connectivity.png" width="80%">}}
 {{</field>}}
 
