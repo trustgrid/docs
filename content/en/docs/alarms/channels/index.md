@@ -8,26 +8,33 @@ Date: 2022-12-28
 A channel defines one or more method of delivering alert notifications to external systems.  
 {{% /pageinfo %}}
 
-### Notification Delivery Channels
+## Notification Delivery Channels
 
-- Email - One or more email address (comma separated) that will receive messages from alerts@trustgrid.io
+### Email Channel
+One or more email address (comma separated) that will receive messages from alerts@trustgrid.io
 
-- PagerDuty - Trustgrid will generate an incident via the PagerDuty API if provided a valid API routing key.
+### PagerDuty Channel
+Trustgrid will generate an incident via the PagerDuty API if provided a valid API routing key. 
 
-- OpsGenie - Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.
+### OpsGenie Channel
+Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.
 
 {{<alert>}} For both PagerDuty and OpsGenie the integration will automatically resolve issues if an [event]({{<ref "docs/alarms/events" >}}) occurs that negates the initial triggering event. For example, if an [event]({{<ref "docs/alarms/events" >}}) is triggered by a Node Disconnect and the [node]({{<ref "docs/nodes" >}}) reconnects, the Node Connect [event]({{<ref "docs/alarms/events" >}}) will resolve the incident via the API. {{</alert>}}
 
-- Slack - Trustgrid can post the [event]({{<ref "docs/alarms/events" >}}) data to a configured channel via a webhook.
+### Slack Channel
+Trustgrid can post the [event]({{<ref "docs/alarms/events" >}}) data to a configured channel via a webhook.
 
-- Microsoft Teams - Trustgrid can post [event]({{<ref "docs/alarms/events" >}}) data to a configured Teams channel via an incoming webhook
+Optionally, you can configure the slack event to be posted with formatting to make it [easier to read]({{<ref "#example-formatted-slack-event">}}) as opposed to [raw JSON]({{<ref "#example-event-json">}}). {{<tgimg src="slack-format-option.png" width="50%" caption="Slack format option checkbox">}}
 
-{{<alert>}} Only a single Slack or Teams channel can be targeted by a Trustgrid channel. However, you can create multiple Trustgrid channels if you wish to post the [event]({{<ref "docs/alarms/events" >}}) data to more than one Slack/Teams channel. {{</alert>}}
+### Microsoft Teams Channel
+Trustgrid can post [event]({{<ref "docs/alarms/events" >}}) data to a configured Teams channel via an incoming webhook
 
-### Example Event Data
+{{<alert>}} Only a single Slack or Teams channel can be targeted by a Trustgrid channel definition. However, you can create multiple Trustgrid channels if you wish to post the [event]({{<ref "docs/alarms/events" >}}) data to more than one Slack/Teams channel. {{</alert>}}
+
+## Example Event Data
 
 The [event]({{<ref "docs/alarms/events" >}}) data is delivered in JSON, as shown below, which depending on the integration can allow for additional parsing.
-
+### Example Event JSON
 {{<highlight json>}}
 {
 	"nodeName": "edge1", /* Name of the node that the event relates to */
@@ -58,3 +65,7 @@ The [event]({{<ref "docs/alarms/events" >}}) data is delivered in JSON, as shown
 	]
 }
 {{</highlight>}}
+
+### Example Formatted Slack Event
+Below is an example of a formatted Slack event.
+{{<tgimg src="formatted-slack-example.png" width="80%" caption="Example Slack Event">}}
