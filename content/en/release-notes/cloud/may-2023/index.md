@@ -16,7 +16,7 @@ Prior to this release we used only the color red to indicate if the control or d
 
 ## Change Audit Improvements
 Several improvements where made around our change auditing system including:
-* Tag changes are now Audited.
+* Tag changes are now audited.
 * Change records can now be replicated into a customer's AWS S3 bucket. This works much like the existing [S3 Flow Log Export]({{<ref "/docs/operations/flow-logs#flow-log-export">}}) and requires the same bucket policy and versioning settings.  To have this setup contact Trustgrid support. 
 * Changes to Container settings now include the name of the container instead of its unique ID.
 * Changes to a policy will now show what resources are covered by the policy.
@@ -41,7 +41,7 @@ Previously when an [event]({{<ref "/docs/alarms/events">}}) was forwarded to a [
 With this selected message will appear in Slack like the below example.
 {{<tgimg src="/docs/alarms/channels/formatted-slack-example.png" width="80%" caption="Example formatted slack event">}}
 
-## Wireguard Tunnel Client Config
-This release adds an [example Wireguard client configuration]({{<ref "/docs/nodes/tunnels/wireguard#example-client-config">}}) to both the add and update dialogues for Wireguard tunnel interfaces. 
+## WireGuard Tunnel Client Config
+This release adds an [example WireGuard client configuration]({{<ref "/docs/nodes/tunnels/WireGuard#example-client-config">}}) to both the add and update dialogues for WireGuard tunnel interfaces. 
 
-{{<tgimg src="/docs/nodes/tunnels/wireguard/wireguard-tunnel-example-config.png" width="90%" caption="Example auto-generated Wireguard client configuration">}}
+{{<tgimg src="/docs/nodes/tunnels/WireGuard/WireGuard-tunnel-example-config.png" width="90%" caption="Example auto-generated WireGuard client configuration">}}
