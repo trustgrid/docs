@@ -1666,7 +1666,170 @@ Example of a saved route
 &lt;/tbody>
 &lt;/table>
 &lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
-&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Tutorials: Deleting Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</guid><description>
+&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Tutorials: Upgrading Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
+&lt;h2 id="how-a-node-appliance-upgrades">How a Node Appliance Upgrades&lt;/h2>
+&lt;p>The upgrade process will:&lt;/p>
+&lt;ol>
+&lt;li>Upgrade the Trustgrid application package. As part of this process the node will backup the current running version.&lt;/li>
+&lt;li>Apply security updates to install operating system packages.&lt;/li>
+&lt;li>Reboot the Trustgrid node appliance.&lt;/li>
+&lt;/ol>
+&lt;p>For details on what this looks like from a network level see the &lt;a href="https://docs.trustgrid.io/help-center/kb/upgrade-process/">Node Upgrade Process KB&lt;/a> article.&lt;/p>
+&lt;h2 id="frequently-asked-questions">Frequently Asked Questions&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Is the upgrade disruptive?&lt;/strong> - Yes. While the appliance is upgrading services will remain available, though performance may be degraded. However, &lt;strong>the reboot step will make all services unavailable&lt;/strong> until the appliance fully boots and starts the Trustgrid service. Typically this takes a few minutes depending on the underlying hardware.&lt;/li>
+&lt;li>&lt;strong>How long will the upgrade take?&lt;/strong> - This is highly variable but typically this takes between 10 minutes and an hour. Below are a list of things that influence how long the upgrade takes:
+&lt;ul>
+&lt;li>Internet bandwidth - This determines how quickly the node can download the updates.&lt;/li>
+&lt;li>Time since previous update - The longer a node goes without updating the more security packages are likely to be required.&lt;/li>
+&lt;li>CPU and disk performance - The upgrade process involves significant CPU processing and to a lesser extent disk I/O. The upgrade process is single-threaded, so core speed is more important than number of cores.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="best-practices">Best Practices&lt;/h2>
+&lt;ul>
+&lt;li>Upgrade nodes regularly to ensure access to the latest features and security updates&lt;/li>
+&lt;li>For clustered nodes:
+&lt;ul>
+&lt;li>Upgrade the standby node&lt;/li>
+&lt;li>Change the standby node to be the &lt;a href="https://docs.trustgrid.io/docs/clusters/#configured-master">configured master/active&lt;/a> and wait it to claim this role.&lt;/li>
+&lt;li>Upgrade the new standby node in the cluster&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Utilize an &lt;a href="https://docs.trustgrid.io/docs/alarms/alert-suppression/#define-alert-suppression-window">Alert Suppression Window&lt;/a> to reduce the number of alarms generated if upgrading many nodes.&lt;/li>
+&lt;/ul>
+&lt;h2 id="required-permissions">Required Permissions&lt;/h2>
+&lt;p>In order to perform the below actions a user must have a &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/">policy&lt;/a> applied with the following permissions to the nodes that will be upgraded.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;statements&amp;#34;&lt;/span>&lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;actions&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::read&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::upgrade&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::manage&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::service:node-upgrade&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;portal::access&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>&lt;span style="color:#a40000">,&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;div class="alert alert-info" role="alert">
+The above is only a partial policy. Use the policy creator to define a complete policy
+&lt;/div>
+&lt;h2 id="upgrading-a-single-node">Upgrading a Single Node&lt;/h2>
+&lt;ol>
+&lt;li>Navigate to the node that will be upgraded.&lt;/li>
+&lt;li>From the tool bar click the Upgrade button.
+&lt;figure class="centered-image">
+&lt;img src="node-upgrade-button.png" alt="Toolbar showing an Upgrade (surrounded by a red rectangle), Refresh and Info buttons." style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Upgrade button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>When prompted enter the node&amp;rsquo;s name and click confirm.
+&lt;figure class="centered-image">
+&lt;img src="node-upgrade-confirm.png" alt="Dialogue asking to enter the node name to confirm" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Node upgrade confirmation
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>A dialogue will indicate the command was successfully sent.
+&lt;figure class="centered-image">
+&lt;img src="single-node-upgrade-report.png" alt="Dialogue stating &amp;#39;Upgrade in progress" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Node upgrade response
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="upgrading-multiple-nodes">Upgrading Multiple Nodes&lt;/h2>
+&lt;ol>
+&lt;li>Navigate to the &lt;a href="https://docs.trustgrid.io/docs/nodes/#node-list-view">Nodes table&lt;/a>.&lt;/li>
+&lt;li>(Optional) Use the search box or &lt;a href="https://docs.trustgrid.io/docs/nodes/#applying-a-tag-filter-to-the-nodes-table">apply a tag filter&lt;/a> to filter the displayed nodes.
+&lt;div class="alert alert-info" role="alert">
+Note: if you change the search or tag filter any selected nodes will be deselected.
+&lt;/div>
+&lt;/li>
+&lt;li>Use the check boxes to select the desired nodes.
+&lt;figure class="centered-image">
+&lt;img src="multi-node-select.png" alt="Nodes table showing two nodes selected" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Nodes table
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>From the actions dropdown select Upgrade.
+&lt;figure class="centered-image">
+&lt;img src="nodes-upgrade-action.png" alt="Action dropdown menu with red box around Upgrade option" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Action &amp;gt; Upgrade
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>When prompted, confirm you want to proceed with the bulk upgrade.
+&lt;figure class="centered-image">
+&lt;img src="multi-node-upgrade-confirm.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Confirm bulk upgrade
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>A table will be presented showing the status of each node upgrade request.
+&lt;figure class="centered-image">
+&lt;img src="multi-node-upgrade-report.png" alt="Upgrade Operation Report table showing two nodes were requested to upgrade and both are in progress" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Upgrade Operation Report
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="monitoring-upgrade-progress">Monitoring Upgrade Progress&lt;/h2>
+&lt;p>You can monitor the upgrade status from a node&amp;rsquo;s Info tab.
+&lt;figure class="centered-image">
+&lt;img src="upgrade-status-inprog.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Info tab, Upgrade in Progress
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>There are two fields
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="upgrade-status">
+&lt;th>Upgrade Status&lt;/th>
+&lt;td>&lt;p>Shows the most recent status of an upgrade operation on this node. Possibly values are:&lt;/p>
+&lt;ul>
+&lt;li>In Progress&lt;/li>
+&lt;li>Completed&lt;/li>
+&lt;li>Failed&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="completion-time">
+&lt;th>Completion Time&lt;/th>
+&lt;td>Shows a timestamp for the last time an upgrade operation completed.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-info" role="alert">
+Note: if an upgrade is currently &lt;strong>In Progress&lt;/strong>, then this will be the completion time of the prior upgrade operations
+&lt;/div>
+&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="upgrade-status-completed.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example of Completed upgrade status
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Tutorials: Deleting Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</guid><description>
 &lt;div class="alert alert-danger" role="alert">
 &lt;strong>Be advised:&lt;/strong> Deleting a node is an irreversible action. Delete nodes only after you are certain it is no longer needed.
 &lt;/div>
@@ -2204,78 +2367,4 @@ The &lt;code>portal::access&lt;/code> must be applied with Resource scope of &lt
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Visibility groups determine what applications a user can see on their application dashboard. A user must be a member of at least one selected group to see an application.&lt;/p>
 &lt;/div>
-&lt;p>&lt;img src="visibility.png" alt="img">&lt;/p></description></item><item><title>Docs: VNC App</title><link>https://docs.trustgrid.io/docs/applications/vnc-app/</link><pubDate>Fri, 06 Jan 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/applications/vnc-app/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>A VNC app is a ZTNA application that allows remote access to an internal VNC server. VNC servers can be hosted internally but exposed to authorized users.&lt;/p>
-&lt;/div>
-&lt;h4 id="general">General&lt;/h4>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="name">
-&lt;th>Name&lt;/th>
-&lt;td>app name&lt;/td>
-&lt;/tr>
-&lt;tr id="description">
-&lt;th>Description&lt;/th>
-&lt;td>app description&lt;/td>
-&lt;/tr>
-&lt;tr id="icon">
-&lt;th>Icon&lt;/th>
-&lt;td>the application&amp;rsquo;s icon (optional) to show in the application dashboard&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h4 id="connectivity">Connectivity&lt;/h4>
-&lt;ul>
-&lt;li>
-&lt;p>Connectivity type:&lt;/p>
-&lt;ul>
-&lt;li>local to gateway - the application is hosted on the same network as the gateway&lt;/li>
-&lt;li>remote node - the application is hosted on an edge node&amp;rsquo;s network&lt;/li>
-&lt;li>virtual network - the application is accessible over the Trustgrid virtual network from the ZTNA gateway&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>ZTNA Gateway - the ZTNA gateway node that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Destination Node - only available if connectivity type is Remote Node. The edge node with access to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>VRF - only available if connectivity type is Remote Node. The VRF used to connect to the application.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Internal server hostname or IP - the internal hostname or IP address of the VNC server and port number&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual Network - only available if connectivity type is Virtual Network. The virtual network that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Client Virtual IP - only available if connectivity type is Virtual Network -defaults to the virtual management IP of the ZTNA gateway if it exists. The source virtual IP address that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual server hostname or IP - only available if connectifity type is Virtual Network. The destination virtual IP address and port number that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h4 id="security">Security&lt;/h4>
-&lt;ul>
-&lt;li>Identity Provider - the &lt;a href="https://docs.trustgrid.io/docs/idps/">Identity Provider&lt;/a> to authenticate users&lt;/li>
-&lt;/ul>
-&lt;ol>
-&lt;li>Click &lt;code>Add Application&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="add-app.png" alt="img">&lt;/p>
-&lt;ol start="2">
-&lt;li>Click the &lt;code>Remote Desktop - VNC&lt;/code> option&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="vnc.png" alt="img">&lt;/p>
-&lt;ol start="3">
-&lt;li>Fill out all details in the sheet provided, then click &lt;code>Save&lt;/code> when satisfied with the information entered&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="vnc-app.png" alt="img">&lt;/p></description></item></channel></rss>
+&lt;p>&lt;img src="visibility.png" alt="img">&lt;/p></description></item></channel></rss>
