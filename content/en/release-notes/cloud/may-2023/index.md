@@ -2,7 +2,7 @@
 title: May 2023 Release Notes
 linkTitle: 'May 2023 Release'
 type: docs
-date: 2023-05-07
+date: 2023-05-05
 description: May Release focusing on Audit and UI improvements, plus bug fixes
 ---
 
@@ -30,6 +30,7 @@ This release also makes several improvements to the UI for configuring and manag
 These improvement include:
 * More consistency in the names of fields between the add/edit prompt and the table listings.
 * The addition of links to [automatically test connectivity of a TCP service]({{<ref "/docs/nodes/services#test-connectivity">}}) and [sniff traffic for a connector listening port]({{<ref "/docs/nodes/connectors#sniff-traffic">}})
+* Removal of the Services Health Check feature. This attribute has been removed from the Add Service prompt and the Services table.  Any service that previously had this set to `Enabled` will continue performing this health check until the service is updated.  A future node release will stop performing the health check even if the service is still set to `Enabled`. 
 
 ## Flow Log Advanced Search
 With this release you can now set the source or destination node to `local` for an Advanced Flow Log Search. This will cover flows that do not traverse the data plane, such as traffic that is forwarded between interfaces.
