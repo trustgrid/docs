@@ -4,8 +4,11 @@
 &lt;/div>
 &lt;h4 id="configuration">Configuration&lt;/h4>
 &lt;p>Connectors are configured under the Networking &amp;gt; Connectors tab of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
-&lt;figure class="card rounded p-2 td-post-card mb-4 mt-4" style="max-width: 410px">
-&lt;img class="card-img-top" src="https://docs.trustgrid.io/docs/nodes/connectors/connector_hudc115f7e28d8cbd5e71d65766f13265f_84798_400x450_resize_catmullrom_3.png" width="400" height="450">
+&lt;figure class="centered-image">
+&lt;img src="add-connector.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 45%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add Connector dialogue
+&lt;/figcaption>
 &lt;/figure>
 &lt;table>
 &lt;thead>
@@ -43,6 +46,14 @@
 &lt;th>Rate Limit (Mb/s)&lt;/th>
 &lt;td>The maximum amount of throughput that will be allowed to traverse the tunnel when connecting to the connector. This can be used to prevent saturating the connection at either the local or remote sites.&lt;/td>
 &lt;/tr>
+&lt;tr id="sniff-traffic">
+&lt;th>Sniff Traffic&lt;/th>
+&lt;td>&lt;p>Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the &lt;a href="#listen-port">listening port&lt;/a>.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="connector-sniff-traffic.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;/figure>
+&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/services/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
@@ -50,7 +61,12 @@
 &lt;/div>
 &lt;h4 id="configuration">Configuration&lt;/h4>
 &lt;p>Services are configured under the Networking &amp;gt; Services tab of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
-&lt;p>&lt;img src="service.png" alt="Layer 4 - Add a service">&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add Service dialogue
+&lt;/figcaption>
+&lt;/figure>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -59,14 +75,21 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
+&lt;tr id="enabled">
+&lt;th>Enabled&lt;/th>
+&lt;td>Values: Yes or No. Allows each service to be individually disabled if desired&amp;quot;&lt;/td>
+&lt;/tr>
 &lt;tr id="protocol">
 &lt;th>Protocol&lt;/th>
-&lt;td>The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, along with pre-defined default ports for RDP, SSH, and VNC.&lt;/td>
+&lt;td>&lt;p>The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, along with pre-defined default ports for RDP, SSH, and VNC.&lt;/p>
+&lt;blockquote>
+&lt;p>FTP must operate in passive mode when using L4 services and connectors.&lt;/p>
+&lt;/blockquote>
+&lt;/td>
 &lt;/tr>
-> FTP must operate in passive mode when using L4 services and connectors
 &lt;tr id="service-name">
 &lt;th>Service Name&lt;/th>
-&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>.&lt;/td>
+&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
 &lt;/tr>
 &lt;tr id="host">
 &lt;th>Host&lt;/th>
@@ -76,9 +99,17 @@
 &lt;th>Port&lt;/th>
 &lt;td>The port to connect to on the host.&lt;/td>
 &lt;/tr>
-&lt;tr id="health-check">
-&lt;th>Health Check&lt;/th>
-&lt;td>A health check can be configured for TCP services. The health check will attempt a TCP connectivity check once per minute. After 5 consecutive failures, an Outbound L4 Service Health Check alert will be triggered and clustered nodes will be marked as unhealthy. Clustered nodes will return to a Healthy status after 5 consecitive connection attempts are successful.&lt;/td>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>(Optional) User friendly description of the service.&lt;/td>
+&lt;/tr>
+&lt;tr id="test-connectivity">
+&lt;th>Test Connectivity&lt;/th>
+&lt;td>&lt;p>Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="service-test-connectivity.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;/figure>
+&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item></channel></rss>

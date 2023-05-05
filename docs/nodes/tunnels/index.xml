@@ -72,23 +72,63 @@ Once an IPSec tunnel is configured an IPSec virtual interface is created that ca
 &lt;li>Virtual Network - the Trustgrid virtual network the tunnel is being associated to. The virtual network should already be attached to the node or cluster to be selectable.&lt;/li>
 &lt;li>VRF - The vrf the tunnel is being associated to. Only vrf&amp;rsquo;s which exist on the Trustgrid Node or Cluster can be selected&lt;/li>
 &lt;li>MTU - the mtu size of the tunnel interface. Typically the default of 1430 should be used&lt;/li>
-&lt;/ul></description></item><item><title>Docs: Wireguard</title><link>https://docs.trustgrid.io/docs/nodes/tunnels/wireguard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tunnels/wireguard/</guid><description>
+&lt;/ul></description></item><item><title>Docs: WireGuard</title><link>https://docs.trustgrid.io/docs/nodes/tunnels/wireguard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tunnels/wireguard/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>A wireguard tunnel interface can be configured to allow a wireguard client to connect to a Trustgrid Node running as a wireguard server.
+&lt;p>A WireGuard tunnel interface can be configured to allow a WireGuard client to connect to a Trustgrid Node running as a WireGuard server.
 The tunnel interface is associated to a vrf which is used to define and control what traffic is allowed to pass and how it should appear on the network.&lt;/p>
 &lt;/div>
-&lt;h2 id="configure-wireguard-tunnel">Configure Wireguard Tunnel&lt;/h2>
-&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu and select Add Tunnel and then select Wireguard&lt;/p>
+&lt;h2 id="configure-wireguard-tunnel">Configure WireGuard Tunnel&lt;/h2>
+&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu and select Add Tunnel and then select WireGuard&lt;/p>
 &lt;p>&lt;img src="add_tunnel.png" alt="img">&lt;/p>
-&lt;p>&lt;img src="add_wireguard.png" alt="img">&lt;/p>
-&lt;p>&lt;img src="wireguard.png" alt="img">&lt;/p>
-&lt;h4 id="wireguard-configuration-parameters">Wireguard Configuration Parameters&lt;/h4>
-&lt;ul>
-&lt;li>Name - the name of the wireguard tunnel interface created on the Trustgrid node or cluster&lt;/li>
-&lt;li>Description - optional field used to document what clients are utilizing the tunnel&lt;/li>
-&lt;li>Interface IP - the ip address in CIDR the wireguard tunnel interface will be created as&lt;/li>
-&lt;li>Public Key - the public key of the remote wireguard client&lt;/li>
-&lt;li>Pre-Shared Key - optional 256 bit to provide an additonal level of security&lt;/li>
-&lt;li>VRF - the vrf that exists on the Trustgrid node or cluster the tunnel interface is associated to&lt;/li>
-&lt;li>MTU - the MTU of the wireguard tunnel interface. Typically this can be left at 1430&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;p>&lt;img src="add_WireGuard.png" alt="img">&lt;/p>
+&lt;p>&lt;img src="WireGuard.png" alt="img">&lt;/p>
+&lt;h3 id="wireguard-configuration-parameters">WireGuard Configuration Parameters&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>The name of the WireGuard tunnel interface created on the Trustgrid node or cluster.&lt;/td>
+&lt;/tr>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>Optional field used to document what clients are utilizing the tunnel.&lt;/td>
+&lt;/tr>
+&lt;tr id="interface-ip">
+&lt;th>Interface IP&lt;/th>
+&lt;td>The IP address in CIDR notation that will be assigned to the node&amp;rsquo;s WireGuard tunnel interface.&lt;/td>
+&lt;/tr>
+&lt;tr id="public-key">
+&lt;th>Public Key&lt;/th>
+&lt;td>The public key of the remote WireGuard client.&lt;/td>
+&lt;/tr>
+&lt;tr id="pre-shared-key">
+&lt;th>Pre-shared Key&lt;/th>
+&lt;td>Optional 256 bit to provide an additonal level of security.&lt;/td>
+&lt;/tr>
+&lt;tr id="vrf">
+&lt;th>VRF&lt;/th>
+&lt;td>The Virtual Routing and Fowarding (VRF) table the WireGuard tunnel will be attached to&lt;/td>
+&lt;/tr>
+&lt;tr id="mtu">
+&lt;th>MTU&lt;/th>
+&lt;td>The maximum transmission unit (MTU) of the WireGuard tunnel interface. Defaults of 1430 or lower recommended.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="example-client-config">Example Client Config&lt;/h2>
+&lt;p>As you configure a WireGuard tunnel interface the portal UI will automatically generate an example WireGuard configuration for the peer/client based on the information provided.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="WireGuard-tunnel-example-config.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example WireGuard client config
+&lt;/figcaption>
+&lt;/figure>
+&lt;div class="alert alert-info" role="alert">
+Note: this is only a partial config. You will likely need to adjust to the &lt;code>AllowedIps&lt;/code> and other fields to meet the needs of the configured tunnel.
+&lt;/div></description></item></channel></rss>

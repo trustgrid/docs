@@ -2,34 +2,34 @@
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A channel defines one or more method of delivering alert notifications to external systems.&lt;/p>
 &lt;/div>
-&lt;h3 id="notification-delivery-channels">Notification Delivery Channels&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>Email - One or more email address (comma separated) that will receive messages from &lt;a href="mailto:alerts@trustgrid.io">alerts@trustgrid.io&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>PagerDuty - Trustgrid will generate an incident via the PagerDuty API if provided a valid API routing key.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>OpsGenie - Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.&lt;/p>
-&lt;/li>
-&lt;/ul>
+&lt;h2 id="notification-delivery-channels">Notification Delivery Channels&lt;/h2>
+&lt;h3 id="email-channel">Email Channel&lt;/h3>
+&lt;p>One or more email address (comma separated) that will receive messages from &lt;a href="mailto:alerts@trustgrid.io">alerts@trustgrid.io&lt;/a>&lt;/p>
+&lt;h3 id="pagerduty-channel">PagerDuty Channel&lt;/h3>
+&lt;p>Trustgrid will generate an incident via the PagerDuty API if provided a valid API routing key.&lt;/p>
+&lt;h3 id="opsgenie-channel">OpsGenie Channel&lt;/h3>
+&lt;p>Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 For both PagerDuty and OpsGenie the integration will automatically resolve issues if an &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> occurs that negates the initial triggering event. For example, if an &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> is triggered by a Node Disconnect and the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> reconnects, the Node Connect &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> will resolve the incident via the API.
 &lt;/div>
-&lt;ul>
-&lt;li>
-&lt;p>Slack - Trustgrid can post the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to a configured channel via a webhook.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Microsoft Teams - Trustgrid can post &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to a configured Teams channel via an incoming webhook&lt;/p>
-&lt;/li>
-&lt;/ul>
+&lt;h3 id="slack-channel">Slack Channel&lt;/h3>
+&lt;p>Trustgrid can post the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to a configured channel via a webhook.&lt;/p>
+&lt;p>Optionally, you can configure the slack event to be posted with formatting to make it &lt;a href="#example-formatted-slack-event">easier to read&lt;/a> as opposed to &lt;a href="#example-event-json">raw JSON&lt;/a>.
+&lt;figure class="centered-image">
+&lt;img src="slack-format-option.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Slack format option checkbox
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="microsoft-teams-channel">Microsoft Teams Channel&lt;/h3>
+&lt;p>Trustgrid can post &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to a configured Teams channel via an incoming webhook&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
-Only a single Slack or Teams channel can be targeted by a Trustgrid channel. However, you can create multiple Trustgrid channels if you wish to post the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to more than one Slack/Teams channel.
+Only a single Slack or Teams channel can be targeted by a Trustgrid channel definition. However, you can create multiple Trustgrid channels if you wish to post the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to more than one Slack/Teams channel.
 &lt;/div>
-&lt;h3 id="example-event-data">Example Event Data&lt;/h3>
+&lt;h2 id="example-event-data">Example Event Data&lt;/h2>
 &lt;p>The &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data is delivered in JSON, as shown below, which depending on the integration can allow for additional parsing.&lt;/p>
+&lt;h3 id="example-event-json">Example Event JSON&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;nodeName&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;edge1&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">Name&lt;/span> &lt;span style="color:#a40000">of&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">node&lt;/span> &lt;span style="color:#a40000">that&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">relates&lt;/span> &lt;span style="color:#a40000">to&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;expires&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#0000cf;font-weight:bold">1604801325&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">Unix&lt;/span> &lt;span style="color:#a40000">epoch&lt;/span> &lt;span style="color:#a40000">timestamp&lt;/span> &lt;span style="color:#a40000">when&lt;/span> &lt;span style="color:#a40000">this&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">will&lt;/span> &lt;span style="color:#a40000">expire&lt;/span> &lt;span style="color:#a40000">and&lt;/span> &lt;span style="color:#a40000">automatically&lt;/span> &lt;span style="color:#a40000">resolve&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
@@ -57,4 +57,13 @@ Only a single Slack or Teams channel can be targeted by a Trustgrid channel. How
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a40000">/*&lt;/span> &lt;span style="color:#a40000">A&lt;/span> &lt;span style="color:#a40000">list&lt;/span> &lt;span style="color:#a40000">of&lt;/span> &lt;span style="color:#a40000">alarm&lt;/span> &lt;span style="color:#a40000">filters&lt;/span> &lt;span style="color:#a40000">that&lt;/span> &lt;span style="color:#a40000">matched&lt;/span> &lt;span style="color:#a40000">the&lt;/span> &lt;span style="color:#a40000">event&lt;/span> &lt;span style="color:#a40000">*/&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;be324011-4bea-4392-a06a-541646decd39&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
+&lt;h3 id="example-formatted-slack-event">Example Formatted Slack Event&lt;/h3>
+&lt;p>Below is an example of a formatted Slack event.
+&lt;figure class="centered-image">
+&lt;img src="formatted-slack-example.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Slack Event
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p></description></item></channel></rss>
