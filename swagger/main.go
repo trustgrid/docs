@@ -703,7 +703,7 @@ func addNodeAPI(api *s.API) {
 	p.Get("List nodes").
 		Permission("nodes::read").
 		Param(s.NewParam("tags", "Comma-separated key:value pairs for tag filtering, e.g., location:Austin,device:Trustgrid", s.P_Query)).
-		Param(s.NewParam("projection", "List of fields to return from the API. Supports nested fields and anything in the Node schema", s.P_Query, s.P_Array, s.P_Schema(projection))).
+		Param(s.NewParam("projection", "List of fields to return from the API. Supports nested fields and anything in the Node schema", s.P_Query, s.P_Schema(projection))).
 		Response(200, "OK", s.NewArraySchema(node))
 
 	p = p.PathParam(params.nodeID)
