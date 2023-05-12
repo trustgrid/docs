@@ -520,7 +520,7 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;ul>
 &lt;li>vSphere 6.7 or newer (with VMWare support)&lt;/li>
 &lt;/ul>
-&lt;h2 id="configuration-requirements">Configuration Requirements&lt;/h2>
+&lt;h2 id="configuration-best-practices">Configuration Best Practices&lt;/h2>
 &lt;h3 id="backups">Backups&lt;/h3>
 &lt;p>Trustgrid recommends against backing up virtualized Nodes. Backups that utilize VMware&amp;rsquo;s Data Protection API will initiate a VM Snapshot that will pause all traffic through the VM for a short period of time. This can cause issues such as master failover in a cluster and disruption of existing network flows.&lt;/p>
 &lt;p>In place of backups Trustgrid recommends deploying clustered nodes on different ESX hosts if possible. Nodes can be redeployed and rapidly configured as the configuration is stored in our cloud management system.&lt;/p>
