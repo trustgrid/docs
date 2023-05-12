@@ -14,7 +14,7 @@ title: "Deploy to vSphere"
 
 * vSphere 6.7 or newer (with VMWare support)
 
-## Configuration Requirements
+## Configuration Best Practices
 
 ### Backups
 
