@@ -9,7 +9,6 @@ weight: 1
 ZTNA Applications are managed by clicking the `Applications` link on the left nav bar.
 
 ![img](apps1.png)
-![img](apps2.png)
 
 Trustgrid provides several ZTNA application types that allow remote access to internal resources through a continuously validated connection.
 
