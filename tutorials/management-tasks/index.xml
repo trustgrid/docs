@@ -110,7 +110,7 @@ The Trustgrid API refers to this state via the &lt;code>status&lt;/code> attribu
 &lt;li>For clustered nodes:
 &lt;ul>
 &lt;li>Upgrade the standby node&lt;/li>
-&lt;li>Change the standby node to be the &lt;a href="https://docs.trustgrid.io/docs/clusters/#configured-master">configured master/active&lt;/a> and wait it to claim this role.&lt;/li>
+&lt;li>Change the standby node to be the &lt;a href="https://docs.trustgrid.io/docs/clusters/#configured-master">configured master/active&lt;/a> and wait for it to claim this role.&lt;/li>
 &lt;li>Upgrade the new standby node in the cluster&lt;/li>
 &lt;/ul>
 &lt;/li>
