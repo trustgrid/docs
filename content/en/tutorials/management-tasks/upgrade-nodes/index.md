@@ -27,7 +27,7 @@ For details on what this looks like from a network level see the [Node Upgrade P
 * Upgrade nodes regularly to ensure access to the latest features and security updates
 * For clustered nodes:
    * Upgrade the standby node
-   * Change the standby node to be the [configured master/active]({{<ref "/docs/clusters#configured-master">}}) and wait it to claim this role.
+   * Change the standby node to be the [configured master/active]({{<ref "/docs/clusters#configured-master">}}) and wait for it to claim this role.
    * Upgrade the new standby node in the cluster
 * Utilize an [Alert Suppression Window]({{<ref "/docs/alarms/alert-suppression#define-alert-suppression-window">}}) to reduce the number of alarms generated if upgrading many nodes.
 
