@@ -1150,10 +1150,19 @@ Change entry for active member change
 &lt;h4 id="node-container-auth">Node Container Auth&lt;/h4>
 &lt;p>Trustgrid nodes authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry.&lt;/p></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/services/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> to define a remote host:port to connect to for layer 4 (L4) connectivity.&lt;/p>
+&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
-&lt;h4 id="configuration">Configuration&lt;/h4>
-&lt;p>Services are configured under the Networking &amp;gt; Services tab of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
+&lt;h2 id="description">Description&lt;/h2>
+&lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;p>On the local network the &lt;strong>source IP&lt;/strong> will the node&amp;rsquo;s interface IP.&lt;/p>
+&lt;ul>
+&lt;li>If the service is defined on a cluster, the active cluster members IP will be used.&lt;/li>
+&lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
+&lt;/ul>
+&lt;/div>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;p>Services are configured under the Networking &amp;gt; Services panel of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
 &lt;figure class="centered-image">
 &lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
