@@ -2,7 +2,7 @@
 title: Virtual Network Port Forwards
 linkTitle: Port Forwards
 type: docs
-date: 2023-07-05
+date: 2023-07-11
 weight: 35
 ---
 {{% pageinfo %}} Virtual Network Port Forwards allow a virtual IP address to be associated with a [Layer 4 service]({{<ref "docs/nodes/services">}}) on a remote node or cluster without the need to specify a route for that virtual IP address. {{% /pageinfo %}}
