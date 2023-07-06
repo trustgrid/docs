@@ -7,12 +7,20 @@ weight: 19
 ---
 
 {{% pageinfo %}}
-Services are configured in conjunction with [connectors]({{<ref "docs/nodes/connectors" >}}) to define a remote host:port to connect to for layer 4 (L4) connectivity.
+Services are configured in conjunction with [connectors]({{<ref "docs/nodes/connectors" >}}) or [port forwards]({{<ref "docs/nodes/vpn/port-forwarding">}}) to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.
 {{% /pageinfo %}}
 
-#### Configuration
+## Description
+Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined.  Remote clients can then access the service via peer nodes using [connectors]({{<ref "docs/nodes/connectors" >}}) or [VPN port forwards]({{<ref "docs/nodes/vpn/port-forwarding">}}). 
 
-Services are configured under the Networking > Services tab of the node or cluster configuration section in the Trustgrid Portal.
+{{<alert color="info">}}On the local network the **source IP** will the node's interface IP.
+- If the service is defined on a cluster, the active cluster members IP will be used.
+- If the node has multiple interfaces, the source will be the interface that has a matching [interface route]({{<ref "docs/nodes/interfaces#interface-routes">}}) for the target IP.{{</alert>}}
+
+
+## Configuration
+
+Services are configured under the Networking > Services panel of the node or cluster configuration section in the Trustgrid Portal.
 
 {{<tgimg src="service.png" width="40%" caption="Add Service dialogue" alt="Dialogue to add a service with fields for enabled" >}}
 
