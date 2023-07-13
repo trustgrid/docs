@@ -2,7 +2,7 @@
 title: "July 2023 Appliance Release Notes"
 linkTitle: "July 2023"
 type: docs
-date: 2023-07-11
+date: 2023-07-13
 ---
 
 ## New Event Types
