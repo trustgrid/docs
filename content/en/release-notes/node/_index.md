@@ -1,7 +1,7 @@
 ---
-title: 'Node Release Notes'
-linkTitle: 'Node Release Notes'
+title: 'Node Appliance Release Notes'
+linkTitle: 'Node Appliance Release Notes'
 type: blog
 description: >
-    Release notes related to the Trustgrid Node software
+    Release notes related to the Trustgrid Node Appliance
 ---
