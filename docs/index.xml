@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Documentation</title><link>https://docs.trustgrid.io/docs/</link><description>Recent content in Documentation on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting-Started: Customer Responsibilities</title><link>https://docs.trustgrid.io/getting-started/security/customer-responsibilities/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/security/customer-responsibilities/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Documentation</title><link>https://docs.trustgrid.io/docs/</link><description>Recent content in Documentation on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 11 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting-Started: Customer Responsibilities</title><link>https://docs.trustgrid.io/getting-started/security/customer-responsibilities/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/security/customer-responsibilities/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid and our customers share the responsibilities of securing the Trustgrid network. Trustgrid assumes and automates a significant part of the overall security challenges. These challenges range from the cloud to the firmware on hardware appliances. Our customers are responsible for securing physical environments, identity and access management, and all security aspects of the environments where Trustgrid is installed.&lt;/p>
 &lt;/div>
@@ -1665,7 +1665,45 @@ Example of a saved route
 &lt;li>Update the destination device. (e.g. in the below you would switch from edge to edge-dr).
 &lt;img src="update-destination.png" alt="Update Destination">&lt;/li>
 &lt;li>Click save.&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
+&lt;/ol></description></item><item><title>Docs: Virtual Network Port Forwards</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+Virtual Network Port Forwards allow a virtual IP address to be associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">Layer 4 service&lt;/a> on a remote node or cluster without the need to specify a route for that virtual IP address.
+&lt;/div>
+&lt;figure class="centered-image">
+&lt;img src="remote-port-forward.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Virtual Network Port Forward
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="description">Description&lt;/h2>
+&lt;p>As noted above, a Virtual Network Port Forward (or remote port forward) associates a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> defined on a node or cluster with a virtual IP address within the virtual network without needing to specifically &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">route&lt;/a> that IP to the node/cluster.&lt;/p>
+&lt;p>Any node attached to the virtual network that receives VPN traffic destined for the configure IP and port will proxy the connection and send the traffic to the target node which will then send the traffic to the IP and port configured for the target service.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="virtual-ip-address">
+&lt;th>Virtual IP Address&lt;/th>
+&lt;td>Virtual IP address assigned to the port forward.&lt;/td>
+&lt;/tr>
+&lt;tr id="virtual-port">
+&lt;th>Virtual Port&lt;/th>
+&lt;td>TCP port on which the port forward will listen for connections.&lt;/td>
+&lt;/tr>
+&lt;tr id="destination-node">
+&lt;th>Destination Node&lt;/th>
+&lt;td>Node or Cluster where the target &lt;strong>service&lt;/strong> is defined.&lt;/td>
+&lt;/tr>
+&lt;tr id="destination-service">
+&lt;th>Destination Service&lt;/th>
+&lt;td>Service that traffic for the &lt;strong>virtual IP&lt;/strong> and &lt;strong>virtual port&lt;/strong> will be forwarded to.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>An access policy is a list of rules that each allow, reject, or drop traffic at the VPN level.&lt;/p>
 &lt;/div>
@@ -2093,7 +2131,48 @@ cl2WAN ==> ISP2([ISP 2])
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
 style cluster fill:#c8c8c8
-&lt;/div></description></item><item><title>Release-Notes: May 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</link><pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</guid><description>
+&lt;/div></description></item><item><title>Release-Notes: July 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/july-2023/</link><pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/july-2023/</guid><description>
+&lt;h2 id="new-event-types">New Event Types&lt;/h2>
+&lt;p>Several new &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">event types&lt;/a> are generated with this version of the node appliance software.&lt;/p>
+&lt;h3 id="dns-failure">DNS Failure&lt;/h3>
+&lt;p>If the node is unable to resolve DNS via its configured DNS servers it will generate a DNS Resolution error event.
+&lt;figure class="centered-image">
+&lt;img src="dns-event.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example DNS resolution events
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="interface-down-notification">Interface Down Notification&lt;/h3>
+&lt;p>This event is triggered when any configured interface&amp;rsquo;s link state goes from UP to DOWN.
+&lt;figure class="centered-image">
+&lt;img src="interface-event.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Interface health events
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="trustgrid-unhealthy-stop-notification">Trustgrid Unhealthy Stop Notification&lt;/h3>
+&lt;p>This event is triggered if the Trustgrid service fails to stop completely prior to the most recent start. This could indicate a hard power cycle event or something caused the Trustgrid service to halt unexpectedly.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="trustgrid-crash.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Node Stop Error
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="cluster-health-events">Cluster Health Events&lt;/h3>
+&lt;p>The following cluster health related events are now available and will now resolve themselves once the triggering condition clears.&lt;/p>
+&lt;ul>
+&lt;li>Network Health Check&lt;/li>
+&lt;li>Data and Control Plane Disruption&lt;/li>
+&lt;/ul>
+&lt;h2 id="virtual-network-port-forwards">Virtual Network Port Forwards&lt;/h2>
+&lt;p>Port forwards allow mapping a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">layer 4 service&lt;/a> to a virtual IP address in a Trustgrid &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">layer 3 virtual network&lt;/a>. Prior to this release, port forwards could only be defined at the node or cluster level and this required an additional virtual network route to be defined to send the virtual IP traffic to the correct node or cluster.&lt;/p>
+&lt;p>The new &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/">Virtual Network Port Forward&lt;/a> feature combines the route and port forward configuration and consolidates the definition to the virtual network level.&lt;/p>
+&lt;h2 id="layer-4-health-checks-deprecated">Layer 4 Health Checks Deprecated&lt;/h2>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">layer 4 service&lt;/a> historically had an option to perform a health check where a connection attempt was made once per minute to the configured IP and port. If this was configured on a cluster, the member nodes would mark themselves unhealthy if the connection failed. Since this was usually caused by an issue with the local network or target server, this frequently led to both nodes being marked as unhealthy and taking the cluster offline. As this feature was rarely used and caused more issues than it solved we have removed this it from this version of the node software. If this was previously configured on a service the setting will be ignored.&lt;/p>
+&lt;h2 id="support-for-requiring-imdsv2-on-aws-ec2-instances">Support for requiring IMDSv2 on AWS EC2 Instances.&lt;/h2>
+&lt;p>The AWS Instance Metadata Service (IMDS) provides information about the EC2 instance that the Trustgrid service queries to enable certain features. Some potential security issues were identified in the IMDSv1 version of this service and AWS recommends &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-existing-instances.html#modify-require-IMDSv2">requiring IMDSv2&lt;/a> going forward. This version of the Trustgrid node software is confirmed to be fully compatible with IMDSv2-only instances.&lt;/p></description></item><item><title>Release-Notes: May 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</link><pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</guid><description>
 &lt;p>This minor release fixes the following issues:&lt;/p>
 &lt;h2 id="issues-fixed">Issues Fixed&lt;/h2>
 &lt;ul>
@@ -2319,152 +2398,4 @@ The &lt;code>portal::access&lt;/code> must be applied with Resource scope of &lt
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>&lt;img src="criteria.png" alt="img">&lt;/p></description></item><item><title>Docs: RDP App</title><link>https://docs.trustgrid.io/docs/applications/rdp-app/</link><pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/applications/rdp-app/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>A RDP app is a ZTNA application that allows remote access to an internal RDP server. RDP servers can be hosted internally but exposed to authorized users.&lt;/p>
-&lt;/div>
-&lt;h4 id="general">General&lt;/h4>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="name">
-&lt;th>Name&lt;/th>
-&lt;td>app name&lt;/td>
-&lt;/tr>
-&lt;tr id="description">
-&lt;th>Description&lt;/th>
-&lt;td>app description&lt;/td>
-&lt;/tr>
-&lt;tr id="icon">
-&lt;th>Icon&lt;/th>
-&lt;td>the application&amp;rsquo;s icon (optional) to show in the application dashboard&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h4 id="connectivity">Connectivity&lt;/h4>
-&lt;ul>
-&lt;li>
-&lt;p>Connectivity type:&lt;/p>
-&lt;ul>
-&lt;li>local to gateway - the application is hosted on the same network as the gateway&lt;/li>
-&lt;li>remote node - the application is hosted on an edge node&amp;rsquo;s network&lt;/li>
-&lt;li>virtual network - the application is accessible over the Trustgrid virtual network from the ZTNA gateway&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>ZTNA Gateway - the ZTNA gateway node that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Destination Node - only available if connectivity type is Remote Node. The edge node with access to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>VRF - only available if connectivity type is Remote Node. The VRF used to connect to the application.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Internal server hostname or IP - the internal hostname or IP address of the RDP server and port number&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual Network - only available if connectivity type is Virtual Network. The virtual network that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Client Virtual IP - only available if connectivity type is Virtual Network -defaults to the virtual management IP of the ZTNA gateway if it exists. The source virtual IP address that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual server hostname or IP - only available if connectifity type is Virtual Network. The destination virtual IP address and port number that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h4 id="security">Security&lt;/h4>
-&lt;ul>
-&lt;li>Identity Provider - the &lt;a href="https://docs.trustgrid.io/docs/idps/">Identity Provider&lt;/a> to authenticate users&lt;/li>
-&lt;/ul>
-&lt;ol>
-&lt;li>Click &lt;code>Add Application&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="add-app.png" alt="img">&lt;/p>
-&lt;ol start="2">
-&lt;li>Click the &lt;code>Remote Desktop - RDP&lt;/code> option&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="rdp.png" alt="img">&lt;/p>
-&lt;ol start="3">
-&lt;li>Fill out all details in the sheet provided, then click &lt;code>Save&lt;/code> when satisfied with the information entered&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="rdp-app1.png" alt="img">&lt;/p></description></item><item><title>Docs: SSH App</title><link>https://docs.trustgrid.io/docs/applications/ssh-app/</link><pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/applications/ssh-app/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>A SSH app is a ZTNA application that allows remote access to internal SSH servers. SSH servers can be hosted internally but exposed to authorized users.&lt;/p>
-&lt;/div>
-&lt;h2 id="general">General&lt;/h2>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="name">
-&lt;th>Name&lt;/th>
-&lt;td>app name&lt;/td>
-&lt;/tr>
-&lt;tr id="description">
-&lt;th>Description&lt;/th>
-&lt;td>app description&lt;/td>
-&lt;/tr>
-&lt;tr id="icon">
-&lt;th>Icon&lt;/th>
-&lt;td>the application&amp;rsquo;s icon (optional) to show in the application dashboard&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="connectivity">Connectivity&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>Connectivity type:&lt;/p>
-&lt;ul>
-&lt;li>local to gateway - the application is hosted on the same network as the gateway&lt;/li>
-&lt;li>remote node - the application is hosted on an edge node&amp;rsquo;s network&lt;/li>
-&lt;li>virtual network - the application is accessible over the Trustgrid virtual network from the ZTNA gateway&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>ZTNA Gateway - the ZTNA gateway node that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Destination Node - only available if connectivity type is Remote Node. The edge node with access to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>VRF - only available if connectivity type is Remote Node. The VRF used to connect to the application.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Internal server hostname or IP - the internal hostname or IP address of the SSH server and port number&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual Network - only available if connectivity type is Virtual Network. The virtual network that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Client Virtual IP - only available if connectivity type is Virtual Network -defaults to the virtual management IP of the ZTNA gateway if it exists. The source virtual IP address that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual server hostname or IP - only available if connectifity type is Virtual Network. The destination virtual IP address and port number that will be used to connect to the application&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="security">Security&lt;/h2>
-&lt;ul>
-&lt;li>Identity Provider - the &lt;a href="https://docs.trustgrid.io/docs/idps/">Identity Provider&lt;/a> to authenticate users&lt;/li>
-&lt;/ul>
-&lt;ol>
-&lt;li>Click &lt;code>Add Application&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="add-app.png" alt="img">&lt;/p>
-&lt;ol start="2">
-&lt;li>Click the &lt;code>Secure Shell&lt;/code> option&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="shh.png" alt="img">&lt;/p>
-&lt;ol start="3">
-&lt;li>Fill out all details in the sheet provided, then click &lt;code>Save&lt;/code> when satisfied with the information entered&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="shh-app.png" alt="img">&lt;/p></description></item></channel></rss>
+&lt;p>&lt;img src="criteria.png" alt="img">&lt;/p></description></item></channel></rss>

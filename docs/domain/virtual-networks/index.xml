@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><description>Recent content in Virtual Networks on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 28 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/domain/virtual-networks/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><description>Recent content in Virtual Networks on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 11 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/domain/virtual-networks/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A network object allows naming a CIDR inside a VPN for easier rule management.&lt;/p>
 &lt;/div>
@@ -188,7 +188,45 @@ Example of a saved route
 &lt;li>Update the destination device. (e.g. in the below you would switch from edge to edge-dr).
 &lt;img src="update-destination.png" alt="Update Destination">&lt;/li>
 &lt;li>Click save.&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
+&lt;/ol></description></item><item><title>Docs: Virtual Network Port Forwards</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+Virtual Network Port Forwards allow a virtual IP address to be associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">Layer 4 service&lt;/a> on a remote node or cluster without the need to specify a route for that virtual IP address.
+&lt;/div>
+&lt;figure class="centered-image">
+&lt;img src="remote-port-forward.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Virtual Network Port Forward
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="description">Description&lt;/h2>
+&lt;p>As noted above, a Virtual Network Port Forward (or remote port forward) associates a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> defined on a node or cluster with a virtual IP address within the virtual network without needing to specifically &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">route&lt;/a> that IP to the node/cluster.&lt;/p>
+&lt;p>Any node attached to the virtual network that receives VPN traffic destined for the configure IP and port will proxy the connection and send the traffic to the target node which will then send the traffic to the IP and port configured for the target service.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="virtual-ip-address">
+&lt;th>Virtual IP Address&lt;/th>
+&lt;td>Virtual IP address assigned to the port forward.&lt;/td>
+&lt;/tr>
+&lt;tr id="virtual-port">
+&lt;th>Virtual Port&lt;/th>
+&lt;td>TCP port on which the port forward will listen for connections.&lt;/td>
+&lt;/tr>
+&lt;tr id="destination-node">
+&lt;th>Destination Node&lt;/th>
+&lt;td>Node or Cluster where the target &lt;strong>service&lt;/strong> is defined.&lt;/td>
+&lt;/tr>
+&lt;tr id="destination-service">
+&lt;th>Destination Service&lt;/th>
+&lt;td>Service that traffic for the &lt;strong>virtual IP&lt;/strong> and &lt;strong>virtual port&lt;/strong> will be forwarded to.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>An access policy is a list of rules that each allow, reject, or drop traffic at the VPN level.&lt;/p>
 &lt;/div>

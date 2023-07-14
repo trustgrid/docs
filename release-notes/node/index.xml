@@ -1,1 +1,42 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Release Notes on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 13 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/july-2023/</link><pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/july-2023/</guid><description>
+&lt;h2 id="new-event-types">New Event Types&lt;/h2>
+&lt;p>Several new &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">event types&lt;/a> are generated with this version of the node appliance software.&lt;/p>
+&lt;h3 id="dns-failure">DNS Failure&lt;/h3>
+&lt;p>If the node is unable to resolve DNS via its configured DNS servers it will generate a DNS Resolution error event.
+&lt;figure class="centered-image">
+&lt;img src="dns-event.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example DNS resolution events
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="interface-down-notification">Interface Down Notification&lt;/h3>
+&lt;p>This event is triggered when any configured interface&amp;rsquo;s link state goes from UP to DOWN.
+&lt;figure class="centered-image">
+&lt;img src="interface-event.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Interface health events
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="trustgrid-unhealthy-stop-notification">Trustgrid Unhealthy Stop Notification&lt;/h3>
+&lt;p>This event is triggered if the Trustgrid service fails to stop completely prior to the most recent start. This could indicate a hard power cycle event or something caused the Trustgrid service to halt unexpectedly.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="trustgrid-crash.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Node Stop Error
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="cluster-health-events">Cluster Health Events&lt;/h3>
+&lt;p>The following cluster health related events are now available and will now resolve themselves once the triggering condition clears.&lt;/p>
+&lt;ul>
+&lt;li>Network Health Check&lt;/li>
+&lt;li>Data and Control Plane Disruption&lt;/li>
+&lt;/ul>
+&lt;h2 id="virtual-network-port-forwards">Virtual Network Port Forwards&lt;/h2>
+&lt;p>Port forwards allow mapping a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">layer 4 service&lt;/a> to a virtual IP address in a Trustgrid &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">layer 3 virtual network&lt;/a>. Prior to this release, port forwards could only be defined at the node or cluster level and this required an additional virtual network route to be defined to send the virtual IP traffic to the correct node or cluster.&lt;/p>
+&lt;p>The new &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/">Virtual Network Port Forward&lt;/a> feature combines the route and port forward configuration and consolidates the definition to the virtual network level.&lt;/p>
+&lt;h2 id="layer-4-health-checks-deprecated">Layer 4 Health Checks Deprecated&lt;/h2>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">layer 4 service&lt;/a> historically had an option to perform a health check where a connection attempt was made once per minute to the configured IP and port. If this was configured on a cluster, the member nodes would mark themselves unhealthy if the connection failed. Since this was usually caused by an issue with the local network or target server, this frequently led to both nodes being marked as unhealthy and taking the cluster offline. As this feature was rarely used and caused more issues than it solved we have removed this it from this version of the node software. If this was previously configured on a service the setting will be ignored.&lt;/p>
+&lt;h2 id="support-for-requiring-imdsv2-on-aws-ec2-instances">Support for requiring IMDSv2 on AWS EC2 Instances.&lt;/h2>
+&lt;p>The AWS Instance Metadata Service (IMDS) provides information about the EC2 instance that the Trustgrid service queries to enable certain features. Some potential security issues were identified in the IMDSv1 version of this service and AWS recommends &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-existing-instances.html#modify-require-IMDSv2">requiring IMDSv2&lt;/a> going forward. This version of the Trustgrid node software is confirmed to be fully compatible with IMDSv2-only instances.&lt;/p></description></item></channel></rss>

@@ -492,7 +492,7 @@ Example of a saved route
 &lt;td>The target node to measure the latency to. Each node will measure the latency to the target node.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/</guid><description>
+&lt;/table></description></item><item><title>Docs: Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Virtual networks define an overlay network and routes for layer 3 connectivity. Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> are then assigned to networks. Virtual network overlays work similarly to Amazon&amp;rsquo;s VPCs but can span between clouds, data centers, and the edge.&lt;/p>
 &lt;/div>

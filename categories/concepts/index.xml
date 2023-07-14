@@ -318,7 +318,7 @@ Example of a saved route
 &lt;p>After making changes to a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>, you can review outstanding changes. A list of changes will show who made each change, with a before/after table if appropriate.&lt;/p>
 &lt;p>&lt;img src="outstanding-changes.png" alt="img">&lt;/p>
 &lt;p>Individual changes can be rejected by clicking the delete icon at the top.&lt;/p>
-&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Docs: Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/</guid><description>
+&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Docs: Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Virtual networks define an overlay network and routes for layer 3 connectivity. Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> are then assigned to networks. Virtual network overlays work similarly to Amazon&amp;rsquo;s VPCs but can span between clouds, data centers, and the edge.&lt;/p>
 &lt;/div>
