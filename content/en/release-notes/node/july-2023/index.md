@@ -4,6 +4,8 @@ linkTitle: "July 2023"
 type: docs
 date: 2023-07-13
 ---
+{{< node-release package-version="1.5.20230712-1762" core-version="20230712-200223.7cced96" release="n-2.16.0" >}}
+
 
 ## New Event Types
 Several new [event types]({{<ref "docs/alarms/event-types">}}) are generated with this version of the node appliance software.
