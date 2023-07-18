@@ -1,0 +1,20 @@
+{{ $packageVersion := .Get "package-version" }}
+{{ $coreVersion := .Get "core-version" }}
+{{ $release := .Get "release" }}
+
+<table style="margin: 0 auto;">
+  <thead>
+    <tr>
+      <th>Package Version</th>
+      <th>Core Version</th>
+      <th>Release</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ $packageVersion }}</td>
+      <td>{{ $coreVersion }}</td>
+      <td>{{ $release }}</td>
+    </tr>
+  </tbody>
+</table>
