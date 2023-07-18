@@ -13,7 +13,7 @@ Anything that can be done in the Trustgrid Portal can be done with the API (exce
 
 To query the API for all nodes, for example, you could run:
 
-curl -H "Authorization: trustgrid-token YOUR-CLIENT-ID:YOUR-CLIENT-SECRET" https://api.trustgrid.io/node
+`curl -H "Authorization: trustgrid-token YOUR-CLIENT-ID:YOUR-CLIENT-SECRET" https://api.trustgrid.io/node`
 
 In the [API documentation](https://portal.trustgrid.io/api-docs/), clicking `Authorize` at the top right will prompt for the API header.
 
