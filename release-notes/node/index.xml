@@ -1,4 +1,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 13 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/july-2023/</link><pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/july-2023/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20230712-1762&lt;/td>
+&lt;td>20230712-200223.7cced96&lt;/td>
+&lt;td>n-2.16.0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h2 id="new-event-types">New Event Types&lt;/h2>
 &lt;p>Several new &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">event types&lt;/a> are generated with this version of the node appliance software.&lt;/p>
 &lt;h3 id="dns-failure">DNS Failure&lt;/h3>
