@@ -4550,6 +4550,7 @@ securityDefinitions:
     type: apiKey
     name: Authorization
     in: header
+    description: An API key, as documented https://docs.trustgrid.io/docs/user-management/api-access/
 
 security:
   - JWTAuthorizer: []
