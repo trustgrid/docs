@@ -232,9 +232,17 @@ ii. If the browser says it cannot connect this indicates a firewall or routing i
 &lt;/ul>
 &lt;h3 id="determine-connectivity-status-of-the-trustgrid-node">Determine Connectivity Status of the Trustgrid Node&lt;/h3>
 &lt;p>Because Trustgrid provides independent control and data planes, there are a few ways it can manifest as “down”:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
 &lt;tr id="control-plane-down">
 &lt;th>Control Plane Down&lt;/th>
-&lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears offline from within the Trustgrid portal. This indicates that the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> shutdown or has not sent a heartbeat notification to Trustgrid within the past 10 minutes.&lt;/td>
+&lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears offline from within the Trustgrid portal. This indicates that the &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/control-plane-disconnect/">node is disconnected&lt;/a> from the control plane either because it has shutdown or has been unable to send a heartbeat notification to Trustgrid within the past 10 minutes.&lt;/td>
 &lt;/tr>
 &lt;tr id="data-plane-down">
 &lt;th>Data Plane Down&lt;/th>
@@ -243,7 +251,9 @@ ii. If the browser says it cannot connect this indicates a firewall or routing i
 &lt;tr id="both-control-and-data-plane-down">
 &lt;th>Both Control and Data Plane Down&lt;/th>
 &lt;td>In this situation the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears down in the Trustgrid Portal and users/applications are unable to reach services across the data plane between the Gateway and Edge sites. This is the most common scenario. While the Data Plane is most critical for the services provided across the device, first priority should be restoring the Control Plane connection so that additional troubleshooting tools are available. Often this process also uncovers the reason the data plane is down.&lt;/td>
-&lt;/tr></description></item><item><title>Tutorials: Site Failover</title><link>https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/</guid><description>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Tutorials: Site Failover</title><link>https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>The below processes should be used to move traffic between sites in event of a complete site down scenario. This is handled by the Virtual Network Route Table.&lt;/p>
 &lt;/div>
