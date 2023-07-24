@@ -59,12 +59,13 @@ id = "UA-99793053-3"
 # Language configuration
 
 [languages]
-[languages.en]
-title = ""
-description = "Trustgrid Network Device and API documentation"
-languageName ="English"
-# Weight used for sorting.
-weight = 1
+  [languages.en]
+  title = ""
+  languageName ="English"
+  # Weight used for sorting.
+  weight = 1
+  [languages.en.params]
+    description = "Trustgrid Network Device and API documentation"
 
 [markup]
   [markup.goldmark]
