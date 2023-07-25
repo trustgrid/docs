@@ -47,9 +47,13 @@ A new [BGP Status tool]({{<ref "/docs/nodes/bgp#bgp-status">}}) has been added t
 ## Flow Logs Advanced Search Improvement
 The [flow logs advanced search]({{<ref "/help-center/flow-logs#advanced-search">}}) now allows selecting clusters as the source or destination nodes.  This enables search for flows that were sent to or received from a cluster, rather than individual nodes.
 
+## Trustgrid Resource Names (TGRN) in Infovisor
+When creating [Resource Scoped Policies]({{<ref "/docs/user-management/policies#resource-scoped-policies">}}) to limit a user's visibility to specific nodes or clusters you specify resources using Trustgrid Resource Names (TGRNs). Prior to this release it was necessary to generate the TGRN for by combining the common prefix with the node's UID.  With this release the TGRN is available in the node's [Infovisor]({{<ref "/docs/nodes/infovisor">}}) panel with a button to easily copy the TGRN into your clipboard. 
+
+{{<tgimg src="infovisor-tgrn.png" caption="Copy TGRN field on Infovisor" width="70%" >}}
+
 ## Other Notable Fixes
 The below issues have been resolved in this release:
 
 * Adding and saving multiple tags use to frequently lead to an error that caused an endless status spinner and would fail to save one or more of the tags. 
-* Overview graphs were not aggregating statistics correctly for view of 6 hours or longer.
-* 
+* Overview graphs were not aggregating statistics correctly for view of 6 hours or longer.* 
