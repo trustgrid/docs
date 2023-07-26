@@ -2,7 +2,7 @@
 title: July 2023 Release Notes
 linkTitle: 'July 2023 Release'
 type: docs
-date: 2023-07-31
+date: 2023-07-26
 description: July Release focusing on general improvements and fixes
 ---
 
