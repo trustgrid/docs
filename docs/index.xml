@@ -38,7 +38,271 @@
 &lt;p>Node audits can be viewed for a specific node by navigating to &lt;code>Audits&lt;/code> under the &lt;code>History&lt;/code> section on the node view.&lt;/p>
 &lt;p>Users will need &lt;code>audits::read:node&lt;/code> permissions to view node audits.&lt;/p>
 &lt;p>&lt;img src="node-list.png" alt="img">&lt;/p>
-&lt;p>Node audits can also be found for the entire organization by navigating to &lt;code>Operations&lt;/code>-&amp;gt;&lt;code>Node Audits&lt;/code>.&lt;/p></description></item><item><title>Getting-Started: Trustgrid's Access to Nodes</title><link>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</guid><description>
+&lt;p>Node audits can also be found for the entire organization by navigating to &lt;code>Operations&lt;/code>-&amp;gt;&lt;code>Node Audits&lt;/code>.&lt;/p></description></item><item><title>Docs: BGP</title><link>https://docs.trustgrid.io/docs/nodes/bgp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/bgp/</guid><description>
+&lt;h2 id="summary">Summary&lt;/h2>
+&lt;p>Trustgrid nodes can be configured to connect to an external BGP router to advertise and receive routes. This allows Trustgrid networks to be integrated into an existing routing fabric.&lt;/p>
+&lt;p>The BGP panel is listed under the Network panel group.&lt;/p>
+&lt;h2 id="configuration">Configuration&lt;/h2>
+&lt;h3 id="router-configuration">Router Configuration&lt;/h3>
+&lt;p>These are the settings used by the local BGP router.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="status">
+&lt;th>Status&lt;/th>
+&lt;td>Enabled/Disabled - Whether the BGP server is running on the node.&lt;/td>
+&lt;/tr>
+&lt;tr id="id">
+&lt;th>ID&lt;/th>
+&lt;td>The IP addressed used to identify the BGP router. This is usually the IP on the interface used for BGP communication.&lt;/td>
+&lt;/tr>
+&lt;tr id="asn">
+&lt;th>ASN&lt;/th>
+&lt;td>The Autonomous System Number that identifies the router.&lt;/td>
+&lt;/tr>
+&lt;tr id="client">
+&lt;th>Client&lt;/th>
+&lt;td>Determines if the BGP router is in client mode&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;figure class="centered-image">
+&lt;img src="bgp-config.png" alt="table with BGP router settings" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+BGP router settings
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="peer-group-configuration">Peer Group Configuration&lt;/h3>
+&lt;p>This page is used to configure BGP peers that this router will establish connections with. All peers associated with the group share the same Export and Import settings.&lt;/p>
+&lt;p>To add a new group:&lt;/p>
+&lt;ol>
+&lt;li>Click &lt;strong>+Add Peer Group&lt;/strong> and provide a name.&lt;/li>
+&lt;li>Click Add.
+&lt;figure class="centered-image">
+&lt;img src="add-peer-group.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add Peer Group button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;p>After your group is created you will need to:&lt;/p>
+&lt;ul>
+&lt;li>Add peers - these are the other BGP routers your node will connect to&lt;/li>
+&lt;li>Define import policies - these limit what routes are accepted from peers&lt;/li>
+&lt;li>Define export policies - these limit what routes are advertised to peers&lt;/li>
+&lt;/ul>
+&lt;h4 id="add-peers">Add Peers&lt;/h4>
+&lt;p>Use the &lt;strong>+Add Peer&lt;/strong> button to add a BGP peer to the group. Provide:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>User friendly name for the peer&lt;/td>
+&lt;/tr>
+&lt;tr id="asn">
+&lt;th>ASN&lt;/th>
+&lt;td>The Autonomous System Number that identifies the peer identifies itself with&lt;/td>
+&lt;/tr>
+&lt;tr id="secret">
+&lt;th>Secret&lt;/th>
+&lt;td>(Optional) Secret passphrase used to authenticate with the peer&lt;/td>
+&lt;/tr>
+&lt;tr id="ip">
+&lt;th>IP&lt;/th>
+&lt;td>IP address that the peer can be reached at&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;figure class="centered-image">
+&lt;img src="add-peer.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Add Peer Dialog
+&lt;/figcaption>
+&lt;/figure>
+&lt;h4 id="define-import-policies">Define Import Policies&lt;/h4>
+&lt;p>The BGP server on the node will only accept routes advertised by peers if they match an import policy prefix.&lt;/p>
+&lt;p>On the Imports panel use the &lt;strong>+Add Import Policy&lt;/strong> button to add a new policy.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>The user friendly name of the policy&lt;/td>
+&lt;/tr>
+&lt;tr id="action">
+&lt;th>Action&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>Allow - advertised routes matching the defined prefixes will be added to the local routing table&lt;/li>
+&lt;li>Deny - advertised routes matching the defined prefixes prefixes will be rejected&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>(optional) Additional information describing the policy&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Click on the newly created policy to &lt;strong>+Add Prefix&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="prefix">
+&lt;th>Prefix&lt;/th>
+&lt;td>CIDR notation of a network used to match with advertised routes&lt;/td>
+&lt;/tr>
+&lt;tr id="exact">
+&lt;th>Exact&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>Yes - Requires the advertised route to match the subnet length of the prefix defined above&lt;/li>
+&lt;li>No - Allows routes with the same network but have different prefix lengths to match&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>(optional) Additional information describing the prefix&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="define-export-policies">Define Export Policies&lt;/h4>
+&lt;p>A BGP export policy controls which routes are advertised and sent to external BGP peers.&lt;/p>
+&lt;p>One the Exports panel use the &lt;strong>+Add Export Policy&lt;/strong> to create a new policy&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>The user friendly name of the policy&lt;/td>
+&lt;/tr>
+&lt;tr id="cluster">
+&lt;th>Cluster&lt;/th>
+&lt;td>(Yes/No) If the node is a member of a cluster this setting will determine if it should only advertise the configured prefixes when it is the active member of the cluster.&lt;/td>
+&lt;/tr>
+&lt;tr id="action">
+&lt;th>Action&lt;/th>
+&lt;td>&lt;p>Determines if matching route prefixes will be advertised or not:&lt;/p>
+&lt;ul>
+&lt;li>Allow - Configured prefixes will be advertised to the peer group members&lt;/li>
+&lt;li>Deny - Explicitly prevent prefixes from being advertised&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Click the newly created policy and then click &lt;strong>+Add Prefix&lt;/strong>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="prefix">
+&lt;th>Prefix&lt;/th>
+&lt;td>CIDR notation of a network to be advertised&lt;/td>
+&lt;/tr>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>(optional) Additional information describing the prefix&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="management-tools">Management Tools&lt;/h2>
+&lt;h3 id="restart-bgp-server">Restart BGP Server&lt;/h3>
+&lt;p>
+&lt;figure class="centered-image">
+&lt;img src="restart-bgp.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Restart BGP button
+&lt;/figcaption>
+&lt;/figure>
+It is sometimes necessary to completely restart the BGP server to clear any issues or force new settings to go into effect immediately. The &lt;strong>Restart BGP&lt;/strong> button is available in the tools section of the BGP panel.&lt;/p>
+&lt;p>Once issued you should see the confirmation message: Restart request sent.
+&lt;figure class="centered-image">
+&lt;img src="restart-bgp-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+BGP Restart Confirmation
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="bgp-status">BGP Status&lt;/h3>
+&lt;figure class="centered-image">
+&lt;img src="bgp-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+BGP Status button
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The BGP Status tool allows you to see information about the state of BGP peering.&lt;/p>
+&lt;p>
+&lt;figure class="centered-image">
+&lt;img src="bgp-status-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+BGP Status Output
+&lt;/figcaption>
+&lt;/figure>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="status">
+&lt;th>Status&lt;/th>
+&lt;td>Shows if the peer is actively connected or not&lt;/td>
+&lt;/tr>
+&lt;tr id="connected">
+&lt;th>Connected&lt;/th>
+&lt;td>If connected, shows how long the peering has been established&lt;/td>
+&lt;/tr>
+&lt;tr id="asn">
+&lt;th>ASN&lt;/th>
+&lt;td>The Autonomous System Number that identifies the router&lt;/td>
+&lt;/tr>
+&lt;tr id="peer-ip">
+&lt;th>Peer IP&lt;/th>
+&lt;td>The IP address of the peer router&lt;/td>
+&lt;/tr>
+&lt;tr id="advertised-routes">
+&lt;th>Advertised Routes&lt;/th>
+&lt;td>Lists the routes being advertised to the peer router&lt;/td>
+&lt;/tr>
+&lt;tr id="recieved-routes">
+&lt;th>Recieved Routes&lt;/th>
+&lt;td>Hovering over the view button displays the routes received from the peer and their associated metrics&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/p></description></item><item><title>Getting-Started: Trustgrid's Access to Nodes</title><link>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</guid><description>
 &lt;p>By default, Trustgrid support has access to all &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> via the Control Plane, subject to Trustgrid policies and procedures. Trustgrid customers may opt to disallow Trustgrid support access to their &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>. Disabling support access does not interfere with automated management features such as patching, updating, logging, or authentication.&lt;/p>
 &lt;p>Changes to the support flag are audited.&lt;/p></description></item><item><title>Release-Notes: February</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2022/february/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2022/february/</guid><description>
 &lt;h2 id="data-plane-status-panel">Data Plane Status Panel&lt;/h2>
@@ -356,6 +620,27 @@ Add Connector dialogue
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Data plane statistics between a node and its peers can help troubleshoot connectivity or performance issues.&lt;/p>
 &lt;/div>
+&lt;h2 id="export-list-of-peers">Export List of Peers&lt;/h2>
+&lt;p>You can export a CSV formatted list of all peers by clicking Actions -&amp;gt; Export
+&lt;figure class="centered-image">
+&lt;img src="data-plane-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Export button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>The CSV file will include columns for:&lt;/p>
+&lt;ul>
+&lt;li>Connection status (true/false)&lt;/li>
+&lt;li>Peer name&lt;/li>
+&lt;li>Peer IP&lt;/li>
+&lt;li>Path (if applicable)&lt;/li>
+&lt;li>RTT - Return Trip Time or latency observed when the panel was opened or refreshed&lt;/li>
+&lt;li>Mode - TLS or TLS/UDP&lt;/li>
+&lt;li>Type - The role of the node to peer. SERVER = gateway, CLIENT = edge device&lt;/li>
+&lt;li>Ports - The ports used to establish the connection&lt;/li>
+&lt;/ul>
+&lt;h2 id="view-latency-to-peers">View Latency to Peers&lt;/h2>
 &lt;p>To view latency data between two nodes, select either the edge or gateway node, and then from the peers table, select the node to view.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 Gateway nodes will list edge nodes in their peers table
@@ -678,7 +963,40 @@ Output of Troubleshoot Gateway tool
 &lt;p>It should be noted the accuracy of this information varies between ISPs&lt;/p>
 &lt;h2 id="identity-provider-idp-logins-in-authentication-audits">Identity Provider (IdP) Logins in Authentication Audits&lt;/h2>
 &lt;p>Previously, the logs under the Operations → Authentication Audits only displayed logins using the Trustgrid native authentication provider. If you were using an IdP you would need to review the providers logs to see when users logged in.&lt;/p>
-&lt;p>With this release we now display IdP portal logins the same way native logins are reported.&lt;/p></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/interfaces/</guid><description>
+&lt;p>With this release we now display IdP portal logins the same way native logins are reported.&lt;/p></description></item><item><title>Docs: Infovisor</title><link>https://docs.trustgrid.io/docs/nodes/infovisor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/infovisor/</guid><description>
+&lt;p>The infovisor displays details about the Trustgrid node and can be displayed by clicking the Info button in the top right or hitting the backtick &lt;code>`&lt;/code> key.
+&lt;figure class="centered-image">
+&lt;img src="info-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Button to open Infovisor
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>It contains information such as:&lt;/p>
+&lt;ul>
+&lt;li>Name&lt;/li>
+&lt;li>Control and Data Plane Status&lt;/li>
+&lt;li>Public IP - This is the IP observed by the Trustgrid Control plane as the source IP by traffic from the node&lt;/li>
+&lt;li>Version and Package Version - The Trustgrid software version running on the node&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Enabled / Disabled Status&lt;/a>&lt;/li>
+&lt;li>Device Type&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#trustgrid-resource-names-or-tgrn">TGRN or Trustgrid Resource Name&lt;/a>&lt;/li>
+&lt;li>Upgrade Status&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">Tags&lt;/a>&lt;/li>
+&lt;li>On AWS Nodes additional information is reported based on the metadata service
+&lt;ul>
+&lt;li>Availability Zone&lt;/li>
+&lt;li>Instance ID&lt;/li>
+&lt;li>Instance type&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;figure class="centered-image">
+&lt;img src="infovisor.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example infovisor
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/interfaces/</guid><description>
 &lt;h2 id="network-interfaces">Network Interfaces&lt;/h2>
 &lt;p>Navigate to a node, then select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
 &lt;p>&lt;img src="interfaces.png" alt="Interfaces Page">&lt;/p>
@@ -2131,7 +2449,64 @@ cl2WAN ==> ISP2([ISP 2])
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
 style cluster fill:#c8c8c8
-&lt;/div></description></item><item><title>Release-Notes: July 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/july-2023/</link><pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/july-2023/</guid><description>
+&lt;/div></description></item><item><title>Release-Notes: July 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/july-2023/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/july-2023/</guid><description>
+&lt;h2 id="network-interface-panel-changes">Network Interface Panel Changes&lt;/h2>
+&lt;h3 id="interface-details-copy-all-button">Interface Details Copy All Button&lt;/h3>
+&lt;p>Frequently Trustgrid users need to share the interface configuration information with people who do not have access to the Trustgrid portal. There is now a &lt;strong>Copy All&lt;/strong> button that will load all of these details into your clipboard.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="interface-copy-all.png" alt="Button to copy all interface details" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Copy All button
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Example WAN interface output:&lt;/p>
+&lt;pre tabindex="0">&lt;code>IP: 172.16.11.31/24
+Hardware Address: 00:50:56:8e:03:54
+Gateway: 172.16.11.1
+DNS1: 172.16.11.4
+DNS2: 4.2.2.2
+&lt;/code>&lt;/pre>&lt;h3 id="public-ip-removed-from-wan-interface">Public IP Removed from WAN Interface&lt;/h3>
+&lt;p>The WAN interface used to include a field labeled &amp;ldquo;Public IP&amp;rdquo; that was the IP address the Trustgrid control plane saw as the source IP for traffic from the node. This would be the IP address used on the internet after any NATs where applied.&lt;/p>
+&lt;p>Some users were confused by this IP and believed it was the assigned IP address for the WAN interface which is not always true. Therefore we have removed this from the WAN interface panel.&lt;/p>
+&lt;p>The observed Public IP is still visible in the &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">Infovisor&lt;/a>.&lt;/p>
+&lt;h2 id="data-plane-panel">Data Plane Panel&lt;/h2>
+&lt;h3 id="export-data-plane-peers">Export Data Plane Peers&lt;/h3>
+&lt;p>You can now export a CSV-formatted list of peers from the &lt;a href="https://docs.trustgrid.io/docs/nodes/data-plane/">Data Plane panel&lt;/a>.
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/nodes/data-plane/data-plane-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Export button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="list-gateway-ports">List Gateway Ports&lt;/h3>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/data-plane/">Data Plane Panel&lt;/a> now lists the Gateway Port for each tunnel. This is the port the client node uses to connect to the listed gateway.&lt;/p>
+&lt;p>While this is typically port 8443,, it can be configured differently and having that info visible aids in troubleshooting.&lt;/p>
+&lt;h2 id="bgp-status-tool">BGP Status Tool&lt;/h2>
+&lt;p>A new &lt;a href="https://docs.trustgrid.io/docs/nodes/bgp/#bgp-status">BGP Status tool&lt;/a> has been added to the BGP panel. This tool displays the current BGP peer status including peer connection status, uptime, routes received and advertised, and more.
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/nodes/bgp/bgp-status-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+BGP Status
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="flow-logs-advanced-search-improvement">Flow Logs Advanced Search Improvement&lt;/h2>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/#advanced-search">flow logs advanced search&lt;/a> now allows selecting clusters as the source or destination nodes. This enables search for flows that were sent to or received from a cluster, rather than individual nodes.&lt;/p>
+&lt;h2 id="trustgrid-resource-names-tgrn-in-infovisor">Trustgrid Resource Names (TGRN) in Infovisor&lt;/h2>
+&lt;p>When creating &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#resource-scoped-policies">Resource Scoped Policies&lt;/a> to limit a user&amp;rsquo;s visibility to specific nodes or clusters you specify resources using Trustgrid Resource Names (TGRNs). Prior to this release it was necessary to generate the TGRN for by combining the common prefix with the node&amp;rsquo;s UID. With this release the TGRN is available in the node&amp;rsquo;s &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">Infovisor&lt;/a> panel with a button to easily copy the TGRN into your clipboard.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="infovisor-tgrn.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Copy TGRN field on Infovisor
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="other-notable-fixes">Other Notable Fixes&lt;/h2>
+&lt;p>The below issues have been resolved in this release:&lt;/p>
+&lt;ul>
+&lt;li>Adding and saving multiple tags use to frequently lead to an error that caused an endless status spinner and would fail to save one or more of the tags.&lt;/li>
+&lt;li>Overview graphs were not aggregating statistics correctly for view of 6 hours or longer.*&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: July 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/july-2023/</link><pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/july-2023/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
@@ -2256,162 +2631,4 @@ Example formatted slack event
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
 Example auto-generated WireGuard client configuration
 &lt;/figcaption>
-&lt;/figure></description></item><item><title>Release-Notes: April 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</link><pubDate>Wed, 12 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023-2/</guid><description>
-&lt;h2 id="issues-fixed">Issues Fixed&lt;/h2>
-&lt;p>This minor release fixes the following issues:&lt;/p>
-&lt;ul>
-&lt;li>Network Maps displayed peer nodes as disconnected&lt;/li>
-&lt;li>New Orders could not be created if left open too long before the first save&lt;/li>
-&lt;/ul></description></item><item><title>Release-Notes: April 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/april-2023/</link><pubDate>Tue, 04 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/april-2023/</guid><description>
-&lt;h2 id="documentation">Documentation&lt;/h2>
-&lt;p>Trustgrid is moving away from our documentation previously hosted on Confluence to docs-as-code system at &lt;a href="https://docs.trustgrid.io">https://docs.trustgrid.io&lt;/a>. This should enable us to more tightly integrate the portal UI with related documentation.&lt;/p>
-&lt;p>As a start, we&amp;rsquo;ve created a link called Documentation under the Management section of the main navigation bar that will open the docs in a new tab.&lt;/p>
-&lt;p>Additionally, we&amp;rsquo;ve created a section for release notes that will allow you to monitor release for &lt;a href="https://docs.trustgrid.io/release-notes/cloud/">Control Plane&lt;/a> and &lt;a href="https://docs.trustgrid.io/release-notes/node/">Node&lt;/a> releases via RSS feeds going forward.&lt;/p>
-&lt;h3 id="swagger-api-documentation-move">Swagger API Documentation Move&lt;/h3>
-&lt;p>As part of this change we are moving our API documentation from &lt;a href="https://portal.trustgrid.io/api-docs/">https://portal.trustgrid.io/api-docs/&lt;/a> to &lt;a href="https://docs.trustgrid.io/docs/api/">https://docs.trustgrid.io/docs/api/&lt;/a>. This will allow updating this documentation outside our normal release process.&lt;/p>
-&lt;h2 id="cluster-configuration">Cluster Configuration&lt;/h2>
-&lt;p>Prior to this release it was necessary to navigate to each member node and configure the &lt;a href="https://docs.trustgrid.io/docs/nodes/cluster/#heartbeat">cluster heartbeat&lt;/a> IP and port &lt;strong>after&lt;/strong> it was added to the cluster. In this release a prompt has been added to the &lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#add-members">&amp;ldquo;Add Node&amp;rdquo; flow&lt;/a> that will allow you to configure these settings as part of adding the node to the cluster.&lt;/p>
-&lt;h2 id="data-plane-stats">Data Plane Stats&lt;/h2>
-&lt;p>This release further improves on our recent addition of data plane telemetry information.&lt;/p>
-&lt;ul>
-&lt;li>Show data plane telemetry for offline nodes&lt;/li>
-&lt;li>Show data plane telemetry for connections between public and private gateways&lt;/li>
-&lt;/ul>
-&lt;h2 id="virtual-network-route-table">Virtual Network Route Table&lt;/h2>
-&lt;p>Virtual Network Route Tables can now be sorted by Destination, Destination CIDR or Metric. This can make it much easier to view and understand how routes are configured.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="sorted-routes.png" alt="Table with multiple routes listing their Destination device, Destination CIDR, Metric and Description. Sorted by the destination device." style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Virtual Network Routes sorted by destination
-&lt;/figcaption>
-&lt;/figure>
-&lt;h2 id="container-import">Container Import&lt;/h2>
-&lt;h3 id="disable-imported-containers">Disable Imported Containers&lt;/h3>
-&lt;p>Previously, if you imported a container from another node or cluster it was created in the Enabled state. If the container was configured to run as a service this would cause the container to start immediately. This could create issues if additional changes were desired before the container attempts to start, such as creating volumes or adjusting environment variables. With this release the container is imported in a Disabled state and will need to be enabled once you are ready to use the container.&lt;/p>
-&lt;h3 id="import-container-volumes">Import Container Volumes&lt;/h3>
-&lt;p>There is a new Action available under Container Management &amp;gt; Volumes to Import. This will enable you to import configured volumes configured on another node or cluster. This will simplify configuring containers that require several volumes to be defined.&lt;/p>
-&lt;p>(Note: Just like with container configuration import, the source must match the destination type. A node can import from another node and a cluster can import from another cluster)&lt;/p>
-&lt;div class="alert alert-primary" role="alert">
-&lt;h4 class="alert-heading">Note:&lt;/h4>
-Just like with container configuration import, the source must match the destination type. A node can import from another node and a cluster can import from another cluster
-&lt;/div>
-&lt;h2 id="flow-logs">Flow Logs&lt;/h2>
-&lt;h3 id="flow-log-ordering">Flow Log Ordering&lt;/h3>
-&lt;p>Our flow logs have historically been searched starting with the oldest in the time range first. This sometimes forced you to load more results multiple times to see the most current information. With this release we now can search either with oldest or newest first. By default the Flow Logs page will now show the last two hours with the most recent first.&lt;/p>
-&lt;p>Additionally, in the Advanced Search there is a new option to select the &lt;code>Flow Log Order&lt;/code> depending on your needs.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="FlowLogOrderOption.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Flow Log Order selector
-&lt;/figcaption>
-&lt;/figure>
-&lt;h3 id="flow-log-s3-export">Flow Log S3 Export&lt;/h3>
-&lt;p>Previously Trustgrid had a mechanism to export flow logs to an AWS S3 bucket on a nightly basis. This was determined to be insufficient for our customers who wanted closer to real-time access to this data. With this release Trustgrid can configur near real-time S3 to S3 replication with our new &lt;a href="https://docs.trustgrid.io/docs/operations/flow-logs/#flow-log-export">Flow Log Export&lt;/a> system.&lt;/p>
-&lt;h3 id="flow-csv-export-date-format">Flow CSV Export Date Format&lt;/h3>
-&lt;p>Trustgrid has long supported the option to export your current view of the Flow Logs to a CSV file. However, the format of dates was difficult to parse using most spreadsheet applications. With this release both the start time and end time (if available) is reported in a human readable format like &lt;code>dd-mm-yyyy hh:mm:ss.000&lt;/code> and in Unix Timestamp Milliseconds (MS). This should make analysis of the records much easier and more precise.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="flow-log-csv-date.png" alt="text CSV export example showing &amp;#39;startTime&amp;#39; and &amp;#39;startTimeMS&amp;#39; fields" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example CSV export
-&lt;/figcaption>
-&lt;/figure>
-&lt;h2 id="upgrade-improvements">Upgrade Improvements&lt;/h2>
-&lt;h3 id="multi-node-upgrades">Multi-Node Upgrades&lt;/h3>
-&lt;p>Upgrading multiple nodes used to require navigating to each node one at a time, clicking the upgrade button and then entering the node&amp;rsquo;s name. This prevented accidental upgrades but was difficult for managing large environments. With this release users with the &lt;code>nodes::service:node-upgrade&lt;/code> and &lt;code>nodes::upgrade&lt;/code> permissions will have the ability to select multiple nodes from the Nodes table and then select &amp;ldquo;Upgrade&amp;rdquo; from the &amp;ldquo;Actions&amp;rdquo; menu.
-&lt;figure class="centered-image">
-&lt;img src="multi-node-upgrade.png" alt="Nodes table with two nodes selected, with the Actions dropdown showing the Upgrade option" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Multi-Node Upgrade Action
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;h3 id="upgrade-status">Upgrade Status&lt;/h3>
-&lt;p>Starting with the node release dated &lt;code>1.5.20220412-1238&lt;/code> nodes began reporting their upgrade status (In Process, Complete, Failed) to the Trustgrid cloud. With this release this information and the date of the last change in status is displayed in the Info tab of nodes.
-&lt;figure class="centered-image">
-&lt;img src="upgrade-status.png" alt="Table showing upgrade status of Complete and the completion time" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Upgrade Status section
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;h2 id="portal-access-permission">Portal Access Permission&lt;/h2>
-&lt;p>With this release there is a new permission &lt;code>portal::access&lt;/code> that controls if a user is allowed (or denied) to authenticate into the Trustgrid management portal. This permission was automatically added to all &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#trustgrid-managed-policy-descriptions">built-in Trustgrid Managed policies&lt;/a>, but any custom defined policies that are intended to be used on their own will need to add this permission if management portal access is desired.
-&lt;figure class="centered-image">
-&lt;img src="portal-access.png" alt="Filtered list of permissions showing Portal section with portal::access allowed" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Portal Access Permission
-&lt;/figcaption>
-&lt;/figure>
-&lt;div class="alert alert-warning" role="alert">
-The &lt;code>portal::access&lt;/code> must be applied with Resource scope of &lt;code>*&lt;/code> to be effective. If using &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#resource-scoped-policies">resource scoped policies&lt;/a> an additional policy will need to be created and attached to users to grant portal access.
-&lt;/div>
-&lt;/p></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/applications/access-policy/</link><pubDate>Wed, 11 Jan 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/applications/access-policy/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>An Access Policy is comprised of several rules that determine whether a user is permitted to access a ZTNA application. If no rule matches a user&amp;rsquo;s access attempt, the attempt will be denied.&lt;/p>
-&lt;/div>
-&lt;p>Each rule has three types of criteria:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="include">
-&lt;th>Include&lt;/th>
-&lt;td>criteria in this section are logically OR&amp;rsquo;d together. For a rule to apply to an access attempt, at least one of the include criteria must match.&lt;/td>
-&lt;/tr>
-&lt;tr id="exception">
-&lt;th>Exception&lt;/th>
-&lt;td>criteria in this section are logically NOT&amp;rsquo;d. If any exception criterion matches, the rule will not apply to the access attempt.&lt;/td>
-&lt;/tr>
-&lt;tr id="require">
-&lt;th>Require&lt;/th>
-&lt;td>criteria in this section are logically AND&amp;rsquo;d. ALL of the require criteria must match for the rule to apply to the access attempt.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>Rules also have an action:&lt;/p>
-&lt;ul>
-&lt;li>Allow - if the rule matches, allow access&lt;/li>
-&lt;li>Block - if the rule matches, block access&lt;/li>
-&lt;/ul>
-&lt;p>Rules are evaluated in the order they are listed in the policy. Rules may be moved higher or lower in the list by clicking the up or down arrows next to the rule.&lt;/p>
-&lt;p>&lt;img src="rules.png" alt="img">&lt;/p>
-&lt;h3 id="criteria">Criteria&lt;/h3>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="emails">
-&lt;th>Emails&lt;/th>
-&lt;td>a list of email addresses, comma separated. Eg, &amp;ldquo;&lt;a href="mailto:user1@company.com">user1@company.com&lt;/a>, &lt;a href="mailto:user2@company.com">user2@company.com&lt;/a>&amp;rdquo;&lt;/td>
-&lt;/tr>
-&lt;tr id="country">
-&lt;th>Country&lt;/th>
-&lt;td>the user&amp;rsquo;s country, determined by their IP address&lt;/td>
-&lt;/tr>
-&lt;tr id="emails-ending-in">
-&lt;th>Emails ending in&lt;/th>
-&lt;td>a required email suffix, like &amp;ldquo;@company.com&amp;rdquo;&lt;/td>
-&lt;/tr>
-&lt;tr id="everyone">
-&lt;th>Everyone&lt;/th>
-&lt;td>this rule always matches&lt;/td>
-&lt;/tr>
-&lt;tr id="idp-groups">
-&lt;th>IDP Groups&lt;/th>
-&lt;td>a list of &lt;a href="https://docs.trustgrid.io/docs/user-management/groups/">groups&lt;/a> that the user must be a member of&lt;/td>
-&lt;/tr>
-&lt;tr id="ip-ranges">
-&lt;th>IP Ranges&lt;/th>
-&lt;td>a list of IP ranges either in CIDR notation or a single IP address, comma separated. Eg, &amp;ldquo;10.10.44, 10.10.8.0/24&amp;rdquo;&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;img src="criteria.png" alt="img">&lt;/p></description></item></channel></rss>
+&lt;/figure></description></item></channel></rss>

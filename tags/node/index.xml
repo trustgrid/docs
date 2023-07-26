@@ -9,6 +9,27 @@
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Data plane statistics between a node and its peers can help troubleshoot connectivity or performance issues.&lt;/p>
 &lt;/div>
+&lt;h2 id="export-list-of-peers">Export List of Peers&lt;/h2>
+&lt;p>You can export a CSV formatted list of all peers by clicking Actions -&amp;gt; Export
+&lt;figure class="centered-image">
+&lt;img src="data-plane-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Export button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>The CSV file will include columns for:&lt;/p>
+&lt;ul>
+&lt;li>Connection status (true/false)&lt;/li>
+&lt;li>Peer name&lt;/li>
+&lt;li>Peer IP&lt;/li>
+&lt;li>Path (if applicable)&lt;/li>
+&lt;li>RTT - Return Trip Time or latency observed when the panel was opened or refreshed&lt;/li>
+&lt;li>Mode - TLS or TLS/UDP&lt;/li>
+&lt;li>Type - The role of the node to peer. SERVER = gateway, CLIENT = edge device&lt;/li>
+&lt;li>Ports - The ports used to establish the connection&lt;/li>
+&lt;/ul>
+&lt;h2 id="view-latency-to-peers">View Latency to Peers&lt;/h2>
 &lt;p>To view latency data between two nodes, select either the edge or gateway node, and then from the peers table, select the node to view.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 Gateway nodes will list edge nodes in their peers table

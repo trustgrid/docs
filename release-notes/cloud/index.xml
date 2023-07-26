@@ -1,4 +1,61 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 24 May 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: May 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</link><pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 26 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/july-2023/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/july-2023/</guid><description>
+&lt;h2 id="network-interface-panel-changes">Network Interface Panel Changes&lt;/h2>
+&lt;h3 id="interface-details-copy-all-button">Interface Details Copy All Button&lt;/h3>
+&lt;p>Frequently Trustgrid users need to share the interface configuration information with people who do not have access to the Trustgrid portal. There is now a &lt;strong>Copy All&lt;/strong> button that will load all of these details into your clipboard.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="interface-copy-all.png" alt="Button to copy all interface details" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Copy All button
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Example WAN interface output:&lt;/p>
+&lt;pre tabindex="0">&lt;code>IP: 172.16.11.31/24
+Hardware Address: 00:50:56:8e:03:54
+Gateway: 172.16.11.1
+DNS1: 172.16.11.4
+DNS2: 4.2.2.2
+&lt;/code>&lt;/pre>&lt;h3 id="public-ip-removed-from-wan-interface">Public IP Removed from WAN Interface&lt;/h3>
+&lt;p>The WAN interface used to include a field labeled &amp;ldquo;Public IP&amp;rdquo; that was the IP address the Trustgrid control plane saw as the source IP for traffic from the node. This would be the IP address used on the internet after any NATs where applied.&lt;/p>
+&lt;p>Some users were confused by this IP and believed it was the assigned IP address for the WAN interface which is not always true. Therefore we have removed this from the WAN interface panel.&lt;/p>
+&lt;p>The observed Public IP is still visible in the &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">Infovisor&lt;/a>.&lt;/p>
+&lt;h2 id="data-plane-panel">Data Plane Panel&lt;/h2>
+&lt;h3 id="export-data-plane-peers">Export Data Plane Peers&lt;/h3>
+&lt;p>You can now export a CSV-formatted list of peers from the &lt;a href="https://docs.trustgrid.io/docs/nodes/data-plane/">Data Plane panel&lt;/a>.
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/nodes/data-plane/data-plane-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Export button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="list-gateway-ports">List Gateway Ports&lt;/h3>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/data-plane/">Data Plane Panel&lt;/a> now lists the Gateway Port for each tunnel. This is the port the client node uses to connect to the listed gateway.&lt;/p>
+&lt;p>While this is typically port 8443,, it can be configured differently and having that info visible aids in troubleshooting.&lt;/p>
+&lt;h2 id="bgp-status-tool">BGP Status Tool&lt;/h2>
+&lt;p>A new &lt;a href="https://docs.trustgrid.io/docs/nodes/bgp/#bgp-status">BGP Status tool&lt;/a> has been added to the BGP panel. This tool displays the current BGP peer status including peer connection status, uptime, routes received and advertised, and more.
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/nodes/bgp/bgp-status-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+BGP Status
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="flow-logs-advanced-search-improvement">Flow Logs Advanced Search Improvement&lt;/h2>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/#advanced-search">flow logs advanced search&lt;/a> now allows selecting clusters as the source or destination nodes. This enables search for flows that were sent to or received from a cluster, rather than individual nodes.&lt;/p>
+&lt;h2 id="trustgrid-resource-names-tgrn-in-infovisor">Trustgrid Resource Names (TGRN) in Infovisor&lt;/h2>
+&lt;p>When creating &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#resource-scoped-policies">Resource Scoped Policies&lt;/a> to limit a user&amp;rsquo;s visibility to specific nodes or clusters you specify resources using Trustgrid Resource Names (TGRNs). Prior to this release it was necessary to generate the TGRN for by combining the common prefix with the node&amp;rsquo;s UID. With this release the TGRN is available in the node&amp;rsquo;s &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">Infovisor&lt;/a> panel with a button to easily copy the TGRN into your clipboard.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="infovisor-tgrn.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Copy TGRN field on Infovisor
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="other-notable-fixes">Other Notable Fixes&lt;/h2>
+&lt;p>The below issues have been resolved in this release:&lt;/p>
+&lt;ul>
+&lt;li>Adding and saving multiple tags use to frequently lead to an error that caused an endless status spinner and would fail to save one or more of the tags.&lt;/li>
+&lt;li>Overview graphs were not aggregating statistics correctly for view of 6 hours or longer.*&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: May 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</link><pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</guid><description>
 &lt;p>This minor release fixes the following issues:&lt;/p>
 &lt;h2 id="issues-fixed">Issues Fixed&lt;/h2>
 &lt;ul>
