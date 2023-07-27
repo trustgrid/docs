@@ -45,17 +45,28 @@ Here you can add, enable, disable, delete, and import a container.
 
 Navigating into a container, the overview section allows editing basic information about the container's execution environment.
 
-![Container Overview](overview.png)
+{{<tgimg src="overview.png"caption="Container Overview" alt="Container overview section" width="90%">}}
 
-In addition to the fields above, you can modify:
+In addition to the fields above, you can modify the below **optional** fields after saving the new container configuration.
 
 {{<fields>}}
-{{<field "Command">}}The command to execute inside the container.{{</field>}}
-{{<field "Hostname">}}The hostname set inside the container.{{</field>}}
+{{<field "Save Output">}}Persist standard output/standard error to the Trustgrid cloud for analysis.
+
+**It is the customer's responsibility to ensure no privileged information is included in the output. If in doubt, do not utilize this feature.**
+{{</field>}}
+{{<field "Command">}}The command to execute inside the container. This overrides the start command configured by the dockerfile used to build the image and can be useful for troubleshooting. {{</field>}}
+{{<field "Hostname">}}The hostname set inside the container.
+
+ Defaults to the the node name.{{</field>}}
 {{<field "Stop Time">}}The grace period (in seconds) to allow a container to stop before killing it. Defaults to 30 seconds.{{</field>}}
 {{<field "User">}}Sets the username or group or uid or gid in the container.{{</field>}}
-{{<field "Save Output">}}Persist standard output/standard error.{{</field>}}
-{{<field "Privileged">}}Grant the container extended privileges.{{</field>}}
+{{<field "DNS">}}Configures the container to utilize the specified DNS server for resolution. 
+
+By default the container uses a local resolver managed by the node software that can resolve other containers by name and will forward to the node's configured DNS servers for external resolution.{{</field>}}
+{{<field "IP">}}Configures the container to use the specified IP address. The IP address needs to be in the 172.18.0.0/16 network and cannot be 172.18.1.2. 
+
+By default this is assigned dynamically in that network.{{</field>}}
+{{<field "Privileged">}}Grant the container extended privileges. Best practice would be to utilize [linux capabilities]({{<ref "#linux-capabilities">}}) to grant the least privileges needed to run the container.{{</field>}}
 {{<field "Use Init">}}Use an init process inside the container as PID 1. This ensures responsibilities of an init system are performed inside the container (e.g., handling exit signals).{{</field>}}
 {{<field "Require Connectivity">}}Ensures that the container will not start if it has encrypted volumes and is unable to reach the control plane.{{</field>}}
 {{</fields>}}
