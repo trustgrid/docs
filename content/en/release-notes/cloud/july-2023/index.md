@@ -52,6 +52,10 @@ When creating [Resource Scoped Policies]({{<ref "/docs/user-management/policies#
 
 {{<tgimg src="infovisor-tgrn.png" caption="Copy TGRN field on Infovisor" width="70%" >}}
 
+## Override Default Container DNS and IP
+This release when combined with a node running the [July 2023 Node releases]({{<ref "/release-notes/node/july-2023">}}) adds the ability to [override the default DNS and IP settings]({{<ref "/docs/nodes/containers#dns">}}) for containers. 
+
+
 ## Other Notable Fixes
 The below issues have been resolved in this release:
 
