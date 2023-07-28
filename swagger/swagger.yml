@@ -326,6 +326,82 @@ paths:
           schema:
             "$ref": "#/definitions/ValidationFailed"
 
+  "/user/{email}/groups":
+    parameters:
+      - name: email
+        in: path
+        required: true
+        type: string
+        description: User email
+    get:
+      description: |
+        Get all user groups
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            type: array
+            items:
+              "$ref": "#/definitions/GroupModel"
+
+  "/v2/user/{email}/groups":
+    parameters:
+      - name: email
+        in: path
+        required: true
+        type: string
+        description: User email
+    post:
+      parameters:
+        - name: group
+          in: body
+          schema:
+            type: object
+            properties:
+              groupId:
+                type: string
+                description: Group ID
+            required:
+              - groupId
+      description: Add group to a user
+      consumes:
+        - application/json
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
+  "/v2/user/{email}/groups/{group}":
+    parameters:
+      - name: email
+        in: path
+        required: true
+        type: string
+        description: User email
+      - name: group
+        in: path
+        required: true
+        type: string
+        description: Group ID
+    delete:
+      description: Delete a group from a user
+      consumes:
+        - application/json
+      tags:
+        - User
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+
   "/cluster":
     get:
       description: Get all clusters
@@ -4716,6 +4792,21 @@ definitions:
         type: string
         description: User's email
     title: UserModel
+  
+  GroupModel:
+    type: Object
+    properties:
+      uid:
+        type: string
+        description: Group ID
+      name:
+        type: string
+        description: Group Name
+      description:
+        type: string
+        description: Group Description
+    title: GroupModel
+
   CreateClusterModel:
     type: object
     required:
