@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "448f120f-5518-4b09-97c3-cf71f6aefe12",
+                    "example": "17967a8a-40dc-4129-900f-25be7f1ac7dd",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1690570814,
+                    "example": 1690570834,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "5d2f7ede-65b3-41a5-9ed5-cab7db6917fc",
+                    "example": "dc65e775-a975-4b65-bdb5-4b2213285091",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "e9fa8c7e-2639-4dd0-b500-07d40f6aec3c",
+                    "example": "c15e3c5a-0232-463f-b773-1a9479c4d073",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "e9fa8c7e-2639-4dd0-b500-07d40f6aec3c",
+                    "example": "c15e3c5a-0232-463f-b773-1a9479c4d073",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "e9fa8c7e-2639-4dd0-b500-07d40f6aec3c",
+                    "example": "c15e3c5a-0232-463f-b773-1a9479c4d073",
                     "type": "object"
                   }
                 },
@@ -4023,6 +4023,37 @@
             "description": "Cannot delete root user",
             "schema": {
               "$ref": "#/definitions/ValidationFailed"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/user/{email}/groups": {
+      "get": {
+        "description": "Get all user groups\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GroupModel"
+              },
+              "type": "array"
             }
           }
         },
@@ -11638,6 +11669,87 @@
           "VPN Network"
         ]
       }
+    },
+    "/v2/user/{email}/groups": {
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Add group to a user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "group",
+            "schema": {
+              "properties": {
+                "groupId": {
+                  "description": "Group ID",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v2/user/{email}/groups/{group}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a group from a user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Group ID",
+          "in": "path",
+          "name": "group",
+          "required": true,
+          "type": "string"
+        }
+      ]
     }
   },
   "definitions": {
@@ -11750,7 +11862,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "448f120f-5518-4b09-97c3-cf71f6aefe12",
+          "example": "17967a8a-40dc-4129-900f-25be7f1ac7dd",
           "type": "string"
         },
         "timestamp": {
@@ -11808,7 +11920,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "448f120f-5518-4b09-97c3-cf71f6aefe12",
+          "example": "17967a8a-40dc-4129-900f-25be7f1ac7dd",
           "type": "string"
         },
         "nodeName": {
@@ -11934,8 +12046,8 @@
         }
       },
       "required": [
-        "chain",
-        "private_key"
+        "private_key",
+        "chain"
       ],
       "title": "CertificateParts",
       "type": "object"
@@ -12011,7 +12123,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "ac720194-571b-4603-a317-f6d3aa5155f2",
+          "example": "bae8e72e-fb07-45da-b427-bba86c1f2f2e",
           "type": "string"
         },
         "image": {
@@ -12168,7 +12280,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "a4fe0654-e3df-414c-ad1a-19719146799f",
+          "example": "130db0ed-e349-44bf-b3ae-71a5636b656a",
           "type": "string"
         }
       },
@@ -12311,7 +12423,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "d2a95510-492c-44b9-9549-abe0174feffe",
+          "example": "a57801ac-85a9-4536-995b-a46cc290ed3b",
           "type": "string"
         }
       },
@@ -12346,7 +12458,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "9d28d009-1085-4ebb-b208-10a98eccd690",
+          "example": "d35eb09a-cc17-435a-9902-055c766baf45",
           "type": "string"
         }
       },
@@ -12401,7 +12513,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "a1713c3a-07a2-4a92-8005-de65890888c9",
+          "example": "365b8a2c-8512-467f-a502-7f56eddc3baa",
           "type": "string"
         }
       },
@@ -12574,9 +12686,9 @@
         }
       },
       "required": [
+        "dest",
         "protocol",
-        "source",
-        "dest"
+        "source"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -12848,6 +12960,24 @@
         }
       },
       "type": "object"
+    },
+    "GroupModel": {
+      "properties": {
+        "description": {
+          "description": "Group Description",
+          "type": "string"
+        },
+        "name": {
+          "description": "Group Name",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Group ID",
+          "type": "string"
+        }
+      },
+      "title": "GroupModel",
+      "type": "Object"
     },
     "IdentityProviderModel": {
       "allOf": [
@@ -13265,7 +13395,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "448f120f-5518-4b09-97c3-cf71f6aefe12",
+          "example": "17967a8a-40dc-4129-900f-25be7f1ac7dd",
           "type": "string"
         }
       },
