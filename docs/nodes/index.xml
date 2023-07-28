@@ -451,8 +451,13 @@ Add Connector dialogue
 &lt;/table>
 &lt;h2 id="overview">Overview&lt;/h2>
 &lt;p>Navigating into a container, the overview section allows editing basic information about the container&amp;rsquo;s execution environment.&lt;/p>
-&lt;p>&lt;img src="overview.png" alt="Container Overview">&lt;/p>
-&lt;p>In addition to the fields above, you can modify:&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="overview.png" alt="Container overview section" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Container Overview
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>In addition to the fields above, you can modify the below &lt;strong>optional&lt;/strong> fields after saving the new container configuration.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -461,13 +466,21 @@ Add Connector dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
+&lt;tr id="save-output">
+&lt;th>Save Output&lt;/th>
+&lt;td>&lt;p>Persist standard output/standard error to the Trustgrid cloud for analysis.&lt;/p>
+&lt;p>&lt;strong>It is the customer&amp;rsquo;s responsibility to ensure no privileged information is included in the output. If in doubt, do not utilize this feature.&lt;/strong>&lt;/p>
+&lt;/td>
+&lt;/tr>
 &lt;tr id="command">
 &lt;th>Command&lt;/th>
-&lt;td>The command to execute inside the container.&lt;/td>
+&lt;td>The command to execute inside the container. This overrides the start command configured by the dockerfile used to build the image and can be useful for troubleshooting.&lt;/td>
 &lt;/tr>
 &lt;tr id="hostname">
 &lt;th>Hostname&lt;/th>
-&lt;td>The hostname set inside the container.&lt;/td>
+&lt;td>&lt;p>The hostname set inside the container.&lt;/p>
+&lt;p>Defaults to the the node name.&lt;/p>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="stop-time">
 &lt;th>Stop Time&lt;/th>
@@ -477,13 +490,21 @@ Add Connector dialogue
 &lt;th>User&lt;/th>
 &lt;td>Sets the username or group or uid or gid in the container.&lt;/td>
 &lt;/tr>
-&lt;tr id="save-output">
-&lt;th>Save Output&lt;/th>
-&lt;td>Persist standard output/standard error.&lt;/td>
+&lt;tr id="dns">
+&lt;th>DNS&lt;/th>
+&lt;td>&lt;p>Configures the container to utilize the specified DNS server for resolution.&lt;/p>
+&lt;p>By default the container uses a local resolver managed by the node software that can resolve other containers by name and will forward to the node&amp;rsquo;s configured DNS servers for external resolution.&lt;/p>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="ip">
+&lt;th>IP&lt;/th>
+&lt;td>&lt;p>Configures the container to use the specified IP address. The IP address needs to be in the 172.18.0.0/16 network and cannot be 172.18.1.2.&lt;/p>
+&lt;p>By default this is assigned dynamically in that network.&lt;/p>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="privileged">
 &lt;th>Privileged&lt;/th>
-&lt;td>Grant the container extended privileges.&lt;/td>
+&lt;td>Grant the container extended privileges. Best practice would be to utilize &lt;a href="#linux-capabilities">linux capabilities&lt;/a> to grant the least privileges needed to run the container.&lt;/td>
 &lt;/tr>
 &lt;tr id="use-init">
 &lt;th>Use Init&lt;/th>

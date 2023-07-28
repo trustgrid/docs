@@ -2501,6 +2501,8 @@ BGP Status
 Copy TGRN field on Infovisor
 &lt;/figcaption>
 &lt;/figure>
+&lt;h2 id="override-default-container-dns-and-ip">Override Default Container DNS and IP&lt;/h2>
+&lt;p>This release when combined with a node running the &lt;a href="https://docs.trustgrid.io/release-notes/node/july-2023/">July 2023 Node releases&lt;/a> adds the ability to &lt;a href="https://docs.trustgrid.io/docs/nodes/containers/#dns">override the default DNS and IP settings&lt;/a> for containers.&lt;/p>
 &lt;h2 id="other-notable-fixes">Other Notable Fixes&lt;/h2>
 &lt;p>The below issues have been resolved in this release:&lt;/p>
 &lt;ul>
