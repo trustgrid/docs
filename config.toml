@@ -81,7 +81,7 @@ id = "UA-99793053-3"
 
 # Comment out if you don't want the "print entire section" link enabled.
 [outputs]
-section = ["HTML", "print", "RSS"]
+section = ["HTML", "RSS"]
 
 [params]
 copyright = "Trustgrid"
