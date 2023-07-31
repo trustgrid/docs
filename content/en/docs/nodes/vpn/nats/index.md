@@ -43,7 +43,7 @@ An inside NAT defines how a local device IP address translates into a virtual ne
 By default, when a device on the local network of a node receives traffic from a remote device on the network, the remote device IP address will be the IP address that was entered in the local CIDR block for the remote node's inside NAT entry for the remote device. For instance, if the remote device was mapped to network address 10.0.100.1, then its traffic on the local network will appear to come from IP address 10.0.100.1. However due to the local network configuration, there may be some situations where it is desirable to translate remote network addresses before egressing onto the local network. For instance on a local network of 192.168.0.0/16, a user may want the remote devices virtual network IP of 10.0.100.1 to be translated to 192.168.50.5 so that it fits better into the local network setup. This kind of translation can be achieved by adding outside nats. To add an outside NAT you must enter the following information:
 
 {{<fields>}}
-{{<field "Network Group">}}The network IP address or addresses that should be translated before egressing onto the local network. This should be entered in CIDR block format.{{</field>}}
+{{<field "Network Group">}}The network IP address or addresses that should be translated before egressing onto the local network. This should be entered in CIDR block format or as a [Network Group]({{<ref "/docs/domain/virtual-networks/network-groups">}}).{{</field>}}
 
 {{<field "Local CIDR">}}The local IP address or addresses that the network addresses should be mapped to, also entered in CIDR format.{{</field>}}
 {{</fields>}}
