@@ -52,7 +52,7 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
    - Note: The node will not be visible in the portal until the registration process is complete.
    - Download the license to local storage in case the clipboard is cleared. You cannot reissue a license without recreating the node.
 
-1. Click this link to start the AMI provisioning process. https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node.json
+1. Click this link to start the AMI provisioning process. https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-2204.json
 
 1. Fill out the fields in the CloudFormation form
 
