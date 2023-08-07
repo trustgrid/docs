@@ -169,7 +169,7 @@ Network addresses map 1x1 with local addresses, so the prefix length (the /xx nu
 &lt;tbody>
 &lt;tr id="network-group">
 &lt;th>Network Group&lt;/th>
-&lt;td>The network IP address or addresses that should be translated before egressing onto the local network. This should be entered in CIDR block format.&lt;/td>
+&lt;td>The network IP address or addresses that should be translated before egressing onto the local network. This should be entered in CIDR block format or as a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">Network Group&lt;/a>.&lt;/td>
 &lt;/tr>
 &lt;tr id="local-cidr">
 &lt;th>Local CIDR&lt;/th>

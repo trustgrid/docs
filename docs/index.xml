@@ -2449,7 +2449,25 @@ cl2WAN ==> ISP2([ISP 2])
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
 style cluster fill:#c8c8c8
-&lt;/div></description></item><item><title>Release-Notes: July 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/july-2023/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/july-2023/</guid><description>
+&lt;/div></description></item><item><title>Release-Notes: August 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/august-2023-1-minor/</link><pubDate>Thu, 03 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/august-2023-1-minor/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20230731-1784&lt;/td>
+&lt;td>20230731-222839.d3f2205&lt;/td>
+&lt;td>n-2.16.1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="update-fix">Update Fix&lt;/h2>
+&lt;p>This minor release resolves an issue that prevented a security package from upgrading.&lt;/p></description></item><item><title>Release-Notes: July 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/july-2023/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/july-2023/</guid><description>
 &lt;h2 id="network-interface-panel-changes">Network Interface Panel Changes&lt;/h2>
 &lt;h3 id="interface-details-copy-all-button">Interface Details Copy All Button&lt;/h3>
 &lt;p>Frequently Trustgrid users need to share the interface configuration information with people who do not have access to the Trustgrid portal. There is now a &lt;strong>Copy All&lt;/strong> button that will load all of these details into your clipboard.&lt;/p>
@@ -2571,66 +2589,4 @@ Example Node Stop Error
 &lt;ul>
 &lt;li>The Overview graphs on a Node Detail page showing &amp;ldquo;invalid date&amp;rdquo; when you hover over a VPN data point.&lt;/li>
 &lt;li>The Flow Logs Advanced Search did not display the correct flows when the &amp;ldquo;Newest First&amp;rdquo; flow log order was used.&lt;/li>
-&lt;/ul></description></item><item><title>Release-Notes: May 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/may-2023/</link><pubDate>Fri, 05 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/may-2023/</guid><description>
-&lt;h2 id="accessibility-improvements">Accessibility Improvements&lt;/h2>
-&lt;p>Prior to this release we used only the color red to indicate if the control or data plane was disconnected. We now use different icons to indicate there is an issue with connectivity.&lt;/p>
-&lt;h3 id="control-plane-disconnected">Control Plane Disconnected&lt;/h3>
-&lt;figure class="centered-image">
-&lt;img src="control-plane-disconnected.png" alt="Red circle with an exclamation mark(!) inside to indicate control plane disconnected" style="display: block; margin-left: auto; margin-right: auto; ">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Control Plane Disconnect icon
-&lt;/figcaption>
-&lt;/figure>
-&lt;h3 id="data-plane-disconnected">Data Plane Disconnected&lt;/h3>
-&lt;figure class="centered-image">
-&lt;img src="data-plane-disconnected.png" alt="Red triangle with an exclamation mark(!) to indicate data plane is disconnected " style="display: block; margin-left: auto; margin-right: auto; ">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Data Plane Disconnected icon
-&lt;/figcaption>
-&lt;/figure>
-&lt;h2 id="change-audit-improvements">Change Audit Improvements&lt;/h2>
-&lt;p>Several improvements where made around our change auditing system including:&lt;/p>
-&lt;ul>
-&lt;li>Tag changes are now audited.&lt;/li>
-&lt;li>Change records can now be replicated into a customer&amp;rsquo;s AWS S3 bucket. This works much like the existing &lt;a href="https://docs.trustgrid.io/docs/operations/flow-logs/#flow-log-export">S3 Flow Log Export&lt;/a> and requires the same bucket policy and versioning settings. To have this setup contact Trustgrid support.&lt;/li>
-&lt;li>Changes to Container settings now include the name of the container instead of its unique ID.&lt;/li>
-&lt;li>Changes to a policy will now show what resources are covered by the policy.&lt;/li>
-&lt;li>Group deletion is now audited with name.&lt;/li>
-&lt;li>Authentication records using a configured &lt;a href="">Identity Provider(IdP)&lt;/a> now include the IdP used.&lt;/li>
-&lt;li>The advanced search now allows you to select more object types.&lt;/li>
-&lt;/ul>
-&lt;h2 id="l4-proxy-ui-improvements">L4 Proxy UI Improvements&lt;/h2>
-&lt;p>This release also makes several improvements to the UI for configuring and managing our Layer 4 (L4) proxy &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">Services&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">Connectors&lt;/a>.&lt;/p>
-&lt;p>These improvement include:&lt;/p>
-&lt;ul>
-&lt;li>More consistency in the names of fields between the add/edit prompt and the table listings.&lt;/li>
-&lt;li>The addition of links to &lt;a href="https://docs.trustgrid.io/docs/nodes/services/#test-connectivity">automatically test connectivity of a TCP service&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/#sniff-traffic">sniff traffic for a connector listening port&lt;/a>&lt;/li>
-&lt;li>Removal of the Services Health Check feature. This attribute has been removed from the Add Service prompt and the Services table. Any service that previously had this set to &lt;code>Enabled&lt;/code> will continue performing this health check until the service is updated. A future node release will stop performing the health check even if the service is still set to &lt;code>Enabled&lt;/code>.&lt;/li>
-&lt;/ul>
-&lt;h2 id="flow-log-advanced-search">Flow Log Advanced Search&lt;/h2>
-&lt;p>With this release you can now set the source or destination node to &lt;code>local&lt;/code> for an Advanced Flow Log Search. This will cover flows that do not traverse the data plane, such as traffic that is forwarded between interfaces.&lt;/p>
-&lt;h2 id="formatted-slack-alarm-events">Formatted Slack Alarm Events&lt;/h2>
-&lt;p>Previously when an &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> was forwarded to a &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/#slack-channel">Slack Channel&lt;/a> it was sent as raw JSON that was difficult to read. There is now an option to format messages sent to Slack to be human readable.
-&lt;figure class="centered-image">
-&lt;img src="https://docs.trustgrid.io/docs/alarms/channels/slack-format-option.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Checkbox to enable Slack formatting
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;p>With this selected message will appear in Slack like the below example.
-&lt;figure class="centered-image">
-&lt;img src="https://docs.trustgrid.io/docs/alarms/channels/formatted-slack-example.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example formatted slack event
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;h2 id="wireguard-tunnel-client-config">WireGuard Tunnel Client Config&lt;/h2>
-&lt;p>This release adds an &lt;a href="https://docs.trustgrid.io/docs/nodes/tunnels/wireguard/#example-client-config">example WireGuard client configuration&lt;/a> to both the add and update dialogues for WireGuard tunnel interfaces.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="https://docs.trustgrid.io/docs/nodes/tunnels/WireGuard/WireGuard-tunnel-example-config.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example auto-generated WireGuard client configuration
-&lt;/figcaption>
-&lt;/figure></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
