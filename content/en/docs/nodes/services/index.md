@@ -13,9 +13,12 @@ Services are configured in conjunction with [connectors]({{<ref "docs/nodes/conn
 ## Description
 Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined.  Remote clients can then access the service via peer nodes using [connectors]({{<ref "docs/nodes/connectors" >}}) or [VPN port forwards]({{<ref "docs/nodes/vpn/port-forwarding">}}). 
 
-{{<alert color="info">}}On the local network the **source IP** will the node's interface IP.
+## Functionality
+On the local network, a connection's **source IP** will be the node's interface IP.
 - If the service is defined on a cluster, the active cluster members IP will be used.
-- If the node has multiple interfaces, the source will be the interface that has a matching [interface route]({{<ref "docs/nodes/interfaces#interface-routes">}}) for the target IP.{{</alert>}}
+- If the node has multiple interfaces, the source will be the interface that has a matching [interface route]({{<ref "docs/nodes/interfaces#interface-routes">}}) for the target IP.
+
+If the service's [host field]({{<ref "#host">}}) is set to a DNS name, the node will use its WAN interface DNS servers to resolve the address.
 
 
 ## Configuration
@@ -42,7 +45,7 @@ A friendly name for the service that will be used in the Remote Service field of
 {{</field >}}
 
 {{<field "Host" >}}
-The IP of the host to connect to.
+The IP or DNS address of the host to connect to.
 {{</field >}}
 
 {{<field "Port" >}}
