@@ -1,5 +1,5 @@
 ---
-Title: "Find the Public IP Adress of a Node"
+Title: "Find the Public IP Address of a Node"
 linkTitle: "Finding Public IP"
 description: "How to find the public IP address of a Trustgrid node"
 Date: 2023-1-3
