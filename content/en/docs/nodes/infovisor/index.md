@@ -16,6 +16,7 @@ It contains information such as:
 * Version and Package Version - The Trustgrid software version running on the node
 * [Enabled / Disabled Status]({{<ref "/tutorials/management-tasks/changing-node-status" >}})
 * Device Type 
+* Operating System (OS) Version
 * [TGRN or Trustgrid Resource Name]({{<ref "/docs/user-management/policies#trustgrid-resource-names-or-tgrn">}})
 * Upgrade Status
 * [Tags]({{<ref "/docs/nodes/tags">}})

@@ -13,7 +13,7 @@ A healthy [cluster]({{<ref "docs/clusters">}}) should have two online Trustgrid 
 {{<alert>}}
 These events are based on the information reported by each member node to the control plane. Because of this:
 
-- There can be a delay between a change and the [Cluster]({{<ref "docs/clusters" >}}) Site Health events.
+- There can be a delay between a change and the [Cluster]({{<ref "docs/clusters" >}}) Site Health events. Use the [Validate Health]({{<ref "docs/clusters/cluster-health#force-health-validation" >}}) action to get the most up-to-date health status.)
 - If member [nodes]({{<ref "docs/nodes" >}}) have issues preventing control plane connections but not impacting data plane or other services the [events]({{<ref "docs/alarms/events" >}}) may not accurately reflect the state of the [cluster]({{<ref "docs/clusters" >}}).
   {{</alert>}}
 
@@ -53,3 +53,10 @@ Both [nodes]({{<ref "docs/nodes">}}) are offline, unhealthy or disabled.
 </tr>
 </tbody>
 </table>
+
+### Force Health Validation
+The cluster health state is evaluated when certain events occurs, such as a member disconnecting/reconnecting or the [member health state]({{<ref "/docs/clusters#cluster-member-health">}}) changes.  Occasionally this can lead to the state being reported incorrectly or a delay before the proper state is displayed.
+
+If you wish to force the health state to be re-evaluated you can use the "Validate Health" command under Actions on the Cluster Overview panel.
+
+{{<tgimg src="cluster-validate-health.png" caption="Validate Health action" width="80%">}}

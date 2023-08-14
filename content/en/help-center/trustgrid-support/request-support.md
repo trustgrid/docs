@@ -1,6 +1,7 @@
 ---
 Title: "Authorization to Request Support"
 Date: 2022-12-30
+Weight: 20
 ---
 To prevent unauthorized users from potentially compromising the control plane, Trustgrid has implemented a policy to approve customers' staff for access to technical support services. Trustgrid will not refuse support completely in cases when unauthorized staff request it, but will limit the disclosure of confidential information and will refuse to make configuration changes without approval from an authorized support contact.
 

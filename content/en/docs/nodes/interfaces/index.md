@@ -10,7 +10,7 @@ weight: 9
 
 Navigate to a node, then select `Interfaces` under the `Network` section.
 
-![Interfaces Page](interfaces.png)
+{{<tgimg src="interfaces.png" width="90%" caption="Interfaces panel">}}
 
 The `Interface` dropdown at the top allows you to select which interface to manage.
 
@@ -32,6 +32,7 @@ Used in configurations with more than one interface for local network connectivi
 
 {{<fields>}}
 {{<field "Hardware Address">}}MAC address of the interface.{{</field>}}
+{{<field "Interface Name">}}Name assigned to the interface by the operating system. This varies between hardware models and is sometimes needed when using tools such as Sniff Interface or reviewing logs.{{</field>}}
 {{<field "Interface VRF">}}Selects to which [VRF]({{<ref "/docs/nodes/vrfs">}}) the interface is attached.{{</field>}}
 {{<field "VLAN ID (Subinterfaces Only)">}} Sets the VLAN ID/tag for the subinterface.{{</field>}}
 {{<field "IP Assignment (ETH0 only)">}}
