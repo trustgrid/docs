@@ -1472,13 +1472,13 @@ Change entry for active member change
 &lt;/div>
 &lt;h2 id="description">Description&lt;/h2>
 &lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-&lt;p>On the local network the &lt;strong>source IP&lt;/strong> will the node&amp;rsquo;s interface IP.&lt;/p>
+&lt;h2 id="functionality">Functionality&lt;/h2>
+&lt;p>On the local network, a connection&amp;rsquo;s &lt;strong>source IP&lt;/strong> will be the node&amp;rsquo;s interface IP.&lt;/p>
 &lt;ul>
 &lt;li>If the service is defined on a cluster, the active cluster members IP will be used.&lt;/li>
 &lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
 &lt;/ul>
-&lt;/div>
+&lt;p>If the service&amp;rsquo;s &lt;a href="#host">host field&lt;/a> is set to a DNS name, the node will use its WAN interface DNS servers to resolve the address.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>Services are configured under the Networking &amp;gt; Services panel of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
 &lt;figure class="centered-image">
@@ -1513,7 +1513,7 @@ Add Service dialogue
 &lt;/tr>
 &lt;tr id="host">
 &lt;th>Host&lt;/th>
-&lt;td>The IP of the host to connect to.&lt;/td>
+&lt;td>The IP or DNS address of the host to connect to.&lt;/td>
 &lt;/tr>
 &lt;tr id="port">
 &lt;th>Port&lt;/th>
