@@ -1,6 +1,7 @@
 ---
 Title: "Review Node Events"
 Date: 2023-1-9
+weight: 10
 ---
 When troubleshooting a problem on edge or gateway nodes, reviewing node events can provide critical information about the nature of the problem. 
 

@@ -28,7 +28,7 @@ You can now load historical latency data about a connection between this node an
 
 A common pain point when using the tools within the Trustgrid Portal was that if you had to rerun a tool you had to reenter the values into the prompt.   With this release Trustgrid is introducing an execution history that will make rerunning a tool much simpler for users.
 
-As an example, if I run the Interface [TCP Port Test]({{<ref "/tutorials/remote-tools/tcp-port-test">}}) tool for the first time, the target IP and port will be the defaults 192.168.1.1 and port 80
+As an example, if I run the Interface [TCP Port Test]({{<ref "/tutorials/interface-tools/tcp-port-test">}}) tool for the first time, the target IP and port will be the defaults 192.168.1.1 and port 80
 
 ![TCP Port Test](tcp-port-test.png)
 

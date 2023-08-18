@@ -1,7 +1,8 @@
 ---
-Title: "Flow Logs" 
-linkTitle: "Flow Logs"
+Title: "Network Flow Logs" 
+linkTitle: "Network Flow Logs"
 Date: 2023-1-9
+Weight: 40
 ---
 
 {{% pageinfo %}}

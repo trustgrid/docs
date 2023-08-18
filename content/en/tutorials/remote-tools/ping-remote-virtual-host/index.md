@@ -59,7 +59,7 @@ This error happens when the ping packet made it to the destination node, but no 
 
 ### No Ping Response Error
 
-When a ping sits there and no response is received, usually the best way to troubleshoot further is to [sniff interface traffic]({{<ref "/tutorials/remote-tools/sniff-interface-traffic">}}) with a filter of `icmp and host <target-ip>` on the source and dest nodes.
+When a ping sits there and no response is received, usually the best way to troubleshoot further is to [sniff interface traffic]({{<ref "/tutorials/interface-tools/sniff-interface-traffic">}}) with a filter of `icmp and host <target-ip>` on the source and dest nodes.
 
 When troubleshooting, keep in mind that the lack of an error likely means one of the following:
 
