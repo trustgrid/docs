@@ -7,11 +7,11 @@ Date: 2023-1-9
 
 The Users panel is the primary panel for managing user identities and the policies attached to them. All changes in this panel require either the [builtin-tg-acess-admin] policy or similar permissions.
 
-### Adding or Inviting Users
+## Adding or Inviting Users
 
 Users can either be invited to the Trustgrid portal and utilize Trustgrid’s native authentication system, or be added and be authenticated by a customer configured Identity Provider (IdP).
 
-#### Inviting Users
+### Inviting Users
 
 For users that will utilize Trustgrid’s native authentication system, you will need to invite them with a valid email address.
 
@@ -51,7 +51,7 @@ c. You’ll be provided with a recovery code. Save this in a secure place, confi
 
 ![img](backup-code.png)
 
-#### Adding Users (with Identity Providers)
+### Adding Users (with Identity Providers)
 
 If your account has an Identity Provider configured as a Portal Auth Provider, you use the Add User button to create an identity for them within Trustgrid.
 
@@ -75,17 +75,9 @@ d. Click `Save`
 
 3. The user can then navigate to the portal authentication domain associated with the IdP. They will be redirected to the IdP page and required to enter their username, password and MFA (if configured), then automatically sent back to the Trustgrid portal.
 
-#### Configuring Users
+## Managing User Permissions
 
-After a user is added you can drill down into a specific account to:
-
-- Manage attached Policies
-- View Effective Permission
-- Change a User Landing Page
-- View a User’s Group Membership
-- View a User’s Associated IdP
-
-#### Manage Policies Attached to a User
+### Manage Policies Attached to a User
 
 To attach/detach policies attached to a user:
 
@@ -106,7 +98,7 @@ To attach/detach policies attached to a user:
 
    ![img](detach.png)
 
-#### View Effective Permissions
+### View Effective Permissions
 
 To see what permissions a user currently has and what policy is providing that permission:
 
@@ -119,7 +111,7 @@ To see what permissions a user currently has and what policy is providing that p
    c. A short description of what the permission allows
    d. what policy grants/denies the user the permission
 
-#### Change a User Landing Page
+### Change a User Landing Page
 
 The Landing Page allows you to designate where a user is directed within the portal on initial login. This is most useful for users that only need access to ZTNA Remote Access application at the `/apps` page.
 
@@ -128,7 +120,11 @@ The Landing Page allows you to designate where a user is directed within the por
 
 ![img](apps.png)
 
-#### View a User’s Group Membership
+
+## Managing Group Membership
+
+
+### View a User’s Group Membership
 
 You can view all the Groups a user is a member of from the Groups panel. To change memberships you will need to use the `User Management` → `Groups page`.
 To view:
@@ -137,9 +133,25 @@ To view:
 2. Select the `Groups` panel on the left.
 3. `Groups` will be listed in a table in the main panel.
 
-![img](group-membership.png)
+{{<tgimg src="user-groups-table.png" caption="Example group membership table" width="80%">}}
 
-View a User’s Associated Identity Provider (IdP)
+### Adding a User to Groups
+You can add a user to one or more group by:
+1. Navigate to User Management > Users and click on the name of the user to add to groups.
+1. Select the Groups panel from the left navigation bar.
+1. Click the "Add to Group(s)" button.
+1. From the prompt select the group or groups you want to add the user to. If there are many groups you can start typing the name to filter the options. 
+{{<tgimg src="add-user-group-prompt.png" caption="Add Groups prompt" width="60%">}}
+1. Click Save
+
+### Removing a User from Groups
+You can remove a user from a group by:
+1. Select the radio checkbox next to the group you wish to remove.
+1. From Actions, select Delete.
+{{<tgimg src="user-group-delete.png" caption="Deleting a group membership" width="40%">}}
+1. When prompted confirm you want to delete the user.
+
+## View a User’s Associated Identity Provider (IdP)
 If an Identity Provider is configured a user maybe associated with one or more IdP.  
 To view:
 

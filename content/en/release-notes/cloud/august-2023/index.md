@@ -2,7 +2,7 @@
 title: August 2023 Release Notes
 linkTitle: 'August 2023 Release'
 type: docs
-date: 2023-08-15
+date: 2023-08-17
 description: August Release focusing on general improvements and fixes
 ---
 
@@ -21,5 +21,6 @@ This release includes two improvements to the [Data Plane panel]({{<ref "/docs/n
 ## Other Improvements
 - Nodes now display their operating system (OS) version information in the [infovisor]({{<ref "/docs/nodes/infovisor">}}) and it can also be added as a column to the Nodes table
 - We now display the physical interface names assigned by the OS on the [interfaces panel]({{<ref "/docs/nodes/interfaces">}}). This name is sometimes needed when running tools such as the Sniff Traffic.
-- [IPSEC Tunnels]({{<ref "/docs/nodes/tunnels/ipsec">}}) 
-- It is now possibly for customers to generate and download [Debug Logs]({{<ref "/help-center/ops-logs/debug-logs">}}) from a Trustgrid node. This can be handy when working with Trustgrid support to troubleshoot issues. 
+- It is now possibly for customers to generate and download [Debug Logs]({{<ref "/help-center/ops-logs/debug-logs">}}) from a Trustgrid node. This can be handy when working with Trustgrid support to troubleshoot issues.
+- [Users can be added to one or more groups when viewing the user]({{<ref "/docs/user-management/users#adding-a-user-to-groups">}}). Previously you had to navigate to each group and add the user there.
+- You can now select multiple protocols, IPs or ports when using the [Sniff Virtual Traffic]() VPN tool.
