@@ -17,8 +17,6 @@ This release includes two improvements to the [Data Plane panel]({{<ref "/docs/n
 1. Links have been added to the far right column for MTR and Trace Route. When used these will populate the appropriate fields in each tool to do a Trace Route or MTR to a gateway peer on the TCP port in use. This makes it easier to troubleshoot connectivity issues. 
 {{<tgimg src="data-plane-new.png" caption="Data Plane panel with ports and Trace Route/MTR links" width="40%">}}
 
-## Debug Logs
-
 
 ## Other Improvements
 - Nodes now display their operating system (OS) version information in the [infovisor]({{<ref "/docs/nodes/infovisor">}}) and it can also be added as a column to the Nodes table
