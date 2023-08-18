@@ -30,7 +30,13 @@ The ["Event Type"]({{<ref "event-types" >}}) criteria determines which [events](
 {{<field "Tag Matches">}}
 The "Tag Matches" criteria allows you to use [tag]({{<ref "/docs/nodes/tags" >}}) name/value pairs to determine if the filter should match [events]({{<ref "events" >}}). For examples, you may what production devices to send to a high priority [channel]({{<ref "channels" >}}) such as PagerDuty or OpsGenie. If your [nodes]({{<ref "docs/nodes" >}}) have a tag to indicating “prod_status=production”, you can select that name/value pair from the list to properly filter your [alarms]({{<ref "docs/alarms" >}}).
 
-![img](tag-matches.png)
+{{<tgimg src="tag-matches.png" width="50%">}}
+{{</field>}}
+{{<field "Tag Match Any/All">}} You can choose if multiple tags must match ALL or ANY of the selected tag criteria for the filter to match.  For example: 
+- `any` would cover a scenario where you want to match say `Environment=Prod` **OR** `Environment=Test`.  
+- `all` would cover if you wanted a filter to match something like `Environment=Prod` **AND** `Region=EAST`
+
+{{<tgimg src="tag-matches-option.png" width="60%">}}
 {{</field>}}
 {{<field "Severity">}}
 Each [event]({{<ref "events" >}}) type has a severity level associated with it. This filter will match any [event]({{<ref "events" >}}) with the selected severity type or higher. This is the only mandatory criteria.
