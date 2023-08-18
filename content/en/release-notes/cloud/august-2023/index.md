@@ -24,3 +24,4 @@ This release includes two improvements to the [Data Plane panel]({{<ref "/docs/n
 - It is now possibly for customers to generate and download [Debug Logs]({{<ref "/help-center/ops-logs/debug-logs">}}) from a Trustgrid node. This can be handy when working with Trustgrid support to troubleshoot issues.
 - [Users can be added to one or more groups when viewing the user]({{<ref "/docs/user-management/users#adding-a-user-to-groups">}}). Previously you had to navigate to each group and add the user there.
 - You can now select multiple protocols, IPs or ports when using the [Sniff Virtual Traffic]() VPN tool.
+- [Alarm Filter Tag Matches]({{<ref "/docs/alarms/alarm-filters#tag-matches">}}) can now be set to Any or All.  `Any` would cover a scenario where you want to match say `Environment=Prod` **OR** `Environment=Test`.  `All` would cover if you wanted a filter to match something like `Environment=Prod` **AND** `Region=EAST`
