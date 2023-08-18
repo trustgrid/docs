@@ -48,7 +48,21 @@
 &lt;tr id="tag-matches">
 &lt;th>Tag Matches&lt;/th>
 &lt;td>&lt;p>The &amp;ldquo;Tag Matches&amp;rdquo; criteria allows you to use &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">tag&lt;/a> name/value pairs to determine if the filter should match &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a>. For examples, you may what production devices to send to a high priority &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channel&lt;/a> such as PagerDuty or OpsGenie. If your &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> have a tag to indicating “prod_status=production”, you can select that name/value pair from the list to properly filter your &lt;a href="https://docs.trustgrid.io/docs/alarms/">alarms&lt;/a>.&lt;/p>
-&lt;p>&lt;img src="tag-matches.png" alt="img">&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="tag-matches.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;/figure>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="tag-match-any/all">
+&lt;th>Tag Match Any/All&lt;/th>
+&lt;td>&lt;p>You can choose if multiple tags must match ALL or ANY of the selected tag criteria for the filter to match. For example:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>any&lt;/code> would cover a scenario where you want to match say &lt;code>Environment=Prod&lt;/code> &lt;strong>OR&lt;/strong> &lt;code>Environment=Test&lt;/code>.&lt;/li>
+&lt;li>&lt;code>all&lt;/code> would cover if you wanted a filter to match something like &lt;code>Environment=Prod&lt;/code> &lt;strong>AND&lt;/strong> &lt;code>Region=EAST&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;figure class="centered-image">
+&lt;img src="tag-matches-option.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;/figure>
 &lt;/td>
 &lt;/tr>
 &lt;tr id="severity">

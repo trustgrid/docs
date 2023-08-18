@@ -110,9 +110,9 @@ d. Click &lt;code>Save&lt;/code>&lt;/li>
 &lt;p>Policies are attached and their cumulative effect can be viewed under &lt;code>User Management&lt;/code> → &lt;code>Users&lt;/code> by selecting the desired user.&lt;/p></description></item><item><title>Docs: Users</title><link>https://docs.trustgrid.io/docs/user-management/users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/</guid><description>
 &lt;p>&lt;img src="users.png" alt="img">&lt;/p>
 &lt;p>The Users panel is the primary panel for managing user identities and the policies attached to them. All changes in this panel require either the [builtin-tg-acess-admin] policy or similar permissions.&lt;/p>
-&lt;h3 id="adding-or-inviting-users">Adding or Inviting Users&lt;/h3>
+&lt;h2 id="adding-or-inviting-users">Adding or Inviting Users&lt;/h2>
 &lt;p>Users can either be invited to the Trustgrid portal and utilize Trustgrid’s native authentication system, or be added and be authenticated by a customer configured Identity Provider (IdP).&lt;/p>
-&lt;h4 id="inviting-users">Inviting Users&lt;/h4>
+&lt;h3 id="inviting-users">Inviting Users&lt;/h3>
 &lt;p>For users that will utilize Trustgrid’s native authentication system, you will need to invite them with a valid email address.&lt;/p>
 &lt;ol>
 &lt;li>
@@ -146,7 +146,7 @@ d. Click &lt;code>Save&lt;/code>&lt;/li>
 &lt;p>b. Enter the passcode and click the &lt;code>&amp;gt;&lt;/code>&lt;/p>
 &lt;p>c. You’ll be provided with a recovery code. Save this in a secure place, confirm it is safely recorded and click the &lt;code>&amp;gt;&lt;/code>&lt;/p>
 &lt;p>&lt;img src="backup-code.png" alt="img">&lt;/p>
-&lt;h4 id="adding-users-with-identity-providers">Adding Users (with Identity Providers)&lt;/h4>
+&lt;h3 id="adding-users-with-identity-providers">Adding Users (with Identity Providers)&lt;/h3>
 &lt;p>If your account has an Identity Provider configured as a Portal Auth Provider, you use the Add User button to create an identity for them within Trustgrid.&lt;/p>
 &lt;div class="alert alert-primary" role="alert">
 Some IdP’s allow for users to be synchronized automatically making this step unnecessary
@@ -168,16 +168,8 @@ Some IdP’s allow for users to be synchronized automatically making this step u
 &lt;ol start="3">
 &lt;li>The user can then navigate to the portal authentication domain associated with the IdP. They will be redirected to the IdP page and required to enter their username, password and MFA (if configured), then automatically sent back to the Trustgrid portal.&lt;/li>
 &lt;/ol>
-&lt;h4 id="configuring-users">Configuring Users&lt;/h4>
-&lt;p>After a user is added you can drill down into a specific account to:&lt;/p>
-&lt;ul>
-&lt;li>Manage attached Policies&lt;/li>
-&lt;li>View Effective Permission&lt;/li>
-&lt;li>Change a User Landing Page&lt;/li>
-&lt;li>View a User’s Group Membership&lt;/li>
-&lt;li>View a User’s Associated IdP&lt;/li>
-&lt;/ul>
-&lt;h4 id="manage-policies-attached-to-a-user">Manage Policies Attached to a User&lt;/h4>
+&lt;h2 id="managing-user-permissions">Managing User Permissions&lt;/h2>
+&lt;h3 id="manage-policies-attached-to-a-user">Manage Policies Attached to a User&lt;/h3>
 &lt;p>To attach/detach policies attached to a user:&lt;/p>
 &lt;ol>
 &lt;li>
@@ -197,7 +189,7 @@ a. Click &lt;code>Detach&lt;/code> (located to the right of target policy)&lt;/p
 &lt;p>&lt;img src="detach.png" alt="img">&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h4 id="view-effective-permissions">View Effective Permissions&lt;/h4>
+&lt;h3 id="view-effective-permissions">View Effective Permissions&lt;/h3>
 &lt;p>To see what permissions a user currently has and what policy is providing that permission:&lt;/p>
 &lt;ol>
 &lt;li>
@@ -212,14 +204,15 @@ c. A short description of what the permission allows
 d. what policy grants/denies the user the permission&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h4 id="change-a-user-landing-page">Change a User Landing Page&lt;/h4>
+&lt;h3 id="change-a-user-landing-page">Change a User Landing Page&lt;/h3>
 &lt;p>The Landing Page allows you to designate where a user is directed within the portal on initial login. This is most useful for users that only need access to ZTNA Remote Access application at the &lt;code>/apps&lt;/code> page.&lt;/p>
 &lt;ol>
 &lt;li>Under &lt;code>User Management&lt;/code> → &lt;code>User search&lt;/code> for the target user and click their name.&lt;/li>
 &lt;li>Enter in the desired landing page path (e.g. &lt;code>/apps&lt;/code>) and click &lt;code>Save&lt;/code>&lt;/li>
 &lt;/ol>
 &lt;p>&lt;img src="apps.png" alt="img">&lt;/p>
-&lt;h4 id="view-a-users-group-membership">View a User’s Group Membership&lt;/h4>
+&lt;h2 id="managing-group-membership">Managing Group Membership&lt;/h2>
+&lt;h3 id="view-a-users-group-membership">View a User’s Group Membership&lt;/h3>
 &lt;p>You can view all the Groups a user is a member of from the Groups panel. To change memberships you will need to use the &lt;code>User Management&lt;/code> → &lt;code>Groups page&lt;/code>.
 To view:&lt;/p>
 &lt;ol>
@@ -227,9 +220,44 @@ To view:&lt;/p>
 &lt;li>Select the &lt;code>Groups&lt;/code> panel on the left.&lt;/li>
 &lt;li>&lt;code>Groups&lt;/code> will be listed in a table in the main panel.&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="group-membership.png" alt="img">&lt;/p>
-&lt;p>View a User’s Associated Identity Provider (IdP)
-If an Identity Provider is configured a user maybe associated with one or more IdP.&lt;br>
+&lt;figure class="centered-image">
+&lt;img src="user-groups-table.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example group membership table
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="adding-a-user-to-groups">Adding a User to Groups&lt;/h3>
+&lt;p>You can add a user to one or more group by:&lt;/p>
+&lt;ol>
+&lt;li>Navigate to User Management &amp;gt; Users and click on the name of the user to add to groups.&lt;/li>
+&lt;li>Select the Groups panel from the left navigation bar.&lt;/li>
+&lt;li>Click the &amp;ldquo;Add to Group(s)&amp;rdquo; button.&lt;/li>
+&lt;li>From the prompt select the group or groups you want to add the user to. If there are many groups you can start typing the name to filter the options.
+&lt;figure class="centered-image">
+&lt;img src="add-user-group-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add Groups prompt
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Click Save&lt;/li>
+&lt;/ol>
+&lt;h3 id="removing-a-user-from-groups">Removing a User from Groups&lt;/h3>
+&lt;p>You can remove a user from a group by:&lt;/p>
+&lt;ol>
+&lt;li>Select the radio checkbox next to the group you wish to remove.&lt;/li>
+&lt;li>From Actions, select Delete.
+&lt;figure class="centered-image">
+&lt;img src="user-group-delete.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Deleting a group membership
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>When prompted confirm you want to delete the user.&lt;/li>
+&lt;/ol>
+&lt;h2 id="view-a-users-associated-identity-provider-idp">View a User’s Associated Identity Provider (IdP)&lt;/h2>
+&lt;p>If an Identity Provider is configured a user maybe associated with one or more IdP.&lt;br>
 To view:&lt;/p>
 &lt;ol>
 &lt;li>Under &lt;code>User Management&lt;/code> → &lt;code>User search&lt;/code> for the target user and click their name.&lt;/li>

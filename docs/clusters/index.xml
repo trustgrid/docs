@@ -6,7 +6,7 @@
 &lt;div class="alert alert-primary" role="alert">
 &lt;p>These events are based on the information reported by each member node to the control plane. Because of this:&lt;/p>
 &lt;ul>
-&lt;li>There can be a delay between a change and the &lt;a href="https://docs.trustgrid.io/docs/clusters/">Cluster&lt;/a> Site Health events.&lt;/li>
+&lt;li>There can be a delay between a change and the &lt;a href="https://docs.trustgrid.io/docs/clusters/">Cluster&lt;/a> Site Health events. Use the &lt;a href="https://docs.trustgrid.io/docs/clusters/cluster-health/#force-health-validation">Validate Health&lt;/a> action to get the most up-to-date health status.)&lt;/li>
 &lt;li>If member &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> have issues preventing control plane connections but not impacting data plane or other services the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> may not accurately reflect the state of the &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/li>
 &lt;/ul>
 &lt;/div>
@@ -39,7 +39,16 @@
 &lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Manage Cluster Members</title><link>https://docs.trustgrid.io/docs/clusters/manage-members/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/clusters/manage-members/</guid><description>
+&lt;/table>
+&lt;h3 id="force-health-validation">Force Health Validation&lt;/h3>
+&lt;p>The cluster health state is evaluated when certain events occurs, such as a member disconnecting/reconnecting or the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-member-health">member health state&lt;/a> changes. Occasionally this can lead to the state being reported incorrectly or a delay before the proper state is displayed.&lt;/p>
+&lt;p>If you wish to force the health state to be re-evaluated you can use the &amp;ldquo;Validate Health&amp;rdquo; command under Actions on the Cluster Overview panel.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="cluster-validate-health.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Validate Health action
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Docs: Manage Cluster Members</title><link>https://docs.trustgrid.io/docs/clusters/manage-members/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/clusters/manage-members/</guid><description>
 &lt;h2 id="add-member">Add Member&lt;/h2>
 &lt;p>This will add the selected node to the cluster and gain any configuration defined at the cluster level.&lt;/p>
 &lt;ol>

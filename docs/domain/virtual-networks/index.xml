@@ -267,7 +267,119 @@ Example Virtual Network Port Forward
 &lt;/tbody>
 &lt;/table>
 &lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
-&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
+&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Docs: DNS</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/dns/</guid><description>
+&lt;p>The DNS feature allows nodes in the virtual network to act as DNS servers for ingress VPN traffic. The node can resolve queries custom defines DNS zones and records, or forward queries to upstream DNS servers.&lt;/p>
+&lt;h2 id="dns-settings">DNS Settings&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="enable/disable-dns">
+&lt;th>Enable/Disable DNS&lt;/th>
+&lt;td>This field enables or disables the DNS feature on the virtual network.&lt;/td>
+&lt;/tr>
+&lt;tr id="dns-server-ip">
+&lt;th>DNS Server IP&lt;/th>
+&lt;td>This is the IP address that should be used as the resolver. There is no need to create a VPN route for this IP. If the ingress node was the &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/dns/">DNS feature enabled&lt;/a> it will automatically handle responses for the query.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-settings.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+DNS Settings
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>After making any changes to the DNS settings you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> for the updates to take effect.&lt;/p>
+&lt;h2 id="dns-zones">DNS Zones&lt;/h2>
+&lt;p>Optionally you can create custom DNS zones and either:&lt;/p>
+&lt;ul>
+&lt;li>Configure specific DNS records to resolve to IPs/hosts on the virtual network&lt;/li>
+&lt;li>Configure a node as a resolver for this zone. Requests will be forwarded to that node and resolved by its DNS servers or configured upstream servers.&lt;/li>
+&lt;/ul>
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-zones.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+DNS Zone Settings
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="adding-a-dns-zone">Adding a DNS Zone&lt;/h3>
+&lt;p>To add a custom DNS zone:&lt;/p>
+&lt;ol>
+&lt;li>Click the &amp;ldquo;Add Zone&amp;rdquo; button.&lt;/li>
+&lt;li>Provide a name for the zone (e.g. example.com).&lt;/li>
+&lt;li>Optionally, provide a description for the zone.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to save the zone.&lt;/li>
+&lt;/ol>
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-add-zone.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Adding a DNS Zone
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Once a zone has been added, you can configure either a DNS resolver or specific DNS records.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+You cannot have both custom DNS records and a resolver configured for the same zone.
+&lt;/div>
+&lt;h3 id="configuring-a-dns-resolver">Configuring a DNS Resolver&lt;/h3>
+&lt;ol>
+&lt;li>Click on the zone name to enter its configuration page.&lt;/li>
+&lt;li>Under &amp;ldquo;Resolver&amp;rdquo;, select a node from the dropdown.&lt;/li>
+&lt;li>Click &amp;ldquo;Save&amp;rdquo; to save the resolver configuration.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to update the DNS configuration.&lt;/li>
+&lt;/ol>
+&lt;h3 id="configuring-dns-records">Configuring DNS Records&lt;/h3>
+&lt;p>DNS records allow mapping names to IP addresses for hosts on the virtual network. DNS records have the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>The hostname being mapped (e.g. www). The zone name will be automatically appended.&lt;/td>
+&lt;/tr>
+&lt;tr id="record-type">
+&lt;th>Record Type&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>A - for records that should resolve to an IP address&lt;/li>
+&lt;li>CNAME - for alias/canonical name records&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="value">
+&lt;th>Value&lt;/th>
+&lt;td>The IP address or hostname being mapped to for A/CNAME records respectively.&lt;/td>
+&lt;/tr>
+&lt;tr id="ttl">
+&lt;th>TTL&lt;/th>
+&lt;td>Time To Live - how long records may be cached by other resolvers.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>To add a DNS record:&lt;/p>
+&lt;ol>
+&lt;li>Click on the zone name to enter its configuration page.&lt;/li>
+&lt;li>Under &amp;ldquo;DNS Records&amp;rdquo;, click &amp;ldquo;Add Record&amp;rdquo;&lt;/li>
+&lt;li>Provide the required fields
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-add-record.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add DNS Record prompt
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Click save.&lt;/li>
+&lt;li>(Optional) repeat to add more records to the current zone.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to save the record(s).&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Because changes to a domain &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> affect &lt;em>all&lt;/em> &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> configuration changes must be reviewed before applied, and are applied all at once.&lt;/p>
 &lt;/div>

@@ -10,7 +10,7 @@
 &lt;h2 id="portal-tool-improvements">Portal Tool Improvements&lt;/h2>
 &lt;h3 id="tool-setting-history">Tool Setting History&lt;/h3>
 &lt;p>A common pain point when using the tools within the Trustgrid Portal was that if you had to rerun a tool you had to reenter the values into the prompt. With this release Trustgrid is introducing an execution history that will make rerunning a tool much simpler for users.&lt;/p>
-&lt;p>As an example, if I run the Interface &lt;a href="https://docs.trustgrid.io/tutorials/remote-tools/tcp-port-test/">TCP Port Test&lt;/a> tool for the first time, the target IP and port will be the defaults 192.168.1.1 and port 80&lt;/p>
+&lt;p>As an example, if I run the Interface &lt;a href="https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/">TCP Port Test&lt;/a> tool for the first time, the target IP and port will be the defaults 192.168.1.1 and port 80&lt;/p>
 &lt;p>&lt;img src="tcp-port-test.png" alt="TCP Port Test">&lt;/p>
 &lt;p>If I change these to a new IP and port and run (e.g. 172.16.22.199 and port 22) and run the tool. The next time I run the tool these settings will be populated automatically.&lt;/p>
 &lt;p>&lt;img src="tcp-port-test-2.png" alt="TCP Port Test">&lt;/p>

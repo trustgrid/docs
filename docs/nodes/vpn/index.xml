@@ -1,9 +1,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– VPN</title><link>https://docs.trustgrid.io/docs/nodes/vpn/</link><description>Recent content in VPN on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/docs/nodes/vpn/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: DNS</title><link>https://docs.trustgrid.io/docs/nodes/vpn/dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vpn/dns/</guid><description>
-&lt;p>Nodes can act as DNS servers for the virtual network. Find DNS definitions and change them under the &lt;code>DNS&lt;/code> section of the VPN configuration.&lt;/p>
+&lt;p>Nodes can act as DNS servers for requests ingressing the the virtual network on the node if &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/dns/">DNS is configured at the virtual network&lt;/a>.&lt;/p>
 &lt;p>&lt;img src="list.png" alt="img">&lt;/p>
+&lt;h2 id="dns-status">DNS Status&lt;/h2>
+&lt;p>This setting must be set to enabled for the node to process requests targeting the configured &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/dns/#dns-settings">virtual network DNS server IP&lt;/a>.&lt;/p>
 &lt;h2 id="upstream-servers">Upstream Servers&lt;/h2>
-&lt;p>Upstream servers will be used to answer DNS queries for domains that are not in the virtual network.&lt;/p>
-&lt;p>
+&lt;p>If configured, the node will use these servers to resolve DNS requests for &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/dns/#dns-zones">zones not configured at the virtual network level&lt;/a>.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
 &lt;tr id="host-ip-address">
 &lt;th>Host IP Address&lt;/th>
 &lt;td>The upstream DNS server&amp;rsquo;s IP address&lt;/td>
@@ -11,7 +20,13 @@
 &lt;tr id="host-port">
 &lt;th>Host Port&lt;/th>
 &lt;td>The upstream DNS server&amp;rsquo;s port (usually 53)&lt;/td>
-&lt;/tr>&lt;/p></description></item><item><title>Docs: Dynamic Routing</title><link>https://docs.trustgrid.io/docs/nodes/vpn/dynamic-routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vpn/dynamic-routing/</guid><description>
+&lt;/tr>
+&lt;tr id="description">
+&lt;th>Description&lt;/th>
+&lt;td>(Optional) a user friends description of the server&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Docs: Dynamic Routing</title><link>https://docs.trustgrid.io/docs/nodes/vpn/dynamic-routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vpn/dynamic-routing/</guid><description>
 &lt;p>Dynamic routing allows a node to export and import routes from other nodes in the virtual network. Find dynamic route definitions and change them under the &lt;code>Dynamic Routing&lt;/code> section of the VPN configuration.&lt;/p>
 &lt;figure class="centered-image">
 &lt;img src="list.png" alt="A table for Export Routes and a table for Imports" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">

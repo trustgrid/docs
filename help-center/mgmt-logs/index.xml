@@ -1,0 +1,47 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Management Activity Logs</title><link>https://docs.trustgrid.io/help-center/mgmt-logs/</link><description>Recent content in Management Activity Logs on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 30 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/help-center/mgmt-logs/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: View Configuration Changes</title><link>https://docs.trustgrid.io/help-center/mgmt-logs/config-changes/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/mgmt-logs/config-changes/</guid><description>
+&lt;ul>
+&lt;li>Changes to the following configurations are audited:
+&lt;ul>
+&lt;li>API&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/clusters/">Cluster&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/">Node&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/">Domain&lt;/a>&lt;/li>
+&lt;li>Certificate&lt;/li>
+&lt;li>Org&lt;/li>
+&lt;li>Profile&lt;/li>
+&lt;li>Invite&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Audits record the event type (add/remove/change), the user name, the IP address, and the date of the change&lt;/li>
+&lt;li>Audits are kept for 30 days&lt;/li>
+&lt;li>Audits can be downloaded as CSV on the operations page&lt;/li>
+&lt;/ul></description></item><item><title>Help-Center: View Node Update Events</title><link>https://docs.trustgrid.io/help-center/mgmt-logs/node-update-events/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/mgmt-logs/node-update-events/</guid><description>
+&lt;ul>
+&lt;li>View node update events on the Operations page&lt;/li>
+&lt;li>Node update events are kept for 30 days&lt;/li>
+&lt;li>You can download a CSV of the node updates from the Operations page&lt;/li>
+&lt;li>All Trustgrid node agent updates and OS package updates are logged&lt;/li>
+&lt;/ul></description></item><item><title>Help-Center: View User Authentication Events</title><link>https://docs.trustgrid.io/help-center/mgmt-logs/user-authentication/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/mgmt-logs/user-authentication/</guid><description>
+&lt;ul>
+&lt;li>For every authentication event, we log:
+&lt;ul>
+&lt;li>user agent&lt;/li>
+&lt;li>user id&lt;/li>
+&lt;li>user name&lt;/li>
+&lt;li>IP address&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>User authentication events include:
+&lt;ul>
+&lt;li>Failed login attempts&lt;/li>
+&lt;li>Successful login attempts&lt;/li>
+&lt;li>API interactions&lt;/li>
+&lt;li>Successful sign ups&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>You can download all of the events for a 30 day period in the Operations page&lt;/li>
+&lt;li>Authentication events are kept for 30 days&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-primary" role="alert">
+If your organization is utilizing a third-party identity provider via SAML or OpenID, that provider is responsible for providing and storing authentication log records
+&lt;/div></description></item></channel></rss>

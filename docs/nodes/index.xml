@@ -735,7 +735,7 @@ Container Overview
 &lt;/tbody>
 &lt;/table></description></item><item><title>Docs: Data Plane</title><link>https://docs.trustgrid.io/docs/nodes/data-plane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/data-plane/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Data plane statistics between a node and its peers can help troubleshoot connectivity or performance issues.&lt;/p>
+&lt;p>The Data Plane panel shows a list of all statistics known peers, their connection status, provides tools for testing connectivity and can display statistics for the connection between the node and the peer.&lt;/p>
 &lt;/div>
 &lt;h2 id="export-list-of-peers">Export List of Peers&lt;/h2>
 &lt;p>You can export a CSV formatted list of all peers by clicking Actions -&amp;gt; Export
@@ -757,13 +757,30 @@ Export button
 &lt;li>Type - The role of the node to peer. SERVER = gateway, CLIENT = edge device&lt;/li>
 &lt;li>Ports - The ports used to establish the connection&lt;/li>
 &lt;/ul>
+&lt;h2 id="tools">Tools&lt;/h2>
+&lt;p>The far right column as links to launch the following tools:&lt;/p>
+&lt;h3 id="gateway-ping">Gateway Ping&lt;/h3>
+&lt;img src="gateway-ping-modal.png" width="400px" />
+&lt;p>The gateway ping tool will launch a ping inside the data plane tunnel between the node and the gateway, similar to ICMP ping. This can provide a more realtime view of latency between node and gateway compared to the RTT column (only loaded on refresh) and the historical data which provides a minute by minute view.&lt;/p>
+&lt;p>&lt;img src="ping-output.png" alt="Ping Output">&lt;/p>
+&lt;h3 id="gateway-performance-tool">Gateway Performance Tool&lt;/h3>
+&lt;p>The gateway performance tool attempts to estimate the available &lt;strong>upload bandwidth&lt;/strong> between current node and the selected peer.&lt;/p>
+&lt;img src="gateway-performance-modal.png" width="400px" />
+&lt;p>By default this tool will attempt to send 10MB of data to the destination device. This then used to calculate the available bandwidth. Sending more data provides a more accurate estimate but be aware that other devices using the same internet circuit may experience degraded performance while the test is running.&lt;/p>
+&lt;p>&lt;img src="performance-output.png" alt="Gateway Performance Output">&lt;/p>
+&lt;p>The periods are posted for about every 1MB of data sent. If you see exclamation marks this can indicate lost packets.&lt;/p>
+&lt;h3 id="trace-route-and-mtr">Trace Route and MTR&lt;/h3>
+&lt;p>Both of the links here will populate the &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/">interface tool of the same name&lt;/a> with the selected peer&amp;rsquo;s IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+This is most effective if run from the client/edge node to a gateway since the gateway is the only one actually listening on that port. If run in the other direction (gateway -&amp;gt; client) it is likely any firewall between will drop the connections and the client will definitely not respond on that port.
+&lt;/div>
 &lt;h2 id="view-latency-to-peers">View Latency to Peers&lt;/h2>
 &lt;p>To view latency data between two nodes, select either the edge or gateway node, and then from the peers table, select the node to view.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 Gateway nodes will list edge nodes in their peers table
 &lt;/div>
 &lt;p>&lt;img src="peer-list.png" alt="img">&lt;/p>
-&lt;p>Once a peer is selected, the monitoring section will populate with reelvant data.&lt;/p>
+&lt;p>Once a peer is selected, the monitoring section will populate with relevant data.&lt;/p>
 &lt;p>&lt;img src="monitoring.png" alt="img">&lt;/p>
 &lt;p>Hop data is only available for nodes that have hop monitoring enabled. See &lt;a href="https://docs.trustgrid.io/tutorials/gateway-tools/monitoring-network-hops-to-peers/">Monitoring Network Hops to Peers&lt;/a>.&lt;/p></description></item><item><title>Docs: Data Store</title><link>https://docs.trustgrid.io/docs/nodes/datastore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/datastore/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
@@ -968,6 +985,7 @@ Button to open Infovisor
 &lt;li>Version and Package Version - The Trustgrid software version running on the node&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Enabled / Disabled Status&lt;/a>&lt;/li>
 &lt;li>Device Type&lt;/li>
+&lt;li>Operating System (OS) Version&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#trustgrid-resource-names-or-tgrn">TGRN or Trustgrid Resource Name&lt;/a>&lt;/li>
 &lt;li>Upgrade Status&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">Tags&lt;/a>&lt;/li>
@@ -987,7 +1005,12 @@ Example infovisor
 &lt;/figure></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/interfaces/</guid><description>
 &lt;h2 id="network-interfaces">Network Interfaces&lt;/h2>
 &lt;p>Navigate to a node, then select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
-&lt;p>&lt;img src="interfaces.png" alt="Interfaces Page">&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="interfaces.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Interfaces panel
+&lt;/figcaption>
+&lt;/figure>
 &lt;p>The &lt;code>Interface&lt;/code> dropdown at the top allows you to select which interface to manage.&lt;/p>
 &lt;p>&lt;img src="select-interface.png" alt="Interface Dropdown">&lt;/p>
 &lt;h3 id="eth0---wan-interface">ETH0 - WAN Interface&lt;/h3>
@@ -1008,6 +1031,10 @@ Example infovisor
 &lt;tr id="hardware-address">
 &lt;th>Hardware Address&lt;/th>
 &lt;td>MAC address of the interface.&lt;/td>
+&lt;/tr>
+&lt;tr id="interface-name">
+&lt;th>Interface Name&lt;/th>
+&lt;td>Name assigned to the interface by the operating system. This varies between hardware models and is sometimes needed when using tools such as Sniff Interface or reviewing logs.&lt;/td>
 &lt;/tr>
 &lt;tr id="interface-vrf">
 &lt;th>Interface VRF&lt;/th>

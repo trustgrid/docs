@@ -316,7 +316,7 @@ BGP Status Output
 &lt;h2 id="portal-tool-improvements">Portal Tool Improvements&lt;/h2>
 &lt;h3 id="tool-setting-history">Tool Setting History&lt;/h3>
 &lt;p>A common pain point when using the tools within the Trustgrid Portal was that if you had to rerun a tool you had to reenter the values into the prompt. With this release Trustgrid is introducing an execution history that will make rerunning a tool much simpler for users.&lt;/p>
-&lt;p>As an example, if I run the Interface &lt;a href="https://docs.trustgrid.io/tutorials/remote-tools/tcp-port-test/">TCP Port Test&lt;/a> tool for the first time, the target IP and port will be the defaults 192.168.1.1 and port 80&lt;/p>
+&lt;p>As an example, if I run the Interface &lt;a href="https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/">TCP Port Test&lt;/a> tool for the first time, the target IP and port will be the defaults 192.168.1.1 and port 80&lt;/p>
 &lt;p>&lt;img src="tcp-port-test.png" alt="TCP Port Test">&lt;/p>
 &lt;p>If I change these to a new IP and port and run (e.g. 172.16.22.199 and port 22) and run the tool. The next time I run the tool these settings will be populated automatically.&lt;/p>
 &lt;p>&lt;img src="tcp-port-test-2.png" alt="TCP Port Test">&lt;/p>
@@ -618,7 +618,7 @@ Add Connector dialogue
 &lt;p>Before changes are committed to a virtual network setting, such as the virtual network route table, they are listed in the Changes panel for approval. This made it easier to see if other users had outstanding changes that might be in conflict. However, it wasn’t clear if the other user just made that change or if it had been left accidentally. With this release we’ve added a timestamp that shows when the user saved the change.&lt;/p>
 &lt;p>&lt;img src="modified-route.png" alt="Change Example">&lt;/p></description></item><item><title>Docs: Data Plane</title><link>https://docs.trustgrid.io/docs/nodes/data-plane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/data-plane/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Data plane statistics between a node and its peers can help troubleshoot connectivity or performance issues.&lt;/p>
+&lt;p>The Data Plane panel shows a list of all statistics known peers, their connection status, provides tools for testing connectivity and can display statistics for the connection between the node and the peer.&lt;/p>
 &lt;/div>
 &lt;h2 id="export-list-of-peers">Export List of Peers&lt;/h2>
 &lt;p>You can export a CSV formatted list of all peers by clicking Actions -&amp;gt; Export
@@ -640,13 +640,30 @@ Export button
 &lt;li>Type - The role of the node to peer. SERVER = gateway, CLIENT = edge device&lt;/li>
 &lt;li>Ports - The ports used to establish the connection&lt;/li>
 &lt;/ul>
+&lt;h2 id="tools">Tools&lt;/h2>
+&lt;p>The far right column as links to launch the following tools:&lt;/p>
+&lt;h3 id="gateway-ping">Gateway Ping&lt;/h3>
+&lt;img src="gateway-ping-modal.png" width="400px" />
+&lt;p>The gateway ping tool will launch a ping inside the data plane tunnel between the node and the gateway, similar to ICMP ping. This can provide a more realtime view of latency between node and gateway compared to the RTT column (only loaded on refresh) and the historical data which provides a minute by minute view.&lt;/p>
+&lt;p>&lt;img src="ping-output.png" alt="Ping Output">&lt;/p>
+&lt;h3 id="gateway-performance-tool">Gateway Performance Tool&lt;/h3>
+&lt;p>The gateway performance tool attempts to estimate the available &lt;strong>upload bandwidth&lt;/strong> between current node and the selected peer.&lt;/p>
+&lt;img src="gateway-performance-modal.png" width="400px" />
+&lt;p>By default this tool will attempt to send 10MB of data to the destination device. This then used to calculate the available bandwidth. Sending more data provides a more accurate estimate but be aware that other devices using the same internet circuit may experience degraded performance while the test is running.&lt;/p>
+&lt;p>&lt;img src="performance-output.png" alt="Gateway Performance Output">&lt;/p>
+&lt;p>The periods are posted for about every 1MB of data sent. If you see exclamation marks this can indicate lost packets.&lt;/p>
+&lt;h3 id="trace-route-and-mtr">Trace Route and MTR&lt;/h3>
+&lt;p>Both of the links here will populate the &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/">interface tool of the same name&lt;/a> with the selected peer&amp;rsquo;s IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+This is most effective if run from the client/edge node to a gateway since the gateway is the only one actually listening on that port. If run in the other direction (gateway -&amp;gt; client) it is likely any firewall between will drop the connections and the client will definitely not respond on that port.
+&lt;/div>
 &lt;h2 id="view-latency-to-peers">View Latency to Peers&lt;/h2>
 &lt;p>To view latency data between two nodes, select either the edge or gateway node, and then from the peers table, select the node to view.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 Gateway nodes will list edge nodes in their peers table
 &lt;/div>
 &lt;p>&lt;img src="peer-list.png" alt="img">&lt;/p>
-&lt;p>Once a peer is selected, the monitoring section will populate with reelvant data.&lt;/p>
+&lt;p>Once a peer is selected, the monitoring section will populate with relevant data.&lt;/p>
 &lt;p>&lt;img src="monitoring.png" alt="img">&lt;/p>
 &lt;p>Hop data is only available for nodes that have hop monitoring enabled. See &lt;a href="https://docs.trustgrid.io/tutorials/gateway-tools/monitoring-network-hops-to-peers/">Monitoring Network Hops to Peers&lt;/a>.&lt;/p></description></item><item><title>Docs: Documents</title><link>https://docs.trustgrid.io/docs/support/documents/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/support/documents/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
@@ -980,6 +997,7 @@ Button to open Infovisor
 &lt;li>Version and Package Version - The Trustgrid software version running on the node&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Enabled / Disabled Status&lt;/a>&lt;/li>
 &lt;li>Device Type&lt;/li>
+&lt;li>Operating System (OS) Version&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#trustgrid-resource-names-or-tgrn">TGRN or Trustgrid Resource Name&lt;/a>&lt;/li>
 &lt;li>Upgrade Status&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">Tags&lt;/a>&lt;/li>
@@ -999,7 +1017,12 @@ Example infovisor
 &lt;/figure></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/interfaces/</guid><description>
 &lt;h2 id="network-interfaces">Network Interfaces&lt;/h2>
 &lt;p>Navigate to a node, then select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
-&lt;p>&lt;img src="interfaces.png" alt="Interfaces Page">&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="interfaces.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Interfaces panel
+&lt;/figcaption>
+&lt;/figure>
 &lt;p>The &lt;code>Interface&lt;/code> dropdown at the top allows you to select which interface to manage.&lt;/p>
 &lt;p>&lt;img src="select-interface.png" alt="Interface Dropdown">&lt;/p>
 &lt;h3 id="eth0---wan-interface">ETH0 - WAN Interface&lt;/h3>
@@ -1020,6 +1043,10 @@ Example infovisor
 &lt;tr id="hardware-address">
 &lt;th>Hardware Address&lt;/th>
 &lt;td>MAC address of the interface.&lt;/td>
+&lt;/tr>
+&lt;tr id="interface-name">
+&lt;th>Interface Name&lt;/th>
+&lt;td>Name assigned to the interface by the operating system. This varies between hardware models and is sometimes needed when using tools such as Sniff Interface or reviewing logs.&lt;/td>
 &lt;/tr>
 &lt;tr id="interface-vrf">
 &lt;th>Interface VRF&lt;/th>
@@ -1386,7 +1413,21 @@ Change entry for active member change
 &lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>Release-Notes: December</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</guid><description>
+&lt;/div></description></item><item><title>Help-Center: Review Node Events</title><link>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</guid><description>
+&lt;p>When troubleshooting a problem on edge or gateway nodes, reviewing node events can provide critical information about the nature of the problem.&lt;/p>
+&lt;ol>
+&lt;li>Choose the node that may be causing the problem&lt;/li>
+&lt;li>Scroll down to &lt;code>Events&lt;/code>&lt;/li>
+&lt;li>Look for any critical problems&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="node-alerts.png" alt="img">&lt;/p>
+&lt;p>For more issues involving multiple nodes, review [Domain Node Events](need link for this).&lt;/p>
+&lt;ol>
+&lt;li>Choose the &lt;code>Operations&lt;/code> tab&lt;/li>
+&lt;li>View &lt;code>Events&lt;/code> across the organization&lt;/li>
+&lt;/ol>
+&lt;p>&lt;img src="alerts-page.png" alt="img">
+Types]](https://docs.trustgrid.io/docs/alarms/event-types/)&lt;/p></description></item><item><title>Release-Notes: December</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</guid><description>
 &lt;h2 id="data-plane-status-table">Data Plane Status Table&lt;/h2>
 &lt;p>Previously Trustgrid had a visual indicator on the Node detail page to show the Data Plane health of a node, but it only showed the state as &lt;code>Connected&lt;/code>, &lt;code>Degraded&lt;/code> or &lt;code>Disconnected&lt;/code>. While connected and disconnected were clear, there was little information on why the status was Degraded.&lt;/p>
 &lt;p>With this release hovering over the Data Plane status icon will bring up a pop-up screen showing all the peers and and their connection status. Additionally, if the peer is connected it will show:&lt;/p>
@@ -1412,7 +1453,15 @@ Change entry for active member change
 &lt;p>Trustgrid uses each node&amp;rsquo;s public IP address to derive location information. If it&amp;rsquo;s incorrect, the fields can be set manually. If set manually, IP changes will not update the node&amp;rsquo;s location when viewed from the nodes table or the network map.&lt;/p>
 &lt;p>&lt;img src="node-location.png" alt="img">&lt;/p>
 &lt;h6 id="to-change-the-node-location">To change the Node Location:&lt;/h6>
-&lt;p>Change the details to desired settings then click &lt;code>Save&lt;/code> when done.&lt;/p></description></item><item><title>Docs: Overview</title><link>https://docs.trustgrid.io/docs/nodes/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/overview/</guid><description>
+&lt;p>Change the details to desired settings then click &lt;code>Save&lt;/code> when done.&lt;/p></description></item><item><title>Help-Center: Submit a Support Request</title><link>https://docs.trustgrid.io/help-center/trustgrid-support/submit-support-request/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/trustgrid-support/submit-support-request/</guid><description>
+&lt;p>Trustgrid support is available 24/7/365 with a commitment to respond to any Emergency Support request within 30 minutes.&lt;/p>
+&lt;h4 id="to-contact-support">To contact support:&lt;/h4>
+&lt;p>Email: &lt;a href="mailto:support@trustgrid.io">support@trustgrid.io&lt;/a>&lt;/p>
+&lt;p>Phone: 888-308-8995 x2&lt;/p>
+&lt;h4 id="authorized-support">Authorized Support&lt;/h4>
+&lt;p>Trustgrid can only provide support to customers with a Trustgrid Portal account commensurate with the account&amp;rsquo;s permission level in the portal. To receive support the user must be able to respond to an email at the account&amp;rsquo;s email address in the portal.&lt;/p>
+&lt;h4 id="enable-support-for-trustgrid">Enable Support for Trustgrid&lt;/h4>
+&lt;p>Trustgrid customers can prohibit Support access to Nodes in the Portal. It may be required to enable this support to resolve certain issues.&lt;/p></description></item><item><title>Docs: Overview</title><link>https://docs.trustgrid.io/docs/nodes/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/overview/</guid><description>
 &lt;h3 id="stats">Stats&lt;/h3>
 &lt;p>The Node overview page shows performance and network traffic data.&lt;/p>
 &lt;p>Supported time windows are selectable at the top. VPN and network statistics can be targeted to specific virtual networks and interfaces.&lt;/p>
@@ -1451,7 +1500,120 @@ Change entry for active member change
 &lt;td>shows TCP errors across all interfaces&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Repositories</title><link>https://docs.trustgrid.io/docs/repositories/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/repositories/</guid><description>
+&lt;/table></description></item><item><title>Help-Center: Support Responsibility Matrix</title><link>https://docs.trustgrid.io/help-center/support-responsibility-matrix/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/support-responsibility-matrix/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>The matrix below defines the primary responsible party for troubleshooting and resolving different types of issues. Trustgrid support can be engaged to assist in resolving issues not directly in scope of their responsibility.&lt;/p>
+&lt;/div>
+&lt;h3 id="organization-and-roles">Organization and Roles&lt;/h3>
+&lt;h4 id="trustgrid">Trustgrid&lt;/h4>
+&lt;p>Trustgrid is a software and services provider that operates a multi-tenant cloud management system and assists customers and end-users with the deployment and management of a data transfer plane.&lt;/p>
+&lt;h4 id="customer">Customer&lt;/h4>
+&lt;p>Customers have a direct, contractual relationship with Trustgrid to utilize Trustgrid’s software and services. Depending on the contractual relationship with Trustgrid, Customers may also assume the role and responsibilities of End Users.&lt;/p>
+&lt;h4 id="end-user">End-User&lt;/h4>
+&lt;p>End Users own and operate a physical, virtual or cloud environment in which the Trustgrid software may be installed.&lt;/p>
+&lt;h3 id="terminology">Terminology&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="trustgrid-management-portal">
+&lt;th>Trustgrid Management Portal&lt;/th>
+&lt;td>Cloud-based system used to remotely manage, monitor, and configure Trustgrid Nodes.&lt;/td>
+&lt;/tr>
+&lt;tr id="trustgrid-node">
+&lt;th>Trustgrid Node&lt;/th>
+&lt;td>Appliance running Trustgrid’s software to facilitate Trustgrid Connect, EdgeCompute, and RemoteAccess services. These appliances could be deployed on physical devices or as virtual machines. The appliance consists of the Trustgrid software and the underlying operating system (OS).&lt;/td>
+&lt;/tr>
+&lt;tr id="customer-site">
+&lt;th>Customer Site&lt;/th>
+&lt;td>Site with Trustgrid node(s) deployed and managed by the Customer.&lt;/td>
+&lt;/tr>
+&lt;tr id="end-user-site">
+&lt;th>End-User Site&lt;/th>
+&lt;td>Site with Trustgrid node(s) deployed and managed by the End-User.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="support-matrix">Support Matrix&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Issue Type&lt;/th>
+&lt;th>Trustgrid&lt;/th>
+&lt;th>Customer&lt;/th>
+&lt;th>End-User&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Trustgrid software or operating system issues&lt;/td>
+&lt;td>Full&lt;/td>
+&lt;td>None&lt;/td>
+&lt;td>None&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Control Plane Connectivity&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;td>Shared - Customer Site&lt;/td>
+&lt;td>Shared - End-User Site&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Data Plane Connectivity&lt;/td>
+&lt;td>Limited&lt;sup>1&lt;/sup>&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Data Plane Performance&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Power and physical network connectivity for Trustgrid Appliance&lt;/td>
+&lt;td>None&lt;/td>
+&lt;td>Full - Customer Site&lt;/td>
+&lt;td>Full - End-User Site&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Internet Service&lt;/td>
+&lt;td>None&lt;/td>
+&lt;td>Full - Customer Site&lt;/td>
+&lt;td>Full - End-User Site&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Internet Side Firewall&lt;/td>
+&lt;td>None&lt;/td>
+&lt;td>Full - Customer Site&lt;/td>
+&lt;td>Full - End-User Site&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Local networking including switching and firewall&lt;/td>
+&lt;td>None&lt;/td>
+&lt;td>Full - Customer Site&lt;/td>
+&lt;td>Full - End-User Site&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;hr>
+&lt;p>&lt;sup>1&lt;/sup>Trustgrid can work with the Customer and End-User to confirm that the Trustgrid system is working as expected and provide additional information to aid in troubleshooting.&lt;/p>
+&lt;h3 id="tier-one-support">Tier One Support&lt;/h3>
+&lt;p>The customer’s support team should be the end-user’s first point of contact. Trustgrid’s standard support contract makes the customer responsible for performing tier one support tasks prior to escalating Trustgrid Support. This includes contacting end-user technical resources as needed.&lt;/p>
+&lt;p>Example tasks include:&lt;/p>
+&lt;ul>
+&lt;li>Troubleshooting offline Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>&lt;/li>
+&lt;li>Changing Trustgrid node IP addresses&lt;/li>
+&lt;li>Adding, modifying and testing NATs on Edge devices&lt;/li>
+&lt;li>Modifying interface and domain routes, including facilitating failover between sites&lt;/li>
+&lt;li>Disabling and removing nodes, clusters and related configuration (e.g. routes) when no longer needed&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-primary" role="alert">
+Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment
+&lt;/div></description></item><item><title>Docs: Repositories</title><link>https://docs.trustgrid.io/docs/repositories/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/repositories/</guid><description>
 &lt;h4 id="list-view">List View&lt;/h4>
 &lt;p>Trustgrid provides a fully managed private container registry. Uploaded container images may be viewed by navigating to Repositories in the portal:&lt;/p>
 &lt;p>&lt;img src="list-view.png" alt="img">&lt;/p>
@@ -1599,7 +1761,66 @@ Add Service dialogue
 &lt;td>For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Help-Center: Site Requirements</title><link>https://docs.trustgrid.io/help-center/kb/site-requirements/</link><pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/site-requirements/</guid><description>
+&lt;/table></description></item><item><title>Help-Center: Debug Logs</title><link>https://docs.trustgrid.io/help-center/ops-logs/debug-logs/</link><pubDate>Mon, 14 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/debug-logs/</guid><description>
+&lt;h2 id="what-are-debug-logs">What are debug logs?&lt;/h2>
+&lt;p>Debug log files contain detailed technical information about the operation of a Trustgrid node. They are useful for Trustgrid support engineers to troubleshoot issues. If your node is experiencing problems, generating logs at that time may help identify the root cause.&lt;/p>
+&lt;h2 id="generating-log-files">Generating Log Files&lt;/h2>
+&lt;ol>
+&lt;li>The Debug Log button is located in the top right of a Node Details page.
+&lt;figure class="centered-image">
+&lt;img src="debug-logs-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Debug Logs button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>The Debug Log dialogue will show any previously generated log files. Clicking the Fetch Newest Logs
+&lt;figure class="centered-image">
+&lt;img src="debug-logs-fetch.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Debug Logs dialogue and fetch button
+&lt;/figcaption>
+&lt;/figure>
+&lt;div class="alert alert-info" role="alert">
+A node must be online and connected to the Trustgrid control plane to generate and publish new logs.
+&lt;/div>
+&lt;/li>
+&lt;li>Once the node has completed compressing and uploading the logs a new entry will appear. Clicking the Download button will pull down the zip filed to your local system.
+&lt;figure class="centered-image">
+&lt;img src="debug-logs-new.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Download button next to newly generated file
+&lt;/figcaption>
+&lt;/figure>
+&lt;div class="alert alert-info" role="alert">
+Trustgrid support will have access to the same files, it is not necessary to download and send the file to the support team. Just note the time it was generated.
+&lt;/div>
+&lt;/li>
+&lt;/ol>
+&lt;div class="alert alert-warning" role="alert">
+At this time the zip file generated by the node is incompatible with the decompress utility built into Windows operating systems. Use of a 3rd party compression utility such as 7zip is required to decompress.
+&lt;/div>
+&lt;h2 id="log-files">Log Files&lt;/h2>
+&lt;p>There a multiple types of logs that are included in the generated zip file.&lt;/p>
+&lt;h3 id="node-appliance-log-files">Node Appliance Log Files&lt;/h3>
+&lt;p>Files are gathered from the following directories:&lt;/p>
+&lt;ul>
+&lt;li>/var/log/trustgrid - These logs are generated by the node service as part of normal operations and upgrades. These are the most commonly used by Trustgrid support.&lt;/li>
+&lt;li>/var/log/unattended-upgrades - These logs are generated by the operating system during upgrades and can be useful when troubleshooting failed upgrades.&lt;/li>
+&lt;li>/var/lib/trustgrid/config - These aren&amp;rsquo;t actually logs but contain the node configuration files which may be needed by support to verify the configuration has been successfully retrieved by the node from the control plane.&lt;/li>
+&lt;/ul></description></item><item><title>Help-Center: Authorization to Request Support</title><link>https://docs.trustgrid.io/help-center/trustgrid-support/request-support/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/trustgrid-support/request-support/</guid><description>
+&lt;p>To prevent unauthorized users from potentially compromising the control plane, Trustgrid has implemented a policy to approve customers&amp;rsquo; staff for access to technical support services. Trustgrid will not refuse support completely in cases when unauthorized staff request it, but will limit the disclosure of confidential information and will refuse to make configuration changes without approval from an authorized support contact.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>All staff who request support must have a portal login.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Trustgrid support staff will not execute any change requested by staff that exceeds that staff members access to portal.&lt;/p>
+&lt;p>a. Monitor Access: Staff can alert of issues and request remote assistance but no change in the portal can be requested or made.&lt;/p>
+&lt;p>b. Operator Access: Staff can alert of issues and request remote assistance but only changes limited to the Operator role can be requested.&lt;/p>
+&lt;p>c. Administrator Access: Staff can request any system change.&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>Help-Center: Site Requirements</title><link>https://docs.trustgrid.io/help-center/kb/site-requirements/</link><pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/site-requirements/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) and management infrastructure built in AWS. Nodes create tunnels to other nodes for data transfer, and to the management infrastructure for control. All tunnels are TLS connections and must be permitted by any firewall between&lt;/p>
 &lt;/div>
@@ -2062,7 +2283,156 @@ Example Virtual Network Port Forward
 &lt;/tbody>
 &lt;/table>
 &lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
-&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Tutorials: Upgrading Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
+&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Help-Center: Network Flow Logs</title><link>https://docs.trustgrid.io/help-center/flow-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/flow-logs/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>Flow logs are a records of for network traffic that passes through a node. They can be used to troubleshoot connectivity issues, or to monitor traffic patterns.&lt;/p>
+&lt;/div>
+&lt;h2 id="what-are-flow-logs">What are flow logs?&lt;/h2>
+&lt;p>Flow logs are records containing metadata about each network traffic flow, or conversation, from the initial connection (e.g. the first SYN packet for TCP) to the closing of the connection (e.g. FIN or RST packets for TCP). Flow logs &lt;strong>do not contain any payload data&lt;/strong> for the flow which makes them much smaller and more secure than a full packet capture of the same flow.&lt;/p>
+&lt;p>Flow logs can be used for troubleshooting by:&lt;/p>
+&lt;ul>
+&lt;li>Verifying that both the expected source and destination node have the appropriate logs.&lt;/li>
+&lt;li>That any &lt;a href="#nat-impact-on-source-and-destination-fields">NATs&lt;/a> are applying as expected.&lt;/li>
+&lt;li>That the expected number of flows or sent/received byte are being passed.&lt;/li>
+&lt;li>TCP Flags can be used to confirm a successful connection is being made. For example:
+&lt;ul>
+&lt;li>A TCP Flow with only a SYN flag is never completing the TCP Handshake process indicating an issue, such as a firewall or routing configuration problem, preventing the destination IP from either receiving packets or replying successfully&lt;/li>
+&lt;li>A TCP Flow with only a SYN &amp;amp; RST flag indicates something in the path is actively resetting the connection attempt. This could be a firewall or an application IP restriction.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="flow-log-data">Flow Log Data&lt;/h3>
+&lt;p>Below are the potential fields of a single flow log.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="start-time">
+&lt;th>Start Time&lt;/th>
+&lt;td>The time the flow started&lt;/td>
+&lt;/tr>
+&lt;tr id="end-time">
+&lt;th>End Time&lt;/th>
+&lt;td>The time the flow ended&lt;/td>
+&lt;/tr>
+&lt;tr id="protocol">
+&lt;th>Protocol&lt;/th>
+&lt;td>The protocol of the traffic TCP, UDP, ICMP&lt;/td>
+&lt;/tr>
+&lt;tr id="source-node">
+&lt;th>Source Node&lt;/th>
+&lt;td>The node that initiated the flow&lt;/td>
+&lt;/tr>
+&lt;tr id="source-ip">
+&lt;th>Source IP&lt;/th>
+&lt;td>The IP address through which the node initiated the flow&lt;/td>
+&lt;/tr>
+&lt;tr id="source-port">
+&lt;th>Source Port&lt;/th>
+&lt;td>The port through which the node initiated the flow&lt;/td>
+&lt;/tr>
+&lt;tr id="dest-node">
+&lt;th>Dest Node&lt;/th>
+&lt;td>The node that received the flow&lt;/td>
+&lt;/tr>
+&lt;tr id="dest-ip">
+&lt;th>Dest IP&lt;/th>
+&lt;td>The IP address to which traffic was sent&lt;/td>
+&lt;/tr>
+&lt;tr id="dest-port">
+&lt;th>Dest Port&lt;/th>
+&lt;td>The port to which traffic was sent&lt;/td>
+&lt;/tr>
+&lt;tr id="recv-bytes">
+&lt;th>Recv Bytes&lt;/th>
+&lt;td>Bytes received at the source node&lt;/td>
+&lt;/tr>
+&lt;tr id="sent-bytes">
+&lt;th>Sent Bytes&lt;/th>
+&lt;td>Bytes sent from the source node&lt;/td>
+&lt;/tr>
+&lt;tr id="tcp-flags">
+&lt;th>TCP Flags&lt;/th>
+&lt;td>&lt;p>TCP Flags set during the flow:&lt;/p>
+&lt;ul>
+&lt;li>SYN - sync packet&lt;/li>
+&lt;li>PSH - push packet&lt;/li>
+&lt;li>ACK - ack packet&lt;/li>
+&lt;li>URG - urgent packet&lt;/li>
+&lt;li>FIN - finish packet&lt;/li>
+&lt;li>RST - reset packet&lt;/li>
+&lt;/ul>
+&lt;p>TCP Flags are only available for &lt;strong>TCP&lt;/strong> flows that traverse the layer 3 VPN function. ICMP and UDP traffic, &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">Layer 4 services&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">VPN Port Forwards&lt;/a> will not have this data.&lt;/p>
+&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="nat-impact-on-source-and-destination-fields">NAT Impact on Source and Destination Fields&lt;/h3>
+&lt;p>When &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/nats/">NATs&lt;/a> are applied to a flow they will influence the source/destination IP and port values.&lt;/p>
+&lt;p>Consider this flow:&lt;/p>
+&lt;div class="mermaid">graph LR
+client(HTTP Client\n192.168.100.1) -- src: 192.168.100.1\ndest: 10.100.1.1--> Node1
+subgraph Virtual Network
+Node1 -- src: 10.100.2.1\ndest: 10.100.1.1 --> Node2[Node2 \n Local IP\n172.16.1.100]
+end
+Node2 --src: 172.16.1.100 \n dest:172.16.1.20 --> server(HTTP Server\n172.16.1.20)
+&lt;/div>
+&lt;p>Node1 would report the flow before any NATs were applied&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Source IP&lt;/th>
+&lt;th>Destination IP&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>192.168.100.1&lt;/td>
+&lt;td>10.100.1.1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>Node2 would report the flow after the NATs on Node1 were applied (changing the source 10.100.2.1) and the NATs on Node2 were applied (changing the source to 172.16.1.100 and the destination to 172.16.1.20)&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Source IP&lt;/th>
+&lt;th>Destination IP&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>192.168.100.1&lt;/td>
+&lt;td>10.100.1.1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Note:&lt;/h4>
+For simplicity sake ports were excluded. Destination ports will not be changed by NATs. Source ports would also be maintained for any 1:1 NAT, but would change if a many:1 (or overload) NAT was applied to the flow.
+&lt;/div>
+&lt;h2 id="viewing-flow-logs">Viewing Flow Logs&lt;/h2>
+&lt;p>Flow logs are visible at an organization level by navigating to &lt;a href="https://docs.trustgrid.io/docs/operations/flow-logs/">Operations &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 1000 flows over the last two hours for the &lt;strong>all&lt;/strong> nodes in the organization.&lt;/p>
+&lt;p>To view Flow Logs only for traffic through a specific node, navigate to that node and go to &lt;a href="https://docs.trustgrid.io/docs/nodes/flow-logs/">History &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 1000 flows over the last two hours for the &lt;strong>currently selected&lt;/strong> node.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="flow-logs-node.png" alt="table showing flow log entries for a node" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example flow log table for a node
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="advanced-search">Advanced Search&lt;/h3>
+&lt;p>Flow logs can be filtered by any of the fields listed above. To filter by a field, click the &lt;code>Advanced Search&lt;/code> button at the top right of the flow logs table.&lt;/p>
+&lt;p>In addition, the ordering can be changed so that oldest flows (or flows closest to the time range specified) can be shown first. There is a limit of 10,000 flows returned per search.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="advanced-search.png" alt="Dialog showing the various search filter parameters available in advanced search." style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Advanced Search dialog
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Tutorials: Upgrading Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
 &lt;h2 id="how-a-node-appliance-upgrades">How a Node Appliance Upgrades&lt;/h2>
 &lt;p>The upgrade process will:&lt;/p>
 &lt;ol>
@@ -2225,7 +2595,119 @@ Note: if an upgrade is currently &lt;strong>In Progress&lt;/strong>, then this w
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
 Example of Completed upgrade status
 &lt;/figcaption>
-&lt;/figure></description></item><item><title>Tutorials: Deleting Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</guid><description>
+&lt;/figure></description></item><item><title>Docs: DNS</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/dns/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/dns/</guid><description>
+&lt;p>The DNS feature allows nodes in the virtual network to act as DNS servers for ingress VPN traffic. The node can resolve queries custom defines DNS zones and records, or forward queries to upstream DNS servers.&lt;/p>
+&lt;h2 id="dns-settings">DNS Settings&lt;/h2>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="enable/disable-dns">
+&lt;th>Enable/Disable DNS&lt;/th>
+&lt;td>This field enables or disables the DNS feature on the virtual network.&lt;/td>
+&lt;/tr>
+&lt;tr id="dns-server-ip">
+&lt;th>DNS Server IP&lt;/th>
+&lt;td>This is the IP address that should be used as the resolver. There is no need to create a VPN route for this IP. If the ingress node was the &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/dns/">DNS feature enabled&lt;/a> it will automatically handle responses for the query.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-settings.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+DNS Settings
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>After making any changes to the DNS settings you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> for the updates to take effect.&lt;/p>
+&lt;h2 id="dns-zones">DNS Zones&lt;/h2>
+&lt;p>Optionally you can create custom DNS zones and either:&lt;/p>
+&lt;ul>
+&lt;li>Configure specific DNS records to resolve to IPs/hosts on the virtual network&lt;/li>
+&lt;li>Configure a node as a resolver for this zone. Requests will be forwarded to that node and resolved by its DNS servers or configured upstream servers.&lt;/li>
+&lt;/ul>
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-zones.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+DNS Zone Settings
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="adding-a-dns-zone">Adding a DNS Zone&lt;/h3>
+&lt;p>To add a custom DNS zone:&lt;/p>
+&lt;ol>
+&lt;li>Click the &amp;ldquo;Add Zone&amp;rdquo; button.&lt;/li>
+&lt;li>Provide a name for the zone (e.g. example.com).&lt;/li>
+&lt;li>Optionally, provide a description for the zone.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to save the zone.&lt;/li>
+&lt;/ol>
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-add-zone.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Adding a DNS Zone
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>Once a zone has been added, you can configure either a DNS resolver or specific DNS records.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+You cannot have both custom DNS records and a resolver configured for the same zone.
+&lt;/div>
+&lt;h3 id="configuring-a-dns-resolver">Configuring a DNS Resolver&lt;/h3>
+&lt;ol>
+&lt;li>Click on the zone name to enter its configuration page.&lt;/li>
+&lt;li>Under &amp;ldquo;Resolver&amp;rdquo;, select a node from the dropdown.&lt;/li>
+&lt;li>Click &amp;ldquo;Save&amp;rdquo; to save the resolver configuration.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to update the DNS configuration.&lt;/li>
+&lt;/ol>
+&lt;h3 id="configuring-dns-records">Configuring DNS Records&lt;/h3>
+&lt;p>DNS records allow mapping names to IP addresses for hosts on the virtual network. DNS records have the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name">
+&lt;th>Name&lt;/th>
+&lt;td>The hostname being mapped (e.g. www). The zone name will be automatically appended.&lt;/td>
+&lt;/tr>
+&lt;tr id="record-type">
+&lt;th>Record Type&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>A - for records that should resolve to an IP address&lt;/li>
+&lt;li>CNAME - for alias/canonical name records&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="value">
+&lt;th>Value&lt;/th>
+&lt;td>The IP address or hostname being mapped to for A/CNAME records respectively.&lt;/td>
+&lt;/tr>
+&lt;tr id="ttl">
+&lt;th>TTL&lt;/th>
+&lt;td>Time To Live - how long records may be cached by other resolvers.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>To add a DNS record:&lt;/p>
+&lt;ol>
+&lt;li>Click on the zone name to enter its configuration page.&lt;/li>
+&lt;li>Under &amp;ldquo;DNS Records&amp;rdquo;, click &amp;ldquo;Add Record&amp;rdquo;&lt;/li>
+&lt;li>Provide the required fields
+&lt;figure class="centered-image">
+&lt;img src="vnet-dns-add-record.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Add DNS Record prompt
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Click save.&lt;/li>
+&lt;li>(Optional) repeat to add more records to the current zone.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to save the record(s).&lt;/li>
+&lt;/ol></description></item><item><title>Tutorials: Deleting Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</guid><description>
 &lt;div class="alert alert-danger" role="alert">
 &lt;strong>Be advised:&lt;/strong> Deleting a node is an irreversible action. Delete nodes only after you are certain it is no longer needed.
 &lt;/div>
@@ -2256,337 +2738,4 @@ Delete node action
 &lt;li>If deleting multiple nodes, you will be prompted to enter &lt;code>DELETE&lt;/code> to confirm.&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol></description></item><item><title>Tutorials: Deleting Trustgrid Clusters</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-clusters/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-clusters/</guid><description>
-&lt;div class="alert alert-danger" role="alert">
-&lt;strong>Be advised:&lt;/strong> Deleting a cluster is an irreversible action. Delete clusters only after you are certain they are no longer needed.
-&lt;/div>
-&lt;h2 id="best-practices">Best Practices&lt;/h2>
-&lt;ul>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#remove-member">Remove all members&lt;/a> for a period of time to ensure the configuration is no longer needed.&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/prod-status-tag/">Update any status tag&lt;/a> to indicate the cluster(s) is being decommissioned.&lt;/li>
-&lt;li>Before deleting, &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the cluster as a destination. While these can be removed later, they will be easier to find while the cluster is still listed as the destination.&lt;/li>
-&lt;/ul>
-&lt;h2 id="deleting-clusters">Deleting Clusters&lt;/h2>
-&lt;ol>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#remove-member">Remove the node(s) from the cluster&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the cluster as a destination. &lt;strong>See best practices above&lt;/strong>&lt;/li>
-&lt;li>Navigate to the Cluster table and select the target cluster(s).
-&lt;div class="alert alert-info" role="alert">
-Optionally, Use the search to filter the displayed clusters.
-&lt;/div>
-&lt;/li>
-&lt;li>From the Actions menu select the Delete option.
-&lt;figure class="centered-image">
-&lt;img src="delete-cluster-action.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Delete cluster action
-&lt;/figcaption>
-&lt;/figure>
-&lt;ol>
-&lt;li>If deleting a single cluster, you will be prompted to enter the fully-qualified domain name (fqdn) of the cluster about to be deleted to confirm.&lt;/li>
-&lt;li>If deleting multiple clusters, you will be prompted to enter &lt;code>DELETE&lt;/code> to confirm.&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Because changes to a domain &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> affect &lt;em>all&lt;/em> &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> configuration changes must be reviewed before applied, and are applied all at once.&lt;/p>
-&lt;/div>
-&lt;p>After making changes to a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>, you can review outstanding changes. A list of changes will show who made each change, with a before/after table if appropriate.&lt;/p>
-&lt;p>&lt;img src="outstanding-changes.png" alt="img">&lt;/p>
-&lt;p>Individual changes can be rejected by clicking the delete icon at the top.&lt;/p>
-&lt;p>Once changes are applied, outstanding changes will disappear from the review page, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> will receive the configuration updates.&lt;/p></description></item><item><title>Help-Center: WAN/ISP Redundancy Configurations</title><link>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</link><pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-The sections below provide examples of how Trustgrid nodes can be deployed to provide WAN/ISP redundancy
-&lt;/div>
-&lt;h2 id="behind-firewallrouter-with-multiple-isp-connections">Behind Firewall/Router with Multiple ISP Connections&lt;/h2>
-&lt;p>In this configuration the Trustgrid WAN interfaces are behind a firewall or router that has two independent ISP connections to provide internet access.&lt;/p>
-&lt;p>The firewall or router is responsible for either failing over outbound traffic in the event of an ISP failure, or to route different nodes to utilize specific ISP connections.&lt;/p>
-&lt;p>The WAN interface of the Trustgrid node would utilize &lt;strong>private IPs&lt;/strong> in this configuration that are NAT&amp;rsquo;d to public IPs by the firewall/router.
-&lt;div class="alert alert-info" role="alert">
-&lt;p>This is the only configuration that:&lt;/p>
-&lt;ul>
-&lt;li>Supports &lt;strong>Single Node&lt;/strong> deployments&lt;/li>
-&lt;li>Supports &lt;strong>Single Interface&lt;/strong> configurations&lt;/li>
-&lt;/ul>
-&lt;/div>
-&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-This configuration is &lt;strong>not recommended for nodes acting as gateways&lt;/strong>. In this configuration devices are NAT&amp;rsquo;d to a different public IP depending on which ISP is active. A gateway node can only announce a single IP or DNS address for its clients to connect to. It would be possible to announce a DNS record and some form of dynamic DNS health check to update the record if the ISP changed. But that change would have to propagate which could take some time.
-&lt;/div>
-&lt;h3 id="single-node-behind-firewall">Single Node Behind Firewall&lt;/h3>
-&lt;p>This configuration shows a single node connected to a firewall or router that has two ISP connected to it.&lt;/p>
-&lt;div class="mermaid">graph LR
-intHost[Internal Hosts]
-intNet[[Internal\n Network]]
-intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> snLAN
-subgraph sn [Single Node]
-snWAN[WAN\nInterface]
-snLAN[LAN\nInterface]
-snLAN ~~~ snWAN
-end
-firewall["Firewall/Router"]
-dmzNet[[DMZ\n Network]]
-firewall == Primary==> ISP1([ISP 1])
-firewall -. Failover/Backup .-> ISP2([ISP 2])
-snWAN --> dmzNet --> firewall
-classDef tgnode fill:#346ed9,color:white
-class sn tgnode
-&lt;/div>
-&lt;h3 id="clustered-nodes-behind-firewall">Clustered Nodes Behind Firewall&lt;/h3>
-&lt;p>This configuration shows a cluster of Trustgrid nodes connected to a firewall or router that has two ISPs connected to it.&lt;/p>
-&lt;div class="mermaid">graph LR
-intHost[Internal Hosts]
-intNet[[Internal\n Network]]
-intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
-subgraph Cluster-Node1
-cl1WAN[WAN\nInterface]
-cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
-end
-subgraph Cluster-Node2
-cl2WAN[WAN\nInterface]
-cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
-end
-end
-dmzNet[[DMZ\n Network]]
-firewall["Firewall/Router"]
-firewall == Primary==> ISP1([ISP 1])
-firewall -. Failover/Backup .-> ISP2([ISP 2])
-cl1WAN &amp; cl2WAN --> dmzNet --> firewall
-classDef tgnode fill:#346ed9,color:white
-class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div>
-&lt;h2 id="cluster-wan-interface-to-different-networks">Cluster WAN Interface to Different Networks&lt;/h2>
-&lt;p>Another method of providing redundancy takes advantage of Trustgrid &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustering&lt;/a> by connecting each member of the cluster to a different ISP on their WAN interface. This could be done by:&lt;/p>
-&lt;ul>
-&lt;li>Directly attaching each member WAN interface to a different ISP handoff&lt;/li>
-&lt;li>Connecting each member WAN interface to different DMZ private networks configured to use different ISPs for internet access&lt;/li>
-&lt;li>A combination of public and private WAN networks&lt;/li>
-&lt;/ul>
-&lt;p>In this configuration, the master/active member of the node will determine which ISP is being utilized. If one ISP is preferred you will need to have operational procedures in place to ensure the member node connected to it stays the master node. It is recommended that you keep the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-mode">cluster mode configured as Automatic Failback&lt;/a> and your organization establishes a &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">tag&lt;/a> to designate the preferred member.&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-Because the WAN interfaces are on different networks, this configuration &lt;strong>requires at least one additional LAN interface&lt;/strong> to be configured for accessing internal resources and providing the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-heartbeat-communication">cluster heartbeat&lt;/a> communication
-&lt;/div>
-&lt;h3 id="cluster-wan-direct-connections-to-multiple-isps">Cluster WAN Direct Connections to Multiple ISPs&lt;/h3>
-&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface directly connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected directly to another ISP.&lt;/p>
-&lt;div class="mermaid">graph LR
-intHost[Internal Hosts]
-intNet[[Internal\n Network]]
-intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
-subgraph Cluster-Node1
-cl1WAN[WAN\nInterface]
-cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
-end
-subgraph Cluster-Node2
-cl2WAN[WAN\nInterface]
-cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
-end
-end
-cl1WAN ==> ISP1([ISP 1])
-cl2WAN ==> ISP2([ISP 2])
-classDef tgnode fill:#346ed9,color:white
-class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div>
-&lt;h3 id="cluster-wan-to-separate-dmz-networks">Cluster WAN to separate DMZ networks&lt;/h3>
-&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to one DMZ/private network that is behind a firewall connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected to a second DMZ network behind a separate firewall connected to a different ISP.&lt;/p>
-&lt;div class="mermaid">graph LR
-intHost[Internal Hosts]
-intNet[[Internal\n Network]]
-intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
-subgraph Cluster-Node1
-cl1WAN[WAN\nInterface]
-cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
-end
-subgraph Cluster-Node2
-cl2WAN[WAN\nInterface]
-cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
-end
-end
-dmzNet1[[DMZ\n Network 1]]
-dmzNet2[[DMZ\n Network 2]]
-firewall1["Firewall/Router 1"]
-firewall2["Firewall/Router 2"]
-cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
-cl2WAN --> dmzNet2 --> firewall2 ==> ISP2([ISP 2])
-classDef tgnode fill:#346ed9,color:white
-class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div>
-&lt;div class="alert alert-info" role="alert">
-Note: While shown with two separate firewall/routers, this could also be accomplished with a single firewall/router configured to route each DMZ network to a different ISP.
-&lt;/div>
-&lt;h3 id="cluster-wan-using-mix-of-public-and-dmz-networks">Cluster WAN using mix of public and DMZ networks&lt;/h3>
-&lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to a private DMZ network behind a firewall that is using ISP 1. Cluster-Node2&amp;rsquo;s WAN interface is connected directly to ISP 2.&lt;/p>
-&lt;div class="mermaid">graph LR
-intHost[Internal Hosts]
-intNet[[Internal\n Network]]
-intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
-subgraph Cluster-Node1
-cl1WAN[WAN\nInterface]
-cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
-end
-subgraph Cluster-Node2
-cl2WAN[WAN\nInterface]
-cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
-end
-end
-dmzNet1[[DMZ\n Network 1]]
-firewall1["Firewall/Router 1"]
-cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
-cl2WAN ==> ISP2([ISP 2])
-classDef tgnode fill:#346ed9,color:white
-class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div></description></item><item><title>Release-Notes: August 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/august-2023-1-minor/</link><pubDate>Thu, 03 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/august-2023-1-minor/</guid><description>
-&lt;table style="margin: 0 auto;">
-&lt;thead>
-&lt;tr>
-&lt;th>Package Version&lt;/th>
-&lt;th>Core Version&lt;/th>
-&lt;th>Release&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>1.5.20230731-1784&lt;/td>
-&lt;td>20230731-222839.d3f2205&lt;/td>
-&lt;td>n-2.16.1&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="update-fix">Update Fix&lt;/h2>
-&lt;p>This minor release resolves an issue that prevented a security package from upgrading.&lt;/p></description></item><item><title>Release-Notes: July 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/july-2023/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/july-2023/</guid><description>
-&lt;h2 id="network-interface-panel-changes">Network Interface Panel Changes&lt;/h2>
-&lt;h3 id="interface-details-copy-all-button">Interface Details Copy All Button&lt;/h3>
-&lt;p>Frequently Trustgrid users need to share the interface configuration information with people who do not have access to the Trustgrid portal. There is now a &lt;strong>Copy All&lt;/strong> button that will load all of these details into your clipboard.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="interface-copy-all.png" alt="Button to copy all interface details" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Copy All button
-&lt;/figcaption>
-&lt;/figure>
-&lt;p>Example WAN interface output:&lt;/p>
-&lt;pre tabindex="0">&lt;code>IP: 172.16.11.31/24
-Hardware Address: 00:50:56:8e:03:54
-Gateway: 172.16.11.1
-DNS1: 172.16.11.4
-DNS2: 4.2.2.2
-&lt;/code>&lt;/pre>&lt;h3 id="public-ip-removed-from-wan-interface">Public IP Removed from WAN Interface&lt;/h3>
-&lt;p>The WAN interface used to include a field labeled &amp;ldquo;Public IP&amp;rdquo; that was the IP address the Trustgrid control plane saw as the source IP for traffic from the node. This would be the IP address used on the internet after any NATs where applied.&lt;/p>
-&lt;p>Some users were confused by this IP and believed it was the assigned IP address for the WAN interface which is not always true. Therefore we have removed this from the WAN interface panel.&lt;/p>
-&lt;p>The observed Public IP is still visible in the &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">Infovisor&lt;/a>.&lt;/p>
-&lt;h2 id="data-plane-panel">Data Plane Panel&lt;/h2>
-&lt;h3 id="export-data-plane-peers">Export Data Plane Peers&lt;/h3>
-&lt;p>You can now export a CSV-formatted list of peers from the &lt;a href="https://docs.trustgrid.io/docs/nodes/data-plane/">Data Plane panel&lt;/a>.
-&lt;figure class="centered-image">
-&lt;img src="https://docs.trustgrid.io/docs/nodes/data-plane/data-plane-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Export button
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;h3 id="list-gateway-ports">List Gateway Ports&lt;/h3>
-&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/data-plane/">Data Plane Panel&lt;/a> now lists the Gateway Port for each tunnel. This is the port the client node uses to connect to the listed gateway.&lt;/p>
-&lt;p>While this is typically port 8443,, it can be configured differently and having that info visible aids in troubleshooting.&lt;/p>
-&lt;h2 id="bgp-status-tool">BGP Status Tool&lt;/h2>
-&lt;p>A new &lt;a href="https://docs.trustgrid.io/docs/nodes/bgp/#bgp-status">BGP Status tool&lt;/a> has been added to the BGP panel. This tool displays the current BGP peer status including peer connection status, uptime, routes received and advertised, and more.
-&lt;figure class="centered-image">
-&lt;img src="https://docs.trustgrid.io/docs/nodes/bgp/bgp-status-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-BGP Status
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;h2 id="flow-logs-advanced-search-improvement">Flow Logs Advanced Search Improvement&lt;/h2>
-&lt;p>The &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/#advanced-search">flow logs advanced search&lt;/a> now allows selecting clusters as the source or destination nodes. This enables search for flows that were sent to or received from a cluster, rather than individual nodes.&lt;/p>
-&lt;h2 id="trustgrid-resource-names-tgrn-in-infovisor">Trustgrid Resource Names (TGRN) in Infovisor&lt;/h2>
-&lt;p>When creating &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#resource-scoped-policies">Resource Scoped Policies&lt;/a> to limit a user&amp;rsquo;s visibility to specific nodes or clusters you specify resources using Trustgrid Resource Names (TGRNs). Prior to this release it was necessary to generate the TGRN for by combining the common prefix with the node&amp;rsquo;s UID. With this release the TGRN is available in the node&amp;rsquo;s &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">Infovisor&lt;/a> panel with a button to easily copy the TGRN into your clipboard.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="infovisor-tgrn.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Copy TGRN field on Infovisor
-&lt;/figcaption>
-&lt;/figure>
-&lt;h2 id="override-default-container-dns-and-ip">Override Default Container DNS and IP&lt;/h2>
-&lt;p>This release when combined with a node running the &lt;a href="https://docs.trustgrid.io/release-notes/node/july-2023/">July 2023 Node releases&lt;/a> adds the ability to &lt;a href="https://docs.trustgrid.io/docs/nodes/containers/#dns">override the default DNS and IP settings&lt;/a> for containers.&lt;/p>
-&lt;h2 id="other-notable-fixes">Other Notable Fixes&lt;/h2>
-&lt;p>The below issues have been resolved in this release:&lt;/p>
-&lt;ul>
-&lt;li>Adding and saving multiple tags use to frequently lead to an error that caused an endless status spinner and would fail to save one or more of the tags.&lt;/li>
-&lt;li>Overview graphs were not aggregating statistics correctly for view of 6 hours or longer.*&lt;/li>
-&lt;/ul></description></item><item><title>Release-Notes: July 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/july-2023/</link><pubDate>Thu, 13 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/july-2023/</guid><description>
-&lt;table style="margin: 0 auto;">
-&lt;thead>
-&lt;tr>
-&lt;th>Package Version&lt;/th>
-&lt;th>Core Version&lt;/th>
-&lt;th>Release&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>1.5.20230712-1762&lt;/td>
-&lt;td>20230712-200223.7cced96&lt;/td>
-&lt;td>n-2.16.0&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="new-event-types">New Event Types&lt;/h2>
-&lt;p>Several new &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">event types&lt;/a> are generated with this version of the node appliance software.&lt;/p>
-&lt;h3 id="dns-failure">DNS Failure&lt;/h3>
-&lt;p>If the node is unable to resolve DNS via its configured DNS servers it will generate a DNS Resolution error event.
-&lt;figure class="centered-image">
-&lt;img src="dns-event.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example DNS resolution events
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;h3 id="interface-down-notification">Interface Down Notification&lt;/h3>
-&lt;p>This event is triggered when any configured interface&amp;rsquo;s link state goes from UP to DOWN.
-&lt;figure class="centered-image">
-&lt;img src="interface-event.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example Interface health events
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;h3 id="trustgrid-unhealthy-stop-notification">Trustgrid Unhealthy Stop Notification&lt;/h3>
-&lt;p>This event is triggered if the Trustgrid service fails to stop completely prior to the most recent start. This could indicate a hard power cycle event or something caused the Trustgrid service to halt unexpectedly.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="trustgrid-crash.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example Node Stop Error
-&lt;/figcaption>
-&lt;/figure>
-&lt;h3 id="cluster-health-events">Cluster Health Events&lt;/h3>
-&lt;p>The following cluster health related events are now available and will now resolve themselves once the triggering condition clears.&lt;/p>
-&lt;ul>
-&lt;li>Network Health Check&lt;/li>
-&lt;li>Data and Control Plane Disruption&lt;/li>
-&lt;/ul>
-&lt;h2 id="virtual-network-port-forwards">Virtual Network Port Forwards&lt;/h2>
-&lt;p>Port forwards allow mapping a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">layer 4 service&lt;/a> to a virtual IP address in a Trustgrid &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">layer 3 virtual network&lt;/a>. Prior to this release, port forwards could only be defined at the node or cluster level and this required an additional virtual network route to be defined to send the virtual IP traffic to the correct node or cluster.&lt;/p>
-&lt;p>The new &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/">Virtual Network Port Forward&lt;/a> feature combines the route and port forward configuration and consolidates the definition to the virtual network level.&lt;/p>
-&lt;h2 id="layer-4-health-checks-deprecated">Layer 4 Health Checks Deprecated&lt;/h2>
-&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">layer 4 service&lt;/a> historically had an option to perform a health check where a connection attempt was made once per minute to the configured IP and port. If this was configured on a cluster, the member nodes would mark themselves unhealthy if the connection failed. Since this was usually caused by an issue with the local network or target server, this frequently led to both nodes being marked as unhealthy and taking the cluster offline. As this feature was rarely used and caused more issues than it solved we have removed this it from this version of the node software. If this was previously configured on a service the setting will be ignored.&lt;/p>
-&lt;h2 id="support-for-requiring-imdsv2-on-aws-ec2-instances">Support for requiring IMDSv2 on AWS EC2 Instances.&lt;/h2>
-&lt;p>The AWS Instance Metadata Service (IMDS) provides information about the EC2 instance that the Trustgrid service queries to enable certain features. Some potential security issues were identified in the IMDSv1 version of this service and AWS recommends &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-existing-instances.html#modify-require-IMDSv2">requiring IMDSv2&lt;/a> going forward. This version of the Trustgrid node software is confirmed to be fully compatible with IMDSv2-only instances.&lt;/p></description></item><item><title>Release-Notes: May 2023 Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</link><pubDate>Wed, 24 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/may-2023-2/</guid><description>
-&lt;p>This minor release fixes the following issues:&lt;/p>
-&lt;h2 id="issues-fixed">Issues Fixed&lt;/h2>
-&lt;ul>
-&lt;li>The Overview graphs on a Node Detail page showing &amp;ldquo;invalid date&amp;rdquo; when you hover over a VPN data point.&lt;/li>
-&lt;li>The Flow Logs Advanced Search did not display the correct flows when the &amp;ldquo;Newest First&amp;rdquo; flow log order was used.&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;/ol></description></item></channel></rss>

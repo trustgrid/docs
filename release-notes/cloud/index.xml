@@ -1,4 +1,35 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 26 Jul 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/july-2023/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/july-2023/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 18 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: August 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/august-2023/</link><pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/august-2023/</guid><description>
+&lt;h2 id="cluster-site-health-improvements">Cluster Site Health Improvements&lt;/h2>
+&lt;p>Since introducing our &lt;a href="https://docs.trustgrid.io/docs/clusters/cluster-health/">cluster site health state&lt;/a> feature there have been several instances where the state was being reported incorrectly. This release has taken steps to prevent that and has also introduced a new tool to &lt;a href="https://docs.trustgrid.io/docs/clusters/cluster-health/#force-health-validation">force validating the health state&lt;/a> in the event the state does appear incorrect.
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/clusters/cluster-health/cluster-validate-health.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Validate Health action
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="data-plane-panel-improvements">Data Plane Panel Improvements&lt;/h2>
+&lt;p>This release includes two improvements to the &lt;a href="https://docs.trustgrid.io/docs/nodes/data-plane/">Data Plane panel&lt;/a>:&lt;/p>
+&lt;ol>
+&lt;li>The protocol field which used to only display either TCP or TCP/UDP is now called Ports and it lists the port in use for each protocol.&lt;/li>
+&lt;li>Links have been added to the far right column for MTR and Trace Route. When used these will populate the appropriate fields in each tool to do a Trace Route or MTR to a gateway peer on the TCP port in use. This makes it easier to troubleshoot connectivity issues.
+&lt;figure class="centered-image">
+&lt;img src="data-plane-new.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Data Plane panel with ports and Trace Route/MTR links
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="other-improvements">Other Improvements&lt;/h2>
+&lt;ul>
+&lt;li>Nodes now display their operating system (OS) version information in the &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">infovisor&lt;/a> and it can also be added as a column to the Nodes table&lt;/li>
+&lt;li>We now display the physical interface names assigned by the OS on the &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/">interfaces panel&lt;/a>. This name is sometimes needed when running tools such as the Sniff Traffic.&lt;/li>
+&lt;li>It is now possibly for customers to generate and download &lt;a href="https://docs.trustgrid.io/help-center/ops-logs/debug-logs/">Debug Logs&lt;/a> from a Trustgrid node. This can be handy when working with Trustgrid support to troubleshoot issues.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/user-management/users/#adding-a-user-to-groups">Users can be added to one or more groups when viewing the user&lt;/a>. Previously you had to navigate to each group and add the user there.&lt;/li>
+&lt;li>You can now select multiple protocols, IPs or ports when using the &lt;a href="https://docs.trustgrid.io/tutorials/remote-tools/sniff-virtual-traffic/">Sniff Virtual Traffic&lt;/a> VPN tool.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/alarms/alarm-filters/#tag-matches">Alarm Filter Tag Matches&lt;/a> can now be set to Any or All. &lt;code>Any&lt;/code> would cover a scenario where you want to match say &lt;code>Environment=Prod&lt;/code> &lt;strong>OR&lt;/strong> &lt;code>Environment=Test&lt;/code>. &lt;code>All&lt;/code> would cover if you wanted a filter to match something like &lt;code>Environment=Prod&lt;/code> &lt;strong>AND&lt;/strong> &lt;code>Region=EAST&lt;/code>&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: July 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/july-2023/</link><pubDate>Wed, 26 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/july-2023/</guid><description>
 &lt;h2 id="network-interface-panel-changes">Network Interface Panel Changes&lt;/h2>
 &lt;h3 id="interface-details-copy-all-button">Interface Details Copy All Button&lt;/h3>
 &lt;p>Frequently Trustgrid users need to share the interface configuration information with people who do not have access to the Trustgrid portal. There is now a &lt;strong>Copy All&lt;/strong> button that will load all of these details into your clipboard.&lt;/p>
