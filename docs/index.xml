@@ -2357,7 +2357,7 @@ Example Virtual Network Port Forward
 &lt;/tr>
 &lt;tr id="tcp-flags">
 &lt;th>TCP Flags&lt;/th>
-&lt;td>&lt;p>TCP Flags set during the flow:&lt;/p>
+&lt;td>&lt;p>All TCP Flags set on any packets seen over the duration of the flow:&lt;/p>
 &lt;ul>
 &lt;li>SYN - sync packet&lt;/li>
 &lt;li>PSH - push packet&lt;/li>
@@ -2432,7 +2432,153 @@ Example flow log table for a node
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
 Advanced Search dialog
 &lt;/figcaption>
-&lt;/figure></description></item><item><title>Tutorials: Upgrading Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
+&lt;/figure>
+&lt;h3 id="exporting-flow-logs-to-csv">Exporting Flow Logs to CSV&lt;/h3>
+&lt;p>From the Flow logs table you can export the current filtered logs to a CSV file for further analysis or reporting. Several fields are exported differently in the CSV file:&lt;/p>
+&lt;p>Below are the potential fields of a single flow log.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="start-and-end-time">
+&lt;th>Start and End Time&lt;/th>
+&lt;td>&lt;p>Both of these fields exported two different ways:&lt;/p>
+&lt;ul>
+&lt;li>Human friendly in the format: MM/DD/YYYY HH:MM:SS AM/PM&lt;/li>
+&lt;li>Timestamp in milliseconds since epoch for machine parsing&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="tcp-flags">
+&lt;th>TCP Flags&lt;/th>
+&lt;td>TCP Flags are exported in hexadeximal format (e.g. 0x02 for SYN flag set) rather than the human friendly names. See the below section for more info on converting these values.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="understanding-tcp-flag-hex-values">Understanding TCP Flag Hex Values&lt;/h4>
+&lt;p>When exporting TCP flags to CSV, the values will be shown as hexadecimal numbers rather than the human readable names (e.g. SYN, ACK). The below table shows how each flag would be prepresented as a hex value or binary value.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Hex Value&lt;/th>
+&lt;th>Binary Representation&lt;/th>
+&lt;th>Flag Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>0x01&lt;/code>&lt;/td>
+&lt;td>&lt;code>00000001&lt;/code>&lt;/td>
+&lt;td>FIN&lt;/td>
+&lt;td>Finish (end of data communication)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x02&lt;/code>&lt;/td>
+&lt;td>&lt;code>00000010&lt;/code>&lt;/td>
+&lt;td>SYN&lt;/td>
+&lt;td>Synchronize sequence numbers&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x04&lt;/code>&lt;/td>
+&lt;td>&lt;code>00000100&lt;/code>&lt;/td>
+&lt;td>RST&lt;/td>
+&lt;td>Reset the connection&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x08&lt;/code>&lt;/td>
+&lt;td>&lt;code>00001000&lt;/code>&lt;/td>
+&lt;td>PSH&lt;/td>
+&lt;td>Push function&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x10&lt;/code>&lt;/td>
+&lt;td>&lt;code>00010000&lt;/code>&lt;/td>
+&lt;td>ACK&lt;/td>
+&lt;td>Acknowledgment&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x20&lt;/code>&lt;/td>
+&lt;td>&lt;code>00100000&lt;/code>&lt;/td>
+&lt;td>URG&lt;/td>
+&lt;td>Urgent pointer field significant&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x40&lt;/code>&lt;/td>
+&lt;td>&lt;code>01000000&lt;/code>&lt;/td>
+&lt;td>ECE&lt;/td>
+&lt;td>Explicit Congestion Notification Echo&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x80&lt;/code>&lt;/td>
+&lt;td>&lt;code>10000000&lt;/code>&lt;/td>
+&lt;td>CWR&lt;/td>
+&lt;td>Congestion Window Reduced&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>The CSV export will show the hex value that represents the combination of set flags. For example, a flow with SYN and ACK flags set would show the hex value &lt;code>0x12&lt;/code> in the CSV, representing the binary value &lt;code>00010010&lt;/code>.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+&lt;h4 class="alert-heading">Note:&lt;/h4>
+The value shown is the total of ALL flags seen on all packets that are part of the flow. If you are only used to looking at the flags of individual packets you will see combinations not normal in regular TCP traffic. For example a complete flow might have a SYN, ACK, RST and FIN.
+&lt;/div>
+&lt;p>To convert hax flags to human readable format first convert to binary then check each bit position.&lt;/p>
+&lt;p>To convert hex to binary you can:&lt;/p>
+&lt;ul>
+&lt;li>an online tool like &lt;a href="https://www.binaryhexconverter.com/hex-to-binary-converter">Binary to Hexadecimal Converter&lt;/a>&lt;/li>
+&lt;li>searching google.com using the prompt &lt;code>0x## to binary&lt;/code> (replacing the ## with the hex value)&lt;/li>
+&lt;li>Use the &lt;code>=HEX2BIN(hex_value)&lt;/code> function in Excel or Google sheets&lt;/li>
+&lt;/ul>
+&lt;p>Then you can use the resulting bit map with a table like below to convert to human readable flags:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Example Hex&lt;/th>
+&lt;th>Binary Equivalent&lt;/th>
+&lt;th>CWR&lt;/th>
+&lt;th>ECE&lt;/th>
+&lt;th>URG&lt;/th>
+&lt;th>ACK&lt;/th>
+&lt;th>PSH&lt;/th>
+&lt;th>RST&lt;/th>
+&lt;th>SYN&lt;/th>
+&lt;th>FIN&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;code>0xd6&lt;/code>&lt;/td>
+&lt;td>&lt;code>1101 0110&lt;/code>&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;code>0x1b&lt;/code>&lt;/td>
+&lt;td>&lt;code>0001 1011&lt;/code>&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>0&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Tutorials: Upgrading Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
 &lt;h2 id="how-a-node-appliance-upgrades">How a Node Appliance Upgrades&lt;/h2>
 &lt;p>The upgrade process will:&lt;/p>
 &lt;ol>
