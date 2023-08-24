@@ -58,7 +58,7 @@ Bytes received at the source node
 Bytes sent from the source node
 {{</field >}}
 {{<field "TCP Flags" >}}
-TCP Flags set during the flow:
+All TCP Flags set on any packets seen over the duration of the flow:
 
 - SYN - sync packet
 - PSH - push packet
@@ -117,3 +117,53 @@ Flow logs can be filtered by any of the fields listed above. To filter by a fiel
 In addition, the ordering can be changed so that oldest flows (or flows closest to the time range specified) can be shown first. There is a limit of 10,000 flows returned per search.
 
 {{<tgimg src="advanced-search.png" width="80%" caption="Advanced Search dialog" alt="Dialog showing the various search filter parameters available in advanced search.">}}
+
+### Exporting Flow Logs to CSV
+From the Flow logs table you can export the current filtered logs to a CSV file for further analysis or reporting. Several fields are exported differently in the CSV file: 
+
+Below are the potential fields of a single flow log.
+
+{{<fields>}}
+{{<field "Start and End Time" >}}
+Both of these fields exported two different ways:
+* Human friendly in the format: MM/DD/YYYY HH:MM:SS AM/PM
+* Timestamp in milliseconds since epoch for machine parsing
+{{</field >}}
+{{<field "TCP Flags" >}}
+TCP Flags are exported in hexadeximal format (e.g. 0x02 for SYN flag set) rather than the human friendly names.  See the below section for more info on converting these values.
+
+{{</field >}}
+
+{{</fields>}}
+
+#### Understanding TCP Flag Hex Values
+  When exporting TCP flags to CSV, the values will be shown as hexadecimal numbers rather than the human readable names (e.g. SYN, ACK). The below table shows how each flag would be prepresented as a hex value or binary value.
+
+  | Hex Value | Binary Representation | Flag Name   | Description                        |
+|-----------|-----------------------|-------------|------------------------------------|
+| `0x01`    | `00000001`            | FIN         | Finish (end of data communication) |
+| `0x02`    | `00000010`            | SYN         | Synchronize sequence numbers       |
+| `0x04`    | `00000100`            | RST         | Reset the connection               |
+| `0x08`    | `00001000`            | PSH         | Push function                      |
+| `0x10`    | `00010000`            | ACK         | Acknowledgment                     |
+| `0x20`    | `00100000`            | URG         | Urgent pointer field significant   |
+| `0x40`    | `01000000`            | ECE         | Explicit Congestion Notification Echo |
+| `0x80`    | `10000000`            | CWR         | Congestion Window Reduced          |
+
+The CSV export will show the hex value that represents the combination of set flags. For example, a flow with SYN and ACK flags set would show the hex value `0x12` in the CSV, representing the binary value `00010010`.
+
+{{<alert color="info" title="Note:">}} The value shown is the total of ALL flags seen on all packets that are part of the flow. If you are only used to looking at the flags of individual packets you will see combinations not normal in regular TCP traffic.  For example a complete flow might have a SYN, ACK, RST and FIN. {{</alert>}}
+
+To convert hax flags to human readable format first convert to binary then check each bit position. 
+
+To convert hex to binary you can:
+- an online tool like [Binary to Hexadecimal Converter](https://www.binaryhexconverter.com/hex-to-binary-converter)
+- searching google.com using the prompt `0x## to binary` (replacing the ## with the hex value)
+- Use the `=HEX2BIN(hex_value)` function in Excel or Google sheets
+
+Then you can use the resulting bit map with a table like below to convert to human readable flags:
+
+|Example Hex|Binary Equivalent|CWR|ECE|URG|ACK|PSH|RST|SYN|FIN|
+|---|---|---|-|-|-|-|-|-|-|-|
+|`0xd6`|`1101 0110`|1|1|0|1|0|1|1|0|
+|`0x1b`|`0001 1011`|0|0|0|1|1|0|1|1|
