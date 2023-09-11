@@ -10,18 +10,21 @@ description: >
 Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) and management infrastructure built in AWS. Nodes create tunnels to other nodes for data transfer, and to the management infrastructure for control. All tunnels are TLS connections and must be permitted by any firewall between
 {{% /pageinfo %}}
 
-### Network Requirements for All Nodes
+## Network Requirements for All Nodes
 
 In order to connect to the Trustgrid Control Plane, the following outbound traffic must be allowed from the node’s configured primary interface IP address
 
+### Trustgrid Control Plane
 - TCP Port 443 and TCP/UDP 8443 to:
   - 35.171.100.16/28
   - 34.223.12.192/28
+
+### Additional Required Network Access
 - TCP/UDP Port 53 to the configured DNS servers. These DNS servers must be accessible from the WAN/outside interface IP and be able to resolve DNS requests for the trustgrid.io domain
 
 {{<alert color="info">}} Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a standard instance metadata server in public clouds such as AWS and Azure. This connectivity is not required outside these providers. {{</alert>}}
 
-### Recommendations
+## Recommendations
 
 At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.
 
