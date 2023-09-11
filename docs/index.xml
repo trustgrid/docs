@@ -1614,21 +1614,124 @@ Types]](https://docs.trustgrid.io/docs/alarms/event-types/)&lt;/p></description>
 &lt;div class="alert alert-primary" role="alert">
 Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment
 &lt;/div></description></item><item><title>Docs: Repositories</title><link>https://docs.trustgrid.io/docs/repositories/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/repositories/</guid><description>
-&lt;h4 id="list-view">List View&lt;/h4>
-&lt;p>Trustgrid provides a fully managed private container registry. Uploaded container images may be viewed by navigating to Repositories in the portal:&lt;/p>
-&lt;p>&lt;img src="list-view.png" alt="img">&lt;/p>
-&lt;p>Users can push and pull containers from the repository.&lt;/p>
-&lt;h4 id="docker-login">Docker Login&lt;/h4>
-&lt;p>To authenticate with the registry, use the command provided at the bottom of the repositories view. Authentication lasts approximately 24 hours.&lt;/p>
-&lt;h4 id="container-namespace">Container Namespace&lt;/h4>
-&lt;p>Each customer is isolated to their own container namespace. To upload or download a container, it must be named with your namespace as a prefix.&lt;/p>
-&lt;p>&lt;img src="name-space.png" alt="img">&lt;/p>
-&lt;p>For example, to push a tomcat container to your registry:&lt;/p>
-&lt;p>&lt;code>docker tag tomcat:latest docker.trustgrid.io/namespace.trustgrid.io/tomcat:latest docker push docker.trustgrid.io/namespace.trustgrid.io/tomcat:latest&lt;/code>&lt;/p>
-&lt;h4 id="container-repo-view">Container Repo View&lt;/h4>
-&lt;p>Each repository can be managed. Clicking into a container will show its uploaded tags and digests, as well as the URI that can be used to pull the container.&lt;/p>
-&lt;h4 id="node-container-auth">Node Container Auth&lt;/h4>
-&lt;p>Trustgrid nodes authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry.&lt;/p></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/services/</guid><description>
+&lt;h2 id="summary">Summary&lt;/h2>
+&lt;p>Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy &lt;a href="https://docs.trustgrid.io/docs/nodes/containers/">containerized applications securely to their Trustgrid node appliances.&lt;/a>&lt;/p>
+&lt;h2 id="container-namespace">Container Namespace&lt;/h2>
+&lt;p>Each customer is isolated to their own container namespace that is listed at the bottom of the Repositories page.&lt;/p>
+&lt;p>To push a container to your private registry it must be named with your namespace as a prefix when tagged.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="docker-namespace.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Trustgrid repository namespace
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="list-view">List View&lt;/h2>
+&lt;p>Uploaded container images may be viewed by navigating to Repositories in the portal.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="docker-repo-list.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Repositories list view
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>From this view you can se all containers uploaded to your namespace.&lt;/p>
+&lt;h3 id="container-repository-view">Container Repository View&lt;/h3>
+&lt;p>Each repository can be managed. Clicking into a container will show its uploaded tags and digests, as well as the URI that can be used to pull the container.
+&lt;figure class="centered-image">
+&lt;img src="docker-repo-example.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example repository for nginx container with two tag versions
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="deleting-container-repositories">Deleting Container Repositories&lt;/h3>
+&lt;p>Next to each container repository name is a box that can be selected. This allows deleting the entire repository and all its tags with a single action.&lt;/p>
+&lt;ol>
+&lt;li>Select the desired container repository.&lt;/li>
+&lt;li>From the Actions dropdown select &lt;strong>Delete&lt;/strong>.&lt;/li>
+&lt;li>When prompted enter the repository name and click &lt;strong>Confirm&lt;/strong>.
+&lt;figure class="centered-image">
+&lt;img src="docker-repo-delete-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Prompt to delete an example nginx repository
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="deleting-specific-container-tags">Deleting Specific Container Tags&lt;/h3>
+&lt;ol>
+&lt;li>Navigate into the desired repository.&lt;/li>
+&lt;li>Select the desired tag version.&lt;/li>
+&lt;li>From the Actions dropdown select &lt;strong>Delete&lt;/strong>.&lt;/li>
+&lt;li>When prompted enter the tag name and click &lt;strong>Confirm&lt;/strong>.
+&lt;figure class="centered-image">
+&lt;img src="docker-tag-delete-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Prompt to delete an example nginx tag version
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="authentication">Authentication&lt;/h2>
+&lt;h3 id="docker-login">Docker Login&lt;/h3>
+&lt;p>In order to push to or pull containers from the private registry, your local docker client must first authenticate with your credentials.&lt;/p>
+&lt;p>To authenticate with the registry, use the command provided in the &lt;strong>Docker Login&lt;/strong> section at the bottom of the repositories page.
+&lt;figure class="centered-image">
+&lt;img src="docker-login-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Docker Login with copy button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>Use the copy button to copy the docker login command and paste it into your terminal to authenticate your docker client. This will cache your credentials locally for approximately 24 hours.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="docker-login-example.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example docker login command
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="node-container-authentication">Node Container Authentication&lt;/h3>
+&lt;p>Trustgrid node appliances authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry. All communication between the node appliance and the registry occurs using the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">Trustgrid control plane networks and ports&lt;/a>&lt;/p>
+&lt;h2 id="example-usage">Example Usage&lt;/h2>
+&lt;p>In the below example we will show how to pull down a container image (Alpine Linux) from the public hub.docker.com registry and then push it to the Trustgrid private registry under our namespace.&lt;/p>
+&lt;ol>
+&lt;li>First pull the Alpine image from Docker Hub with the command &lt;code>docker pull alpine&lt;/code>
+&lt;figure class="centered-image">
+&lt;img src="docker-example-pull.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Pull Alpine image from Docker Hub
+&lt;/figcaption>
+&lt;/figure>
+.
+&lt;div class="alert alert-info" role="alert">
+Note the tag is automatically set to &lt;code>latest&lt;/code> by Docker. If desired you can manually specify a specific tag to get a specific version.
+&lt;/div>
+&lt;/li>
+&lt;li>Tag the image with your namespace prefix. &lt;code>docker tag alpine:latest docker.trustgrid.io/namespace.trustgrid.io/alpine:latest&lt;/code> make sure you replace &lt;code>namespace.trustgrid.io&lt;/code> with your actual namespace.
+&lt;figure class="centered-image">
+&lt;img src="docker-example-tag.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Tag image with namespace prefix
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>If you haven&amp;rsquo;t already, Authenticate your Docker client with the Trustgrid registry using the &lt;a href="#docker-login">Docker login command provided on the Repositories page&lt;/a>&lt;/li>
+&lt;li>Push the tagged image to the private registry. &lt;code>docker push docker.trustgrid.io/namespace.trustgrid.io/alpine:latest&lt;/code>
+&lt;figure class="centered-image">
+&lt;img src="docker-example-push.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Push tagged image to private registry
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Back on the Trustgrid portal, navigate to Repositories and you should see the pushed image listed.
+&lt;figure class="centered-image">
+&lt;img src="docker-example-repo.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Pushed image listed in portal
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/services/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
@@ -1824,8 +1927,9 @@ At this time the zip file generated by the node is incompatible with the decompr
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) and management infrastructure built in AWS. Nodes create tunnels to other nodes for data transfer, and to the management infrastructure for control. All tunnels are TLS connections and must be permitted by any firewall between&lt;/p>
 &lt;/div>
-&lt;h3 id="network-requirements-for-all-nodes">Network Requirements for All Nodes&lt;/h3>
+&lt;h2 id="network-requirements-for-all-nodes">Network Requirements for All Nodes&lt;/h2>
 &lt;p>In order to connect to the Trustgrid Control Plane, the following outbound traffic must be allowed from the node’s configured primary interface IP address&lt;/p>
+&lt;h3 id="trustgrid-control-plane">Trustgrid Control Plane&lt;/h3>
 &lt;ul>
 &lt;li>TCP Port 443 and TCP/UDP 8443 to:
 &lt;ul>
@@ -1833,12 +1937,15 @@ At this time the zip file generated by the node is incompatible with the decompr
 &lt;li>34.223.12.192/28&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;/ul>
+&lt;h3 id="additional-required-network-access">Additional Required Network Access&lt;/h3>
+&lt;ul>
 &lt;li>TCP/UDP Port 53 to the configured DNS servers. These DNS servers must be accessible from the WAN/outside interface IP and be able to resolve DNS requests for the trustgrid.io domain&lt;/li>
 &lt;/ul>
 &lt;div class="alert alert-info" role="alert">
 Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a standard instance metadata server in public clouds such as AWS and Azure. This connectivity is not required outside these providers.
 &lt;/div>
-&lt;h3 id="recommendations">Recommendations&lt;/h3>
+&lt;h2 id="recommendations">Recommendations&lt;/h2>
 &lt;p>At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.&lt;/p>
 &lt;p>Hardware devices are recommended to be connected to ports configured for 1000 Mbps and full duplex with auto negotiation on.&lt;/p>
 &lt;h2 id="gateway-node-network-requirements">Gateway Node Network Requirements&lt;/h2>

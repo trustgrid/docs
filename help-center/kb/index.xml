@@ -2,8 +2,9 @@
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) and management infrastructure built in AWS. Nodes create tunnels to other nodes for data transfer, and to the management infrastructure for control. All tunnels are TLS connections and must be permitted by any firewall between&lt;/p>
 &lt;/div>
-&lt;h3 id="network-requirements-for-all-nodes">Network Requirements for All Nodes&lt;/h3>
+&lt;h2 id="network-requirements-for-all-nodes">Network Requirements for All Nodes&lt;/h2>
 &lt;p>In order to connect to the Trustgrid Control Plane, the following outbound traffic must be allowed from the node’s configured primary interface IP address&lt;/p>
+&lt;h3 id="trustgrid-control-plane">Trustgrid Control Plane&lt;/h3>
 &lt;ul>
 &lt;li>TCP Port 443 and TCP/UDP 8443 to:
 &lt;ul>
@@ -11,12 +12,15 @@
 &lt;li>34.223.12.192/28&lt;/li>
 &lt;/ul>
 &lt;/li>
+&lt;/ul>
+&lt;h3 id="additional-required-network-access">Additional Required Network Access&lt;/h3>
+&lt;ul>
 &lt;li>TCP/UDP Port 53 to the configured DNS servers. These DNS servers must be accessible from the WAN/outside interface IP and be able to resolve DNS requests for the trustgrid.io domain&lt;/li>
 &lt;/ul>
 &lt;div class="alert alert-info" role="alert">
 Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a standard instance metadata server in public clouds such as AWS and Azure. This connectivity is not required outside these providers.
 &lt;/div>
-&lt;h3 id="recommendations">Recommendations&lt;/h3>
+&lt;h2 id="recommendations">Recommendations&lt;/h2>
 &lt;p>At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.&lt;/p>
 &lt;p>Hardware devices are recommended to be connected to ports configured for 1000 Mbps and full duplex with auto negotiation on.&lt;/p>
 &lt;h2 id="gateway-node-network-requirements">Gateway Node Network Requirements&lt;/h2>
