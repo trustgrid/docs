@@ -36,6 +36,7 @@ Once the node is deployed with the [required network access]({{<ref "/help-cente
 
 1. [Gain console access]({{<ref "/tutorials/local-console-utility#connecting-to-trustgrid-local-console">}})
 1. [Login as tgadmin]({{<ref "/tutorials/local-console-utility#logging-in">}})
+1. (Optional) Use the [Network Configuration Option](#network-configuration-utility) to change the IP. Default is to use DHCP.
 1. Select the **Register Node** action from the main menu. {{<tgimg src="remote-reg-menu.png" caption="Remote Registration Menu option" width="70%">}}
 1. You will be prompted to confirm the make and model of the node and the correct control plane endpoints to register with. These should default to the correct settings for your model, if not work with Trustgrid Support. {{<tgimg src="remote-reg-options.png" caption="Confirm Options" width="70%">}}
 1. The node will then generate a unique activation code. This code can be shared with a user with access to the Trustgrid portal. {{<tgimg src="remote-reg-code.png" caption="Example registration code" width="70%">}}
@@ -66,3 +67,32 @@ In rare circumstances a node may need to be deregistered which will remove the l
     1. If the node is currently connected to the Trustgrid control plane it will send a "Deregister" event type and disconnect from the control plane and any data plane gateways. {{<tgimg src="dereg-portal-event.png" caption="Deregister event" width="100%">}}
     1. Remove it's local certificates and reset it self to be ready to re-register.
 
+
+## Pre-registration Utilities
+Before the node is registered there are a number of utilities available to assist with configuration and troubleshooting.
+
+### Network Configuration Utility
+This utility is useful for switching the node to use a static IP or back to DHCP. T
+
+1. Select **Network Configuration** option
+1. If prompted, Select the WAN interface. This is typically the first option listed. {{<tgimg src="net-config-interface.png" width="70%">}}
+1. Select the IP allocation method. {{<tgimg src="net-config-allocation.png" caption="Option to select DHCP or Static IP" width="70%">}}
+    1. DHCP - this will automatically reconfigure the interface for DHCP.
+    1. Static IP - this will open the dialog below. Enter the desired config and click OK to apply. {{<tgimg src="net-config-static.png" caption="Static IP configuration prompt" width="70%">}}
+1. You will then be prompted to confirm if you want to permanently save the configuration. {{<tgimg src="net-config-save.png" width="70%">}}
+
+### Network Tools Shell
+This is the same as the [Troubleshooting - Network Tools Shell](../troubleshooting#network-tools-shell)
+
+### Test Network Access
+This will attempt to confirm required access is in place to successfully connect to the Trustgrid Control Plane.
+{{<tgimg src="test-network-access.png" caption="Confirms successfully control plane connectivity" width="60%">}}
+
+### Log Shell
+This will open a shell in the Trustgrid log directory. This will be empty unless a failed registration has occurred. Work with Trustgrid support to troubleshoot why registration failed.
+
+### Upgrade Node
+This is the same as the [Troubleshooting - Force Upgrade](../troubleshooting#force-upgrade)
+
+### Advanced Registration Settings
+This can override the default settings included in the image. This should only be used in consultation with Trustgrid Support.
