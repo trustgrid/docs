@@ -35,6 +35,8 @@ By default all interfaces are set to auto-negotiate speed and duplex settings. H
 ## Change Interface MTU
 By default all interfaces set themselves to the typical MTU size for their environments (1500 for physical, VMware and Hyper-V, 9000 for AWS and Azure). However, if any device between the Trustgrid node and the resources it connects to (both control and data plane) is configured to use a smaller MTU size then this can cause problems. 
 
+{{<alert color="warning">}} To make the below change permanent it will be necessary to update the interface settings in the Trustgrid portal/api. {{</alert>}}
+
 To change the MTU size of the interface:
 1. From the Advanced Network Configuration select the **Change Interface MTU** option
 1. Select the desired interface from the list. {{<tgimg src="mtu-interface-select.png" alt="MTU Select Interface" width="80%">}}
