@@ -2,7 +2,7 @@
 title: "September 2023 Appliance Release Notes"
 linkTitle: "September 2023"
 type: docs
-date: 2023-09-25
+date: 2023-09-29
 ---
 {{< node-release package-version="TBD" core-version="TBD" release="n-2.17.0" >}}
 
