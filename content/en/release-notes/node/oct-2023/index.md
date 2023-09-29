@@ -1,8 +1,8 @@
 ---
-title: "September 2023 Appliance Release Notes"
-linkTitle: "September 2023"
+title: "October 2023 Appliance Release Notes"
+linkTitle: "October 2023"
 type: docs
-date: 2023-09-29
+date: 2023-10-02
 ---
 {{< node-release package-version="TBD" core-version="TBD" release="n-2.17.0" >}}
 
@@ -36,3 +36,4 @@ This release includes a new service that will allow you to see active [L4 Connec
 - IPSEC Tunnels will now display their up/down status on the Tunnels page for easier monitoring.
 - Resolves an issue preventing AWS nodes from detecting their region correctly if they were set to require IMDSv2.
 - Resolved issues that lead to false events for "packet(s) too large for UDP" and "Interface Down" notices during restart/reboot.
+- Resolved an issue impacting proxy ARP responses on VLAN subinterfaces for outside NAT.
