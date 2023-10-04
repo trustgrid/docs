@@ -4,7 +4,7 @@ linkTitle: "October 2023"
 type: docs
 date: 2023-10-02
 ---
-{{< node-release package-version="TBD" core-version="TBD" release="n-2.17.0" >}}
+{{< node-release package-version="1.5.20231003-1842" core-version="20231003-145438.e8103a2" release="n-2.17.0" >}}
 
 ## Support for running Ubuntu 22.04 LTS
 This release adds support for running the Trustgrid node appliance on Ubuntu 22.04 LTS for new deployments on AWS, Azure and vSphere.  The 18.04 appliances will continue to be supported and security updates made available via the Trustgrid repository. 
