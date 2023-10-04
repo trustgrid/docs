@@ -8,13 +8,13 @@ weight: 9
 The Trustgrid Portal can integrate with external identity providers. The identity providers added to the Portal may be used for ZTNA access and/or Portal authentication.
 {{% /pageinfo %}}
 
-To use an identity provider for Portal authentication, first configure the authentication domain.
+## Authentication Domain
+To use an identity provider for first configure the authentication domain. This domain can be used to access the portal (if "Use for Portal Auth" is enabled) and is used in the configuration of at the IdP provider to forward users back to Trustgrid.
+{{<tgimg src="auth-domain.png" caption="Example authentication domain configuration">}}
 
-![img](auth-domain.png)
 
-This domain can be used to directly access the Portal, and unauthenticated users will be redirected to your chosen identity provider.
-
-Four different types of identity providers are supported: Azure AD, G Suite, OpenID, and SAML.
+## Identify Providers
+Each IdP has the following fields.  Beyond that the settings differ for each provider type.
 
 {{<fields>}}
 {{<field "Type" >}}
