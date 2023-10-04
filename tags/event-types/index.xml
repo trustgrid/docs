@@ -165,6 +165,12 @@
 &lt;td>&lt;/td>
 &lt;td>Alerts when a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&amp;rsquo;s&lt;/a> public IP has been locked but the connection to the control plane comes from a different IP.&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td>Deregister&lt;/td>
+&lt;td>INFO&lt;/td>
+&lt;td>Device was deregistered from the console&lt;/td>
+&lt;td>Event is sent if a user with console access runs the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/#deregistration-process">deregistration process&lt;/a>&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table>
 &lt;hr></description></item></channel></rss>

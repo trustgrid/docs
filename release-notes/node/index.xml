@@ -1,4 +1,52 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 29 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: August 2023 Second Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/august-2023-2-minor/</link><pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/august-2023-2-minor/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 02 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: October 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/oct-2023/</link><pubDate>Mon, 02 Oct 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/oct-2023/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>TBD&lt;/td>
+&lt;td>TBD&lt;/td>
+&lt;td>n-2.17.0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="support-for-running-ubuntu-2204-lts">Support for running Ubuntu 22.04 LTS&lt;/h2>
+&lt;p>This release adds support for running the Trustgrid node appliance on Ubuntu 22.04 LTS for new deployments on AWS, Azure and vSphere. The 18.04 appliances will continue to be supported and security updates made available via the Trustgrid repository.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+There are no plans to support upgrading OS on deployed devices at this time due to the risks involved.
+&lt;/div>
+&lt;h2 id="preview-feature-node-registration-from-the-trustgrid-console">(Preview Feature) Node Registration from the Trustgrid Console&lt;/h2>
+&lt;p>This release includes a new feature that allows you to &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/">register a node from the Trustgrid console&lt;/a>. This will allow a Trustgrid node running the a standard image to be registered with a Trustgrid account without needing to share a complete license token.&lt;/p>
+&lt;p>The high-level process is:&lt;/p>
+&lt;ol>
+&lt;li>A user with console access to a Trustgrid node logs in and initiates the registration process. This triggers a process that generates unique certificates for the node and generates a short activation code. The node will then begin checking with the Trustgrid control plane to see if it has been activated.&lt;/li>
+&lt;li>This code can then be shared with a user with access to the Trustgrid portal. That user can then enter the code in the Trustgrid portal via the &lt;strong>Activate Node&lt;/strong> action. After entering the code they are prompted to provide a name for the node and click &lt;strong>License Node&lt;/strong>.&lt;/li>
+&lt;li>When the node detects its code has been activated it finalizes registration and then reboots. The node is then available for use and configuration.&lt;/li>
+&lt;/ol>
+&lt;p>This release also allows the user at the console to deregister a node. This will remove the node from the Trustgrid account and deactivate the license.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+This feature is currently in preview and requires Trustgrid support to enable the feature for specific users.
+&lt;/div>
+&lt;h2 id="other-trustgrid-console-improvements">Other Trustgrid Console Improvements&lt;/h2>
+&lt;ul>
+&lt;li>The ability to run &lt;code>traceroute&lt;/code>, &lt;code>mtr&lt;/code>, &lt;code>ip&lt;/code>, &lt;code>curl&lt;/code>, &lt;code>openssl&lt;/code> from the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/#network-tools-shell">Troubleshooting &amp;gt; Network Tools Shell&lt;/a>&lt;/li>
+&lt;li>The ability to modify an interface&amp;rsquo;s MTU settings from the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/advanced-network-config/#change-interface-mtu">Advanced Network Configuration&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="new-tool-for-monitoring-connectors">New Tool for Monitoring Connectors&lt;/h2>
+&lt;p>This release includes a new service that will allow you to see active &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">L4 Connector&lt;/a> sessions. This gives visibility into the active usage of any connector.&lt;/p>
+&lt;h2 id="other-improvements-and-fixes">Other Improvements and Fixes&lt;/h2>
+&lt;ul>
+&lt;li>Audit messages for actions related to containers will now include the container name for improved visibility.&lt;/li>
+&lt;li>IPSEC Tunnels will now display their up/down status on the Tunnels page for easier monitoring.&lt;/li>
+&lt;li>Resolves an issue preventing AWS nodes from detecting their region correctly if they were set to require IMDSv2.&lt;/li>
+&lt;li>Resolved issues that lead to false events for &amp;ldquo;packet(s) too large for UDP&amp;rdquo; and &amp;ldquo;Interface Down&amp;rdquo; notices during restart/reboot.&lt;/li>
+&lt;li>Resolved an issue impacting proxy ARP responses on VLAN subinterfaces for outside NAT.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: August 2023 Second Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/august-2023-2-minor/</link><pubDate>Tue, 29 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/august-2023-2-minor/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
