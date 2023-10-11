@@ -114,7 +114,7 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/ul>
 &lt;/li>
 &lt;li>
-&lt;p>Click this link to start the AMI provisioning process. &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node.json&lt;/a>&lt;/p>
+&lt;p>Click this link to start the AMI provisioning process. &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-2204.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-2204.json&lt;/a>&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Fill out the fields in the CloudFormation form&lt;/p>
