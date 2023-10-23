@@ -1,4 +1,24 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 02 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: October 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/oct-2023/</link><pubDate>Mon, 02 Oct 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/oct-2023/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 19 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: October 2023 Appliance Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/oct-2023-1-minor/</link><pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/oct-2023-1-minor/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20231017-1855&lt;/td>
+&lt;td>20231017-165331.5772aac&lt;/td>
+&lt;td>n-2.17.1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="resolved-issues">Resolved Issues&lt;/h2>
+&lt;ul>
+&lt;li>Fixed an issue where the appliance would stop responding to SNMP traffic on the virtual management IP if &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/">virtual network port forwards&lt;/a> were configured.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: October 2023 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/oct-2023/</link><pubDate>Mon, 02 Oct 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/oct-2023/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
