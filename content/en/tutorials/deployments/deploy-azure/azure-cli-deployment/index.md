@@ -15,7 +15,7 @@ In addition to the [Azure Appliance Requirements]({{<relref "/tutorials/deployme
 
 
 
-## Deploy Azure VM as Trustgrid Node
+## Deploy Azure VM as Trustgrid Appliance
 
 First, Ensure you are authenticated to Azure and have selected the desired subscript using `az account set --subscription "MySubscription"` and ensure all the [Azure Appliance Requirements]({{<relref "/tutorials/deployments/deploy-azure#azure-requirements">}}) exist before proceeding. 
 
@@ -45,12 +45,17 @@ export outsideSubnet=""
 export insideSubnet=""
 export name=""
 export size="Standard_B2s"
+export osDiskSize=30
 ```
 
 ### Capture Latest Trustgrid Image ID
 
 ```bash
-export imageID=$(az sig image-version list-community --public-gallery-name trustgrid-45680719-9aa7-43b9-a376-dc03bcfdb0ac --gallery-image-definition trustgrid-node-2204-prod --location $location --output json 2>/dev/null | jq -r 'sort_by(.name)| reverse | .[0].uniqueId')
+export imageID=$(az sig image-version list-community \
+  --public-gallery-name trustgrid-45680719-9aa7-43b9-a376-dc03bcfdb0ac \
+  --gallery-image-definition trustgrid-node-2204-prod \
+  --location $location \
+  --output json 2>/dev/null | jq -r 'sort_by(.name)| reverse | .[0].uniqueId')
 ```
 The above command sets `imageID` to the latest Trustgrid image ID from the Trustgrid image gallery in the Azure region specified by `location`.
 
@@ -120,147 +125,105 @@ az sshkey create --name $sshKeyName --resource-group $resourceGroup --location $
 ```
 
 ### Create Network Interfaces
-This step will create the network interfaces for the Trustgrid appliance VM to connect to the subnets. As part of this process we will create a public IP to be attached to the outside interface.
+This step will create the network interfaces for the Trustgrid appliance VM to connect to the subnets. As part of this process we will create these additional resources:
+- Public IP for the outside interface.
+- Network Security Group for the outside interface and an explicit Outbound rule for the [required connectivity to the Trustgrid Control Plane]({{<relref "/help-center/kb/site-requirements#trustgrid-control-plane">}}). Additional rules will need to be added to allow the node to connect to:
+  - Outbound rules for data plane gateway IPs and ports if the appliance is acting as an edge/client device
+  - Inbound rules if the appliance will be acting as a data plane or ZTNA gateway
+- Network Security Group for the inside interface with no additional rules. After deployment this security group could be extended to allow for required communication to internal resources.
 
-```bash
-sales@Azure:~$ az network public-ip create --name $name-pubIP --resource-group $resourceGroup --location $location --sku "Standard" --allocation-method "Static"
-[Coming breaking change] In the coming release, the default behavior will be changed as follows when sku is Standard and zone is not provided: For zonal regions, you will get a zone-redundant IP indicated by zones:["1","2","3"]; For non-zonal regions, you will get a non zone-redundant IP indicated by zones:null.
-{
-  "publicIp": {
-    "ddosSettings": {
-      "protectionMode": "VirtualNetworkInherited"
-    },
-    "etag": "W/\"f5e5d94b-c37d-4b48-a7c6-ed28566769f3\"",
-    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/publicIPAddresses/docs-node-pubIP",
-    "idleTimeoutInMinutes": 4,
-    "ipAddress": "20.25.9.228",
-    "ipTags": [],
-    "location": "eastus",
-    "name": "docs-node-pubIP",
-    "provisioningState": "Succeeded",
-    "publicIPAddressVersion": "IPv4",
-    "publicIPAllocationMethod": "Static",
-    "resourceGroup": "DocsExample",
-    "resourceGuid": "40e63960-f8d6-4749-92fc-318e4eb4bcde",
-    "sku": {
-      "name": "Standard",
-      "tier": "Regional"
-    },
-    "type": "Microsoft.Network/publicIPAddresses"
-  }
-sales@Azure:~$ az network nic create --resource-group $resourceGroup --location $location --name $name-outside --vnet-name $vNetName --subnet $outsideSubnet --accelerated-networking false --public-ip-address $name-pubIP
-{
-  "NewNIC": {
-    "auxiliaryMode": "None",
-    "auxiliarySku": "None",
-    "disableTcpStateTracking": false,
-    "dnsSettings": {
-      "appliedDnsServers": [],
-      "dnsServers": [],
-      "internalDomainNameSuffix": "w0n1hkdkbiyu1mglxakd4jdtth.bx.internal.cloudapp.net"
-    },
-    "enableAcceleratedNetworking": false,
-    "enableIPForwarding": false,
-    "etag": "W/\"ad9c7ff6-a706-4387-92df-95ca9a1961e9\"",
-    "hostedWorkloads": [],
-    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-outside",
-    "ipConfigurations": [
-      {
-        "etag": "W/\"ad9c7ff6-a706-4387-92df-95ca9a1961e9\"",
-        "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-outside/ipConfigurations/ipconfig1",
-        "name": "ipconfig1",
-        "primary": true,
-        "privateIPAddress": "192.168.1.4",
-        "privateIPAddressVersion": "IPv4",
-        "privateIPAllocationMethod": "Dynamic",
-        "provisioningState": "Succeeded",
-        "publicIPAddress": {
-          "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/publicIPAddresses/docs-node-pubIP",
-          "resourceGroup": "DocsExample"
-        },
-        "resourceGroup": "DocsExample",
-        "subnet": {
-          "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/virtualNetworks/TrustgridvNet/subnets/tg-outside",
-          "resourceGroup": "DocsExample"
-        },
-        "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
-      }
-    ],
-    "location": "eastus",
-    "name": "docs-node-outside",
-    "nicType": "Standard",
-    "provisioningState": "Succeeded",
-    "resourceGroup": "DocsExample",
-    "resourceGuid": "a47697e7-0dfc-4272-8087-fa8f42b4a3d1",
-    "tapConfigurations": [],
-    "type": "Microsoft.Network/networkInterfaces",
-    "vnetEncryptionSupported": false
-  }
-}
-sales@Azure:~$ az network nic create --resource-group $resourceGroup --location $location --name $name-inside --vnet-name $vNetName --subnet $insideSubnet  --accelerated-networking false --ip-forwarding true
-{
-  "NewNIC": {
-    "auxiliaryMode": "None",
-    "auxiliarySku": "None",
-    "disableTcpStateTracking": false,
-    "dnsSettings": {
-      "appliedDnsServers": [],
-      "dnsServers": [],
-      "internalDomainNameSuffix": "w0n1hkdkbiyu1mglxakd4jdtth.bx.internal.cloudapp.net"
-    },
-    "enableAcceleratedNetworking": false,
-    "enableIPForwarding": true,
-    "etag": "W/\"0a2b4cad-77a6-41be-aac7-e7396d2af6a3\"",
-    "hostedWorkloads": [],
-    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-inside",
-    "ipConfigurations": [
-      {
-        "etag": "W/\"0a2b4cad-77a6-41be-aac7-e7396d2af6a3\"",
-        "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-inside/ipConfigurations/ipconfig1",
-        "name": "ipconfig1",
-        "primary": true,
-        "privateIPAddress": "192.168.2.4",
-        "privateIPAddressVersion": "IPv4",
-        "privateIPAllocationMethod": "Dynamic",
-        "provisioningState": "Succeeded",
-        "resourceGroup": "DocsExample",
-        "subnet": {
-          "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/virtualNetworks/TrustgridvNet/subnets/tg-inside",
-          "resourceGroup": "DocsExample"
-        },
-        "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
-      }
-    ],
-    "location": "eastus",
-    "name": "docs-node-inside",
-    "nicType": "Standard",
-    "provisioningState": "Succeeded",
-    "resourceGroup": "DocsExample",
-    "resourceGuid": "3fe216df-f52c-40fd-90b4-a8eaa9de1a7f",
-    "tapConfigurations": [],
-    "type": "Microsoft.Network/networkInterfaces",
-    "vnetEncryptionSupported": false
-  }
-}
-```
+{{<alert color="info">}} Both security groups will be created with the [default security group rules](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#default-security-rules) {{</alert>}}
 
 Here are the commands without output
 ```bash
-az network public-ip create --name $name-pubIP --resource-group $resourceGroup --location $location --sku "Standard" --allocation-method "Static"
-az network nic create --resource-group $resourceGroup --location $location --name $name-outside --vnet-name $vNetName --subnet $outsideSubnet --accelerated-networking false --public-ip-address $name-pubIP
-az network nic create --resource-group $resourceGroup --location $location --name $name-inside --vnet-name $vNetName --subnet $insideSubnet  --accelerated-networking false --ip-forwarding true
+az network public-ip create --name $name-pubIP \
+  --resource-group $resourceGroup --location $location \
+  --sku "Standard" --allocation-method "Static"
+
+az network nsg create --name $name-outside \
+  --resource-group $resourceGroup --location $location
+
+az network nsg rule create --name "TGControlPlaneTCP" \
+  --nsg-name $name-outside \
+  --resource-group $resourceGroup \
+  --priority 1000 \
+  --access 'Allow' \
+  --description 'TCP ports required Trustgrid Control Plane networks' \
+  --destination-address-prefixes '35.171.100.16/28' '34.223.12.192/28' \
+  --destination-port-ranges 443 8443 \
+  --direction 'Outbound' \
+  --protocol 'Tcp' 
+
+az network nsg create --name $name-inside \
+  --resource-group $resourceGroup --location $location
+
+az network nic create --resource-group $resourceGroup \
+ --location $location --name $name-outside \
+  --vnet-name $vNetName --subnet $outsideSubnet \
+  --accelerated-networking false --public-ip-address $name-pubIP \
+  --network-security-group $name-outside
+  
+az network nic create --resource-group $resourceGroup \
+  --location $location --name $name-inside \
+  --vnet-name $vNetName --subnet $insideSubnet \
+  --accelerated-networking false --ip-forwarding true \
+  --network-security-group $name-inside
 ```
 
 ### Create Trustgrid Appliance VM
 
-Finally we can deploy the actual VM
+Finally we can deploy the actual VM with the two below commands
+
+This command creates the VM:
+```bash
+az vm create \
+  --resource-group $resourceGroup \
+  --name $name \
+  --image $imageID \
+  --accept-term \
+  --admin-user 'ubuntu' \
+  --assign-identity '[system]' \
+  --authentication-type 'ssh' \
+  --nics $name-outside $name-inside \
+  --nic-delete-option 'Delete' \
+  --os-disk-size-gb $osDiskSize \
+  --os-disk-delete-option 'Delete' \
+  --size $size \
+  --ssh-key-name $sshKeyName
+  ```
+
+  And this command enables boot diagnostics so that the serial console can be accessed.
+  ```bash
+  az vm boot-diagnostics enable --name $name --resource-group $resourceGroup
+  ```
+
+### Get MAC Address
+
+To make [Console login]({{<relref "/tutorials/local-console-utility#logging-in">}}) easier run the below command to get the outside interface's MAC address:
+
+```bash
+az network nic show --name $name-outside \
+  --resource-group $resourceGroup | jq '.macAddress' | \
+   sed 's/-/:/g' | tr 'A-F' 'a-f'
+```
+
+Example output:
+```bash
+sales@Azure:~$ az network nic show --name $name-outside \
+  --resource-group $resourceGroup | jq '.macAddress' | \
+   sed 's/-/:/g' | tr 'A-F' 'a-f'
+"00:0d:3a:9d:a3:2d"
+```
+### Register the VM
+
+You can now start the [console registration process]({{<relref "/tutorials/local-console-utility/remote-registration">}}) and if you have portal access complete the activation process. 
 
 
  ## Example Environment Setup Walk Through
  
  Below walks through creating an brand new resource group, virtual network, subnets and associated resources needed to deploy a Trustgrid appliance using Azure CLI commands.  This is rarely appropriate for production environments but demonstrates the process.
 
-{{<alert color="info">}}The output below may be modified to obscure unique ids for security purposes{{</alert>}}
+{{<alert color="info">}}The output below may be modified to obscure unique ids for security purposes and truncated due to the verbosity of some response.{{</alert>}}
 
  ### Create Resource Group
 
@@ -351,4 +314,317 @@ export insideSubnet=""
 az network vnet create --name $vNetName --resource-group $resourceGroup --location $location --address-prefix 192.168.0.0/16
 az network vnet subnet create --name $outsideSubnet --resource-group $resourceGroup --vnet-name $vNetName --address-prefix 192.168.1.0/24
 az network vnet subnet create --name $insideSubnet --resource-group $resourceGroup --vnet-name $vNetName --address-prefix 192.168.2.0/24
+```
+
+### Create Remaining Resources and VM
+> At this point we have all the prerequisites to proceed with the steps [outlined above to deploy the Trustgrid appliance]({{<relref ".#deploy-azure-vm-as-trustgrid-appliance">}}). Below shows the commands being run with example output. 
+
+Using the steps defined in the [Prepare SSH Key](#prepare-ssh-key-in-azure) we will create a new key pair.
+
+ ```bash
+sales@Azure:~$ export sshKeyName="myNewSSHKey"
+ az sshkey create --name $sshKeyName --resource-group $resourceGroup --location $location
+No public key is provided. A key pair is being generated for you.
+Private key is saved to "/home/sales/.ssh/1698355223_61326".
+Public key is saved to "/home/sales/.ssh/1698355223_61326.pub".
+{
+  "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DOCSEXAMPLE/providers/Microsoft.Compute/sshPublicKeys/myNewSSHKey",
+  "location": "eastus",
+  "name": "myNewSSHKey",
+  "publicKey": "ssh-rsa ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC6fak3eFAKEKEY8uRMxw+GfkT4xFGkUlFakeyDTNeM59C3z7g1cTtABCDEF12345678910ABCDksVaNfFakeKeyInHere+UoXUQtDZghF38I6t7S58xvZX7Gdr+W4qvlhLP7YYQXdMwFakEyXoS+ZrmdFakeyZZFakeKeyi2V8U1tzlvF5M= generated-by-azure",
+  "resourceGroup": "DOCSEXAMPLE",
+  "tags": null,
+  "type": null
+}
+ ```
+
+Using the steps in [Create Network Interfaces](#create-network-interfaces) above we create a Public IP and two NICs.
+
+```bash
+sales@Azure:~$ az network public-ip create --name $name-pubIP \
+  --resource-group $resourceGroup --location $location \
+  --sku "Standard" --allocation-method "Static"
+[Coming breaking change] In the coming release, the default behavior will be changed as follows when sku is Standard and zone is not provided: For zonal regions, you will get a zone-redundant IP indicated by zones:["1","2","3"]; For non-zonal regions, you will get a non zone-redundant IP indicated by zones:null.
+{
+  "publicIp": {
+    "ddosSettings": {
+      "protectionMode": "VirtualNetworkInherited"
+    },
+    "etag": "W/\"d976ed14-bf3d-4f1a-964d-9ff7dd0783b4\"",
+    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/publicIPAddresses/docs-node-pubIP",
+    "idleTimeoutInMinutes": 4,
+    "ipAddress": "20.168.241.169",
+    "ipTags": [],
+    "location": "eastus",
+    "name": "docs-node-pubIP",
+    "provisioningState": "Succeeded",
+    "publicIPAddressVersion": "IPv4",
+    "publicIPAllocationMethod": "Static",
+    "resourceGroup": "DocsExample",
+    "resourceGuid": "73fc5b1b-bc3e-4670-9af2-65545bb381b6",
+    "sku": {
+      "name": "Standard",
+      "tier": "Regional"
+    },
+    "type": "Microsoft.Network/publicIPAddresses"
+  }
+}
+
+sales@Azure:~$ 
+sales@Azure:~$ az network nsg create --name $name-outside \
+  --resource-group $resourceGroup --location $location
+{
+  "NewNSG": {
+    "defaultSecurityRules": [
+      {
+        "access": "Allow",
+        "description": "Allow inbound traffic from all VMs in VNET",
+        "destinationAddressPrefix": "VirtualNetwork",
+...Truncated....
+        "sourceAddressPrefixes": [],
+        "sourcePortRange": "*",
+        "sourcePortRanges": [],
+        "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+      }
+    ],
+    "etag": "W/\"57d825f4-e5eb-407f-8eec-ad9f3be06486\"",
+    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkSecurityGroups/docs-node-outside",
+    "location": "eastus",
+    "name": "docs-node-outside",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "DocsExample",
+    "resourceGuid": "3796f81b-d50c-4d43-89ed-f41da1523fd8",
+    "securityRules": [],
+    "type": "Microsoft.Network/networkSecurityGroups"
+  }
+}
+sales@Azure:~$ az network nsg rule create --name "TGControlPlaneTCP" \
+  --nsg-name $name-outside \
+  --resource-group $resourceGroup \
+  --priority 1000 \
+  --access 'Allow' \
+  --description 'TCP ports required Trustgrid Control Plane networks' \
+  --destination-address-prefixes '35.171.100.16/28' '34.223.12.192/28' \
+  --destination-port-ranges 443 8443 \
+  --direction 'Outbound' \
+  --protocol 'Tcp' 
+{
+  "access": "Allow",
+  "description": "TCP ports required Trustgrid Control Plane networks",
+  "destinationAddressPrefixes": [
+    "35.171.100.16/28",
+    "34.223.12.192/28"
+  ],
+  "destinationPortRanges": [
+    "443",
+    "8443"
+  ],
+  "direction": "Outbound",
+  "etag": "W/\"a26f3973-ed39-4990-a87e-657815c43721\"",
+  "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkSecurityGroups/docs-node-outside/securityRules/TGControlPlaneTCP",
+  "name": "TGControlPlaneTCP",
+  "priority": 1000,
+  "protocol": "Tcp",
+  "provisioningState": "Succeeded",
+  "resourceGroup": "DocsExample",
+  "sourceAddressPrefix": "*",
+  "sourceAddressPrefixes": [],
+  "sourcePortRange": "*",
+  "sourcePortRanges": [],
+  "type": "Microsoft.Network/networkSecurityGroups/securityRules"
+}
+sales@Azure:~$
+sales@Azure:~$ az network nsg create --name $name-inside \
+  --resource-group $resourceGroup --location $location
+{
+  "NewNSG": {
+    "defaultSecurityRules": [
+      {
+        "access": "Allow",
+        "description": "Allow inbound traffic from all VMs in VNET",
+        "destinationAddressPrefix": "VirtualNetwork",
+...truncated...
+        "type": "Microsoft.Network/networkSecurityGroups/defaultSecurityRules"
+      }
+    ],
+    "etag": "W/\"4d057391-2af0-468d-87b3-482eaafd6ef9\"",
+    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkSecurityGroups/docs-node-inside",
+    "location": "eastus",
+    "name": "docs-node-inside",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "DocsExample",
+    "resourceGuid": "a8f23fcc-6460-4642-aa12-ac5f54a75108",
+    "securityRules": [],
+    "type": "Microsoft.Network/networkSecurityGroups"
+  }
+}
+sales@Azure:~$ az network nic create --resource-group $resourceGroup \
+ --location $location --name $name-outside \
+  --vnet-name $vNetName --subnet $outsideSubnet \
+  --accelerated-networking false --public-ip-address $name-pubIP \
+  --network-security-group $name-outside
+{
+  "NewNIC": {
+    "auxiliaryMode": "None",
+    "auxiliarySku": "None",
+    "disableTcpStateTracking": false,
+    "dnsSettings": {
+      "appliedDnsServers": [],
+      "dnsServers": [],
+      "internalDomainNameSuffix": "w0n1hkdkbiyu1mglxakd4jdtth.bx.internal.cloudapp.net"
+    },
+    "enableAcceleratedNetworking": false,
+    "enableIPForwarding": false,
+    "etag": "W/\"3ddba8ac-99b2-41a8-8ca3-47138ba69b58\"",
+    "hostedWorkloads": [],
+    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-outside",
+    "ipConfigurations": [
+      {
+        "etag": "W/\"3ddba8ac-99b2-41a8-8ca3-47138ba69b58\"",
+        "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-outside/ipConfigurations/ipconfig1",
+        "name": "ipconfig1",
+        "primary": true,
+        "privateIPAddress": "192.168.1.4",
+        "privateIPAddressVersion": "IPv4",
+        "privateIPAllocationMethod": "Dynamic",
+        "provisioningState": "Succeeded",
+        "publicIPAddress": {
+          "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/publicIPAddresses/docs-node-pubIP",
+          "resourceGroup": "DocsExample"
+        },
+        "resourceGroup": "DocsExample",
+        "subnet": {
+          "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/virtualNetworks/TrustgridvNet/subnets/tg-outside",
+          "resourceGroup": "DocsExample"
+        },
+        "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+      }
+    ],
+    "location": "eastus",
+    "name": "docs-node-outside",
+    "networkSecurityGroup": {
+      "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkSecurityGroups/docs-node-outside",
+      "resourceGroup": "DocsExample"
+    },
+    "nicType": "Standard",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "DocsExample",
+    "resourceGuid": "e863aac3-a69c-489d-9b1e-64bf61028f52",
+    "tapConfigurations": [],
+    "type": "Microsoft.Network/networkInterfaces",
+    "vnetEncryptionSupported": false
+  }
+}
+sales@Azure:~$ 
+sales@Azure:~$ az network nic create --resource-group $resourceGroup \
+  --location $location --name $name-inside \
+  --vnet-name $vNetName --subnet $insideSubnet \
+  --accelerated-networking false --ip-forwarding true \
+  --network-security-group $name-inside
+{
+  "NewNIC": {
+    "auxiliaryMode": "None",
+    "auxiliarySku": "None",
+    "disableTcpStateTracking": false,
+    "dnsSettings": {
+      "appliedDnsServers": [],
+      "dnsServers": [],
+      "internalDomainNameSuffix": "w0n1hkdkbiyu1mglxakd4jdtth.bx.internal.cloudapp.net"
+    },
+    "enableAcceleratedNetworking": false,
+    "enableIPForwarding": true,
+    "etag": "W/\"7918658f-76fa-4462-ab5e-bbbabf387016\"",
+    "hostedWorkloads": [],
+    "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-inside",
+    "ipConfigurations": [
+      {
+        "etag": "W/\"7918658f-76fa-4462-ab5e-bbbabf387016\"",
+        "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkInterfaces/docs-node-inside/ipConfigurations/ipconfig1",
+        "name": "ipconfig1",
+        "primary": true,
+        "privateIPAddress": "192.168.2.4",
+        "privateIPAddressVersion": "IPv4",
+        "privateIPAllocationMethod": "Dynamic",
+        "provisioningState": "Succeeded",
+        "resourceGroup": "DocsExample",
+        "subnet": {
+          "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/virtualNetworks/TrustgridvNet/subnets/tg-inside",
+          "resourceGroup": "DocsExample"
+        },
+        "type": "Microsoft.Network/networkInterfaces/ipConfigurations"
+      }
+    ],
+    "location": "eastus",
+    "name": "docs-node-inside",
+    "networkSecurityGroup": {
+      "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Network/networkSecurityGroups/docs-node-inside",
+      "resourceGroup": "DocsExample"
+    },
+    "nicType": "Standard",
+    "provisioningState": "Succeeded",
+    "resourceGroup": "DocsExample",
+    "resourceGuid": "08488814-0337-4742-9751-fd125ea1acb3",
+    "tapConfigurations": [],
+    "type": "Microsoft.Network/networkInterfaces",
+    "vnetEncryptionSupported": false
+  }
+}
+
+```
+
+Finally, we can run the command to [create the azure VM](#create-trustgrid-appliance-vm)
+
+
+```bash
+sales@Azure:~$ az vm create \
+  --resource-group $resourceGroup \
+  --name $name \
+  --image $imageID \
+  --accept-term \
+  --admin-user 'ubuntu' \
+  --assign-identity '[system]' \
+  --authentication-type 'ssh' \
+  --nics $name-outside $name-inside \
+  --nic-delete-option 'Delete' \
+  --os-disk-size-gb $osDiskSize \
+  --os-disk-delete-option 'Delete' \
+  --size $size \
+  --ssh-key-name $sshKeyName 
+No access was given yet to the 'docs-node', because '--scope' was not provided. You should setup by creating a role assignment, e.g. 'az role assignment create --assignee <principal-id> --role contributor -g DocsExample' would let it access the current resource group. To get the pricipal id, run 'az vm show -g DocsExample -n docs-node --query "identity.principalId" -otsv'
+{
+  "fqdns": "",
+  "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Compute/virtualMachines/docs-node",
+  "identity": {
+    "systemAssignedIdentity": "27f3a3a1-a7f2-462f-a697-844eb9f5c249",
+    "userAssignedIdentities": {}
+  },
+  "location": "eastus",
+  "macAddress": "00-0D-3A-9D-A3-2D,00-0D-3A-9D-A2-32",
+  "powerState": "VM running",
+  "privateIpAddress": "192.168.1.4,192.168.2.4",
+  "publicIpAddress": "20.168.241.169",
+  "resourceGroup": "DocsExample",
+  "zones": ""
+}
+sales@Azure:~$ az vm boot-diagnostics enable --name $name --resource-group $resourceGroup 
+sales@Azure:~$
+```
+{{<alert color="info">}} The warning that "No access was given yet" can be ignored.{{</alert>}}
+
+### Get MAC Address
+
+To make [Console login]() easier run the below command to get the outside interface's MAC address:
+
+```bash
+az network nic show --name $name-outside \
+  --resource-group $resourceGroup | jq '.macAddress' | \
+   sed 's/-/:/g' | tr 'A-F' 'a-f'
+```
+
+Example output:
+```bash
+sales@Azure:~$ az network nic show --name $name-outside \
+  --resource-group $resourceGroup | jq '.macAddress' | \
+   sed 's/-/:/g' | tr 'A-F' 'a-f'
+"00:0d:3a:9d:a3:2d"
 ```
