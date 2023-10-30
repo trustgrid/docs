@@ -171,6 +171,7 @@ az network nic create --resource-group $resourceGroup \
   --accelerated-networking false --ip-forwarding true \
   --network-security-group $name-inside
 ```
+See example output for all of the above commands in the [AZ CLI Example Walkthrough](./az-cli-example/#create-network-interfaces)
 
 ### Create Trustgrid Appliance VM
 
@@ -199,6 +200,8 @@ az vm create \
   az vm boot-diagnostics enable --name $name --resource-group $resourceGroup
   ```
 
+See example output in the [AZ CLI Example Walkthrough](./az-cli-example/#create-trustgrid-appliance-vm)
+
 ### Get MAC Address
 
 To make [Console login]({{<relref "/tutorials/local-console-utility#logging-in">}}) easier run the below command to get the outside interface's MAC address:
@@ -220,5 +223,69 @@ sales@Azure:~$ az network nic show --name $name-outside \
 
 You can now start the [console registration process]({{<relref "/tutorials/local-console-utility/remote-registration">}}) and if you have portal access complete the activation process. 
 
+## Additional Steps for HA Clusters
+If deploying an HA cluster there are additional steps required:
 
- 
+### Create Additional VM Appliance
+Repeat the steps above to deploy a second VM appliance using different names but in the same resource group and vNet. This will be the secondary node in the HA cluster. 
+
+Assuming you still have the same variables declared from above deployment you will just need to update the `$name` variable to a new value like shown in the example below.
+```
+export name="newName"
+```
+
+Then you can proceed with creating the [network interface resources](#create-network-interfaces) and then [create the vm appliance](#create-trustgrid-appliance-vm).
+
+### Create Role for Route Management
+The steps below create a custom role that has permissions to manipulate route tables:
+
+First, download the template json file to your environment.
+```bash
+curl -o tg-route-role.json https://raw.githubusercontent.com/trustgrid/trustgrid-infra-as-code/main/azure/resources/cluster-role-template/tg-route-role.json
+```
+
+Use the command below to get your subscription ID:
+```bash
+az account show --query id -o tsv
+```
+Use an editor such as `vi` or `nano` to modify the template and replace the placeholders `REPLACE` in the template with your subscription ID. 
+
+Or, you can perform both the above steps in a single command:
+```bash
+sed -i "s/REPLACE/$(az account show --query id -o tsv)/g" tg-route-role.json
+```
+
+Optionally, you can edit the Name and Description fields as well.
+
+Then create the role using:
+```bash
+az role definition create --role-definition @tg-route-role.json
+```
+
+See [AZ CLI Example Walkthrough](./az-cli-example/#create-role-for-route-management) for output.
+
+{{<alert color="info">}} The role created above can only be assigned to resources in the current subscription. If your Azure account topology requires the Trustgrid appliance to be able to manage route tables in other subscription you'll need to create the role in those accounts as well and assign (see below) the role accordingly.{{</alert>}}
+
+###  Assign Role for Route Management
+Finally, we need to assign this role.  Below provides the commands to perform this process without values for the names of the two VMs (vm1 and vm2) or for the resource group. 
+
+Note, the `az role assignement create` command does not seem to work with variables for the `--role` parameter value.  If you named your role something other than "Trustgrid HA Route Role" you'll need to adjust the last two commands accordingly.
+
+```bash
+export vm1=""
+export vm2=""
+export resourceGroup=""
+export subscription=$(az account show --query id -o tsv)
+export vm1ID=$(az vm show --name $vm1 --resource-group $resourceGroup --query 'identity.principalId' -o tsv)
+export vm2ID=$(az vm show --name $vm2 --resource-group $resourceGroup --query 'identity.principalId' -o tsv)
+az role assignment create --role "Trustgrid HA Route Role" --assignee $vm1ID --scope "/subscriptions/$subscription/resourceGroups/$resourceGroup"
+az role assignment create --role "Trustgrid HA Route Role" --assignee $vm2ID --scope "/subscriptions/$subscription/resourceGroups/$resourceGroup"
+
+```
+
+
+See [AZ CLI Example Walkthrough](./az-cli-example/#assign-role-for-route-management) for output.
+{{<alert color="info">}} The above commands scope the role to the resource group that contains the node appliance VMs. IF your Azure account and resource group topology requires the nodes to be able to update route tables in other resources groups you'll need to repeat the role assignment commands either at a higher level (like subscription) or with a different value for `resourceGroup`. {{</alert>}}
+
+
+

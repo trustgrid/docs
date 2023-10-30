@@ -101,9 +101,13 @@ az network vnet subnet create --name $outsideSubnet --resource-group $resourceGr
 az network vnet subnet create --name $insideSubnet --resource-group $resourceGroup --vnet-name $vNetName --address-prefix 192.168.2.0/24
 ```
 
+### Optional - Create Route Table for Inside Subnet
+When Trustgrid appliances are deployed in an HA cluster the inside interface will need a route
+
 ## Create Remaining Resources and VM
 At this point we have all the prerequisites to proceed with the steps [outlined above to deploy the Trustgrid appliance]({{<relref "..#deploy-azure-vm-as-trustgrid-appliance">}}). Below shows the commands being run with example output. 
 
+### Declare Variables
 First, declare all the variables and capture the Image ID:
 ```bash
 export location="eastus"
@@ -114,7 +118,9 @@ export insideSubnet="tg-inside"
 export name="docs-node"
 export size="Standard_B2s"
 export osDiskSize=30
-
+```
+### Capture Latest Trustgrid Image ID
+```bash
 export imageID=$(az sig image-version list-community \
   --public-gallery-name trustgrid-45680719-9aa7-43b9-a376-dc03bcfdb0ac \
   --gallery-image-definition trustgrid-node-2204-prod \
@@ -122,7 +128,8 @@ export imageID=$(az sig image-version list-community \
   --output json 2>/dev/null | jq -r 'sort_by(.name)| reverse | .[0].uniqueId')
 ```
 
-Using the steps defined in the [Prepare SSH Key](#prepare-ssh-key-in-azure) we will create a new key pair.
+### Prepare SSH Key Resource
+Using the steps defined in the [Prepare SSH Key](#prepare-ssh-key-in-azure) we will create a new key pair. If you have an existing public key you want to use the output and commands will be different. 
 
  ```bash
 sales@Azure:~$ export sshKeyName="myNewSSHKey"
@@ -141,7 +148,9 @@ Public key is saved to "/home/sales/.ssh/1698355223_61326.pub".
 }
  ```
 
-Using the steps in [Create Network Interfaces](#create-network-interfaces) above we create a Public IP and two NICs.
+
+### Create Network Interfaces
+Using the steps in [Create Network Interfaces](#create-network-interfaces) above we create a Public IP and two NICs and associated Network Security Groups.
 
 ```bash
 sales@Azure:~$ az network public-ip create --name $name-pubIP \
@@ -375,6 +384,8 @@ sales@Azure:~$ az network nic create --resource-group $resourceGroup \
 
 ```
 
+### Create Trustgrid Appliance VM
+
 Finally, we can run the command to [create the azure VM](#create-trustgrid-appliance-vm)
 
 
@@ -414,3 +425,113 @@ sales@Azure:~$
 ```
 {{<alert color="info">}} The warning that "No access was given yet" can be ignored.{{</alert>}}
 
+
+## Additional Steps for HA Clusters
+
+For high availability clusters, additional steps would be needed.
+
+First, you'd need to create a [second VM with a new name](../#create-additional-vm-appliance). The output should be similar to the above.
+
+### Create Role for Route Management
+The steps below will show creating the custom role required for the VMs to be able to modify the route tables in their resource group. 
+
+```bash
+sales@Azure:~$ curl -o tg-route-role.json https://raw.githubusercontent.com/trustgrid/trustgrid-infra-as-code/main/azure/resources/cluster-role-template/tg-route-role.json
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1007  100  1007    0     0   7407      0 --:--:-- --:--:-- --:--:--  7459
+sales@Azure:~$ sed -i "s/REPLACE/$(az account show --query id | tr -d '\"')/g" tg-route-role.json
+sales@Azure:~$az role definition create --role-definition @tg-route-role.json
+Readonly attribute type will be ignored in class <class 'azure.mgmt.authorization.v2022_05_01_preview.models._models_py3.RoleDefinition'>
+{
+  "assignableScopes": [
+    "/subscriptions/#######-####-####-####-#########"
+  ],
+  "createdBy": null,
+  "createdOn": "2023-10-30T18:29:30.705079+00:00",
+  "description": "Allows clustered Trustgrid nodes to perform HA routing actions",
+  "id": "/subscriptions/#######-####-####-####-#########/providers/Microsoft.Authorization/roleDefinitions/a06d4811-1d33-42ef-b7dc-c92e038246f6",
+  "name": "a06d4811-1d33-42ef-b7dc-c92e038246f6",
+  "permissions": [
+    {
+      "actions": [
+        "Microsoft.Network/networkWatchers/nextHop/action",
+        "Microsoft.Network/networkInterfaces/effectiveRouteTable/action",
+        "Microsoft.Network/routeTables/routes/delete",
+        "Microsoft.Network/routeTables/routes/write",
+        "Microsoft.Network/routeTables/routes/read",
+        "Microsoft.Network/routeTables/join/action",
+        "Microsoft.Network/routeTables/delete",
+        "Microsoft.Network/routeTables/write",
+        "Microsoft.Network/routeTables/read",
+        "Microsoft.Network/networkInterfaces/read",
+        "Microsoft.Network/virtualNetworks/read",
+        "Microsoft.Compute/virtualMachines/read"
+      ],
+      "condition": null,
+      "conditionVersion": null,
+      "dataActions": [],
+      "notActions": [],
+      "notDataActions": []
+    }
+  ],
+  "roleName": "Trustgrid HA Route Role",
+  "roleType": "CustomRole",
+  "type": "Microsoft.Authorization/roleDefinitions",
+  "updatedBy": "bcc767f1-e232-4cdf-8144-5dcc3d2ae88b",
+  "updatedOn": "2023-10-30T18:29:30.705079+00:00"
+}
+```
+
+### Assign Role for Route Management
+After you've created the above custom role it needs to be assigned to the virtual machines [managed system identities](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview#managed-identity-types). 
+
+For this example we will assume the role was created with the name "Trustgrid HA Route Role" and the VMs are named `docs-node` and `docs-node2`. We will export a new variable for each and also make sure we have variables for the resource group and subscription values.
+```bash
+sales@Azure:~$ export vm1="docs-node"
+sales@Azure:~$ export vm2="docs-node2"
+sales@Azure:~$ export resourceGroup="DocsExample"
+sales@Azure:~$ export subscription=$(az account show --query id -o tsv)
+sales@Azure:~$ export vm1ID=$(az vm show --name $vm1 --resource-group $resourceGroup --query 'identity.principalId' -o tsv)
+sales@Azure:~$ export vm2ID=$(az vm show --name $vm2 --resource-group $resourceGroup --query 'identity.principalId' -o tsv)
+sales@Azure:~$ az role assignment create --role "Trustgrid HA Route Role" --assignee $vm1ID --scope "/subscriptions/$subscription/resourceGroups/$resourceGroup"
+{
+  "condition": null,
+  "conditionVersion": null,
+  "createdBy": null,
+  "createdOn": "2023-10-30T18:56:44.664663+00:00",
+  "delegatedManagedIdentityResourceId": null,
+  "description": null,
+  "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Authorization/roleAssignments/0799638c-57ce-4c3b-8aec-d20de77b449d",
+  "name": "0799638c-57ce-4c3b-8aec-d20de77b449d",
+  "principalId": "27f3a3a1-a7f2-462f-a697-844eb9f5c249",
+  "principalType": "ServicePrincipal",
+  "resourceGroup": "DocsExample",
+  "roleDefinitionId": "/subscriptions/#######-####-####-####-#########/providers/Microsoft.Authorization/roleDefinitions/a06d4811-1d33-42ef-b7dc-c92e038246f6",
+  "scope": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample",
+  "type": "Microsoft.Authorization/roleAssignments",
+  "updatedBy": "bcc767f1-e232-4cdf-8144-5dcc3d2ae88b",
+  "updatedOn": "2023-10-30T18:56:45.306683+00:00"
+}
+sales@Azure:~$ az role assignment create --role "Trustgrid HA Route Role" --assignee $vm2ID --scope "/subscriptions/$subscription/resourceGroups/$resourceGroup"
+{
+  "condition": null,
+  "conditionVersion": null,
+  "createdBy": null,
+  "createdOn": "2023-10-30T18:56:44.664663+00:00",
+  "delegatedManagedIdentityResourceId": null,
+  "description": null,
+  "id": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample/providers/Microsoft.Authorization/roleAssignments/0799638c-57ce-4c3b-8aec-d20de77b449d",
+  "name": "0799638c-57ce-4c3b-8aec-d20de77b449d",
+  "principalId": "27f3a3a1-a7f2-462f-a697-844eb9f5c249",
+  "principalType": "ServicePrincipal",
+  "resourceGroup": "DocsExample",
+  "roleDefinitionId": "/subscriptions/#######-####-####-####-#########/providers/Microsoft.Authorization/roleDefinitions/a06d4811-1d33-42ef-b7dc-c92e038246f6",
+  "scope": "/subscriptions/#######-####-####-####-#########/resourceGroups/DocsExample",
+  "type": "Microsoft.Authorization/roleAssignments",
+  "updatedBy": "bcc767f1-e232-4cdf-8144-5dcc3d2ae88b",
+  "updatedOn": "2023-10-30T18:56:45.306683+00:00"
+}
+```
+
+az role assignment create --role $roleName --assignee $vm1ID --scope "/subscriptions/$subscription/resourceGroups/$resourceGroup"
