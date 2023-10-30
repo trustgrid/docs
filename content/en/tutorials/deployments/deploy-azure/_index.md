@@ -197,11 +197,11 @@ One of more Virtual Machines will need to be deployed into the target Azure subs
 * Site Tech - User(s) with permissions and skills to deploy new instances in Azure, create the required Managed System Identity shown above, and make changes in Azure to allow the required network connectivity
 * Trustgrid User - User with permissions to [Activate nodes]({{<relref "/tutorials/local-console-utility/remote-registration#portal-activation-process">}}) in the Trustgrid portal (or API)
 
-> If the Site Tech is not part of the organization that is Trustgrid's direct customer, Trustgrid's professional service team will need documented approval from that customer before proceeding with assisting in the deployment.
+> If the Site Tech is not part of the organization that is a Trustgrid's direct customer, Trustgrid's professional service team will need documented approval from that customer before proceeding with assisting in the deployment.
 
 ### High-Level Process
 
-1. The Site Tech should be able to complete the following steps without nee
+1. The Site Tech should be able to complete the following steps independently:
 	1. Build out prerequisite resources including Resource Groups, vNets, subnets and routing tables in Azure
 	- For single node deployments: 
 		1. Create VM Instances based of the official Trustgrid community image
@@ -214,3 +214,12 @@ One of more Virtual Machines will need to be deployed into the target Azure subs
 	1. Activate the device with the target organization
 	1. Confirm healthy functionality and connectivity to the required gateways
 	1. Configure the nodes as needed (e.g. clustering, VPN, L4proxy)
+
+
+### Deployment Methods
+
+- [Deploy via Azure command line tool]({{<relref "/tutorials/deployments/deploy-azure/">}})
+
+_Documentation Coming Soon for..._
+- Deploy via the Azure Portal 
+- Deploy via Azure Bicep modules
