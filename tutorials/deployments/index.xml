@@ -212,6 +212,18 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;li>In the EC2 console, reboot the node (it will be named trustgrid-node)&lt;/li>
 &lt;li>You can now manage the node as you would any other in the Portal UI.&lt;/li>
 &lt;/ol></description></item><item><title>Tutorials: Deploy to Azure</title><link>https://docs.trustgrid.io/tutorials/deployments/deploy-azure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/deployments/deploy-azure/</guid><description>
+&lt;h2 id="azure-requirements">Azure Requirements&lt;/h2>
+&lt;ul>
+&lt;li>An Azure subscription. If you don&amp;rsquo;t have one, create a &lt;a href="https://azure.microsoft.com/free/">free account&lt;/a>&lt;/li>
+&lt;li>An Azure resource group to deploy the resources into&lt;/li>
+&lt;li>An Azure Virtual Network (vNet) with at least two subnets:
+&lt;ul>
+&lt;li>An &amp;ldquo;outside&amp;rdquo; subnet for the appliance to connect to the Trustgrid control plane and data plane gateways, and accept incoming connections if the Azure Trustgrid appliance will be acting as a &lt;a href="https://docs.trustgrid.io/docs/nodes/gateway/">data plane gateway&lt;/a>&lt;/li>
+&lt;li>An &amp;ldquo;inside&amp;rdquo; subnet for communicating with other virtual machines and services within the Azure vNet&lt;/li>
+&lt;li>&lt;strong>(For Clustered Appliances)&lt;/strong> An &lt;a href="#azure-route-table">Azure routing table&lt;/a> associated with the &amp;ldquo;inside&amp;rdquo; subnet.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="vm-requirements">VM Requirements&lt;/h2>
 &lt;table>
 &lt;thead>
@@ -222,16 +234,20 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>OS&lt;/td>
-&lt;td>Ubuntu 18.04 LTS&lt;/td>
-&lt;/tr>
-&lt;tr>
 &lt;td>Disk Size&lt;/td>
 &lt;td>At least 30 GB&lt;/td>
 &lt;/tr>
+&lt;tr>
+&lt;td>Interfaces&lt;/td>
+&lt;td>&lt;ul>&lt;li>1 Public with a Public IP address&lt;/li>&lt;li>1 Private&lt;/li>&lt;ul>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>CPU &amp;amp; RAM&lt;/td>
+&lt;td>See &lt;a href="https://docs.trustgrid.io/tutorials/deployments/deploy-azure/#instance-size">Instance Type below&lt;/a> for recommendations&lt;/td>
+&lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h3 id="instance-type">Instance Type&lt;/h3>
+&lt;h3 id="instance-size">Instance Size&lt;/h3>
 &lt;p>Trustgrid has validated using the &lt;a href="https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable">B-series burstable - Azure Virtual Machines&lt;/a> instance type.&lt;/p>
 &lt;p>VPN throughput is tied to CPU the recommended size depends on roles, expected throughput.&lt;/p>
 &lt;ul>
@@ -243,10 +259,39 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;p>The LAN interface needs to have &lt;strong>IP Forwarding Enabled&lt;/strong> in order to forward the traffic across the tunnel.&lt;/p>
 &lt;p>&lt;img src="azure-ip-config.png" alt="IP Forwarding">&lt;/p>
 &lt;p>See &lt;a href="https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview">Azure virtual network traffic routing&lt;/a>.&lt;/p>
+&lt;h3 id="supported-regions">Supported Regions&lt;/h3>
+&lt;p>The Trustgrid official community image, &lt;code>trustgrid-node-2204-prod&lt;/code>, in the public gallery &lt;code>trustgrid-45680719-9aa7-43b9-a376-dc03bcfdb0ac&lt;/code> is currently published in the following region. If you need to deploy in another region please contact Trustgrid support. If you are not a direct customer of Trustgrid, please check with your vendor that is utilizing Trustgrid to have them contact support.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Region Display Name&lt;/th>
+&lt;th>Region Name&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>East US&lt;/td>
+&lt;td>eastus&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Central US&lt;/td>
+&lt;td>centralus&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>North Central US&lt;/td>
+&lt;td>northcentralus&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>South Central US&lt;/td>
+&lt;td>southcentralus&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>West US&lt;/td>
+&lt;td>westus&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h3 id="network-access">Network Access&lt;/h3>
-&lt;blockquote>
-&lt;p>During deployment only, Trustgrid will need direct SSH access from their provisioning system to the VM instances that will be converted into Trustgrid nodes.&lt;/p>
-&lt;/blockquote>
 &lt;p>For gateways:&lt;/p>
 &lt;ul>
 &lt;li>Outbound internet access to the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/">Trustgrid control plane networks&lt;/a> and ability to resolve public DNS names.&lt;/li>
@@ -261,72 +306,46 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;ul>
 &lt;li>The cluster heartbeat runs on the LAN/inside interface on TCP Port 9000. This port will need to be open between both Trustgrid Gateways for failover to work correctly.&lt;/li>
 &lt;/ul>
-&lt;h3 id="admin-username-and-ssh-key">Admin Username and SSH Key&lt;/h3>
-&lt;p>Trustgrid requires SSH access to the deployed VM to complete the Trustgrid deployment process. After the deployment is complete the VM ceases to listen on port 22 and any external access to that port can be revoked.&lt;/p>
+&lt;h3 id="other-vm-requirements">Other VM Requirements&lt;/h3>
 &lt;ul>
-&lt;li>
-&lt;p>Username: &lt;code>ubuntu&lt;/code>&lt;/p>
+&lt;li>&lt;a href="https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm">System-assigned Managed Identity&lt;/a> needs to be enabled for both VMs in the cluster.
+&lt;figure class="centered-image">
+&lt;img src="system-managed-identity.png" alt="System-assigned Managed Identity" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;/figure>
 &lt;/li>
-&lt;li>
-&lt;p>SSH public key:&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDK1AHNLfqOd13qsWQGa4FgoNcpllJYlIlkJdqCkLFq0qaYVrh0b1mxalVzrrxy8rSj7DYlofRArb9hntijLnkrlKxMcWVgqMg4JAcXEQvWUtkIwFemE/NoZoXncKfr6lJZ/+gT1LhNX7IMUh7vVhYsyhDkbdvU0FcnJVelEW5TCRdPLzTMcbRfjCo6MiCoMK45nQIKRHofAJFPSubmPAKZC0L1Dz4zwnb1PeCadSDRHDwPWB3vCl9H/h+7Oe7TC+kEc4bV8OzZTnzfX4Mdo9rb9Afz3ZFWYYh3KP2v1hsF6rtSLS6EpuMZVS41YHvGpHQjFgn0n8hNIoQvf9gO4hxH&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/li>
+&lt;li>&lt;a href="https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics">Boot Diagnostics&lt;/a> needs to be enabled to allow access via the Serial Console&lt;/li>
 &lt;/ul>
 &lt;h2 id="requirements-for-ha-failover">Requirements for HA Failover&lt;/h2>
 &lt;h3 id="azure-routing-table">Azure Routing Table&lt;/h3>
 &lt;p>An Azure routing table resource needs to be associated with the LAN interface&amp;rsquo;s subnet.&lt;/p>
 &lt;h4 id="view-lan-subnet-routing-table">View LAN Subnet Routing Table&lt;/h4>
 &lt;ol>
-&lt;li>
-&lt;p>In the Azure Portal search for Virtual Networks and select the service&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>From the list of Virtual Networks select your target Virtual Network&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>From the navigation panel select Subnets&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Select your inside/private subnet that is attached to the LAN interface of your Trustgrid VMs&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>There should be a route table&lt;/p>
-&lt;p>&lt;img src="azure-route-table.png" alt="Route Table">&lt;/p>
+&lt;li>In the Azure Portal search for Virtual Networks and select the service&lt;/li>
+&lt;li>From the list of Virtual Networks select your target Virtual Network&lt;/li>
+&lt;li>From the navigation panel select Subnets&lt;/li>
+&lt;li>Select your inside/private subnet that is attached to the LAN interface of your Trustgrid VMs&lt;/li>
+&lt;li>There should be a route table
+&lt;figure class="centered-image">
+&lt;img src="azure-route-table.png" alt="Example subnet showing assigned Route Table" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;/figure>
 &lt;/li>
 &lt;/ol>
 &lt;h4 id="create-route-table-for-lan-subnet">Create Route Table for LAN Subnet&lt;/h4>
 &lt;ol>
-&lt;li>
-&lt;p>If there is no Route Table associated with your LAN/inside/private subnet you will need to add it.&lt;/p>
+&lt;li>If there is no Route Table associated with your LAN/inside/private subnet you will need to add it.&lt;/li>
+&lt;li>In the Azure portal search for Route Tables and select the service&lt;/li>
+&lt;li>Click the +Create button&lt;/li>
+&lt;li>Select the Resource Group that contains your Virtual Network and VMs&lt;/li>
+&lt;li>Select the Region that your VMs are deployed in&lt;/li>
+&lt;li>Give the Route Table a name consistent with your naming conventions&lt;/li>
+&lt;li>(Optional) change the Propagate Gateway routes option.
+&lt;figure class="centered-image">
+&lt;img src="propagate-routes.png" alt="Propagate Routes Option" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;/figure>
 &lt;/li>
-&lt;li>
-&lt;p>In the Azure portal search for Route Tables and select the service&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Click the +Create button&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Select the Resource Group that contains your Virtual Network and VMs&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Select the Region that your VMs are deployed in&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Give the Route Table a name consistent with your naming conventions&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>(Optional) change the Propagate Gateway routes option.&lt;/p>
-&lt;p>&lt;img src="propagate-routes.png" alt="Propagate Routes Option">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Click Review + Create, review then click Review + Create again&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Repeat the above steps to “View LAN Subnet Routing Table” and change the route table from None to the newly created Route Table.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Save the change&lt;/p>
-&lt;/li>
+&lt;li>Click Review + Create, review then click Review + Create again&lt;/li>
+&lt;li>Repeat the above steps to “View LAN Subnet Routing Table” and change the route table from None to the newly created Route Table.&lt;/li>
+&lt;li>Save the change&lt;/li>
 &lt;/ol>
 &lt;h3 id="permissions-required-for-cluster-route-failover">Permissions Required for Cluster Route Failover&lt;/h3>
 &lt;p>Copy this sample json file for use in creating a custom role with the required permissions. See process below.&lt;/p>
@@ -364,12 +383,8 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;ol>
 &lt;li>
-&lt;p>&lt;a href="https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm">System-assigned Managed Identity&lt;/a> needs to be enabled for both VMs in the cluster.&lt;/p>
-&lt;p>&lt;img src="system-managed-identity.png" alt="System-assigned Managed Identity">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>A custom role needs to be created in the Azure subscription that allows the Trustgrid nodes to update the route table when failover occurs&lt;/p>
 &lt;ol>
+&lt;li>A custom role needs to be created in the Azure subscription that allows the Trustgrid nodes to update the route table when failover occurs&lt;/li>
 &lt;li>Create the custom role
 &lt;ol>
 &lt;li>
@@ -470,45 +485,56 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;p>These permissions can take some time to go into effect.&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="deployment-process">Deployment Process&lt;/h2>
-&lt;p>The current deployment process involves Trustgrid and the site’s technical team with Azure access working together to complete converting a standard Ubuntu 18.04 LTS based VM into a Trustgrid Appliance (or appliances for a clustered deployment).&lt;/p>
+&lt;p>One of more Virtual Machines will need to be deployed into the target Azure subscription to act as the Trustgrid nodes using the official community image. Then the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/">remote registration process&lt;/a> can be used to activate the nodes in the Trustgrid portal.&lt;/p>
 &lt;h3 id="participants">Participants&lt;/h3>
 &lt;ul>
-&lt;li>Site Tech - User(s) with permissions to deploy new instances in Azure, create the required Managed System Identity shown above, and make changes to allow the required network connectivity&lt;/li>
-&lt;li>Trustgrid Tech - Trustgrid professional services team member that will complete the conversion of the generic image into a&lt;/li>
+&lt;li>Site Tech - User(s) with permissions and skills to deploy new instances in Azure, create the required Managed System Identity shown above, and make changes in Azure to allow the required network connectivity&lt;/li>
+&lt;li>Trustgrid User - User with permissions to &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/#portal-activation-process">Activate nodes&lt;/a> in the Trustgrid portal (or API)&lt;/li>
 &lt;/ul>
 &lt;blockquote>
-&lt;p>If the Site Tech is not part of the organization that is Trustgrid&amp;rsquo;s direct customer, Trustgrid will need documented approval from that customer before proceeding with assisting in the deployment.&lt;/p>
+&lt;p>If the Site Tech is not part of the organization that is a Trustgrid&amp;rsquo;s direct customer, Trustgrid&amp;rsquo;s professional service team will need documented approval from that customer before proceeding with assisting in the deployment.&lt;/p>
 &lt;/blockquote>
 &lt;h3 id="high-level-process">High-Level Process&lt;/h3>
 &lt;ol>
-&lt;li>Prior to a scheduled call the Site Tech can:
+&lt;li>The Site Tech should be able to complete the following steps independently:
 &lt;ol>
-&lt;li>Build a vNet with public and private subnets if it does not already exist&lt;/li>
-&lt;li>Create the Managed System Identify permissions as defined above&lt;/li>
-&lt;li>Create VM Instances based of the Ubuntu 18.04 LTS image and sizing requirement mentioned above&lt;/li>
+&lt;li>Build out prerequisite resources including Resource Groups, vNets, subnets and routing tables in Azure&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>For single node deployments:
+&lt;ol>
+&lt;li>Create VM Instances based of the official Trustgrid community image&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;li>A conference call will be scheduled between the Site Tech and Trustgrid Tech during business hours&lt;/li>
-&lt;li>During the conference call:
+&lt;li>For clustered deployments:
 &lt;ol>
+&lt;li>Create a &lt;a href="#azure-routing-table">routing table for the in LAN interface subnet&lt;/a> if it does not already exist&lt;/li>
+&lt;li>Create two VM Instances based of the official Trustgrid community image&lt;/li>
+&lt;li>Create the Azure IAM role as defined above&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>Use the Azure VM Serial Console to start the registration process, this code then needs to be communicated securely to the Trustgrid User.&lt;/li>
+&lt;/ol>
+&lt;/li>
 &lt;li>Trustgrid Tech -
 &lt;ol>
-&lt;li>Confirm connectivity to the node&lt;/li>
-&lt;li>Run automation process to convert into Trustgrid appliance&lt;/li>
-&lt;li>Register the device with the target organization&lt;/li>
-&lt;li>Confirm healthy functionality and connectivity to the required&lt;/li>
-&lt;li>Configure and test clustering including route failover (if clustering is to be used)&lt;/li>
-&lt;li>Configure VPN (if to be used) and confirm access to required networks/hosts if possible&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>Site Tech -
-&lt;ol>
-&lt;li>Revoke direct SSH access&lt;/li>
+&lt;li>Activate the device with the target organization&lt;/li>
+&lt;li>Confirm healthy functionality and connectivity to the required gateways&lt;/li>
+&lt;li>Configure the nodes as needed (e.g. clustering, VPN, L4proxy)&lt;/li>
 &lt;/ol>
 &lt;/li>
 &lt;/ol>
-&lt;/li>
-&lt;/ol></description></item><item><title>Tutorials: Deploy to vSphere</title><link>https://docs.trustgrid.io/tutorials/deployments/deploy-vsphere/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/deployments/deploy-vsphere/</guid><description>
+&lt;h3 id="deployment-methods">Deployment Methods&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/deployments/deploy-azure/">Deploy via Azure command line tool&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;em>Documentation Coming Soon for&amp;hellip;&lt;/em>&lt;/p>
+&lt;ul>
+&lt;li>Deploy via the Azure Portal&lt;/li>
+&lt;li>Deploy via Azure Bicep modules&lt;/li>
+&lt;/ul></description></item><item><title>Tutorials: Deploy to vSphere</title><link>https://docs.trustgrid.io/tutorials/deployments/deploy-vsphere/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/deployments/deploy-vsphere/</guid><description>
 &lt;h2 id="requirements">Requirements&lt;/h2>
 &lt;h3 id="hardware-resources">Hardware Resources&lt;/h3>
 &lt;ul>
