@@ -30,6 +30,8 @@ Virtual CIDR,Local CIDR,Description
 ```
 ## Gateway Panel Redesign
 
+The [System > Gateway]({{<relref "/docs/nodes/gateway">}}) panel has been redesigned to separate server and client settings and make it more clear which settings apply to each role.
+
 
 ## Other Fixes and Improvements
 - Resolved an issue where the S3 Bucket Policy on the Operations > Flow Logs table was listing the incorrect ARN
