@@ -32,6 +32,10 @@ Virtual CIDR,Local CIDR,Description
 
 The [System > Gateway]({{<relref "/docs/nodes/gateway">}}) panel has been redesigned to separate server and client settings and make it more clear which settings apply to each role.
 
+## Request Support
+We have added a way to [request support directly from the portal]({{<relref "/docs/support/support-request">}}). This eliminates confusion about our support email address (it is not .com) and allows you to list the actual impacted nodes or clusters.
+
+Navigate to the [Support]({{<relref "/docs/support">}})" and fill out the **Support Request** section with the relevant information. We will respond as quickly as possible based on the urgency selected and established SLAs for your organization. 
 
 ## Other Fixes and Improvements
 - Resolved an issue where the S3 Bucket Policy on the Operations > Flow Logs table was listing the incorrect ARN
