@@ -5,13 +5,16 @@ type: docs
 date: 2023-11-01
 description: "November release focused on various UI improvements"
 ---
-
-## Long Term Statistics
+## Statistics Improvements
+### Long Term Statistics
 Starting with this release the Overview graphs for nodes running the [July 2023 release]({{<ref "/release-notes/node/july-2023">}}) or newer will display 1 week and 1 month statistic views. Previously only 24 hours was visible in the portal. This allows viewing historical usage trends over longer periods of time directly from the node detail page.  
 - 1 week stats are aggregated into hourly data points
 - 1 months stats are aggregated into 6 hour data points
 
 {{<tgimg src="long-term-stats.png" alt="Screenshot showing 1 week and 1 month statistic views" width="80%">}}
+
+### JVM Heap Metrics
+A new section called [Metrics]({{<relref "/docs/nodes/metrics">}}) with a new statistic called [JVM Heap]({{<relref "/docs/nodes/metrics#jvm-heap">}}) to help make clear if the load on a node requires more memory than is currently allocated to the node process.
 
 ## Remote Registration
 The [October 2023 node release]({{<ref "/release-notes/node/oct-2023#preview-feature-node-registration-from-the-trustgrid-console">}}) introduced a new remote registration feature to allow nodes to be registered directly from the console. At the time this was a preview feature that required Trustgrid support to grant users the ability to complete the [portal activation process]({{<ref "/tutorials/local-console-utility/remote-registration#portal-activation-process">}}).  
