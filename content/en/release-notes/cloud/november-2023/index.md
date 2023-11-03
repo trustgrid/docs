@@ -37,6 +37,9 @@ We have added a way to [request support directly from the portal]({{<relref "/do
 
 Navigate to the [Support]({{<relref "/docs/support">}})" and fill out the **Support Request** section with the relevant information. We will respond as quickly as possible based on the urgency selected and established SLAs for your organization. 
 
+## Improved Alarm Filter Flexibility
+This release adds a new [Cel Expression field]({{<relref "/docs/alarms/alarm-filters#cel-expression">}}) that allow for matching more complex conditions when filtering alarms. This gives greater flexibility to filter by multiple fields, use logical operators, and wild cards. 
+
 ## Other Fixes and Improvements
 - Resolved an issue where the S3 Bucket Policy on the Operations > Flow Logs table was listing the incorrect ARN
 - Restored the ability to list the virtual management IP as a column on the Nodes table

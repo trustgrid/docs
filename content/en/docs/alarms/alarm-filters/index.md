@@ -58,4 +58,6 @@ This field will accept any single string of text to match to the contents of an 
 
 The [event]({{<ref "events" >}}) payload includes the [node’s]({{<ref "docs/nodes" >}}) unique identifier (UID) which is a string of generated text and numbers. If your "Contains Text" criteria is too short, there is a chance a [node]({{<ref "docs/nodes" >}}) UID will also match unexpectedly.
 {{</field>}}
+{{<field "Cel Expression">}} This field uses the [cel syntax](https://github.com/google/cel-spec/blob/master/doc/langdef.md) to define a filter expression that will be evaluated against each event. These expressions allow the use of wildcard values to match portions of the event payload. For example, if your node naming convention included some indicator of environment like `-prod` you could use an expression like: `ctx.node.name=="*-prod*` to match any node with `-prod` in the name.
+{{</field>}}
 {{</fields>}}
