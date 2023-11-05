@@ -5,13 +5,16 @@ type: docs
 date: 2023-11-01
 description: "November release focused on various UI improvements"
 ---
-
-## Long Term Statistics
+## Statistics Improvements
+### Long Term Statistics
 Starting with this release the Overview graphs for nodes running the [July 2023 release]({{<ref "/release-notes/node/july-2023">}}) or newer will display 1 week and 1 month statistic views. Previously only 24 hours was visible in the portal. This allows viewing historical usage trends over longer periods of time directly from the node detail page.  
 - 1 week stats are aggregated into hourly data points
 - 1 months stats are aggregated into 6 hour data points
 
 {{<tgimg src="long-term-stats.png" alt="Screenshot showing 1 week and 1 month statistic views" width="80%">}}
+
+### JVM Heap Metrics
+A new section called [Metrics]({{<relref "/docs/nodes/metrics">}}) with a new statistic called [JVM Heap]({{<relref "/docs/nodes/metrics#jvm-heap">}}) to help make clear if the load on a node requires more memory than is currently allocated to the node process.
 
 ## Remote Registration
 The [October 2023 node release]({{<ref "/release-notes/node/oct-2023#preview-feature-node-registration-from-the-trustgrid-console">}}) introduced a new remote registration feature to allow nodes to be registered directly from the console. At the time this was a preview feature that required Trustgrid support to grant users the ability to complete the [portal activation process]({{<ref "/tutorials/local-console-utility/remote-registration#portal-activation-process">}}).  
@@ -32,8 +35,16 @@ Virtual CIDR,Local CIDR,Description
 
 The [System > Gateway]({{<relref "/docs/nodes/gateway">}}) panel has been redesigned to separate server and client settings and make it more clear which settings apply to each role.
 
+## Request Support
+We have added a way to [request support directly from the portal]({{<relref "/docs/support/support-request">}}). This eliminates confusion about our support email address (it is not .com) and allows you to list the actual impacted nodes or clusters.
+
+Navigate to the [Support]({{<relref "/docs/support">}})" and fill out the **Support Request** section with the relevant information. We will respond as quickly as possible based on the urgency selected and established SLAs for your organization. 
+
+## Improved Alarm Filter Flexibility
+This release adds a new [Cel Expression field]({{<relref "/docs/alarms/alarm-filters#cel-expression">}}) that allow for matching more complex conditions when filtering alarms. This gives greater flexibility to filter by multiple fields, use logical operators, and wild cards. 
 
 ## Other Fixes and Improvements
+- Added the ability to adjust interface MTU via the Trustgrid portal [Interfaces]({{<relref "/docs/nodes/interfaces#mtu">}})
 - Resolved an issue where the S3 Bucket Policy on the Operations > Flow Logs table was listing the incorrect ARN
 - Restored the ability to list the virtual management IP as a column on the Nodes table
 - Fixed an issue that set all Host Ports to 0 (zero) when a container definition was imported

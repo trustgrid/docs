@@ -59,7 +59,7 @@ This field will accept any single string of text to match to the contents of an 
 The [event]({{<ref "events" >}}) payload includes the [node’s]({{<ref "docs/nodes" >}}) unique identifier (UID) which is a string of generated text and numbers. If your "Contains Text" criteria is too short, there is a chance a [node]({{<ref "docs/nodes" >}}) UID will also match unexpectedly.
 {{</field>}}
 {{<field "CEL Expression">}}
-CEL expressions allow logical expressions that evaluate to `true` or `false` to determine if a filter should match an alarm. More information here.
+CEL expressions allow logical expressions that evaluate to `true` or `false` to determine if a filter should match an alarm. See [here]({{<ref "alarm-filters#cel-expressions">}}) for a detailed explanation.
 {{</field>}}
 {{</fields>}}
 

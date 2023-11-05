@@ -10,7 +10,7 @@ weight: 9
 
 Navigate to a node, then select `Interfaces` under the `Network` section.
 
-{{<tgimg src="interfaces.png" width="90%" caption="Interfaces panel">}}
+{{<tgimg src="interfaces.png" width="70%" caption="Interfaces panel">}}
 
 The `Interface` dropdown at the top allows you to select which interface to manage.
 
@@ -45,6 +45,7 @@ Used in configurations with more than one interface for local network connectivi
 * ETH1 - This is only used in a 2-interface setup to access local resources outside the interface's configured network. Routes must be defined.{{</field>}}
 {{<field "DNS Server 1/2 IP (ETH0 only)">}}Used to resolve DNS names to connect to the Trustgrid control plane.{{</field>}}
 {{<field "Cluster Virtual IP">}}Used in [clusters]({{<ref "/docs/clusters">}}), this IP address is moved between member nodes based on the active cluster member. It can be used to route traffic between the virtual and local networks. This IP address can only be changed within the cluster interfaces page.{{</field>}}
+{{<field "MTU">}}This field allows you to change the Maximum Transmission Unit (MTU) of the interface. MTU impacts the maximum size of packets sent or received on the interface. {{</field>}}
 {{<field "Auto-Negotiation">}}Sets if the interface will use auto-negotiation to determine the speed and duplex settings. Values can be AUTO _(default)_ or MANUAL.{{</field>}}
 {{<field "Duplex">}}Locked unless Auto-Negotiation set to MANUAL. Sets the interface to either FULL _(default)_ or HALF duplex{{</field>}}
 {{<field "Speed">}}Locked unless Auto-Negotiation set to MANUAL. Sets the interface to 10, 100, 1000 Mbps. {{</field>}}
