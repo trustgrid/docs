@@ -11,7 +11,8 @@ Settings on this page determine how a node's client connection to gateway peers 
 
 {{<fields>}}
 {{<field "UDP Enabled" >}}
-This settings can be configured on both the [gateway server](../gateway-server) and [gateway client](../gateway-client)sub-panel. 
+This settings can be configured on both the [gateway server](../gateway-server) and [gateway client](../gateway-client) sub-panel.
+
 - On a server, this will determine if the server will listen for UDP tunnel connections on the configured [UDP port](#udp-port).
 - On a client, this will determine if the client will attempt to build UDP tunnels to any server with UDP enabled.
 
@@ -25,7 +26,7 @@ The egress bandwidth limit for the gateway. Connections will be throttled when t
 Whether to [monitor latency to peers]({{<relref "/tutorials/gateway-tools/monitoring-network-hops-to-peers">}}) through this gateway. This can have a performance impact and is not recommended for high-traffic gateways.
 {{</field >}}
 {{<field "Connectivity to Public Gateways">}}
-Options are `Allowed` or `Denied`.  If set to `Denied` this will cause the node to not attempt connections to public gateways.  This might be desired if you want the node to only connect to configured private gateways. Or if you have private gateways that do not need to connect to the public gateways in your organization.
+Options are `Allowed` or `Denied`. If set to `Denied` this will cause the node to not attempt connections to public gateways. This might be desired if you want the node to only connect to configured private gateways. Or if you have private gateways that do not need to connect to the public gateways in your organization.
 {{</field>}}
 {{</fields>}}
 
@@ -57,20 +58,23 @@ Use this local IP as the source IP for the connection to the gateway.
 {{</field >}}
 
 {{<field "Use as Default" >}}
-* True - Will not attempt to connect to the configured Gateway Node using the WAN interface IP and Default Gateway path.
-* False - Will attempt to connect to the Gateway node using both this defined path **and** the WAN Interface IP and Default Gateway path.
-{{</field >}}
-{{</fields>}}
+
+- True - Will not attempt to connect to the configured Gateway Node using the WAN interface IP and Default Gateway path.
+- False - Will attempt to connect to the Gateway node using both this defined path **and** the WAN Interface IP and Default Gateway path.
+  {{</field >}}
+  {{</fields>}}
 
 {{<tgimg src="gateway-paths.png" width="85%" caption="Example Gateway Path" alt="Screenshot of the gateway paths table">}}
 
 ### Add A Gateway Path
+
 1. Click the Add Path link
-1. Fill in the fields as desired. 
+1. Fill in the fields as desired.
 1. Click the green check mark to save the path.
 1. Optionally, repeat with additional paths.
 1. Click save.
 
 ### Delete a Gateway Path
+
 1. Click the X to the right of the desired path.
 1. Click save.
