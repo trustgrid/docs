@@ -190,7 +190,7 @@ Example of a saved route
 &lt;li>Click save.&lt;/li>
 &lt;/ol></description></item><item><title>Docs: Virtual Network Port Forwards</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-Virtual Network Port Forwards allow a virtual IP address to be associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">Layer 4 service&lt;/a> on a remote node or cluster without the need to specify a route for that virtual IP address.
+Virtual Network Port Forwards allow a virtual IP address to be associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">TCP Layer 4 service&lt;/a> on a remote node or cluster without the need to specify a route for that virtual IP address.
 &lt;/div>
 &lt;figure class="centered-image">
 &lt;img src="remote-port-forward.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
@@ -223,7 +223,7 @@ Example Virtual Network Port Forward
 &lt;/tr>
 &lt;tr id="destination-service">
 &lt;th>Destination Service&lt;/th>
-&lt;td>Service that traffic for the &lt;strong>virtual IP&lt;/strong> and &lt;strong>virtual port&lt;/strong> will be forwarded to.&lt;/td>
+&lt;td>Service that traffic for the &lt;strong>virtual IP&lt;/strong> and &lt;strong>virtual port&lt;/strong> will be forwarded to. Alternately, you can specify an IP and port local to the &lt;strong>destination node&lt;/strong>.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>

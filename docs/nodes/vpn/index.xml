@@ -196,7 +196,7 @@ Network addresses map 1x1 with local addresses, so the prefix length (the /xx nu
 An outside NAT is required for all nodes and clusters attached to a virtual network unless the virtual network is in NO-NAT mode.
 &lt;/div>
 &lt;p>Note there are situations where it may be desirable to make multiple remote devices masquerade as one local IP address though the use of port address translation (PAT). This can be achieved by defining an outside nat in which the network CIDR contains a larger address space than the local CIDR. For instance, an entry with network CIDR 10.0.1.0/24 and local CIDR 192.168.100.10 would make all remote devices with network IP addresses in 10.0.1.0/24 appear as IP address 192.168.100.10 on the local network.&lt;/p></description></item><item><title>Docs: Port Forwarding</title><link>https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/</guid><description>
-&lt;p>Port forwarding allows a node to expose an &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">L4 service&lt;/a> on the virtual network.&lt;/p>
+&lt;p>Port forwarding allows a node to expose an &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">L4 TCP service&lt;/a> on the virtual network.&lt;/p>
 &lt;figure class="centered-image">
 &lt;img src="list.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
@@ -221,7 +221,7 @@ Port Forward listing
 &lt;/tr>
 &lt;tr id="local-service">
 &lt;th>Local Service&lt;/th>
-&lt;td>The service to expose.&lt;/td>
+&lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> to expose. Alternately, you can specify an IP and port.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>Docs: Static Routing</title><link>https://docs.trustgrid.io/docs/nodes/vpn/static-routing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vpn/static-routing/</guid><description>

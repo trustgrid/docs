@@ -58,7 +58,7 @@ Gateway nodes will list edge nodes in their peers table
 &lt;h2 id="network-interfaces">Network Interfaces&lt;/h2>
 &lt;p>Navigate to a node, then select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
 &lt;figure class="centered-image">
-&lt;img src="interfaces.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;img src="interfaces.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
 Interfaces panel
 &lt;/figcaption>
@@ -123,6 +123,10 @@ Interfaces panel
 &lt;tr id="cluster-virtual-ip">
 &lt;th>Cluster Virtual IP&lt;/th>
 &lt;td>Used in &lt;a href="https://docs.trustgrid.io/docs/clusters/">clusters&lt;/a>, this IP address is moved between member nodes based on the active cluster member. It can be used to route traffic between the virtual and local networks. This IP address can only be changed within the cluster interfaces page.&lt;/td>
+&lt;/tr>
+&lt;tr id="mtu">
+&lt;th>MTU&lt;/th>
+&lt;td>This field allows you to change the Maximum Transmission Unit (MTU) of the interface. MTU impacts the maximum size of packets sent or received on the interface.&lt;/td>
 &lt;/tr>
 &lt;tr id="auto-negotiation">
 &lt;th>Auto-Negotiation&lt;/th>

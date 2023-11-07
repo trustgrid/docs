@@ -1,4 +1,42 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 18 Aug 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: August 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/august-2023/</link><pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/august-2023/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 01 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: November 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/november-2023/</link><pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/november-2023/</guid><description>
+&lt;h2 id="statistics-improvements">Statistics Improvements&lt;/h2>
+&lt;h3 id="long-term-statistics">Long Term Statistics&lt;/h3>
+&lt;p>Starting with this release the Overview graphs for nodes running the &lt;a href="https://docs.trustgrid.io/release-notes/node/july-2023/">July 2023 release&lt;/a> or newer will display 1 week and 1 month statistic views. Previously only 24 hours was visible in the portal. This allows viewing historical usage trends over longer periods of time directly from the node detail page.&lt;/p>
+&lt;ul>
+&lt;li>1 week stats are aggregated into hourly data points&lt;/li>
+&lt;li>1 months stats are aggregated into 6 hour data points&lt;/li>
+&lt;/ul>
+&lt;figure class="centered-image">
+&lt;img src="long-term-stats.png" alt="Screenshot showing 1 week and 1 month statistic views" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;/figure>
+&lt;h3 id="jvm-heap-metrics">JVM Heap Metrics&lt;/h3>
+&lt;p>A new section called &lt;a href="https://docs.trustgrid.io/docs/nodes/metrics/">Metrics&lt;/a> with a new statistic called &lt;a href="https://docs.trustgrid.io/docs/nodes/metrics/#jvm-heap">JVM Heap&lt;/a> to help make clear if the load on a node requires more memory than is currently allocated to the node process.&lt;/p>
+&lt;h2 id="remote-registration">Remote Registration&lt;/h2>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/release-notes/node/oct-2023/#preview-feature-node-registration-from-the-trustgrid-console">October 2023 node release&lt;/a> introduced a new remote registration feature to allow nodes to be registered directly from the console. At the time this was a preview feature that required Trustgrid support to grant users the ability to complete the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/#portal-activation-process">portal activation process&lt;/a>.&lt;/p>
+&lt;p>With this release this permission can now be granted via &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/">policies&lt;/a> by granting the &lt;code>nodes::remote-activation&lt;/code> permission. This permission was also added to the &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#tg-builtin-admin">tg-builtin-admin&lt;/a> policy.&lt;/p>
+&lt;h2 id="copy-nats-button">Copy NATs Button&lt;/h2>
+&lt;p>It is common to need to share the information in the VPN &amp;gt; Address Translation panel with people that do not have access to the Trustgrid portal. With this release two buttons have been added to &amp;ldquo;Copy outside NATs&amp;rdquo; and &amp;ldquo;Copy inside NATs&amp;rdquo; that will copy the respective NAT rules to the clipboard in comma seperated (CSV) format that can be easily shared directly or imported into a spreadsheet.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="copy-nats.png" alt="Screenshot showing new Copy outside NATs and Copy inside NATs buttons" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;/figure>
+&lt;p>Example CSV output:&lt;/p>
+&lt;pre tabindex="0">&lt;code class="language-csv" data-lang="csv">Virtual CIDR,Local CIDR,Description
+10.210.200.0/24,10.0.2.0/24,
+&lt;/code>&lt;/pre>&lt;h2 id="gateway-panel-redesign">Gateway Panel Redesign&lt;/h2>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/gateway/">System &amp;gt; Gateway&lt;/a> panel has been redesigned to separate server and client settings and make it more clear which settings apply to each role.&lt;/p>
+&lt;h2 id="request-support">Request Support&lt;/h2>
+&lt;p>We have added a way to &lt;a href="https://docs.trustgrid.io/docs/support/support-request/">request support directly from the portal&lt;/a>. This eliminates confusion about our support email address (it is not .com) and allows you to list the actual impacted nodes or clusters.&lt;/p>
+&lt;p>Navigate to the &lt;a href="https://docs.trustgrid.io/docs/support/">Support&lt;/a>&amp;quot; and fill out the &lt;strong>Support Request&lt;/strong> section with the relevant information. We will respond as quickly as possible based on the urgency selected and established SLAs for your organization.&lt;/p>
+&lt;h2 id="improved-alarm-filter-flexibility">Improved Alarm Filter Flexibility&lt;/h2>
+&lt;p>This release adds a new &lt;a href="https://docs.trustgrid.io/docs/alarms/alarm-filters/#cel-expression">Cel Expression field&lt;/a> that allow for matching more complex conditions when filtering alarms. This gives greater flexibility to filter by multiple fields, use logical operators, and wild cards.&lt;/p>
+&lt;h2 id="other-fixes-and-improvements">Other Fixes and Improvements&lt;/h2>
+&lt;ul>
+&lt;li>Added the ability to adjust interface MTU via the Trustgrid portal &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#mtu">Interfaces&lt;/a>&lt;/li>
+&lt;li>Resolved an issue where the S3 Bucket Policy on the Operations &amp;gt; Flow Logs table was listing the incorrect ARN&lt;/li>
+&lt;li>Restored the ability to list the virtual management IP as a column on the Nodes table&lt;/li>
+&lt;li>Fixed an issue that set all Host Ports to 0 (zero) when a container definition was imported&lt;/li>
+&lt;li>Resolved an issue causing VPN Flow stats to sometimes not accurately display active vs new flows&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: August 2023 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/august-2023/</link><pubDate>Fri, 18 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/august-2023/</guid><description>
 &lt;h2 id="cluster-site-health-improvements">Cluster Site Health Improvements&lt;/h2>
 &lt;p>Since introducing our &lt;a href="https://docs.trustgrid.io/docs/clusters/cluster-health/">cluster site health state&lt;/a> feature there have been several instances where the state was being reported incorrectly. This release has taken steps to prevent that and has also introduced a new tool to &lt;a href="https://docs.trustgrid.io/docs/clusters/cluster-health/#force-health-validation">force validating the health state&lt;/a> in the event the state does appear incorrect.
 &lt;figure class="centered-image">
