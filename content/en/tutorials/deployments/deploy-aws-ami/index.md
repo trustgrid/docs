@@ -53,10 +53,10 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
    - Download the license to local storage in case the clipboard is cleared. You cannot reissue a license without recreating the node.
 
 1. Select the appropriate Cloud Formation Template based on the AWS region being deployed in.
-   US-EAST-1: https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json
-   US-EAST-2: https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json
-   US-WEST-1: https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest1.json
-   US-WEST-2: https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest2.json
+   - US-EAST-1: https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json
+   - US-EAST-2: https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json
+   - US-WEST-1: https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest1.json
+   - US-WEST-2: https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest2.json
 
 1. Fill out the fields in the CloudFormation form
 
