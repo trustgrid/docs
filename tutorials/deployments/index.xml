@@ -114,11 +114,13 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/ul>
 &lt;/li>
 &lt;li>
-&lt;p>Select the appropriate Cloud Formation Template based on the AWS region being deployed in.
-US-EAST-1: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json&lt;/a>
-US-EAST-2: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json&lt;/a>
-US-WEST-1: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest1.json">https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest1.json&lt;/a>
-US-WEST-2: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest2.json">https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest2.json&lt;/a>&lt;/p>
+&lt;p>Select the appropriate Cloud Formation Template based on the AWS region being deployed in.&lt;/p>
+&lt;ul>
+&lt;li>US-EAST-1: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json&lt;/a>&lt;/li>
+&lt;li>US-EAST-2: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json&lt;/a>&lt;/li>
+&lt;li>US-WEST-1: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest1.json">https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest1.json&lt;/a>&lt;/li>
+&lt;li>US-WEST-2: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest2.json">https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest2.json&lt;/a>&lt;/li>
+&lt;/ul>
 &lt;/li>
 &lt;li>
 &lt;p>Fill out the fields in the CloudFormation form&lt;/p>
