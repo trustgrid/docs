@@ -7,4 +7,4 @@ description: "Minor release to resolve issue"
 ---
 This minor release fixes the following issue:
 ## Issues Fixed
-* A function was deprecated in the last released as it was believed no longer needed but it was discovered that some methods of registration, such as the AWS CloudFormation template, still relied on it. This release removes the deprecation and restores the function. 
+* A function was deprecated in the last release as it was believed to be no longer needed but it was discovered that some methods of registration, such as the AWS CloudFormation template, still relied on it. This release removes the deprecation and restores the function. 
