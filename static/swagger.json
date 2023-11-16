@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
+                    "example": "d261f611-10aa-453f-8394-87df0d504ef1",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1700163841,
+                    "example": 1700177611,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "210e65f3-95ca-44a8-9ec5-e4d6a3bf8382",
+                    "example": "7d6081e4-2629-4cbe-9f13-5b8ac3f9b465",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "2410c8ff-3d2b-4411-9573-501a8fc3c495",
+                    "example": "57f56b43-45e1-4fac-8e19-ca5390edaaaa",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "2410c8ff-3d2b-4411-9573-501a8fc3c495",
+                    "example": "57f56b43-45e1-4fac-8e19-ca5390edaaaa",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "2410c8ff-3d2b-4411-9573-501a8fc3c495",
+                    "example": "57f56b43-45e1-4fac-8e19-ca5390edaaaa",
                     "type": "object"
                   }
                 },
@@ -8243,6 +8243,166 @@
         ]
       }
     },
+    "/v2/domain/{domainName}/network/{networkName}/port-forwarding": {
+      "get": {
+        "description": "List a network's port forwardings\n\n---\n\nRequires `virtual-networks::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/PortForwarding"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Network name",
+          "in": "path",
+          "name": "networkName",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Domain name",
+          "in": "path",
+          "name": "domainName",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a port forwarding\n\n---\n\nRequires `virtual-networks::modify` permission.",
+        "parameters": [
+          {
+            "description": "Port forwarding configuration",
+            "in": "body",
+            "name": "port-forwarding",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PortForwarding"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      }
+    },
+    "/v2/domain/{domainName}/network/{networkName}/port-forwarding/{portForwardingID}": {
+      "delete": {
+        "description": "Get a port forwarding\n\n---\n\nRequires `virtual-networks::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PortForwarding"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Port forwarding ID",
+          "in": "path",
+          "name": "portForwardingID",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Network name",
+          "in": "path",
+          "name": "networkName",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Domain name",
+          "in": "path",
+          "name": "domainName",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a port forwarding\n\n---\n\nRequires `virtual-networks::modify` permission.",
+        "parameters": [
+          {
+            "description": "Port forwarding configuration",
+            "in": "body",
+            "name": "port-forwarding",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PortForwarding"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      }
+    },
     "/v2/domain/{domainName}/network/{networkName}/route": {
       "get": {
         "description": "List a network's routes\n\n---\n\nRequires `virtual-networks::read` permission.",
@@ -11863,7 +12023,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
+          "example": "d261f611-10aa-453f-8394-87df0d504ef1",
           "type": "string"
         },
         "timestamp": {
@@ -11921,7 +12081,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
+          "example": "d261f611-10aa-453f-8394-87df0d504ef1",
           "type": "string"
         },
         "nodeName": {
@@ -12008,8 +12168,8 @@
         }
       },
       "required": [
-        "name",
-        "action"
+        "action",
+        "name"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -12206,7 +12366,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "ffebde97-2d97-4840-88bd-c6d5d442beb8",
+          "example": "7003495e-0e7a-4f80-af60-16cab337cb13",
           "type": "string"
         },
         "image": {
@@ -12363,7 +12523,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "d92d8e4f-679a-4aed-b9d2-4f8d4ca39eb3",
+          "example": "764e88eb-ba38-4bd2-8ff9-f0481b944516",
           "type": "string"
         }
       },
@@ -12506,7 +12666,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "64b8dc23-812f-47a8-a713-a2f883c4cea8",
+          "example": "40a1b314-8a27-4ef6-a99d-c8abe06a6bba",
           "type": "string"
         }
       },
@@ -12541,7 +12701,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "dc14996c-c003-4f0c-8b94-40cbcf3d28e5",
+          "example": "2d088db2-d4a7-4ee1-b04d-38fe32768add",
           "type": "string"
         }
       },
@@ -12596,7 +12756,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "283f12eb-196b-4424-b4ef-aaeb9ede0668",
+          "example": "d4fe4f31-818b-4eff-b9d9-21a49df37658",
           "type": "string"
         }
       },
@@ -13478,7 +13638,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
+          "example": "d261f611-10aa-453f-8394-87df0d504ef1",
           "type": "string"
         }
       },
@@ -13748,6 +13908,28 @@
         "name"
       ],
       "title": "OrgModel",
+      "type": "object"
+    },
+    "PortForwarding": {
+      "description": "Port Forwarding",
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "nodeName": {
+          "type": "string"
+        },
+        "port": {
+          "type": "number"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "title": "Port Forwarding",
       "type": "object"
     },
     "RepositoryModel": {
