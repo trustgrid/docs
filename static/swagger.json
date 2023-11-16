@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+                    "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1683663072,
+                    "example": 1700163841,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "c36bad92-1c69-4125-8cd5-252a29805800",
+                    "example": "210e65f3-95ca-44a8-9ec5-e4d6a3bf8382",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "8c579234-a4c0-4cf6-996e-5eaba830bea7",
+                    "example": "2410c8ff-3d2b-4411-9573-501a8fc3c495",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "8c579234-a4c0-4cf6-996e-5eaba830bea7",
+                    "example": "2410c8ff-3d2b-4411-9573-501a8fc3c495",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "8c579234-a4c0-4cf6-996e-5eaba830bea7",
+                    "example": "2410c8ff-3d2b-4411-9573-501a8fc3c495",
                     "type": "object"
                   }
                 },
@@ -723,7 +723,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ConnectorConfig"
             }
           }
         ],
@@ -1576,7 +1576,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ServiceConfig"
             }
           }
         ],
@@ -2281,6 +2281,7 @@
             "name": "config",
             "required": true,
             "schema": {
+              "$ref": "#/definitions/ConnectorConfig",
               "type": "object"
             }
           }
@@ -3122,7 +3123,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ServiceConfig"
             }
           }
         ],
@@ -4023,6 +4024,37 @@
             "description": "Cannot delete root user",
             "schema": {
               "$ref": "#/definitions/ValidationFailed"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/user/{email}/groups": {
+      "get": {
+        "description": "Get all user groups\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GroupModel"
+              },
+              "type": "array"
             }
           }
         },
@@ -11638,6 +11670,87 @@
           "VPN Network"
         ]
       }
+    },
+    "/v2/user/{email}/groups": {
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Add group to a user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "group",
+            "schema": {
+              "properties": {
+                "groupId": {
+                  "description": "Group ID",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v2/user/{email}/groups/{group}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a group from a user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Group ID",
+          "in": "path",
+          "name": "group",
+          "required": true,
+          "type": "string"
+        }
+      ]
     }
   },
   "definitions": {
@@ -11750,7 +11863,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+          "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
           "type": "string"
         },
         "timestamp": {
@@ -11808,7 +11921,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+          "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
           "type": "string"
         },
         "nodeName": {
@@ -11895,8 +12008,8 @@
         }
       },
       "required": [
-        "action",
-        "name"
+        "name",
+        "action"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -11980,6 +12093,88 @@
       "title": "ClusterModel",
       "type": "object"
     },
+    "ConnectorConfig": {
+      "example": {
+        "connectors": [
+          {
+            "description": "My connector",
+            "enabled": true,
+            "id": "1e1d36b2-63b6-46bb-8334-a80a828afb5e",
+            "localIp": "100.100.64.1",
+            "maxmbps": 100,
+            "nic": "eth0",
+            "node": "node1",
+            "port": 1234,
+            "protocol": "tcp",
+            "service": "ssh"
+          }
+        ]
+      },
+      "properties": {
+        "connectors": {
+          "items": {
+            "properties": {
+              "description": {
+                "description": "connector description",
+                "type": "string"
+              },
+              "enabled": {
+                "description": "whether connector is enabled",
+                "type": "boolean"
+              },
+              "id": {
+                "description": "unique ID of connector",
+                "type": "string"
+              },
+              "localIp": {
+                "description": "local IP address",
+                "type": "string"
+              },
+              "maxmbps": {
+                "description": "maximum bandwidth in Mbps",
+                "type": "number"
+              },
+              "nic": {
+                "description": "network interface name",
+                "type": "string"
+              },
+              "node": {
+                "description": "node name",
+                "type": "string"
+              },
+              "port": {
+                "description": "connector port",
+                "type": "number"
+              },
+              "protocol": {
+                "description": "connector protocol",
+                "enum": [
+                  "udp",
+                  "tcp",
+                  "tftp",
+                  "ftp"
+                ],
+                "type": "string"
+              },
+              "required": [
+                "id",
+                "node",
+                "port",
+                "protocol",
+                "service"
+              ],
+              "service": {
+                "description": "service name",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Container": {
       "description": "Container",
       "properties": {
@@ -12011,7 +12206,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "a22fcebe-34e7-43b3-8cd2-ea5c667d911e",
+          "example": "ffebde97-2d97-4840-88bd-c6d5d442beb8",
           "type": "string"
         },
         "image": {
@@ -12168,7 +12363,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "6eafd8d4-c169-458e-acbb-413b6fbb53f4",
+          "example": "d92d8e4f-679a-4aed-b9d2-4f8d4ca39eb3",
           "type": "string"
         }
       },
@@ -12311,7 +12506,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "e6619c0a-f013-41f4-8398-c63923a2145c",
+          "example": "64b8dc23-812f-47a8-a713-a2f883c4cea8",
           "type": "string"
         }
       },
@@ -12346,7 +12541,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "c9c95401-a191-41f0-a46a-cb44e53d11d6",
+          "example": "dc14996c-c003-4f0c-8b94-40cbcf3d28e5",
           "type": "string"
         }
       },
@@ -12401,7 +12596,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "0668e28e-a42b-47d1-8a6e-688b2c06671a",
+          "example": "283f12eb-196b-4424-b4ef-aaeb9ede0668",
           "type": "string"
         }
       },
@@ -12849,6 +13044,24 @@
       },
       "type": "object"
     },
+    "GroupModel": {
+      "properties": {
+        "description": {
+          "description": "Group Description",
+          "type": "string"
+        },
+        "name": {
+          "description": "Group Name",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Group ID",
+          "type": "string"
+        }
+      },
+      "title": "GroupModel",
+      "type": "Object"
+    },
     "IdentityProviderModel": {
       "allOf": [
         {
@@ -13265,7 +13478,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+          "example": "e95efb87-37b6-43af-a435-cc8436e6d653",
           "type": "string"
         }
       },
@@ -13580,6 +13793,77 @@
         }
       },
       "title": "SAML Config",
+      "type": "object"
+    },
+    "ServiceConfig": {
+      "example": {
+        "services": [
+          {
+            "description": "nginx",
+            "enabled": true,
+            "host": "127.0.0.1",
+            "id": "1e1d36b2-63b6-46bb-8334-a80a828afb5f",
+            "port": 80,
+            "protocol": "tcp"
+          }
+        ]
+      },
+      "properties": {
+        "connectors": {
+          "items": {
+            "properties": {
+              "description": {
+                "description": "connector description",
+                "type": "string"
+              },
+              "enabled": {
+                "description": "whether connector is enabled",
+                "type": "boolean"
+              },
+              "host": {
+                "description": "destination host name",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique ID of connector",
+                "type": "string"
+              },
+              "name": {
+                "description": "service name",
+                "type": "number"
+              },
+              "port": {
+                "description": "destination port",
+                "maximum": 65536,
+                "minimum": 1,
+                "type": "number"
+              },
+              "protocol": {
+                "description": "protocol",
+                "enum": [
+                  "udp",
+                  "tcp",
+                  "tftp",
+                  "ftp",
+                  "rdp",
+                  "vnc",
+                  "ssh"
+                ],
+                "type": "string"
+              },
+              "required": [
+                "id",
+                "host",
+                "port",
+                "protocol",
+                "name"
+              ]
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Tag": {
@@ -14194,6 +14478,7 @@
   },
   "securityDefinitions": {
     "JWTAuthorizer": {
+      "description": "An API key, as documented https://docs.trustgrid.io/docs/user-management/api-access/",
       "in": "header",
       "name": "Authorization",
       "type": "apiKey"

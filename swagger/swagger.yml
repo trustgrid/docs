@@ -1090,7 +1090,7 @@ paths:
           required: true
           description: Config body
           schema:
-            type: object
+            "$ref": "#/definitions/ServiceConfig"
       responses:
         200:
           description: OK
@@ -1121,7 +1121,8 @@ paths:
           required: true
           description: Config body
           schema:
-            type: object
+            "$ref": "#/definitions/ConnectorConfig"
+
       responses:
         200:
           description: OK
@@ -2725,7 +2726,7 @@ paths:
           required: true
           description: Config body
           schema:
-            type: object
+            "$ref": "#/definitions/ServiceConfig"
       responses:
         200:
           description: OK
@@ -2753,6 +2754,7 @@ paths:
           description: Config body
           schema:
             type: object
+            "$ref": "#/definitions/ConnectorConfig"
       responses:
         200:
           description: OK
@@ -5620,3 +5622,119 @@ definitions:
         type: string
       group:
         type: string
+
+  ConnectorConfig:
+    type: object
+    properties:
+      connectors:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              description: unique ID of connector
+            enabled:
+              type: boolean
+              description: whether connector is enabled
+            description:
+              type: string
+              description: connector description
+            nic:
+              type: string
+              description: network interface name
+            maxmbps:
+              type: number
+              description: maximum bandwidth in Mbps
+            node:
+              type: string
+              description: node name
+            port:
+              type: number
+              description: connector port
+            protocol:
+              type: string
+              description: connector protocol
+              enum:
+                - udp 
+                - tcp
+                - tftp
+                - ftp
+            service:
+              type: string
+              description: service name
+            localIp:
+              type: string
+              description: local IP address
+            required:
+              - id
+              - node
+              - port
+              - protocol
+              - service
+    example:
+      connectors:
+        - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5e 
+          enabled: true
+          description: My connector
+          nic: eth0
+          maxmbps: 100
+          node: node1
+          port: 1234
+          protocol: tcp
+          service: ssh
+          localIp: 100.100.64.1
+
+  ServiceConfig:
+    type: object
+    properties:
+      connectors:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+              description: unique ID of connector
+            enabled:
+              type: boolean
+              description: whether connector is enabled
+            description:
+              type: string
+              description: connector description
+            host:
+              type: string
+              description: destination host name
+            name:
+              type: number
+              description: service name
+            port:
+              type: number
+              description: destination port
+              minimum: 1
+              maximum: 65536
+            protocol:
+              type: string
+              description: protocol
+              enum:
+                - udp 
+                - tcp
+                - tftp
+                - ftp
+                - rdp
+                - vnc
+                - ssh
+            required:
+              - id
+              - host
+              - port
+              - protocol
+              - name
+    example:
+      services:
+        - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5f 
+          enabled: true
+          description: nginx
+          host: 127.0.0.1
+          port: 80
+          protocol: tcp
