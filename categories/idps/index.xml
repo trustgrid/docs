@@ -10,15 +10,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="issuer">
+&lt;tr id="issuer" style="scroll-margin-top: 6rem;">
 &lt;th>Issuer&lt;/th>
 &lt;td>Specifies the Azure App OpenID metadata endpoint.&lt;/td>
 &lt;/tr>
-&lt;tr id="client-id">
+&lt;tr id="client-id" style="scroll-margin-top: 6rem;">
 &lt;th>Client ID&lt;/th>
 &lt;td>Specifies the Azure App client ID.&lt;/td>
 &lt;/tr>
-&lt;tr id="secret">
+&lt;tr id="secret" style="scroll-margin-top: 6rem;">
 &lt;th>Secret&lt;/th>
 &lt;td>Specifies the Azure App secret.&lt;/td>
 &lt;/tr>
@@ -67,11 +67,11 @@ of the Identity Provider in Trustgrid Portal. It should be something like &lt;a 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="trustgrid-redirect-url">
+&lt;tr id="trustgrid-redirect-url" style="scroll-margin-top: 6rem;">
 &lt;th>Trustgrid Redirect URL&lt;/th>
 &lt;td>&lt;a href="https://id.trustgrid.io/auth/openid/callback">https://id.trustgrid.io/auth/openid/callback&lt;/a>&lt;/td>
 &lt;/tr>
-&lt;tr id="trustgrid-logout-url">
+&lt;tr id="trustgrid-logout-url" style="scroll-margin-top: 6rem;">
 &lt;th>Trustgrid Logout URL&lt;/th>
 &lt;td>&lt;a href="https://id.trustgrid.io/logout">https://id.trustgrid.io/logout&lt;/a>&lt;/td>
 &lt;/tr>

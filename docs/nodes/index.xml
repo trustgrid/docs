@@ -20,19 +20,19 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="status">
+&lt;tr id="status" style="scroll-margin-top: 6rem;">
 &lt;th>Status&lt;/th>
 &lt;td>Enabled/Disabled - Whether the BGP server is running on the node.&lt;/td>
 &lt;/tr>
-&lt;tr id="id">
+&lt;tr id="id" style="scroll-margin-top: 6rem;">
 &lt;th>ID&lt;/th>
 &lt;td>The IP addressed used to identify the BGP router. This is usually the IP on the interface used for BGP communication.&lt;/td>
 &lt;/tr>
-&lt;tr id="asn">
+&lt;tr id="asn" style="scroll-margin-top: 6rem;">
 &lt;th>ASN&lt;/th>
 &lt;td>The Autonomous System Number that identifies the router.&lt;/td>
 &lt;/tr>
-&lt;tr id="client">
+&lt;tr id="client" style="scroll-margin-top: 6rem;">
 &lt;th>Client&lt;/th>
 &lt;td>Determines if the BGP router is in client mode&lt;/td>
 &lt;/tr>
@@ -74,19 +74,19 @@ Add Peer Group button
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>User friendly name for the peer&lt;/td>
 &lt;/tr>
-&lt;tr id="asn">
+&lt;tr id="asn" style="scroll-margin-top: 6rem;">
 &lt;th>ASN&lt;/th>
 &lt;td>The Autonomous System Number that identifies the peer identifies itself with&lt;/td>
 &lt;/tr>
-&lt;tr id="secret">
+&lt;tr id="secret" style="scroll-margin-top: 6rem;">
 &lt;th>Secret&lt;/th>
 &lt;td>(Optional) Secret passphrase used to authenticate with the peer&lt;/td>
 &lt;/tr>
-&lt;tr id="ip">
+&lt;tr id="ip" style="scroll-margin-top: 6rem;">
 &lt;th>IP&lt;/th>
 &lt;td>IP address that the peer can be reached at&lt;/td>
 &lt;/tr>
@@ -109,11 +109,11 @@ Example Add Peer Dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The user friendly name of the policy&lt;/td>
 &lt;/tr>
-&lt;tr id="action">
+&lt;tr id="action" style="scroll-margin-top: 6rem;">
 &lt;th>Action&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>Allow - advertised routes matching the defined prefixes will be added to the local routing table&lt;/li>
@@ -121,7 +121,7 @@ Example Add Peer Dialog
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(optional) Additional information describing the policy&lt;/td>
 &lt;/tr>
@@ -136,11 +136,11 @@ Example Add Peer Dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="prefix">
+&lt;tr id="prefix" style="scroll-margin-top: 6rem;">
 &lt;th>Prefix&lt;/th>
 &lt;td>CIDR notation of a network used to match with advertised routes&lt;/td>
 &lt;/tr>
-&lt;tr id="exact">
+&lt;tr id="exact" style="scroll-margin-top: 6rem;">
 &lt;th>Exact&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>Yes - Requires the advertised route to match the subnet length of the prefix defined above&lt;/li>
@@ -148,7 +148,7 @@ Example Add Peer Dialog
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(optional) Additional information describing the prefix&lt;/td>
 &lt;/tr>
@@ -165,15 +165,15 @@ Example Add Peer Dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The user friendly name of the policy&lt;/td>
 &lt;/tr>
-&lt;tr id="cluster">
+&lt;tr id="cluster" style="scroll-margin-top: 6rem;">
 &lt;th>Cluster&lt;/th>
 &lt;td>(Yes/No) If the node is a member of a cluster this setting will determine if it should only advertise the configured prefixes when it is the active member of the cluster.&lt;/td>
 &lt;/tr>
-&lt;tr id="action">
+&lt;tr id="action" style="scroll-margin-top: 6rem;">
 &lt;th>Action&lt;/th>
 &lt;td>&lt;p>Determines if matching route prefixes will be advertised or not:&lt;/p>
 &lt;ul>
@@ -193,11 +193,11 @@ Example Add Peer Dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="prefix">
+&lt;tr id="prefix" style="scroll-margin-top: 6rem;">
 &lt;th>Prefix&lt;/th>
 &lt;td>CIDR notation of a network to be advertised&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(optional) Additional information describing the prefix&lt;/td>
 &lt;/tr>
@@ -244,27 +244,27 @@ BGP Status Output
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="status">
+&lt;tr id="status" style="scroll-margin-top: 6rem;">
 &lt;th>Status&lt;/th>
 &lt;td>Shows if the peer is actively connected or not&lt;/td>
 &lt;/tr>
-&lt;tr id="connected">
+&lt;tr id="connected" style="scroll-margin-top: 6rem;">
 &lt;th>Connected&lt;/th>
 &lt;td>If connected, shows how long the peering has been established&lt;/td>
 &lt;/tr>
-&lt;tr id="asn">
+&lt;tr id="asn" style="scroll-margin-top: 6rem;">
 &lt;th>ASN&lt;/th>
 &lt;td>The Autonomous System Number that identifies the router&lt;/td>
 &lt;/tr>
-&lt;tr id="peer-ip">
+&lt;tr id="peer-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Peer IP&lt;/th>
 &lt;td>The IP address of the peer router&lt;/td>
 &lt;/tr>
-&lt;tr id="advertised-routes">
+&lt;tr id="advertised-routes" style="scroll-margin-top: 6rem;">
 &lt;th>Advertised Routes&lt;/th>
 &lt;td>Lists the routes being advertised to the peer router&lt;/td>
 &lt;/tr>
-&lt;tr id="recieved-routes">
+&lt;tr id="recieved-routes" style="scroll-margin-top: 6rem;">
 &lt;th>Recieved Routes&lt;/th>
 &lt;td>Hovering over the view button displays the routes received from the peer and their associated metrics&lt;/td>
 &lt;/tr>
@@ -284,11 +284,11 @@ Cluster configuration is only available for nodes that are members of a &lt;a hr
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="heartbeat-host">
+&lt;tr id="heartbeat-host" style="scroll-margin-top: 6rem;">
 &lt;th>Heartbeat Host&lt;/th>
 &lt;td>The IP (bound to an interface) on which heartbeat communication will occur&lt;/td>
 &lt;/tr>
-&lt;tr id="heartbeat-port">
+&lt;tr id="heartbeat-port" style="scroll-margin-top: 6rem;">
 &lt;th>Heartbeat Port&lt;/th>
 &lt;td>The port on which heartbeat communication will occur&lt;/td>
 &lt;/tr>
@@ -307,11 +307,11 @@ The same interface should be selected for all cluster members
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="endpoint-ip">
+&lt;tr id="endpoint-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Endpoint IP&lt;/th>
 &lt;td>Hard set to the WAN interface IP address&lt;/td>
 &lt;/tr>
-&lt;tr id="endpoint-port">
+&lt;tr id="endpoint-port" style="scroll-margin-top: 6rem;">
 &lt;th>Endpoint Port&lt;/th>
 &lt;td>&lt;p>Defines the port that the HTTP server will listen on.&lt;/p>
 &lt;p>If blank the HTTP server will be disabled.&lt;/p>
@@ -338,7 +338,7 @@ Add Connector dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>&lt;p>The protocol that the listener for the connector will use. Options are TCP, UDP, FTP, and TFTP.&lt;/p>
 &lt;blockquote>
@@ -346,27 +346,27 @@ Add Connector dialogue
 &lt;/blockquote>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="listen-interface">
+&lt;tr id="listen-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Listen Interface&lt;/th>
 &lt;td>The interface that you want the connector to listen on. If set to &amp;ldquo;All&amp;rdquo;, the connector will listen on 0.0.0.0.&lt;/td>
 &lt;/tr>
-&lt;tr id="listen-port">
+&lt;tr id="listen-port" style="scroll-margin-top: 6rem;">
 &lt;th>Listen Port&lt;/th>
 &lt;td>The port that you want the connector to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-node">
+&lt;tr id="remote-node" style="scroll-margin-top: 6rem;">
 &lt;th>Remote Node&lt;/th>
 &lt;td>The remote node or cluster that traffic will be proxied to.&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-service">
+&lt;tr id="remote-service" style="scroll-margin-top: 6rem;">
 &lt;th>Remote Service&lt;/th>
 &lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
 &lt;/tr>
-&lt;tr id="rate-limit-mb/s">
+&lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 6rem;">
 &lt;th>Rate Limit (Mb/s)&lt;/th>
 &lt;td>The maximum amount of throughput that will be allowed to traverse the tunnel when connecting to the connector. This can be used to prevent saturating the connection at either the local or remote sites.&lt;/td>
 &lt;/tr>
-&lt;tr id="sniff-traffic">
+&lt;tr id="sniff-traffic" style="scroll-margin-top: 6rem;">
 &lt;th>Sniff Traffic&lt;/th>
 &lt;td>&lt;p>Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the &lt;a href="#listen-port">listening port&lt;/a>.&lt;/p>
 &lt;figure class="centered-image">
@@ -393,11 +393,11 @@ Add Connector dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the container.&lt;/td>
 &lt;/tr>
-&lt;tr id="execution-type">
+&lt;tr id="execution-type" style="scroll-margin-top: 6rem;">
 &lt;th>Execution Type&lt;/th>
 &lt;td>&lt;p>A container can be deployed as one of three types.&lt;/p>
 &lt;ol>
@@ -435,15 +435,15 @@ Add Connector dialogue
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="status">
+&lt;tr id="status" style="scroll-margin-top: 6rem;">
 &lt;th>Status&lt;/th>
 &lt;td>Only enabled containers will run.&lt;/td>
 &lt;/tr>
-&lt;tr id="image-name">
+&lt;tr id="image-name" style="scroll-margin-top: 6rem;">
 &lt;th>Image Name&lt;/th>
 &lt;td>The name of the image to execute.&lt;/td>
 &lt;/tr>
-&lt;tr id="image-tag">
+&lt;tr id="image-tag" style="scroll-margin-top: 6rem;">
 &lt;th>Image Tag&lt;/th>
 &lt;td>The image tag to execute.&lt;/td>
 &lt;/tr>
@@ -466,51 +466,51 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="save-output">
+&lt;tr id="save-output" style="scroll-margin-top: 6rem;">
 &lt;th>Save Output&lt;/th>
 &lt;td>&lt;p>Persist standard output/standard error to the Trustgrid cloud for analysis.&lt;/p>
 &lt;p>&lt;strong>It is the customer&amp;rsquo;s responsibility to ensure no privileged information is included in the output. If in doubt, do not utilize this feature.&lt;/strong>&lt;/p>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="command">
+&lt;tr id="command" style="scroll-margin-top: 6rem;">
 &lt;th>Command&lt;/th>
 &lt;td>The command to execute inside the container. This overrides the start command configured by the dockerfile used to build the image and can be useful for troubleshooting.&lt;/td>
 &lt;/tr>
-&lt;tr id="hostname">
+&lt;tr id="hostname" style="scroll-margin-top: 6rem;">
 &lt;th>Hostname&lt;/th>
 &lt;td>&lt;p>The hostname set inside the container.&lt;/p>
 &lt;p>Defaults to the the node name.&lt;/p>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="stop-time">
+&lt;tr id="stop-time" style="scroll-margin-top: 6rem;">
 &lt;th>Stop Time&lt;/th>
 &lt;td>The grace period (in seconds) to allow a container to stop before killing it. Defaults to 30 seconds.&lt;/td>
 &lt;/tr>
-&lt;tr id="user">
+&lt;tr id="user" style="scroll-margin-top: 6rem;">
 &lt;th>User&lt;/th>
 &lt;td>Sets the username or group or uid or gid in the container.&lt;/td>
 &lt;/tr>
-&lt;tr id="dns">
+&lt;tr id="dns" style="scroll-margin-top: 6rem;">
 &lt;th>DNS&lt;/th>
 &lt;td>&lt;p>Configures the container to utilize the specified DNS server for resolution.&lt;/p>
 &lt;p>By default the container uses a local resolver managed by the node software that can resolve other containers by name and will forward to the node&amp;rsquo;s configured DNS servers for external resolution.&lt;/p>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="ip">
+&lt;tr id="ip" style="scroll-margin-top: 6rem;">
 &lt;th>IP&lt;/th>
 &lt;td>&lt;p>Configures the container to use the specified IP address. The IP address needs to be in the 172.18.0.0/16 network and cannot be 172.18.1.2.&lt;/p>
 &lt;p>By default this is assigned dynamically in that network.&lt;/p>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="privileged">
+&lt;tr id="privileged" style="scroll-margin-top: 6rem;">
 &lt;th>Privileged&lt;/th>
 &lt;td>Grant the container extended privileges. Best practice would be to utilize &lt;a href="#linux-capabilities">linux capabilities&lt;/a> to grant the least privileges needed to run the container.&lt;/td>
 &lt;/tr>
-&lt;tr id="use-init">
+&lt;tr id="use-init" style="scroll-margin-top: 6rem;">
 &lt;th>Use Init&lt;/th>
 &lt;td>Use an init process inside the container as PID 1. This ensures responsibilities of an init system are performed inside the container (e.g., handling exit signals).&lt;/td>
 &lt;/tr>
-&lt;tr id="require-connectivity">
+&lt;tr id="require-connectivity" style="scroll-margin-top: 6rem;">
 &lt;th>Require Connectivity&lt;/th>
 &lt;td>Ensures that the container will not start if it has encrypted volumes and is unable to reach the control plane.&lt;/td>
 &lt;/tr>
@@ -532,19 +532,19 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>The protocol to listen for. If not specified, all traffic is forwarded to the container.&lt;/td>
 &lt;/tr>
-&lt;tr id="host-interface">
+&lt;tr id="host-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Host Interface&lt;/th>
 &lt;td>The host interface to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="host-port">
+&lt;tr id="host-port" style="scroll-margin-top: 6rem;">
 &lt;th>Host Port&lt;/th>
 &lt;td>The host port to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="container-port">
+&lt;tr id="container-port" style="scroll-margin-top: 6rem;">
 &lt;th>Container Port&lt;/th>
 &lt;td>The container port that will receive the mapped traffic.&lt;/td>
 &lt;/tr>
@@ -560,15 +560,15 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="virtual-network">
+&lt;tr id="virtual-network" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Network&lt;/th>
 &lt;td>The virtual network to attach.&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-ip">
+&lt;tr id="virtual-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual IP&lt;/th>
 &lt;td>The virtual IP to assign to the container.&lt;/td>
 &lt;/tr>
-&lt;tr id="allow-outbound">
+&lt;tr id="allow-outbound" style="scroll-margin-top: 6rem;">
 &lt;th>Allow Outbound&lt;/th>
 &lt;td>Whether the container should be allowed to make outbound connections into the virtual network.&lt;/td>
 &lt;/tr>
@@ -584,11 +584,11 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The virtual interface name.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The interface destination inside the container.&lt;/td>
 &lt;/tr>
@@ -605,15 +605,15 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="type">
+&lt;tr id="type" style="scroll-margin-top: 6rem;">
 &lt;th>Type&lt;/th>
 &lt;td>Either &lt;code>BIND&lt;/code> or &lt;code>VOLUME&lt;/code>. For type &lt;code>VOLUME&lt;/code>, the mount must reference an existing &lt;a href="https://docs.trustgrid.io/docs/nodes/containers/volumes/">volume&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="source">
+&lt;tr id="source" style="scroll-margin-top: 6rem;">
 &lt;th>Source&lt;/th>
 &lt;td>For volumes, the name of the volume. For bind mounts, the path on the node&amp;rsquo;s filesystem.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The mount location inside the container.&lt;/td>
 &lt;/tr>
@@ -630,31 +630,31 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="cpu-max">
+&lt;tr id="cpu-max" style="scroll-margin-top: 6rem;">
 &lt;th>CPU Max %&lt;/th>
 &lt;td>Maximum CPU allocation. Default is 50%.&lt;/td>
 &lt;/tr>
-&lt;tr id="memory-max-mb">
+&lt;tr id="memory-max-mb" style="scroll-margin-top: 6rem;">
 &lt;th>Memory Max (MB)&lt;/th>
 &lt;td>Hard limit for RAM allocation. Default is 50% of the host&amp;rsquo;s memory.&lt;/td>
 &lt;/tr>
-&lt;tr id="memory-high-mb">
+&lt;tr id="memory-high-mb" style="scroll-margin-top: 6rem;">
 &lt;th>Memory High (MB)&lt;/th>
 &lt;td>Soft limit for RAM allocation. Cannot exceed hard limit. Default is 45% of the host&amp;rsquo;s memory.&lt;/td>
 &lt;/tr>
-&lt;tr id="io-max-read-b/s">
+&lt;tr id="io-max-read-b/s" style="scroll-margin-top: 6rem;">
 &lt;th>IO Max Read (B/s)&lt;/th>
 &lt;td>Max allowed bytes per second of IO reads. Disabled by default.&lt;/td>
 &lt;/tr>
-&lt;tr id="io-max-write-b/s">
+&lt;tr id="io-max-write-b/s" style="scroll-margin-top: 6rem;">
 &lt;th>IO Max Write (B/s)&lt;/th>
 &lt;td>Max allowed bytes per second of IO writes. Disabled by default.&lt;/td>
 &lt;/tr>
-&lt;tr id="io-max-read-operations-ops/s">
+&lt;tr id="io-max-read-operations-ops/s" style="scroll-margin-top: 6rem;">
 &lt;th>IO Max Read Operations (ops/s)&lt;/th>
 &lt;td>Max allowed IO read operations per second. Disabled by default.&lt;/td>
 &lt;/tr>
-&lt;tr id="io-max-write-operations-ops/s">
+&lt;tr id="io-max-write-operations-ops/s" style="scroll-margin-top: 6rem;">
 &lt;th>IO Max Write Operations (ops/s)&lt;/th>
 &lt;td>Max allowed IO write operations per second. Disabled by default.&lt;/td>
 &lt;/tr>
@@ -688,23 +688,23 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="command">
+&lt;tr id="command" style="scroll-margin-top: 6rem;">
 &lt;th>Command&lt;/th>
 &lt;td>The command to run. A non-zero return code indicates a health check failure.&lt;/td>
 &lt;/tr>
-&lt;tr id="interval">
+&lt;tr id="interval" style="scroll-margin-top: 6rem;">
 &lt;th>Interval&lt;/th>
 &lt;td>The frequency (in seconds) to run the health check.&lt;/td>
 &lt;/tr>
-&lt;tr id="timeout">
+&lt;tr id="timeout" style="scroll-margin-top: 6rem;">
 &lt;th>Timeout&lt;/th>
 &lt;td>How long (in seconds) to wait for the health check to complete. A timeout is considered a failure.&lt;/td>
 &lt;/tr>
-&lt;tr id="start-period">
+&lt;tr id="start-period" style="scroll-margin-top: 6rem;">
 &lt;th>Start Period&lt;/th>
 &lt;td>Grace period (in seconds) during container startup before health checks should start.&lt;/td>
 &lt;/tr>
-&lt;tr id="retries">
+&lt;tr id="retries" style="scroll-margin-top: 6rem;">
 &lt;th>Retries&lt;/th>
 &lt;td>Number of allowed health check failures before marking the container unhealthy.&lt;/td>
 &lt;/tr>
@@ -724,11 +724,11 @@ Container Overview
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="max-file-size-mb">
+&lt;tr id="max-file-size-mb" style="scroll-margin-top: 6rem;">
 &lt;th>Max File Size (MB)&lt;/th>
 &lt;td>The maximum size (in MB) of a log file before it is rotated.&lt;/td>
 &lt;/tr>
-&lt;tr id="max-files">
+&lt;tr id="max-files" style="scroll-margin-top: 6rem;">
 &lt;th>Max Files&lt;/th>
 &lt;td>The maximum number of log files to keep.&lt;/td>
 &lt;/tr>
@@ -868,23 +868,23 @@ Interfaces panel
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="hardware-address">
+&lt;tr id="hardware-address" style="scroll-margin-top: 6rem;">
 &lt;th>Hardware Address&lt;/th>
 &lt;td>MAC address of the interface.&lt;/td>
 &lt;/tr>
-&lt;tr id="interface-name">
+&lt;tr id="interface-name" style="scroll-margin-top: 6rem;">
 &lt;th>Interface Name&lt;/th>
 &lt;td>Name assigned to the interface by the operating system. This varies between hardware models and is sometimes needed when using tools such as Sniff Interface or reviewing logs.&lt;/td>
 &lt;/tr>
-&lt;tr id="interface-vrf">
+&lt;tr id="interface-vrf" style="scroll-margin-top: 6rem;">
 &lt;th>Interface VRF&lt;/th>
 &lt;td>Selects to which &lt;a href="https://docs.trustgrid.io/docs/nodes/vrfs/">VRF&lt;/a> the interface is attached.&lt;/td>
 &lt;/tr>
-&lt;tr id="vlan-id-subinterfaces-only">
+&lt;tr id="vlan-id-subinterfaces-only" style="scroll-margin-top: 6rem;">
 &lt;th>VLAN ID (Subinterfaces Only)&lt;/th>
 &lt;td>Sets the VLAN ID/tag for the subinterface.&lt;/td>
 &lt;/tr>
-&lt;tr id="ip-assignment-eth0-only">
+&lt;tr id="ip-assignment-eth0-only" style="scroll-margin-top: 6rem;">
 &lt;th>IP Assignment (ETH0 only)&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>DHCP - requires a DHCP server or relay in the same broadcast domain as the interface connection&lt;/li>
@@ -892,11 +892,11 @@ Interfaces panel
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="ipv4-address-cidr">
+&lt;tr id="ipv4-address-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>IPv4 Address CIDR&lt;/th>
 &lt;td>IP address using &lt;a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">classless inter-domain routing (CIDR) notation&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="gateway-ip">
+&lt;tr id="gateway-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Gateway IP&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>ETH0 - The IP address of the default gateway for this device. All traffic not in the same network as an interface IP or with a specified route will use this gateway.&lt;/li>
@@ -904,31 +904,31 @@ Interfaces panel
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="dns-server-1/2-ip-eth0-only">
+&lt;tr id="dns-server-1/2-ip-eth0-only" style="scroll-margin-top: 6rem;">
 &lt;th>DNS Server 1/2 IP (ETH0 only)&lt;/th>
 &lt;td>Used to resolve DNS names to connect to the Trustgrid control plane.&lt;/td>
 &lt;/tr>
-&lt;tr id="cluster-virtual-ip">
+&lt;tr id="cluster-virtual-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Cluster Virtual IP&lt;/th>
 &lt;td>Used in &lt;a href="https://docs.trustgrid.io/docs/clusters/">clusters&lt;/a>, this IP address is moved between member nodes based on the active cluster member. It can be used to route traffic between the virtual and local networks. This IP address can only be changed within the cluster interfaces page.&lt;/td>
 &lt;/tr>
-&lt;tr id="mtu">
+&lt;tr id="mtu" style="scroll-margin-top: 6rem;">
 &lt;th>MTU&lt;/th>
 &lt;td>This field allows you to change the Maximum Transmission Unit (MTU) of the interface. MTU impacts the maximum size of packets sent or received on the interface.&lt;/td>
 &lt;/tr>
-&lt;tr id="auto-negotiation">
+&lt;tr id="auto-negotiation" style="scroll-margin-top: 6rem;">
 &lt;th>Auto-Negotiation&lt;/th>
 &lt;td>Sets if the interface will use auto-negotiation to determine the speed and duplex settings. Values can be AUTO &lt;em>(default)&lt;/em> or MANUAL.&lt;/td>
 &lt;/tr>
-&lt;tr id="duplex">
+&lt;tr id="duplex" style="scroll-margin-top: 6rem;">
 &lt;th>Duplex&lt;/th>
 &lt;td>Locked unless Auto-Negotiation set to MANUAL. Sets the interface to either FULL &lt;em>(default)&lt;/em> or HALF duplex&lt;/td>
 &lt;/tr>
-&lt;tr id="speed">
+&lt;tr id="speed" style="scroll-margin-top: 6rem;">
 &lt;th>Speed&lt;/th>
 &lt;td>Locked unless Auto-Negotiation set to MANUAL. Sets the interface to 10, 100, 1000 Mbps.&lt;/td>
 &lt;/tr>
-&lt;tr id="ignore-health-check">
+&lt;tr id="ignore-health-check" style="scroll-margin-top: 6rem;">
 &lt;th>Ignore Health Check&lt;/th>
 &lt;td>Value can be Disable &lt;em>(default)&lt;/em> or Enable. If set to Enable, the interface&amp;rsquo;s link status will no longer be used by the node to determine its &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-member-health-conditions">cluster member health state&lt;/a>. Useful if a single node has a network connection it&amp;rsquo;s peer does not such as an alternate WAN path.&lt;/td>
 &lt;/tr>
@@ -956,15 +956,15 @@ Interfaces panel
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="destination-cidr">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>This is the CIDR notation of the network or host that needs to be routed. For a single host, use /32 as the CIDR suffix.&lt;/td>
 &lt;/tr>
-&lt;tr id="next-hop">
+&lt;tr id="next-hop" style="scroll-margin-top: 6rem;">
 &lt;th>Next Hop&lt;/th>
 &lt;td>The IP address to which traffic destined for the above defined network will be sent. No CIDR suffix is needed.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Optional field to provide additional information about the route.&lt;/td>
 &lt;/tr>
@@ -996,7 +996,7 @@ Only visible on LAN interfaces and Subinterfaces
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="dark-mode">
+&lt;tr id="dark-mode" style="scroll-margin-top: 6rem;">
 &lt;th>Dark Mode&lt;/th>
 &lt;td>Value can be Disable &lt;em>(default)&lt;/em> or Enable. When set to Enable the node will restrict ICMP responses so that it will not respond to ICMP (Ping) echo requests or respond to failed TCP/UDP connection attempts with reset or ICMP Destination Port Unreachable&lt;/td>
 &lt;/tr>
@@ -1030,27 +1030,27 @@ Example JVM Heap chart
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="node-performance">
+&lt;tr id="node-performance" style="scroll-margin-top: 6rem;">
 &lt;th>Node Performance&lt;/th>
 &lt;td>shows CPU, disk, and memory usage percentages&lt;/td>
 &lt;/tr>
-&lt;tr id="vpn-traffic-volume">
+&lt;tr id="vpn-traffic-volume" style="scroll-margin-top: 6rem;">
 &lt;th>VPN Traffic Volume&lt;/th>
 &lt;td>shows data usage sent and received, across all VPNs and for the selected virtual network&lt;/td>
 &lt;/tr>
-&lt;tr id="traffic-volume">
+&lt;tr id="traffic-volume" style="scroll-margin-top: 6rem;">
 &lt;th>Traffic Volume&lt;/th>
 &lt;td>shows data sent and receives, across all interfaces and for the selected interface&lt;/td>
 &lt;/tr>
-&lt;tr id="connected-peers">
+&lt;tr id="connected-peers" style="scroll-margin-top: 6rem;">
 &lt;th>Connected Peers&lt;/th>
 &lt;td>shows the number of other nodes connected. This will change based on the node type - gateways connect to all edge nodes, while edge nodes only connect to gateways.(LINK HUB GATEWAY PAGE WHEN DOCUMENTED)&lt;/td>
 &lt;/tr>
-&lt;tr id="vpn-flows">
+&lt;tr id="vpn-flows" style="scroll-margin-top: 6rem;">
 &lt;th>VPN Flows&lt;/th>
 &lt;td>shows new and active flows, across all VPNs and for the selected virtual network&lt;/td>
 &lt;/tr>
-&lt;tr id="tcp-errors">
+&lt;tr id="tcp-errors" style="scroll-margin-top: 6rem;">
 &lt;th>TCP Errors&lt;/th>
 &lt;td>shows TCP errors across all interfaces&lt;/td>
 &lt;/tr>
@@ -1084,11 +1084,11 @@ Add Service dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="enabled">
+&lt;tr id="enabled" style="scroll-margin-top: 6rem;">
 &lt;th>Enabled&lt;/th>
 &lt;td>Values: Yes or No. Allows each service to be individually disabled if desired&amp;quot;&lt;/td>
 &lt;/tr>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>&lt;p>The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, along with pre-defined default ports for RDP, SSH, and VNC.&lt;/p>
 &lt;blockquote>
@@ -1096,23 +1096,23 @@ Add Service dialogue
 &lt;/blockquote>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="service-name">
+&lt;tr id="service-name" style="scroll-margin-top: 6rem;">
 &lt;th>Service Name&lt;/th>
 &lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
 &lt;/tr>
-&lt;tr id="host">
+&lt;tr id="host" style="scroll-margin-top: 6rem;">
 &lt;th>Host&lt;/th>
 &lt;td>The IP or DNS address of the host to connect to.&lt;/td>
 &lt;/tr>
-&lt;tr id="port">
+&lt;tr id="port" style="scroll-margin-top: 6rem;">
 &lt;th>Port&lt;/th>
 &lt;td>The port to connect to on the host.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(Optional) User friendly description of the service.&lt;/td>
 &lt;/tr>
-&lt;tr id="test-connectivity">
+&lt;tr id="test-connectivity" style="scroll-margin-top: 6rem;">
 &lt;th>Test Connectivity&lt;/th>
 &lt;td>&lt;p>Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.&lt;/p>
 &lt;figure class="centered-image">
@@ -1136,35 +1136,35 @@ Add Service dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="status">
+&lt;tr id="status" style="scroll-margin-top: 6rem;">
 &lt;th>Status&lt;/th>
 &lt;td>Set to enabled to start SNMP service. Setting to disabled will retain the configuration but stop the SNMP service on the node.&lt;/td>
 &lt;/tr>
-&lt;tr id="engine-id">
+&lt;tr id="engine-id" style="scroll-margin-top: 6rem;">
 &lt;th>Engine ID&lt;/th>
 &lt;td>Automatically generated&lt;/td>
 &lt;/tr>
-&lt;tr id="username">
+&lt;tr id="username" style="scroll-margin-top: 6rem;">
 &lt;th>Username&lt;/th>
 &lt;td>Create SNMP Username to be used by snmp client&lt;/td>
 &lt;/tr>
-&lt;tr id="auth-protocol">
+&lt;tr id="auth-protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Auth Protocol&lt;/th>
 &lt;td>Select MD5 or SHA&lt;/td>
 &lt;/tr>
-&lt;tr id="auth-passphrase">
+&lt;tr id="auth-passphrase" style="scroll-margin-top: 6rem;">
 &lt;th>Auth Passphrase&lt;/th>
 &lt;td>Configure authentication passphrase of eight or more characters&lt;/td>
 &lt;/tr>
-&lt;tr id="privacy-protocol">
+&lt;tr id="privacy-protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Privacy Protocol&lt;/th>
 &lt;td>Select between DES, AES128&lt;/td>
 &lt;/tr>
-&lt;tr id="port">
+&lt;tr id="port" style="scroll-margin-top: 6rem;">
 &lt;th>Port&lt;/th>
 &lt;td>SNMP service runs on UDP port 161 by default. Specify an alternate port number to run the service on an alternate UDP port.&lt;/td>
 &lt;/tr>
-&lt;tr id="interface">
+&lt;tr id="interface" style="scroll-margin-top: 6rem;">
 &lt;th>Interface&lt;/th>
 &lt;td>&lt;p>This is the interface on which the SNMP service will listen. This should always be set to an interface behind the firewall.&lt;/p>
 &lt;ul>
@@ -1215,19 +1215,19 @@ A full list of all available OID&amp;rsquo;s supported by the Trustgrid Node is 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the threshold. This will be available in generated events.&lt;/td>
 &lt;/tr>
-&lt;tr id="telemetry">
+&lt;tr id="telemetry" style="scroll-margin-top: 6rem;">
 &lt;th>Telemetry&lt;/th>
 &lt;td>The metric to monitor. Options are CPU usage (%), memory usage (%), disk usage (%), and embryonic flows (absolute count).&lt;/td>
 &lt;/tr>
-&lt;tr id="threshold">
+&lt;tr id="threshold" style="scroll-margin-top: 6rem;">
 &lt;th>Threshold&lt;/th>
 &lt;td>The value that must be exceeded for an event to be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="duration">
+&lt;tr id="duration" style="scroll-margin-top: 6rem;">
 &lt;th>Duration&lt;/th>
 &lt;td>The time period to measure. If the threshold is exceeded for this duration, an event will be generated.&lt;/td>
 &lt;/tr>
@@ -1243,23 +1243,23 @@ A full list of all available OID&amp;rsquo;s supported by the Trustgrid Node is 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the threshold. This will be available in generated events.&lt;/td>
 &lt;/tr>
-&lt;tr id="telemetry">
+&lt;tr id="telemetry" style="scroll-margin-top: 6rem;">
 &lt;th>Telemetry&lt;/th>
 &lt;td>The metric to monitor. Options are latency (ms), bandwidth in (Mbps), and bandwidth out (Mbps).&lt;/td>
 &lt;/tr>
-&lt;tr id="threshold">
+&lt;tr id="threshold" style="scroll-margin-top: 6rem;">
 &lt;th>Threshold&lt;/th>
 &lt;td>The value that must be exceeded for an event to be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="duration">
+&lt;tr id="duration" style="scroll-margin-top: 6rem;">
 &lt;th>Duration&lt;/th>
 &lt;td>The time period to measure. If the threshold is exceeded for this duration, an event will be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="target">
+&lt;tr id="target" style="scroll-margin-top: 6rem;">
 &lt;th>Target&lt;/th>
 &lt;td>For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.&lt;/td>
 &lt;/tr>
@@ -1344,19 +1344,19 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>Name of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Description for the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="image">
+&lt;tr id="image" style="scroll-margin-top: 6rem;">
 &lt;th>Image&lt;/th>
 &lt;td>Image selected from the ones available.&lt;/td>
 &lt;/tr>
-&lt;tr id="firmware">
+&lt;tr id="firmware" style="scroll-margin-top: 6rem;">
 &lt;th>Firmware&lt;/th>
 &lt;td>&lt;p>Boot firmware for the virtual machine.&lt;/p>
 &lt;ol>
@@ -1365,7 +1365,7 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="device-bus">
+&lt;tr id="device-bus" style="scroll-margin-top: 6rem;">
 &lt;th>Device Bus&lt;/th>
 &lt;td>&lt;p>Device Bus used for deployment of the virtual machine.&lt;/p>
 &lt;ol>
@@ -1388,39 +1388,39 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>Name of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Description for the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="image">
+&lt;tr id="image" style="scroll-margin-top: 6rem;">
 &lt;th>Image&lt;/th>
 &lt;td>Image selected from the ones available.&lt;/td>
 &lt;/tr>
-&lt;tr id="guest-os-read-only">
+&lt;tr id="guest-os-read-only" style="scroll-margin-top: 6rem;">
 &lt;th>Guest OS (read-only)&lt;/th>
 &lt;td>Operating System of the Image.&lt;/td>
 &lt;/tr>
-&lt;tr id="hostname-optional">
+&lt;tr id="hostname-optional" style="scroll-margin-top: 6rem;">
 &lt;th>Hostname (Optional)&lt;/th>
 &lt;td>Hostname given to the virtual machine on deploy.&lt;/td>
 &lt;/tr>
-&lt;tr id="stop-timeout-optional">
+&lt;tr id="stop-timeout-optional" style="scroll-margin-top: 6rem;">
 &lt;th>Stop Timeout (Optional)&lt;/th>
 &lt;td>Denotes how long to wait for the virtual machine to gracefully stop before killing the process. Default is 2 minutes.&lt;/td>
 &lt;/tr>
-&lt;tr id="firmware-read-only">
+&lt;tr id="firmware-read-only" style="scroll-margin-top: 6rem;">
 &lt;th>Firmware (read-only)&lt;/th>
 &lt;td>Boot firmware of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="device-bus-read-only">
+&lt;tr id="device-bus-read-only" style="scroll-margin-top: 6rem;">
 &lt;th>Device Bus (read-only)&lt;/th>
 &lt;td>Device Bus used for deployment of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="auto-start-optional">
+&lt;tr id="auto-start-optional" style="scroll-margin-top: 6rem;">
 &lt;th>Auto Start (Optional)&lt;/th>
 &lt;td>Indicates the virtual machine should automatically start after deploy.&lt;/td>
 &lt;/tr>
@@ -1445,19 +1445,19 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>The protocol to listen for. If not specified, all traffic is forwarded to the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="host-interface">
+&lt;tr id="host-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Host Interface&lt;/th>
 &lt;td>The host interface to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="host-port">
+&lt;tr id="host-port" style="scroll-margin-top: 6rem;">
 &lt;th>Host Port&lt;/th>
 &lt;td>The host port to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-machine-port">
+&lt;tr id="virtual-machine-port" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Machine Port&lt;/th>
 &lt;td>The virtual machine port that will receive the mapped traffic.&lt;/td>
 &lt;/tr>
@@ -1473,15 +1473,15 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="virtual-network">
+&lt;tr id="virtual-network" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Network&lt;/th>
 &lt;td>The virtual network to attach.&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-ip">
+&lt;tr id="virtual-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual IP&lt;/th>
 &lt;td>The virtual IP to assign to the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="allow-outbound">
+&lt;tr id="allow-outbound" style="scroll-margin-top: 6rem;">
 &lt;th>Allow Outbound&lt;/th>
 &lt;td>Whether the virtual machine should be allowed to make outbound connections into the virtual network.&lt;/td>
 &lt;/tr>
@@ -1497,11 +1497,11 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The virtual interface name.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The interface destination inside the virtual machine.&lt;/td>
 &lt;/tr>
@@ -1521,19 +1521,19 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The snapshot name.&lt;/td>
 &lt;/tr>
-&lt;tr id="creation-time">
+&lt;tr id="creation-time" style="scroll-margin-top: 6rem;">
 &lt;th>Creation Time&lt;/th>
 &lt;td>The timestamp when the snapshot was created.&lt;/td>
 &lt;/tr>
-&lt;tr id="vm-state">
+&lt;tr id="vm-state" style="scroll-margin-top: 6rem;">
 &lt;th>VM State&lt;/th>
 &lt;td>The state of the virtual machine when the snapshot was created.&lt;/td>
 &lt;/tr>
-&lt;tr id="snapshot-mode">
+&lt;tr id="snapshot-mode" style="scroll-margin-top: 6rem;">
 &lt;th>Snapshot Mode&lt;/th>
 &lt;td>&lt;ol>
 &lt;li>Extenal Disk Only - Mode applied to the snapshot when the firmware of the virtual machine is UEFI.&lt;/li>
@@ -1541,11 +1541,11 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="parent-snapshot">
+&lt;tr id="parent-snapshot" style="scroll-margin-top: 6rem;">
 &lt;th>Parent Snapshot&lt;/th>
 &lt;td>If this is a child snapshot, this references the parent snapshot.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>The snapshot description.&lt;/td>
 &lt;/tr>
@@ -1588,11 +1588,11 @@ Attach Virtual Network dialog on a Node
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="select-network">
+&lt;tr id="select-network" style="scroll-margin-top: 6rem;">
 &lt;th>Select Network&lt;/th>
 &lt;td>Drop down list to select &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">defined virtual networks&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="validation-cidr">
+&lt;tr id="validation-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Validation CIDR&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>Used to validate NATs defined on this node or cluster. If the Virtual CIDR of &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/nats/#inside-nats">Inside NATs&lt;/a> or the Network Group value of &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/nats/#outside-nats">Outside Nats&lt;/a> are outside the Validation CIDR a warning will appear.&lt;/li>
@@ -1600,7 +1600,7 @@ Attach Virtual Network dialog on a Node
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-management-ip">
+&lt;tr id="virtual-management-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Management IP&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>This IP address is used by the node as the source IP for running &lt;a href="https://docs.trustgrid.io/tutorials/remote-tools/">VPN troubleshooting tools&lt;/a>.&lt;/li>
@@ -1645,11 +1645,11 @@ More specific rules should always be implemented above less specific rules. Eg a
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="number">
+&lt;tr id="number" style="scroll-margin-top: 6rem;">
 &lt;th>Number&lt;/th>
 &lt;td>The line number the rule is applied to. Rules are matched in numerical order.&lt;/td>
 &lt;/tr>
-&lt;tr id="action">
+&lt;tr id="action" style="scroll-margin-top: 6rem;">
 &lt;th>Action&lt;/th>
 &lt;td>&lt;p>All traffic rules have an action that is applied to the associated packet.&lt;/p>
 &lt;ul>
@@ -1663,43 +1663,43 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="ingress-interface">
+&lt;tr id="ingress-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Ingress Interface&lt;/th>
 &lt;td>The traffic rule is applied to packets that ingress on this interface&lt;/td>
 &lt;/tr>
-&lt;tr id="forward-interface">
+&lt;tr id="forward-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Forward Interface&lt;/th>
 &lt;td>Packets are forwarded out this interface once the rule is applied&lt;/td>
 &lt;/tr>
-&lt;tr id="protcol">
+&lt;tr id="protcol" style="scroll-margin-top: 6rem;">
 &lt;th>Protcol&lt;/th>
 &lt;td>The protocol that the rule should apply to. All, ICMP, TCP or UDP&lt;/td>
 &lt;/tr>
-&lt;tr id="forward-vrf">
+&lt;tr id="forward-vrf" style="scroll-margin-top: 6rem;">
 &lt;th>Forward VRF&lt;/th>
 &lt;td>Packets are forwarded into another VRF that is associated on the node. Only configureable when a forward action is selected.&lt;/td>
 &lt;/tr>
-&lt;tr id="source-cidr">
+&lt;tr id="source-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Source CIDR&lt;/th>
 &lt;td>The source network the rule should apply to&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-cidr">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>The destination network the rule should apply to&lt;/td>
 &lt;/tr>
-&lt;tr id="masquerade">
+&lt;tr id="masquerade" style="scroll-margin-top: 6rem;">
 &lt;th>Masquerade&lt;/th>
 &lt;td>Translate and source all packets from the nodes interface address when enabled&lt;/td>
 &lt;/tr>
-&lt;tr id="dnat-destination">
+&lt;tr id="dnat-destination" style="scroll-margin-top: 6rem;">
 &lt;th>DNAT Destination&lt;/th>
 &lt;td>Forward all traffic to the DNAT destination IP/Port. For example in order to forward all http traffic through a proxy&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-mac">
+&lt;tr id="destination-mac" style="scroll-margin-top: 6rem;">
 &lt;th>Destination Mac&lt;/th>
 &lt;td>The destination mac address defined overwrites the source mac address of the packet. Necessary only for some container deployments such as Snort inpsecting traffic.&lt;/td>
 &lt;/tr>
-&lt;tr id="ports">
+&lt;tr id="ports" style="scroll-margin-top: 6rem;">
 &lt;th>Ports&lt;/th>
 &lt;td>Used to define a port range when creating a traffic rule&lt;/td>
 &lt;/tr>
@@ -1721,19 +1721,19 @@ If the line numbers were reversed the virtual network rule would never be matche
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="enabled">
+&lt;tr id="enabled" style="scroll-margin-top: 6rem;">
 &lt;th>Enabled&lt;/th>
 &lt;td>When enabled, this node will listen for ZTNA traffic.&lt;/td>
 &lt;/tr>
-&lt;tr id="public-fqdn">
+&lt;tr id="public-fqdn" style="scroll-margin-top: 6rem;">
 &lt;th>Public FQDN&lt;/th>
 &lt;td>The IP or FQDN of the node or the load balancer in front of the node. If using a domain name without a load balancer, be sure to select the appropriate &lt;a href="https://docs.trustgrid.io/docs/certificates/">certificate&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="port">
+&lt;tr id="port" style="scroll-margin-top: 6rem;">
 &lt;th>Port&lt;/th>
 &lt;td>The port to listen on. Users will always connect on port 443, so only change this if the node is behind a load balancer.&lt;/td>
 &lt;/tr>
-&lt;tr id="certificate">
+&lt;tr id="certificate" style="scroll-margin-top: 6rem;">
 &lt;th>Certificate&lt;/th>
 &lt;td>The certificate to use for TLS traffic. Only needed if the node is to be directly accessed by users (i.e., without a load balancer) and the FQDN is a domain name.&lt;/td>
 &lt;/tr>
@@ -1749,19 +1749,19 @@ If the line numbers were reversed the virtual network rule would never be matche
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="enabled">
+&lt;tr id="enabled" style="scroll-margin-top: 6rem;">
 &lt;th>Enabled&lt;/th>
 &lt;td>When enabled, this node will listen for WireGuard traffic.&lt;/td>
 &lt;/tr>
-&lt;tr id="public-fqdn">
+&lt;tr id="public-fqdn" style="scroll-margin-top: 6rem;">
 &lt;th>Public FQDN&lt;/th>
 &lt;td>The IP or FQDN of the node or the load balancer in front of the node.&lt;/td>
 &lt;/tr>
-&lt;tr id="port">
+&lt;tr id="port" style="scroll-margin-top: 6rem;">
 &lt;th>Port&lt;/th>
 &lt;td>The port to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="public-key">
+&lt;tr id="public-key" style="scroll-margin-top: 6rem;">
 &lt;th>Public Key&lt;/th>
 &lt;td>The node&amp;rsquo;s WireGuard public key. This can be generated or imported using the actions dropdown. Note that regenerated the key will disconnect existing clients and require users to reconfigure their WireGuard connection.&lt;/td>
 &lt;/tr>

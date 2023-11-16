@@ -10,15 +10,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="issuer">
+&lt;tr id="issuer" style="scroll-margin-top: 6rem;">
 &lt;th>Issuer&lt;/th>
 &lt;td>Specifies the Azure App OpenID metadata endpoint.&lt;/td>
 &lt;/tr>
-&lt;tr id="client-id">
+&lt;tr id="client-id" style="scroll-margin-top: 6rem;">
 &lt;th>Client ID&lt;/th>
 &lt;td>Specifies the Azure App client ID.&lt;/td>
 &lt;/tr>
-&lt;tr id="secret">
+&lt;tr id="secret" style="scroll-margin-top: 6rem;">
 &lt;th>Secret&lt;/th>
 &lt;td>Specifies the Azure App secret.&lt;/td>
 &lt;/tr>
@@ -67,11 +67,11 @@ of the Identity Provider in Trustgrid Portal. It should be something like &lt;a 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="trustgrid-redirect-url">
+&lt;tr id="trustgrid-redirect-url" style="scroll-margin-top: 6rem;">
 &lt;th>Trustgrid Redirect URL&lt;/th>
 &lt;td>&lt;a href="https://id.trustgrid.io/auth/openid/callback">https://id.trustgrid.io/auth/openid/callback&lt;/a>&lt;/td>
 &lt;/tr>
-&lt;tr id="trustgrid-logout-url">
+&lt;tr id="trustgrid-logout-url" style="scroll-margin-top: 6rem;">
 &lt;th>Trustgrid Logout URL&lt;/th>
 &lt;td>&lt;a href="https://id.trustgrid.io/logout">https://id.trustgrid.io/logout&lt;/a>&lt;/td>
 &lt;/tr>
@@ -112,15 +112,15 @@ of the Identity Provider in Trustgrid Portal. It should be something like &lt;a 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="issuer">
+&lt;tr id="issuer" style="scroll-margin-top: 6rem;">
 &lt;th>Issuer&lt;/th>
 &lt;td>The OpenID issuer URL. This will be provided to you by your OpenID Identity Provider.&lt;/td>
 &lt;/tr>
-&lt;tr id="client-id">
+&lt;tr id="client-id" style="scroll-margin-top: 6rem;">
 &lt;th>Client ID&lt;/th>
 &lt;td>The OpenID application client ID. This will be provided to you by your OpenID Identity Provider.&lt;/td>
 &lt;/tr>
-&lt;tr id="client-secret">
+&lt;tr id="client-secret" style="scroll-margin-top: 6rem;">
 &lt;th>Client Secret&lt;/th>
 &lt;td>The OpenID application client secret. This will be provided to you by your OpenID Identity Provider.&lt;/td>
 &lt;/tr>
@@ -135,15 +135,15 @@ of the Identity Provider in Trustgrid Portal. It should be something like &lt;a 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="issuer">
+&lt;tr id="issuer" style="scroll-margin-top: 6rem;">
 &lt;th>Issuer&lt;/th>
 &lt;td>A URL that will point to the IDP, typically with some identifying information so the IDP can determine the source of the request. This will be provided by your SAML identity provider.&lt;/td>
 &lt;/tr>
-&lt;tr id="login-url">
+&lt;tr id="login-url" style="scroll-margin-top: 6rem;">
 &lt;th>Login URL&lt;/th>
 &lt;td>A URL that will initiate the login process. This will be provided by your SAML identity provider.&lt;/td>
 &lt;/tr>
-&lt;tr id="identity-provider-signing-certificate">
+&lt;tr id="identity-provider-signing-certificate" style="scroll-margin-top: 6rem;">
 &lt;th>Identity Provider Signing Certificate&lt;/th>
 &lt;td>A certificate used to authenticate requests between Trustgrid and the SAML IDP. This will be provided by your SAML identity provider.&lt;/td>
 &lt;/tr>

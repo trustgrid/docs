@@ -24,11 +24,11 @@ The support requests will be submitted with your user account email address.
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="phone-number">
+&lt;tr id="phone-number" style="scroll-margin-top: 6rem;">
 &lt;th>Phone number&lt;/th>
 &lt;td>Provide the phone number you&amp;rsquo;d like to be contacted at regarding this issue.&lt;/td>
 &lt;/tr>
-&lt;tr id="urgency">
+&lt;tr id="urgency" style="scroll-margin-top: 6rem;">
 &lt;th>Urgency&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>Normal - Trustgrid will respond during normal business hours (Mon-Fri 8:30am-5:30pm Central)&lt;/li>
@@ -36,11 +36,11 @@ The support requests will be submitted with your user account email address.
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="problem-description">
+&lt;tr id="problem-description" style="scroll-margin-top: 6rem;">
 &lt;th>Problem Description&lt;/th>
 &lt;td>Please list details about the nature of the issue, any particular resources being impacted (e.g. a specific destination IP:port, source IP, etc.) and troubleshooting steps already taken.&lt;/td>
 &lt;/tr>
-&lt;tr id="impacted-nodes/clusters">
+&lt;tr id="impacted-nodes/clusters" style="scroll-margin-top: 6rem;">
 &lt;th>Impacted Nodes/Clusters&lt;/th>
 &lt;td>&lt;p>This field will allow you to search for and select the impacted nodes. If a large number of nodes is impacted please provide at least a few examples and clarify the impact in the &lt;a href="#problem-description">Problem Description&lt;/a> field.&lt;/p>
 &lt;figure class="centered-image">

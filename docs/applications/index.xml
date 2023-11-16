@@ -11,15 +11,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="include">
+&lt;tr id="include" style="scroll-margin-top: 6rem;">
 &lt;th>Include&lt;/th>
 &lt;td>criteria in this section are logically OR&amp;rsquo;d together. For a rule to apply to an access attempt, at least one of the include criteria must match.&lt;/td>
 &lt;/tr>
-&lt;tr id="exception">
+&lt;tr id="exception" style="scroll-margin-top: 6rem;">
 &lt;th>Exception&lt;/th>
 &lt;td>criteria in this section are logically NOT&amp;rsquo;d. If any exception criterion matches, the rule will not apply to the access attempt.&lt;/td>
 &lt;/tr>
-&lt;tr id="require">
+&lt;tr id="require" style="scroll-margin-top: 6rem;">
 &lt;th>Require&lt;/th>
 &lt;td>criteria in this section are logically AND&amp;rsquo;d. ALL of the require criteria must match for the rule to apply to the access attempt.&lt;/td>
 &lt;/tr>
@@ -41,27 +41,27 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="emails">
+&lt;tr id="emails" style="scroll-margin-top: 6rem;">
 &lt;th>Emails&lt;/th>
 &lt;td>a list of email addresses, comma separated. Eg, &amp;ldquo;&lt;a href="mailto:user1@company.com">user1@company.com&lt;/a>, &lt;a href="mailto:user2@company.com">user2@company.com&lt;/a>&amp;rdquo;&lt;/td>
 &lt;/tr>
-&lt;tr id="country">
+&lt;tr id="country" style="scroll-margin-top: 6rem;">
 &lt;th>Country&lt;/th>
 &lt;td>the user&amp;rsquo;s country, determined by their IP address&lt;/td>
 &lt;/tr>
-&lt;tr id="emails-ending-in">
+&lt;tr id="emails-ending-in" style="scroll-margin-top: 6rem;">
 &lt;th>Emails ending in&lt;/th>
 &lt;td>a required email suffix, like &amp;ldquo;@company.com&amp;rdquo;&lt;/td>
 &lt;/tr>
-&lt;tr id="everyone">
+&lt;tr id="everyone" style="scroll-margin-top: 6rem;">
 &lt;th>Everyone&lt;/th>
 &lt;td>this rule always matches&lt;/td>
 &lt;/tr>
-&lt;tr id="idp-groups">
+&lt;tr id="idp-groups" style="scroll-margin-top: 6rem;">
 &lt;th>IDP Groups&lt;/th>
 &lt;td>a list of &lt;a href="https://docs.trustgrid.io/docs/user-management/groups/">groups&lt;/a> that the user must be a member of&lt;/td>
 &lt;/tr>
-&lt;tr id="ip-ranges">
+&lt;tr id="ip-ranges" style="scroll-margin-top: 6rem;">
 &lt;th>IP Ranges&lt;/th>
 &lt;td>a list of IP ranges either in CIDR notation or a single IP address, comma separated. Eg, &amp;ldquo;10.10.44, 10.10.8.0/24&amp;rdquo;&lt;/td>
 &lt;/tr>
@@ -80,15 +80,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>app name&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>app description&lt;/td>
 &lt;/tr>
-&lt;tr id="icon">
+&lt;tr id="icon" style="scroll-margin-top: 6rem;">
 &lt;th>Icon&lt;/th>
 &lt;td>the application&amp;rsquo;s icon (optional) to show in the application dashboard&lt;/td>
 &lt;/tr>
@@ -154,15 +154,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>app name&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>app description&lt;/td>
 &lt;/tr>
-&lt;tr id="icon">
+&lt;tr id="icon" style="scroll-margin-top: 6rem;">
 &lt;th>Icon&lt;/th>
 &lt;td>the application&amp;rsquo;s icon (optional) to show in the application dashboard&lt;/td>
 &lt;/tr>
@@ -232,23 +232,23 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>app name&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>app description&lt;/td>
 &lt;/tr>
-&lt;tr id="hostname">
+&lt;tr id="hostname" style="scroll-margin-top: 6rem;">
 &lt;th>Hostname&lt;/th>
 &lt;td>hostname of the internal web application&lt;/td>
 &lt;/tr>
-&lt;tr id="external-address">
+&lt;tr id="external-address" style="scroll-margin-top: 6rem;">
 &lt;th>External Address&lt;/th>
 &lt;td>the public URL users will use to access the application&lt;/td>
 &lt;/tr>
-&lt;tr id="icon">
+&lt;tr id="icon" style="scroll-margin-top: 6rem;">
 &lt;th>Icon&lt;/th>
 &lt;td>the application&amp;rsquo;s icon (optional) to show in the application dashboard&lt;/td>
 &lt;/tr>
@@ -313,15 +313,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>app name&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>app description&lt;/td>
 &lt;/tr>
-&lt;tr id="icon">
+&lt;tr id="icon" style="scroll-margin-top: 6rem;">
 &lt;th>Icon&lt;/th>
 &lt;td>the application&amp;rsquo;s icon (optional) to show in the application dashboard&lt;/td>
 &lt;/tr>

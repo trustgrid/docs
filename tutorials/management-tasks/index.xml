@@ -222,7 +222,7 @@ Info tab, Upgrade in Progress
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="upgrade-status">
+&lt;tr id="upgrade-status" style="scroll-margin-top: 6rem;">
 &lt;th>Upgrade Status&lt;/th>
 &lt;td>&lt;p>Shows the most recent status of an upgrade operation on this node. Possibly values are:&lt;/p>
 &lt;ul>
@@ -232,7 +232,7 @@ Info tab, Upgrade in Progress
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="completion-time">
+&lt;tr id="completion-time" style="scroll-margin-top: 6rem;">
 &lt;th>Completion Time&lt;/th>
 &lt;td>Shows a timestamp for the last time an upgrade operation completed.&lt;/td>
 &lt;/tr>

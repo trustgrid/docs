@@ -13,15 +13,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="host-ip-address">
+&lt;tr id="host-ip-address" style="scroll-margin-top: 6rem;">
 &lt;th>Host IP Address&lt;/th>
 &lt;td>The upstream DNS server&amp;rsquo;s IP address&lt;/td>
 &lt;/tr>
-&lt;tr id="host-port">
+&lt;tr id="host-port" style="scroll-margin-top: 6rem;">
 &lt;th>Host Port&lt;/th>
 &lt;td>The upstream DNS server&amp;rsquo;s port (usually 53)&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(Optional) a user friends description of the server&lt;/td>
 &lt;/tr>
@@ -50,19 +50,19 @@ Add Export Route dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The node to route traffic to.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-cidr">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>The network to route traffic to.&lt;/td>
 &lt;/tr>
-&lt;tr id="metric">
+&lt;tr id="metric" style="scroll-margin-top: 6rem;">
 &lt;th>Metric&lt;/th>
 &lt;td>The route metric. Lower metrics are processed first.&lt;/td>
 &lt;/tr>
-&lt;tr id="gateway-path">
+&lt;tr id="gateway-path" style="scroll-margin-top: 6rem;">
 &lt;th>Gateway Path&lt;/th>
 &lt;td>An optional gateway path to use for the route.&lt;/td>
 &lt;/tr>
@@ -84,19 +84,19 @@ Add Import Route dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The node to route traffic to.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-cidr">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>The network to route traffic to.&lt;/td>
 &lt;/tr>
-&lt;tr id="metric">
+&lt;tr id="metric" style="scroll-margin-top: 6rem;">
 &lt;th>Metric&lt;/th>
 &lt;td>The route metric. Lower metrics are processed first.&lt;/td>
 &lt;/tr>
-&lt;tr id="gateway-path">
+&lt;tr id="gateway-path" style="scroll-margin-top: 6rem;">
 &lt;th>Gateway Path&lt;/th>
 &lt;td>An optional gateway path to use for the route.&lt;/td>
 &lt;/tr>
@@ -121,15 +121,15 @@ Add Interface dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="network-interface">
+&lt;tr id="network-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Network Interface&lt;/th>
 &lt;td>Select the desired interface from the drop down list of those available on the node or cluster.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>User friendly description of this interface attachment. This field is initially populated with the description from the selected interface.&lt;/td>
 &lt;/tr>
-&lt;tr id="traffic-matching-mode">
+&lt;tr id="traffic-matching-mode" style="scroll-margin-top: 6rem;">
 &lt;th>Traffic Matching mode&lt;/th>
 &lt;td>&lt;p>This option is only available if the the attached virtual network does not have NO-NAT mode enabled.&lt;/p>
 &lt;ul>
@@ -139,11 +139,11 @@ Add Interface dialog
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="outside-nat-table">
+&lt;tr id="outside-nat-table" style="scroll-margin-top: 6rem;">
 &lt;th>Outside NAT Table&lt;/th>
 &lt;td>Used to define &lt;a href="#outside-nats">outside NATs&lt;/a>&lt;/td>
 &lt;/tr>
-&lt;tr id="inside-nat-table">
+&lt;tr id="inside-nat-table" style="scroll-margin-top: 6rem;">
 &lt;th>Inside NAT Table&lt;/th>
 &lt;td>Used to define &lt;a href="#inside-nats">inside NATs&lt;/a>&lt;/td>
 &lt;/tr>
@@ -159,11 +159,11 @@ Add Interface dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="local-cidr">
+&lt;tr id="local-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Local CIDR&lt;/th>
 &lt;td>The local IP address or address block that should be mapped into the virtual network. It should be entered in CIDR block format (eg - &lt;code>192.168.100.0/24&lt;/code> or &lt;code>192.168.100.51/32&lt;/code>).&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-cidr">
+&lt;tr id="virtual-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual CIDR&lt;/th>
 &lt;td>The network IP address or addresses that the local IP addresses should be mapped to, also entered in CIDR block format.&lt;/td>
 &lt;/tr>
@@ -182,11 +182,11 @@ Network addresses map 1x1 with local addresses, so the prefix length (the /xx nu
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="network-group">
+&lt;tr id="network-group" style="scroll-margin-top: 6rem;">
 &lt;th>Network Group&lt;/th>
 &lt;td>The network IP address or addresses that should be translated before egressing onto the local network. This should be entered in CIDR block format or as a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">Network Group&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="local-cidr">
+&lt;tr id="local-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Local CIDR&lt;/th>
 &lt;td>The local IP address or addresses that the network addresses should be mapped to, also entered in CIDR format.&lt;/td>
 &lt;/tr>
@@ -211,15 +211,15 @@ Port Forward listing
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="virtual-ip-address">
+&lt;tr id="virtual-ip-address" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual IP Address&lt;/th>
 &lt;td>The IP to expose the service on the virtual network.&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-port">
+&lt;tr id="virtual-port" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Port&lt;/th>
 &lt;td>The port to expose the service on the virtual network.&lt;/td>
 &lt;/tr>
-&lt;tr id="local-service">
+&lt;tr id="local-service" style="scroll-margin-top: 6rem;">
 &lt;th>Local Service&lt;/th>
 &lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> to expose. Alternately, you can specify an IP and port.&lt;/td>
 &lt;/tr>
@@ -241,19 +241,19 @@ Add Route dialog
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The node to route traffic to.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-cidr">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>The network to route traffic to.&lt;/td>
 &lt;/tr>
-&lt;tr id="metric">
+&lt;tr id="metric" style="scroll-margin-top: 6rem;">
 &lt;th>Metric&lt;/th>
 &lt;td>The route metric. Lower metrics are processed first.&lt;/td>
 &lt;/tr>
-&lt;tr id="gateway-path">
+&lt;tr id="gateway-path" style="scroll-margin-top: 6rem;">
 &lt;th>Gateway Path&lt;/th>
 &lt;td>An optional gateway path to use for the route. Only visible if &lt;a href="https://docs.trustgrid.io/docs/nodes/gateway/">additional Gateway paths&lt;/a> are defined on the node.&lt;/td>
 &lt;/tr>
@@ -263,15 +263,15 @@ Add Route dialog
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>&lt;img src="wireguard.png" alt="img">&lt;/p>
 &lt;p>
-&lt;tr id="enabled">
+&lt;tr id="enabled" style="scroll-margin-top: 6rem;">
 &lt;th>Enabled&lt;/th>
 &lt;td>When enabled, this node will accept WireGuard client connections&lt;/td>
 &lt;/tr>
-&lt;tr id="port">
+&lt;tr id="port" style="scroll-margin-top: 6rem;">
 &lt;th>Port&lt;/th>
 &lt;td>The port clients should connect to&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-traffic-forwarding">
+&lt;tr id="remote-traffic-forwarding" style="scroll-margin-top: 6rem;">
 &lt;th>Remote Traffic Forwarding&lt;/th>
 &lt;td>Whether the node should forward traffic to the virtual network&lt;/td>
 &lt;/tr>&lt;/p>
@@ -285,19 +285,19 @@ Changing the server&amp;rsquo;s private key will disconnect existing clients and
 &lt;p>&lt;img src="wg-client.png" alt="img">&lt;/p>
 &lt;p>Each client will need to generate their own private and public key. Most WireGuard clients provide tools to do this.&lt;/p>
 &lt;p>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the client&lt;/td>
 &lt;/tr>
-&lt;tr id="pre-shared-key">
+&lt;tr id="pre-shared-key" style="scroll-margin-top: 6rem;">
 &lt;th>Pre-shared Key&lt;/th>
 &lt;td>(Optional) The client&amp;rsquo;s pre-shared key&lt;/td>
 &lt;/tr>
-&lt;tr id="public-key">
+&lt;tr id="public-key" style="scroll-margin-top: 6rem;">
 &lt;th>Public Key&lt;/th>
 &lt;td>The client&amp;rsquo;s public key&lt;/td>
 &lt;/tr>
-&lt;tr id="allow-internet">
+&lt;tr id="allow-internet" style="scroll-margin-top: 6rem;">
 &lt;th>Allow Internet&lt;/th>
 &lt;td>Whether this client should be allowed to access the public network through this server&lt;/td>
 &lt;/tr>&lt;/p>

@@ -80,23 +80,23 @@ Interfaces panel
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="hardware-address">
+&lt;tr id="hardware-address" style="scroll-margin-top: 6rem;">
 &lt;th>Hardware Address&lt;/th>
 &lt;td>MAC address of the interface.&lt;/td>
 &lt;/tr>
-&lt;tr id="interface-name">
+&lt;tr id="interface-name" style="scroll-margin-top: 6rem;">
 &lt;th>Interface Name&lt;/th>
 &lt;td>Name assigned to the interface by the operating system. This varies between hardware models and is sometimes needed when using tools such as Sniff Interface or reviewing logs.&lt;/td>
 &lt;/tr>
-&lt;tr id="interface-vrf">
+&lt;tr id="interface-vrf" style="scroll-margin-top: 6rem;">
 &lt;th>Interface VRF&lt;/th>
 &lt;td>Selects to which &lt;a href="https://docs.trustgrid.io/docs/nodes/vrfs/">VRF&lt;/a> the interface is attached.&lt;/td>
 &lt;/tr>
-&lt;tr id="vlan-id-subinterfaces-only">
+&lt;tr id="vlan-id-subinterfaces-only" style="scroll-margin-top: 6rem;">
 &lt;th>VLAN ID (Subinterfaces Only)&lt;/th>
 &lt;td>Sets the VLAN ID/tag for the subinterface.&lt;/td>
 &lt;/tr>
-&lt;tr id="ip-assignment-eth0-only">
+&lt;tr id="ip-assignment-eth0-only" style="scroll-margin-top: 6rem;">
 &lt;th>IP Assignment (ETH0 only)&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>DHCP - requires a DHCP server or relay in the same broadcast domain as the interface connection&lt;/li>
@@ -104,11 +104,11 @@ Interfaces panel
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="ipv4-address-cidr">
+&lt;tr id="ipv4-address-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>IPv4 Address CIDR&lt;/th>
 &lt;td>IP address using &lt;a href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">classless inter-domain routing (CIDR) notation&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="gateway-ip">
+&lt;tr id="gateway-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Gateway IP&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>ETH0 - The IP address of the default gateway for this device. All traffic not in the same network as an interface IP or with a specified route will use this gateway.&lt;/li>
@@ -116,31 +116,31 @@ Interfaces panel
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="dns-server-1/2-ip-eth0-only">
+&lt;tr id="dns-server-1/2-ip-eth0-only" style="scroll-margin-top: 6rem;">
 &lt;th>DNS Server 1/2 IP (ETH0 only)&lt;/th>
 &lt;td>Used to resolve DNS names to connect to the Trustgrid control plane.&lt;/td>
 &lt;/tr>
-&lt;tr id="cluster-virtual-ip">
+&lt;tr id="cluster-virtual-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Cluster Virtual IP&lt;/th>
 &lt;td>Used in &lt;a href="https://docs.trustgrid.io/docs/clusters/">clusters&lt;/a>, this IP address is moved between member nodes based on the active cluster member. It can be used to route traffic between the virtual and local networks. This IP address can only be changed within the cluster interfaces page.&lt;/td>
 &lt;/tr>
-&lt;tr id="mtu">
+&lt;tr id="mtu" style="scroll-margin-top: 6rem;">
 &lt;th>MTU&lt;/th>
 &lt;td>This field allows you to change the Maximum Transmission Unit (MTU) of the interface. MTU impacts the maximum size of packets sent or received on the interface.&lt;/td>
 &lt;/tr>
-&lt;tr id="auto-negotiation">
+&lt;tr id="auto-negotiation" style="scroll-margin-top: 6rem;">
 &lt;th>Auto-Negotiation&lt;/th>
 &lt;td>Sets if the interface will use auto-negotiation to determine the speed and duplex settings. Values can be AUTO &lt;em>(default)&lt;/em> or MANUAL.&lt;/td>
 &lt;/tr>
-&lt;tr id="duplex">
+&lt;tr id="duplex" style="scroll-margin-top: 6rem;">
 &lt;th>Duplex&lt;/th>
 &lt;td>Locked unless Auto-Negotiation set to MANUAL. Sets the interface to either FULL &lt;em>(default)&lt;/em> or HALF duplex&lt;/td>
 &lt;/tr>
-&lt;tr id="speed">
+&lt;tr id="speed" style="scroll-margin-top: 6rem;">
 &lt;th>Speed&lt;/th>
 &lt;td>Locked unless Auto-Negotiation set to MANUAL. Sets the interface to 10, 100, 1000 Mbps.&lt;/td>
 &lt;/tr>
-&lt;tr id="ignore-health-check">
+&lt;tr id="ignore-health-check" style="scroll-margin-top: 6rem;">
 &lt;th>Ignore Health Check&lt;/th>
 &lt;td>Value can be Disable &lt;em>(default)&lt;/em> or Enable. If set to Enable, the interface&amp;rsquo;s link status will no longer be used by the node to determine its &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-member-health-conditions">cluster member health state&lt;/a>. Useful if a single node has a network connection it&amp;rsquo;s peer does not such as an alternate WAN path.&lt;/td>
 &lt;/tr>
@@ -168,15 +168,15 @@ Interfaces panel
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="destination-cidr">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>This is the CIDR notation of the network or host that needs to be routed. For a single host, use /32 as the CIDR suffix.&lt;/td>
 &lt;/tr>
-&lt;tr id="next-hop">
+&lt;tr id="next-hop" style="scroll-margin-top: 6rem;">
 &lt;th>Next Hop&lt;/th>
 &lt;td>The IP address to which traffic destined for the above defined network will be sent. No CIDR suffix is needed.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Optional field to provide additional information about the route.&lt;/td>
 &lt;/tr>
@@ -208,7 +208,7 @@ Only visible on LAN interfaces and Subinterfaces
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="dark-mode">
+&lt;tr id="dark-mode" style="scroll-margin-top: 6rem;">
 &lt;th>Dark Mode&lt;/th>
 &lt;td>Value can be Disable &lt;em>(default)&lt;/em> or Enable. When set to Enable the node will restrict ICMP responses so that it will not respond to ICMP (Ping) echo requests or respond to failed TCP/UDP connection attempts with reset or ICMP Destination Port Unreachable&lt;/td>
 &lt;/tr>
@@ -309,19 +309,19 @@ Example license key
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the threshold. This will be available in generated events.&lt;/td>
 &lt;/tr>
-&lt;tr id="telemetry">
+&lt;tr id="telemetry" style="scroll-margin-top: 6rem;">
 &lt;th>Telemetry&lt;/th>
 &lt;td>The metric to monitor. Options are CPU usage (%), memory usage (%), disk usage (%), and embryonic flows (absolute count).&lt;/td>
 &lt;/tr>
-&lt;tr id="threshold">
+&lt;tr id="threshold" style="scroll-margin-top: 6rem;">
 &lt;th>Threshold&lt;/th>
 &lt;td>The value that must be exceeded for an event to be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="duration">
+&lt;tr id="duration" style="scroll-margin-top: 6rem;">
 &lt;th>Duration&lt;/th>
 &lt;td>The time period to measure. If the threshold is exceeded for this duration, an event will be generated.&lt;/td>
 &lt;/tr>
@@ -337,23 +337,23 @@ Example license key
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the threshold. This will be available in generated events.&lt;/td>
 &lt;/tr>
-&lt;tr id="telemetry">
+&lt;tr id="telemetry" style="scroll-margin-top: 6rem;">
 &lt;th>Telemetry&lt;/th>
 &lt;td>The metric to monitor. Options are latency (ms), bandwidth in (Mbps), and bandwidth out (Mbps).&lt;/td>
 &lt;/tr>
-&lt;tr id="threshold">
+&lt;tr id="threshold" style="scroll-margin-top: 6rem;">
 &lt;th>Threshold&lt;/th>
 &lt;td>The value that must be exceeded for an event to be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="duration">
+&lt;tr id="duration" style="scroll-margin-top: 6rem;">
 &lt;th>Duration&lt;/th>
 &lt;td>The time period to measure. If the threshold is exceeded for this duration, an event will be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="target">
+&lt;tr id="target" style="scroll-margin-top: 6rem;">
 &lt;th>Target&lt;/th>
 &lt;td>For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.&lt;/td>
 &lt;/tr>
@@ -437,15 +437,15 @@ Example license key
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="control-plane-down">
+&lt;tr id="control-plane-down" style="scroll-margin-top: 6rem;">
 &lt;th>Control Plane Down&lt;/th>
 &lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears offline from within the Trustgrid portal. This indicates that the &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/control-plane-disconnect/">node is disconnected&lt;/a> from the control plane either because it has shutdown or has been unable to send a heartbeat notification to Trustgrid within the past 10 minutes.&lt;/td>
 &lt;/tr>
-&lt;tr id="data-plane-down">
+&lt;tr id="data-plane-down" style="scroll-margin-top: 6rem;">
 &lt;th>Data Plane Down&lt;/th>
 &lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears online from within the portal but reports it is unable to connect to one or more gateway nodes. This can be indicated by the Data Plane Status indicator when viewing the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> in the portal, or by receiving a “Gateway Connectivity Health Check” failure &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> notification. Both of these only work if the Control Plane is currently working.&lt;/td>
 &lt;/tr>
-&lt;tr id="both-control-and-data-plane-down">
+&lt;tr id="both-control-and-data-plane-down" style="scroll-margin-top: 6rem;">
 &lt;th>Both Control and Data Plane Down&lt;/th>
 &lt;td>In this situation the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears down in the Trustgrid Portal and users/applications are unable to reach services across the data plane between the Gateway and Edge sites. This is the most common scenario. While the Data Plane is most critical for the services provided across the device, first priority should be restoring the Control Plane connection so that additional troubleshooting tools are available. Often this process also uncovers the reason the data plane is down.&lt;/td>
 &lt;/tr>

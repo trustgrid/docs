@@ -62,11 +62,11 @@ challenges like conflicting subnets in large, non-centralized networks.&lt;/p>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>A unique name for the network. Can contain letters, numbers and - characters.&lt;/td>
 &lt;/tr>
-&lt;tr id="network-cidr">
+&lt;tr id="network-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Network CIDR&lt;/th>
 &lt;td>&lt;p>Network CIDR that includes all desired &lt;a href="#virtual-ip-addresses">virtual IP addresses&lt;/a>.&lt;/p>
 &lt;ul>
@@ -75,11 +75,11 @@ challenges like conflicting subnets in large, non-centralized networks.&lt;/p>
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>A user friendly description of the virtual network&lt;/td>
 &lt;/tr>
-&lt;tr id="no-nat-mode">
+&lt;tr id="no-nat-mode" style="scroll-margin-top: 6rem;">
 &lt;th>NO-NAT Mode&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>Enabled - Nodes attached to the this virtual network &lt;strong>will not require&lt;/strong> traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network.&lt;/li>
@@ -105,19 +105,19 @@ challenges like conflicting subnets in large, non-centralized networks.&lt;/p>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the threshold. This will be available in generated events.&lt;/td>
 &lt;/tr>
-&lt;tr id="telemetry">
+&lt;tr id="telemetry" style="scroll-margin-top: 6rem;">
 &lt;th>Telemetry&lt;/th>
 &lt;td>The metric to monitor. Options are CPU usage (%), memory usage (%), disk usage (%), and embryonic flows (absolute count).&lt;/td>
 &lt;/tr>
-&lt;tr id="threshold">
+&lt;tr id="threshold" style="scroll-margin-top: 6rem;">
 &lt;th>Threshold&lt;/th>
 &lt;td>The value that must be exceeded for an event to be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="duration">
+&lt;tr id="duration" style="scroll-margin-top: 6rem;">
 &lt;th>Duration&lt;/th>
 &lt;td>The time period to measure. If the threshold is exceeded for this duration, an event will be generated.&lt;/td>
 &lt;/tr>
@@ -133,23 +133,23 @@ challenges like conflicting subnets in large, non-centralized networks.&lt;/p>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the threshold. This will be available in generated events.&lt;/td>
 &lt;/tr>
-&lt;tr id="telemetry">
+&lt;tr id="telemetry" style="scroll-margin-top: 6rem;">
 &lt;th>Telemetry&lt;/th>
 &lt;td>The metric to monitor. Currently only latency (measured in milliseconds) is available.&lt;/td>
 &lt;/tr>
-&lt;tr id="threshold">
+&lt;tr id="threshold" style="scroll-margin-top: 6rem;">
 &lt;th>Threshold&lt;/th>
 &lt;td>The value that must be exceeded for an event to be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="duration">
+&lt;tr id="duration" style="scroll-margin-top: 6rem;">
 &lt;th>Duration&lt;/th>
 &lt;td>The time period to measure. If the threshold is exceeded for this duration, an event will be generated.&lt;/td>
 &lt;/tr>
-&lt;tr id="target">
+&lt;tr id="target" style="scroll-margin-top: 6rem;">
 &lt;th>Target&lt;/th>
 &lt;td>The target node to measure the latency to. Each node will measure the latency to the target node.&lt;/td>
 &lt;/tr>

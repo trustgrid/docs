@@ -16,19 +16,19 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>Name of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Description for the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="image">
+&lt;tr id="image" style="scroll-margin-top: 6rem;">
 &lt;th>Image&lt;/th>
 &lt;td>Image selected from the ones available.&lt;/td>
 &lt;/tr>
-&lt;tr id="firmware">
+&lt;tr id="firmware" style="scroll-margin-top: 6rem;">
 &lt;th>Firmware&lt;/th>
 &lt;td>&lt;p>Boot firmware for the virtual machine.&lt;/p>
 &lt;ol>
@@ -37,7 +37,7 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="device-bus">
+&lt;tr id="device-bus" style="scroll-margin-top: 6rem;">
 &lt;th>Device Bus&lt;/th>
 &lt;td>&lt;p>Device Bus used for deployment of the virtual machine.&lt;/p>
 &lt;ol>
@@ -60,39 +60,39 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>Name of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Description for the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="image">
+&lt;tr id="image" style="scroll-margin-top: 6rem;">
 &lt;th>Image&lt;/th>
 &lt;td>Image selected from the ones available.&lt;/td>
 &lt;/tr>
-&lt;tr id="guest-os-read-only">
+&lt;tr id="guest-os-read-only" style="scroll-margin-top: 6rem;">
 &lt;th>Guest OS (read-only)&lt;/th>
 &lt;td>Operating System of the Image.&lt;/td>
 &lt;/tr>
-&lt;tr id="hostname-optional">
+&lt;tr id="hostname-optional" style="scroll-margin-top: 6rem;">
 &lt;th>Hostname (Optional)&lt;/th>
 &lt;td>Hostname given to the virtual machine on deploy.&lt;/td>
 &lt;/tr>
-&lt;tr id="stop-timeout-optional">
+&lt;tr id="stop-timeout-optional" style="scroll-margin-top: 6rem;">
 &lt;th>Stop Timeout (Optional)&lt;/th>
 &lt;td>Denotes how long to wait for the virtual machine to gracefully stop before killing the process. Default is 2 minutes.&lt;/td>
 &lt;/tr>
-&lt;tr id="firmware-read-only">
+&lt;tr id="firmware-read-only" style="scroll-margin-top: 6rem;">
 &lt;th>Firmware (read-only)&lt;/th>
 &lt;td>Boot firmware of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="device-bus-read-only">
+&lt;tr id="device-bus-read-only" style="scroll-margin-top: 6rem;">
 &lt;th>Device Bus (read-only)&lt;/th>
 &lt;td>Device Bus used for deployment of the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="auto-start-optional">
+&lt;tr id="auto-start-optional" style="scroll-margin-top: 6rem;">
 &lt;th>Auto Start (Optional)&lt;/th>
 &lt;td>Indicates the virtual machine should automatically start after deploy.&lt;/td>
 &lt;/tr>
@@ -117,19 +117,19 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>The protocol to listen for. If not specified, all traffic is forwarded to the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="host-interface">
+&lt;tr id="host-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Host Interface&lt;/th>
 &lt;td>The host interface to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="host-port">
+&lt;tr id="host-port" style="scroll-margin-top: 6rem;">
 &lt;th>Host Port&lt;/th>
 &lt;td>The host port to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-machine-port">
+&lt;tr id="virtual-machine-port" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Machine Port&lt;/th>
 &lt;td>The virtual machine port that will receive the mapped traffic.&lt;/td>
 &lt;/tr>
@@ -145,15 +145,15 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="virtual-network">
+&lt;tr id="virtual-network" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Network&lt;/th>
 &lt;td>The virtual network to attach.&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-ip">
+&lt;tr id="virtual-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual IP&lt;/th>
 &lt;td>The virtual IP to assign to the virtual machine.&lt;/td>
 &lt;/tr>
-&lt;tr id="allow-outbound">
+&lt;tr id="allow-outbound" style="scroll-margin-top: 6rem;">
 &lt;th>Allow Outbound&lt;/th>
 &lt;td>Whether the virtual machine should be allowed to make outbound connections into the virtual network.&lt;/td>
 &lt;/tr>
@@ -169,11 +169,11 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The virtual interface name.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The interface destination inside the virtual machine.&lt;/td>
 &lt;/tr>
@@ -193,19 +193,19 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The snapshot name.&lt;/td>
 &lt;/tr>
-&lt;tr id="creation-time">
+&lt;tr id="creation-time" style="scroll-margin-top: 6rem;">
 &lt;th>Creation Time&lt;/th>
 &lt;td>The timestamp when the snapshot was created.&lt;/td>
 &lt;/tr>
-&lt;tr id="vm-state">
+&lt;tr id="vm-state" style="scroll-margin-top: 6rem;">
 &lt;th>VM State&lt;/th>
 &lt;td>The state of the virtual machine when the snapshot was created.&lt;/td>
 &lt;/tr>
-&lt;tr id="snapshot-mode">
+&lt;tr id="snapshot-mode" style="scroll-margin-top: 6rem;">
 &lt;th>Snapshot Mode&lt;/th>
 &lt;td>&lt;ol>
 &lt;li>Extenal Disk Only - Mode applied to the snapshot when the firmware of the virtual machine is UEFI.&lt;/li>
@@ -213,11 +213,11 @@ Before being able to deploy a virtual machine to a node, an &lt;a href="https://
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="parent-snapshot">
+&lt;tr id="parent-snapshot" style="scroll-margin-top: 6rem;">
 &lt;th>Parent Snapshot&lt;/th>
 &lt;td>If this is a child snapshot, this references the parent snapshot.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>The snapshot description.&lt;/td>
 &lt;/tr>
@@ -252,19 +252,19 @@ The &lt;code>Downloaded&lt;/code> column shows whether or not an image is presen
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="display-name">
+&lt;tr id="display-name" style="scroll-margin-top: 6rem;">
 &lt;th>Display Name&lt;/th>
 &lt;td>Friendly name associated to the image.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Description for the image.&lt;/td>
 &lt;/tr>
-&lt;tr id="image-file">
+&lt;tr id="image-file" style="scroll-margin-top: 6rem;">
 &lt;th>Image File&lt;/th>
 &lt;td>Image file selected from the node data store.&lt;/td>
 &lt;/tr>
-&lt;tr id="operating-system">
+&lt;tr id="operating-system" style="scroll-margin-top: 6rem;">
 &lt;th>Operating System&lt;/th>
 &lt;td>Operating System for the image. This is rather important to optimize the virtual machine configuration.&lt;/td>
 &lt;/tr>
@@ -291,11 +291,11 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>Name for the volume.&lt;/td>
 &lt;/tr>
-&lt;tr id="device-type">
+&lt;tr id="device-type" style="scroll-margin-top: 6rem;">
 &lt;th>Device Type&lt;/th>
 &lt;td>&lt;p>Virtual machine type.&lt;/p>
 &lt;ol>
@@ -304,7 +304,7 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="device-bus">
+&lt;tr id="device-bus" style="scroll-margin-top: 6rem;">
 &lt;th>Device Bus&lt;/th>
 &lt;td>&lt;p>Bus for the device.&lt;/p>
 &lt;ol>
@@ -315,11 +315,11 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="size-only-for-disk">
+&lt;tr id="size-only-for-disk" style="scroll-margin-top: 6rem;">
 &lt;th>Size (Only for Disk)&lt;/th>
 &lt;td>Size in GB, MB, KB, or Bytes for the disk.&lt;/td>
 &lt;/tr>
-&lt;tr id="disk-provisioning-only-for-disk">
+&lt;tr id="disk-provisioning-only-for-disk" style="scroll-margin-top: 6rem;">
 &lt;th>Disk Provisioning (Only for Disk)&lt;/th>
 &lt;td>&lt;p>Allocation method used for provisioning a disk.&lt;/p>
 &lt;ol>
@@ -329,11 +329,11 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="encrypted-only-for-disk">
+&lt;tr id="encrypted-only-for-disk" style="scroll-margin-top: 6rem;">
 &lt;th>Encrypted (Only for Disk)&lt;/th>
 &lt;td>True if disk should be encrypted, false otherwise.&lt;/td>
 &lt;/tr>
-&lt;tr id="iso-file-only-for-cd-rom">
+&lt;tr id="iso-file-only-for-cd-rom" style="scroll-margin-top: 6rem;">
 &lt;th>ISO File (Only for CD-ROM)&lt;/th>
 &lt;td>ISO file selected from the node data store.&lt;/td>
 &lt;/tr>

@@ -11,11 +11,11 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The label to use when referencing this object.&lt;/td>
 &lt;/tr>
-&lt;tr id="cidr">
+&lt;tr id="cidr" style="scroll-margin-top: 6rem;">
 &lt;th>CIDR&lt;/th>
 &lt;td>Specifically an IPv4 CIDR.&lt;/td>
 &lt;/tr>
@@ -46,19 +46,19 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>This will be the name of the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> that traffic will be routed to. This list is auto-populated based on the nodes and clusters in the selected &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-cidr">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>This is the CIDR notation of the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> that should be routed to the above destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/td>
 &lt;/tr>
-&lt;tr id="metric">
+&lt;tr id="metric" style="scroll-margin-top: 6rem;">
 &lt;th>Metric&lt;/th>
 &lt;td>If there are multiple routes for the same &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> the metric will determine which route will be used. The lowest number is the highest priority. See the &amp;ldquo;Automatic Failover&amp;rdquo; text below.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(Optional) This field can be used to provide additional information about the purpose of the route. e.g. it could label a route as a DR route indicating that in normal circumstances it would have a higher metric than a primary route.&lt;/td>
 &lt;/tr>
@@ -209,19 +209,19 @@ Example Virtual Network Port Forward
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="virtual-ip-address">
+&lt;tr id="virtual-ip-address" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual IP Address&lt;/th>
 &lt;td>Virtual IP address assigned to the port forward.&lt;/td>
 &lt;/tr>
-&lt;tr id="virtual-port">
+&lt;tr id="virtual-port" style="scroll-margin-top: 6rem;">
 &lt;th>Virtual Port&lt;/th>
 &lt;td>TCP port on which the port forward will listen for connections.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-node">
+&lt;tr id="destination-node" style="scroll-margin-top: 6rem;">
 &lt;th>Destination Node&lt;/th>
 &lt;td>Node or Cluster where the target &lt;strong>service&lt;/strong> is defined.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-service">
+&lt;tr id="destination-service" style="scroll-margin-top: 6rem;">
 &lt;th>Destination Service&lt;/th>
 &lt;td>Service that traffic for the &lt;strong>virtual IP&lt;/strong> and &lt;strong>virtual port&lt;/strong> will be forwarded to. Alternately, you can specify an IP and port local to the &lt;strong>destination node&lt;/strong>.&lt;/td>
 &lt;/tr>
@@ -240,27 +240,27 @@ Example Virtual Network Port Forward
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="action">
+&lt;tr id="action" style="scroll-margin-top: 6rem;">
 &lt;th>Action&lt;/th>
 &lt;td>Whether to ALLOW, DROP, or REJECT the traffic.&lt;/td>
 &lt;/tr>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>You can choose ANY, UDP, ICMP, or TCP.&lt;/td>
 &lt;/tr>
-&lt;tr id="source">
+&lt;tr id="source" style="scroll-margin-top: 6rem;">
 &lt;th>Source&lt;/th>
 &lt;td>The source of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
 &lt;/tr>
-&lt;tr id="destination">
+&lt;tr id="destination" style="scroll-margin-top: 6rem;">
 &lt;th>Destination&lt;/th>
 &lt;td>The destination of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
 &lt;/tr>
-&lt;tr id="line-number">
+&lt;tr id="line-number" style="scroll-margin-top: 6rem;">
 &lt;th>Line Number&lt;/th>
 &lt;td>Rules are evaluated starting with the lowest numbered rule. Once a rule matches, later rules are ignored even if they might also match the traffic.&lt;/td>
 &lt;/tr>
-&lt;tr id="port-range">
+&lt;tr id="port-range" style="scroll-margin-top: 6rem;">
 &lt;th>Port Range&lt;/th>
 &lt;td>For TCP and UDP traffic, you can specify a port (e.g., 80) or a range (e.g., 8000-9000).&lt;/td>
 &lt;/tr>
@@ -278,11 +278,11 @@ Example Virtual Network Port Forward
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="enable/disable-dns">
+&lt;tr id="enable/disable-dns" style="scroll-margin-top: 6rem;">
 &lt;th>Enable/Disable DNS&lt;/th>
 &lt;td>This field enables or disables the DNS feature on the virtual network.&lt;/td>
 &lt;/tr>
-&lt;tr id="dns-server-ip">
+&lt;tr id="dns-server-ip" style="scroll-margin-top: 6rem;">
 &lt;th>DNS Server IP&lt;/th>
 &lt;td>This is the IP address that should be used as the resolver. There is no need to create a VPN route for this IP. If the ingress node was the &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/dns/">DNS feature enabled&lt;/a> it will automatically handle responses for the query.&lt;/td>
 &lt;/tr>
@@ -342,11 +342,11 @@ You cannot have both custom DNS records and a resolver configured for the same z
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name">
+&lt;tr id="name" style="scroll-margin-top: 6rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The hostname being mapped (e.g. www). The zone name will be automatically appended.&lt;/td>
 &lt;/tr>
-&lt;tr id="record-type">
+&lt;tr id="record-type" style="scroll-margin-top: 6rem;">
 &lt;th>Record Type&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>A - for records that should resolve to an IP address&lt;/li>
@@ -354,11 +354,11 @@ You cannot have both custom DNS records and a resolver configured for the same z
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="value">
+&lt;tr id="value" style="scroll-margin-top: 6rem;">
 &lt;th>Value&lt;/th>
 &lt;td>The IP address or hostname being mapped to for A/CNAME records respectively.&lt;/td>
 &lt;/tr>
-&lt;tr id="ttl">
+&lt;tr id="ttl" style="scroll-margin-top: 6rem;">
 &lt;th>TTL&lt;/th>
 &lt;td>Time To Live - how long records may be cached by other resolvers.&lt;/td>
 &lt;/tr>

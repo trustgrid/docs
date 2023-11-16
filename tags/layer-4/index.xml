@@ -18,7 +18,7 @@ Add Connector dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>&lt;p>The protocol that the listener for the connector will use. Options are TCP, UDP, FTP, and TFTP.&lt;/p>
 &lt;blockquote>
@@ -26,27 +26,27 @@ Add Connector dialogue
 &lt;/blockquote>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="listen-interface">
+&lt;tr id="listen-interface" style="scroll-margin-top: 6rem;">
 &lt;th>Listen Interface&lt;/th>
 &lt;td>The interface that you want the connector to listen on. If set to &amp;ldquo;All&amp;rdquo;, the connector will listen on 0.0.0.0.&lt;/td>
 &lt;/tr>
-&lt;tr id="listen-port">
+&lt;tr id="listen-port" style="scroll-margin-top: 6rem;">
 &lt;th>Listen Port&lt;/th>
 &lt;td>The port that you want the connector to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-node">
+&lt;tr id="remote-node" style="scroll-margin-top: 6rem;">
 &lt;th>Remote Node&lt;/th>
 &lt;td>The remote node or cluster that traffic will be proxied to.&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-service">
+&lt;tr id="remote-service" style="scroll-margin-top: 6rem;">
 &lt;th>Remote Service&lt;/th>
 &lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
 &lt;/tr>
-&lt;tr id="rate-limit-mb/s">
+&lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 6rem;">
 &lt;th>Rate Limit (Mb/s)&lt;/th>
 &lt;td>The maximum amount of throughput that will be allowed to traverse the tunnel when connecting to the connector. This can be used to prevent saturating the connection at either the local or remote sites.&lt;/td>
 &lt;/tr>
-&lt;tr id="sniff-traffic">
+&lt;tr id="sniff-traffic" style="scroll-margin-top: 6rem;">
 &lt;th>Sniff Traffic&lt;/th>
 &lt;td>&lt;p>Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the &lt;a href="#listen-port">listening port&lt;/a>.&lt;/p>
 &lt;figure class="centered-image">
@@ -84,11 +84,11 @@ Add Service dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="enabled">
+&lt;tr id="enabled" style="scroll-margin-top: 6rem;">
 &lt;th>Enabled&lt;/th>
 &lt;td>Values: Yes or No. Allows each service to be individually disabled if desired&amp;quot;&lt;/td>
 &lt;/tr>
-&lt;tr id="protocol">
+&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>&lt;p>The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, along with pre-defined default ports for RDP, SSH, and VNC.&lt;/p>
 &lt;blockquote>
@@ -96,23 +96,23 @@ Add Service dialogue
 &lt;/blockquote>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="service-name">
+&lt;tr id="service-name" style="scroll-margin-top: 6rem;">
 &lt;th>Service Name&lt;/th>
 &lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
 &lt;/tr>
-&lt;tr id="host">
+&lt;tr id="host" style="scroll-margin-top: 6rem;">
 &lt;th>Host&lt;/th>
 &lt;td>The IP or DNS address of the host to connect to.&lt;/td>
 &lt;/tr>
-&lt;tr id="port">
+&lt;tr id="port" style="scroll-margin-top: 6rem;">
 &lt;th>Port&lt;/th>
 &lt;td>The port to connect to on the host.&lt;/td>
 &lt;/tr>
-&lt;tr id="description">
+&lt;tr id="description" style="scroll-margin-top: 6rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(Optional) User friendly description of the service.&lt;/td>
 &lt;/tr>
-&lt;tr id="test-connectivity">
+&lt;tr id="test-connectivity" style="scroll-margin-top: 6rem;">
 &lt;th>Test Connectivity&lt;/th>
 &lt;td>&lt;p>Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.&lt;/p>
 &lt;figure class="centered-image">

@@ -73,9 +73,10 @@
 &lt;h3 id="threshold-alerts-included-data-points">Threshold Alerts Included Data Points&lt;/h3>
 &lt;p>Previously it wasn’t always clear why a threshold alert, such as an alarm regarding latency, exceeded the configured threshold. Even if you connected immediate to the device and checked the latency might have returned to normal.&lt;/p>
 &lt;p>Now the JSON payload sent to alarm &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a> (email, Slack, PagerDuty, etc.) can include the data points used to calculate the average that exceeded the threshold. This is in a new section called &lt;code>details&lt;/code> and the values are in pairs of the timestamp &lt;code>t&lt;/code> (unix time) and value &lt;code>v&lt;/code> (in milliseconds in the example below).&lt;/p>
-&lt;div class="td-card card">
-&lt;div class="card-header bg-white">Alert Payload&lt;/div>
-&lt;div class="card-body code p-l0 m-0">
+&lt;div class="td-card card border me-4">
+&lt;div class="card-header bg-white">
+Alert Payload&lt;/div>
+&lt;div class="card-body code p-0 m-0">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JSON" data-lang="JSON">&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&amp;#34;details&amp;#34;&lt;/span>&lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
@@ -88,8 +89,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;/div>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
 &lt;/div></description></item><item><title>Release-Notes: March</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2022/march/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2022/march/</guid><description>
 &lt;h2 id="data-plane-panel-improvements">Data Plane Panel Improvements&lt;/h2>
 &lt;p>In the February 2022 release we introduced the &lt;a href="https://docs.trustgrid.io/release-notes/cloud/archive/2022/february/">Data Plane status panel&lt;/a> for investigating connections between edge and gateway nodes. With this release we’ve added some tools to this panel. The new Ping and Test Performance tools are linked in the far right column of each gateway’s row.&lt;/p>
@@ -238,24 +238,24 @@
 &lt;p>We display the cluster health on the list view:&lt;/p>
 &lt;img src="cluster-list.png" width="400px" />
 &lt;p>And on the cluster overview:&lt;/p>
-&lt;div class="td-card-deck card-deck mb-4">
-&lt;div class="td-card card mb-4">
+&lt;div class="td-card-group card-group p-0 mb-4">
+&lt;div class="td-card card border me-4">
 &lt;div class="card-header">
 Unhealthy notice on cluster overview
 &lt;/div>
 &lt;div class="card-body">
 &lt;p class="card-text">
-&lt;img src="cluster-unhealthy-notice.png" alt="cluster unhealthy notice">
+![cluster unhealthy notice](cluster-unhealthy-notice.png)
 &lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div class="td-card card mb-4">
+&lt;div class="td-card card border me-4">
 &lt;div class="card-header">
 Offline notice on cluster overview
 &lt;/div>
 &lt;div class="card-body">
 &lt;p class="card-text">
-&lt;img src="cluster-offline-notice.png" alt="cluster offline notice">
+![cluster offline notice](cluster-offline-notice.png)
 &lt;/p>
 &lt;/div>
 &lt;/div>
@@ -298,37 +298,37 @@ Offline notice on cluster overview
 &lt;p>Now the system will notify you if someone has changed an order while you have it open. You would then need to refresh the page to see the changes made.&lt;/p>
 &lt;h3 id="priority-field">Priority Field&lt;/h3>
 &lt;p>Orders can now be assigned a priority of Normal, High or Urgent. This will be reflected in the Orders table by changing the color of the summary to yellow for High priority and red for Urgent.&lt;/p>
-&lt;div class="td-card-deck card-deck mb-4">
-&lt;div class="td-card card mb-4">
+&lt;div class="td-card-group card-group p-0 mb-4">
+&lt;div class="td-card card border me-4">
 &lt;div class="card-header">
 Order priority menu
 &lt;/div>
 &lt;div class="card-body">
 &lt;p class="card-text">
-&lt;img src="priority-field.png" alt="priority field">
+![priority field](priority-field.png)
 &lt;/p>
 &lt;/div>
 &lt;/div>
-&lt;div class="td-card card mb-4">
+&lt;div class="td-card card border me-4">
 &lt;div class="card-header">
 Example &lt;code>High&lt;/code>, &lt;code>Urgent&lt;/code>, and &lt;code>Normal&lt;/code> priority order summaries
 &lt;/div>
 &lt;div class="card-body">
 &lt;p class="card-text">
-&lt;img src="priority-list.png" alt="priority summaries">
+![priority summaries](priority-list.png)
 &lt;/p>
 &lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;h3 id="support-for-hyperlinks">Support for Hyperlinks&lt;/h3>
 &lt;p>You can now add Hyperlinks within an order to provide support documentation on the configuration.&lt;/p>
-&lt;div class="td-card card mb-4">
+&lt;div class="td-card card border me-4">
 &lt;div class="card-header">
 Hyperlink Form
 &lt;/div>
 &lt;div class="card-body">
 &lt;p class="card-text">
-&lt;img src="hyperlinks.png" alt="hyperlink form">
+![hyperlink form](hyperlinks.png)
 &lt;/p>
 &lt;/div>
 &lt;/div>
@@ -350,25 +350,25 @@ Hyperlink Form
 &lt;p>With this release, if a user changes which node is configured as the master (active) member of the cluster it will be logged on &lt;code>Changes&lt;/code> for the cluster.&lt;/p>
 &lt;div style="display: flex; flex-direction: row;">
 &lt;div style="width: 25%;">
-&lt;div class="td-card card mb-4">
+&lt;div class="td-card card border me-4">
 &lt;div class="card-header">
 Changing the configured master (active) node
 &lt;/div>
 &lt;div class="card-body">
 &lt;p class="card-text">
-&lt;img src="set-active.png" alt="set active">
+![set active](set-active.png)
 &lt;/p>
 &lt;/div>
 &lt;/div>
 &lt;/div>
 &lt;div style="width: 75%;">
-&lt;div class="td-card card mb-4">
+&lt;div class="td-card card border me-4">
 &lt;div class="card-header">
 Change entry for active member change
 &lt;/div>
 &lt;div class="card-body">
 &lt;p class="card-text">
-&lt;img src="changes.png" alt="change list">
+![change list](changes.png)
 &lt;/p>
 &lt;/div>
 &lt;/div>

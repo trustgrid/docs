@@ -105,15 +105,15 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/li>
 &lt;/ol>
 &lt;h2 id="instance-configuration">Instance Configuration&lt;/h2>
-&lt;tr id="stack-name">
+&lt;tr id="stack-name" style="scroll-margin-top: 6rem;">
 &lt;th>Stack Name&lt;/th>
 &lt;td>Unique name to describe this deployment&lt;/td>
 &lt;/tr>
-&lt;tr id="instance-type">
+&lt;tr id="instance-type" style="scroll-margin-top: 6rem;">
 &lt;th>Instance Type&lt;/th>
 &lt;td>Set the instance type of the EC2 instance to deploy (bigger instances cost more)&lt;/td>
 &lt;/tr>
-&lt;tr id="host-iam-role">
+&lt;tr id="host-iam-role" style="scroll-margin-top: 6rem;">
 &lt;th>Host IAM Role&lt;/th>
 &lt;td>&lt;p>An EC2 associated role that allows creating and writing to CloudWatch logs. Only the role name itself is required.&lt;/p>
 &lt;p>The role needs these IAM privileges: &lt;code>logs:CreateLogGroup&lt;/code>, &lt;code>logs:CreateLogStream&lt;/code>, &lt;code>logs:PutLogEvents&lt;/code>, &lt;code>logs:DescribeLogStreams&lt;/code> on resource &lt;code>arn:aws:logs:*:*:*&lt;/code>&lt;/p>
@@ -151,36 +151,36 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;p>&lt;strong>CloudWatch Note&lt;/strong>: We will create log groups named /trustgrid/var/log/syslog and /trustgrid/var/log/trustgrid/tg-default.log.&lt;/p>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="ssh-keypair">
+&lt;tr id="ssh-keypair" style="scroll-margin-top: 6rem;">
 &lt;th>SSH Keypair&lt;/th>
 &lt;td>&lt;p>SSH keypair to SSH to the instance as ubuntu user if necessary&lt;/p>
 &lt;p>&lt;strong>NOTE&lt;/strong>: SSH access requires a security group change allowing access. We strongly recommend that SSH is not allowed from anywhere (0.0.0.0/0).&lt;/p>
 &lt;/td>
 &lt;/tr>
 &lt;h2 id="management-configuration">Management Configuration&lt;/h2>
-&lt;tr id="security-group">
+&lt;tr id="security-group" style="scroll-margin-top: 6rem;">
 &lt;th>Security Group&lt;/th>
 &lt;td>Needs to allow outbound traffic to other gateways and our public IP range, at a minimum. If it&amp;rsquo;s a gateway node, needs to allow inbound access on desired gateway port.&lt;/td>
 &lt;/tr>
-&lt;tr id="subnet">
+&lt;tr id="subnet" style="scroll-margin-top: 6rem;">
 &lt;th>Subnet&lt;/th>
 &lt;td>The VPC subnet to put the EC2 instance in. This needs to be a subnet with public IP enables (the instance will automatically claim one; the Auto-Assign Public IP does not need to be enabled)&lt;/td>
 &lt;/tr>
 &lt;h2 id="data-path-configuration">Data Path Configuration&lt;/h2>
-&lt;tr id="security-group">
+&lt;tr id="security-group" style="scroll-margin-top: 6rem;">
 &lt;th>Security Group&lt;/th>
 &lt;td>The security group for the data path - needs to allow outbound communication to other gateways, and inbound communication on its gateway port&lt;/td>
 &lt;/tr>
-&lt;tr id="subnet">
+&lt;tr id="subnet" style="scroll-margin-top: 6rem;">
 &lt;th>Subnet&lt;/th>
 &lt;td>The VPC subnet to put the data interface in - if it&amp;rsquo;s a cloud-accessible gateway, should be a public subnet, if it&amp;rsquo;s only for internal AWS traffic, can be a private subnet. Will need outbound access either through IGW or NAT GW.&lt;/td>
 &lt;/tr>
-&lt;tr id="data-ip">
+&lt;tr id="data-ip" style="scroll-margin-top: 6rem;">
 &lt;th>Data IP&lt;/th>
 &lt;td>The private IP for the data path - must belong to the subnet&lt;/td>
 &lt;/tr>
 &lt;h2 id="trustgrid-configuration">Trustgrid Configuration&lt;/h2>
-&lt;tr id="security-group">
+&lt;tr id="security-group" style="scroll-margin-top: 6rem;">
 &lt;th>Security Group&lt;/th>
 &lt;td>&lt;p>Copy/paste the license from the portal.&lt;/p>
 &lt;p>Note: It is critical that you copy/paste the license correctly.&lt;/p>

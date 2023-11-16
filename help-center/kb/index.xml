@@ -71,30 +71,29 @@ This configuration is &lt;strong>not recommended for nodes acting as gateways&lt
 &lt;/div>
 &lt;h3 id="single-node-behind-firewall">Single Node Behind Firewall&lt;/h3>
 &lt;p>This configuration shows a single node connected to a firewall or router that has two ISP connected to it.&lt;/p>
-&lt;div class="mermaid">graph LR
+&lt;pre class="mermaid">graph LR
 intHost[Internal Hosts]
 intNet[[Internal\n Network]]
-intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> snLAN
+intHost &amp;lt;-.Optional.-&amp;gt; intNet &amp;lt;-.Optional.-&amp;gt; snLAN
 subgraph sn [Single Node]
 snWAN[WAN\nInterface]
 snLAN[LAN\nInterface]
 snLAN ~~~ snWAN
 end
-firewall["Firewall/Router"]
+firewall[&amp;#34;Firewall/Router&amp;#34;]
 dmzNet[[DMZ\n Network]]
-firewall == Primary==> ISP1([ISP 1])
-firewall -. Failover/Backup .-> ISP2([ISP 2])
-snWAN --> dmzNet --> firewall
+firewall == Primary==&amp;gt; ISP1([ISP 1])
+firewall -. Failover/Backup .-&amp;gt; ISP2([ISP 2])
+snWAN --&amp;gt; dmzNet --&amp;gt; firewall
 classDef tgnode fill:#346ed9,color:white
-class sn tgnode
-&lt;/div>
+class sn tgnode&lt;/pre>
 &lt;h3 id="clustered-nodes-behind-firewall">Clustered Nodes Behind Firewall&lt;/h3>
 &lt;p>This configuration shows a cluster of Trustgrid nodes connected to a firewall or router that has two ISPs connected to it.&lt;/p>
-&lt;div class="mermaid">graph LR
+&lt;pre class="mermaid">graph LR
 intHost[Internal Hosts]
 intNet[[Internal\n Network]]
-intHost &lt;-.Optional.-> intNet &lt;-.Optional.-> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
+intHost &amp;lt;-.Optional.-&amp;gt; intNet &amp;lt;-.Optional.-&amp;gt; cl1LAN &amp;amp; cl2LAN
+subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
@@ -107,14 +106,13 @@ cl2LAN ~~~ cl2WAN
 end
 end
 dmzNet[[DMZ\n Network]]
-firewall["Firewall/Router"]
-firewall == Primary==> ISP1([ISP 1])
-firewall -. Failover/Backup .-> ISP2([ISP 2])
-cl1WAN &amp; cl2WAN --> dmzNet --> firewall
+firewall[&amp;#34;Firewall/Router&amp;#34;]
+firewall == Primary==&amp;gt; ISP1([ISP 1])
+firewall -. Failover/Backup .-&amp;gt; ISP2([ISP 2])
+cl1WAN &amp;amp; cl2WAN --&amp;gt; dmzNet --&amp;gt; firewall
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div>
+style cluster fill:#c8c8c8&lt;/pre>
 &lt;h2 id="cluster-wan-interface-to-different-networks">Cluster WAN Interface to Different Networks&lt;/h2>
 &lt;p>Another method of providing redundancy takes advantage of Trustgrid &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustering&lt;/a> by connecting each member of the cluster to a different ISP on their WAN interface. This could be done by:&lt;/p>
 &lt;ul>
@@ -128,11 +126,11 @@ Because the WAN interfaces are on different networks, this configuration &lt;str
 &lt;/div>
 &lt;h3 id="cluster-wan-direct-connections-to-multiple-isps">Cluster WAN Direct Connections to Multiple ISPs&lt;/h3>
 &lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface directly connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected directly to another ISP.&lt;/p>
-&lt;div class="mermaid">graph LR
+&lt;pre class="mermaid">graph LR
 intHost[Internal Hosts]
 intNet[[Internal\n Network]]
-intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
+intHost &amp;lt;---&amp;gt; intNet &amp;lt;---&amp;gt; cl1LAN &amp;amp; cl2LAN
+subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
@@ -144,19 +142,18 @@ cl2LAN[LAN\nInterface]
 cl2LAN ~~~ cl2WAN
 end
 end
-cl1WAN ==> ISP1([ISP 1])
-cl2WAN ==> ISP2([ISP 2])
+cl1WAN ==&amp;gt; ISP1([ISP 1])
+cl2WAN ==&amp;gt; ISP2([ISP 2])
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div>
+style cluster fill:#c8c8c8&lt;/pre>
 &lt;h3 id="cluster-wan-to-separate-dmz-networks">Cluster WAN to separate DMZ networks&lt;/h3>
 &lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to one DMZ/private network that is behind a firewall connected to one ISP. And Cluster-Node2&amp;rsquo;s WAN interface is connected to a second DMZ network behind a separate firewall connected to a different ISP.&lt;/p>
-&lt;div class="mermaid">graph LR
+&lt;pre class="mermaid">graph LR
 intHost[Internal Hosts]
 intNet[[Internal\n Network]]
-intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
+intHost &amp;lt;---&amp;gt; intNet &amp;lt;---&amp;gt; cl1LAN &amp;amp; cl2LAN
+subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
@@ -170,24 +167,23 @@ end
 end
 dmzNet1[[DMZ\n Network 1]]
 dmzNet2[[DMZ\n Network 2]]
-firewall1["Firewall/Router 1"]
-firewall2["Firewall/Router 2"]
-cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
-cl2WAN --> dmzNet2 --> firewall2 ==> ISP2([ISP 2])
+firewall1[&amp;#34;Firewall/Router 1&amp;#34;]
+firewall2[&amp;#34;Firewall/Router 2&amp;#34;]
+cl1WAN --&amp;gt; dmzNet1 --&amp;gt; firewall1 ==&amp;gt; ISP1([ISP 1])
+cl2WAN --&amp;gt; dmzNet2 --&amp;gt; firewall2 ==&amp;gt; ISP2([ISP 2])
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div>
+style cluster fill:#c8c8c8&lt;/pre>
 &lt;div class="alert alert-info" role="alert">
 Note: While shown with two separate firewall/routers, this could also be accomplished with a single firewall/router configured to route each DMZ network to a different ISP.
 &lt;/div>
 &lt;h3 id="cluster-wan-using-mix-of-public-and-dmz-networks">Cluster WAN using mix of public and DMZ networks&lt;/h3>
 &lt;p>This configuration shows Cluster-Node1&amp;rsquo;s WAN interface is connected to a private DMZ network behind a firewall that is using ISP 1. Cluster-Node2&amp;rsquo;s WAN interface is connected directly to ISP 2.&lt;/p>
-&lt;div class="mermaid">graph LR
+&lt;pre class="mermaid">graph LR
 intHost[Internal Hosts]
 intNet[[Internal\n Network]]
-intHost &lt;---> intNet &lt;---> cl1LAN &amp; cl2LAN
-subgraph cluster [" "]
+intHost &amp;lt;---&amp;gt; intNet &amp;lt;---&amp;gt; cl1LAN &amp;amp; cl2LAN
+subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
@@ -200,10 +196,9 @@ cl2LAN ~~~ cl2WAN
 end
 end
 dmzNet1[[DMZ\n Network 1]]
-firewall1["Firewall/Router 1"]
-cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
-cl2WAN ==> ISP2([ISP 2])
+firewall1[&amp;#34;Firewall/Router 1&amp;#34;]
+cl1WAN --&amp;gt; dmzNet1 --&amp;gt; firewall1 ==&amp;gt; ISP1([ISP 1])
+cl2WAN ==&amp;gt; ISP2([ISP 2])
 classDef tgnode fill:#346ed9,color:white
 class Cluster-Node1,Cluster-Node2 tgnode
-style cluster fill:#c8c8c8
-&lt;/div></description></item></channel></rss>
+style cluster fill:#c8c8c8&lt;/pre></description></item></channel></rss>

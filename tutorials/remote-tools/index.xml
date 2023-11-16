@@ -87,23 +87,23 @@ Filter Prompt
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="peers">
+&lt;tr id="peers" style="scroll-margin-top: 6rem;">
 &lt;th>Peer(s)&lt;/th>
 &lt;td>Use this field to filter for traffic only between the current node and the listed peer.&lt;/td>
 &lt;/tr>
-&lt;tr id="protocols">
+&lt;tr id="protocols" style="scroll-margin-top: 6rem;">
 &lt;th>Protocol(s)&lt;/th>
 &lt;td>Filter to specified network protocol(s): any, tcp, udp, or icmp&lt;/td>
 &lt;/tr>
-&lt;tr id="hosts">
+&lt;tr id="hosts" style="scroll-margin-top: 6rem;">
 &lt;th>Host(s)&lt;/th>
 &lt;td>Filter to see traffic matching the specified &lt;strong>virtual&lt;/strong> IP address(es)&lt;/td>
 &lt;/tr>
-&lt;tr id="ports">
+&lt;tr id="ports" style="scroll-margin-top: 6rem;">
 &lt;th>Port(s)&lt;/th>
 &lt;td>Filter to see traffic matching the specified ports. This will match either destination or source port. For ICMP, this does not apply.&lt;/td>
 &lt;/tr>
-&lt;tr id="tcp-flags">
+&lt;tr id="tcp-flags" style="scroll-margin-top: 6rem;">
 &lt;th>TCP Flags&lt;/th>
 &lt;td>&lt;p>Only applies to TCP traffic. It can filter based on the following flags:&lt;/p>
 &lt;ul>
@@ -138,19 +138,19 @@ Sample Output
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="timestamp">
+&lt;tr id="timestamp" style="scroll-margin-top: 6rem;">
 &lt;th>Timestamp&lt;/th>
 &lt;td>The time the packet was seen&lt;/td>
 &lt;/tr>
-&lt;tr id="peer">
+&lt;tr id="peer" style="scroll-margin-top: 6rem;">
 &lt;th>Peer&lt;/th>
 &lt;td>The source or destination node of the packet&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-virtual-ipport">
+&lt;tr id="remote-virtual-ipport" style="scroll-margin-top: 6rem;">
 &lt;th>Remote Virtual IP:Port&lt;/th>
 &lt;td>The virtual IP address and port of the source or destination remote endpoint&lt;/td>
 &lt;/tr>
-&lt;tr id="direction-indicator">
+&lt;tr id="direction-indicator" style="scroll-margin-top: 6rem;">
 &lt;th>Direction Indicator&lt;/th>
 &lt;td>&lt;p>The symbols indicating if the packet was sent or received by the local node:&lt;/p>
 &lt;ul>
@@ -159,11 +159,11 @@ Sample Output
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="local-virtual-ipport">
+&lt;tr id="local-virtual-ipport" style="scroll-margin-top: 6rem;">
 &lt;th>Local Virtual IP:Port&lt;/th>
 &lt;td>The virtual IP address and port of the local endpoint&lt;/td>
 &lt;/tr>
-&lt;tr id="packet-header-information">
+&lt;tr id="packet-header-information" style="scroll-margin-top: 6rem;">
 &lt;th>Packet Header Information&lt;/th>
 &lt;td>&lt;p>Additional metadata about the packet such as:&lt;/p>
 &lt;ul>

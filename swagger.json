@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "6f1acc89-f318-41c3-9506-e9c52c12470d",
+                    "example": "fd5c8969-457f-4723-87c4-da07dcfa9de1",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1700076383,
+                    "example": 1700175883,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "2babdacc-ca8c-4bd2-b1ea-b48c61ba2db9",
+                    "example": "b353b26f-e3eb-4398-8fac-fc8fb199dbde",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "dbb5bbd6-2e8a-41a9-bfad-d1afbd338857",
+                    "example": "21fe9a9e-ac24-48e4-b324-10bcd04d9c94",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "dbb5bbd6-2e8a-41a9-bfad-d1afbd338857",
+                    "example": "21fe9a9e-ac24-48e4-b324-10bcd04d9c94",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "dbb5bbd6-2e8a-41a9-bfad-d1afbd338857",
+                    "example": "21fe9a9e-ac24-48e4-b324-10bcd04d9c94",
                     "type": "object"
                   }
                 },
@@ -723,7 +723,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ConnectorConfig"
             }
           }
         ],
@@ -1576,7 +1576,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ServiceConfig"
             }
           }
         ],
@@ -2281,6 +2281,7 @@
             "name": "config",
             "required": true,
             "schema": {
+              "$ref": "#/definitions/ConnectorConfig",
               "type": "object"
             }
           }
@@ -3122,7 +3123,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ServiceConfig"
             }
           }
         ],
@@ -11862,7 +11863,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "6f1acc89-f318-41c3-9506-e9c52c12470d",
+          "example": "fd5c8969-457f-4723-87c4-da07dcfa9de1",
           "type": "string"
         },
         "timestamp": {
@@ -11920,7 +11921,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "6f1acc89-f318-41c3-9506-e9c52c12470d",
+          "example": "fd5c8969-457f-4723-87c4-da07dcfa9de1",
           "type": "string"
         },
         "nodeName": {
@@ -12092,6 +12093,88 @@
       "title": "ClusterModel",
       "type": "object"
     },
+    "ConnectorConfig": {
+      "example": {
+        "connectors": [
+          {
+            "description": "My connector",
+            "enabled": true,
+            "id": "1e1d36b2-63b6-46bb-8334-a80a828afb5e",
+            "localIp": "100.100.64.1",
+            "maxmbps": 100,
+            "nic": "eth0",
+            "node": "node1",
+            "port": 1234,
+            "protocol": "tcp",
+            "service": "ssh"
+          }
+        ]
+      },
+      "properties": {
+        "connectors": {
+          "items": {
+            "properties": {
+              "description": {
+                "description": "connector description",
+                "type": "string"
+              },
+              "enabled": {
+                "description": "whether connector is enabled",
+                "type": "boolean"
+              },
+              "id": {
+                "description": "unique ID of connector",
+                "type": "string"
+              },
+              "localIp": {
+                "description": "local IP address",
+                "type": "string"
+              },
+              "maxmbps": {
+                "description": "maximum bandwidth in Mbps",
+                "type": "number"
+              },
+              "nic": {
+                "description": "network interface name",
+                "type": "string"
+              },
+              "node": {
+                "description": "node name",
+                "type": "string"
+              },
+              "port": {
+                "description": "connector port",
+                "type": "number"
+              },
+              "protocol": {
+                "description": "connector protocol",
+                "enum": [
+                  "udp",
+                  "tcp",
+                  "tftp",
+                  "ftp"
+                ],
+                "type": "string"
+              },
+              "required": [
+                "id",
+                "node",
+                "port",
+                "protocol",
+                "service"
+              ],
+              "service": {
+                "description": "service name",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Container": {
       "description": "Container",
       "properties": {
@@ -12123,7 +12206,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "ce67d233-e301-4283-b5cb-70a416185686",
+          "example": "1081a410-8ace-42c5-ad7c-e0932b20036b",
           "type": "string"
         },
         "image": {
@@ -12280,7 +12363,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "1d313fa9-351c-4c29-9a03-992c8a019e7a",
+          "example": "23cb509b-92df-4953-8f89-f10bc4cb7013",
           "type": "string"
         }
       },
@@ -12423,7 +12506,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "e49bf6b9-092c-4cd7-9b40-04781a82878c",
+          "example": "7738df67-4732-44c1-9c0d-c847d797d265",
           "type": "string"
         }
       },
@@ -12458,7 +12541,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "a321fc8f-1416-4115-bbef-9362e5438a1f",
+          "example": "0b454b80-b2f9-42e8-b19b-70d3266e7ea7",
           "type": "string"
         }
       },
@@ -12513,7 +12596,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "6aa7c3a3-4c6f-43b3-9014-df7cb0140b3a",
+          "example": "f651230b-7ba7-4884-95ef-49bb1297119a",
           "type": "string"
         }
       },
@@ -13395,7 +13478,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "6f1acc89-f318-41c3-9506-e9c52c12470d",
+          "example": "fd5c8969-457f-4723-87c4-da07dcfa9de1",
           "type": "string"
         }
       },
@@ -13710,6 +13793,77 @@
         }
       },
       "title": "SAML Config",
+      "type": "object"
+    },
+    "ServiceConfig": {
+      "example": {
+        "services": [
+          {
+            "description": "nginx",
+            "enabled": true,
+            "host": "127.0.0.1",
+            "id": "1e1d36b2-63b6-46bb-8334-a80a828afb5f",
+            "port": 80,
+            "protocol": "tcp"
+          }
+        ]
+      },
+      "properties": {
+        "connectors": {
+          "items": {
+            "properties": {
+              "description": {
+                "description": "connector description",
+                "type": "string"
+              },
+              "enabled": {
+                "description": "whether connector is enabled",
+                "type": "boolean"
+              },
+              "host": {
+                "description": "destination host name",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique ID of connector",
+                "type": "string"
+              },
+              "name": {
+                "description": "service name",
+                "type": "number"
+              },
+              "port": {
+                "description": "destination port",
+                "maximum": 65536,
+                "minimum": 1,
+                "type": "number"
+              },
+              "protocol": {
+                "description": "protocol",
+                "enum": [
+                  "udp",
+                  "tcp",
+                  "tftp",
+                  "ftp",
+                  "rdp",
+                  "vnc",
+                  "ssh"
+                ],
+                "type": "string"
+              },
+              "required": [
+                "id",
+                "host",
+                "port",
+                "protocol",
+                "name"
+              ]
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Tag": {
