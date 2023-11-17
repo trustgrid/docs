@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "ab8cd3cc-0783-4df0-b486-c46059fb47c7",
+                    "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1700190994,
+                    "example": 1700195488,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "3792e08c-51fc-4dc4-adb6-799d66f753c8",
+                    "example": "f6c2cb77-5f1a-4e55-8e76-14943d601d98",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "bca5d389-fb5a-4df0-b27b-f82ac66adeda",
+                    "example": "69d9f714-f1d3-4243-bcbd-8d0b76fa6baf",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "bca5d389-fb5a-4df0-b27b-f82ac66adeda",
+                    "example": "69d9f714-f1d3-4243-bcbd-8d0b76fa6baf",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "bca5d389-fb5a-4df0-b27b-f82ac66adeda",
+                    "example": "69d9f714-f1d3-4243-bcbd-8d0b76fa6baf",
                     "type": "object"
                   }
                 },
@@ -3279,6 +3279,25 @@
                   "description": "Certificate",
                   "example": "mygateway.trustgrid.io",
                   "type": "string"
+                },
+                "clients": {
+                  "items": {
+                    "description": "Gateway client",
+                    "properties": {
+                      "enabled": {
+                        "description": "Client is allowed to connect",
+                        "example": true,
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "description": "Node or cluster name",
+                        "example": "mynode",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
                 },
                 "connectToPublic": {
                   "description": "Connect to public",
@@ -12023,7 +12042,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "ab8cd3cc-0783-4df0-b486-c46059fb47c7",
+          "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
           "type": "string"
         },
         "timestamp": {
@@ -12081,7 +12100,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "ab8cd3cc-0783-4df0-b486-c46059fb47c7",
+          "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
           "type": "string"
         },
         "nodeName": {
@@ -12168,8 +12187,8 @@
         }
       },
       "required": [
-        "action",
-        "name"
+        "name",
+        "action"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -12366,7 +12385,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "505bda1d-3e5c-4db6-ab23-9600e584f011",
+          "example": "f6e2d043-2ac0-4a4a-916a-27457cb00d22",
           "type": "string"
         },
         "image": {
@@ -12523,7 +12542,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "864e1b11-0694-44f2-b330-2c7c74472675",
+          "example": "798ef486-f5a3-4db2-b911-102927b0a592",
           "type": "string"
         }
       },
@@ -12666,7 +12685,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "9d0a82c6-d35a-474b-baa7-074c5bdd66eb",
+          "example": "c8ba02ab-bdae-4467-9982-26f3ccd1c057",
           "type": "string"
         }
       },
@@ -12701,7 +12720,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "75a97644-4be7-472b-bac8-ccde0219c154",
+          "example": "b7fbf77b-6620-40d3-b780-a95dbd7fba54",
           "type": "string"
         }
       },
@@ -12756,7 +12775,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "3ec79c0b-be10-432a-8919-c32f28633ac1",
+          "example": "b3661187-f728-4232-a3f1-d3aa8728ebcb",
           "type": "string"
         }
       },
@@ -13638,7 +13657,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "ab8cd3cc-0783-4df0-b486-c46059fb47c7",
+          "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
           "type": "string"
         }
       },
