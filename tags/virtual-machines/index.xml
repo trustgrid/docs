@@ -33,11 +33,11 @@ The destination where the directory will be created can be changed by selecting 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="parent-directory" style="scroll-margin-top: 6rem;">
+&lt;tr id="parent-directory" style="scroll-margin-top: 10rem;">
 &lt;th>Parent Directory&lt;/th>
 &lt;td>The data store location where this directory will created.&lt;/td>
 &lt;/tr>
-&lt;tr id="name" style="scroll-margin-top: 6rem;">
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the directory to create.&lt;/td>
 &lt;/tr>
@@ -65,11 +65,11 @@ The destination where the file will be stored can be changed by selecting a part
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="s3-uri" style="scroll-margin-top: 6rem;">
+&lt;tr id="s3-uri" style="scroll-margin-top: 10rem;">
 &lt;th>S3 URI&lt;/th>
 &lt;td>The S3 URI for the location of the file to transfer.&lt;/td>
 &lt;/tr>
-&lt;tr id="datastore-destination" style="scroll-margin-top: 6rem;">
+&lt;tr id="datastore-destination" style="scroll-margin-top: 10rem;">
 &lt;th>Datastore Destination&lt;/th>
 &lt;td>The data store location where the file will be transferred to.&lt;/td>
 &lt;/tr>
@@ -88,15 +88,15 @@ The destination where the file will be stored can be changed by selecting a part
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="max-concurrent-requests" style="scroll-margin-top: 6rem;">
+&lt;tr id="max-concurrent-requests" style="scroll-margin-top: 10rem;">
 &lt;th>Max Concurrent Requests&lt;/th>
 &lt;td>The maximum number of concurrent requests allowed.&lt;/td>
 &lt;/tr>
-&lt;tr id="max-bandwidth" style="scroll-margin-top: 6rem;">
+&lt;tr id="max-bandwidth" style="scroll-margin-top: 10rem;">
 &lt;th>Max Bandwidth&lt;/th>
 &lt;td>The maximum bandwidth that will be consumed for uploading and downloading data to and from Amazon S3.&lt;/td>
 &lt;/tr>
-&lt;tr id="bandwidth-rate" style="scroll-margin-top: 6rem;">
+&lt;tr id="bandwidth-rate" style="scroll-margin-top: 10rem;">
 &lt;th>Bandwidth Rate&lt;/th>
 &lt;td>Rate associated to the Max Bandwidth specified. Supported values are Kbps, Mbps, and Gbps.&lt;/td>
 &lt;/tr>
@@ -118,19 +118,19 @@ In general, it is recommended to first use Max Concurrent Requests to lower tran
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="http-uri" style="scroll-margin-top: 6rem;">
+&lt;tr id="http-uri" style="scroll-margin-top: 10rem;">
 &lt;th>HTTP URI&lt;/th>
 &lt;td>The HTTP URI for the location of the file to transfer.&lt;/td>
 &lt;/tr>
-&lt;tr id="datastore-file-name" style="scroll-margin-top: 6rem;">
+&lt;tr id="datastore-file-name" style="scroll-margin-top: 10rem;">
 &lt;th>Datastore File Name&lt;/th>
 &lt;td>The transferred file will be saved with this name under the datastore destination.&lt;/td>
 &lt;/tr>
-&lt;tr id="hash-optional" style="scroll-margin-top: 6rem;">
+&lt;tr id="hash-optional" style="scroll-margin-top: 10rem;">
 &lt;th>Hash (Optional)&lt;/th>
 &lt;td>Optional fields used to validate the integrity of the transferred file.&lt;/td>
 &lt;/tr>
-&lt;tr id="hashing-algorithm" style="scroll-margin-top: 6rem;">
+&lt;tr id="hashing-algorithm" style="scroll-margin-top: 10rem;">
 &lt;th>Hashing Algorithm&lt;/th>
 &lt;td>If a hash is specified, this specifies the hashing algorithm used during validation of the file.&lt;/td>
 &lt;/tr>
@@ -156,11 +156,11 @@ A file needs to be selected first before the File Upload button gets enabled on 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="s3-bucket-uri" style="scroll-margin-top: 6rem;">
+&lt;tr id="s3-bucket-uri" style="scroll-margin-top: 10rem;">
 &lt;th>S3 Bucket URI&lt;/th>
 &lt;td>The S3 bucket URI for the location where the file will be uploaded.&lt;/td>
 &lt;/tr>
-&lt;tr id="datastore-file" style="scroll-margin-top: 6rem;">
+&lt;tr id="datastore-file" style="scroll-margin-top: 10rem;">
 &lt;th>Datastore File&lt;/th>
 &lt;td>The data store file to upload.&lt;/td>
 &lt;/tr>
@@ -182,15 +182,15 @@ For configuration of AWS authentication and Bandwidth Throttling refer to &lt;a 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="http-uri" style="scroll-margin-top: 6rem;">
+&lt;tr id="http-uri" style="scroll-margin-top: 10rem;">
 &lt;th>HTTP URI&lt;/th>
 &lt;td>The HTTP URI for the location where the file will be uploaded.&lt;/td>
 &lt;/tr>
-&lt;tr id="datastore-file" style="scroll-margin-top: 6rem;">
+&lt;tr id="datastore-file" style="scroll-margin-top: 10rem;">
 &lt;th>Datastore File&lt;/th>
 &lt;td>The data store file to upload.&lt;/td>
 &lt;/tr>
-&lt;tr id="use-multipart" style="scroll-margin-top: 6rem;">
+&lt;tr id="use-multipart" style="scroll-margin-top: 10rem;">
 &lt;th>Use Multipart&lt;/th>
 &lt;td>Used to denote if multipart should be used when uploading the file. True for use multipart and false otherwise.&lt;/td>
 &lt;/tr>

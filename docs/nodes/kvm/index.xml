@@ -13,19 +13,19 @@ The &lt;code>Downloaded&lt;/code> column shows whether or not an image is presen
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="display-name" style="scroll-margin-top: 6rem;">
+&lt;tr id="display-name" style="scroll-margin-top: 10rem;">
 &lt;th>Display Name&lt;/th>
 &lt;td>Friendly name associated to the image.&lt;/td>
 &lt;/tr>
-&lt;tr id="description" style="scroll-margin-top: 6rem;">
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Description for the image.&lt;/td>
 &lt;/tr>
-&lt;tr id="image-file" style="scroll-margin-top: 6rem;">
+&lt;tr id="image-file" style="scroll-margin-top: 10rem;">
 &lt;th>Image File&lt;/th>
 &lt;td>Image file selected from the node data store.&lt;/td>
 &lt;/tr>
-&lt;tr id="operating-system" style="scroll-margin-top: 6rem;">
+&lt;tr id="operating-system" style="scroll-margin-top: 10rem;">
 &lt;th>Operating System&lt;/th>
 &lt;td>Operating System for the image. This is rather important to optimize the virtual machine configuration.&lt;/td>
 &lt;/tr>
@@ -52,11 +52,11 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name" style="scroll-margin-top: 6rem;">
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
 &lt;th>Name&lt;/th>
 &lt;td>Name for the volume.&lt;/td>
 &lt;/tr>
-&lt;tr id="device-type" style="scroll-margin-top: 6rem;">
+&lt;tr id="device-type" style="scroll-margin-top: 10rem;">
 &lt;th>Device Type&lt;/th>
 &lt;td>&lt;p>Virtual machine type.&lt;/p>
 &lt;ol>
@@ -65,7 +65,7 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="device-bus" style="scroll-margin-top: 6rem;">
+&lt;tr id="device-bus" style="scroll-margin-top: 10rem;">
 &lt;th>Device Bus&lt;/th>
 &lt;td>&lt;p>Bus for the device.&lt;/p>
 &lt;ol>
@@ -76,11 +76,11 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="size-only-for-disk" style="scroll-margin-top: 6rem;">
+&lt;tr id="size-only-for-disk" style="scroll-margin-top: 10rem;">
 &lt;th>Size (Only for Disk)&lt;/th>
 &lt;td>Size in GB, MB, KB, or Bytes for the disk.&lt;/td>
 &lt;/tr>
-&lt;tr id="disk-provisioning-only-for-disk" style="scroll-margin-top: 6rem;">
+&lt;tr id="disk-provisioning-only-for-disk" style="scroll-margin-top: 10rem;">
 &lt;th>Disk Provisioning (Only for Disk)&lt;/th>
 &lt;td>&lt;p>Allocation method used for provisioning a disk.&lt;/p>
 &lt;ol>
@@ -90,11 +90,11 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;/ol>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="encrypted-only-for-disk" style="scroll-margin-top: 6rem;">
+&lt;tr id="encrypted-only-for-disk" style="scroll-margin-top: 10rem;">
 &lt;th>Encrypted (Only for Disk)&lt;/th>
 &lt;td>True if disk should be encrypted, false otherwise.&lt;/td>
 &lt;/tr>
-&lt;tr id="iso-file-only-for-cd-rom" style="scroll-margin-top: 6rem;">
+&lt;tr id="iso-file-only-for-cd-rom" style="scroll-margin-top: 10rem;">
 &lt;th>ISO File (Only for CD-ROM)&lt;/th>
 &lt;td>ISO file selected from the node data store.&lt;/td>
 &lt;/tr>

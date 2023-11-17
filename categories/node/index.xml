@@ -18,7 +18,7 @@ Add Connector dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
+&lt;tr id="protocol" style="scroll-margin-top: 10rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>&lt;p>The protocol that the listener for the connector will use. Options are TCP, UDP, FTP, and TFTP.&lt;/p>
 &lt;blockquote>
@@ -26,27 +26,27 @@ Add Connector dialogue
 &lt;/blockquote>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="listen-interface" style="scroll-margin-top: 6rem;">
+&lt;tr id="listen-interface" style="scroll-margin-top: 10rem;">
 &lt;th>Listen Interface&lt;/th>
 &lt;td>The interface that you want the connector to listen on. If set to &amp;ldquo;All&amp;rdquo;, the connector will listen on 0.0.0.0.&lt;/td>
 &lt;/tr>
-&lt;tr id="listen-port" style="scroll-margin-top: 6rem;">
+&lt;tr id="listen-port" style="scroll-margin-top: 10rem;">
 &lt;th>Listen Port&lt;/th>
 &lt;td>The port that you want the connector to listen on.&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-node" style="scroll-margin-top: 6rem;">
+&lt;tr id="remote-node" style="scroll-margin-top: 10rem;">
 &lt;th>Remote Node&lt;/th>
 &lt;td>The remote node or cluster that traffic will be proxied to.&lt;/td>
 &lt;/tr>
-&lt;tr id="remote-service" style="scroll-margin-top: 6rem;">
+&lt;tr id="remote-service" style="scroll-margin-top: 10rem;">
 &lt;th>Remote Service&lt;/th>
 &lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
 &lt;/tr>
-&lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 6rem;">
+&lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 10rem;">
 &lt;th>Rate Limit (Mb/s)&lt;/th>
 &lt;td>The maximum amount of throughput that will be allowed to traverse the tunnel when connecting to the connector. This can be used to prevent saturating the connection at either the local or remote sites.&lt;/td>
 &lt;/tr>
-&lt;tr id="sniff-traffic" style="scroll-margin-top: 6rem;">
+&lt;tr id="sniff-traffic" style="scroll-margin-top: 10rem;">
 &lt;th>Sniff Traffic&lt;/th>
 &lt;td>&lt;p>Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the &lt;a href="#listen-port">listening port&lt;/a>.&lt;/p>
 &lt;figure class="centered-image">
@@ -102,11 +102,11 @@ Add Service dialogue
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="enabled" style="scroll-margin-top: 6rem;">
+&lt;tr id="enabled" style="scroll-margin-top: 10rem;">
 &lt;th>Enabled&lt;/th>
 &lt;td>Values: Yes or No. Allows each service to be individually disabled if desired&amp;quot;&lt;/td>
 &lt;/tr>
-&lt;tr id="protocol" style="scroll-margin-top: 6rem;">
+&lt;tr id="protocol" style="scroll-margin-top: 10rem;">
 &lt;th>Protocol&lt;/th>
 &lt;td>&lt;p>The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, along with pre-defined default ports for RDP, SSH, and VNC.&lt;/p>
 &lt;blockquote>
@@ -114,23 +114,23 @@ Add Service dialogue
 &lt;/blockquote>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="service-name" style="scroll-margin-top: 6rem;">
+&lt;tr id="service-name" style="scroll-margin-top: 10rem;">
 &lt;th>Service Name&lt;/th>
 &lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
 &lt;/tr>
-&lt;tr id="host" style="scroll-margin-top: 6rem;">
+&lt;tr id="host" style="scroll-margin-top: 10rem;">
 &lt;th>Host&lt;/th>
 &lt;td>The IP or DNS address of the host to connect to.&lt;/td>
 &lt;/tr>
-&lt;tr id="port" style="scroll-margin-top: 6rem;">
+&lt;tr id="port" style="scroll-margin-top: 10rem;">
 &lt;th>Port&lt;/th>
 &lt;td>The port to connect to on the host.&lt;/td>
 &lt;/tr>
-&lt;tr id="description" style="scroll-margin-top: 6rem;">
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
 &lt;th>Description&lt;/th>
 &lt;td>(Optional) User friendly description of the service.&lt;/td>
 &lt;/tr>
-&lt;tr id="test-connectivity" style="scroll-margin-top: 6rem;">
+&lt;tr id="test-connectivity" style="scroll-margin-top: 10rem;">
 &lt;th>Test Connectivity&lt;/th>
 &lt;td>&lt;p>Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.&lt;/p>
 &lt;figure class="centered-image">
@@ -184,11 +184,11 @@ More specific rules should always be implemented above less specific rules. Eg a
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="number" style="scroll-margin-top: 6rem;">
+&lt;tr id="number" style="scroll-margin-top: 10rem;">
 &lt;th>Number&lt;/th>
 &lt;td>The line number the rule is applied to. Rules are matched in numerical order.&lt;/td>
 &lt;/tr>
-&lt;tr id="action" style="scroll-margin-top: 6rem;">
+&lt;tr id="action" style="scroll-margin-top: 10rem;">
 &lt;th>Action&lt;/th>
 &lt;td>&lt;p>All traffic rules have an action that is applied to the associated packet.&lt;/p>
 &lt;ul>
@@ -202,43 +202,43 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="ingress-interface" style="scroll-margin-top: 6rem;">
+&lt;tr id="ingress-interface" style="scroll-margin-top: 10rem;">
 &lt;th>Ingress Interface&lt;/th>
 &lt;td>The traffic rule is applied to packets that ingress on this interface&lt;/td>
 &lt;/tr>
-&lt;tr id="forward-interface" style="scroll-margin-top: 6rem;">
+&lt;tr id="forward-interface" style="scroll-margin-top: 10rem;">
 &lt;th>Forward Interface&lt;/th>
 &lt;td>Packets are forwarded out this interface once the rule is applied&lt;/td>
 &lt;/tr>
-&lt;tr id="protcol" style="scroll-margin-top: 6rem;">
+&lt;tr id="protcol" style="scroll-margin-top: 10rem;">
 &lt;th>Protcol&lt;/th>
 &lt;td>The protocol that the rule should apply to. All, ICMP, TCP or UDP&lt;/td>
 &lt;/tr>
-&lt;tr id="forward-vrf" style="scroll-margin-top: 6rem;">
+&lt;tr id="forward-vrf" style="scroll-margin-top: 10rem;">
 &lt;th>Forward VRF&lt;/th>
 &lt;td>Packets are forwarded into another VRF that is associated on the node. Only configureable when a forward action is selected.&lt;/td>
 &lt;/tr>
-&lt;tr id="source-cidr" style="scroll-margin-top: 6rem;">
+&lt;tr id="source-cidr" style="scroll-margin-top: 10rem;">
 &lt;th>Source CIDR&lt;/th>
 &lt;td>The source network the rule should apply to&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 10rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>The destination network the rule should apply to&lt;/td>
 &lt;/tr>
-&lt;tr id="masquerade" style="scroll-margin-top: 6rem;">
+&lt;tr id="masquerade" style="scroll-margin-top: 10rem;">
 &lt;th>Masquerade&lt;/th>
 &lt;td>Translate and source all packets from the nodes interface address when enabled&lt;/td>
 &lt;/tr>
-&lt;tr id="dnat-destination" style="scroll-margin-top: 6rem;">
+&lt;tr id="dnat-destination" style="scroll-margin-top: 10rem;">
 &lt;th>DNAT Destination&lt;/th>
 &lt;td>Forward all traffic to the DNAT destination IP/Port. For example in order to forward all http traffic through a proxy&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-mac" style="scroll-margin-top: 6rem;">
+&lt;tr id="destination-mac" style="scroll-margin-top: 10rem;">
 &lt;th>Destination Mac&lt;/th>
 &lt;td>The destination mac address defined overwrites the source mac address of the packet. Necessary only for some container deployments such as Snort inpsecting traffic.&lt;/td>
 &lt;/tr>
-&lt;tr id="ports" style="scroll-margin-top: 6rem;">
+&lt;tr id="ports" style="scroll-margin-top: 10rem;">
 &lt;th>Ports&lt;/th>
 &lt;td>Used to define a port range when creating a traffic rule&lt;/td>
 &lt;/tr>
@@ -340,31 +340,31 @@ The tunnel interface is associated to a vrf which is used to define and control 
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name" style="scroll-margin-top: 6rem;">
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the WireGuard tunnel interface created on the Trustgrid node or cluster.&lt;/td>
 &lt;/tr>
-&lt;tr id="description" style="scroll-margin-top: 6rem;">
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
 &lt;th>Description&lt;/th>
 &lt;td>Optional field used to document what clients are utilizing the tunnel.&lt;/td>
 &lt;/tr>
-&lt;tr id="interface-ip" style="scroll-margin-top: 6rem;">
+&lt;tr id="interface-ip" style="scroll-margin-top: 10rem;">
 &lt;th>Interface IP&lt;/th>
 &lt;td>The IP address in CIDR notation that will be assigned to the node&amp;rsquo;s WireGuard tunnel interface.&lt;/td>
 &lt;/tr>
-&lt;tr id="public-key" style="scroll-margin-top: 6rem;">
+&lt;tr id="public-key" style="scroll-margin-top: 10rem;">
 &lt;th>Public Key&lt;/th>
 &lt;td>The public key of the remote WireGuard client.&lt;/td>
 &lt;/tr>
-&lt;tr id="pre-shared-key" style="scroll-margin-top: 6rem;">
+&lt;tr id="pre-shared-key" style="scroll-margin-top: 10rem;">
 &lt;th>Pre-shared Key&lt;/th>
 &lt;td>Optional 256 bit to provide an additonal level of security.&lt;/td>
 &lt;/tr>
-&lt;tr id="vrf" style="scroll-margin-top: 6rem;">
+&lt;tr id="vrf" style="scroll-margin-top: 10rem;">
 &lt;th>VRF&lt;/th>
 &lt;td>The Virtual Routing and Fowarding (VRF) table the WireGuard tunnel will be attached to&lt;/td>
 &lt;/tr>
-&lt;tr id="mtu" style="scroll-margin-top: 6rem;">
+&lt;tr id="mtu" style="scroll-margin-top: 10rem;">
 &lt;th>MTU&lt;/th>
 &lt;td>The maximum transmission unit (MTU) of the WireGuard tunnel interface. Defaults of 1430 or lower recommended.&lt;/td>
 &lt;/tr>

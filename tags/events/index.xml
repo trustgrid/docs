@@ -190,11 +190,11 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="generated-time" style="scroll-margin-top: 6rem;">
+&lt;tr id="generated-time" style="scroll-margin-top: 10rem;">
 &lt;th>Generated Time&lt;/th>
 &lt;td>The time the event was created.&lt;/td>
 &lt;/tr>
-&lt;tr id="received-time" style="scroll-margin-top: 6rem;">
+&lt;tr id="received-time" style="scroll-margin-top: 10rem;">
 &lt;th>Received Time&lt;/th>
 &lt;td>The time the event was received by the control plane. This can be later than the generated time in the event of a network disruption, for eample.&lt;/td>
 &lt;/tr>

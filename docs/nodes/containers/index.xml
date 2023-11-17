@@ -14,15 +14,15 @@
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="name" style="scroll-margin-top: 6rem;">
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
 &lt;th>Name&lt;/th>
 &lt;td>The name of the volume.&lt;/td>
 &lt;/tr>
-&lt;tr id="encrypted" style="scroll-margin-top: 6rem;">
+&lt;tr id="encrypted" style="scroll-margin-top: 10rem;">
 &lt;th>Encrypted&lt;/th>
 &lt;td>Whether or not to encrypt the volume. Encrypted volumes The type of volume.&lt;/td>
 &lt;/tr>
-&lt;tr id="location" style="scroll-margin-top: 6rem;">
+&lt;tr id="location" style="scroll-margin-top: 10rem;">
 &lt;th>Location&lt;/th>
 &lt;td>Optionally, specify a location in the node &lt;a href="https://docs.trustgrid.io/docs/nodes/datastore/">data store&lt;/a>.&lt;/td>
 &lt;/tr>

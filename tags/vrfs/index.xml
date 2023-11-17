@@ -33,11 +33,11 @@ More specific rules should always be implemented above less specific rules. Eg a
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="number" style="scroll-margin-top: 6rem;">
+&lt;tr id="number" style="scroll-margin-top: 10rem;">
 &lt;th>Number&lt;/th>
 &lt;td>The line number the rule is applied to. Rules are matched in numerical order.&lt;/td>
 &lt;/tr>
-&lt;tr id="action" style="scroll-margin-top: 6rem;">
+&lt;tr id="action" style="scroll-margin-top: 10rem;">
 &lt;th>Action&lt;/th>
 &lt;td>&lt;p>All traffic rules have an action that is applied to the associated packet.&lt;/p>
 &lt;ul>
@@ -51,43 +51,43 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="ingress-interface" style="scroll-margin-top: 6rem;">
+&lt;tr id="ingress-interface" style="scroll-margin-top: 10rem;">
 &lt;th>Ingress Interface&lt;/th>
 &lt;td>The traffic rule is applied to packets that ingress on this interface&lt;/td>
 &lt;/tr>
-&lt;tr id="forward-interface" style="scroll-margin-top: 6rem;">
+&lt;tr id="forward-interface" style="scroll-margin-top: 10rem;">
 &lt;th>Forward Interface&lt;/th>
 &lt;td>Packets are forwarded out this interface once the rule is applied&lt;/td>
 &lt;/tr>
-&lt;tr id="protcol" style="scroll-margin-top: 6rem;">
+&lt;tr id="protcol" style="scroll-margin-top: 10rem;">
 &lt;th>Protcol&lt;/th>
 &lt;td>The protocol that the rule should apply to. All, ICMP, TCP or UDP&lt;/td>
 &lt;/tr>
-&lt;tr id="forward-vrf" style="scroll-margin-top: 6rem;">
+&lt;tr id="forward-vrf" style="scroll-margin-top: 10rem;">
 &lt;th>Forward VRF&lt;/th>
 &lt;td>Packets are forwarded into another VRF that is associated on the node. Only configureable when a forward action is selected.&lt;/td>
 &lt;/tr>
-&lt;tr id="source-cidr" style="scroll-margin-top: 6rem;">
+&lt;tr id="source-cidr" style="scroll-margin-top: 10rem;">
 &lt;th>Source CIDR&lt;/th>
 &lt;td>The source network the rule should apply to&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-cidr" style="scroll-margin-top: 6rem;">
+&lt;tr id="destination-cidr" style="scroll-margin-top: 10rem;">
 &lt;th>Destination CIDR&lt;/th>
 &lt;td>The destination network the rule should apply to&lt;/td>
 &lt;/tr>
-&lt;tr id="masquerade" style="scroll-margin-top: 6rem;">
+&lt;tr id="masquerade" style="scroll-margin-top: 10rem;">
 &lt;th>Masquerade&lt;/th>
 &lt;td>Translate and source all packets from the nodes interface address when enabled&lt;/td>
 &lt;/tr>
-&lt;tr id="dnat-destination" style="scroll-margin-top: 6rem;">
+&lt;tr id="dnat-destination" style="scroll-margin-top: 10rem;">
 &lt;th>DNAT Destination&lt;/th>
 &lt;td>Forward all traffic to the DNAT destination IP/Port. For example in order to forward all http traffic through a proxy&lt;/td>
 &lt;/tr>
-&lt;tr id="destination-mac" style="scroll-margin-top: 6rem;">
+&lt;tr id="destination-mac" style="scroll-margin-top: 10rem;">
 &lt;th>Destination Mac&lt;/th>
 &lt;td>The destination mac address defined overwrites the source mac address of the packet. Necessary only for some container deployments such as Snort inpsecting traffic.&lt;/td>
 &lt;/tr>
-&lt;tr id="ports" style="scroll-margin-top: 6rem;">
+&lt;tr id="ports" style="scroll-margin-top: 10rem;">
 &lt;th>Ports&lt;/th>
 &lt;td>Used to define a port range when creating a traffic rule&lt;/td>
 &lt;/tr>

@@ -240,15 +240,15 @@ ii. If the browser says it cannot connect this indicates a firewall or routing i
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
-&lt;tr id="control-plane-down" style="scroll-margin-top: 6rem;">
+&lt;tr id="control-plane-down" style="scroll-margin-top: 10rem;">
 &lt;th>Control Plane Down&lt;/th>
 &lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears offline from within the Trustgrid portal. This indicates that the &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/control-plane-disconnect/">node is disconnected&lt;/a> from the control plane either because it has shutdown or has been unable to send a heartbeat notification to Trustgrid within the past 10 minutes.&lt;/td>
 &lt;/tr>
-&lt;tr id="data-plane-down" style="scroll-margin-top: 6rem;">
+&lt;tr id="data-plane-down" style="scroll-margin-top: 10rem;">
 &lt;th>Data Plane Down&lt;/th>
 &lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears online from within the portal but reports it is unable to connect to one or more gateway nodes. This can be indicated by the Data Plane Status indicator when viewing the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> in the portal, or by receiving a “Gateway Connectivity Health Check” failure &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> notification. Both of these only work if the Control Plane is currently working.&lt;/td>
 &lt;/tr>
-&lt;tr id="both-control-and-data-plane-down" style="scroll-margin-top: 6rem;">
+&lt;tr id="both-control-and-data-plane-down" style="scroll-margin-top: 10rem;">
 &lt;th>Both Control and Data Plane Down&lt;/th>
 &lt;td>In this situation the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> appears down in the Trustgrid Portal and users/applications are unable to reach services across the data plane between the Gateway and Edge sites. This is the most common scenario. While the Data Plane is most critical for the services provided across the device, first priority should be restoring the Control Plane connection so that additional troubleshooting tools are available. Often this process also uncovers the reason the data plane is down.&lt;/td>
 &lt;/tr>
