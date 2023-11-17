@@ -337,12 +337,21 @@ func addV2DomainNetworkAPI(api *s.API) {
 		Prop("dnsConfig", s.NewArraySchema(dnsConfig)).
 		Ref()
 
+	portForwarding := api.Model("Port Forwarding").
+		Prop("uid", s.NewSchema("", s.S_String)).
+		Prop("ip", s.NewSchema("", s.S_String)).
+		Prop("port", s.NewSchema("", s.S_Number)).
+		Prop("nodeName", s.NewSchema("", s.S_String)).
+		Prop("serviceName", s.NewSchema("", s.S_String)).
+		Ref()
+
 	addAccessPolicyAPI(accessPolicy, p)
 	addNetworkGroupAPI(group, groupMembership, p)
 	addNetworkAuthGroupAPI(authGroup, authGroupMembership, p)
 	addNetworkObjectAPI(networkObject, p)
 	addNetworkDNSAPI(dnsConfig, dnsZone, dnsRecord, p)
 	addNetworkRouteAPI(route, p)
+	addPortForwardingAPI(portForwarding, p)
 	addDomainChangeManagementAPI(inventory, p)
 }
 
@@ -371,6 +380,31 @@ func addDomainChangeManagementAPI(inventory *s.Schema, p *s.Path) {
 		Param(s.NewParam("digest", "Digest", s.P_Body, s.P_Schema(digest), s.P_Required)).
 		Response(200, "OK", nil).
 		Response(422, "Validation failed", validationFailure)
+}
+
+func addPortForwardingAPI(pf *s.Schema, p *s.Path) {
+	r := p.Path("/port-forwarding")
+	r.Get("List a network's port forwardings").
+		Permission(vnetReadPerm).
+		Response(200, "OK", s.NewArraySchema(pf))
+	r.Post("Create a port forwarding").
+		Permission(vnetModifyPerm).
+		Param(s.NewParam("port-forwarding", "Port forwarding configuration", s.P_Body, s.P_Schema(pf), s.P_Required)).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+
+	r = r.PathParam(s.NewParam("portForwardingID", "Port forwarding ID", s.P_Path, s.P_Required))
+	r.Put("Update a port forwarding").
+		Permission(vnetModifyPerm).
+		Param(s.NewParam("port-forwarding", "Port forwarding configuration", s.P_Body, s.P_Schema(pf), s.P_Required)).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+	r.Delete("Delete a port forwarding").
+		Permission(vnetModifyPerm).
+		Response(200, "OK", nil)
+	r.Delete("Get a port forwarding").
+		Permission(vnetReadPerm).
+		Response(200, "OK", pf)
 }
 
 func addNetworkRouteAPI(route *s.Schema, p *s.Path) {
