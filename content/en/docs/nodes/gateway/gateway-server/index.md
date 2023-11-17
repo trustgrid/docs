@@ -27,7 +27,7 @@ Either `Enabled` or `Disabled`. This determines if the main TLS Gateway server w
 {{</field >}}
 
 {{<field "UDP Enabled" >}}
-This settings can be configured on both the [gateway server](../gateway-server) and [gateway client](../gateway-client)sub-panel. 
+This settings can be configured on both the [gateway server](../gateway-server) and [gateway client](../gateway-client) sub-panel. 
 - On a server, this will determine if the server will listen for UDP tunnel connections on the configured [UDP port](#udp-port).
 - On a client, this will determine if the client will attempt to build UDP tunnels to any server with UDP enabled.
 

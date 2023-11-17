@@ -1,6 +1,6 @@
 {{ $header := .Get 0 }}
 {{ $id := $header | urlize }}
-<tr id="{{ $id }}" style="scroll-margin-top: 6rem;">
+<tr id="{{ $id }}" style="scroll-margin-top: 10rem;">
     <th>{{ $header }}</th>
     <td>{{ .Inner | markdownify }}</td>
 </tr>
