@@ -849,6 +849,10 @@ func addNodeDatastoreAPI(api *s.API) {
 func addNodeConfigAPIs(api *s.API) {
 	p := api.Path("/node").PathParam(params.nodeID).Produces("application/json").Consumes("application/json").Tag("Node")
 
+	client := s.NewSchema("Gateway client").
+		Prop("enabled", s.NewSchema("Client is allowed to connect", s.S_Boolean, s.S_Example(true))).
+		Prop("name", s.NewSchema("Node or cluster name", s.S_String, s.S_Example("mynode")))
+
 	gatewayConfig := s.NewSchema("Gateway config").
 		Prop("enabled", s.NewSchema("Enable gateway plugin", s.S_Boolean, s.S_Required)).
 		Prop("host", s.NewSchema("Hostname of the gateway", s.S_String, s.S_Example("mygateway.trustgrid.io"))).
@@ -860,6 +864,7 @@ func addNodeConfigAPIs(api *s.API) {
 		Prop("maxClientWriteMbps", s.NewSchema("Max egress MBPS", s.S_Number, s.S_Example(1000))).
 		Prop("udpEnabled", s.NewSchema("Enable UDP", s.S_Boolean)).
 		Prop("monitorHops", s.NewSchema("Monitor hops", s.S_Boolean)).
+		Prop("clients", s.NewArraySchema(client)).
 		Prop("udpPort", s.NewSchema("UDP port", s.S_Number, s.S_Example(8081)))
 
 	p.Path("/gateway").Put("Update gateway configuration").
