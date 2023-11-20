@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
+                    "example": "1e281e0b-fbf5-403c-84f8-d22d3b135d40",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1700195488,
+                    "example": 1700509964,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "f6c2cb77-5f1a-4e55-8e76-14943d601d98",
+                    "example": "b97eda30-e280-480d-88cb-36e24821cee6",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "69d9f714-f1d3-4243-bcbd-8d0b76fa6baf",
+                    "example": "c732a13f-38b5-4e87-922f-89125419b1fe",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "69d9f714-f1d3-4243-bcbd-8d0b76fa6baf",
+                    "example": "c732a13f-38b5-4e87-922f-89125419b1fe",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "69d9f714-f1d3-4243-bcbd-8d0b76fa6baf",
+                    "example": "c732a13f-38b5-4e87-922f-89125419b1fe",
                     "type": "object"
                   }
                 },
@@ -11850,6 +11850,157 @@
         ]
       }
     },
+    "/v2/policy": {
+      "get": {
+        "description": "List policies\n\n---\n\nRequires `permissions::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Policy"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a policy\n\n---\n\nRequires `permissions::modify` permission.",
+        "parameters": [
+          {
+            "description": "Policy",
+            "in": "body",
+            "name": "policy",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      }
+    },
+    "/v2/policy/{name}": {
+      "delete": {
+        "description": "Delete a policy\n\n---\n\nRequires `permissions::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      },
+      "get": {
+        "description": "Get a policy\n\n---\n\nRequires `permissions::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Policy name",
+          "in": "path",
+          "name": "name",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a policy\n\n---\n\nRequires `permissions::modify` permission.",
+        "parameters": [
+          {
+            "description": "Policy",
+            "in": "body",
+            "name": "policy",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      }
+    },
     "/v2/user/{email}/groups": {
       "parameters": [
         {
@@ -12042,7 +12193,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
+          "example": "1e281e0b-fbf5-403c-84f8-d22d3b135d40",
           "type": "string"
         },
         "timestamp": {
@@ -12100,7 +12251,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
+          "example": "1e281e0b-fbf5-403c-84f8-d22d3b135d40",
           "type": "string"
         },
         "nodeName": {
@@ -12187,8 +12338,8 @@
         }
       },
       "required": [
-        "name",
-        "action"
+        "action",
+        "name"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -12385,7 +12536,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "f6e2d043-2ac0-4a4a-916a-27457cb00d22",
+          "example": "f2910c5a-dddf-4dc4-8f38-21df993329fe",
           "type": "string"
         },
         "image": {
@@ -12542,7 +12693,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "798ef486-f5a3-4db2-b911-102927b0a592",
+          "example": "2e2ae53d-afe0-43ed-859b-12c3d764afaa",
           "type": "string"
         }
       },
@@ -12685,7 +12836,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "c8ba02ab-bdae-4467-9982-26f3ccd1c057",
+          "example": "de0d0284-2db3-497c-816a-7673e8b37d66",
           "type": "string"
         }
       },
@@ -12720,7 +12871,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "b7fbf77b-6620-40d3-b780-a95dbd7fba54",
+          "example": "9db83cc2-0ad3-430d-b02c-646361b366d0",
           "type": "string"
         }
       },
@@ -12775,7 +12926,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "b3661187-f728-4232-a3f1-d3aa8728ebcb",
+          "example": "e87af7f0-9288-4dc5-b7d4-31d2179a672f",
           "type": "string"
         }
       },
@@ -12948,9 +13099,9 @@
         }
       },
       "required": [
-        "protocol",
         "source",
-        "dest"
+        "dest",
+        "protocol"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -13657,7 +13808,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "e98c0513-97fa-4a83-92c9-23ceee2aac50",
+          "example": "1e281e0b-fbf5-403c-84f8-d22d3b135d40",
           "type": "string"
         }
       },
@@ -13927,6 +14078,55 @@
         "name"
       ],
       "title": "OrgModel",
+      "type": "object"
+    },
+    "Policy": {
+      "description": "Policy",
+      "properties": {
+        "description": {
+          "description": "Policy description",
+          "example": "My policy description",
+          "type": "string"
+        },
+        "name": {
+          "description": "Policy name",
+          "example": "my-policy",
+          "type": "string"
+        },
+        "resources": {
+          "items": {
+            "description": "TGRNs affected by the policy",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "statements": {
+          "items": {
+            "description": "Permission statement",
+            "properties": {
+              "actions": {
+                "items": {
+                  "description": "action",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "effect": {
+                "description": "Statement effect",
+                "enum": [
+                  "allow",
+                  "deny",
+                  "noop"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Policy",
       "type": "object"
     },
     "PortForwarding": {
