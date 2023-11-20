@@ -846,6 +846,50 @@ func addNodeDatastoreAPI(api *s.API) {
 	p.Path("/tasks").Get("List recent data store activity").Response(200, "OK", taskList)
 }
 
+func addPolicyAPIs(api *s.API) {
+	p := api.Path("/v2/policy").Produces("application/json").Consumes("application/json").Tag("Permissions")
+
+	stmt := s.NewSchema("Permission statement").
+		Prop("effect", s.NewSchema("Statement effect", s.S_String, s.S_Enum("allow", "deny", "noop"))).
+		Prop("actions", s.NewArraySchema(s.NewSchema("action", s.S_String)))
+
+	policy := api.Model("Policy").
+		Prop("name", s.NewSchema("Policy name", s.S_String, s.S_Example("my-policy"))).
+		Prop("description", s.NewSchema("Policy description", s.S_String, s.S_Example("My policy description"))).
+		Prop("statements", s.NewArraySchema(stmt)).
+		Prop("resources", s.NewArraySchema(s.NewSchema("TGRNs affected by the policy", s.S_String))).
+		Ref()
+
+	p.Get("List policies").
+		Permission("permissions::read").
+		Response(200, "OK", s.NewArraySchema(policy))
+
+	p.Post("Create a policy").
+		Permission("permissions::modify").
+		Param(s.NewParam("policy", "Policy", s.P_Body, s.P_Schema(policy))).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+
+	p = p.PathParam(s.NewParam("name", "Policy name", s.P_Path, s.P_Required))
+
+	p.Get("Get a policy").
+		Permission("permissions::read").
+		Response(200, "OK", policy).
+		Response(404, "Not Found", nil)
+
+	p.Put("Update a policy").
+		Permission("permissions::modify").
+		Param(s.NewParam("policy", "Policy", s.P_Body, s.P_Schema(policy))).
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil).
+		Response(422, "Validation failed", validationFailure)
+
+	p.Delete("Delete a policy").
+		Permission("permissions::modify").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+}
+
 func addNodeConfigAPIs(api *s.API) {
 	p := api.Path("/node").PathParam(params.nodeID).Produces("application/json").Consumes("application/json").Tag("Node")
 
@@ -1222,6 +1266,7 @@ func main() {
 	addNodeDatastoreAPI(api)
 	addExecAPI(api)
 	addIDPAPI(api)
+	addPolicyAPIs(api)
 	addSwaggerYML(api)
 
 	out, err := json.MarshalIndent(api, "", "  ")
