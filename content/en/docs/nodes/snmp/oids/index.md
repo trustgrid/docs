@@ -50,6 +50,22 @@ The following custom data points are made available under Trustgrid’s Enterpri
 
 - `.2.8.0` - String showing the cluster status of the node. Possible values are PRIMARY, SECONDARY, or `NOT_CLUSTERED`
 
+- `.2.9.1` - JVM Memory Consumption Stats
+
+    - `.1.1` - Committed Heap (bytes)
+
+    - `.2.1` - Used Heap (bytes)
+
+    - `.3.1` - Max Heap (bytes)
+
+    - `.4.1` - Heap Load (percentage)
+
+    - `.5.1` - Committed Non Heap (bytes)
+
+    - `.6.1` - Used Non Heap (bytes)
+
+    - `.7.1` - JVM Total Committed Memory (bytes)
+
 #### Example output
 The output below shows the device has two virtual networks (mesh & LRE-NETWORK) both attached to the same physical interface (enp0s20f1).  The mesh network has no activity.  The LRE-NETWORK has significant TCP traffic and a large number of flows. 
 
@@ -93,4 +109,11 @@ iso.3.6.1.4.1.53560.2.5.1.2.2 = STRING: "LRE"
 iso.3.6.1.4.1.53560.2.6.0 = INTEGER: 8
 iso.3.6.1.4.1.53560.2.7.0 = INTEGER: 8
 iso.3.6.1.4.1.53560.2.8.0 = STRING: "NOT_CLUSTERED"
+iso.3.6.1.4.1.53560.2.9.1.1.1 = Counter64: 533725184
+iso.3.6.1.4.1.53560.2.9.1.2.1 = Counter64: 176160768
+iso.3.6.1.4.1.53560.2.9.1.3.1 = Counter64: 2863661056
+iso.3.6.1.4.1.53560.2.9.1.4.1 = INTEGER: 6
+iso.3.6.1.4.1.53560.2.9.1.5.1 = Counter64: 72351744
+iso.3.6.1.4.1.53560.2.9.1.6.1 = Counter64: 69206016
+iso.3.6.1.4.1.53560.2.9.1.7.1 = Counter64: 606076928
 {{< /highlight >}}
