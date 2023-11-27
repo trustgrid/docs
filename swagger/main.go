@@ -337,12 +337,21 @@ func addV2DomainNetworkAPI(api *s.API) {
 		Prop("dnsConfig", s.NewArraySchema(dnsConfig)).
 		Ref()
 
+	portForwarding := api.Model("Port Forwarding").
+		Prop("uid", s.NewSchema("", s.S_String)).
+		Prop("ip", s.NewSchema("", s.S_String)).
+		Prop("port", s.NewSchema("", s.S_Number)).
+		Prop("nodeName", s.NewSchema("", s.S_String)).
+		Prop("serviceName", s.NewSchema("", s.S_String)).
+		Ref()
+
 	addAccessPolicyAPI(accessPolicy, p)
 	addNetworkGroupAPI(group, groupMembership, p)
 	addNetworkAuthGroupAPI(authGroup, authGroupMembership, p)
 	addNetworkObjectAPI(networkObject, p)
 	addNetworkDNSAPI(dnsConfig, dnsZone, dnsRecord, p)
 	addNetworkRouteAPI(route, p)
+	addPortForwardingAPI(portForwarding, p)
 	addDomainChangeManagementAPI(inventory, p)
 }
 
@@ -371,6 +380,31 @@ func addDomainChangeManagementAPI(inventory *s.Schema, p *s.Path) {
 		Param(s.NewParam("digest", "Digest", s.P_Body, s.P_Schema(digest), s.P_Required)).
 		Response(200, "OK", nil).
 		Response(422, "Validation failed", validationFailure)
+}
+
+func addPortForwardingAPI(pf *s.Schema, p *s.Path) {
+	r := p.Path("/port-forwarding")
+	r.Get("List a network's port forwardings").
+		Permission(vnetReadPerm).
+		Response(200, "OK", s.NewArraySchema(pf))
+	r.Post("Create a port forwarding").
+		Permission(vnetModifyPerm).
+		Param(s.NewParam("port-forwarding", "Port forwarding configuration", s.P_Body, s.P_Schema(pf), s.P_Required)).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+
+	r = r.PathParam(s.NewParam("portForwardingID", "Port forwarding ID", s.P_Path, s.P_Required))
+	r.Put("Update a port forwarding").
+		Permission(vnetModifyPerm).
+		Param(s.NewParam("port-forwarding", "Port forwarding configuration", s.P_Body, s.P_Schema(pf), s.P_Required)).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+	r.Delete("Delete a port forwarding").
+		Permission(vnetModifyPerm).
+		Response(200, "OK", nil)
+	r.Delete("Get a port forwarding").
+		Permission(vnetReadPerm).
+		Response(200, "OK", pf)
 }
 
 func addNetworkRouteAPI(route *s.Schema, p *s.Path) {
@@ -812,8 +846,56 @@ func addNodeDatastoreAPI(api *s.API) {
 	p.Path("/tasks").Get("List recent data store activity").Response(200, "OK", taskList)
 }
 
+func addPolicyAPIs(api *s.API) {
+	p := api.Path("/v2/policy").Produces("application/json").Consumes("application/json").Tag("Permissions")
+
+	stmt := s.NewSchema("Permission statement").
+		Prop("effect", s.NewSchema("Statement effect", s.S_String, s.S_Enum("allow", "deny", "noop"))).
+		Prop("actions", s.NewArraySchema(s.NewSchema("action", s.S_String)))
+
+	policy := api.Model("Policy").
+		Prop("name", s.NewSchema("Policy name", s.S_String, s.S_Example("my-policy"))).
+		Prop("description", s.NewSchema("Policy description", s.S_String, s.S_Example("My policy description"))).
+		Prop("statements", s.NewArraySchema(stmt)).
+		Prop("resources", s.NewArraySchema(s.NewSchema("TGRNs affected by the policy", s.S_String))).
+		Ref()
+
+	p.Get("List policies").
+		Permission("permissions::read").
+		Response(200, "OK", s.NewArraySchema(policy))
+
+	p.Post("Create a policy").
+		Permission("permissions::modify").
+		Param(s.NewParam("policy", "Policy", s.P_Body, s.P_Schema(policy))).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
+
+	p = p.PathParam(s.NewParam("name", "Policy name", s.P_Path, s.P_Required))
+
+	p.Get("Get a policy").
+		Permission("permissions::read").
+		Response(200, "OK", policy).
+		Response(404, "Not Found", nil)
+
+	p.Put("Update a policy").
+		Permission("permissions::modify").
+		Param(s.NewParam("policy", "Policy", s.P_Body, s.P_Schema(policy))).
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil).
+		Response(422, "Validation failed", validationFailure)
+
+	p.Delete("Delete a policy").
+		Permission("permissions::modify").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+}
+
 func addNodeConfigAPIs(api *s.API) {
 	p := api.Path("/node").PathParam(params.nodeID).Produces("application/json").Consumes("application/json").Tag("Node")
+
+	client := s.NewSchema("Gateway client").
+		Prop("enabled", s.NewSchema("Client is allowed to connect", s.S_Boolean, s.S_Example(true))).
+		Prop("name", s.NewSchema("Node or cluster name", s.S_String, s.S_Example("mynode")))
 
 	gatewayConfig := s.NewSchema("Gateway config").
 		Prop("enabled", s.NewSchema("Enable gateway plugin", s.S_Boolean, s.S_Required)).
@@ -826,6 +908,7 @@ func addNodeConfigAPIs(api *s.API) {
 		Prop("maxClientWriteMbps", s.NewSchema("Max egress MBPS", s.S_Number, s.S_Example(1000))).
 		Prop("udpEnabled", s.NewSchema("Enable UDP", s.S_Boolean)).
 		Prop("monitorHops", s.NewSchema("Monitor hops", s.S_Boolean)).
+		Prop("clients", s.NewArraySchema(client)).
 		Prop("udpPort", s.NewSchema("UDP port", s.S_Number, s.S_Example(8081)))
 
 	p.Path("/gateway").Put("Update gateway configuration").
@@ -1183,6 +1266,7 @@ func main() {
 	addNodeDatastoreAPI(api)
 	addExecAPI(api)
 	addIDPAPI(api)
+	addPolicyAPIs(api)
 	addSwaggerYML(api)
 
 	out, err := json.MarshalIndent(api, "", "  ")

@@ -190,7 +190,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+                    "example": "efa9806d-a3ce-4421-b3f0-2f0e4b51d353",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +205,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1683663072,
+                    "example": 1700439973,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "c36bad92-1c69-4125-8cd5-252a29805800",
+                    "example": "b520aa8d-ae61-422b-b347-06ac1264eb89",
                     "type": "object"
                   },
                   "userName": {
@@ -392,7 +392,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "8c579234-a4c0-4cf6-996e-5eaba830bea7",
+                    "example": "9e27a66c-0bbb-4d07-bc3f-0811e7939346",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +463,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "8c579234-a4c0-4cf6-996e-5eaba830bea7",
+                    "example": "9e27a66c-0bbb-4d07-bc3f-0811e7939346",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "8c579234-a4c0-4cf6-996e-5eaba830bea7",
+                    "example": "9e27a66c-0bbb-4d07-bc3f-0811e7939346",
                     "type": "object"
                   }
                 },
@@ -723,7 +723,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ConnectorConfig"
             }
           }
         ],
@@ -1576,7 +1576,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ServiceConfig"
             }
           }
         ],
@@ -2281,6 +2281,7 @@
             "name": "config",
             "required": true,
             "schema": {
+              "$ref": "#/definitions/ConnectorConfig",
               "type": "object"
             }
           }
@@ -3122,7 +3123,7 @@
             "name": "config",
             "required": true,
             "schema": {
-              "type": "object"
+              "$ref": "#/definitions/ServiceConfig"
             }
           }
         ],
@@ -3278,6 +3279,25 @@
                   "description": "Certificate",
                   "example": "mygateway.trustgrid.io",
                   "type": "string"
+                },
+                "clients": {
+                  "items": {
+                    "description": "Gateway client",
+                    "properties": {
+                      "enabled": {
+                        "description": "Client is allowed to connect",
+                        "example": true,
+                        "type": "boolean"
+                      },
+                      "name": {
+                        "description": "Node or cluster name",
+                        "example": "mynode",
+                        "type": "string"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "type": "array"
                 },
                 "connectToPublic": {
                   "description": "Connect to public",
@@ -4023,6 +4043,37 @@
             "description": "Cannot delete root user",
             "schema": {
               "$ref": "#/definitions/ValidationFailed"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/user/{email}/groups": {
+      "get": {
+        "description": "Get all user groups\n",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/GroupModel"
+              },
+              "type": "array"
             }
           }
         },
@@ -8211,6 +8262,166 @@
         ]
       }
     },
+    "/v2/domain/{domainName}/network/{networkName}/port-forwarding": {
+      "get": {
+        "description": "List a network's port forwardings\n\n---\n\nRequires `virtual-networks::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/PortForwarding"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Network name",
+          "in": "path",
+          "name": "networkName",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Domain name",
+          "in": "path",
+          "name": "domainName",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a port forwarding\n\n---\n\nRequires `virtual-networks::modify` permission.",
+        "parameters": [
+          {
+            "description": "Port forwarding configuration",
+            "in": "body",
+            "name": "port-forwarding",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PortForwarding"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      }
+    },
+    "/v2/domain/{domainName}/network/{networkName}/port-forwarding/{portForwardingID}": {
+      "delete": {
+        "description": "Get a port forwarding\n\n---\n\nRequires `virtual-networks::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PortForwarding"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Port forwarding ID",
+          "in": "path",
+          "name": "portForwardingID",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Network name",
+          "in": "path",
+          "name": "networkName",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Domain name",
+          "in": "path",
+          "name": "domainName",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a port forwarding\n\n---\n\nRequires `virtual-networks::modify` permission.",
+        "parameters": [
+          {
+            "description": "Port forwarding configuration",
+            "in": "body",
+            "name": "port-forwarding",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PortForwarding"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Domain Network"
+        ]
+      }
+    },
     "/v2/domain/{domainName}/network/{networkName}/route": {
       "get": {
         "description": "List a network's routes\n\n---\n\nRequires `virtual-networks::read` permission.",
@@ -11638,6 +11849,238 @@
           "VPN Network"
         ]
       }
+    },
+    "/v2/policy": {
+      "get": {
+        "description": "List policies\n\n---\n\nRequires `permissions::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Policy"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a policy\n\n---\n\nRequires `permissions::modify` permission.",
+        "parameters": [
+          {
+            "description": "Policy",
+            "in": "body",
+            "name": "policy",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      }
+    },
+    "/v2/policy/{name}": {
+      "delete": {
+        "description": "Delete a policy\n\n---\n\nRequires `permissions::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      },
+      "get": {
+        "description": "Get a policy\n\n---\n\nRequires `permissions::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Policy name",
+          "in": "path",
+          "name": "name",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update a policy\n\n---\n\nRequires `permissions::modify` permission.",
+        "parameters": [
+          {
+            "description": "Policy",
+            "in": "body",
+            "name": "policy",
+            "schema": {
+              "$ref": "#/definitions/Policy"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Permissions"
+        ]
+      }
+    },
+    "/v2/user/{email}/groups": {
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Add group to a user",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "group",
+            "schema": {
+              "properties": {
+                "groupId": {
+                  "description": "Group ID",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "groupId"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
+    "/v2/user/{email}/groups/{group}": {
+      "delete": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Delete a group from a user",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "User email",
+          "in": "path",
+          "name": "email",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Group ID",
+          "in": "path",
+          "name": "group",
+          "required": true,
+          "type": "string"
+        }
+      ]
     }
   },
   "definitions": {
@@ -11750,7 +12193,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+          "example": "efa9806d-a3ce-4421-b3f0-2f0e4b51d353",
           "type": "string"
         },
         "timestamp": {
@@ -11808,7 +12251,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+          "example": "efa9806d-a3ce-4421-b3f0-2f0e4b51d353",
           "type": "string"
         },
         "nodeName": {
@@ -11980,6 +12423,88 @@
       "title": "ClusterModel",
       "type": "object"
     },
+    "ConnectorConfig": {
+      "example": {
+        "connectors": [
+          {
+            "description": "My connector",
+            "enabled": true,
+            "id": "1e1d36b2-63b6-46bb-8334-a80a828afb5e",
+            "localIp": "100.100.64.1",
+            "maxmbps": 100,
+            "nic": "eth0",
+            "node": "node1",
+            "port": 1234,
+            "protocol": "tcp",
+            "service": "ssh"
+          }
+        ]
+      },
+      "properties": {
+        "connectors": {
+          "items": {
+            "properties": {
+              "description": {
+                "description": "connector description",
+                "type": "string"
+              },
+              "enabled": {
+                "description": "whether connector is enabled",
+                "type": "boolean"
+              },
+              "id": {
+                "description": "unique ID of connector",
+                "type": "string"
+              },
+              "localIp": {
+                "description": "local IP address",
+                "type": "string"
+              },
+              "maxmbps": {
+                "description": "maximum bandwidth in Mbps",
+                "type": "number"
+              },
+              "nic": {
+                "description": "network interface name",
+                "type": "string"
+              },
+              "node": {
+                "description": "node name",
+                "type": "string"
+              },
+              "port": {
+                "description": "connector port",
+                "type": "number"
+              },
+              "protocol": {
+                "description": "connector protocol",
+                "enum": [
+                  "udp",
+                  "tcp",
+                  "tftp",
+                  "ftp"
+                ],
+                "type": "string"
+              },
+              "required": [
+                "id",
+                "node",
+                "port",
+                "protocol",
+                "service"
+              ],
+              "service": {
+                "description": "service name",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Container": {
       "description": "Container",
       "properties": {
@@ -12011,7 +12536,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "a22fcebe-34e7-43b3-8cd2-ea5c667d911e",
+          "example": "e845ebcc-a300-4f53-a8bb-e5073e4e9d03",
           "type": "string"
         },
         "image": {
@@ -12168,7 +12693,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "6eafd8d4-c169-458e-acbb-413b6fbb53f4",
+          "example": "363cbe4b-5696-4a29-929a-a902027a437f",
           "type": "string"
         }
       },
@@ -12311,7 +12836,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "e6619c0a-f013-41f4-8398-c63923a2145c",
+          "example": "025c329c-e9f6-4993-8434-96ae80bb1286",
           "type": "string"
         }
       },
@@ -12346,7 +12871,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "c9c95401-a191-41f0-a46a-cb44e53d11d6",
+          "example": "dc1e3812-0076-45df-96aa-910416ecb33e",
           "type": "string"
         }
       },
@@ -12401,7 +12926,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "0668e28e-a42b-47d1-8a6e-688b2c06671a",
+          "example": "b0192f20-84fc-40b2-addb-4273f537665f",
           "type": "string"
         }
       },
@@ -12849,6 +13374,24 @@
       },
       "type": "object"
     },
+    "GroupModel": {
+      "properties": {
+        "description": {
+          "description": "Group Description",
+          "type": "string"
+        },
+        "name": {
+          "description": "Group Name",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Group ID",
+          "type": "string"
+        }
+      },
+      "title": "GroupModel",
+      "type": "Object"
+    },
     "IdentityProviderModel": {
       "allOf": [
         {
@@ -13265,7 +13808,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "c6c99033-9ba0-4906-b111-045a23eeaf70",
+          "example": "efa9806d-a3ce-4421-b3f0-2f0e4b51d353",
           "type": "string"
         }
       },
@@ -13537,6 +14080,77 @@
       "title": "OrgModel",
       "type": "object"
     },
+    "Policy": {
+      "description": "Policy",
+      "properties": {
+        "description": {
+          "description": "Policy description",
+          "example": "My policy description",
+          "type": "string"
+        },
+        "name": {
+          "description": "Policy name",
+          "example": "my-policy",
+          "type": "string"
+        },
+        "resources": {
+          "items": {
+            "description": "TGRNs affected by the policy",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "statements": {
+          "items": {
+            "description": "Permission statement",
+            "properties": {
+              "actions": {
+                "items": {
+                  "description": "action",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              "effect": {
+                "description": "Statement effect",
+                "enum": [
+                  "allow",
+                  "deny",
+                  "noop"
+                ],
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "title": "Policy",
+      "type": "object"
+    },
+    "PortForwarding": {
+      "description": "Port Forwarding",
+      "properties": {
+        "ip": {
+          "type": "string"
+        },
+        "nodeName": {
+          "type": "string"
+        },
+        "port": {
+          "type": "number"
+        },
+        "serviceName": {
+          "type": "string"
+        },
+        "uid": {
+          "type": "string"
+        }
+      },
+      "title": "Port Forwarding",
+      "type": "object"
+    },
     "RepositoryModel": {
       "properties": {
         "name": {
@@ -13580,6 +14194,77 @@
         }
       },
       "title": "SAML Config",
+      "type": "object"
+    },
+    "ServiceConfig": {
+      "example": {
+        "services": [
+          {
+            "description": "nginx",
+            "enabled": true,
+            "host": "127.0.0.1",
+            "id": "1e1d36b2-63b6-46bb-8334-a80a828afb5f",
+            "port": 80,
+            "protocol": "tcp"
+          }
+        ]
+      },
+      "properties": {
+        "connectors": {
+          "items": {
+            "properties": {
+              "description": {
+                "description": "connector description",
+                "type": "string"
+              },
+              "enabled": {
+                "description": "whether connector is enabled",
+                "type": "boolean"
+              },
+              "host": {
+                "description": "destination host name",
+                "type": "string"
+              },
+              "id": {
+                "description": "unique ID of connector",
+                "type": "string"
+              },
+              "name": {
+                "description": "service name",
+                "type": "number"
+              },
+              "port": {
+                "description": "destination port",
+                "maximum": 65536,
+                "minimum": 1,
+                "type": "number"
+              },
+              "protocol": {
+                "description": "protocol",
+                "enum": [
+                  "udp",
+                  "tcp",
+                  "tftp",
+                  "ftp",
+                  "rdp",
+                  "vnc",
+                  "ssh"
+                ],
+                "type": "string"
+              },
+              "required": [
+                "id",
+                "host",
+                "port",
+                "protocol",
+                "name"
+              ]
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Tag": {
@@ -14194,6 +14879,7 @@
   },
   "securityDefinitions": {
     "JWTAuthorizer": {
+      "description": "An API key, as documented https://docs.trustgrid.io/docs/user-management/api-access/",
       "in": "header",
       "name": "Authorization",
       "type": "apiKey"
