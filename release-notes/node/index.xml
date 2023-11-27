@@ -1,4 +1,25 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 19 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: October 2023 Appliance Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/oct-2023-1-minor/</link><pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/oct-2023-1-minor/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 22 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: November 2023 Appliance Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/nov-2023-minor/</link><pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/nov-2023-minor/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20231122-1901&lt;/td>
+&lt;td>20231122-215335.d942235&lt;/td>
+&lt;td>n-2.17.2&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="resolved-issues">Resolved Issues&lt;/h2>
+&lt;ul>
+&lt;li>Fixes an issue introduced in the &lt;a href="https://docs.trustgrid.io/release-notes/node/oct-2023/">October 2023 release&lt;/a> that caused the end time of flow logs to be incorrect&lt;/li>
+&lt;li>Fixes an issue that prevented registering nodes in newer AWS regions&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: October 2023 Appliance Second Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/oct-2023-1-minor/</link><pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/oct-2023-1-minor/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
