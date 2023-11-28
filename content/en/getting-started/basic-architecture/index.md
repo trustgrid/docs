@@ -7,12 +7,10 @@ date: 2022-12-28
 description: >
   Trustgrid basic architecture overview
 ---
-## Concepts
+
+
 
 ### Nodes
-
-The basic building block of a Trustgrid network is a [node]({{<ref "docs/nodes">}}). Nodes are deployed on-premises or in your cloud provider and are connected to each other with TLS tunnels. Nodes can be deployed in a variety of ways, including as virtual machines, containers (as [agents]({{<relref "/tutorials/agent-deploy">}})), or bare metal servers.
-
 Nodes are used to enable connectivity and access for different use cases, including:
 
 * ZTNA applications, allowing fine-grained network control for access to business applications or servers
