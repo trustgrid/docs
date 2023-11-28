@@ -78,7 +78,6 @@ intHost &amp;lt;-.Optional.-&amp;gt; intNet &amp;lt;-.Optional.-&amp;gt; snLAN
 subgraph sn [Single Node]
 snWAN[WAN\nInterface]
 snLAN[LAN\nInterface]
-snLAN ~~~ snWAN
 end
 firewall[&amp;#34;Firewall/Router&amp;#34;]
 dmzNet[[DMZ\n Network]]
@@ -97,12 +96,10 @@ subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
 end
 subgraph Cluster-Node2
 cl2WAN[WAN\nInterface]
 cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
 end
 end
 dmzNet[[DMZ\n Network]]
@@ -134,12 +131,10 @@ subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
 end
 subgraph Cluster-Node2
 cl2WAN[WAN\nInterface]
 cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
 end
 end
 cl1WAN ==&amp;gt; ISP1([ISP 1])
@@ -157,12 +152,10 @@ subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
 end
 subgraph Cluster-Node2
 cl2WAN[WAN\nInterface]
 cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
 end
 end
 dmzNet1[[DMZ\n Network 1]]
@@ -187,12 +180,10 @@ subgraph cluster [&amp;#34; &amp;#34;]
 subgraph Cluster-Node1
 cl1WAN[WAN\nInterface]
 cl1LAN[LAN\nInterface]
-cl1LAN ~~~ cl1WAN
 end
 subgraph Cluster-Node2
 cl2WAN[WAN\nInterface]
 cl2LAN[LAN\nInterface]
-cl2LAN ~~~ cl2WAN
 end
 end
 dmzNet1[[DMZ\n Network 1]]
