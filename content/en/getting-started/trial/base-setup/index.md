@@ -12,7 +12,13 @@ description: "Deploy two agents and see traffic pass between them - 10 minutes"
 
 ## Prerequisites
 - Two instances of Ubuntu 22.04 with sudo or root privileges to install additional repositories and packages
-- Trustgrid Trial Account
+- [Trustgrid Account]({{<relref "../request-trial">}})
 
 
 ## Step 1 - Install First Agent
+
+## Step 2 - Install Second Agent
+
+## Step 3 - Confirm communication
+
+## Step 4 - Monitor traffic
