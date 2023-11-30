@@ -84,10 +84,10 @@ The below commands are presented in Bash syntax for compatibility with other ope
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sales@Azure:~$ &lt;span style="color:#204a87">echo&lt;/span> &lt;span style="color:#000">$imageID&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>/CommunityGalleries/trustgrid-45680719-9aa7-43b9-a376-dc03bcfdb0ac/Images/trustgrid-node-2204-prod/Versions/2.17.1
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="prepare-ssh-key-in-azure">Prepare SSH Key in Azure&lt;/h3>
-&lt;p>After registration SSH is only accessible via the Trustgrid portal, but Azure requires an SSH key be associated with the VM to allow SSH access on creation.&lt;/p>
+&lt;p>After registration, SSH is only accessible via the Trustgrid portal, but Azure requires an SSH key to be associated with the VM to allow SSH access on creation.&lt;/p>
 &lt;p>There are a few ways to handle this in Azure, but it is important you end up with a variable &lt;code>sshKeyName&lt;/code> containing the name of an existing SSH key resource in Azure.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
-The SSH public keys in examples below are not valid and are for demonstration purposes only.
+The SSH public keys in the examples below are not valid and are for demonstration purposes only.
 &lt;/div>
 &lt;h4 id="reference-an-existing-azure-ssh-key-resource">Reference an Existing Azure SSH key resource&lt;/h4>
 &lt;p>If you have an existing SSH key resource in Azure you can export its name as a variable:&lt;/p>
@@ -129,7 +129,7 @@ Note the location where the Private key was saved and ensure you save that key s
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Here is the command without output or values&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az sshkey create --name &lt;span style="color:#000">$sshKeyName&lt;/span> --resource-group &lt;span style="color:#000">$resourceGroup&lt;/span> --location &lt;span style="color:#000">$location&lt;/span> --public-key &lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="create-network-interfaces">Create Network Interfaces&lt;/h3>
-&lt;p>This step will create the network interfaces for the Trustgrid appliance VM to connect to the subnets. As part of this process we will create these additional resources:&lt;/p>
+&lt;p>This step will create the network interfaces for the Trustgrid appliance VM to connect to the subnets. As part of this process, we will create these additional resources:&lt;/p>
 &lt;ul>
 &lt;li>Public IP for the outside interface.&lt;/li>
 &lt;li>Network Security Group for the outside interface and an explicit Outbound rule for the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">required connectivity to the Trustgrid Control Plane&lt;/a>. Additional rules will need to be added to allow the node to connect to:
@@ -138,7 +138,7 @@ Note the location where the Private key was saved and ensure you save that key s
 &lt;li>Inbound rules if the appliance will be acting as a data plane or ZTNA gateway&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>Network Security Group for the inside interface with no additional rules. After deployment this security group could be extended to allow for required communication to internal resources.&lt;/li>
+&lt;li>Network Security Group for the inside interface with no additional rules. After deployment, this security group could be extended to allow for required communication to internal resources.&lt;/li>
 &lt;/ul>
 &lt;div class="alert alert-info" role="alert">
 Both security groups will be created with the &lt;a href="https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#default-security-rules">default security group rules&lt;/a>
@@ -176,9 +176,9 @@ Both security groups will be created with the &lt;a href="https://learn.microsof
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --vnet-name &lt;span style="color:#000">$vNetName&lt;/span> --subnet &lt;span style="color:#000">$insideSubnet&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --accelerated-networking &lt;span style="color:#204a87">false&lt;/span> --ip-forwarding &lt;span style="color:#204a87">true&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --network-security-group &lt;span style="color:#000">$name&lt;/span>-inside
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See example output for all of the above commands in the &lt;a href="./az-cli-example/#create-network-interfaces">AZ CLI Example Walkthrough&lt;/a>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See the example output for all of the above commands in the &lt;a href="./az-cli-example/#create-network-interfaces">AZ CLI Example Walkthrough&lt;/a>&lt;/p>
 &lt;h3 id="create-trustgrid-appliance-vm">Create Trustgrid Appliance VM&lt;/h3>
-&lt;p>Finally we can deploy the actual VM with the two below commands&lt;/p>
+&lt;p>Finally, we can deploy the actual VM with the two below commands&lt;/p>
 &lt;p>This command creates the VM:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az vm create &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --resource-group &lt;span style="color:#000">$resourceGroup&lt;/span> &lt;span style="color:#4e9a06">\
@@ -194,9 +194,8 @@ Both security groups will be created with the &lt;a href="https://learn.microsof
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --os-disk-delete-option &lt;span style="color:#4e9a06">&amp;#39;Delete&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --size &lt;span style="color:#000">$size&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --ssh-key-name &lt;span style="color:#000">$sshKeyName&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>And this command enables boot diagnostics so that the serial console can be accessed.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az vm boot-diagnostics &lt;span style="color:#204a87">enable&lt;/span> --name &lt;span style="color:#000">$name&lt;/span> --resource-group &lt;span style="color:#000">$resourceGroup&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See example output in the &lt;a href="./az-cli-example/#create-trustgrid-appliance-vm">AZ CLI Example Walkthrough&lt;/a>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command enables boot diagnostics so that the serial console can be accessed.
+See the example output in the &lt;a href="./az-cli-example/#create-trustgrid-appliance-vm">AZ CLI Example Walkthrough&lt;/a>&lt;/p>
 &lt;h3 id="get-mac-address">Get MAC Address&lt;/h3>
 &lt;p>To make &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/#logging-in">Console login&lt;/a> easier run the below command to get the outside interface&amp;rsquo;s MAC address:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az network nic show --name &lt;span style="color:#000">$name&lt;/span>-outside &lt;span style="color:#4e9a06">\
@@ -213,12 +212,12 @@ Both security groups will be created with the &lt;a href="https://learn.microsof
 &lt;p>If deploying an HA cluster there are additional steps required:&lt;/p>
 &lt;h3 id="create-additional-vm-appliance">Create Additional VM Appliance&lt;/h3>
 &lt;p>Repeat the steps above to deploy a second VM appliance using different names but in the same resource group and vNet. This will be the secondary node in the HA cluster.&lt;/p>
-&lt;p>Assuming you still have the same variables declared from above deployment you will just need to update the &lt;code>$name&lt;/code> variable to a new value like shown in the example below.&lt;/p>
+&lt;p>Assuming you still have the same variables declared from the above deployment you will just need to update the &lt;code>$name&lt;/code> variable to a new value like shown in the example below.&lt;/p>
 &lt;pre tabindex="0">&lt;code>export name=&amp;#34;newName&amp;#34;
 &lt;/code>&lt;/pre>&lt;p>Then you can proceed with creating the &lt;a href="#create-network-interfaces">network interface resources&lt;/a> and then &lt;a href="#create-trustgrid-appliance-vm">create the vm appliance&lt;/a>.&lt;/p>
 &lt;h3 id="create-role-for-route-management">Create Role for Route Management&lt;/h3>
-&lt;p>The steps below create a custom role that has permissions to manipulate route tables:&lt;/p>
-&lt;p>First, download the template json file to your environment.&lt;/p>
+&lt;p>The steps below create a custom role that has permission to manipulate route tables:&lt;/p>
+&lt;p>First, download the template JSON file to your environment.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>curl -o tg-route-role.json https://raw.githubusercontent.com/trustgrid/trustgrid-infra-as-code/main/azure/resources/cluster-role-template/tg-route-role.json
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Use the command below to get your subscription ID:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az account show --query id -o tsv
@@ -230,21 +229,26 @@ Both security groups will be created with the &lt;a href="https://learn.microsof
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az role definition create --role-definition @tg-route-role.json
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See &lt;a href="./az-cli-example/#create-role-for-route-management">AZ CLI Example Walkthrough&lt;/a> for output.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
-The role created above can only be assigned to resources in the current subscription. If your Azure account topology requires the Trustgrid appliance to be able to manage route tables in other subscription you&amp;rsquo;ll need to create the role in those accounts as well and assign (see below) the role accordingly.
+The role created above can only be assigned to resources in the current subscription. If your Azure account topology requires the Trustgrid appliance to be able to manage route tables in other subscriptions you&amp;rsquo;ll need to create the role in those accounts as well and assign (see below) the role accordingly.
 &lt;/div>
 &lt;h3 id="assign-role-for-route-management">Assign Role for Route Management&lt;/h3>
-&lt;p>Finally, we need to assign this role. Below provides the commands to perform this process without values for the names of the two VMs (vm1 and vm2) or for the resource group.&lt;/p>
-&lt;p>Note, the &lt;code>az role assignement create&lt;/code> command does not seem to work with variables for the &lt;code>--role&lt;/code> parameter value. If you named your role something other than &amp;ldquo;Trustgrid HA Route Role&amp;rdquo; you&amp;rsquo;ll need to adjust the last two commands accordingly.&lt;/p>
+&lt;p>Finally, we need to assign this role. Below are the commands to perform this process without values for the names of the two VMs (vm1 and vm2) for the resource group.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">vm1&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">vm2&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">resourceGroup&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">roleName&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;Trustgrid HA Route Role&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">subscription&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>az account show --query id -o tsv&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">vm1ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>az vm show --name &lt;span style="color:#000">$vm1&lt;/span> --resource-group &lt;span style="color:#000">$resourceGroup&lt;/span> --query &lt;span style="color:#4e9a06">&amp;#39;identity.principalId&amp;#39;&lt;/span> -o tsv&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">vm2ID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>az vm show --name &lt;span style="color:#000">$vm2&lt;/span> --resource-group &lt;span style="color:#000">$resourceGroup&lt;/span> --query &lt;span style="color:#4e9a06">&amp;#39;identity.principalId&amp;#39;&lt;/span> -o tsv&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#204a87">export&lt;/span> &lt;span style="color:#000">roleID&lt;/span>&lt;span style="color:#ce5c00;font-weight:bold">=&lt;/span>&lt;span style="color:#204a87;font-weight:bold">$(&lt;/span>az role definition list --query &lt;span style="color:#4e9a06">&amp;#34;[?roleName==&amp;#39;&lt;/span>&lt;span style="color:#000">$roleName&lt;/span>&lt;span style="color:#4e9a06">&amp;#39;].name | [0]&amp;#34;&lt;/span> -o tsv&lt;span style="color:#204a87;font-weight:bold">)&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>az role assignment create --role &lt;span style="color:#4e9a06">&amp;#34;Trustgrid HA Route Role&amp;#34;&lt;/span> --assignee &lt;span style="color:#000">$vm1ID&lt;/span> --scope &lt;span style="color:#4e9a06">&amp;#34;/subscriptions/&lt;/span>&lt;span style="color:#000">$subscription&lt;/span>&lt;span style="color:#4e9a06">/resourceGroups/&lt;/span>&lt;span style="color:#000">$resourceGroup&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>az role assignment create --role &lt;span style="color:#4e9a06">&amp;#34;Trustgrid HA Route Role&amp;#34;&lt;/span> --assignee &lt;span style="color:#000">$vm2ID&lt;/span> --scope &lt;span style="color:#4e9a06">&amp;#34;/subscriptions/&lt;/span>&lt;span style="color:#000">$subscription&lt;/span>&lt;span style="color:#4e9a06">/resourceGroups/&lt;/span>&lt;span style="color:#000">$resourceGroup&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See &lt;a href="./az-cli-example/#assign-role-for-route-management">AZ CLI Example Walkthrough&lt;/a> for output.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>
+&lt;div class="alert alert-warning" role="alert">
+The above assumes you didn&amp;rsquo;t change the &lt;code>Name&lt;/code> settings in the tg-route-role.json file when &lt;a href="#create-role-for-route-management">creating the role definition&lt;/a>. If you did you need to update the &lt;code>roleName&lt;/code> variable before exporting.
+&lt;/div>
+See &lt;a href="./az-cli-example/#assign-role-for-route-management">AZ CLI Example Walkthrough&lt;/a> for output.
 &lt;div class="alert alert-info" role="alert">
-The above commands scope the role to the resource group that contains the node appliance VMs. IF your Azure account and resource group topology requires the nodes to be able to update route tables in other resources groups you&amp;rsquo;ll need to repeat the role assignment commands either at a higher level (like subscription) or with a different value for &lt;code>resourceGroup&lt;/code>.
+The above commands scope the role to the resource group that contains the node appliance VMs. If your Azure account and resource group topology requires the nodes to be able to update route tables in other resources groups you&amp;rsquo;ll need to repeat the role assignment commands either at a higher level (like subscription) or with a different value for &lt;code>resourceGroup&lt;/code>.
 &lt;/div>
 &lt;/p></description></item></channel></rss>
