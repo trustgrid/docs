@@ -2,7 +2,7 @@
 title: Securely Access Agent via SSH ZTNA App
 linkTitle: SSH ZTNA Setup
 description: Use Trustgrid's ZTNA SSH capability to access 
-weight: 30
+weight: 70
 ---
 
 ## Goals
