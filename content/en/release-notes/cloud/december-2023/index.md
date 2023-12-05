@@ -3,7 +3,7 @@ title: December 2023 Release Notes
 linkTitle: 'December 2023 Release'
 type: docs
 date: 2023-12-10
-description: "December cloud release"
+description: "December cloud release with Flow Log and Portal Improvements"
 ---
 
 Much of this release lays the groundwork needed for a new lighter-weight version of Node that will be made public next year. 
