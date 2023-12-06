@@ -50,7 +50,7 @@ Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a st
 &lt;ul>
 &lt;li>&lt;a href="https://docs.trustgrid.io/help-center/kb/upgrade-process/443-blocked/">Confirm connectivity on Port 443&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/help-center/kb/startup-process/ssl-tls-tampering/">Verify no DPI-SSL or HTTPS proxy&lt;/a> is interfering with the SSL certificate for repo.trustgrid.io&lt;/li>
-&lt;/ul></description></item><item><title>Help-Center: WAN/ISP Redundancy Configurations</title><link>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</link><pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</guid><description>
+&lt;/ul></description></item><item><title>Help-Center: Trustgrid Default Settings</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/default-settings/</guid><description/></item><item><title>Help-Center: WAN/ISP Redundancy Configurations</title><link>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</link><pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/wan-redunancy/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 The sections below provide examples of how Trustgrid nodes can be deployed to provide WAN/ISP redundancy
 &lt;/div>

@@ -1,0 +1,48 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Trustgrid Default Settings</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/</link><description>Recent content in Trustgrid Default Settings on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/help-center/kb/default-settings/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Network Flow Default Settings</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/</guid><description>
+&lt;h2 id="timeouts">Timeouts&lt;/h2>
+&lt;p>The table below details the time the Trustgrid network process waits before terminating a flow. Flows are matched based on the IP tuple (source ip, source port, destination ip, destination port).&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Protocol&lt;/th>
+&lt;th>States&lt;/th>
+&lt;th>Time(seconds)&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>TCP&lt;/td>
+&lt;td>SYN_SENT, SYN_RECEIVED&lt;/td>
+&lt;td>15&lt;/td>
+&lt;td>Covers flows that have not yet completed a 3-way TCP handshake. e.g. (SYN, SYN/ACK, ACK)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TCP&lt;/td>
+&lt;td>CLOSE_WAIT, TIME_WAIT, FIN_WAIT&lt;/td>
+&lt;td>60&lt;/td>
+&lt;td>Covers flows that have started the TCP close process.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>TCP&lt;/td>
+&lt;td>ESTABLISHED&lt;/td>
+&lt;td>900&lt;/td>
+&lt;td>Covers established flows. The connection must be idle for the entire 15 minutes (900 s) for this timeout to be applied.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>UDP&lt;/td>
+&lt;td>not applicable&lt;/td>
+&lt;td>60&lt;/td>
+&lt;td>Covers all UDP flows as the protocol is stateless&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>ICMP&lt;/td>
+&lt;td>not applicable&lt;/td>
+&lt;td>5&lt;/td>
+&lt;td>Covers all ICMP flows as the protocol is stateless&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-info" role="alert">
+&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">Virtual Network Routes&lt;/a> are only evaluated when a flow is first created. If you modify VPN routes after a flow is established, it will not impact existing flows. If you have an application that reuses the same IP tuple then you will need to make sure it is inactive long enough for the appropriate timeout to occur.
+&lt;/div></description></item></channel></rss>
