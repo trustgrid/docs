@@ -1,4 +1,64 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Trustgrid Default Settings</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/</link><description>Recent content in Trustgrid Default Settings on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/help-center/kb/default-settings/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Network Flow Default Settings</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Trustgrid Default Settings</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/</link><description>Recent content in Trustgrid Default Settings on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/help-center/kb/default-settings/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Java Virtual Machine (JVM)</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/jvm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/default-settings/jvm/</guid><description>
+&lt;div class="alert alert-info" role="alert">
+These settings only apply to appliance-based Trustgrid nodes
+&lt;/div>
+&lt;h2 id="memory-settings">Memory Settings&lt;/h2>
+&lt;p>The Java Virtual Machine (JVM) is responsible for managing the memory used by the Trustgrid service on appliances. Two key parameters that control this memory management are the minimum (min) and maximum (max) memory values.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Minimum Memory:&lt;/strong> This is the initial memory allocation for the JVM. When your Java application starts, the JVM allocates this amount of memory right away. It&amp;rsquo;s like setting a base size for the memory footprint of your application.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Maximum Memory:&lt;/strong> This is the maximum amount of memory the JVM is allowed to use. If your application needs more memory than the initial amount (set by min), it will continue to use more up to this maximum limit.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Parameter&lt;/th>
+&lt;th>Default&lt;/th>
+&lt;th>Recommendations&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Minimum&lt;/td>
+&lt;td>512MB&lt;/td>
+&lt;td>512MB is the recommended smallest value&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Maximum&lt;/td>
+&lt;td>1GB&lt;/td>
+&lt;td>- Start with the total available system memory &lt;br>- Subtract ~ 1G for OS and other processes &lt;br> - If running containers or virtual machines on the appliance subtract their expected memory usage &lt;br> - Set the value so that it does not exceed about 75% of remaining memory&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="why-increase-the-max-memory">Why Increase the Max Memory?&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Handling Larger Workloads:&lt;/strong> If your Trustgrid appliance is managing a large number of flows or processing large amounts of data, increasing the maximum memory can help accommodate spikes in memory usage without triggering garbage collection as frequently.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Performance Optimization:&lt;/strong> Increasing the max memory can reduce the frequency of garbage collection (a process that frees up memory by removing unused objects), which can improve performance.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Remember, while increasing max memory can help, it&amp;rsquo;s important to balance it with the available system resources to avoid starving other processes or causing system-wide issues.&lt;/p>
+&lt;h2 id="java-garbage-collection">Java Garbage Collection&lt;/h2>
+&lt;p>The Java Garbage Collection system:&lt;/p>
+&lt;ul>
+&lt;li>Automatically frees up memory by removing unused objects.&lt;/li>
+&lt;li>Essential for managing memory in the JVM.&lt;/li>
+&lt;/ul>
+&lt;p>There are multiple different garbage collectors, each with its own strategy and performance characteristics. The default garbage collector on Trustgrid appliances is the Parallel GC. Optionally, we also support using the G1 Garbage Collector.&lt;/p>
+&lt;h3 id="switching-to-g1-garbage-collector">Switching to G1 Garbage Collector&lt;/h3>
+&lt;ul>
+&lt;li>Better Performance: G1 offers more predictable garbage collection pauses, reducing latency.&lt;/li>
+&lt;li>Handling Large Memory: Efficient for applications with large heaps.&lt;/li>
+&lt;/ul>
+&lt;p>Despite these advantages, Trustgrid has not yet been able to see significant performance improvements by switching to G1 over Parallel GC in most customer environments. Unless you are experiencing specific performance issues, we recommend leaving the default Parallel GC.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+Contact Trustgrid support if you need to adjust these settings
+&lt;/div></description></item><item><title>Help-Center: Network Flow Default Settings</title><link>https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/</guid><description>
 &lt;h2 id="timeouts">Timeouts&lt;/h2>
 &lt;p>The table below details the time the Trustgrid network process waits before terminating a flow. Flows are matched based on the IP tuple (source ip, source port, destination ip, destination port).&lt;/p>
 &lt;table>
@@ -43,6 +103,7 @@
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;p>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">Virtual Network Routes&lt;/a> are only evaluated when a flow is first created. If you modify VPN routes after a flow is established, it will not impact existing flows. If you have an application that reuses the same IP tuple then you will need to make sure it is inactive long enough for the appropriate timeout to occur.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
-&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">Virtual Network Routes&lt;/a> are only evaluated when a flow is first created. If you modify VPN routes after a flow is established, it will not impact existing flows. If you have an application that reuses the same IP tuple then you will need to make sure it is inactive long enough for the appropriate timeout to occur.
+Contact Trustgrid support if you need to adjust these settings
 &lt;/div></description></item></channel></rss>
