@@ -10,7 +10,7 @@ When troubleshooting a problem on edge or gateway nodes, reviewing node [events]
 3. Look for any critical problems
 {{<tgimg src="node-alerts.png" width="85%" caption="Events for the currently viewed node">}}
 
-For more issues involving multiple nodes, review events across the organization to detect patterns or issues affecting many nodes at once.
+For issues affecting multiple nodes, review events across the organization to detect patterns or issues.
 
 1. Choose the `Operations` tab
 2. View `Events` across the organization

@@ -101,7 +101,7 @@ Node2 would report the flow after the NATs on Node1 were applied (changing the s
 |-----------|----------------|
 | 192.168.100.1 | 10.100.1.1 | 
 
-{{<alert color="info" title="Note:">}} For simplicity ports were excluded. Destination ports will not be changed by NATs.  Source ports would also be maintained for any 1:1 NAT, but would change if a many:1 (or overload) NAT was applied to the flow. {{</alert>}}
+{{<alert color="info" title="Note:">}} For simplicity, ports were excluded. Destination ports will not be changed by NATs.  Source ports would also be maintained for any 1:1 NAT, but would change if a many:1 (or overload) NAT was applied to the flow. {{</alert>}}
 
 ## Viewing Flow Logs
 Flow logs are visible at an organization level by navigating to [Operations > Flow Logs]({{<ref "/docs/operations/flow-logs">}}). This will show you the most recent 10,000 flows of **all** nodes in the organization.
