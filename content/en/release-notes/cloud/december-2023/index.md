@@ -34,7 +34,7 @@ Pages are added to favorites by:
 Removing a favorite page is the same process but unselecting the star icon instead.
 
 ### Removal of the Dashboard page
-Based on feedback from users the Dashboard page has been removed and users now land on the Nodes table on login. Future release
+Based on feedback from users the Dashboard page has been removed and users now land on the Nodes table on login. You can also configure a [custom landing page for users if desired]({{<relref "/docs/user-management/users#change-a-user-landing-page">}})
 
 ## Other Issues Resolved
 - Resolves an issue causing the [Gateway Clients]({{< relref "/docs/nodes/gateway/gateway-client">}}) page to load as a blank white page.
