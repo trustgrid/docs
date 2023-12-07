@@ -16,5 +16,7 @@ The table below details the time the Trustgrid network process waits before term
 | UDP | not applicable | 60 | Covers all UDP flows as the protocol is stateless | 
 | ICMP | not applicable | 5 | Covers all ICMP flows as the protocol is stateless | 
 
-{{<alert color="info">}}[Virtual Network Routes]({{<relref "/docs/domain/virtual-networks/routes">}}) are only evaluated when a flow is first created.  If you modify VPN routes after a flow is established, it will not impact existing flows. If you have an application that reuses the same IP tuple then you will need to make sure it is inactive long enough for the appropriate timeout to occur.
-{{</alert>}}
+[Virtual Network Routes]({{<relref "/docs/domain/virtual-networks/routes">}}) are only evaluated when a flow is first created.  If you modify VPN routes after a flow is established, it will not impact existing flows. If you have an application that reuses the same IP tuple then you will need to make sure it is inactive long enough for the appropriate timeout to occur.
+
+
+{{<alert color="info">}}Contact Trustgrid support if you need to adjust these settings{{</alert>}}
