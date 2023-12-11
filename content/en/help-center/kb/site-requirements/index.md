@@ -15,7 +15,7 @@ Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) a
 In order to connect to the Trustgrid Control Plane, the following outbound traffic must be allowed from the node’s configured primary interface IP address
 
 ### Trustgrid Control Plane
-- TCP Port 443 and TCP/UDP 8443 to:
+- TCP Port 443 and TCP 8443 to:
   - 35.171.100.16/28
   - 34.223.12.192/28
 
