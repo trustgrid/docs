@@ -1,4 +1,23 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 22 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: November 2023 Appliance Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/nov-2023-minor/</link><pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/nov-2023-minor/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: December 2023 Appliance Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/dec-2023-minor/</link><pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/dec-2023-minor/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20231206-1914&lt;/td>
+&lt;td>20231206-183238.65d2bde&lt;/td>
+&lt;td>n-2.17.3&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="disable-udp-rekeying">Disable UDP Rekeying&lt;/h2>
+&lt;p>A customer had a misconfiguration that led to the UDP rekeying messages being lost. This compounded the performance impact as the UDP tunnels had to be rebuilt frequently.&lt;/p>
+&lt;p>This release adds the ability for Trustgrid support to disable UDP rekeying on a gateway if needed. Trustgrid will make the UDP rekeying process more resilient and better able to handle lost key exchanges in the future.&lt;/p></description></item><item><title>Release-Notes: November 2023 Appliance Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/nov-2023-minor/</link><pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/nov-2023-minor/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
