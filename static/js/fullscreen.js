@@ -27,6 +27,7 @@ function toggleFullScreen(imgElement) {
         imgElement.style.left = '';
         imgElement.style.transform = '';
         imgElement.style.zIndex = '';
+        imgElement.style.boxShadow = ''; // Remove shadow
     } else {
         imgElement.style.position = 'fixed';
         imgElement.style.maxWidth = '90%';
@@ -35,6 +36,7 @@ function toggleFullScreen(imgElement) {
         imgElement.style.left = '50%';
         imgElement.style.transform = 'translate(-50%, -50%)';
         imgElement.style.zIndex = '1000';
+        imgElement.style.boxShadow = '0px 0px 20px 5px rgba(0, 0, 0, 0.5)'; // Add shadow
     }
 }
 
