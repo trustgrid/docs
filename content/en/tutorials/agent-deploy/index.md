@@ -21,10 +21,9 @@ Trustgrid provides a Docker image that contains the agent pre-configured and opt
 ## Agent Installation
 Installation instructions are also shown in the portal after [adding an agent]({{<ref "/tutorials/agent-deploy/_index.md#adding-agents">}}).
 {{< tabpane highlight=true >}}
-{{% tab header="Ubuntu/Debian" text=true %}}
+{{% tab header="Ubuntu" text=true %}}
 The Trustgrid agent is provided as a package in a custom repository hosted by Trustgrid. 
-### Ubuntu 22.04 LTS (Jammy Jellyfish) / Debian 12 (Bookworm)
-
+### Ubuntu 22.04 LTS (Jammy Jellyfish)
 The below commands add the Trustgrid repository and required keys to ensure trusted communication. The agent package is then installed.
 ```bash
 echo "deb [signed-by=/usr/share/keyrings/trustgrid-keyring.gpg] https://tgpkg.io/apt tg-agent-jammy main" \
@@ -49,5 +48,4 @@ The below instructions for Red Hat Enterprise Linux (RHEL) may also work for rel
 
 ## Add Agent
 
-1. From the [Nodes table]({{<ref "/docs/nodes">}}), click the `+ Add Agent` button to generate an agent token. {{<tgimg src="add-agent-button.png" width="30%" caption="Add Agent Button">}}
-1. When prompted provide a name and choose the Virtual Network the agent will connect to. Then click `Add`. {{<tgimg src="generate-token.png" width="60%" caption="Generate Agent Token">}}
+{{< readfile file="ubuntu2204-install.md" >}}

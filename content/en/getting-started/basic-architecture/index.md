@@ -12,6 +12,8 @@ description: >
 
 The basic building block of a Trustgrid network is a [node]({{<ref "docs/nodes">}}). Nodes are [deployed]({{<relref "./deployment">}}) on-premises or in your cloud provider and connected to each other to build a [data plane]([{{<relref "#data-plane">}}]) on top of which additional services such as [virtual networking]({{<relref "#virtual-networks">}}), [ztna access]({{<relref "#ztna-access">}}), and [compute]({{<relref "#edge-compute">}}) can be provided.
 
+Nodes can be [deployed](../deployment) either as an **agent**, a service running in an existing operating system, or as an **appliance** which bundles the operating system and Trustgrid software together. 
+
 Additionally, appliance-based nodes can be [clustered]({{<relref "docs/clusters">}}) to provide high availability at a site. 
 
 ### Gateways
