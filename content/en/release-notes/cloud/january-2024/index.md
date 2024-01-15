@@ -1,9 +1,9 @@
 ---
-title: December 2023 Release Notes
-linkTitle: 'December 2023 Release'
+title: January 2024 Release Notes
+linkTitle: 'January 2024 Release'
 type: docs
-date: 2023-12-10
-description: "December cloud release with Flow Log and Portal Improvements"
+date: 2024-01-21
+description: "January 2024 cloud release with Flow Log and Portal Improvements"
 ---
 
 Much of this release lays the groundwork needed for a new lighter-weight version of Node that will be made public next year. 
@@ -35,6 +35,11 @@ Removing a favorite page is the same process but unselecting the star icon inste
 
 ### Removal of the Dashboard page
 Based on feedback from users the Dashboard page has been removed and users now land on the Nodes table on login. You can also configure a [custom landing page for users if desired]({{<relref "/docs/user-management/users#change-a-user-landing-page">}})
+
+### Advanced Node Options
+A new Advanced Options section has been added to nodes allowing configuration of additional options like:
+- JVM Memory settings
+- Network flow timeout and time to live (TTL) and ARP intervals
 
 ## Other Issues Resolved
 - Resolves an issue causing the [Gateway Clients]({{< relref "/docs/nodes/gateway/gateway-client">}}) page to load as a blank white page.
