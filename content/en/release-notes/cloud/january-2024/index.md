@@ -10,7 +10,7 @@ Much of this release lays the groundwork needed for a new lighter-weight version
 
 ## Flow Logs Improvements
 
-### Flow Log Performance Improvements
+### Flow Log Performance
 With this release, Trustgrid has changed out the backend system used for storage and querying of [flow logs]({{<relref "/help-center/flow-logs">}}). This new system provides significant performance improvements when viewing and exporting flow logs for nodes. While the initial default searches will sometimes take a few seconds longer, advanced searches are significantly faster than before.  Additionally, this change will enable future improvements for better reporting, analysis and visualization. 
 
 ### Flow Log Export TCP Flags
@@ -37,9 +37,13 @@ Removing a favorite page is the same process but unselecting the star icon inste
 Based on feedback from users the Dashboard page has been removed and users now land on the Nodes table on login. You can also configure a [custom landing page for users if desired]({{<relref "/docs/user-management/users#change-a-user-landing-page">}})
 
 ### Advanced Node Options
-A new Advanced Options section has been added to nodes allowing configuration of additional options like:
+A new [Advanced Options]({{<relref "/docs/nodes/advanced">}}) section has been added to nodes allowing the configuration of additional options like:
 - JVM Memory settings
 - Network flow timeout and time to live (TTL) and ARP intervals
+
+### Clone Policy Option
+To make it easier to [duplicate existing policies]({{<relref "/docs/user-management/policies#clone-existing-policy">}}) there is now a copy button to the far right of each policy in the Policies page. Clicking this button will create a duplicate of the policy that can be named and edited as desired. 
+{{<tgimg src="clone-policy.png" width="80%">}}
 
 ## Other Issues Resolved
 - Resolves an issue causing the [Gateway Clients]({{< relref "/docs/nodes/gateway/gateway-client">}}) page to load as a blank white page.
