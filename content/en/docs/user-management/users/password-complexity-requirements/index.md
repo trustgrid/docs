@@ -10,7 +10,7 @@ Invited users utilize Trustgrid's native authentication provider for password co
 
 * At least 10 characters in length
 * Lower case (a-z), upper case (A-Z) and numbers (0-9)
-* Special characters (!@#$%^&*)
+* Special characters (-!@#$%^&*)
 * No more than 2 identical characters in a row
 * Cannot reuse the last 5 passwords
 * Cannot be in the list of the [10,000](https://github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10k-most-common.txt) most common passwords

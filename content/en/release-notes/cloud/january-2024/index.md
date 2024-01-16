@@ -6,7 +6,20 @@ date: 2024-01-21
 description: "January 2024 cloud release with Flow Log and Portal Improvements"
 ---
 
-Much of this release lays the groundwork needed for a new lighter-weight version of Node that will be made public next year. 
+## Default Authentication Provider Change
+Trustgrid has previously utilized Auth0 as the authentication provider for customers who do not use a [custom identity provider (IdP)]({{<relref "/docs/idps">}}). With this release, Trustgrid has migrated to utilizing an internally managed authentication service to provide more control and stability.
+
+{{<alert color="info">}}This change will have no impact on customers using their own Identity Providers (IdPs) for portal authentication{{</alert>}}
+
+### User Migration Process
+As part of this process users will be prompted to migrate their accounts from the previous Auth0 provider to the new internally managed authentication service. This will involve:
+1. When existing users login to the portal they will be receive a prompt, like below, to recreate their account in the new system.{{<tgimg src= "migrate-account.png" width="50%" caption="Account migration prompt">}}
+1. The users will then be prompted to provide their first and last name, and a new password.  The email address will be pre-filled. {{<tgimg src="migrate-user1.png" width="50%" caption="Prompt for password and additional details">}}
+1. A verification email will then be sent to the invited user's email address. They will need to click the link in the email to verify their email and complete registration.
+1. After verifying their email address the user will be prompted to configure Multi-Factor Authentication (MFA). Trustgrid recommends using a one-time password MFA such as Authy or Google Authenticator.
+   1. Scan the QR code with your app. 
+   1. Enter the passcode and click the `Submit` button. {{<tgimg src="/docs/user-management/users/sign-up-4.png" width="50%" >}}
+1. The user is returned to the login screen. Login with the newly created email, password, and MFA code.  You will then be redirected back to the Trustgrid portal.
 
 ## Flow Logs Improvements
 
