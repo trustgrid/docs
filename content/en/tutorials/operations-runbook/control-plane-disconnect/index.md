@@ -46,7 +46,7 @@ In order to connect to the Trustgrid Control Plane, the following <strong>outbou
 
         ii. Connect directly to the network of the inside interface and attempt ping from there. They should also connect directly to the inside interface and statically configure an IP in the same network.
 
-4. Attempt power cycling the node by removing power and returning from physical devices or using the hypervisor management tools for virtual nodes.
+4. Attempt power cycling the node by removing power and reconnecting for physical devices, or using the hypervisor management tools for virtual nodes.
 
 5. Connect to the console of the device
 
@@ -54,7 +54,7 @@ In order to connect to the Trustgrid Control Plane, the following <strong>outbou
 
 ![img](normal-node.png)
 
-    i. Work with the onsite tech to login to the Trustgrid Local Console Utility.  This tools will display connectivity status and allow you to alter the WAN/outside IP settings if needed.
+    i. Work with the onsite tech to log in to the Trustgrid Local Console Utility.  This tool will display the connectivity status and allow you to alter the WAN/outside IP settings if needed.
 
 b. If you see a screen like below attempt rebooting the device to restore connectivity. If that works contact Trustgrid support so we can investigate further. 
 
@@ -74,11 +74,11 @@ b. If you see a screen like below attempt rebooting the device to restore connec
 
 ![img](certificate-invalid.png)
 
-        1. You should expect to see a chain like the below.
+        1. You should expect to see a chain like the below example:
 
 ![img](chain.png)
 
-            a. If there are any different certificates or CAs that indicates something like DPI-SSL/HTTPS Proxy is interfering with the handsake.  See [this page] for resolution requirements.
+            a. If any different certificates or CAs indicate something like DPI-SSL/HTTPS Proxy is interfering with the handshake.  See [this page] for resolution requirements.
 
         ii. If the browser says it cannot connect this indicates a firewall or routing issue upstream.
 
@@ -89,8 +89,4 @@ b. If you see a screen like below attempt rebooting the device to restore connec
     b. Blocked port 8443 to the Trustgrid Networks -  Edge Node Behavior When Port 8443 to Trustgrid Public Networks is Blocked 
 
     c. DPI-SSL or HTTPS altering the TLS certificate chain - Edge Node Behavior When SSL / TLS Certificate is Altered 
-
-# **NEED PROPER LINKS TO USE AND NEED TO FIND HOW TO ADD LINKS TO INDENT FORMAT**
-
- 
 
