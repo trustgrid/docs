@@ -1560,11 +1560,15 @@ Example JVM Heap chart
 &lt;p>The customer’s support team should be the end-user’s first point of contact. Trustgrid’s standard support contract makes the customer responsible for performing tier one support tasks prior to escalating Trustgrid Support. This includes contacting end-user technical resources as needed.&lt;/p>
 &lt;p>Example tasks include:&lt;/p>
 &lt;ul>
-&lt;li>Troubleshooting offline Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>&lt;/li>
-&lt;li>Changing Trustgrid node IP addresses&lt;/li>
-&lt;li>Adding, modifying and testing NATs on Edge devices&lt;/li>
-&lt;li>Modifying interface and domain routes, including facilitating failover between sites&lt;/li>
-&lt;li>Disabling and removing nodes, clusters and related configuration (e.g. routes) when no longer needed&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/node-down-response/">Triage&lt;/a> and Initial &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/control-plane-disconnect/">troubleshooting offline Trustgrid nodes&lt;/a>
+&lt;ul>
+&lt;li>Before escalating to Trustgrid support please establish contact with an &lt;a href="#end-user">end-user&lt;/a> technical resource with &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/#connecting-to-trustgrid-local-console">console access&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/wan-interface-ip/">Changing Trustgrid node IP addresses&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/nats/">Adding, modifying&lt;/a> and testing NATs on Edge devices&lt;/li>
+&lt;li>Modifying &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#interface-routes">interface&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#managing-virtual-network-routes">domain routes&lt;/a>, including facilitating &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/">failover between sites&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Disabling&lt;/a> and removing &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/deleting-clusters/">clusters&lt;/a>, and related configurations (e.g. routes) when no longer needed&lt;/li>
 &lt;/ul>
 &lt;div class="alert alert-primary" role="alert">
 Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment
