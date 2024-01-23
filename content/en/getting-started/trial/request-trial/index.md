@@ -29,6 +29,10 @@ The process below will guide you through requesting a free 30-day trial account.
 1. You will be returned to the sign-in page to complete your login. Enter your email, password and the one-time password from your authentication app.
 {{<tgimg src="final-signin.png" width="40%">}}
 
+Note: If you are not automatically redirected back to the Trustgrid portal just like the Portal link in the top right.
+{{<tgimg src="auth-portal-link.png" width="35%" caption="Link back to Portal">}}
+
+
 ## Step 2 - Choose a domain
 All Trustgrid accounts have a base domain that is used to create fully qualified domain names (fqdn) for resources such as nodes and clusters.  
 1. On initial login you will be prompted to provide the subdomain for your the fqdn. This will be appended with `.trustgrid.io` automatically. {{<tgimg src="domain-setup.png" width="85%" caption="Prompt to create account domain">}}
