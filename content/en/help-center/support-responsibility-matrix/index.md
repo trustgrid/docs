@@ -65,10 +65,11 @@ The customer’s support team should be the end-user’s first point of contact.
 
 Example tasks include:
 
-- Troubleshooting offline Trustgrid [nodes]({{<ref "docs/nodes" >}})
-- Changing Trustgrid node IP addresses
-- Adding, modifying and testing NATs on Edge devices
-- Modifying interface and domain routes, including facilitating failover between sites
-- Disabling and removing nodes, clusters and related configuration (e.g. routes) when no longer needed
+- [Triage]({{<relref "/tutorials/operations-runbook/node-down-response">}}) and Initial [troubleshooting offline Trustgrid nodes]({{<relref "/tutorials/operations-runbook/control-plane-disconnect">}})
+  - Before escalating to Trustgrid support please establish contact with an [end-user](#end-user) technical resource with [console access]({{<relref "/tutorials/local-console-utility#connecting-to-trustgrid-local-console">}})
+- [Changing Trustgrid node IP addresses]({{<relref "/tutorials/wan-interface-ip">}})
+- [Adding, modifying]({{<relref "/docs/nodes/vpn/nats">}}) and testing NATs on Edge devices
+- Modifying [interface]({{<relref "/docs/nodes/interfaces#interface-routes">}}) and [domain routes]({{<relref "/docs/domain/virtual-networks/routes#managing-virtual-network-routes">}}), including facilitating [failover between sites]({{<relref "/tutorials/operations-runbook/site-failover">}})
+- [Disabling]({{<relref "/tutorials/management-tasks/changing-node-status">}}) and removing [nodes]({{<relref "/tutorials/management-tasks/deleting-nodes">}}), [clusters]({{<relref "/tutorials/management-tasks/deleting-clusters">}}), and related configurations (e.g. routes) when no longer needed
 
 {{<alert>}} Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment {{</alert>}}
