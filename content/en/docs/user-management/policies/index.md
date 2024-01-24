@@ -86,9 +86,8 @@ By default the Resources field is populated with `*` which grants permissions to
 
 A node’s TGRN will start with the below prefix:
 `tgrn:tg::nodes:node/`
-To get the node’s complete TGRN you’ll need to append the node ID which is visible by navigating to the node and either copying from the URL or using the Node ID field in the Info visor drop down
-
-![img](node-tgrn.png)
+Followed by the UID of the node. The node TGRN is accessible from the [infovisor]({{<relref "docs/nodes/infovisor" >}}) for a node by clicking on the "Copy" button to the right of the TGRN entry.
+{{<tgimg src="node-tgrn.png" width="70%" caption="TRGN entry in the Inforvisor panel">}}
 
 A complete [node]({{<ref "docs/nodes" >}}) TGRN looks like: `tgrn:tg::nodes:node/ab3550cf-f3da-4d90-b4b1-b870fc85c9c7`
 
@@ -96,9 +95,10 @@ A complete [node]({{<ref "docs/nodes" >}}) TGRN looks like: `tgrn:tg::nodes:node
 
 Cluster TGRN start with the prefix:
 `tgrn:tg::nodes:cluster/`
-This is followed by the cluster’s fully qualified domain name (fqdn) which is the combination of the cluster name and your organizations trustgrid domain. This visible in the URL when you navigate to a cluster in the portal.
+This is followed by the cluster’s fully qualified domain name (fqdn) which is the combination of the cluster name and your organization's Trustgrid domain. 
 
-![img](cluster-tgrn.png)
+You can copy the Cluster TGRN from a cluster's Overview page by clicking the "Copy" button to the right of TGRN.
+{{<tgimg src="cluster-tgrn.png" width="60%" caption="Cluster TGRN on Overview page">}}
 
 A complete [cluster]({{<ref "docs/clusters" >}}) TGRN looks like: `tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io`
 
@@ -106,19 +106,18 @@ A complete [cluster]({{<ref "docs/clusters" >}}) TGRN looks like: `tgrn:tg::node
 
 #### Creating/Editing Policies
 
-1. Navigate to `User Management` → `Policies`
-
-![img](policy-management.png)
-
+1. Navigate to `User Management` → `Policies` {{<tgimg src="policy-management.png" width="40%" caption="Policy Management Page">}}
 2. For a new policy click `Create Policy`. To edit an existing find it in the list and click on its name.
 3. The policy wizard has two sections. The left section groups permissions by category and is where you allow or deny permissions. The right section shows the resulting JSON of the policy and is read only.
 4. As an example we will create a role to grant users the ability to see, edit and comment on Provisioning orders.
-   a. Under Permissions, search for `orders`
-   b. Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)
-   c. You will notice the Policy JSON updated as you select permissions
-   d. Click `Save`
+   1. Under Permissions, search for `orders`
+   1. Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)
+   1. You will notice the Policy JSON updated as you select permissions
+   1. Click `Save`{{<tgimg src="new-policy.png" caption="Policy updated notification" >}}
 
-![img](new-policy.png)
+#### Clone Existing Policy
+To clone an existing policy click the copy button on the far right of the policy row. This will create a new policy with the same permissions pre-selected which can then be edited and named as desired. 
+{{<tgimg src="clone-policy.png" width="80%" caption="Policy table showing the clone/copy policy button">}}
 
 #### Attaching Policies and Viewing Effective Permissions
 
