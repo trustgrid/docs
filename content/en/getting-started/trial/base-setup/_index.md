@@ -20,15 +20,15 @@ In this section, we will cover the initial setup of two Trustgrid agents on sepa
   - Ideally, these devices should not be able to communicate with each other directly. This is not a hard requirement.
 
 
-## Understand the Default Network
-To facilitate a smooth trial a default [virtual network]() is created. This network uses the carrier-grade NAT address space 100.64.0.0/10 and allows connectivity between all trial agents by default. Agents are automatically assigned IPs in this space and routes are automatically created.
+## Understanding the Default Network
+To facilitate a smooth trial a default [virtual network]({{<relref "/getting-started/basic-architecture#virtual-networks">}}) is created. This network uses the carrier-grade NAT address space 100.64.0.0/10 as an [IP Pool](). Agents are automatically assigned an IP address from this pool when they are attached to the virtual network and routes are automatically created to allow communication between agents on the same virtual network.
 
 
-## Step 1 - Setup First Agent
-### Install tg-agent
+## Step 1 - Setup Agents
+### Install First Agent
 {{< readfile file="/tutorials/agent-deploy/ubuntu2204-install.md" >}}
-### Determine agent1 IP address
-As part of registration each agent is automatically assigned an IP address on the Trustgrid virtual network. We will need this IP address to confirm communication between the agents in later steps.
+#### Determine agent1 IP address
+As part of registration, each agent is automatically assigned an IP address on the Trustgrid virtual network. We will need this IP address to confirm communication between the agents in later steps.
 1. From the console of agent1, run the below command:
   ```  text
   ip address show dev trustgrid0
@@ -37,13 +37,13 @@ As part of registration each agent is automatically assigned an IP address on th
 
 {{<tgimg src="agent1-ip.png" width="90%" caption="Console showing the Trustgrid IP address of 100.64.0.1">}}
 
-## Step 2 - Install Second Agent
+### Install Second Agent
 
-Repeat the above steps on the second Ubuntu instance to [install the Trustgrid agent](#install-tg-agent) with a name like "Agent2" on the same Virtual Network and [determine agent2's IP address](#determine-agent1-ip-address)
+Repeat the above steps on the second Ubuntu instance to [install the Trustgrid agent](#install-first-agent) with a name like "**agent2**" on the same Virtual Network and [determine agent2's IP address](#determine-agent1-ip-address)
 This should return a different IP address in the same network.
 {{<tgimg src="agent2-ip.png" width="90%" caption="Console showing the Trustgrid IP address of 100.64.0.2">}}
 
-## Step 3 - Confirm communication
+## Step 2 - Confirm communication
 
 From `agent2` run the below command to ping `agent1` using its Trustgrid IP address:
 ``` text
@@ -59,21 +59,7 @@ ping -c 4 100.64.0.2
 ```
 {{<tgimg src="ping-agent2.png" width="60%" caption="Successful ping from agent1 to agent2">}}
 
-## Step 4 - (Optional) Generate Web Traffic
-To see more than just ICMP (ping) traffic you can optionally install a web server on one or both agents and use the `curl` command to generate HTTP requests between them. If you do not wish to install a web server you can skip to [step 5](#step-5---view-flow-logs)
-
-### Install nginx on agent1
-1. Connect to `agent1`
-1. Run the command `sudo apt install nginx`.  This install the nginx web server which will automatically start and listen on port 80 by default.
-  1. When prompted choose `y` to install the required packages. 
-
-### Run curl from agent2
-1. Connect to `agent2`
-1. Run the command `curl http://100.64.0.1`
-1. You should see a response like below: {{<tgimg src="curl-agent1.png" width="75%" caption="Successful curl from agent2 to agent1">}}
-
-
-## Step 5 - View Flow Logs
+## Step 3 - View Flow Logs
 [Flow logs]({{<relref "/help-center/flow-logs">}}) provide visibility Trustgrid provides into the traffic passing through agents. They show details of every connection including source, destination, protocols, and more.
 ### View on Overview
 The flow logs for agents are shown on the Overview page for each node beneath the stats. 
