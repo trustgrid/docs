@@ -31,7 +31,30 @@
 &lt;li>Device Management - Manage thousands of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> with advanced tools to reduce the burden of operations at enterprise scale.&lt;/li>
 &lt;li>Edge API - Integrate thousands of edge datasets with a single API interface and ETL functions executing at the edge.&lt;/li>
 &lt;li>Security - Leverage Trustgrid&amp;rsquo;s advanced &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a> to protect against a wide range of threats.&lt;/li>
-&lt;/ul></description></item><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/audits/</guid><description>
+&lt;/ul></description></item><item><title>Docs: Advanced Options</title><link>https://docs.trustgrid.io/docs/nodes/advanced/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/advanced/</guid><description>
+&lt;p>The Advance section provides additional configuration options for customizing the node behavior from the &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/">default settings&lt;/a>.
+&lt;div class="alert alert-warn" role="alert">
+Default settings work in most environments and should only be changed if needed based on your specific requirements.
+&lt;/div>
+&lt;/p>
+&lt;h2 id="config-options">Config Options&lt;/h2>
+&lt;figure class="centered-image">
+&lt;img src="config-options.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Advanced Config Options
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The Config Options panel allows customizing various advanced settings for the node such as &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/">network flow defaults&lt;/a>. Each settings provides a description of what it controls and the value field. Additionally the button on the far right allows resetting a setting back to the default value.&lt;/p>
+&lt;p>After changing a setting click the Save button. &lt;strong>Some changes may require a node restart to take effect.&lt;/strong>&lt;/p>
+&lt;h2 id="jvm-memory">JVM Memory&lt;/h2>
+&lt;figure class="centered-image">
+&lt;img src="jvm-memory.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Java Virtual Machine (JVM) memory settings
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The JVM Memory panel allows changing the &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/jvm/">default JVM settings&lt;/a> for the node process.&lt;/p>
+&lt;p>&lt;strong>The node must be restarted for any change to be effective.&lt;/strong>&lt;/p></description></item><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/audits/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Node audits provide records when services on a node are invoked, or when upgrades are applied. This can be helpful to see historical maintenance of a node.&lt;/p>
 &lt;/div>
@@ -1254,20 +1277,31 @@ Change entry for active member change
 &lt;/div>
 &lt;/div>
 &lt;/div></description></item><item><title>Help-Center: Review Node Events</title><link>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</guid><description>
-&lt;p>When troubleshooting a problem on edge or gateway nodes, reviewing node events can provide critical information about the nature of the problem.&lt;/p>
+&lt;p>When troubleshooting a problem on edge or gateway nodes, reviewing node &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> can provide critical information about the nature of the problem.&lt;/p>
 &lt;ol>
 &lt;li>Choose the node that may be causing the problem&lt;/li>
 &lt;li>Scroll down to &lt;code>Events&lt;/code>&lt;/li>
-&lt;li>Look for any critical problems&lt;/li>
+&lt;li>Look for any critical problems
+&lt;figure class="centered-image">
+&lt;img src="node-alerts.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Events for the currently viewed node
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="node-alerts.png" alt="img">&lt;/p>
-&lt;p>For more issues involving multiple nodes, review [Domain Node Events](need link for this).&lt;/p>
+&lt;p>For issues affecting multiple nodes, review events across the organization to detect patterns or issues.&lt;/p>
 &lt;ol>
 &lt;li>Choose the &lt;code>Operations&lt;/code> tab&lt;/li>
-&lt;li>View &lt;code>Events&lt;/code> across the organization&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="alerts-page.png" alt="img">
-Types]](https://docs.trustgrid.io/docs/alarms/event-types/)&lt;/p></description></item><item><title>Docs: Gateway Server Settings</title><link>https://docs.trustgrid.io/docs/nodes/gateway/gateway-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/gateway/gateway-server/</guid><description>
+&lt;li>View &lt;code>Events&lt;/code> across the organization
+&lt;figure class="centered-image">
+&lt;img src="alerts-page.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Organization wide events
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Gateway Server Settings</title><link>https://docs.trustgrid.io/docs/nodes/gateway/gateway-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/gateway/gateway-server/</guid><description>
 &lt;p>Gateways servers are nodes that are configured to receive connections from other Trustgrid nodes (clients). These are the only nodes that need to have ports open and listening on the internet or WAN network.&lt;/p>
 &lt;p>The server sub-panel provides the settings controlling if a node will act as a server and if so how clients will connect to it.&lt;/p>
 &lt;h2 id="gateway-server-types">Gateway Server Types&lt;/h2>
@@ -2621,11 +2655,11 @@ Node2 --src: 172.16.1.100 \n dest:172.16.1.20 --&amp;gt; server(HTTP Server\n172
 &lt;/table>
 &lt;div class="alert alert-info" role="alert">
 &lt;h4 class="alert-heading">Note:&lt;/h4>
-For simplicity sake ports were excluded. Destination ports will not be changed by NATs. Source ports would also be maintained for any 1:1 NAT, but would change if a many:1 (or overload) NAT was applied to the flow.
+For simplicity, ports were excluded. Destination ports will not be changed by NATs. Source ports would also be maintained for any 1:1 NAT, but would change if a many:1 (or overload) NAT was applied to the flow.
 &lt;/div>
 &lt;h2 id="viewing-flow-logs">Viewing Flow Logs&lt;/h2>
-&lt;p>Flow logs are visible at an organization level by navigating to &lt;a href="https://docs.trustgrid.io/docs/operations/flow-logs/">Operations &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 1000 flows over the last two hours for the &lt;strong>all&lt;/strong> nodes in the organization.&lt;/p>
-&lt;p>To view Flow Logs only for traffic through a specific node, navigate to that node and go to &lt;a href="https://docs.trustgrid.io/docs/nodes/flow-logs/">History &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 1000 flows over the last two hours for the &lt;strong>currently selected&lt;/strong> node.&lt;/p>
+&lt;p>Flow logs are visible at an organization level by navigating to &lt;a href="https://docs.trustgrid.io/docs/operations/flow-logs/">Operations &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 10,000 flows of &lt;strong>all&lt;/strong> nodes in the organization.&lt;/p>
+&lt;p>To view Flow Logs only for traffic through a specific node, navigate to that node and go to &lt;a href="https://docs.trustgrid.io/docs/nodes/flow-logs/">History &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 10,000 flows for the &lt;strong>currently selected&lt;/strong> node.&lt;/p>
 &lt;figure class="centered-image">
 &lt;img src="flow-logs-node.png" alt="table showing flow log entries for a node" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
@@ -2634,7 +2668,7 @@ Example flow log table for a node
 &lt;/figure>
 &lt;h3 id="advanced-search">Advanced Search&lt;/h3>
 &lt;p>Flow logs can be filtered by any of the fields listed above. To filter by a field, click the &lt;code>Advanced Search&lt;/code> button at the top right of the flow logs table.&lt;/p>
-&lt;p>In addition, the ordering can be changed so that oldest flows (or flows closest to the time range specified) can be shown first. There is a limit of 10,000 flows returned per search.&lt;/p>
+&lt;p>In addition, the ordering can be changed so that the oldest flows (or flows closest to the time range specified) can be shown first. There is a limit of 10,000 flows returned per search.&lt;/p>
 &lt;figure class="centered-image">
 &lt;img src="advanced-search.png" alt="Dialog showing the various search filter parameters available in advanced search." style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
@@ -2642,311 +2676,10 @@ Advanced Search dialog
 &lt;/figcaption>
 &lt;/figure>
 &lt;h3 id="exporting-flow-logs-to-csv">Exporting Flow Logs to CSV&lt;/h3>
-&lt;p>From the Flow logs table you can export the current filtered logs to a CSV file for further analysis or reporting. Several fields are exported differently in the CSV file:&lt;/p>
-&lt;p>Below are the potential fields of a single flow log.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="start-and-end-time" style="scroll-margin-top: 10rem;">
-&lt;th>Start and End Time&lt;/th>
-&lt;td>&lt;p>Both of these fields exported two different ways:&lt;/p>
+&lt;p>From the Flow logs table, you can export the current filtered logs to a CSV file for further analysis or reporting.&lt;/p>
+&lt;h4 id="start-and-end">Start and End&lt;/h4>
+&lt;p>Both of these fields are exported in two different formats:&lt;/p>
 &lt;ul>
 &lt;li>Human friendly in the format: MM/DD/YYYY HH:MM:SS AM/PM&lt;/li>
-&lt;li>Timestamp in milliseconds since epoch for machine parsing&lt;/li>
-&lt;/ul>
-&lt;/td>
-&lt;/tr>
-&lt;tr id="tcp-flags" style="scroll-margin-top: 10rem;">
-&lt;th>TCP Flags&lt;/th>
-&lt;td>TCP Flags are exported in hexadeximal format (e.g. 0x02 for SYN flag set) rather than the human friendly names. See the below section for more info on converting these values.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h4 id="understanding-tcp-flag-hex-values">Understanding TCP Flag Hex Values&lt;/h4>
-&lt;p>When exporting TCP flags to CSV, the values will be shown as hexadecimal numbers rather than the human readable names (e.g. SYN, ACK). The below table shows how each flag would be prepresented as a hex value or binary value.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Hex Value&lt;/th>
-&lt;th>Binary Representation&lt;/th>
-&lt;th>Flag Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>0x01&lt;/code>&lt;/td>
-&lt;td>&lt;code>00000001&lt;/code>&lt;/td>
-&lt;td>FIN&lt;/td>
-&lt;td>Finish (end of data communication)&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x02&lt;/code>&lt;/td>
-&lt;td>&lt;code>00000010&lt;/code>&lt;/td>
-&lt;td>SYN&lt;/td>
-&lt;td>Synchronize sequence numbers&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x04&lt;/code>&lt;/td>
-&lt;td>&lt;code>00000100&lt;/code>&lt;/td>
-&lt;td>RST&lt;/td>
-&lt;td>Reset the connection&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x08&lt;/code>&lt;/td>
-&lt;td>&lt;code>00001000&lt;/code>&lt;/td>
-&lt;td>PSH&lt;/td>
-&lt;td>Push function&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x10&lt;/code>&lt;/td>
-&lt;td>&lt;code>00010000&lt;/code>&lt;/td>
-&lt;td>ACK&lt;/td>
-&lt;td>Acknowledgment&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x20&lt;/code>&lt;/td>
-&lt;td>&lt;code>00100000&lt;/code>&lt;/td>
-&lt;td>URG&lt;/td>
-&lt;td>Urgent pointer field significant&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x40&lt;/code>&lt;/td>
-&lt;td>&lt;code>01000000&lt;/code>&lt;/td>
-&lt;td>ECE&lt;/td>
-&lt;td>Explicit Congestion Notification Echo&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x80&lt;/code>&lt;/td>
-&lt;td>&lt;code>10000000&lt;/code>&lt;/td>
-&lt;td>CWR&lt;/td>
-&lt;td>Congestion Window Reduced&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>The CSV export will show the hex value that represents the combination of set flags. For example, a flow with SYN and ACK flags set would show the hex value &lt;code>0x12&lt;/code> in the CSV, representing the binary value &lt;code>00010010&lt;/code>.&lt;/p>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Note:&lt;/h4>
-The value shown is the total of ALL flags seen on all packets that are part of the flow. If you are only used to looking at the flags of individual packets you will see combinations not normal in regular TCP traffic. For example a complete flow might have a SYN, ACK, RST and FIN.
-&lt;/div>
-&lt;p>To convert hax flags to human readable format first convert to binary then check each bit position.&lt;/p>
-&lt;p>To convert hex to binary you can:&lt;/p>
-&lt;ul>
-&lt;li>an online tool like &lt;a href="https://www.binaryhexconverter.com/hex-to-binary-converter">Binary to Hexadecimal Converter&lt;/a>&lt;/li>
-&lt;li>searching google.com using the prompt &lt;code>0x## to binary&lt;/code> (replacing the ## with the hex value)&lt;/li>
-&lt;li>Use the &lt;code>=HEX2BIN(hex_value)&lt;/code> function in Excel or Google sheets&lt;/li>
-&lt;/ul>
-&lt;p>Then you can use the resulting bit map with a table like below to convert to human readable flags:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Example Hex&lt;/th>
-&lt;th>Binary Equivalent&lt;/th>
-&lt;th>CWR&lt;/th>
-&lt;th>ECE&lt;/th>
-&lt;th>URG&lt;/th>
-&lt;th>ACK&lt;/th>
-&lt;th>PSH&lt;/th>
-&lt;th>RST&lt;/th>
-&lt;th>SYN&lt;/th>
-&lt;th>FIN&lt;/th>
-&lt;th>&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>&lt;code>0xd6&lt;/code>&lt;/td>
-&lt;td>&lt;code>1101 0110&lt;/code>&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>&lt;code>0x1b&lt;/code>&lt;/td>
-&lt;td>&lt;code>0001 1011&lt;/code>&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>0&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table></description></item><item><title>Tutorials: Upgrading Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
-&lt;h2 id="how-a-node-appliance-upgrades">How a Node Appliance Upgrades&lt;/h2>
-&lt;p>The upgrade process will:&lt;/p>
-&lt;ol>
-&lt;li>Upgrade the Trustgrid application package. As part of this process the node will backup the current running version.&lt;/li>
-&lt;li>Apply security updates to install operating system packages.&lt;/li>
-&lt;li>Reboot the Trustgrid node appliance.&lt;/li>
-&lt;/ol>
-&lt;p>For details on what this looks like from a network level see the &lt;a href="https://docs.trustgrid.io/help-center/kb/upgrade-process/">Node Upgrade Process KB&lt;/a> article.&lt;/p>
-&lt;h2 id="frequently-asked-questions">Frequently Asked Questions&lt;/h2>
-&lt;ul>
-&lt;li>&lt;strong>Is the upgrade disruptive?&lt;/strong> - Yes. While the appliance is upgrading services will remain available, though performance may be degraded. However, &lt;strong>the reboot step will make all services unavailable&lt;/strong> until the appliance fully boots and starts the Trustgrid service. Typically this takes a few minutes depending on the underlying hardware.&lt;/li>
-&lt;li>&lt;strong>How long will the upgrade take?&lt;/strong> - This is highly variable but typically this takes between 10 minutes and an hour. Below are a list of things that influence how long the upgrade takes:
-&lt;ul>
-&lt;li>Internet bandwidth - This determines how quickly the node can download the updates.&lt;/li>
-&lt;li>Time since previous update - The longer a node goes without updating the more security packages are likely to be required.&lt;/li>
-&lt;li>CPU and disk performance - The upgrade process involves significant CPU processing and to a lesser extent disk I/O. The upgrade process is single-threaded, so core speed is more important than number of cores.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="best-practices">Best Practices&lt;/h2>
-&lt;ul>
-&lt;li>Upgrade nodes regularly to ensure access to the latest features and security updates&lt;/li>
-&lt;li>For clustered nodes:
-&lt;ul>
-&lt;li>Upgrade the standby node&lt;/li>
-&lt;li>Change the standby node to be the &lt;a href="https://docs.trustgrid.io/docs/clusters/#configured-master">configured master/active&lt;/a> and wait for it to claim this role.&lt;/li>
-&lt;li>Upgrade the new standby node in the cluster&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Utilize an &lt;a href="https://docs.trustgrid.io/docs/alarms/alert-suppression/#define-alert-suppression-window">Alert Suppression Window&lt;/a> to reduce the number of alarms generated if upgrading many nodes.&lt;/li>
-&lt;/ul>
-&lt;h2 id="required-permissions">Required Permissions&lt;/h2>
-&lt;p>In order to perform the below actions a user must have a &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/">policy&lt;/a> applied with the following permissions to the nodes that will be upgraded.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;statements&amp;#34;&lt;/span>&lt;span style="color:#a40000">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;actions&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::read&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::upgrade&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::manage&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;nodes::service:node-upgrade&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;portal::access&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>&lt;span style="color:#a40000">,&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
-&lt;div class="alert alert-info" role="alert">
-The above is only a partial policy. Use the policy creator to define a complete policy
-&lt;/div>
-&lt;h2 id="upgrading-a-single-node">Upgrading a Single Node&lt;/h2>
-&lt;ol>
-&lt;li>Navigate to the node that will be upgraded.&lt;/li>
-&lt;li>From the tool bar click the Upgrade button.
-&lt;figure class="centered-image">
-&lt;img src="node-upgrade-button.png" alt="Toolbar showing an Upgrade (surrounded by a red rectangle), Refresh and Info buttons." style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Upgrade button
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>When prompted enter the node&amp;rsquo;s name and click confirm.
-&lt;figure class="centered-image">
-&lt;img src="node-upgrade-confirm.png" alt="Dialogue asking to enter the node name to confirm" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Node upgrade confirmation
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>A dialogue will indicate the command was successfully sent.
-&lt;figure class="centered-image">
-&lt;img src="single-node-upgrade-report.png" alt="Dialogue stating &amp;#39;Upgrade in progress" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Node upgrade response
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="upgrading-multiple-nodes">Upgrading Multiple Nodes&lt;/h2>
-&lt;ol>
-&lt;li>Navigate to the &lt;a href="https://docs.trustgrid.io/docs/nodes/#node-list-view">Nodes table&lt;/a>.&lt;/li>
-&lt;li>(Optional) Use the search box or &lt;a href="https://docs.trustgrid.io/docs/nodes/#applying-a-tag-filter-to-the-nodes-table">apply a tag filter&lt;/a> to filter the displayed nodes.
-&lt;div class="alert alert-info" role="alert">
-Note: if you change the search or tag filter any selected nodes will be deselected.
-&lt;/div>
-&lt;/li>
-&lt;li>Use the check boxes to select the desired nodes.
-&lt;figure class="centered-image">
-&lt;img src="multi-node-select.png" alt="Nodes table showing two nodes selected" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Nodes table
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>From the actions dropdown select Upgrade.
-&lt;figure class="centered-image">
-&lt;img src="nodes-upgrade-action.png" alt="Action dropdown menu with red box around Upgrade option" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Action &amp;gt; Upgrade
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>When prompted, confirm you want to proceed with the bulk upgrade.
-&lt;figure class="centered-image">
-&lt;img src="multi-node-upgrade-confirm.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Confirm bulk upgrade
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>A table will be presented showing the status of each node upgrade request.
-&lt;figure class="centered-image">
-&lt;img src="multi-node-upgrade-report.png" alt="Upgrade Operation Report table showing two nodes were requested to upgrade and both are in progress" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Upgrade Operation Report
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="monitoring-upgrade-progress">Monitoring Upgrade Progress&lt;/h2>
-&lt;p>You can monitor the upgrade status from a node&amp;rsquo;s Info tab.
-&lt;figure class="centered-image">
-&lt;img src="upgrade-status-inprog.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Info tab, Upgrade in Progress
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;p>There are two fields
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="upgrade-status" style="scroll-margin-top: 10rem;">
-&lt;th>Upgrade Status&lt;/th>
-&lt;td>&lt;p>Shows the most recent status of an upgrade operation on this node. Possibly values are:&lt;/p>
-&lt;ul>
-&lt;li>In Progress&lt;/li>
-&lt;li>Completed&lt;/li>
-&lt;li>Failed&lt;/li>
-&lt;/ul>
-&lt;/td>
-&lt;/tr>
-&lt;tr id="completion-time" style="scroll-margin-top: 10rem;">
-&lt;th>Completion Time&lt;/th>
-&lt;td>Shows a timestamp for the last time an upgrade operation completed.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;div class="alert alert-info" role="alert">
-Note: if an upgrade is currently &lt;strong>In Progress&lt;/strong>, then this will be the completion time of the prior upgrade operations
-&lt;/div>
-&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="upgrade-status-completed.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example of Completed upgrade status
-&lt;/figcaption>
-&lt;/figure></description></item></channel></rss>
+&lt;li>Timestamp in milliseconds since epoch for machine parsing and sorting&lt;/li>
+&lt;/ul></description></item></channel></rss>

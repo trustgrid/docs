@@ -1,4 +1,27 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Nodes</title><link>https://docs.trustgrid.io/docs/nodes/</link><description>Recent content in Nodes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/nodes/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/audits/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Nodes</title><link>https://docs.trustgrid.io/docs/nodes/</link><description>Recent content in Nodes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/nodes/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Advanced Options</title><link>https://docs.trustgrid.io/docs/nodes/advanced/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/advanced/</guid><description>
+&lt;p>The Advance section provides additional configuration options for customizing the node behavior from the &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/">default settings&lt;/a>.
+&lt;div class="alert alert-warn" role="alert">
+Default settings work in most environments and should only be changed if needed based on your specific requirements.
+&lt;/div>
+&lt;/p>
+&lt;h2 id="config-options">Config Options&lt;/h2>
+&lt;figure class="centered-image">
+&lt;img src="config-options.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Advanced Config Options
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The Config Options panel allows customizing various advanced settings for the node such as &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/">network flow defaults&lt;/a>. Each settings provides a description of what it controls and the value field. Additionally the button on the far right allows resetting a setting back to the default value.&lt;/p>
+&lt;p>After changing a setting click the Save button. &lt;strong>Some changes may require a node restart to take effect.&lt;/strong>&lt;/p>
+&lt;h2 id="jvm-memory">JVM Memory&lt;/h2>
+&lt;figure class="centered-image">
+&lt;img src="jvm-memory.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Java Virtual Machine (JVM) memory settings
+&lt;/figcaption>
+&lt;/figure>
+&lt;p>The JVM Memory panel allows changing the &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/jvm/">default JVM settings&lt;/a> for the node process.&lt;/p>
+&lt;p>&lt;strong>The node must be restarted for any change to be effective.&lt;/strong>&lt;/p></description></item><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/audits/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Node audits provide records when services on a node are invoked, or when upgrades are applied. This can be helpful to see historical maintenance of a node.&lt;/p>
 &lt;/div>

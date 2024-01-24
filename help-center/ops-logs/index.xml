@@ -1,18 +1,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Operational Logs</title><link>https://docs.trustgrid.io/help-center/ops-logs/</link><description>Recent content in Node Operational Logs on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 30 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/help-center/ops-logs/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Review Node Events</title><link>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</guid><description>
-&lt;p>When troubleshooting a problem on edge or gateway nodes, reviewing node events can provide critical information about the nature of the problem.&lt;/p>
+&lt;p>When troubleshooting a problem on edge or gateway nodes, reviewing node &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> can provide critical information about the nature of the problem.&lt;/p>
 &lt;ol>
 &lt;li>Choose the node that may be causing the problem&lt;/li>
 &lt;li>Scroll down to &lt;code>Events&lt;/code>&lt;/li>
-&lt;li>Look for any critical problems&lt;/li>
+&lt;li>Look for any critical problems
+&lt;figure class="centered-image">
+&lt;img src="node-alerts.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Events for the currently viewed node
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="node-alerts.png" alt="img">&lt;/p>
-&lt;p>For more issues involving multiple nodes, review [Domain Node Events](need link for this).&lt;/p>
+&lt;p>For issues affecting multiple nodes, review events across the organization to detect patterns or issues.&lt;/p>
 &lt;ol>
 &lt;li>Choose the &lt;code>Operations&lt;/code> tab&lt;/li>
-&lt;li>View &lt;code>Events&lt;/code> across the organization&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="alerts-page.png" alt="img">
-Types]](https://docs.trustgrid.io/docs/alarms/event-types/)&lt;/p></description></item><item><title>Help-Center: Debug Logs</title><link>https://docs.trustgrid.io/help-center/ops-logs/debug-logs/</link><pubDate>Mon, 14 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/debug-logs/</guid><description>
+&lt;li>View &lt;code>Events&lt;/code> across the organization
+&lt;figure class="centered-image">
+&lt;img src="alerts-page.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Organization wide events
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol></description></item><item><title>Help-Center: Debug Logs</title><link>https://docs.trustgrid.io/help-center/ops-logs/debug-logs/</link><pubDate>Mon, 14 Aug 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/debug-logs/</guid><description>
 &lt;h2 id="what-are-debug-logs">What are debug logs?&lt;/h2>
 &lt;p>Debug log files contain detailed technical information about the operation of a Trustgrid node. They are useful for Trustgrid support engineers to troubleshoot issues. If your node is experiencing problems, generating logs at that time may help identify the root cause.&lt;/p>
 &lt;h2 id="generating-log-files">Generating Log Files&lt;/h2>

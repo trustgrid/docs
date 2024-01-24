@@ -81,31 +81,66 @@ In order to grant users access to the portal a second policy is required grantin
 &lt;h6 id="node-tgrn">Node TGRN&lt;/h6>
 &lt;p>A node’s TGRN will start with the below prefix:
 &lt;code>tgrn:tg::nodes:node/&lt;/code>
-To get the node’s complete TGRN you’ll need to append the node ID which is visible by navigating to the node and either copying from the URL or using the Node ID field in the Info visor drop down&lt;/p>
-&lt;p>&lt;img src="node-tgrn.png" alt="img">&lt;/p>
+Followed by the UID of the node. The node TGRN is accessible from the &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">infovisor&lt;/a> for a node by clicking on the &amp;ldquo;Copy&amp;rdquo; button to the right of the TGRN entry.
+&lt;figure class="centered-image">
+&lt;img src="node-tgrn.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+TRGN entry in the Inforvisor panel
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
 &lt;p>A complete &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> TGRN looks like: &lt;code>tgrn:tg::nodes:node/ab3550cf-f3da-4d90-b4b1-b870fc85c9c7&lt;/code>&lt;/p>
 &lt;h4 id="cluster-tgrn">Cluster TGRN&lt;/h4>
 &lt;p>Cluster TGRN start with the prefix:
 &lt;code>tgrn:tg::nodes:cluster/&lt;/code>
-This is followed by the cluster’s fully qualified domain name (fqdn) which is the combination of the cluster name and your organizations trustgrid domain. This visible in the URL when you navigate to a cluster in the portal.&lt;/p>
-&lt;p>&lt;img src="cluster-tgrn.png" alt="img">&lt;/p>
+This is followed by the cluster’s fully qualified domain name (fqdn) which is the combination of the cluster name and your organization&amp;rsquo;s Trustgrid domain.&lt;/p>
+&lt;p>You can copy the Cluster TGRN from a cluster&amp;rsquo;s Overview page by clicking the &amp;ldquo;Copy&amp;rdquo; button to the right of TGRN.
+&lt;figure class="centered-image">
+&lt;img src="cluster-tgrn.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Cluster TGRN on Overview page
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
 &lt;p>A complete &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> TGRN looks like: &lt;code>tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io&lt;/code>&lt;/p>
 &lt;h3 id="policy-management">Policy Management&lt;/h3>
 &lt;h4 id="creatingediting-policies">Creating/Editing Policies&lt;/h4>
 &lt;ol>
-&lt;li>Navigate to &lt;code>User Management&lt;/code> → &lt;code>Policies&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="policy-management.png" alt="img">&lt;/p>
-&lt;ol start="2">
+&lt;li>Navigate to &lt;code>User Management&lt;/code> → &lt;code>Policies&lt;/code>
+&lt;figure class="centered-image">
+&lt;img src="policy-management.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Policy Management Page
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
 &lt;li>For a new policy click &lt;code>Create Policy&lt;/code>. To edit an existing find it in the list and click on its name.&lt;/li>
 &lt;li>The policy wizard has two sections. The left section groups permissions by category and is where you allow or deny permissions. The right section shows the resulting JSON of the policy and is read only.&lt;/li>
 &lt;li>As an example we will create a role to grant users the ability to see, edit and comment on Provisioning orders.
-a. Under Permissions, search for &lt;code>orders&lt;/code>
-b. Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)
-c. You will notice the Policy JSON updated as you select permissions
-d. Click &lt;code>Save&lt;/code>&lt;/li>
+&lt;ol>
+&lt;li>Under Permissions, search for &lt;code>orders&lt;/code>&lt;/li>
+&lt;li>Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)&lt;/li>
+&lt;li>You will notice the Policy JSON updated as you select permissions&lt;/li>
+&lt;li>Click &lt;code>Save&lt;/code>
+&lt;figure class="centered-image">
+&lt;img src="new-policy.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Policy updated notification
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="new-policy.png" alt="img">&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="clone-existing-policy">Clone Existing Policy&lt;/h4>
+&lt;p>To clone an existing policy click the copy button on the far right of the policy row. This will create a new policy with the same permissions pre-selected which can then be edited and named as desired.
+&lt;figure class="centered-image">
+&lt;img src="clone-policy.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Policy table showing the clone/copy policy button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
 &lt;h4 id="attaching-policies-and-viewing-effective-permissions">Attaching Policies and Viewing Effective Permissions&lt;/h4>
 &lt;p>Policies are attached and their cumulative effect can be viewed under &lt;code>User Management&lt;/code> → &lt;code>Users&lt;/code> by selecting the desired user.&lt;/p></description></item><item><title>Docs: Users</title><link>https://docs.trustgrid.io/docs/user-management/users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/</guid><description>
 &lt;figure class="centered-image">
@@ -144,29 +179,34 @@ Invite User action
 &lt;img src="linky.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
 &lt;/figure>
 &lt;/li>
-&lt;li>Once at the Portal, the user will need to click the &lt;code>Sign Up&lt;/code> option. &lt;strong>The user must use the same email address that was invited to get access to your account&lt;/strong>.
+&lt;li>Once at the Portal, the user will need to click the &lt;code>Start a free trial&lt;/code> option. &lt;strong>The user must use the same email address that was invited to get access to your account&lt;/strong>.
 &lt;figure class="centered-image">
-&lt;img src="sign-up.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;img src="sign-up-1.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-User Sign Up page
+Click Start a free trial
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
-&lt;li>After filling out the required information and clicking Sign Up they will be prompted to configure Multi-Factor Authentication (MFA). Trustgrid recommends using a one-time password MFA such as Authy or Google Authenticator.
-&lt;ol>
-&lt;li>Scan the QR code with your app.
+&lt;li>The user will be prompted for their email, name, password, and company. &lt;strong>The user must use the same email address that was invited to get access to your account&lt;/strong>.&lt;br>
 &lt;figure class="centered-image">
-&lt;img src="scan-code.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="sign-up-2.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Enter required information and click Sign Up
+&lt;/figcaption>
 &lt;/figure>
 &lt;/li>
-&lt;li>Enter the passcode and click the &lt;code>&amp;gt;&lt;/code>.&lt;/li>
-&lt;li>You’ll be provided with a recovery code. Save this in a secure place, confirm it is safely recorded and click the &lt;code>&amp;gt;&lt;/code>.
+&lt;li>A verification email will then be sent to the invited user&amp;rsquo;s email address. They will need to click the link in the email to verify their email and complete registration.&lt;/li>
+&lt;li>After verifying their email address the user will be prompted to configure Multi-Factor Authentication (MFA). Trustgrid recommends using a one-time password MFA such as Authy or Google Authenticator.
+&lt;ol>
+&lt;li>Scan the QR code with your app.&lt;/li>
+&lt;li>Enter the passcode and click the &lt;code>Submit&lt;/code> button.
 &lt;figure class="centered-image">
-&lt;img src="backup-code.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="sign-up-4.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 &lt;/figure>
 &lt;/li>
 &lt;/ol>
 &lt;/li>
+&lt;li>The user is returned to the login screen. Login with the newly created email, password, and MFA code. You will then be redirected back to the Trustgrid portal.&lt;/li>
 &lt;/ol>
 &lt;h3 id="adding-users-with-identity-providers">Adding Users (with Identity Providers)&lt;/h3>
 &lt;p>If your account has an &lt;a href="https://docs.trustgrid.io/docs/idps/">Identity Provider (IdP)&lt;/a> configured as a Portal Auth Provider, you use the Add User button to create an identity for them within Trustgrid.&lt;/p>
