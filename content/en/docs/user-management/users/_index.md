@@ -24,12 +24,15 @@ For users that will utilize Trustgrid’s native authentication system, you will
 {{<tgimg src="invite-sent.png" alt="Invite sent confirmation" width="40%">}}
 1. The user will receive an email with a link to the [Trustgrid Portal](https://portal.trustgrid.io) or similar. They will need to click said link.
 {{<tgimg src="linky.png">}}
-1. Once at the Portal, the user will need to click the `Sign Up` option. **The user must use the same email address that was invited to get access to your account**.
-{{<tgimg src="sign-up.png" caption="User Sign Up page" width="30%">}}
-1. After filling out the required information and clicking Sign Up they will be prompted to configure Multi-Factor Authentication (MFA). Trustgrid recommends using a one-time password MFA such as Authy or Google Authenticator.
-   1. Scan the QR code with your app. {{<tgimg src="scan-code.png" width="40%" >}}
-   1. Enter the passcode and click the `>`.
-   1. You’ll be provided with a recovery code. Save this in a secure place, confirm it is safely recorded and click the `>`. {{<tgimg src="backup-code.png" width="40%" >}}
+1. Once at the Portal, the user will need to click the `Start a free trial` option. **The user must use the same email address that was invited to get access to your account**.
+{{<tgimg src="sign-up-1.png" caption="Click Start a free trial" width="50%">}}
+1. The user will be prompted for their email, name, password, and company. **The user must use the same email address that was invited to get access to your account**.  
+{{<tgimg src="sign-up-2.png" caption="Enter required information and click Sign Up" width="60%">}}
+1. A verification email will then be sent to the invited user's email address. They will need to click the link in the email to verify their email and complete registration.
+1. After verifying their email address the user will be prompted to configure Multi-Factor Authentication (MFA). Trustgrid recommends using a one-time password MFA such as Authy or Google Authenticator.
+   1. Scan the QR code with your app. 
+   1. Enter the passcode and click the `Submit` button. {{<tgimg src="sign-up-4.png" width="50%" >}}
+1. The user is returned to the login screen. Login with the newly created email, password, and MFA code.  You will then be redirected back to the Trustgrid portal.
 
 ### Adding Users (with Identity Providers)
 
