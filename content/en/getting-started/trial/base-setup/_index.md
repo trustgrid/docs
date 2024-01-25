@@ -71,3 +71,6 @@ This table includes the ability to perform [advanced searches]({{<relref "/help-
 
 In the below screenshot, the TCP flow log from the [generated web traffic](#step-4---optional-generate-web-traffic) steps is visible including TCP flags.  TCP Flags can be very useful in troubleshooting failed connections in the past. If only the SYN flag is shown this indicates the destination ip:port did not respond to complete the TCP handshake.
 {{<tgimg src="agent2-flow-logs.png" width="90%" caption="Flow logs table with search for agent2">}}
+
+## Next Steps
+Now that you have the basic agent setup complete and have seen traffic passing between the agents you can proceed to test [using Access Policies]({{<relref "/getting-started/trial/network-acl">}}) to control what traffic is allowed on the network.

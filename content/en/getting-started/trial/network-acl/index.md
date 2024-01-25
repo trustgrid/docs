@@ -57,4 +57,61 @@ Now we will update the default policy to deny all traffic and confirm TCP commun
 ### Confirm ICMP Traffic is Blocked
 1. On **agent1** run: {{<codeblock>}}ping -c 3 100.64.0.2{{</codeblock>}}
 2. On **agent2** run: {{<codeblock>}}ping -c 3 100.64.0.1{{</codeblock>}}
-You should see ping responses from the other agent
+You should see ping responses from the other agents are now filtered. {{<tgimg src="icmp-filtered.png" width="75%" caption="Terminal showing ICMP filtered responses">}}
+
+### Confirm TCP Traffic is Blocked
+1. On **agent1**, run the following command to start netcat listening on TCP port 5000. {{<codeblock>}}nc -k -l 5000{{</codeblock>}}
+1. On **agent2**, run the following command to test connectivity to port 5000 on agent1: {{<codeblock>}}nc -vz 100.64.0.1 5000{{</codeblock>}}
+You should see a "Connection refused" message indicating the TCP connection was blocked by the deny all policy. {{<tgimg src="tcp-refused.png" width="75%" caption="Netcat output showing 'Connection refused'">}}
+1. Return to **agent1** and enter Ctrl+C to terminate the netcat listener.
+
+## Step 3 - Allow Desired Traffic
+Now that we've confirmed the virtual network is blocking traffic we can add rules to allow the specific traffic we want. 
+
+### Allow all ICMP
+First, we will add a rule to allow ICMP between all addresses on the network. This is frequently used as a troubleshooting tool with very little risk.
+1. In the Trustgrid portal, navigate to the default virtual network's access policies page.
+1. Click the "Add Rule" button.
+1. Configure the rule as below:
+    1. Action: Allow
+    1. Protocol: ICMP
+    1. Source: 0.0.0.0/0  
+    1. Destination: 0.0.0.0/0
+    1. Line number: 90 (It is important that the rule number is lower than that on the default deny all policy, 100, so that it is evaluated first)
+    1. Description: Allow all ICMP {{<tgimg src="allow-all-icmp.png" width="70%">}}
+1. Click Save
+1. Select the Review Changes panel, click Apply Changes and, then confirm. 
+
+### Confirm ICMP Allowed
+1. On **agent1** run: {{<codeblock>}}ping -c 3 100.64.0.2{{</codeblock>}}
+2. On **agent2** run: {{<codeblock>}}ping -c 3 100.64.0.1{{</codeblock>}}
+You should see ping responses from the other agent, confirming ICMP traffic is still permitted by the new policy.
+{{<tgimg src="icmp-allowed.png" width="90%" caption="Successful ping from agent2 to agent1">}}
+
+### Allow Specific TCP
+Next, we will add a rule to allow more specific TCP traffic. Specifically, we will allow **agent2** to connect to port 5000 on **agent1**.
+1. In the Trustgrid portal, navigate to the default virtual network's access policies page.
+1. Click the "Add Rule" button.
+1. Configure the rule as below:
+    1. Action: Allow
+    1. Protocol: TCP
+    1. Source: 100.64.0.2/32 
+    1. Destination: 100.64.0.1/32
+    1. Port Range: 5000
+    1. Line number: 80 (It is important that the rule number is lower than that on the default deny all policy, 100, so that it is evaluated first)
+    1. Description: Allow TCP 5000 on Agent1 {{<tgimg src="tcp-5000-allow.png" width="70%">}}
+1. Click Save
+1. Select the Review Changes panel, click Apply Changes and, then confirm. 
+
+### Confirm TCP 5000 Allowed
+Now, we will confirm the specific TCP rule is allowing traffic as expected:
+1. On **agent1**, run the following command to start netcat listening on TCP port 5000. {{<codeblock>}}nc -k -l 5000{{</codeblock>}}
+1. On **agent2**, run the following command to test connectivity to port 5000 on agent1: {{<codeblock>}}nc -vz 100.64.0.1 5000{{</codeblock>}} {{<tgimg src="tcp-5000-success.png" width="75%" caption="Successful connection to port 5000 on agent1">}}
+
+But, we also want to make sure other TCP traffic isn't allowed.
+1. On **agent1** enter Ctrl+C to terminate the netcat listener. Then enter the command: {{<codeblock>}}nc -k -l 5001{{</codeblock>}} {{<alert color="info">}}Note that the port has changed to 5001{{</alert>}}
+1. On **agent2**, run the following command to test connectivity to port 5000 on agent1: {{<codeblock>}}nc -vz 100.64.0.1 5001{{</codeblock>}}
+{{<tgimg src="tcp-5001-refused.png" width="75%" caption="Connection refused on port 5001">}}
+
+## Next Steps
+So far we've only seen traffic passing between two agent IPs.  In the next tutorial, you will see how you can [route traffic to adjacent network devices]({{<relref "../subnet-routing">}}).

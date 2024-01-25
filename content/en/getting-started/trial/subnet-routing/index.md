@@ -2,7 +2,7 @@
 title: Configure Subnet Routing
 linkTitle: Subnet Routing
 description: Configure an agent to route traffic to resources on the local network
-weight: 30
+weight: 40
 ---
 
 ## Goals
