@@ -29,10 +29,7 @@ To facilitate a smooth trial a default [virtual network]({{<relref "/getting-sta
 {{< readfile file="/tutorials/agent-deploy/ubuntu2204-install.md" >}}
 #### Determine agent1 IP address
 As part of registration, each agent is automatically assigned an IP address on the Trustgrid virtual network. We will need this IP address to confirm communication between the agents in later steps.
-1. From the console of agent1, run the below command:
-  ```  text
-  ip address show dev trustgrid0
-  ```
+1. From the console of agent1, run the below command:{{<codeblock>}}ip address show dev trustgrid0{{</codeblock>}}
 2. Look for an IP address starting with 100.64. 
 
 {{<tgimg src="agent1-ip.png" width="90%" caption="Console showing the Trustgrid IP address of 100.64.0.1">}}
@@ -46,17 +43,13 @@ This should return a different IP address in the same network.
 ## Step 2 - Confirm communication
 
 From `agent2` run the below command to ping `agent1` using its Trustgrid IP address:
-``` text
-ping -c 4 100.64.0.1
-```
+{{<codeblock>}}ping -c 4 100.64.0.1{{</codeblock>}}
 {{<alert color="info">}} The examples above and below assume the agents received the first two addresses in the pool. If the agents were assigned different IP addresses adjust the below commands accordingly. {{</alert>}}
 This should generate 4 ping requests with successful responses showing traffic is traversing the Trustgrid network between the two agents.
 {{<tgimg src="ping-agent1.png" width="60%" caption="Successful ping from agent2 to agent1">}}
 
 Similarly, from the console of `agent1` run the below command to ping `agent2`:
-``` text
-ping -c 4 100.64.0.2
-```
+{{<codeblock>}}ping -c 4 100.64.0.2{{</codeblock>}}
 {{<tgimg src="ping-agent2.png" width="60%" caption="Successful ping from agent1 to agent2">}}
 
 ## Step 3 - View Flow Logs
