@@ -66,4 +66,4 @@ In the below screenshot, the TCP flow log from the [generated web traffic](#step
 {{<tgimg src="agent2-flow-logs.png" width="90%" caption="Flow logs table with search for agent2">}}
 
 ## Next Steps
-Now that you have the basic agent setup complete and have seen traffic passing between the agents you can proceed to test [using Access Policies]({{<relref "/getting-started/trial/network-acl">}}) to control what traffic is allowed on the network.
+Now that you have the basic agent setup complete and have seen traffic passing between the agents you can proceed to test [using Access Policies]({{<relref "/getting-started/trial/access-policies">}}) to control what traffic is allowed on the network.
