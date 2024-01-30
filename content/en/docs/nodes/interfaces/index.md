@@ -35,7 +35,7 @@ Used in configurations with more than one interface for local network connectivi
 {{<field "Interface Name">}}Name assigned to the interface by the operating system. This varies between hardware models and is sometimes needed when using tools such as Sniff Interface or reviewing logs.{{</field>}}
 {{<field "Interface VRF">}}Selects to which [VRF]({{<ref "/docs/nodes/vrfs">}}) the interface is attached.{{</field>}}
 {{<field "VLAN ID (Subinterfaces Only)">}} Sets the VLAN ID/tag for the subinterface.{{</field>}}
-{{<field "IP Assignment (ETH0 only)">}}
+{{<field "IP Assignment">}}
 * DHCP - requires a DHCP server or relay in the same broadcast domain as the interface connection
 * Static - configured using the fields below
 {{</field>}}
@@ -43,7 +43,7 @@ Used in configurations with more than one interface for local network connectivi
 {{<field "Gateway IP">}}
 * ETH0 - The IP address of the default gateway for this device. All traffic not in the same network as an interface IP or with a specified route will use this gateway.
 * ETH1 - This is only used in a 2-interface setup to access local resources outside the interface's configured network. Routes must be defined.{{</field>}}
-{{<field "DNS Server 1/2 IP (ETH0 only)">}}Used to resolve DNS names to connect to the Trustgrid control plane.{{</field>}}
+{{<field "DNS Servers IP">}}**(ETH0 only)** Used to resolve DNS names to connect to the Trustgrid control plane.{{</field>}}
 {{<field "Cluster Virtual IP">}}Used in [clusters]({{<ref "/docs/clusters">}}), this IP address is moved between member nodes based on the active cluster member. It can be used to route traffic between the virtual and local networks. This IP address can only be changed within the cluster interfaces page.{{</field>}}
 {{<field "MTU">}}This field allows you to change the Maximum Transmission Unit (MTU) of the interface. MTU impacts the maximum size of packets sent or received on the interface. {{</field>}}
 {{<field "Auto-Negotiation">}}Sets if the interface will use auto-negotiation to determine the speed and duplex settings. Values can be AUTO _(default)_ or MANUAL.{{</field>}}
