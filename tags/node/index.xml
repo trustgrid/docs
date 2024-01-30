@@ -96,8 +96,8 @@ Interfaces panel
 &lt;th>VLAN ID (Subinterfaces Only)&lt;/th>
 &lt;td>Sets the VLAN ID/tag for the subinterface.&lt;/td>
 &lt;/tr>
-&lt;tr id="ip-assignment-eth0-only" style="scroll-margin-top: 10rem;">
-&lt;th>IP Assignment (ETH0 only)&lt;/th>
+&lt;tr id="ip-assignment" style="scroll-margin-top: 10rem;">
+&lt;th>IP Assignment&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>DHCP - requires a DHCP server or relay in the same broadcast domain as the interface connection&lt;/li>
 &lt;li>Static - configured using the fields below&lt;/li>
@@ -116,9 +116,9 @@ Interfaces panel
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
-&lt;tr id="dns-server-1/2-ip-eth0-only" style="scroll-margin-top: 10rem;">
-&lt;th>DNS Server 1/2 IP (ETH0 only)&lt;/th>
-&lt;td>Used to resolve DNS names to connect to the Trustgrid control plane.&lt;/td>
+&lt;tr id="dns-servers-ip" style="scroll-margin-top: 10rem;">
+&lt;th>DNS Servers IP&lt;/th>
+&lt;td>&lt;strong>(ETH0 only)&lt;/strong> Used to resolve DNS names to connect to the Trustgrid control plane.&lt;/td>
 &lt;/tr>
 &lt;tr id="cluster-virtual-ip" style="scroll-margin-top: 10rem;">
 &lt;th>Cluster Virtual IP&lt;/th>

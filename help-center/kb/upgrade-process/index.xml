@@ -3,11 +3,124 @@
 &lt;ul>
 &lt;li>Node will not update either automatically or when manually triggered&lt;/li>
 &lt;li>Node will not be able to pull down container images from the organization repository&lt;/li>
+&lt;li>Node cannot send up debug logs&lt;/li>
 &lt;/ul>
 &lt;h2 id="cause">Cause&lt;/h2>
 &lt;ul>
 &lt;li>The Trustgrid node cannot connect to repo.trustgrid.io on port 443 to update packages&lt;/li>
 &lt;/ul>
+&lt;h2 id="troubleshooting-connectivity">Troubleshooting Connectivity&lt;/h2>
+&lt;p>Either of the below methods can be used to verify connectivity:&lt;/p>
+&lt;ul>
+&lt;li>Use the &lt;a href="https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/">Interface TCP Port Test tool&lt;/a>. Make sure the WAN interfaces IP is the source, &lt;code>repo.trustgrid.io&lt;/code> is the Host, and &lt;code>443&lt;/code> is the target
+&lt;figure class="centered-image">
+&lt;img src="tcp-port-test-success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Successful interface port test
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>From the terminal run the command &lt;div class="codeblock-container">
+&lt;pre>&lt;code>nc -vz repo.trustgrid.io 443&lt;/code>&lt;/pre>
+&lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
+&lt;/div>
+&lt;script>
+function copyToClipboard(element) {
+var text = element.previousElementSibling.textContent;
+navigator.clipboard.writeText(text).then(function() {
+console.log('Text copied to clipboard');
+}).catch(function(err) {
+console.error('Could not copy text: ', err);
+});
+}
+&lt;/script>
+&lt;style>
+.codeblock-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.codeblock-container pre {
+margin: 0;
+font-family: monospace;
+background-color: #f4f4f4;
+padding: 10px;
+border-radius: 5px;
+flex-grow: 1;
+}
+.codeblock-container button {
+margin-left: 10px;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+&lt;/style>
+&lt;figure class="centered-image">
+&lt;img src="terminal-tcp-success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Successful TCP connection test from terminal
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ul>
+&lt;p>If the above tests are successful but the device still exhibits the symptoms listed above, the issue is likely that something is &lt;a href="https://docs.trustgrid.io/help-center/kb/startup-process/ssl-tls-tampering/">interfering with the TLS certificate&lt;/a>&lt;/p>
+&lt;p>If unsuccessful:&lt;/p>
+&lt;ol>
+&lt;li>First confirm &lt;code>repo.trustgrid.io&lt;/code> is resolvable by the &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#dns-servers-ip">configured DNS servers&lt;/a>. In this example, we will assume the DNS server is &lt;code>8.8.8.8&lt;/code>, &lt;strong>replace this with the configured DNS server IPs&lt;/strong>. From the terminal run the command: &lt;div class="codeblock-container">
+&lt;pre>&lt;code>dig @8.8.8.8 repo.trustgrid.io&lt;/code>&lt;/pre>
+&lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
+&lt;/div>
+&lt;script>
+function copyToClipboard(element) {
+var text = element.previousElementSibling.textContent;
+navigator.clipboard.writeText(text).then(function() {
+console.log('Text copied to clipboard');
+}).catch(function(err) {
+console.error('Could not copy text: ', err);
+});
+}
+&lt;/script>
+&lt;style>
+.codeblock-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.codeblock-container pre {
+margin: 0;
+font-family: monospace;
+background-color: #f4f4f4;
+padding: 10px;
+border-radius: 5px;
+flex-grow: 1;
+}
+.codeblock-container button {
+margin-left: 10px;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+&lt;/style>
+&lt;figure class="centered-image">
+&lt;img src="dns-dig-success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Successful DNS resolution. Note: returned IP address will vary.
+&lt;/figcaption>
+&lt;/figure>
+&lt;ul>
+&lt;li>Repeat the above process with the second configured DNS server if available.&lt;/li>
+&lt;li>If either fails to confirm:
+&lt;ul>
+&lt;li>Any firewall rules are not blocking TCP and UDP port 53 to the configured DNS server&lt;/li>
+&lt;li>Confirm there is not an &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#routes">interface route&lt;/a> on any LAN interface for CIDR that includes the DNS server&amp;rsquo;s IP. This will cause requests to route out the LAN interface instead of WAN and only after the Trustgrid service has started and brought up the LAN interfaces.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>If DNS returns an IP address but the connection still fails, confirm any firewall between the node and the internet allows port &lt;code>443&lt;/code> &lt;strong>and&lt;/strong> port &lt;code>8443&lt;/code> to the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">Trustgrid control plane public IP ranges&lt;/a>.&lt;/li>
+&lt;/ol>
 &lt;h2 id="resolution">Resolution&lt;/h2>
 &lt;ul>
 &lt;li>Confirm the node can resolve repo.trustgrid.io&lt;/li>
