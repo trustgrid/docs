@@ -27,6 +27,7 @@ To facilitate a smooth trial a default [virtual network]({{<relref "/getting-sta
 ## Step 1 - Setup Agents
 ### Install First Agent
 {{< readfile file="/tutorials/agent-deploy/ubuntu2204-install.md" >}}
+
 #### Determine agent1 IP address
 As part of registration, each agent is automatically assigned an IP address on the Trustgrid virtual network. We will need this IP address to confirm communication between the agents in later steps.
 1. From the console of agent1, run the below command:{{<codeblock>}}ip address show dev trustgrid0{{</codeblock>}}

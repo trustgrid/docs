@@ -3,6 +3,8 @@ title: BGP
 linkTitle: BGP
 weight: 1
 description: BPG Server running on Trustgrid Nodes
+aliases: 
+  - /docs/nodes/bgp
 ---
 
 ## Summary

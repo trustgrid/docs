@@ -1,5 +1,8 @@
 ---
 title: "Volumes"
+aliases: 
+  - /docs/nodes/containers/volumes
+description: Configure volumes on nodes for use by containers for persistent storage
 ---
 
 Volumes allow containers to persist data between executions.

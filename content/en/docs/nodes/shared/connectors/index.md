@@ -4,6 +4,9 @@ tags: ["layer 4", "networking"]
 title: "Connectors"
 linkTitle: "Connectors"
 weight: 3
+aliases: 
+  - /docs/nodes/connectors
+description: Configure connectors to listen on ports and forward traffic to services running on remote nodes
 ---
 
 {{% pageinfo %}}

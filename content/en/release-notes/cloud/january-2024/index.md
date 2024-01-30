@@ -51,7 +51,7 @@ Removing a favorite page is the same process but unselecting the star icon inste
 Based on feedback from users the Dashboard page has been removed and users now land on the Nodes table on login. You can also configure a [custom landing page for users if desired]({{<relref "/docs/user-management/users#change-a-user-landing-page">}})
 
 ### Advanced Node Options
-A new [Advanced Options]({{<relref "/docs/nodes/advanced">}}) section has been added to nodes allowing the configuration of additional options like:
+A new [Advanced Options]({{<ref "/docs/nodes/appliances/advanced">}}) section has been added to nodes allowing the configuration of additional options like:
 - JVM Memory settings
 - Network flow timeout and time to live (TTL) and ARP intervals
 

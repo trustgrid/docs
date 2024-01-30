@@ -17,7 +17,7 @@ As part of this change we are moving our API documentation from https://portal.t
 
 
 ## Cluster Configuration
-Prior to this release it was necessary to navigate to each member node and configure the [cluster heartbeat]({{<ref "/docs/nodes/cluster#heartbeat">}}) IP and port **after** it was added to the cluster.  In this release a prompt has been added to the ["Add Node" flow]({{<ref "/docs/clusters/manage-members#add-members">}}) that will allow you to configure these settings as part of adding the node to the cluster. 
+Prior to this release it was necessary to navigate to each member node and configure the [cluster heartbeat]({{<ref "/docs/nodes/appliances/cluster#heartbeat">}}) IP and port **after** it was added to the cluster.  In this release a prompt has been added to the ["Add Node" flow]({{<ref "/docs/clusters/manage-members#add-members">}}) that will allow you to configure these settings as part of adding the node to the cluster. 
 
 ## Data Plane Stats
 This release further improves on our recent addition of data plane telemetry information.

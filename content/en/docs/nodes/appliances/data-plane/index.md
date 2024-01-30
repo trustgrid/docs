@@ -3,6 +3,9 @@ tags: ["node"]
 title: "Data Plane"
 linkTitle: "Data Plane"
 weight: 4
+description: Listing of peers and connectivity testing tools for appliance-based nodes
+aliases: 
+    - /docs/nodes/data-plane
 ---
 
 {{% pageinfo %}}

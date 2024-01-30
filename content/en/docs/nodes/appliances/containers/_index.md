@@ -1,6 +1,9 @@
 ---
 title: "Containers"
 weight: 3
+aliases: 
+  - /docs/nodes/containers
+description: Configure containers to run on appliance-based nodes
 ---
 
 Trustgrid nodes support running Docker containers which allows for ease of deployment across an organization. Any Docker container is supported with the exception of containers that require root level access.

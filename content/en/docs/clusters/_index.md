@@ -37,7 +37,7 @@ Cluster members utilize a direct TCP connection to each other to determine if th
 
 {{<alert>}}Local ACLs allow only the partner cluster member to connect to the listening port.{{</alert>}}
 
-Heartbeat communication is configured on each node's [cluster]({{<ref "/docs/nodes/cluster">}}) page.
+Heartbeat communication is configured on each node's [cluster]({{<ref "/docs/nodes/appliances/cluster">}}) page.
 
 ### Cluster Mode
 

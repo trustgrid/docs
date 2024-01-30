@@ -1,6 +1,11 @@
 ---
-title: "Cluster"
+title: "Cluster Heartbeat Configuration"
+linkTitle: Cluster
 weight: 3
+description: Configure heartbeat communication between cluster members
+aliases: 
+  - /docs/nodes/cluster
+
 ---
 
 {{<alert>}}Cluster configuration is only available for nodes that are members of a [cluster]({{<ref "docs/clusters">}}).{{</alert>}}
