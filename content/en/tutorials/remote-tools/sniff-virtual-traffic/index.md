@@ -20,7 +20,14 @@ Once launched, you will be prompted to provide any filters to limit the traffic 
 {{<field "Peer(s)">}}Use this field to filter for traffic only between the current node and the listed peer.{{</field>}}
 {{<field "Protocol(s)">}} Filter to specified network protocol(s): any, tcp, udp, or icmp {{</field>}}
 {{<field "Host(s)">}} Filter to see traffic matching the specified **virtual** IP address(es){{</field>}}
-{{<field "Port(s)">}} Filter to see traffic matching the specified ports. This will match either destination or source port. For ICMP, this does not apply. {{</field>}}
+{{<field "Port(s)">}} Filter to see traffic matching the specified ports. This will match either a destination or source port. 
+The operator on the left allows for matching based on:
+- equal (=)
+- not equal (!=) to exclude traffic for the specified port
+- greater than (>) and less than (<)
+- a port range (<>) which will show all traffic with ports between the two values
+
+For ICMP, this field does not apply. {{</field>}}
 {{<field "TCP Flags">}} Only applies to TCP traffic. It can filter based on the following flags:
 - S = SYN - The start of a new TCP connection
 - . = ACK - Acknowledges received data
