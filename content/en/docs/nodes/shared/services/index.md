@@ -4,14 +4,16 @@ tags: ["layer 4", "networking"]
 title: "Services"
 linkTitle: "Services"
 weight: 19
+aliases: 
+    - /docs/nodes/services
 ---
 
 {{% pageinfo %}}
-Services are configured in conjunction with [connectors]({{<ref "docs/nodes/connectors" >}}) or [port forwards]({{<ref "docs/nodes/vpn/port-forwarding">}}) to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.
+Services are configured in conjunction with [connectors]({{<ref "docs/nodes/shared/connectors" >}}) or [port forwards]({{<ref "docs/nodes/vpn/port-forwarding">}}) to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.
 {{% /pageinfo %}}
 
 ## Description
-Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined.  Remote clients can then access the service via peer nodes using [connectors]({{<ref "docs/nodes/connectors" >}}) or [VPN port forwards]({{<ref "docs/nodes/vpn/port-forwarding">}}). 
+Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined.  Remote clients can then access the service via peer nodes using [connectors]({{<ref "docs/nodes/shared/connectors" >}}) or [VPN port forwards]({{<ref "docs/nodes/vpn/port-forwarding">}}). 
 
 ## Functionality
 On the local network, a connection's **source IP** will be the node's interface IP.
@@ -41,7 +43,7 @@ The protocol of the service to connect to. Options are TCP, UDP, FTP, and TFTP, 
 
 
 {{<field "Service Name" >}}
-A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/connectors" >}}). Can only contain letters, numbers, and the `-` character.
+A friendly name for the service that will be used in the Remote Service field of a [connector]({{<ref "docs/nodes/shared/connectors" >}}). Can only contain letters, numbers, and the `-` character.
 {{</field >}}
 
 {{<field "Host" >}}

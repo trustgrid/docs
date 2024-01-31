@@ -10,7 +10,7 @@ description: Configure connectors to listen on ports and forward traffic to serv
 ---
 
 {{% pageinfo %}}
-Connectors are configured in conjunction with [services]({{<ref "docs/nodes/services" >}}) to define a local listening port for layer 4 (L4) connectivity.
+Connectors are configured in conjunction with [services]({{<ref "docs/nodes/shared/services" >}}) to define a local listening port for layer 4 (L4) connectivity.
 {{% /pageinfo %}}
 
 #### Configuration
@@ -40,7 +40,7 @@ The remote node or cluster that traffic will be proxied to.
 {{</field >}}
 
 {{<field "Remote Service" >}}
-Either the friendly name of [service]({{<ref "docs/nodes/services" >}}) that is defined on the remote node, or the IP:Port of the remote service to connect to.
+Either the friendly name of [service]({{<ref "docs/nodes/shared/services" >}}) that is defined on the remote node, or the IP:Port of the remote service to connect to.
 {{</field >}}
 
 {{<field "Rate Limit (Mb/s)" >}}

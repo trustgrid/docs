@@ -3,6 +3,9 @@ categories: ["data store"]
 tags: ["containers", "s3", "virtual machines"]
 title: "Directory Creation"
 linkTitle: "Directory Creation"
+aliases: 
+    - /docs/nodes/datastore/mkdir
+description: Create new directories in the Trustgrid data store
 ---
 
 {{% pageinfo %}}
@@ -12,7 +15,7 @@ Data store directory creation allows you to add new directories to organize your
 ![img](mkdir.png)
 
 {{<alert color="info">}}
-The destination where the directory will be created can be changed by selecting a particular directory as the parent from the [File Explorer]({{<ref "docs/nodes/datastore" >}}) side bar.
+The destination where the directory will be created can be changed by selecting a particular directory as the parent from the [File Explorer]({{<ref "docs/nodes/appliances/datastore" >}}) sidebar.
 {{</alert>}}
 
 ![img](mkdir_config.png)

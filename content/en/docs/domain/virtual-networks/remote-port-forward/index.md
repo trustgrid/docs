@@ -5,12 +5,12 @@ type: docs
 date: 2023-07-11
 weight: 35
 ---
-{{% pageinfo %}} Virtual Network Port Forwards allow a virtual IP address to be associated with a [TCP Layer 4 service]({{<ref "docs/nodes/services">}}) on a remote node or cluster without the need to specify a route for that virtual IP address. {{% /pageinfo %}}
+{{% pageinfo %}} Virtual Network Port Forwards allow a virtual IP address to be associated with a [TCP Layer 4 service]({{<ref "docs/nodes/shared/services">}}) on a remote node or cluster without the need to specify a route for that virtual IP address. {{% /pageinfo %}}
 
 {{<tgimg src="remote-port-forward.png" caption="Example Virtual Network Port Forward" width="80%">}}
 
 ## Description
-As noted above, a Virtual Network Port Forward (or remote port forward) associates a [service]({{<ref "docs/nodes/services">}}) defined on a node or cluster with a virtual IP address within the virtual network without needing to specifically [route]({{<ref "docs/domain/virtual-networks/routes">}}) that IP to the node/cluster.  
+As noted above, a Virtual Network Port Forward (or remote port forward) associates a [service]({{<ref "docs/nodes/shared/services">}}) defined on a node or cluster with a virtual IP address within the virtual network without needing to specifically [route]({{<ref "docs/domain/virtual-networks/routes">}}) that IP to the node/cluster.  
 
 Any node attached to the virtual network that receives VPN traffic destined for the configure IP and port will proxy the connection and send the traffic to the target node which will then send the traffic to the IP and port configured for the target service. 
 

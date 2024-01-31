@@ -19,9 +19,9 @@ Allows a user to navigate, sync, create directories, delete artifacts from the d
 - ![img](home.png) - Takes you to the Root of the directory hierarchy.
 - ![img](back.png) - Takes you up one directory from your current location in the directory hierarchy.
 - ![img](refresh.png) - Refreshes the directory hierarchy to get the latest state of the data store.
-- ![img](create_dir.png) - Create a new sub directory. See [Directory Creation]({{<ref "docs/nodes/datastore/mkdir" >}}) for more information
-- ![img](sync.png) - Transfer a file to the data store. See [File Sync]({{<ref "docs/nodes/datastore/sync" >}}) for more information
-- ![img](upload.png) - Upload a file from the data store. See [File Sync]({{<ref "docs/nodes/datastore/sync" >}}) for more information
+- ![img](create_dir.png) - Create a new sub directory. See [Directory Creation]({{<ref "docs/nodes/appliances/datastore/mkdir" >}}) for more information
+- ![img](sync.png) - Transfer a file to the data store. See [File Sync]({{<ref "docs/nodes/appliances/datastore/sync" >}}) for more information
+- ![img](upload.png) - Upload a file from the data store. See [File Sync]({{<ref "docs/nodes/appliances/datastore/sync" >}}) for more information
 - ![img](delete.png) - Delete a file from the data store.
 
 

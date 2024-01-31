@@ -33,7 +33,7 @@ Virtual CIDR,Local CIDR,Description
 ```
 ## Gateway Panel Redesign
 
-The [System > Gateway]({{<relref "/docs/nodes/gateway">}}) panel has been redesigned to separate server and client settings and make it more clear which settings apply to each role.
+The [System > Gateway]({{<relref "/docs/nodes/appliances/gateway">}}) panel has been redesigned to separate server and client settings and make it more clear which settings apply to each role.
 
 ## Request Support
 We have added a way to [request support directly from the portal]({{<relref "/docs/support/support-request">}}). This eliminates confusion about our support email address (it is not .com) and allows you to list the actual impacted nodes or clusters.

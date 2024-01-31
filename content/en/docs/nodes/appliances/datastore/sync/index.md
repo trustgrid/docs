@@ -3,6 +3,9 @@ categories: ["data store"]
 tags: ["containers", "s3", "virtual machines"]
 title: "File Sync"
 linkTitle: "File Sync"
+aliases: 
+    - /docs/nodes/datastore/sync
+description: Transfer files between the data store and external locations like S3
 ---
 
 {{% pageinfo %}}
@@ -16,7 +19,7 @@ A user can populate the data store by transferring files from an Amazon S3 bucke
 ![img](file_explorer_toolbar_sync.png)
 
 {{<alert color="info">}}
-The destination where the file will be stored can be changed by selecting a particular directory from the [File Explorer]({{<ref "docs/nodes/datastore" >}}) side bar.
+The destination where the file will be stored can be changed by selecting a particular directory from the [File Explorer]({{<ref "docs/nodes/appliances/datastore" >}}) sidebar.
 {{</alert>}}
 
 
@@ -100,7 +103,7 @@ A user can extract files from the datastore by uploading them to an Amazon S3 bu
 ![img](file_upload.png)
 
 {{<alert color="info">}}
-A file needs to be selected first before the File Upload button gets enabled on the [File Explorer]({{<ref "docs/nodes/datastore" >}}) menu bar.
+A file needs to be selected first before the File Upload button gets enabled on the [File Explorer]({{<ref "docs/nodes/appliances/datastore" >}}) menu bar.
 {{</alert>}}
 
 #### Amazon S3 Upload

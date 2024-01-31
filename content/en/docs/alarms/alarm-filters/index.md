@@ -28,7 +28,7 @@ The "Node Name" criteria llows you to select one or more specific [node]({{<ref 
 The ["Event Type"]({{<ref "event-types" >}}) criteria determines which [events]({{<ref "events" >}}) will match the filter. Note, even if the filter is set to `All`, the filter will match any of the selected [event types]({{<ref "event-types" >}}).
 {{</field>}}
 {{<field "Tag Matches">}}
-The "Tag Matches" criteria allows you to use [tag]({{<ref "/docs/nodes/tags" >}}) name/value pairs to determine if the filter should match [events]({{<ref "events" >}}). For examples, you may what production devices to send to a high priority [channel]({{<ref "channels" >}}) such as PagerDuty or OpsGenie. If your [nodes]({{<ref "docs/nodes" >}}) have a tag to indicating “prod_status=production”, you can select that name/value pair from the list to properly filter your [alarms]({{<ref "docs/alarms" >}}).
+The "Tag Matches" criteria allows you to use [tag]({{<ref "/docs/nodes/shared/tags" >}}) name/value pairs to determine if the filter should match [events]({{<ref "events" >}}). For examples, you may what production devices to send to a high priority [channel]({{<ref "channels" >}}) such as PagerDuty or OpsGenie. If your [nodes]({{<ref "docs/nodes" >}}) have a tag to indicating “prod_status=production”, you can select that name/value pair from the list to properly filter your [alarms]({{<ref "docs/alarms" >}}).
 
 {{<tgimg src="tag-matches.png" width="50%">}}
 {{</field>}}

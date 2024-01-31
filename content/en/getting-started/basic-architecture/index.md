@@ -17,7 +17,7 @@ Nodes can be [deployed](../deployment) either as an **agent**, a service running
 Additionally, appliance-based nodes can be [clustered]({{<relref "docs/clusters">}}) to provide high availability at a site. 
 
 ### Gateways
-While all nodes can act as edge nodes (making only outbound connections), appliance-based nodes can also be configured to act as [gateway servers]({{<relref "/docs/nodes/gateway/gateway-server">}}) which listen for inbound connections from other edge nodes in the account.  
+While all nodes can act as edge nodes (making only outbound connections), appliance-based nodes can also be configured to act as [gateway servers]({{<relref "/docs/nodes/appliances/gateway/gateway-server">}}) which listen for inbound connections from other edge nodes in the account.  
 
 These connections create the [private data plane]({{<relref "#data-plane">}}) which enabls the Trustgrid network services.
 
@@ -30,7 +30,7 @@ The data plane is built between edge nodes and their gateways nodes to allow pri
 Nodes can be attached to [virtual networks]({{<ref "docs/domain/virtual-networks">}}), which provide a way to share network configuration like [routes]({{<ref "docs/domain/virtual-networks/routes">}}), NATs, and [ACLs]({{<ref "docs/domain/virtual-networks/access-policy">}}) at scale. 
 
 #### Layer 4 Proxy
-The data plane can also be used to enable Layer 4 proxy connections across two nodes.  In this setup, one node will act at the [connector]({{<relref "docs/nodes/connectors">}}) listening on a specified port.  When traffic is received on that port it will be forwarded to the configured [service]({{<relref "docs/nodes/services">}}). The node that hosts that service will then forward the traffic on to the configured IP and port using it's local interfaces.
+The data plane can also be used to enable Layer 4 proxy connections across two nodes.  In this setup, one node will act at the [connector]({{<relref "docs/nodes/shared/connectors">}}) listening on a specified port.  When traffic is received on that port it will be forwarded to the configured [service]({{<relref "docs/nodes/shared/services">}}). The node that hosts that service will then forward the traffic on to the configured IP and port using it's local interfaces.
 
 ### ZTNA Applications
 

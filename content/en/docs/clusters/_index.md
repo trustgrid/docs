@@ -113,7 +113,7 @@ Cluster members can share the configuration for the following services:
 
 ## Tags
 
-[Tags]({{<ref "/docs/nodes/tags">}}) are visible at the bottom of the overview page for the resource.
+[Tags]({{<ref "/docs/nodes/shared/tags">}}) are visible at the bottom of the overview page for the resource.
 
 ![img](cluster-tags.png)
 

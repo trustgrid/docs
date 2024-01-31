@@ -25,11 +25,11 @@ Several improvements where made around our change auditing system including:
 * The advanced search now allows you to select more object types.
 
 ## L4 Proxy UI Improvements
-This release also makes several improvements to the UI for configuring and managing our Layer 4 (L4) proxy [Services]({{<ref "/docs/nodes/services">}}) and [Connectors]({{<ref "/docs/nodes/connectors">}}). 
+This release also makes several improvements to the UI for configuring and managing our Layer 4 (L4) proxy [Services]({{<ref "/docs/nodes/shared/services">}}) and [Connectors]({{<ref "/docs/nodes/shared/connectors">}}). 
 
 These improvement include:
 * More consistency in the names of fields between the add/edit prompt and the table listings.
-* The addition of links to [automatically test connectivity of a TCP service]({{<ref "/docs/nodes/services#test-connectivity">}}) and [sniff traffic for a connector listening port]({{<ref "/docs/nodes/connectors#sniff-traffic">}})
+* The addition of links to [automatically test connectivity of a TCP service]({{<ref "/docs/nodes/shared/services#test-connectivity">}}) and [sniff traffic for a connector listening port]({{<ref "/docs/nodes/shared/connectors#sniff-traffic">}})
 * Removal of the Services Health Check feature. This attribute has been removed from the Add Service prompt and the Services table.  Any service that previously had this set to `Enabled` will continue performing this health check until the service is updated.  A future node release will stop performing the health check even if the service is still set to `Enabled`. 
 
 ## Flow Log Advanced Search

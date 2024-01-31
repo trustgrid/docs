@@ -9,7 +9,7 @@ weight: 90
 
 ## Best Practices
 * [Remove all members]({{<ref "/docs/clusters/manage-members#remove-member">}}) for a period of time to ensure the configuration is no longer needed.
-* [Update any status tag]({{<ref "/docs/nodes/tags/prod-status-tag">}}) to indicate the cluster(s) is being decommissioned.
+* [Update any status tag]({{<ref "/docs/nodes/shared/tags/prod-status-tag">}}) to indicate the cluster(s) is being decommissioned.
 * Before deleting, [remove any virtual network routes]({{<ref "/docs/domain/virtual-networks/routes#deleting-virtual-network-routes">}}) with the cluster as a destination. While these can be removed later, they will be easier to find while the cluster is still listed as the destination.
 
 ## Deleting Clusters

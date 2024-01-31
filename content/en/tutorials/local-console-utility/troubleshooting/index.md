@@ -47,7 +47,7 @@ These commands include:
 * `mtr` - this is a more robust version of `traceroute` and can be used to confirm connectivity with a command like `mtr repo.trustgrid.io`
 * `nc` 
     * use this to confirm connectivity with a command like `nc -vz repo.trustgrid.io 443` 
-    * or confirm connectivity with a [specific gateway IP address and port]({{<ref "/docs/nodes/gateway#server-settings">}}) with a command like `nc -vz 35.171.100.16 8443"
+    * or confirm connectivity with a [specific gateway IP address and port]({{<ref "/docs/nodes/appliances/gateway#server-settings">}}) with a command like `nc -vz 35.171.100.16 8443"
 * `openssl` - this can be use to confirm a [nothing is interfering with a valid TLS connection]({{<ref "/help-center/kb/startup-process/ssl-tls-tampering">}}) and view the certificates used with a command like `openssl s_client -connect repo.trustgrid.io:443 -showcerts | less` (use `:q` to exit)
 * `curl`
 * `ip` 

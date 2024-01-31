@@ -4,6 +4,9 @@ title: "Tags"
 linkTitle: "Tags"
 weight: 20
 date: 2022-12-28
+aliases: 
+- /docs/nodes/tags
+description: "Allows for easily editable metadata key-value pairs to be associated with Trustgrid resources like nodes, clusters, etc."
 ---
 
 {{% pageinfo %}}

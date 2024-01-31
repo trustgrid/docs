@@ -60,7 +60,7 @@ To make it easier to [duplicate existing policies]({{<relref "/docs/user-managem
 {{<tgimg src="clone-policy.png" width="80%">}}
 
 ## Other Issues Resolved
-- Resolves an issue causing the [Gateway Clients]({{< relref "/docs/nodes/gateway/gateway-client">}}) page to load as a blank white page.
+- Resolves an issue causing the [Gateway Clients]({{< relref "/docs/nodes/appliances/gateway/gateway-client">}}) page to load as a blank white page.
 - Resolves an issue that caused some statistics on the Node Overview graphs to double the real value. This caused a spike in the graphs which was misleading.
 - Resolves an issue with some of the "breadcrumb" links at the top of the page not working as expected. 
 - Prevents external API dependencies, such as our status page, from delaying portal pages from loading.
