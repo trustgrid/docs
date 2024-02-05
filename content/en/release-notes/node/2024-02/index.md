@@ -5,7 +5,7 @@ type: docs
 date: 2024-02-01
 description: "Release notes for the February 2024 Trustgrid Appliance release focused on support for agents"
 ---
-{{< node-release package-version="1.5.20240131-1959" core-version="20240131-005233.4838689" release="n-2.18.0" >}}
+{{< node-release package-version="1.5.20240203-1968" core-version="20240203-071412.8f765f6" release="n-2.18.0" >}}
 
 ## Removal of Local UI System
 The local UI functionality allowed users with direct physical access to an appliance network port to connect to a lightweight web server on the appliance to change the WAN interface IP and see the connectivity status. Several years ago, this solution was augmented with the [Console Utility]({{<relref "/tutorials/local-console-utility">}}) which has proved easier to use and has been expanded to provide much more functionality. The local UI has now been removed to simplify the appliance and focus efforts on the Console Utility.
@@ -30,3 +30,4 @@ Gateways running this version will be the first to support the new lightweight T
 - If a [BGP]({{<relref "docs/nodes/bgp">}}) server received a route removal update, it would remove the OS route but sometimes not update the BGP table. Then if the same route was added back, the BGP server would fail to recreate the OS route. This release resolves this issue. 
 - Resolves an issue where traffic egressing a Virtual Network would not evaluate the specificity of interface routes when determining the next hop. For example, if you had two routes (172.16.22.0/24 and 172.16.22.100/32) with different next hops, the more specific /32 route next hop was not utilized. 
 - Resolves an issue with [Access Policies]({{<relref "/docs/domain/virtual-networks/access-policy">}}) using the reject action.  The reject response (e.g. RESET for TCP) generated had the source and destination IPs transposed. This release fixes the source/destination IP placement in reject responses.
+- Changed the default JVM allocation for Lanner NCA-1210, NCA-1513, NCA-1515 and NCA-1010 from 3G to 2G.  This only impacts newly registered nodes.
