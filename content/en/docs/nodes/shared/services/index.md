@@ -18,7 +18,7 @@ Services define the host name or IP and port of a server that can be accessed by
 ## Functionality
 On the local network, a connection's **source IP** will be the node's interface IP.
 - If the service is defined on a cluster, the active cluster members IP will be used.
-- If the node has multiple interfaces, the source will be the interface that has a matching [interface route]({{<ref "docs/nodes/interfaces#interface-routes">}}) for the target IP.
+- If the node has multiple interfaces, the source will be the interface that has a matching [interface route]({{<ref "docs/nodes/appliances/interfaces#interface-routes">}}) for the target IP.
 
 If the service's [host field]({{<ref "#host">}}) is set to a DNS name, the node will use its WAN interface DNS servers to resolve the address.
 

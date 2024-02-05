@@ -44,7 +44,7 @@ Navigate to the [Support]({{<relref "/docs/support">}})" and fill out the **Supp
 This release adds a new [Cel Expression field]({{<relref "/docs/alarms/alarm-filters#cel-expression">}}) that allow for matching more complex conditions when filtering alarms. This gives greater flexibility to filter by multiple fields, use logical operators, and wild cards. 
 
 ## Other Fixes and Improvements
-- Added the ability to adjust interface MTU via the Trustgrid portal [Interfaces]({{<relref "/docs/nodes/interfaces#mtu">}})
+- Added the ability to adjust interface MTU via the Trustgrid portal [Interfaces]({{<relref "/docs/nodes/appliances/interfaces#mtu">}})
 - Resolved an issue where the S3 Bucket Policy on the Operations > Flow Logs table was listing the incorrect ARN
 - Restored the ability to list the virtual management IP as a column on the Nodes table
 - Fixed an issue that set all Host Ports to 0 (zero) when a container definition was imported

@@ -20,7 +20,7 @@ This release includes two improvements to the [Data Plane panel]({{<ref "/docs/n
 
 ## Other Improvements
 - Nodes now display their operating system (OS) version information in the [infovisor]({{<ref "/docs/nodes/shared/infovisor">}}) and it can also be added as a column to the Nodes table
-- We now display the physical interface names assigned by the OS on the [interfaces panel]({{<ref "/docs/nodes/interfaces">}}). This name is sometimes needed when running tools such as the Sniff Traffic.
+- We now display the physical interface names assigned by the OS on the [interfaces panel]({{<ref "/docs/nodes/appliances/interfaces">}}). This name is sometimes needed when running tools such as the Sniff Traffic.
 - It is now possibly for customers to generate and download [Debug Logs]({{<ref "/help-center/ops-logs/debug-logs">}}) from a Trustgrid node. This can be handy when working with Trustgrid support to troubleshoot issues.
 - [Users can be added to one or more groups when viewing the user]({{<ref "/docs/user-management/users#adding-a-user-to-groups">}}). Previously you had to navigate to each group and add the user there.
 - You can now select multiple protocols, IPs or ports when using the [Sniff Virtual Traffic]({{<ref "/tutorials/remote-tools/sniff-virtual-traffic">}}) VPN tool.

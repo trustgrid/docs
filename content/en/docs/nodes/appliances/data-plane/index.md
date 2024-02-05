@@ -51,7 +51,7 @@ By default this tool will attempt to send 10MB of data to the destination device
 The periods are posted for about every 1MB of data sent. If you see exclamation marks this can indicate lost packets.
 
 ### Trace Route and MTR
-Both of the links here will populate the [interface tool of the same name]({{<ref "/docs/nodes/interfaces">}}) with the selected peer's IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.
+Both of the links here will populate the [interface tool of the same name]({{<ref "/docs/nodes/appliances/interfaces">}}) with the selected peer's IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.
 
 {{<alert color="info">}}This is most effective if run from the client/edge node to a gateway since the gateway is the only one actually listening on that port.  If run in the other direction (gateway -> client) it is likely any firewall between will drop the connections and the client will definitely not respond on that port. {{</alert>}}
 

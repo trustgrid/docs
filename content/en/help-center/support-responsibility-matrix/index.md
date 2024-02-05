@@ -69,7 +69,7 @@ Example tasks include:
   - Before escalating to Trustgrid support please establish contact with an [end-user](#end-user) technical resource with [console access]({{<relref "/tutorials/local-console-utility#connecting-to-trustgrid-local-console">}})
 - [Changing Trustgrid node IP addresses]({{<relref "/tutorials/wan-interface-ip">}})
 - [Adding, modifying]({{<relref "/docs/nodes/vpn/nats">}}) and testing NATs on Edge devices
-- Modifying [interface]({{<relref "/docs/nodes/interfaces#interface-routes">}}) and [domain routes]({{<relref "/docs/domain/virtual-networks/routes#managing-virtual-network-routes">}}), including facilitating [failover between sites]({{<relref "/tutorials/operations-runbook/site-failover">}})
+- Modifying [interface]({{<relref "/docs/nodes/appliances/interfaces#interface-routes">}}) and [domain routes]({{<relref "/docs/domain/virtual-networks/routes#managing-virtual-network-routes">}}), including facilitating [failover between sites]({{<relref "/tutorials/operations-runbook/site-failover">}})
 - [Disabling]({{<relref "/tutorials/management-tasks/changing-node-status">}}) and removing [nodes]({{<relref "/tutorials/management-tasks/deleting-nodes">}}), [clusters]({{<relref "/tutorials/management-tasks/deleting-clusters">}}), and related configurations (e.g. routes) when no longer needed
 
 {{<alert>}} Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment {{</alert>}}

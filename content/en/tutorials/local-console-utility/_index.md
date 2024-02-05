@@ -32,7 +32,7 @@ The Trustgrid node console allows local console access to a Trustgrid Node wheth
 - Login with username `tgadmin` and password of **mac address of the wan nic** of the device **all lowercase including colons**. Example `82:f5:48:a9:14:05`
 
 #### Finding the MAC Address
-- If registered, the mac address can be seen on the [node's interface panel]({{<ref "/docs/nodes/interfaces">}}) as the Hardware Address
+- If registered, the mac address can be seen on the [node's interface panel]({{<ref "/docs/nodes/appliances/interfaces">}}) as the Hardware Address
 - For Lanner NCA-1210 devices the serial number is the WAN MAC address without the colons. You'll need to add the colons.
 - AWS and Azure list the MAC address in their management portals
     - AWS shows the MAC under the IP addresses section on the ENI properties {{<tgimg src="aws-eni-mac.png" width="50%">}}
