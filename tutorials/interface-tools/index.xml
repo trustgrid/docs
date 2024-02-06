@@ -1,48 +1,216 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Network Interface Tools</title><link>https://docs.trustgrid.io/tutorials/interface-tools/</link><description>Recent content in Network Interface Tools on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tutorials/interface-tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Tutorials: Sniff Interface Traffic</title><link>https://docs.trustgrid.io/tutorials/interface-tools/sniff-interface-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/interface-tools/sniff-interface-traffic/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>The sniff interface traffic tool performs a traffic capture on the selected node, which can help troubleshoot connectivity issues.&lt;/p>
-&lt;/div>
-&lt;h2 id="summary">Summary&lt;/h2>
-&lt;p>The Sniff Interface Traffic tool allows you to monitor traffic in real-time but there are certain instances where you need to be able to capture traffic to a file for further analysis. For example, intermittent issues may require leaving a capture running for an unknown period of time. Or, perhaps you need to review the application data within the packet payload.&lt;/p>
-&lt;p>The Traffic Capture is started with a standard tcpdump filter, just like the sniff interface tool, and max capture file size. Once the capture is stopped the captured data is written to .pcap files which can then be transferred for review.&lt;/p>
-&lt;div class="alert alert-warning" role="alert">
-The pcap files will include the data payload of any communication captured. If a non-encrypted protocol (such as HTTP or FTP) is used this could be visible in clear text.
-&lt;/div>
-&lt;p>Because of the risk of data being visible, there are several restrictions and controls in place:&lt;/p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Network Interface Tools</title><link>https://docs.trustgrid.io/tutorials/interface-tools/</link><description>Recent content in Network Interface Tools on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tutorials/interface-tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Tutorials: Sniff Traffic Interface Tool</title><link>https://docs.trustgrid.io/tutorials/interface-tools/sniff-interface-traffic/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/interface-tools/sniff-interface-traffic/</guid><description>
+&lt;p>The Sniff Traffic tool allows you to monitor traffic on a local network interface in realtime within the Trustgrid portal. Only the header information such as source and destination IPs, TCP flags, sequence numbers, etc. are displayed.&lt;/p>
+&lt;h2 id="using-sniff-interface-traffic">Using Sniff Interface Traffic&lt;/h2>
 &lt;ol>
-&lt;li>The permission to run this tool (&lt;code>node-advanced::service:tg-capture&lt;/code>) must be granted on a per-user basis. Not even administrators have this feature by default.
-&lt;img src="pcap-permissions.png" alt="img">&lt;/li>
-&lt;li>Trustgrid employees are specifically denied the ability to run this tool. Trustgrid employees are not permitted to view data transferred through our devices, so please do not send us the resulting pcap files.&lt;/li>
-&lt;/ol>
-&lt;h2 id="accessing--using-sniff-interface-traffic">Accessing &amp;amp; Using Sniff Interface Traffic&lt;/h2>
-&lt;ol>
-&lt;li>
-&lt;p>Login to the Trustgrid portal and navigate to the Node from which you want to capture traffic.&lt;/p>
+&lt;li>Login to the Trustgrid portal and navigate to the Node from which you want to view traffic.&lt;/li>
+&lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section. Then from the dropdown select the interface whose traffic you want to monitor.
+&lt;figure class="centered-image">
+&lt;img src="sniff-int-select.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Selecting the desired interface
+&lt;/figcaption>
+&lt;/figure>
 &lt;/li>
-&lt;li>
-&lt;p>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
+&lt;li>Click the Sniff Traffic button.
+&lt;figure class="centered-image">
+&lt;img src="sniff-int-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;/figure>
 &lt;/li>
-&lt;li>
-&lt;p>Click the Sniff Traffic button&lt;/p>
-&lt;p>&lt;img src="network-tools.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Set the appropriate parameters.&lt;br>
-&lt;tr id="iface" style="scroll-margin-top: 10rem;">
-&lt;th>iface&lt;/th>
-&lt;td>The interface name&lt;/td>
+&lt;li>Set the Interface and Filters to match the traffic you wish to monitor.
+&lt;figure class="centered-image">
+&lt;img src="sniff-int-filter.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;/figure>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="interface" style="scroll-margin-top: 10rem;">
+&lt;th>Interface&lt;/th>
+&lt;td>The interface name. This should be auto-populated with the interface selected above. If not, either click the &lt;strong>Reset Default&lt;/strong> button or erase the interface name and select from the list.&lt;/td>
 &lt;/tr>
 &lt;tr id="filter" style="scroll-margin-top: 10rem;">
-&lt;th>filter&lt;/th>
-&lt;td>The tool utilizes &lt;a href="https://www.tcpdump.org/manpages/pcap-filter.7.html">TCPDump filtering syntax&lt;/a>, which can help isolate interesting traffic. The below filter would show only ICMP and TCP traffic&lt;/td>
+&lt;th>Filter&lt;/th>
+&lt;td>The tool utilizes &lt;a href="https://www.tcpdump.org/manpages/pcap-filter.7.html">TCPDump filtering syntax&lt;/a>, which can help isolate interesting traffic. The below filter would show only ICMP and TCP traffic. See the &lt;a href="#useful-filters">useful filters&lt;/a> below for a quick introduction.&lt;/td>
 &lt;/tr>
-&lt;img src="filters.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Click &lt;code>Execute&lt;/code> to view the captured traffic&lt;/p>
+&lt;/tbody>
+&lt;/table>&lt;/li>
+&lt;li>Click &lt;code>Execute&lt;/code> to view the captured traffic
+&lt;figure class="centered-image">
+&lt;img src="sniff-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example output of sniffing interface traffic
+&lt;/figcaption>
+&lt;/figure>
 &lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="sniff-output.png" alt="img">&lt;/p>
+&lt;h2 id="useful-filters">Useful Filters&lt;/h2>
+&lt;p>The below filters can be combined using &amp;ldquo;and&amp;rdquo; &amp;amp; &amp;ldquo;or&amp;rdquo; without quotes&lt;/p>
+&lt;ul>
+&lt;li>You can filter based on protocol such as &amp;ldquo;tcp&amp;rdquo;, &amp;ldquo;udp&amp;rdquo;, or &amp;ldquo;icmp&amp;rdquo; without quotes&lt;/li>
+&lt;li>Best practice is to filter for what you want to see rather than filter out what you don&amp;rsquo;t want to see&lt;/li>
+&lt;li>To see only traffic for a specific host use &amp;ldquo;host x.x.x.x&amp;rdquo; with the IP address in place of the x.x.x.x&lt;/li>
+&lt;li>To see only traffic for a specific port use &amp;ldquo;port XXXX&amp;rdquo; replacing the XXXX with the desired port number&lt;/li>
+&lt;li>If capturing traffic on a clustered node, you should filter out the cluster port traffic. Typically port 9000 or 1975. E.g., &lt;code>not port 9000&lt;/code>&lt;/li>
+&lt;li>If capturing on the ETH0 - WAN Interface, you should filter out traffic to both Trustgrid&amp;rsquo;s network (35.171.100.16/28) and your data plane gateways&amp;rsquo; network or public IP. You&amp;rsquo;ll need to identify the actual network or IPs. E.g., &lt;code>not net 35.171.100.16/28 and not net X.X.X.X/X&lt;/code> or &lt;code>not net 35.171.100.16/28 and not host X.X.X.X&lt;/code>.&lt;/li>
+&lt;/ul></description></item><item><title>Tutorials: TCP Port Test</title><link>https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>The TCP Port Test tool initiates a TCP session with a target IP address and port to confirm fully layer 4 connectivity. This would be similar to using &lt;code>netcat&lt;/code> or &lt;code>telnet&lt;/code> to test connectivity to a TCP port.&lt;/p>
+&lt;/div>
+&lt;h2 id="usage">Usage&lt;/h2>
+&lt;ol>
+&lt;li>Login to the Trustgrid portal and navigate to the Node from which you want to test connectivity.&lt;/li>
+&lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/li>
+&lt;li>Click the &lt;code>Interface TCP Port Test&lt;/code> button
+&lt;figure class="centered-image">
+&lt;img src="network-tools.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Selecting TCP Port Test
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Update the host with the target IP address and the port with the target TCP port. Click &lt;code>Execute&lt;/code> to test connectivity.
+&lt;figure class="centered-image">
+&lt;img src="config.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Configuring the TCP Port Test
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>A new window will open with the results. If a new window does not open, check your browser&amp;rsquo;s pop-up blocker settings.
+&lt;ul>
+&lt;li>A successful test will look like this:
+&lt;figure class="centered-image">
+&lt;img src="success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Successful TCP Port Test result
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>A failed connection will depend on the nature of the failure. Examples include
+&lt;ul>
+&lt;li>A connection actively refused (e.g. possibly firewall/ACL rejecting connections)
+&lt;figure class="centered-image">
+&lt;img src="failed-refused.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Connection refused result
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>A connection timeout or no route message if there is no response (e.g. firewall/ACL dropping connection, bad destination IP, or no route to destination)
+&lt;figure class="centered-image">
+&lt;img src="failed-noroute.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+No route to host result
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol></description></item><item><title>Tutorials: Traffic Capture</title><link>https://docs.trustgrid.io/tutorials/interface-tools/traffic-capture/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/interface-tools/traffic-capture/</guid><description>
+&lt;div class="pageinfo pageinfo-primary">
+&lt;p>The Traffic Capture tool performs a traffic capture on the selected node, which can help troubleshoot connectivity issues.&lt;/p>
+&lt;/div>
+&lt;h2 id="summary">Summary&lt;/h2>
+&lt;p>The &lt;a href="https://docs.trustgrid.io/tutorials/interface-tools/sniff-interface-traffic/">Sniff Interface Traffic tool&lt;/a> allows you to monitor traffic in realtime but there are certain instances where you need to be able to capture traffic to a file for further analysis. For example, intermittent issues may require leaving a capture running for an unknown period of time. Or, perhaps you need to review the application data within the packet payload.&lt;/p>
+&lt;p>The Traffic Capture is started with a standard tcpdump filter, just like the sniff interface tool, and has a max capture file size. Once the capture is stopped the captured data is written to .pcap files which can then be transferred for review.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+The pcap files will include part of the data payload of any communication captured. If a non-encrypted protocol (such as HTTP or FTP) is used this could be visible in clear text.
+&lt;/div>
+&lt;h3 id="high-level-process">High-Level Process&lt;/h3>
+&lt;ol>
+&lt;li>The capture is started by the user&lt;/li>
+&lt;li>While the capture is running the pcap files are created in a temporary location on the node.&lt;/li>
+&lt;li>When the capture is stopped the capture files are moved into the /home/tgguest/captures directory and ownership is transferred to the tgguest user.&lt;/li>
+&lt;/ol>
+&lt;h2 id="access-to-traffic-capture">Access to Traffic Capture&lt;/h2>
+&lt;p>Because of the risk of data being visible, there are several restrictions and controls in place:&lt;/p>
+&lt;ol>
+&lt;li>The permission to run this tool (&lt;code>node-advanced::service:tg-capture&lt;/code>) must be granted on a per-user basis in a &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#creatingediting-policies">custom policy&lt;/a>. Not even administrators have this feature by default.
+&lt;figure class="centered-image">
+&lt;img src="pcap-permissions.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example policy with tg-capture allowed
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>&lt;strong>Trustgrid employees are specifically denied the ability to run this tool&lt;/strong>. Trustgrid employees are not permitted to view data transferred through our devices, so please do not send us the resulting pcap files.&lt;/li>
+&lt;/ol>
+&lt;h2 id="using-traffic-capture">Using Traffic Capture&lt;/h2>
+&lt;h3 id="starting-traffic-capture">Starting Traffic Capture&lt;/h3>
+&lt;ol>
+&lt;li>Log in to the Trustgrid portal and navigate to the node you want to capture traffic from.&lt;/li>
+&lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/li>
+&lt;li>On the right side under Interface Tools use the dropdown to select Traffic Capture.
+&lt;figure class="centered-image">
+&lt;img src="capture-dropdown.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;/figure>
+.&lt;/li>
+&lt;li>The capture tool prompt will be displayed. Select the interface to capture from using the dropdown and enter a filter if desired. Click the start button to begin capturing.
+&lt;figure class="centered-image">
+&lt;img src="capture-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Traffic Capture management popup
+&lt;/figcaption>
+&lt;/figure>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="status" style="scroll-margin-top: 10rem;">
+&lt;th>Status&lt;/th>
+&lt;td>Will display &lt;strong>Stopped&lt;/strong> if the capture is idle or &lt;strong>Running&lt;/strong> if there is an active capture.&lt;/td>
+&lt;/tr>
+&lt;tr id="interface" style="scroll-margin-top: 10rem;">
+&lt;th>Interface&lt;/th>
+&lt;td>This dropdown field will list the available interfaces. Select the one with the traffic you wish to capture&lt;/td>
+&lt;/tr>
+&lt;tr id="filter" style="scroll-margin-top: 10rem;">
+&lt;th>Filter&lt;/th>
+&lt;td>&lt;p>Input a valid &lt;a href="https://www.tcpdump.org/manpages/pcap-filter.7.html">tcpdump filter&lt;/a> to limit the captured traffic to only what is desired. An overly broad filter can cause the capture file to fill quickly and overwrite older data.&lt;/p>
+&lt;p>See &lt;a href="#useful-filters">useful filters&lt;/a> below for additional information.&lt;/p>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="max-capture-size-mb" style="scroll-margin-top: 10rem;">
+&lt;th>Max Capture Size (MB)&lt;/th>
+&lt;td>Specify the maximum size in megabytes for the pcap capture files. If this number is greater than 10MB the capture will be divided into the appropriate number of 10MB files to make the captures more manageable. The maximum total size allowed is 1000MB (1G) which would be split into one hundred 10MB files.&lt;/td>
+&lt;/tr>
+&lt;tr id="delete-files-on-start" style="scroll-margin-top: 10rem;">
+&lt;th>Delete Files On Start&lt;/th>
+&lt;td>If selected any existing pcap files in the captures directory will be deleted. This allows the user to be certain all capture files are related to the most recent run, and manages disk space consumption from multiple runs.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/li>
+&lt;li>Click the start button to begin capturing traffic. A message will display to indicate the capture has started. The Traffic Capture dialogue can be closed and the capture will continue running in the background.
+&lt;figure class="centered-image">
+&lt;img src="capture-started.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Traffic capture started message
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="stopping-traffic-capture">Stopping Traffic Capture&lt;/h3>
+&lt;p>Once it is believe the desired traffic has been captured you will need to stop the running capture to get access to the pcap files.&lt;/p>
+&lt;ol>
+&lt;li>Log in to the Trustgrid portal and navigate to the node you want to capture traffic from.&lt;/li>
+&lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/li>
+&lt;li>On the right side under Interface Tools use the dropdown to select Traffic Capture.
+&lt;figure class="centered-image">
+&lt;img src="capture-dropdown.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;/figure>
+.&lt;/li>
+&lt;li>Click the Stop button to end the capture. A message will display to indicate the capture has stopped and the files are being written.&lt;/li>
+&lt;/ol>
 &lt;h2 id="transfer-pcap-files">Transfer PCAP Files&lt;/h2>
 &lt;p>Now that you have created the pcap files you will need to transfer them somewhere for analysis. The Trustgrid node has standard file transfer clients installed including scp, sftp, and ftp.&lt;/p>
 &lt;h3 id="on-a-local-network">On a Local Network&lt;/h3>
@@ -76,7 +244,7 @@ The pcap files will include the data payload of any communication captured. If a
 &lt;ul>
 &lt;li>The node has a virtual management IP assigned. The tool will not launch without this.&lt;/li>
 &lt;li>A route for the virtual management IP exists in the virtual network route table.&lt;/li>
-&lt;li>On the destination node, that a 1:1 NAT exists for the destination file server assigning it to a virtual IP.&lt;/li>
+&lt;li>On the destination node, a 1:1 NAT exists for the destination file server assigning it to a virtual IP.&lt;/li>
 &lt;li>A route that includes the destination file server&amp;rsquo;s VIP exists in the network route table.&lt;/li>
 &lt;li>A virtual network access policy exists that allows the source node&amp;rsquo;s virtual management IP to connect to the destination file server&amp;rsquo;s VIP on the required port for your protocol.&lt;/li>
 &lt;li>The destination side node has a valid route to the destination server&amp;rsquo;s network.&lt;/li>
@@ -93,31 +261,4 @@ The pcap files will include the data payload of any communication captured. If a
 &lt;li>To see only traffic for a specific port use &amp;ldquo;port XXXX&amp;rdquo; replacing the XXXX with the desired port number&lt;/li>
 &lt;li>If capturing traffic on a clustered node, you should filter out the cluster port traffic. Typically port 9000 or 1975. E.g., &lt;code>not port 9000&lt;/code>&lt;/li>
 &lt;li>If capturing on the ETH0 - WAN Interface, you should filter out traffic to both Trustgrid&amp;rsquo;s network (35.171.100.16/28) and your data plane gateways&amp;rsquo; network or public IP. You&amp;rsquo;ll need to identify the actual network or IPs. E.g., &lt;code>not net 35.171.100.16/28 and not net X.X.X.X/X&lt;/code> or &lt;code>not net 35.171.100.16/28 and not host X.X.X.X&lt;/code>.&lt;/li>
-&lt;/ul></description></item><item><title>Tutorials: TCP Port Test</title><link>https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>The TCP Port Test tool initiates a TCP session with a target IP address and port to confirm fully layer 4 connectivity. This would be similar to using netcat or telnet to test connectivity to a TCP port.&lt;/p>
-&lt;/div>
-&lt;h2 id="usage">Usage&lt;/h2>
-&lt;ol>
-&lt;li>
-&lt;p>Login to the Trustgrid portal and navigate to the Node from which you want to test connectivity.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Click the &lt;code>Interface TCP Port Test&lt;/code> button&lt;/p>
-&lt;p>&lt;img src="network-tools.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Update the host with the target IP address and the port with the target TCP port. Click &lt;code>Execute&lt;/code> to test connectivity.&lt;/p>
-&lt;p>&lt;img src="config.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>A new window will open with the results. If a new window does not open, check your browser&amp;rsquo;s pop-up blocker settings.&lt;/p>
-&lt;p>A successful test will look like this:&lt;/p>
-&lt;p>&lt;img src="success.png" alt="img">&lt;/p>
-&lt;p>A failed connection will look like this:&lt;/p>
-&lt;p>&lt;img src="failed.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;/ol></description></item></channel></rss>
+&lt;/ul></description></item></channel></rss>
