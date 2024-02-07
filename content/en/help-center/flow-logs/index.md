@@ -68,14 +68,14 @@ All TCP Flags set on any packets seen over the duration of the flow:
 - RST - reset packet
 
 
-TCP Flags are only available for **TCP** flows that traverse the layer 3 VPN function. ICMP and UDP traffic, [Layer 4 services]({{<ref "/docs/nodes/shared/services">}}) and [VPN Port Forwards]({{<ref "/docs/nodes/vpn/port-forwarding">}}) will not have this data.
+TCP Flags are only available for **TCP** flows that traverse the layer 3 VPN function. ICMP and UDP traffic, [Layer 4 services]({{<ref "/docs/nodes/shared/services">}}) and [VPN Port Forwards]({{<ref "/docs/nodes/appliances/vpn/port-forwarding">}}) will not have this data.
 
 {{</field >}}
 
 {{</fields>}}
 
 ### NAT Impact on Source and Destination Fields
-When [NATs]({{<ref "/docs/nodes/vpn/nats">}}) are applied to a flow they will influence the source/destination IP and port values.  
+When [NATs]({{<ref "/docs/nodes/appliances/vpn/nats">}}) are applied to a flow they will influence the source/destination IP and port values.  
 
 Consider this flow:
 ```mermaid

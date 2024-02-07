@@ -3,6 +3,9 @@ linkTitle: Diagnostics
 Title: Gateway Diagnostics
 description: Tools and Information for troubleshooting gateway connectivity issues 
 weight: 30
+aliases: 
+    - /docs/nodes/gateway/gateway-diag
+description: Run troubleshooting tools for gateway connectivity and view aggregate statistics for all tunnels
 ---
 
 The diagnostics page includes stats on aggregate traffic across all peer tunnels regardless of overlay service as well as tools for troubleshooting connectivity.

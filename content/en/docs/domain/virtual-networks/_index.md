@@ -69,11 +69,11 @@ The use of an outside NAT can eliminate the need to create [routes]({{<ref "/doc
 {{<field "Name">}}A unique name for the network. Can contain letters, numbers and - characters.{{</field>}}
 {{<field "Network CIDR">}}Network CIDR that includes all desired [virtual IP addresses](#virtual-ip-addresses). 
 * [Virtual network defined routes]({{<ref "/docs/domain/virtual-networks/routes" >}}) can only point to destination CIDRs within this Network CIDR.
-* This restriction can be overridden by defining routes at the node or cluster [VPN > Static routes]({{<ref "docs/nodes/vpn/static-routing">}}) level.
+* This restriction can be overridden by defining routes at the node or cluster [VPN > Static routes]({{<ref "docs/nodes/appliances/vpn/static-routing">}}) level.
 {{</field>}}
 {{<field "Description">}}A user friendly description of the virtual network{{</field>}}
 {{<field "NO-NAT Mode">}}
 * Enabled - Nodes attached to the this virtual network **will not require** traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network.
-* Disabled _(default)_ - Nodes attached to this virtual network **will require** traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network. Or, will require the [traffic matching mode]({{<ref "/docs/nodes/vpn/nats#traffic-matching-mode">}}) be set to allow either Inbound or Outbound traffic that does not match.
+* Disabled _(default)_ - Nodes attached to this virtual network **will require** traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network. Or, will require the [traffic matching mode]({{<ref "/docs/nodes/appliances/vpn/nats#traffic-matching-mode">}}) be set to allow either Inbound or Outbound traffic that does not match.
 {{</field>}}
 {{</fields>}}

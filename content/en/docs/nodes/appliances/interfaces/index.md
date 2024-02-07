@@ -35,7 +35,7 @@ Used in configurations with more than one interface for local network connectivi
 {{<fields>}}
 {{<field "Hardware Address">}}MAC address of the interface.{{</field>}}
 {{<field "Interface Name">}}Name assigned to the interface by the operating system. This varies between hardware models and is sometimes needed when using tools such as Sniff Interface or reviewing logs.{{</field>}}
-{{<field "Interface VRF">}}Selects to which [VRF]({{<ref "/docs/nodes/vrfs">}}) the interface is attached.{{</field>}}
+{{<field "Interface VRF">}}Selects to which [VRF]({{<ref "/docs/nodes/appliances/vrfs">}}) the interface is attached.{{</field>}}
 {{<field "VLAN ID (Subinterfaces Only)">}} Sets the VLAN ID/tag for the subinterface.{{</field>}}
 {{<field "IP Assignment">}}
 * DHCP - requires a DHCP server or relay in the same broadcast domain as the interface connection

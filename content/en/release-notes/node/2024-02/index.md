@@ -22,7 +22,7 @@ This release improves the [Virtual Network Sniff]({{<relref "/tutorials/remote-t
 Gateways running this version will be the first to support the new lightweight Trustgrid agent-based nodes. More details will be announced once the agent has been officially released. 
 
 ## Other Improvements
-- The [JVM Heap metric]({{<relref "/docs/nodes/metrics#jvm-heap">}}) is now exposed via the [Trustgrid SNMP OID]({{<relref "/docs/nodes/snmp/oids">}})
+- The [JVM Heap metric]({{<relref "/docs/nodes/appliances/metrics#jvm-heap">}}) is now exposed via the [Trustgrid SNMP OID]({{<relref "/docs/nodes/appliances/snmp/oids">}})
 - The `dig` and `nslookup` commands are now available from the [Console Network Tools Shell]({{<relref "/tutorials/local-console-utility/troubleshooting#network-tools-shell">}})
 - [Remote Console Registration]({{<relref "/tutorials/local-console-utility/remote-registration">}}) no longer forces upgrading to the latest version. This makes the process of registration quicker, though it is still recommended to [upgrade to the latest version]({{<relref "/tutorials/management-tasks/upgrade-nodes">}}) after the node is online. 
 

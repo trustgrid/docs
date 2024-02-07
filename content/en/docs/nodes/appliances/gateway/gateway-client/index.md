@@ -3,6 +3,9 @@ linkTitle: Client
 Title: Gateway Client Settings
 descriptions: Configure settings for the Trustgrid gateway client
 weight: 20
+aliases: 
+    - /docs/nodes/gateway/gateway-client
+description: Configure client settings 
 ---
 
 Settings on this page determine how a node's client connection to gateway peers behave.

@@ -43,6 +43,6 @@ With this selected message will appear in Slack like the below example.
 {{<tgimg src="/docs/alarms/channels/formatted-slack-example.png" width="80%" caption="Example formatted slack event">}}
 
 ## WireGuard Tunnel Client Config
-This release adds an [example WireGuard client configuration]({{<ref "/docs/nodes/tunnels/WireGuard#example-client-config">}}) to both the add and update dialogues for WireGuard tunnel interfaces. 
+This release adds an [example WireGuard client configuration]({{<ref "/docs/nodes/appliances/tunnels/WireGuard#example-client-config">}}) to both the add and update dialogues for WireGuard tunnel interfaces. 
 
 {{<tgimg src="/docs/nodes/tunnels/WireGuard/WireGuard-tunnel-example-config.png" width="90%" caption="Example auto-generated WireGuard client configuration">}}

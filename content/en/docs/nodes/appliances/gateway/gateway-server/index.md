@@ -3,6 +3,9 @@ linkTitle: Server
 Title: Gateway Server Settings
 descriptions: Configure settings for the Trustgrid gateway server
 weight: 10
+aliases: 
+    - /docs/nodes/gateway/gateway-server
+description: Configure gateway server settings
 ---
 
 Gateways servers are nodes that are configured to receive connections from other Trustgrid nodes (clients).  These are the only nodes that need to have ports open and listening on the internet or WAN network. 
