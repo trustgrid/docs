@@ -20,3 +20,22 @@ At the top of all agent VPN pages is a bar that contains information about the v
 
 ## Virtual Network Attachment
 
+Agents are attached to a virtual network during creation but can be detached and attached as needed. At this time agents only support a single virtual network attachement.
+
+### Attach Agent to Virtual Network 
+1. Navigate to the VPN page of the agent
+1. Under the Actions dropdown select Attach
+1. Select the desired virtual network.
+    - If the virtual network has [IP Pools]({{<relref "/docs/domain/virtual-networks/ip-pool">}}) configured, the agent will automatically be assigned an IP from the pool. Click Save to complete.
+    - If not, you will be provided the following fields: {{<fields>}}
+    {{<field "Validation CIDR">}}(optional) if provided this will be used to confirm all NAT rule virtual CIDRs fall within the validation CIDR.{{</field>}}
+    {{<field "Virtual Management IP">}}Assigned to the `trustgrid0` tunnel interface on the agent for communication on the virtual network. {{</field>}}
+    {{</fields>}}
+1. Click Save
+
+### Detach Agent from Virtual Network
+1. Navigate to the VPN page of the agent. You will be automatically sent to the Address Translation panel for the currently attached network. 
+1. Click the "Manage Networks" link in the left navigation bar.
+1. Click the radio button to the left of the attached network.
+1. From the Actions dropdown select Detach.
+1. Confirm you want to detach the agent from the virtual network when prompted.
