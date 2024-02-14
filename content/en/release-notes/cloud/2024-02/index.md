@@ -7,7 +7,7 @@ description: "February 2024 Cloud Release - Minor improvements and fixes"
 ---
 
 ## Flow Log Performance Improvements
-This release further increases the performance of flow log search using our new database. It also resolves an issue that prevented all logs from being exported to CSV as expected. 
+This release further increases the performance of flow log search using our new database. 
 
 ## Other Improvements
 - The MTR interface in the portal now supports selecting a source IP from your interface and cluster IPs.
