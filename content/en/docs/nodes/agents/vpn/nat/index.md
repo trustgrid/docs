@@ -16,8 +16,9 @@ This option is deselected by default. To enable, select the check box and click 
 By default, all forwarded traffic retains the original IP address local to the agent. It is common to want or need to translate these addresses to avoid IP conflicts or to maintain consistent IP address spaces. The Network Address Translation table allows for mapping the local IP addresses or networks to virtual IP addresses or networks. 
 
 {{<fields>}}
-{{<field "Virtual CIDR">}}{{</field>}}
-{{<field "Local CIDR">}}{{</field>}}
+{{<field "Local CIDR">}}The local IP address or address block that should be mapped into the virtual network. It should be entered in CIDR block format (eg - `192.168.100.0/24` or `192.168.100.51/32`).{{</field>}}
+
+{{<field "Virtual CIDR">}}The virtual network IP address or addresses that the local IP addresses should be mapped to, also entered in CIDR block format.{{</field>}}
 {{<field Description>}}(optional) Allows for a user friendly description of the NAT rule.{{</field>}}
 {{</fields>}}
 

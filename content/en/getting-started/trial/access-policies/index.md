@@ -5,7 +5,7 @@ description: Configure access policies to limit the traffic allowed on the virtu
 weight: 30
 ---
 
-When designing a network from a zero-trust, least-privilege mindset all agents and appliances shouldn't have unrestricted access to each other and their adjacent network resources. Trustgrid allows for granular control over what traffic is permitted across the virtual network using [access policies]({{<relref "/docs/domain/virtual-networks/access-policy">}}).  The default virtual network was created with an "Allow All" policy to facilitate initial connectivity during the trial period. 
+When designing a network from a zero-trust, least-privilege mindset, all agents and appliances should restrict access as much as possible both to each other and their adjacent network resources. Trustgrid allows for granular control over what traffic is permitted across the virtual network using [access policies]({{<relref "/docs/domain/virtual-networks/access-policy">}}).  The default virtual network was created with an "Allow All" policy to facilitate initial connectivity during the trial period. 
 
 In this section, we will update the policy to restrict traffic between the two agents. 
 

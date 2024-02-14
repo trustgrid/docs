@@ -69,8 +69,8 @@ All traffic rules have an action that is applied to the associated packet.
 - Log - The packet is not manipulated but is marked for logging
   {{</field >}}
 
-{{<field "InGREss Interface" >}}
-The traffic rule is applied to packets that inGREss on this interface
+{{<field "Ingress Interface" >}}
+The traffic rule is applied to packets that ingress on this interface
 {{</field >}}
 
 {{<field "Forward Interface" >}}

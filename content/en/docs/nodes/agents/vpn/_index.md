@@ -13,14 +13,14 @@ At the top of all agent VPN pages is a bar that contains information about the v
 {{<fields>}}
 {{<field Network>}}Displays the name of the virtual network the agent is attached to and its configured address space.{{</field>}}
 {{<field "Validation CIDR">}}(Optional) Can be defined to validate that the Virtual CIDR address in Network Address Translations falls within an expected network.{{</field>}}
-{{<field "Virtual Management IP">}}The IP address assigned to the `trustgrid0` tunnel interface. This IP is either assigned manually or automatically from an [IP Pool]() {{</field>}}
+{{<field "Virtual Management IP">}}The IP address assigned to the `trustgrid0` tunnel interface. This IP is either assigned manually or automatically from an [IP Pool]({{<relref "/docs/domain/virtual-networks/ip-pool">}}) {{</field>}}
 {{<field "Sniff Virtual Traffic">}}This button launches the [Interface Sniff Tool]({{<relref "/tutorials/interface-tools/sniff-interface-traffic">}}) scoped to the `trustgrid0` interface. {{</field>}}
 {{<field "View Virtual Routes">}}This button launches the [View Virtual Route Table]({{<relref "/tutorials/remote-tools/view-virtual-route-table">}}) tool.{{</field>}}
 {{</fields>}}
 
 ## Virtual Network Attachment
 
-Agents are attached to a virtual network during creation but can be detached and attached as needed. At this time agents only support a single virtual network attachement.
+Agents are attached to a virtual network during creation but can be detached and attached as needed. At this time agents only support a single virtual network attachment.
 
 ### Attach Agent to Virtual Network 
 1. Navigate to the VPN page of the agent

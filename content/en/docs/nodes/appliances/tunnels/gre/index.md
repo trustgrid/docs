@@ -11,7 +11,7 @@ description: Configure GRE tunnels to establish connectivity between nodes and e
 
 {{% pageinfo %}}
 Trustgrid supports configuring GRE tunnels that can be used to establish connectivity to any appliance that supports the GRE protocol.
-A GRE tunnel interface is created which can then be attached to an interface on a node. [VRF]({{<relref "/docs/nodes/appliances/vrfs" >}})s can then be used to control the flow of traffic and how it should appear on the network. 
+A GRE tunnel interface is created which can then be attached to an interface on a node. [VRFs]({{<relref "/docs/nodes/appliances/vrfs" >}}) can then be used to control the flow of traffic and how it should appear on the network. 
 {{% /pageinfo %}}
 
 ## Configure GRE Tunnel 

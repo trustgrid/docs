@@ -13,7 +13,7 @@ description: Configure a tunnel interface representing the Trustgrid virtual net
 A virtual network tunnel interface can be configured on a Trustgrid node or cluster to allow the forwarding of traffic to a remote Trustgrid Node or Cluster that is attached to the same virtual network. The tunnel interface is associated with a [VRF]({{<relref "/docs/nodes/appliances/vrfs" >}}) which is used to define and control what traffic is allowed to pass and how it should appear on the network. There is no attachment of the vnet interface to a node interface required but the virtual network does need to be attached to the node or cluster before the tunnel interface is created. 
 {{% /pageinfo %}}
 
-## Configure Vnet Tunnel
+## Configure VNET Tunnel
 On a Trustgrid Node navigate to Tunnels under the Network Menu, select Add Tunnel, and then select VNET
 
 ![img](add_tunnel.png)
