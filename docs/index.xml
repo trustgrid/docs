@@ -320,8 +320,8 @@ BGP Status Output
 &lt;th>Advertised Routes&lt;/th>
 &lt;td>Lists the routes being advertised to the peer router&lt;/td>
 &lt;/tr>
-&lt;tr id="recieved-routes" style="scroll-margin-top: 10rem;">
-&lt;th>Recieved Routes&lt;/th>
+&lt;tr id="received-routes" style="scroll-margin-top: 10rem;">
+&lt;th>Received Routes&lt;/th>
 &lt;td>Hovering over the view button displays the routes received from the peer and their associated metrics&lt;/td>
 &lt;/tr>
 &lt;/tbody>

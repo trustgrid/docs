@@ -1,4 +1,18 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 21 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: January 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/january-2024/</link><pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/january-2024/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 14 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: February 2024 Release Notes - Minor</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-02/</link><pubDate>Wed, 14 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-02/</guid><description>
+&lt;h2 id="flow-log-performance-improvements">Flow Log Performance Improvements&lt;/h2>
+&lt;p>This release further increases the performance of flow log search using our new database.&lt;/p>
+&lt;h2 id="other-improvements">Other Improvements&lt;/h2>
+&lt;ul>
+&lt;li>The MTR interface in the portal now supports selecting a source IP from your interface and cluster IPs.&lt;/li>
+&lt;li>The Reboot and Restart buttons in the portal will now be disabled if a node is offline. This is to make clear you cannot perform these actions on an offline node.&lt;/li>
+&lt;/ul>
+&lt;h2 id="other-fixes">Other Fixes&lt;/h2>
+&lt;ul>
+&lt;li>Resolves issue preventing adding Azure AD as an identity provider.&lt;/li>
+&lt;li>Resolved an issue that could cause Order-based alerts not to be sent to configured channels.&lt;/li>
+&lt;li>Adds input validation for AWS and Azure Route Table identifiers.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/help-center/ops-logs/debug-logs/">Debug Logs&lt;/a> tool now prevents being triggered twice and now supports viewing greater than 20 historic log archives.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: January 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/january-2024/</link><pubDate>Sun, 21 Jan 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/january-2024/</guid><description>
 &lt;h2 id="default-authentication-provider-change">Default Authentication Provider Change&lt;/h2>
 &lt;p>Trustgrid has previously utilized Auth0 as the authentication provider for customers who do not use a &lt;a href="https://docs.trustgrid.io/docs/idps/">custom identity provider (IdP)&lt;/a>. With this release, Trustgrid has migrated to utilizing an internally managed authentication service to provide more control and stability.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
