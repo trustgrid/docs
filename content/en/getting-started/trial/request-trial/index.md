@@ -30,7 +30,7 @@ The process below will guide you through requesting a free 30-day trial account.
 1. You will be returned to the sign-in page to complete your login. Enter your email, password, and the one-time password from your authentication app.
 {{<tgimg src="final-signin.png" width="40%">}}
 
-Note: If you are not automatically redirected back to the Trustgrid portal just like the Portal link in the top right.
+Note: If you are not automatically redirected back to the Trustgrid portal just click the Portal link in the top right.
 {{<tgimg src="auth-portal-link.png" width="35%" caption="Link back to Portal">}}
 
 
