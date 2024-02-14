@@ -11,7 +11,6 @@ Weight: 11
 ### Linux 
 
 - Ubuntu 22.04 LTS
-- Red Hat Enterprise Linux (RHEL) 9
 
 ### Container
 The Trustgrid agent can be deployed as a container on Linux systems. This provides an isolated environment for the agent without requiring a full operating system instance. 
@@ -27,10 +26,6 @@ Follow the process below to install on Ubuntu 22.04 Jammy Jellyfish operating sy
 {{< readfile file="ubuntu2204-install.md" >}}
 
 {{< /tab >}}
-{{< tab header="Red Hat" text=true >}}
-The below instructions for Red Hat Enterprise Linux (RHEL) may also work for related distributions,  like Fedora and CentOS, but this has not been validated by Trustgrid.
-
-{{</tab>}}
 {{< /tabpane >}}
 
 

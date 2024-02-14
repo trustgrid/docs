@@ -19,4 +19,4 @@ The overview page for agent-based nodes shows several graphs and provides a tabl
 {{<alert color="warning" title="Note about agent statistics">}} **Agent-based** nodes report their statistics to the Trustgrid control plane periodically which are then processed and available for display. As such there can be a delay of up to 5 minutes before the graphs show a data point.  **Appliance-based** nodes can report their stats in realtime when online and connected to the portal. {{</alert>}}
 
 ## Recent Flow Logs
-This section gives a quick view of the most recent reported flow logs and provides a link to the [Flow Logs]({{<relref "/docs/nodes/shared/flow-logs">}}) page for more advanced filtering and analysis.
+This section gives a quick view of the most recent reported flow logs and provides a link to the [Flow Logs]({{<relref "/help-center/flow-logs">}}) page for more advanced filtering and analysis.

@@ -4,7 +4,7 @@ linkTitle: Address Translation
 weight: 10
 description: Define how an agent forwards and translates VPN traffic
 ---
-{{<tgimg src="agent-nat.png">}}
+{{<tgimg src="agent-nat.png" width="90%">}}
 
 ## Enable Forwarding
 This check box determines if an agent will attempt to forward traffic to/from between the VPN tunnel interface and IP addresses and networks accessible via other interfaces on the agent. 
