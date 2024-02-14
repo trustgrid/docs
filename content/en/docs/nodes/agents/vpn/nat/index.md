@@ -18,7 +18,7 @@ By default, all forwarded traffic retains the original IP address local to the a
 {{<fields>}}
 {{<field "Local CIDR">}}The local IP address or address block that should be mapped into the virtual network. It should be entered in CIDR block format (eg - `192.168.100.0/24` or `192.168.100.51/32`).{{</field>}}
 
-{{<field "Virtual CIDR">}}The network IP address or addresses that the local IP addresses should be mapped to, also entered in CIDR block format.{{</field>}}
+{{<field "Virtual CIDR">}}The virtual network IP address or addresses that the local IP addresses should be mapped to, also entered in CIDR block format.{{</field>}}
 {{<field Description>}}(optional) Allows for a user friendly description of the NAT rule.{{</field>}}
 {{</fields>}}
 
