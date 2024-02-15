@@ -1,4 +1,50 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 13 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: December 2023 Appliance Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/dec-2023-minor/</link><pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/dec-2023-minor/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: February 2024 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-02/</link><pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-02/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20240203-1968&lt;/td>
+&lt;td>20240203-071412.8f765f6&lt;/td>
+&lt;td>n-2.18.0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="removal-of-local-ui-system">Removal of Local UI System&lt;/h2>
+&lt;p>The local UI functionality allowed users with direct physical access to an appliance network port to connect to a lightweight web server on the appliance to change the WAN interface IP and see the connectivity status. Several years ago, this solution was augmented with the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/">Console Utility&lt;/a> which has proved easier to use and has been expanded to provide much more functionality. The local UI has now been removed to simplify the appliance and focus efforts on the Console Utility.&lt;/p>
+&lt;h2 id="vpn-sniff-improvements">VPN Sniff Improvements&lt;/h2>
+&lt;p>This release improves the &lt;a href="https://docs.trustgrid.io/tutorials/remote-tools/sniff-virtual-traffic/">Virtual Network Sniff&lt;/a> tool to allow more flexibility matching based on ports. We now support port matching based on:&lt;/p>
+&lt;ul>
+&lt;li>equal (=)&lt;/li>
+&lt;li>not equal (!=) to exclude traffic for the specified port&lt;/li>
+&lt;li>greater than (&amp;gt;) and less than (&amp;lt;)&lt;/li>
+&lt;li>a port range (&amp;lt;&amp;gt;) which will show all traffic with ports between the two values
+&lt;figure class="centered-image">
+&lt;img src="vpn-sniff-port-opts.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;/figure>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="agent-support">Agent Support&lt;/h2>
+&lt;p>Gateways running this version will be the first to support the new lightweight Trustgrid agent-based nodes. More details will be announced once the agent has been officially released.&lt;/p>
+&lt;h2 id="other-improvements">Other Improvements&lt;/h2>
+&lt;ul>
+&lt;li>The &lt;a href="https://docs.trustgrid.io/docs/nodes/metrics/#jvm-heap">JVM Heap metric&lt;/a> is now exposed via the &lt;a href="https://docs.trustgrid.io/docs/nodes/snmp/oids/">Trustgrid SNMP OID&lt;/a>&lt;/li>
+&lt;li>The &lt;code>dig&lt;/code> and &lt;code>nslookup&lt;/code> commands are now available from the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/#network-tools-shell">Console Network Tools Shell&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/">Remote Console Registration&lt;/a> no longer forces upgrading to the latest version. This makes the process of registration quicker, though it is still recommended to &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/">upgrade to the latest version&lt;/a> after the node is online.&lt;/li>
+&lt;/ul>
+&lt;h2 id="other-fixes">Other Fixes&lt;/h2>
+&lt;ul>
+&lt;li>Resolves where a null pointer exception in the code for tracking peer tunnel latency could cause a memory leak that would eventually lead to appliance instability and outage.&lt;/li>
+&lt;li>If a &lt;a href="https://docs.trustgrid.io/docs/nodes/bgp/">BGP&lt;/a> server received a route removal update, it would remove the OS route but sometimes not update the BGP table. Then if the same route was added back, the BGP server would fail to recreate the OS route. This release resolves this issue.&lt;/li>
+&lt;li>Resolves an issue where traffic egressing a Virtual Network would not evaluate the specificity of interface routes when determining the next hop. For example, if you had two routes (172.16.22.0/24 and 172.16.22.100/32) with different next hops, the more specific /32 route next hop was not utilized.&lt;/li>
+&lt;li>Resolves an issue with &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">Access Policies&lt;/a> using the reject action. The reject response (e.g. RESET for TCP) generated had the source and destination IPs transposed. This release fixes the source/destination IP placement in reject responses.&lt;/li>
+&lt;li>Changed the default JVM allocation for Lanner NCA-1210, NCA-1513, NCA-1515 and NCA-1010 from 3G to 2G. This only impacts newly registered nodes.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: December 2023 Appliance Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/dec-2023-minor/</link><pubDate>Wed, 13 Dec 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/dec-2023-minor/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
@@ -204,50 +250,4 @@ Example Node Stop Error
 &lt;h2 id="layer-4-health-checks-deprecated">Layer 4 Health Checks Deprecated&lt;/h2>
 &lt;p>The &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">layer 4 service&lt;/a> historically had an option to perform a health check where a connection attempt was made once per minute to the configured IP and port. If this was configured on a cluster, the member nodes would mark themselves unhealthy if the connection failed. Since this was usually caused by an issue with the local network or target server, this frequently led to both nodes being marked as unhealthy and taking the cluster offline. As this feature was rarely used and caused more issues than it solved we have removed this it from this version of the node software. If this was previously configured on a service the setting will be ignored.&lt;/p>
 &lt;h2 id="support-for-requiring-imdsv2-on-aws-ec2-instances">Support for requiring IMDSv2 on AWS EC2 Instances.&lt;/h2>
-&lt;p>The AWS Instance Metadata Service (IMDS) provides information about the EC2 instance that the Trustgrid service queries to enable certain features. Some potential security issues were identified in the IMDSv1 version of this service and AWS recommends &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-existing-instances.html#modify-require-IMDSv2">requiring IMDSv2&lt;/a> going forward. This version of the Trustgrid node software is confirmed to be fully compatible with IMDSv2-only instances.&lt;/p></description></item><item><title>Release-Notes: February 2024 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-02/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-02/</guid><description>
-&lt;table style="margin: 0 auto;">
-&lt;thead>
-&lt;tr>
-&lt;th>Package Version&lt;/th>
-&lt;th>Core Version&lt;/th>
-&lt;th>Release&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>1.5.20240203-1968&lt;/td>
-&lt;td>20240203-071412.8f765f6&lt;/td>
-&lt;td>n-2.18.0&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="removal-of-local-ui-system">Removal of Local UI System&lt;/h2>
-&lt;p>The local UI functionality allowed users with direct physical access to an appliance network port to connect to a lightweight web server on the appliance to change the WAN interface IP and see the connectivity status. Several years ago, this solution was augmented with the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/">Console Utility&lt;/a> which has proved easier to use and has been expanded to provide much more functionality. The local UI has now been removed to simplify the appliance and focus efforts on the Console Utility.&lt;/p>
-&lt;h2 id="vpn-sniff-improvements">VPN Sniff Improvements&lt;/h2>
-&lt;p>This release improves the &lt;a href="https://docs.trustgrid.io/tutorials/remote-tools/sniff-virtual-traffic/">Virtual Network Sniff&lt;/a> tool to allow more flexibility matching based on ports. We now support port matching based on:&lt;/p>
-&lt;ul>
-&lt;li>equal (=)&lt;/li>
-&lt;li>not equal (!=) to exclude traffic for the specified port&lt;/li>
-&lt;li>greater than (&amp;gt;) and less than (&amp;lt;)&lt;/li>
-&lt;li>a port range (&amp;lt;&amp;gt;) which will show all traffic with ports between the two values
-&lt;figure class="centered-image">
-&lt;img src="vpn-sniff-port-opts.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
-&lt;/figure>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="agent-support">Agent Support&lt;/h2>
-&lt;p>Gateways running this version will be the first to support the new lightweight Trustgrid agent-based nodes. More details will be announced once the agent has been officially released.&lt;/p>
-&lt;h2 id="other-improvements">Other Improvements&lt;/h2>
-&lt;ul>
-&lt;li>The &lt;a href="https://docs.trustgrid.io/docs/nodes/metrics/#jvm-heap">JVM Heap metric&lt;/a> is now exposed via the &lt;a href="https://docs.trustgrid.io/docs/nodes/snmp/oids/">Trustgrid SNMP OID&lt;/a>&lt;/li>
-&lt;li>The &lt;code>dig&lt;/code> and &lt;code>nslookup&lt;/code> commands are now available from the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/#network-tools-shell">Console Network Tools Shell&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/">Remote Console Registration&lt;/a> no longer forces upgrading to the latest version. This makes the process of registration quicker, though it is still recommended to &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/">upgrade to the latest version&lt;/a> after the node is online.&lt;/li>
-&lt;/ul>
-&lt;h2 id="other-fixes">Other Fixes&lt;/h2>
-&lt;ul>
-&lt;li>Resolves where a null pointer exception in the code for tracking peer tunnel latency could cause a memory leak that would eventually lead to appliance instability and outage.&lt;/li>
-&lt;li>If a &lt;a href="https://docs.trustgrid.io/docs/nodes/bgp/">BGP&lt;/a> server received a route removal update, it would remove the OS route but sometimes not update the BGP table. Then if the same route was added back, the BGP server would fail to recreate the OS route. This release resolves this issue.&lt;/li>
-&lt;li>Resolves an issue where traffic egressing a Virtual Network would not evaluate the specificity of interface routes when determining the next hop. For example, if you had two routes (172.16.22.0/24 and 172.16.22.100/32) with different next hops, the more specific /32 route next hop was not utilized.&lt;/li>
-&lt;li>Resolves an issue with &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">Access Policies&lt;/a> using the reject action. The reject response (e.g. RESET for TCP) generated had the source and destination IPs transposed. This release fixes the source/destination IP placement in reject responses.&lt;/li>
-&lt;li>Changed the default JVM allocation for Lanner NCA-1210, NCA-1513, NCA-1515 and NCA-1010 from 3G to 2G. This only impacts newly registered nodes.&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;p>The AWS Instance Metadata Service (IMDS) provides information about the EC2 instance that the Trustgrid service queries to enable certain features. Some potential security issues were identified in the IMDSv1 version of this service and AWS recommends &lt;a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-existing-instances.html#modify-require-IMDSv2">requiring IMDSv2&lt;/a> going forward. This version of the Trustgrid node software is confirmed to be fully compatible with IMDSv2-only instances.&lt;/p></description></item></channel></rss>
