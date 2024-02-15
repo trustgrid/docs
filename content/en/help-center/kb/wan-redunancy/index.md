@@ -33,7 +33,6 @@ graph LR
     subgraph sn [Single Node]
         snWAN[WAN\nInterface]
         snLAN[LAN\nInterface]
-        snLAN ~~~ snWAN
     end
     firewall["Firewall/Router"]
     dmzNet[[DMZ\n Network]]
@@ -57,12 +56,10 @@ graph LR
        subgraph Cluster-Node1
            cl1WAN[WAN\nInterface]
            cl1LAN[LAN\nInterface]
-           cl1LAN ~~~ cl1WAN
        end
        subgraph Cluster-Node2
            cl2WAN[WAN\nInterface]
            cl2LAN[LAN\nInterface]
-           cl2LAN ~~~ cl2WAN
        end
     end
     dmzNet[[DMZ\n Network]]    
@@ -98,12 +95,10 @@ graph LR
         subgraph Cluster-Node1
            cl1WAN[WAN\nInterface]
            cl1LAN[LAN\nInterface]
-           cl1LAN ~~~ cl1WAN
         end
         subgraph Cluster-Node2
            cl2WAN[WAN\nInterface]
            cl2LAN[LAN\nInterface]
-           cl2LAN ~~~ cl2WAN
         end
     end
     cl1WAN ==> ISP1([ISP 1])
@@ -127,12 +122,10 @@ graph LR
        subgraph Cluster-Node1
            cl1WAN[WAN\nInterface]
            cl1LAN[LAN\nInterface]
-           cl1LAN ~~~ cl1WAN
        end
        subgraph Cluster-Node2
            cl2WAN[WAN\nInterface]
            cl2LAN[LAN\nInterface]
-           cl2LAN ~~~ cl2WAN
        end
     end
     dmzNet1[[DMZ\n Network 1]]
@@ -161,12 +154,10 @@ graph LR
        subgraph Cluster-Node1
            cl1WAN[WAN\nInterface]
            cl1LAN[LAN\nInterface]
-           cl1LAN ~~~ cl1WAN
        end
        subgraph Cluster-Node2
            cl2WAN[WAN\nInterface]
            cl2LAN[LAN\nInterface]
-           cl2LAN ~~~ cl2WAN
        end
     end
     dmzNet1[[DMZ\n Network 1]]    

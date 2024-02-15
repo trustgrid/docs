@@ -68,12 +68,12 @@ sales@Azure:~$ echo $imageID
 ```
 
 ### Prepare SSH Key in Azure
- After registration SSH is only accessible via the Trustgrid portal, but Azure requires an SSH key be associated with the VM to allow SSH access on creation. 
+ After registration, SSH is only accessible via the Trustgrid portal, but Azure requires an SSH key to be associated with the VM to allow SSH access on creation. 
 
  There are a few ways to handle this in Azure, but it is important you end up with a variable `sshKeyName` containing the name of an existing SSH key resource in Azure.
 
 
- {{< alert color="info" >}}The SSH public keys in examples below are not valid and are for demonstration purposes only.{{< /alert >}}
+ {{< alert color="info" >}}The SSH public keys in the examples below are not valid and are for demonstration purposes only.{{< /alert >}}
 
  #### Reference an Existing Azure SSH key resource
  If you have an existing SSH key resource in Azure you can export its name as a variable:
@@ -127,12 +127,12 @@ az sshkey create --name $sshKeyName --resource-group $resourceGroup --location $
 ```
 
 ### Create Network Interfaces
-This step will create the network interfaces for the Trustgrid appliance VM to connect to the subnets. As part of this process we will create these additional resources:
+This step will create the network interfaces for the Trustgrid appliance VM to connect to the subnets. As part of this process, we will create these additional resources:
 - Public IP for the outside interface.
 - Network Security Group for the outside interface and an explicit Outbound rule for the [required connectivity to the Trustgrid Control Plane]({{<relref "/help-center/kb/site-requirements#trustgrid-control-plane">}}). Additional rules will need to be added to allow the node to connect to:
   - Outbound rules for data plane gateway IPs and ports if the appliance is acting as an edge/client device
   - Inbound rules if the appliance will be acting as a data plane or ZTNA gateway
-- Network Security Group for the inside interface with no additional rules. After deployment this security group could be extended to allow for required communication to internal resources.
+- Network Security Group for the inside interface with no additional rules. After deployment, this security group could be extended to allow for required communication to internal resources.
 
 {{<alert color="info">}} Both security groups will be created with the [default security group rules](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#default-security-rules) {{</alert>}}
 
@@ -171,11 +171,11 @@ az network nic create --resource-group $resourceGroup \
   --accelerated-networking false --ip-forwarding true \
   --network-security-group $name-inside
 ```
-See example output for all of the above commands in the [AZ CLI Example Walkthrough](./az-cli-example/#create-network-interfaces)
+See the example output for all of the above commands in the [AZ CLI Example Walkthrough](./az-cli-example/#create-network-interfaces)
 
 ### Create Trustgrid Appliance VM
 
-Finally we can deploy the actual VM with the two below commands
+Finally, we can deploy the actual VM with the two below commands
 
 This command creates the VM:
 ```bash
@@ -193,14 +193,10 @@ az vm create \
   --os-disk-delete-option 'Delete' \
   --size $size \
   --ssh-key-name $sshKeyName
-  ```
+```
 
-  And this command enables boot diagnostics so that the serial console can be accessed.
-  ```bash
-  az vm boot-diagnostics enable --name $name --resource-group $resourceGroup
-  ```
-
-See example output in the [AZ CLI Example Walkthrough](./az-cli-example/#create-trustgrid-appliance-vm)
+This command enables boot diagnostics so that the serial console can be accessed.
+See the example output in the [AZ CLI Example Walkthrough](./az-cli-example/#create-trustgrid-appliance-vm)
 
 ### Get MAC Address
 
@@ -229,7 +225,7 @@ If deploying an HA cluster there are additional steps required:
 ### Create Additional VM Appliance
 Repeat the steps above to deploy a second VM appliance using different names but in the same resource group and vNet. This will be the secondary node in the HA cluster. 
 
-Assuming you still have the same variables declared from above deployment you will just need to update the `$name` variable to a new value like shown in the example below.
+Assuming you still have the same variables declared from the above deployment you will just need to update the `$name` variable to a new value like shown in the example below.
 ```
 export name="newName"
 ```
@@ -237,9 +233,9 @@ export name="newName"
 Then you can proceed with creating the [network interface resources](#create-network-interfaces) and then [create the vm appliance](#create-trustgrid-appliance-vm).
 
 ### Create Role for Route Management
-The steps below create a custom role that has permissions to manipulate route tables:
+The steps below create a custom role that has permission to manipulate route tables:
 
-First, download the template json file to your environment.
+First, download the template JSON file to your environment.
 ```bash
 curl -o tg-route-role.json https://raw.githubusercontent.com/trustgrid/trustgrid-infra-as-code/main/azure/resources/cluster-role-template/tg-route-role.json
 ```
@@ -264,28 +260,29 @@ az role definition create --role-definition @tg-route-role.json
 
 See [AZ CLI Example Walkthrough](./az-cli-example/#create-role-for-route-management) for output.
 
-{{<alert color="info">}} The role created above can only be assigned to resources in the current subscription. If your Azure account topology requires the Trustgrid appliance to be able to manage route tables in other subscription you'll need to create the role in those accounts as well and assign (see below) the role accordingly.{{</alert>}}
+{{<alert color="info">}} The role created above can only be assigned to resources in the current subscription. If your Azure account topology requires the Trustgrid appliance to be able to manage route tables in other subscriptions you'll need to create the role in those accounts as well and assign (see below) the role accordingly.{{</alert>}}
 
 ###  Assign Role for Route Management
-Finally, we need to assign this role.  Below provides the commands to perform this process without values for the names of the two VMs (vm1 and vm2) or for the resource group. 
-
-Note, the `az role assignement create` command does not seem to work with variables for the `--role` parameter value.  If you named your role something other than "Trustgrid HA Route Role" you'll need to adjust the last two commands accordingly.
+Finally, we need to assign this role.  Below are the commands to perform this process without values for the names of the two VMs (vm1 and vm2) for the resource group. 
 
 ```bash
 export vm1=""
 export vm2=""
 export resourceGroup=""
+export roleName="Trustgrid HA Route Role"
 export subscription=$(az account show --query id -o tsv)
 export vm1ID=$(az vm show --name $vm1 --resource-group $resourceGroup --query 'identity.principalId' -o tsv)
 export vm2ID=$(az vm show --name $vm2 --resource-group $resourceGroup --query 'identity.principalId' -o tsv)
+export roleID=$(az role definition list --query "[?roleName=='$roleName'].name | [0]" -o tsv)
 az role assignment create --role "Trustgrid HA Route Role" --assignee $vm1ID --scope "/subscriptions/$subscription/resourceGroups/$resourceGroup"
 az role assignment create --role "Trustgrid HA Route Role" --assignee $vm2ID --scope "/subscriptions/$subscription/resourceGroups/$resourceGroup"
 
 ```
-
-
+{{<alert color="warning">}} 
+The above assumes you didn't change the `Name` settings in the tg-route-role.json file when [creating the role definition]({{<relref "#create-role-for-route-management">}}). If you did you need to update the `roleName` variable before exporting.
+{{</alert>}}
 See [AZ CLI Example Walkthrough](./az-cli-example/#assign-role-for-route-management) for output.
-{{<alert color="info">}} The above commands scope the role to the resource group that contains the node appliance VMs. IF your Azure account and resource group topology requires the nodes to be able to update route tables in other resources groups you'll need to repeat the role assignment commands either at a higher level (like subscription) or with a different value for `resourceGroup`. {{</alert>}}
+{{<alert color="info">}} The above commands scope the role to the resource group that contains the node appliance VMs. If your Azure account and resource group topology requires the nodes to be able to update route tables in other resources groups you'll need to repeat the role assignment commands either at a higher level (like subscription) or with a different value for `resourceGroup`. {{</alert>}}
 
 
 
