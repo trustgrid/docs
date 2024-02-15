@@ -101,7 +101,16 @@ Filter Prompt
 &lt;/tr>
 &lt;tr id="ports" style="scroll-margin-top: 10rem;">
 &lt;th>Port(s)&lt;/th>
-&lt;td>Filter to see traffic matching the specified ports. This will match either destination or source port. For ICMP, this does not apply.&lt;/td>
+&lt;td>&lt;p>Filter to see traffic matching the specified ports. This will match either a destination or source port.
+The operator on the left allows for matching based on:&lt;/p>
+&lt;ul>
+&lt;li>equal (=)&lt;/li>
+&lt;li>not equal (!=) to exclude traffic for the specified port&lt;/li>
+&lt;li>greater than (&amp;gt;) and less than (&amp;lt;)&lt;/li>
+&lt;li>a port range (&amp;lt;&amp;gt;) which will show all traffic with ports between the two values&lt;/li>
+&lt;/ul>
+&lt;p>For ICMP, this field does not apply.&lt;/p>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="tcp-flags" style="scroll-margin-top: 10rem;">
 &lt;th>TCP Flags&lt;/th>
