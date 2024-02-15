@@ -2,7 +2,7 @@
 title: February 2024 Appliance Release Notes
 linkTitle: February 2024
 type: docs
-date: 2024-02-013
+date: 2024-02-15
 description: "Release notes for the February 2024 Trustgrid Appliance release focused on support for agents"
 ---
 {{< node-release package-version="1.5.20240203-1968" core-version="20240203-071412.8f765f6" release="n-2.18.0" >}}
