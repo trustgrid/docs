@@ -246,9 +246,49 @@ Example of a saved route
 &lt;/div>
 &lt;p>To view thresholds, a user will need &lt;code>domains::read&lt;/code> permissions. To configure them, they will need &lt;code>domains::configure:threshold&lt;/code> permissions.&lt;/p>
 &lt;p>Navigate to your domain, and click &lt;code>Thresholds&lt;/code> on the left.&lt;/p>
-&lt;p>&lt;img src="list.png" alt="img">&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="domain-thresholds.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;/figure>
 &lt;h3 id="load-thresholds">Load Thresholds&lt;/h3>
 &lt;p>Load thresholds measure the health of the node itself.&lt;/p>
+&lt;h4 id="load-metrics">Load Metrics&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Metric Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>Default Value&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>CPU Usage&lt;/strong>&lt;/td>
+&lt;td>Monitors percent of CPU usage across all cores&lt;/td>
+&lt;td>95% for 10 minutes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Memory Usage&lt;/strong>&lt;/td>
+&lt;td>Monitors percent of total memory (RAM) used&lt;/td>
+&lt;td>90% for 30 minutes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Disk Usage&lt;/strong>&lt;/td>
+&lt;td>Monitors percent of total disk usage for the root partition&lt;/td>
+&lt;td>80% for 1 minute&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Embrionic Flows&lt;/strong>&lt;/td>
+&lt;td>Monitors the number of TCP flows (connections) that are in the embryonic state (waiting for ACK)&lt;/td>
+&lt;td>none&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>JVM Heap&lt;/strong>&lt;/td>
+&lt;td>Monitors the percent of allocated &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/jvm/">JVM memory&lt;/a> used&lt;/td>
+&lt;td>none&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="load-fields">Load Fields&lt;/h4>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -277,6 +317,34 @@ Example of a saved route
 &lt;/table>
 &lt;h3 id="network-thresholds">Network Thresholds&lt;/h3>
 &lt;p>Network thresholds measure the health of the network from the node&amp;rsquo;s perspective.&lt;/p>
+&lt;h4 id="network-metrics">Network Metrics&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Metric Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>Latency (ms)&lt;/strong>&lt;/td>
+&lt;td>Monitors the round trip tunnel latency between this node and the target&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Bandwidth IN Usage (Mbps)&lt;/strong>&lt;/td>
+&lt;td>Monitor the amount of received bandwidth on the specified interface&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Bandwidth Out Usage (Mbps)&lt;/strong>&lt;/td>
+&lt;td>Monitors the amount of sent bandwidth on the specified interfaces&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="network-fields">Network Fields&lt;/h4>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -303,7 +371,11 @@ Example of a saved route
 &lt;/tr>
 &lt;tr id="target" style="scroll-margin-top: 10rem;">
 &lt;th>Target&lt;/th>
-&lt;td>The target node to measure the latency to. Each node will measure the latency to the target node.&lt;/td>
+&lt;td>&lt;ul>
+&lt;li>For Latency - The target node to measure the latency to. Each node will measure the latency to the target node.&lt;/li>
+&lt;li>For Bandwidth In/Out - The network interface to monitor usage on.&lt;/li>
+&lt;/ul>
+&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>Docs: Virtual Networks</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/</guid><description>

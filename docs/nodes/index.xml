@@ -1224,12 +1224,93 @@ A full list of all available OID&amp;rsquo;s supported by the Trustgrid Node is 
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Thresholds provide a way to trigger events when different measurements exceed a given value. Thresholds configured at the node level can override &lt;a href="https://docs.trustgrid.io/docs/domain/thresholds/">Domain Thresholds&lt;/a>.&lt;/p>
 &lt;/div>
-&lt;p>To view and configure thresholds, a user will need &lt;code>nodes::configure::thresholds&lt;/code> permissions.&lt;/p>
-&lt;p>Navigate to a node, and click &lt;code>Thresholds&lt;/code> under the &lt;code>System&lt;/code> section.&lt;/p>
-&lt;p>&lt;img src="list.png" alt="img">&lt;/p>
-&lt;p>Note that overridden thresholds have a yellow square icon next to them.&lt;/p>
+&lt;figure class="centered-image">
+&lt;img src="node-thresholds.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+Example Thresholds page on a node
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="node-level-threshold-status">Node Level Threshold Status&lt;/h2>
+&lt;p>
+&lt;figure class="centered-image">
+&lt;img src="node-threshold-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;/figure>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="status" style="scroll-margin-top: 10rem;">
+&lt;th>Status&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>Disabled (default) - Only thresholds defined at the &lt;a href="https://docs.trustgrid.io/docs/domain/thresholds/">domain level&lt;/a> will be used for generating events.&lt;/li>
+&lt;li>Enabled - Thresholds defined at the node level will be used for generating events, including overriding any domain-level values.&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/p>
+&lt;h2 id="configuring-node-level-thresholds">Configuring Node Level Thresholds&lt;/h2>
+&lt;div class="alert alert-primary" role="alert">
+To view and configure thresholds, a user will need &lt;code>nodes::configure::thresholds&lt;/code> permissions.
+&lt;/div>
+&lt;p>To configure thresholds at the node level:&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the node in the portal.&lt;/li>
+&lt;li>In the left-side navigation bar find Thresholds in the System section and click it.
+&lt;figure class="centered-image">
+&lt;img src="system-threshold.png" alt="System &amp;gt; Thresholds" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>Change the Status to &amp;ldquo;Enabled&amp;rdquo;.&lt;/li>
+&lt;li>Click the + button on the far right to add either a Load or Network threshold.&lt;/li>
+&lt;li>Provide the required fields.&lt;/li>
+&lt;li>Optionally, repeat with any other thresholds you wish to set.&lt;/li>
+&lt;li>Click save.&lt;/li>
+&lt;/ol>
 &lt;h3 id="load-thresholds">Load Thresholds&lt;/h3>
 &lt;p>Load thresholds measure the health of the node itself.&lt;/p>
+&lt;h4 id="load-metrics">Load Metrics&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Metric Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>Default Value&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>CPU Usage&lt;/strong>&lt;/td>
+&lt;td>Monitors percent of CPU usage across all cores&lt;/td>
+&lt;td>95% for 10 minutes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Memory Usage&lt;/strong>&lt;/td>
+&lt;td>Monitors percent of total memory (RAM) used&lt;/td>
+&lt;td>90% for 30 minutes&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Disk Usage&lt;/strong>&lt;/td>
+&lt;td>Monitors percent of total disk usage for the root partition&lt;/td>
+&lt;td>80% for 1 minute&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Embrionic Flows&lt;/strong>&lt;/td>
+&lt;td>Monitors the number of TCP flows (connections) that are in the embryonic state (waiting for ACK)&lt;/td>
+&lt;td>none&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>JVM Heap&lt;/strong>&lt;/td>
+&lt;td>Monitors the percent of allocated &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/jvm/">JVM memory&lt;/a> used&lt;/td>
+&lt;td>none&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="load-fields">Load Fields&lt;/h4>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1258,6 +1339,34 @@ A full list of all available OID&amp;rsquo;s supported by the Trustgrid Node is 
 &lt;/table>
 &lt;h3 id="network-thresholds">Network Thresholds&lt;/h3>
 &lt;p>Network thresholds measure the health of the network from the node&amp;rsquo;s perspective.&lt;/p>
+&lt;h4 id="network-metrics">Network Metrics&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Metric Type&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;th>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>Latency (ms)&lt;/strong>&lt;/td>
+&lt;td>Monitors the round trip tunnel latency between this node and the target&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Bandwidth IN Usage (Mbps)&lt;/strong>&lt;/td>
+&lt;td>Monitor the amount of received bandwidth on the specified interface&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Bandwidth Out Usage (Mbps)&lt;/strong>&lt;/td>
+&lt;td>Monitors the amount of sent bandwidth on the specified interfaces&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="network-fields">Network Fields&lt;/h4>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -1272,7 +1381,7 @@ A full list of all available OID&amp;rsquo;s supported by the Trustgrid Node is 
 &lt;/tr>
 &lt;tr id="telemetry" style="scroll-margin-top: 10rem;">
 &lt;th>Telemetry&lt;/th>
-&lt;td>The metric to monitor. Options are latency (ms), bandwidth in (Mbps), and bandwidth out (Mbps).&lt;/td>
+&lt;td>The metric to monitor. Currently only latency (measured in milliseconds) is available.&lt;/td>
 &lt;/tr>
 &lt;tr id="threshold" style="scroll-margin-top: 10rem;">
 &lt;th>Threshold&lt;/th>
@@ -1284,7 +1393,11 @@ A full list of all available OID&amp;rsquo;s supported by the Trustgrid Node is 
 &lt;/tr>
 &lt;tr id="target" style="scroll-margin-top: 10rem;">
 &lt;th>Target&lt;/th>
-&lt;td>For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.&lt;/td>
+&lt;td>&lt;ul>
+&lt;li>For Latency - The target node to measure the latency to. Each node will measure the latency to the target node.&lt;/li>
+&lt;li>For Bandwidth In/Out - The network interface to monitor usage on.&lt;/li>
+&lt;/ul>
+&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table></description></item><item><title>Docs: Tags</title><link>https://docs.trustgrid.io/docs/nodes/tags/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tags/</guid><description>
