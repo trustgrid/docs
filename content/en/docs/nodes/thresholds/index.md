@@ -9,58 +9,36 @@ weight: 19
 Thresholds provide a way to trigger events when different measurements exceed a given value. Thresholds configured at the node level can override [Domain Thresholds]({{<ref "/docs/domain/thresholds" >}}).
 {{% /pageinfo %}}
 
-To view and configure thresholds, a user will need `nodes::configure::thresholds` permissions.
+{{<tgimg src="node-thresholds.png" width="80%" caption="Example Thresholds page on a node">}}
 
-Navigate to a node, and click `Thresholds` under the `System` section.
+## Node Level Threshold Status
+{{<tgimg src="node-threshold-status.png" width="40%">}}
+{{<fields>}}
+{{<field Status>}}
+- Disabled (default) - Only thresholds defined at the [domain level]({{<relref "/docs/domain/thresholds">}}) will be used for generating events.
+- Enabled - Thresholds defined at the node level will be used for generating events, including overriding any domain-level values.
+{{</field>}}
+{{</fields>}}
 
-![img](list.png)
+## Configuring Node Level Thresholds
 
-Note that overridden thresholds have a yellow square icon next to them.
+{{<alert>}}To view and configure thresholds, a user will need `nodes::configure::thresholds` permissions.{{</alert>}}
+
+To configure thresholds at the node level:
+1. Navigate to the node in the portal.
+1. In the left-side navigation bar find Thresholds in the System section and click it. {{<tgimg src="system-threshold.png" width= "40%" alt="System > Thresholds">}}
+1. Change the Status to "Enabled". 
+1. Click the + button on the far right to add either a Load or Network threshold. 
+1. Provide the required fields. 
+1. Optionally, repeat with any other thresholds you wish to set.
+1. Click save.
+
+
 
 ### Load Thresholds
 
-Load thresholds measure the health of the node itself.
-
-{{<fields>}}
-{{<field "Name" >}}
-The name of the threshold. This will be available in generated events.
-{{</field >}}
-
-{{<field "Telemetry" >}}
-The metric to monitor. Options are CPU usage (%), memory usage (%), disk usage (%), and embryonic flows (absolute count).
-{{</field >}}
-
-{{<field "Threshold" >}}
-The value that must be exceeded for an event to be generated.
-{{</field >}}
-
-{{<field "Duration" >}}
-The time period to measure. If the threshold is exceeded for this duration, an event will be generated.
-{{</field >}}
-{{</fields>}}
-
+{{<readfile "/docs/domain/thresholds/load-threshold.md">}}
 ### Network Thresholds
 
-Network thresholds measure the health of the network from the node's perspective.
+{{<readfile "/docs/domain/thresholds/network-threshold.md">}}
 
-{{<fields>}}
-{{<field "Name" >}}
-The name of the threshold. This will be available in generated events.
-{{</field >}}
-
-{{<field "Telemetry" >}}
-The metric to monitor. Options are latency (ms), bandwidth in (Mbps), and bandwidth out (Mbps).
-{{</field >}}
-
-{{<field "Threshold" >}}
-The value that must be exceeded for an event to be generated.
-{{</field >}}
-
-{{<field "Duration" >}}
-The time period to measure. If the threshold is exceeded for this duration, an event will be generated.
-{{</field >}}
-
-{{<field "Target" >}}
-For latency, target node to measure the latency to. For bandwidth measurements, the interface to measure the bandwidth on.
-{{</field >}}
-{{</fields>}}
