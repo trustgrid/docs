@@ -120,5 +120,5 @@ The BGP Status tool allows you to see information about the state of BGP peering
 {{<field "ASN">}}The Autonomous System Number that identifies the router{{</field>}}
 {{<field "Peer IP">}}The IP address of the peer router{{</field>}}
 {{<field "Advertised Routes">}}Lists the routes being advertised to the peer router{{</field>}}
-{{<field "Recieved Routes">}}Hovering over the view button displays the routes received from the peer and their associated metrics{{</field>}}
+{{<field "Received Routes">}}Hovering over the view button displays the routes received from the peer and their associated metrics{{</field>}}
 {{</fields>}}
