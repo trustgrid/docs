@@ -22,13 +22,13 @@ This release improves the [Virtual Network Sniff]({{<relref "/tutorials/remote-t
 Gateways running this version will be the first to support the new lightweight Trustgrid agent-based nodes. More details will be announced once the agent has been officially released. 
 
 ## Other Improvements
-- The [JVM Heap metric]({{<relref "/docs/nodes/metrics#jvm-heap">}}) is now exposed via the [Trustgrid SNMP OID]({{<relref "/docs/nodes/snmp/oids">}})
+- The [JVM Heap metric]({{<relref "/docs/nodes/appliances/metrics#jvm-heap">}}) is now exposed via the [Trustgrid SNMP OID]({{<relref "/docs/nodes/appliances/snmp/oids">}})
 - The `dig` and `nslookup` commands are now available from the [Console Network Tools Shell]({{<relref "/tutorials/local-console-utility/troubleshooting#network-tools-shell">}})
 - [Remote Console Registration]({{<relref "/tutorials/local-console-utility/remote-registration">}}) no longer forces upgrading to the latest version. This makes the process of registration quicker, though it is still recommended to [upgrade to the latest version]({{<relref "/tutorials/management-tasks/upgrade-nodes">}}) after the node is online. 
 
 ## Other Fixes
 - Resolves where a null pointer exception in the code for tracking peer tunnel latency could cause a memory leak that would eventually lead to appliance instability and outage.
-- If a [BGP]({{<relref "docs/nodes/bgp">}}) server received a route removal update, it would remove the OS route but sometimes not update the BGP table. Then if the same route was added back, the BGP server would fail to recreate the OS route. This release resolves this issue. 
+- If a [BGP]({{<relref "docs/nodes/appliances/bgp">}}) server received a route removal update, it would remove the OS route but sometimes not update the BGP table. Then if the same route was added back, the BGP server would fail to recreate the OS route. This release resolves this issue. 
 - Resolves an issue where traffic egressing a Virtual Network would not evaluate the specificity of interface routes when determining the next hop. For example, if you had two routes (172.16.22.0/24 and 172.16.22.100/32) with different next hops, the more specific /32 route next hop was not utilized. 
 - Resolves an issue with [Access Policies]({{<relref "/docs/domain/virtual-networks/access-policy">}}) using the reject action.  The reject response (e.g. RESET for TCP) generated had the source and destination IPs transposed. This release fixes the source/destination IP placement in reject responses.
 - Changed the default JVM allocation for Lanner NCA-1210, NCA-1513, NCA-1515 and NCA-1010 from 3G to 2G.  This only impacts newly registered nodes.
