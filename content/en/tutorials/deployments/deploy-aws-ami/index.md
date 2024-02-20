@@ -9,7 +9,6 @@ Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes
 ## Notes
 
 - The cloudformation template below works with an AMI currently published in US-EAST1. Deploying in other regions requires working with Trustgrid Support
-- Logs /var/log/syslog, /var/log/secure, and /var/log/trustgrid/tg-default.log to CloudWatch
 - Requires VPC and public subnet
 - Does not create security groups or roles - those have to be managed separately (more below)
 
@@ -33,7 +32,7 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
   - Inbound & Outbound to/from management NIC security group on cluster port (typically TCP port 9000)
   - For the initial deployment outbound access for TCP 80/443 should be allowed. Upon successful registration with the Trustgrid Portal this can be removed.
 
-- IAM role for the instance with policies allowing publishing to Cloudwatch logs and changes to the routing table of the data NIC - See attached doc
+- IAM role for the instance with policies allowing changes to the routing table of the data NIC - See attached doc
 
 - All Interfaces on the Trustgrid Gateway should have source / destination check disabled in AWS
 
@@ -71,30 +70,7 @@ Set the instance type of the EC2 instance to deploy (bigger instances cost more)
 {{</field>}}
 
 {{<field "Host IAM Role">}}
-An EC2 associated role that allows creating and writing to CloudWatch logs. Only the role name itself is required.
-
-The role needs these IAM privileges: `logs:CreateLogGroup`, `logs:CreateLogStream`, `logs:PutLogEvents`, `logs:DescribeLogStreams` on resource `arn:aws:logs:*:*:*`
-
-Cloudwatch logs policy
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "logs:CreateLogGroup",
-        "logs:CreateLogStream",
-        "logs:PutLogEvents"
-      ],
-      "Resource": ["*"]
-    }
-  ]
-}
-```
-
-If EC2 Nodes will be clustered (Layer 3) the IAM role needs `ec2:DescribeRouteTables` for any resource and `ec2:CreateRoute` & `ec2:DeleteRoute` on the route table
+An IAM role that can either be empty or, if the node will be clustered (Layer 3), requires the following permissions (`ec2:DescribeRouteTables` for all resources and `ec2:CreateRoute` and `ec2:DeleteRoute` on the route table):
 
 Route Table Policy
 
@@ -116,7 +92,6 @@ Route Table Policy
 
 **NOTE**: Set the Resource field to the ARN of the Routing Table associated with the data NICs of the instance.
 
-**CloudWatch Note**: We will create log groups named /trustgrid/var/log/syslog and /trustgrid/var/log/trustgrid/tg-default.log.
 {{</field>}}
 
 {{<field "SSH Keypair">}}
