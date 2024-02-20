@@ -29,7 +29,7 @@ It is important to note that nat translations occur before routing decisions are
 
 ### Masquerade Example
 
-Using the example below if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24 the source would be translated to the interface address the packet is eGREssing on. If it was a single interface Trustgrid node it would be sourced as the wan facing interface address.
+Using the example below, if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24, the source would be translated to the interface address from which the packet is egressing. If it were a single interface Trustgrid node it would be sourced as the wan facing interface address.
 
 ![img](masquerade1.png)
 
