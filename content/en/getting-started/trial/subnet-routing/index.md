@@ -56,7 +56,7 @@ Now that agent1 has an "adjacent network" of interest, the virtual network needs
 1. Navigate to the Review Changes page and click Apply Changes. Confirm with Yes when prompted.  {{<tgimg src="agent1-route-confirm.png" width="90%" >}}
 
 ## Configure OS Route on agent2
-Next, we need to tell **agent2** to use the trustgrid0 interface to route traffic destined for the adjacent network. This is done by adding a local route in the operating systems that will forward traffic for the target IP, 172.31.255.1, via the trustgrid0 interface and flow through the virtual network tunnel.
+Next, we need to tell **agent2** to use the trustgrid0 interface to route traffic destined for the adjacent network. This is done by adding a local route in the operating systems that will forward traffic for the target IP, 172.31.255.1, via the trustgrid0 interface and through the virtual network tunnel.
 1. Gain console access to **agent2**
 1. Run the command: {{<codeblock>}}sudo ip route add 172.31.255.1/32 dev trustgrid0{{</codeblock>}}
 1. You can confirm this is effective with the command: {{<codeblock>}}ip route{{</codeblock>}}
