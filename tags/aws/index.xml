@@ -30,7 +30,6 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;h2 id="notes">Notes&lt;/h2>
 &lt;ul>
 &lt;li>The cloudformation template below works with an AMI currently published in US-EAST1. Deploying in other regions requires working with Trustgrid Support&lt;/li>
-&lt;li>Logs /var/log/syslog, /var/log/secure, and /var/log/trustgrid/tg-default.log to CloudWatch&lt;/li>
 &lt;li>Requires VPC and public subnet&lt;/li>
 &lt;li>Does not create security groups or roles - those have to be managed separately (more below)&lt;/li>
 &lt;/ul>
@@ -64,7 +63,7 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/ul>
 &lt;/li>
 &lt;li>
-&lt;p>IAM role for the instance with policies allowing publishing to Cloudwatch logs and changes to the routing table of the data NIC - See attached doc&lt;/p>
+&lt;p>IAM role for the instance with policies allowing changes to the routing table of the data NIC - See attached doc&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>All Interfaces on the Trustgrid Gateway should have source / destination check disabled in AWS&lt;/p>
@@ -115,24 +114,7 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/tr>
 &lt;tr id="host-iam-role" style="scroll-margin-top: 10rem;">
 &lt;th>Host IAM Role&lt;/th>
-&lt;td>&lt;p>An EC2 associated role that allows creating and writing to CloudWatch logs. Only the role name itself is required.&lt;/p>
-&lt;p>The role needs these IAM privileges: &lt;code>logs:CreateLogGroup&lt;/code>, &lt;code>logs:CreateLogStream&lt;/code>, &lt;code>logs:PutLogEvents&lt;/code>, &lt;code>logs:DescribeLogStreams&lt;/code> on resource &lt;code>arn:aws:logs:*:*:*&lt;/code>&lt;/p>
-&lt;p>Cloudwatch logs policy&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Version&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;2012-10-17&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Statement&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Action&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logs:CreateLogGroup&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logs:CreateLogStream&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;logs:PutLogEvents&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>&lt;span style="color:#4e9a06">&amp;#34;*&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">]&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>If EC2 Nodes will be clustered (Layer 3) the IAM role needs &lt;code>ec2:DescribeRouteTables&lt;/code> for any resource and &lt;code>ec2:CreateRoute&lt;/code> &amp;amp; &lt;code>ec2:DeleteRoute&lt;/code> on the route table&lt;/p>
+&lt;td>&lt;p>An IAM role that can either be empty or, if the node will be clustered (Layer 3), requires the following permissions (&lt;code>ec2:DescribeRouteTables&lt;/code> for all resources and &lt;code>ec2:CreateRoute&lt;/code> and &lt;code>ec2:DeleteRoute&lt;/code> on the route table):&lt;/p>
 &lt;p>Route Table Policy&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
@@ -148,7 +130,6 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ec2:us-east-1:079972220921:route-table/rtb-f428d58b&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>NOTE&lt;/strong>: Set the Resource field to the ARN of the Routing Table associated with the data NICs of the instance.&lt;/p>
-&lt;p>&lt;strong>CloudWatch Note&lt;/strong>: We will create log groups named /trustgrid/var/log/syslog and /trustgrid/var/log/trustgrid/tg-default.log.&lt;/p>
 &lt;/td>
 &lt;/tr>
 &lt;tr id="ssh-keypair" style="scroll-margin-top: 10rem;">
