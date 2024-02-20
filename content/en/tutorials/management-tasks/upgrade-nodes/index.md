@@ -1,12 +1,12 @@
 ---
-title: Upgrading Trustgrid Nodes
-linkTitle: Upgrade Nodes
+title: Upgrading Trustgrid Appliance Nodes
+linkTitle: Upgrade Appliance Nodes
 date: 2023-05-02
 description: 
 weight: 50
 ---
 
-## How a Node Appliance Upgrades
+## How an Appliance Node Upgrades
 The upgrade process will:
 1. Upgrade the Trustgrid application package. As part of this process the node will backup the current running version. 
 1. Apply security updates to install operating system packages.

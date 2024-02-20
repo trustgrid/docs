@@ -5,7 +5,7 @@ type: docs
 date: 2024-02-19
 description: "Initial production release of the Trustgrid Agent"
 ---
-{{<agent-release package-version="0.2.20240218-1985" release="a-0.1.0">}}
+{{<agent-release package-version="0.2.20240220-1987" release="a-0.1.0">}}
 
 This is the initial release of the agent-based Trustgrid node software.  
 
