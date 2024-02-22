@@ -13,9 +13,10 @@
 &lt;p>Either of the below methods can be used to verify connectivity:&lt;/p>
 &lt;ul>
 &lt;li>Use the &lt;a href="https://docs.trustgrid.io/tutorials/interface-tools/tcp-port-test/">Interface TCP Port Test tool&lt;/a>. Make sure the WAN interfaces IP is the source, &lt;code>repo.trustgrid.io&lt;/code> is the Host, and &lt;code>443&lt;/code> is the target
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="tcp-port-test-success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="tcp-port-test-success.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Successful interface port test
 &lt;/figcaption>
 &lt;/figure>
@@ -56,9 +57,10 @@ border-radius: 5px;
 cursor: pointer;
 }
 &lt;/style>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="terminal-tcp-success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="terminal-tcp-success.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Successful TCP connection test from terminal
 &lt;/figcaption>
 &lt;/figure>
@@ -67,7 +69,7 @@ Successful TCP connection test from terminal
 &lt;p>If the above tests are successful but the device still exhibits the symptoms listed above, the issue is likely that something is &lt;a href="https://docs.trustgrid.io/help-center/kb/startup-process/ssl-tls-tampering/">interfering with the TLS certificate&lt;/a>&lt;/p>
 &lt;p>If unsuccessful:&lt;/p>
 &lt;ol>
-&lt;li>First confirm &lt;code>repo.trustgrid.io&lt;/code> is resolvable by the &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#dns-servers-ip">configured DNS servers&lt;/a>. In this example, we will assume the DNS server is &lt;code>8.8.8.8&lt;/code>, &lt;strong>replace this with the configured DNS server IPs&lt;/strong>. From the terminal run the command: &lt;div class="codeblock-container">
+&lt;li>First confirm &lt;code>repo.trustgrid.io&lt;/code> is resolvable by the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#dns-servers-ip">configured DNS servers&lt;/a>. In this example, we will assume the DNS server is &lt;code>8.8.8.8&lt;/code>, &lt;strong>replace this with the configured DNS server IPs&lt;/strong>. From the terminal run the command: &lt;div class="codeblock-container">
 &lt;pre>&lt;code>dig @8.8.8.8 repo.trustgrid.io&lt;/code>&lt;/pre>
 &lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
 &lt;/div>
@@ -103,9 +105,10 @@ border-radius: 5px;
 cursor: pointer;
 }
 &lt;/style>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="dns-dig-success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="dns-dig-success.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Successful DNS resolution. Note: returned IP address will vary.
 &lt;/figcaption>
 &lt;/figure>
@@ -114,7 +117,7 @@ Successful DNS resolution. Note: returned IP address will vary.
 &lt;li>If either fails to confirm:
 &lt;ul>
 &lt;li>Any firewall rules are not blocking TCP and UDP port 53 to the configured DNS server&lt;/li>
-&lt;li>Confirm there is not an &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#routes">interface route&lt;/a> on any LAN interface for CIDR that includes the DNS server&amp;rsquo;s IP. This will cause requests to route out the LAN interface instead of WAN and only after the Trustgrid service has started and brought up the LAN interfaces.&lt;/li>
+&lt;li>Confirm there is not an &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#routes">interface route&lt;/a> on any LAN interface for CIDR that includes the DNS server&amp;rsquo;s IP. This will cause requests to route out the LAN interface instead of WAN and only after the Trustgrid service has started and brought up the LAN interfaces.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>

@@ -43,9 +43,10 @@
 &lt;h3 id="force-health-validation">Force Health Validation&lt;/h3>
 &lt;p>The cluster health state is evaluated when certain events occurs, such as a member disconnecting/reconnecting or the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-member-health">member health state&lt;/a> changes. Occasionally this can lead to the state being reported incorrectly or a delay before the proper state is displayed.&lt;/p>
 &lt;p>If you wish to force the health state to be re-evaluated you can use the &amp;ldquo;Validate Health&amp;rdquo; command under Actions on the Cluster Overview panel.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="cluster-validate-health.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="cluster-validate-health.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Validate Health action
 &lt;/figcaption>
 &lt;/figure></description></item></channel></rss>

@@ -1,0 +1,26 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/</link><description>Recent content in Node Agent Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 19 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/agent/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: February 2024 Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/2024-02/</link><pubDate>Mon, 19 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/agent/2024-02/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>0.2.20240220-1987&lt;/td>
+&lt;td>a-0.1.0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>This is the initial release of the agent-based Trustgrid node software.&lt;/p>
+&lt;h2 id="production-features-include">Production Features include:&lt;/h2>
+&lt;ul>
+&lt;li>Support for Ubuntu 22.04&lt;/li>
+&lt;li>Basic &lt;a href="https://docs.trustgrid.io/docs/nodes/agents/vpn/">agent VPN&lt;/a> functionality&lt;/li>
+&lt;li>Layer-4(L4) Proxy support with &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">services&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connectors&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="beta-support">Beta Support:&lt;/h2>
+&lt;ul>
+&lt;li>Running the agent in Red Hat Enterprise Linux 9 and in containers like Docker/k8s&lt;/li>
+&lt;/ul></description></item></channel></rss>

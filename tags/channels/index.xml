@@ -15,9 +15,10 @@ For both PagerDuty and OpsGenie the integration will automatically resolve issue
 &lt;h3 id="slack-channel">Slack Channel&lt;/h3>
 &lt;p>Trustgrid can post the &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">event&lt;/a> data to a configured channel via a webhook.&lt;/p>
 &lt;p>Optionally, you can configure the slack event to be posted with formatting to make it &lt;a href="#example-formatted-slack-event">easier to read&lt;/a> as opposed to &lt;a href="#example-event-json">raw JSON&lt;/a>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="slack-format-option.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="slack-format-option.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Slack format option checkbox
 &lt;/figcaption>
 &lt;/figure>
@@ -60,9 +61,10 @@ Only a single Slack or Teams channel can be targeted by a Trustgrid channel defi
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>
 &lt;h3 id="example-formatted-slack-event">Example Formatted Slack Event&lt;/h3>
 &lt;p>Below is an example of a formatted Slack event.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="formatted-slack-example.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="formatted-slack-example.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Slack Event
 &lt;/figcaption>
 &lt;/figure>

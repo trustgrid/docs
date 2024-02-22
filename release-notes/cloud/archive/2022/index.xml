@@ -75,7 +75,8 @@
 &lt;p>Now the JSON payload sent to alarm &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a> (email, Slack, PagerDuty, etc.) can include the data points used to calculate the average that exceeded the threshold. This is in a new section called &lt;code>details&lt;/code> and the values are in pairs of the timestamp &lt;code>t&lt;/code> (unix time) and value &lt;code>v&lt;/code> (in milliseconds in the example below).&lt;/p>
 &lt;div class="td-card card border me-4">
 &lt;div class="card-header bg-white">
-Alert Payload&lt;/div>
+Alert Payload
+&lt;/div>
 &lt;div class="card-body code p-0 m-0">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JSON" data-lang="JSON">&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>

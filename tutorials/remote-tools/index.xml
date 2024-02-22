@@ -65,17 +65,19 @@ The &lt;a href="https://docs.trustgrid.io/tutorials/gateway-tools/ping-remote-no
 &lt;p>This tool allows you to monitor the traffic flowing over a VPN tunnel by &amp;ldquo;sniffing&amp;rdquo; inside the tunnel. This allows traffic to be viewed after NATs have been applied and confirm traffic is routed to or from the expected node.&lt;/p>
 &lt;h2 id="usage">Usage&lt;/h2>
 &lt;p>This tool is accessed on a node&amp;rsquo;s detail page under the VPN panel. Select the desired attached virtual network (note: if only on virtual network is present it will be selected by default) and click the &amp;ldquo;Tools&amp;rdquo; button in the top right.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sniff-virtual-traffic-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="sniff-virtual-traffic-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Sniff Virtual Traffic Button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
 &lt;p>Once launched, you will be prompted to provide any filters to limit the traffic displayed. The default is to show all traffic on that virtual network tunnel.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sniff-virtual-traffic-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="sniff-virtual-traffic-prompt.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Filter Prompt
 &lt;/figcaption>
 &lt;/figure>
@@ -132,9 +134,10 @@ For the peer, protocol, host, and ports fields additional values can be provided
 &lt;/div>
 &lt;h2 id="output">Output&lt;/h2>
 &lt;p>Below shows sample output from using this tool to monitor traffic on a virtual network between two nodes:&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sniff-virtual-traffic-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="sniff-virtual-traffic-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Sample Output
 &lt;/figcaption>
 &lt;/figure>

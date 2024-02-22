@@ -1,47 +1,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Trustgrid Local Console Utility</title><link>https://docs.trustgrid.io/tutorials/local-console-utility/</link><description>Recent content in Trustgrid Local Console Utility on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tutorials/local-console-utility/index.xml" rel="self" type="application/rss+xml"/><item><title>Tutorials: Advanced Network Configuration</title><link>https://docs.trustgrid.io/tutorials/local-console-utility/advanced-network-config/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/local-console-utility/advanced-network-config/</guid><description>
 &lt;div class="alert alert-warning" role="alert">
-The setting below should be changed via the Trustgrid portal &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#configuration">interface configuration&lt;/a> if at all possible. These tools should only be used if the correct configuration is preventing successful communication to the control plane..
+The setting below should be changed via the Trustgrid portal &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#configuration">interface configuration&lt;/a> if at all possible. These tools should only be used if the correct configuration is preventing successful communication to the control plane..
 &lt;/div>
 &lt;h2 id="modify-network-settings">Modify Network Settings&lt;/h2>
 &lt;p>If the Trustgrid service is unreachable the normal &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/#changing-a-trustgrid-node-wan-ip-via-trustgrid-console">Network Configuration&lt;/a> will be unavailable and it may be necessary to manually edit the network settings on the device to change the IP and DNS configuration. This can be done via the Advanced Network Configuration &amp;gt; Modify Network Settings option.&lt;/p>
 &lt;p>The file you are editing is a &lt;a href="https://netplan.io/reference">netplan configuration file&lt;/a>. Only the WAN/outside interface should be configured via Netplan as all other interfaces are managed by Trustgrid. The file format is &lt;a href="https://yaml.org/">YAML&lt;/a> so it is important that all sections are indented correctly. Each level is two spaces.&lt;/p>
 &lt;ol>
 &lt;li>From the Advanced Network Configuration select the &lt;strong>Modify Network Settings&lt;/strong> option
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="adv-net-conf-menu.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="adv-net-conf-menu.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Modify Network Settings option
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The file will be opened in a basic text editor. Use the arrow keys to navigate to the correct section and edit as needed. Once complete use &lt;strong>TAB&lt;/strong> to move to &lt;strong>OK&lt;/strong> (or &lt;strong>Cancel&lt;/strong> to exit without saving).
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="adv-net-conf-edit.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="adv-net-conf-edit.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Edit the file
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>You will be prompted to apply the changes. Select &lt;strong>Yes&lt;/strong> to apply the changes.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="adv-net-conf-apply.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="adv-net-conf-apply.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Apply the changes
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>You will then be asked if you want to save the changes permanently. Select &lt;strong>Yes&lt;/strong> to save the changes.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="adv-net-conf-save.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="adv-net-conf-save.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Save the changes
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The system will apply the changes and wait about 20 seconds for the network to stabilize.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="adv-net-conf-stable.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="adv-net-conf-stable.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Wait for the network to stabilize
 &lt;/figcaption>
 &lt;/figure>
@@ -50,9 +55,10 @@ Wait for the network to stabilize
 &lt;/ol>
 &lt;h3 id="deleting-the-runtime-file">Deleting the runtime file&lt;/h3>
 &lt;p>A temporary file is created when the network settings are changed but not permanently saved. If this file exists you will see an option to delete it from the Advanced Network Configuration menu. Selecting this option will delete the file and the changes will be lost.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="adv-net-conf-del-run.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="adv-net-conf-del-run.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Delete the Netplan Runtime File
 &lt;/figcaption>
 &lt;/figure>
@@ -62,18 +68,21 @@ Delete the Netplan Runtime File
 &lt;ol>
 &lt;li>From the Advanced Network Configuration select the &lt;strong>Change Interface Speed/Duplex&lt;/strong> option&lt;/li>
 &lt;li>Select the desired interface from the list.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="speed-select-int.png" alt="Speed/Duplex Select Interface" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="speed-select-int.png" alt="Speed/Duplex Select Interface" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Select the desired speed from the list.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="speed-select-speed.png" alt="Select Speed of 1000, 100 or 10" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="speed-select-speed.png" alt="Select Speed of 1000, 100 or 10" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Select the desired duplex from the list.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="duplex-select.png" alt="Duplex options Full or Half" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="duplex-select.png" alt="Duplex options Full or Half" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Select save to apply the changes.&lt;/li>
@@ -91,13 +100,15 @@ Delete the Netplan Runtime File
 &lt;ol>
 &lt;li>From the Advanced Network Configuration select the &lt;strong>Change Interface MTU&lt;/strong> option&lt;/li>
 &lt;li>Select the desired interface from the list.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="mtu-interface-select.png" alt="MTU Select Interface" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="mtu-interface-select.png" alt="MTU Select Interface" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Enter the desired MTU size and select OK to apply the changes.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="mtu-enter-mtu.png" alt="MTU Enter MTU" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="mtu-enter-mtu.png" alt="MTU Enter MTU" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;/ol></description></item><item><title>Tutorials: Remote Console Registration</title><link>https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/local-console-utility/remote-registration/</guid><description>
@@ -139,25 +150,28 @@ This feature is currently available as a preview and requires Trustgrid support 
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/#logging-in">Login as tgadmin&lt;/a>&lt;/li>
 &lt;li>(Optional) Use the &lt;a href="#network-configuration-utility">Network Configuration Option&lt;/a> to change the IP. Default is to use DHCP.&lt;/li>
 &lt;li>Select the &lt;strong>Register Node&lt;/strong> action from the main menu.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-menu.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-menu.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Remote Registration Menu option
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>You will be prompted to confirm the make and model of the node and the correct control plane endpoints to register with. These should default to the correct settings for your model, if not work with Trustgrid Support.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-options.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-options.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Confirm Options
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The node will then generate a unique activation code. This code can be shared with a user with access to the Trustgrid portal.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-code.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-code.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example registration code
 &lt;/figcaption>
 &lt;/figure>
@@ -170,47 +184,53 @@ Example registration code
 &lt;ol>
 &lt;li>The user with access to the Trustgrid portal logs in and navigates to the &lt;strong>Nodes&lt;/strong> page.&lt;/li>
 &lt;li>Select the &lt;strong>Activate Node&lt;/strong> action and enter the activation code generated by the Trustgrid console.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-activate-action.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-activate-action.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Nodes table Activate button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Enter the activation code from the Trustgrid console and click &lt;strong>Find&lt;/strong>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-activate-code.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-activate-code.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Entering the Activate Code
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Enter a name for the node and click &lt;strong>License Node&lt;/strong>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-activate-name.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-activate-name.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Node information and prompt for name
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The portal will display a message indicating the node has been activated.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-activate-notice.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-activate-notice.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Activation notice
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The node will complete the registration process and reboot. The node will then be available for use and configuration.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-final-portal.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-final-portal.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Registered node listed in Nodes table
 &lt;/figcaption>
 &lt;/figure>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-reg-final-console.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-reg-final-console.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Console view after the registered nodes has rebooted.
 &lt;/figcaption>
 &lt;/figure>
@@ -226,25 +246,28 @@ This process does not completely reset the device to its initial image state, bu
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/#connecting-to-trustgrid-local-console">Gain console access&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/#logging-in">Login as tgadmin&lt;/a>&lt;/li>
 &lt;li>Select the &lt;strong>Deregister Node&lt;/strong> action from the main menu.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="dereg-console-option.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="dereg-console-option.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Deregister Menu
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>When prompted confirm you wish to deregister the node.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="dereg-confirm-1.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="dereg-confirm-1.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Deregister Confirmation
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>You will then be prompted to enter &lt;code>DEREGISTER&lt;/code> to confirm.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="dereg-confirm-2.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="dereg-confirm-2.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Second deregister Confirmation
 &lt;/figcaption>
 &lt;/figure>
@@ -252,9 +275,10 @@ Second deregister Confirmation
 &lt;li>The node will then:
 &lt;ol>
 &lt;li>If the node is currently connected to the Trustgrid control plane it will send a &amp;ldquo;Deregister&amp;rdquo; event type and disconnect from the control plane and any data plane gateways.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="dereg-portal-event.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="dereg-portal-event.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 100%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Deregister event
 &lt;/figcaption>
 &lt;/figure>
@@ -270,23 +294,26 @@ Deregister event
 &lt;ol>
 &lt;li>Select &lt;strong>Network Configuration&lt;/strong> option&lt;/li>
 &lt;li>If prompted, Select the WAN interface. This is typically the first option listed.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="net-config-interface.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;img src="net-config-interface.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Select the IP allocation method.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="net-config-allocation.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="net-config-allocation.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Option to select DHCP or Static IP
 &lt;/figcaption>
 &lt;/figure>
 &lt;ol>
 &lt;li>DHCP - this will automatically reconfigure the interface for DHCP.&lt;/li>
 &lt;li>Static IP - this will open the dialog below. Enter the desired config and click OK to apply.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="net-config-static.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="net-config-static.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Static IP configuration prompt
 &lt;/figcaption>
 &lt;/figure>
@@ -294,8 +321,9 @@ Static IP configuration prompt
 &lt;/ol>
 &lt;/li>
 &lt;li>You will then be prompted to confirm if you want to permanently save the configuration.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="net-config-save.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;img src="net-config-save.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
 &lt;/figure>
 &lt;/li>
 &lt;/ol>
@@ -303,9 +331,10 @@ Static IP configuration prompt
 &lt;p>This is the same as the &lt;a href="../troubleshooting#network-tools-shell">Troubleshooting - Network Tools Shell&lt;/a>&lt;/p>
 &lt;h3 id="test-network-access">Test Network Access&lt;/h3>
 &lt;p>This will attempt to confirm required access is in place to successfully connect to the Trustgrid Control Plane.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="test-network-access.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="test-network-access.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Confirms successfully control plane connectivity
 &lt;/figcaption>
 &lt;/figure>
@@ -317,9 +346,10 @@ Confirms successfully control plane connectivity
 &lt;h3 id="advanced-registration-settings">Advanced Registration Settings&lt;/h3>
 &lt;p>This can override the default settings included in the image. This should only be used in consultation with Trustgrid Support.&lt;/p></description></item><item><title>Tutorials: Troubleshooting Menu</title><link>https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/</guid><description>
 &lt;p>Tools on this page allow for additional troubleshooting.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="troubleshooting-menu.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="troubleshooting-menu.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Troubleshooting Menu
 &lt;/figcaption>
 &lt;/figure>
@@ -368,7 +398,7 @@ Input &lt;code>exit&lt;/code> at the command line to exit the shell and return t
 &lt;li>&lt;code>nc&lt;/code>
 &lt;ul>
 &lt;li>use this to confirm connectivity with a command like &lt;code>nc -vz repo.trustgrid.io 443&lt;/code>&lt;/li>
-&lt;li>or confirm connectivity with a &lt;a href="https://docs.trustgrid.io/docs/nodes/gateway/#server-settings">specific gateway IP address and port&lt;/a> with a command like `nc -vz 35.171.100.16 8443&amp;quot;&lt;/li>
+&lt;li>or confirm connectivity with a &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/gateway/#server-settings">specific gateway IP address and port&lt;/a> with a command like `nc -vz 35.171.100.16 8443&amp;quot;&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>&lt;code>openssl&lt;/code> - this can be use to confirm a &lt;a href="https://docs.trustgrid.io/help-center/kb/startup-process/ssl-tls-tampering/">nothing is interfering with a valid TLS connection&lt;/a> and view the certificates used with a command like &lt;code>openssl s_client -connect repo.trustgrid.io:443 -showcerts | less&lt;/code> (use &lt;code>:q&lt;/code> to exit)&lt;/li>

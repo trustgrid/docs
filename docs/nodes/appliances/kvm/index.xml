@@ -1,0 +1,105 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Virtual Machines</title><link>https://docs.trustgrid.io/docs/nodes/appliances/kvm/</link><description>Recent content in Virtual Machines on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/docs/nodes/appliances/kvm/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Images</title><link>https://docs.trustgrid.io/docs/nodes/appliances/kvm/images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/kvm/images/</guid><description>
+&lt;p>The images section allows a user to add/delete virtual machine images.&lt;/p>
+&lt;p>&lt;img src="vm_images.png" alt="img">&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+The &lt;code>Downloaded&lt;/code> column shows whether or not an image is present on the node.
+&lt;/div>
+&lt;p>&lt;img src="vm_add_image.png" alt="img">&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="display-name" style="scroll-margin-top: 10rem;">
+&lt;th>Display Name&lt;/th>
+&lt;td>Friendly name associated to the image.&lt;/td>
+&lt;/tr>
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
+&lt;th>Description&lt;/th>
+&lt;td>Description for the image.&lt;/td>
+&lt;/tr>
+&lt;tr id="image-file" style="scroll-margin-top: 10rem;">
+&lt;th>Image File&lt;/th>
+&lt;td>Image file selected from the node data store.&lt;/td>
+&lt;/tr>
+&lt;tr id="operating-system" style="scroll-margin-top: 10rem;">
+&lt;th>Operating System&lt;/th>
+&lt;td>Operating System for the image. This is rather important to optimize the virtual machine configuration.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-info" role="alert">
+If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, the virtual machine might not be able to detect install media or perform critical device controller operations
+&lt;/div>
+&lt;h4 id="delete-image">Delete Image&lt;/h4>
+&lt;p>If the image is present on the node, executing a delete of the image will prompt the deletion of the image from the node.&lt;/p>
+&lt;p>&lt;img src="vm_image_delete_confirm.png" alt="img">&lt;/p>
+&lt;ol>
+&lt;li>Yes - The image will be attempted to be deleted from the node first before the image entry is removed.&lt;/li>
+&lt;li>No - The image will not be deleted from the node and the image entry will be removed.&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Volumes</title><link>https://docs.trustgrid.io/docs/nodes/appliances/kvm/volumes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/kvm/volumes/</guid><description>
+&lt;p>Volumes are used to allocate disks or to attach CD-ROMs to virtual machines.&lt;/p>
+&lt;p>&lt;img src="vm_volumes.png" alt="img">&lt;/p>
+&lt;p>&lt;img src="vm_add_volume.png" alt="img">&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
+&lt;th>Name&lt;/th>
+&lt;td>Name for the volume.&lt;/td>
+&lt;/tr>
+&lt;tr id="device-type" style="scroll-margin-top: 10rem;">
+&lt;th>Device Type&lt;/th>
+&lt;td>&lt;p>Virtual machine type.&lt;/p>
+&lt;ol>
+&lt;li>Disk&lt;/li>
+&lt;li>CD-ROM&lt;/li>
+&lt;/ol>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="device-bus" style="scroll-margin-top: 10rem;">
+&lt;th>Device Bus&lt;/th>
+&lt;td>&lt;p>Bus for the device.&lt;/p>
+&lt;ol>
+&lt;li>IDE&lt;/li>
+&lt;li>VirtIO&lt;/li>
+&lt;li>SCSI&lt;/li>
+&lt;li>SATA&lt;/li>
+&lt;/ol>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="size-only-for-disk" style="scroll-margin-top: 10rem;">
+&lt;th>Size (Only for Disk)&lt;/th>
+&lt;td>Size in GB, MB, KB, or Bytes for the disk.&lt;/td>
+&lt;/tr>
+&lt;tr id="disk-provisioning-only-for-disk" style="scroll-margin-top: 10rem;">
+&lt;th>Disk Provisioning (Only for Disk)&lt;/th>
+&lt;td>&lt;p>Allocation method used for provisioning a disk.&lt;/p>
+&lt;ol>
+&lt;li>Thin Provision - Disk starts small and expands as more disk space is required up to the size specified. Use this format to save storage space.&lt;/li>
+&lt;li>Thick Provision Lazy Zeroed - Space required for the virtual disk is allocated when the virtual disk is created. Data that remains on the physical device is not erased during creation, but is zeroed out on demand at a later time on first write from the virtual machine.&lt;/li>
+&lt;li>Thick Provision Eager Zeroed - Space required for the virtual disk is allocated at creation time. The data remaining on the physical device is zeroed out when the virtual disk is created. It might take much longer to create disks in this format than to create other types of disks.&lt;/li>
+&lt;/ol>
+&lt;/td>
+&lt;/tr>
+&lt;tr id="encrypted-only-for-disk" style="scroll-margin-top: 10rem;">
+&lt;th>Encrypted (Only for Disk)&lt;/th>
+&lt;td>True if disk should be encrypted, false otherwise.&lt;/td>
+&lt;/tr>
+&lt;tr id="iso-file-only-for-cd-rom" style="scroll-margin-top: 10rem;">
+&lt;th>ISO File (Only for CD-ROM)&lt;/th>
+&lt;td>ISO file selected from the node data store.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="alert alert-info" role="alert">
+Windows virtual machines do not support thin provisioned disks.
+&lt;/div></description></item></channel></rss>

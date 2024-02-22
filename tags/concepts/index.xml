@@ -2,7 +2,7 @@
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A domain is the logical grouping of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> inside an organization.&lt;/p>
 &lt;/div>
-&lt;p>Domains are a logical grouping of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, allowing configuration of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual networks&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/thresholds/">node thresholds&lt;/a>. Each Trustgrid deployment has a single domain.&lt;/p></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
+&lt;p>Domains are a logical grouping of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, allowing configuration of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual networks&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/thresholds/">node thresholds&lt;/a>. Each Trustgrid deployment has a single domain.&lt;/p></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A network object allows naming a CIDR inside a VPN for easier rule management.&lt;/p>
 &lt;/div>
@@ -36,38 +36,99 @@
 &lt;h3 id="edge-nodes">Edge Nodes&lt;/h3>
 &lt;p>Edge Nodes build outgoing TLS tunnels to Gateway Nodes. Bidirectional traffic is supported through this tunnel, subject to ACLs and &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a> policy restrictions. Edge Nodes will only require a firewall rule change if outbound internet restrictions are in place. Edge nodes can be a target for software deployment. Edge Nodes can be deployed with a single or multiple ethernet connections to support deployments behind a firewall or adjacent to a firewall (public WAN / private LAN).&lt;/p>
 &lt;h3 id="gateway-nodes">Gateway Nodes&lt;/h3>
-&lt;p>Gateway Nodes accept incoming TLS tunnels from Edge Nodes. Traffic on these tunnels is bidirectional, as permitted by ACLs or policy. Gateway Nodes usually require a firewall change to permit the incoming traffic. Gateway Nodes are identical to Edge Nodes but with a gateway configuration applied. Gateway nodes only connect to other gateways if one is of type &lt;code>hub&lt;/code>. Read more about &lt;a href="https://docs.trustgrid.io/docs/nodes/gateway/">gateway configuration&lt;/a>.&lt;/p>
+&lt;p>Gateway Nodes accept incoming TLS tunnels from Edge Nodes. Traffic on these tunnels is bidirectional, as permitted by ACLs or policy. Gateway Nodes usually require a firewall change to permit the incoming traffic. Gateway Nodes are identical to Edge Nodes but with a gateway configuration applied. Gateway nodes only connect to other gateways if one is of type &lt;code>hub&lt;/code>. Read more about &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/gateway/">gateway configuration&lt;/a>.&lt;/p>
 &lt;h3 id="management-nodes">Management Nodes&lt;/h3>
 &lt;p>Management Nodes are not like other &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> because they do not connect to the data plane, only the control plane. Management Nodes are deployed by Trustgrid for each customer and are multi-tenant like other control plane components. Customers may elect to deploy their own Management Nodes in place of multi-tenant Management Nodes. Management Nodes facilitate the monitoring, management, and support of Edge and Gateway Nodes.&lt;/p>
+&lt;h2 id="node-form-factors">Node Form Factors&lt;/h2>
+&lt;p>Nodes are available in two form factors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/">&lt;strong>Appliance&lt;/strong>&lt;/a> - This is a combination of a fully managed operating system and Trustgrid software pre-installed.&lt;/li>
+&lt;li>&lt;strong>Agent&lt;/strong> - This is a software package that can installed on supported operating systems. Users can install additional software and configure the operating system as needed.&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Functionality&lt;/th>
+&lt;th>Agent&lt;/th>
+&lt;th>Appliance&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Gateway Capabilities&lt;/td>
+&lt;td>None&lt;/td>
+&lt;td>Data Plane or ZTNA&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Operating System&lt;/td>
+&lt;td>&lt;a href="https://docs.trustgrid.io/tutorials/agent-deploy/#supported-operating-systems">Multiple Supported OS&lt;/a>, install additional software&lt;/td>
+&lt;td>Fully managed OS and Trustgrid service, no additional software permitted&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Updates&lt;/td>
+&lt;td>Managed by user via OS native tools&lt;/td>
+&lt;td>OS and Trustgrid updates managed via Trustgrid&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Interface IP Management&lt;/td>
+&lt;td>Managed by user via OS native tools&lt;/td>
+&lt;td>Configurable via Trustgrid portal or &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/">local console&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Layer 3 VPN&lt;/td>
+&lt;td>Single Virtual Network connectivity&lt;/td>
+&lt;td>Support for multiple Virtual Networks&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Layer 4 Proxy&lt;/td>
+&lt;td>Full Support&lt;/td>
+&lt;td>Full Support&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Compute&lt;/td>
+&lt;td>Commands only&lt;/td>
+&lt;td>Commands, Containers or VMs supported&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h2 id="node-list-view">Node List View&lt;/h2>
-&lt;h3 id="adding-nodes---generating-licenses">Adding Nodes - Generating Licenses&lt;/h3>
-&lt;p>A node needs a license generated by the Trustgrid control plan to register with your organization. This license can be generated in the portal from the Nodes page.&lt;/p>
+&lt;h3 id="adding-node-appliances---generating-licenses">Adding Node Appliances - Generating Licenses&lt;/h3>
+&lt;p>Appliance-based nodes need a license generated by the Trustgrid control plane to register with your organization. This license can be generated in the portal from the Nodes page.&lt;/p>
 &lt;ol>
 &lt;li>Navigate to the Nodes list view.&lt;/li>
 &lt;li>Click the &lt;strong>Add Node&lt;/strong> button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Node button on Nodes page
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Enter a name for the node and click &lt;strong>Create License&lt;/strong>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node-prompt.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Node Name prompt
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>A license key will be generated and displayed. Clicking in the license text window will automatically copy the license into your clipboard, or you can click the &lt;strong>Download License&lt;/strong> button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node-license-key.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node-license-key.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example license key
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
+&lt;/ol>
+&lt;h3 id="adding-node-agents---generating-tokens">Adding Node Agents - Generating Tokens&lt;/h3>
+&lt;p>Agent-based nodes require a token generated by the Trustgrid control plane to register with your organization. This token is also generated in the portal from the Nodes page.&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the Nodes list view.&lt;/li>
+&lt;li>Click the &lt;strong>Add Agent&lt;/strong> button.&lt;/li>
 &lt;/ol>
 &lt;h3 id="adding-a-tag-as-a-column-on-the-nodes-table">Adding a Tag as a Column on the Nodes Table&lt;/h3>
 &lt;p>Adding a tag as a column on the nodes tables is good way to make valuable information visible for multiple nodes at the same time. To add the column:&lt;/p>
@@ -104,20 +165,22 @@ Example license key
 &lt;p>Click &lt;code>Apply Tag Filter&lt;/code> and the table will only show matching nodes.&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="applied-filters2.png" alt="img">&lt;/p></description></item><item><title>Docs: Thresholds</title><link>https://docs.trustgrid.io/docs/nodes/thresholds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/thresholds/</guid><description>
+&lt;p>&lt;img src="applied-filters2.png" alt="img">&lt;/p></description></item><item><title>Docs: Thresholds</title><link>https://docs.trustgrid.io/docs/nodes/appliances/thresholds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/thresholds/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Thresholds provide a way to trigger events when different measurements exceed a given value. Thresholds configured at the node level can override &lt;a href="https://docs.trustgrid.io/docs/domain/thresholds/">Domain Thresholds&lt;/a>.&lt;/p>
 &lt;/div>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-thresholds.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-thresholds.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Thresholds page on a node
 &lt;/figcaption>
 &lt;/figure>
 &lt;h2 id="node-level-threshold-status">Node Level Threshold Status&lt;/h2>
 &lt;p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-threshold-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="node-threshold-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;table>
 &lt;thead>
@@ -145,8 +208,9 @@ To view and configure thresholds, a user will need &lt;code>nodes::configure::th
 &lt;ol>
 &lt;li>Navigate to the node in the portal.&lt;/li>
 &lt;li>In the left-side navigation bar find Thresholds in the System section and click it.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="system-threshold.png" alt="System &amp;gt; Thresholds" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="system-threshold.png" alt="System &amp;gt; Thresholds" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Change the Status to &amp;ldquo;Enabled&amp;rdquo;.&lt;/li>
@@ -331,9 +395,10 @@ To view and configure thresholds, a user will need &lt;code>nodes::configure::th
 &lt;ol>
 &lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
 &lt;li>The Routes table is selected by default
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Virtual Network &amp;gt; Routes
 &lt;/figcaption>
 &lt;/figure>
@@ -342,31 +407,35 @@ Tip: Use the search field to filter the list of routes so you can see the routes
 &lt;/div>
 &lt;/li>
 &lt;li>Click the add route button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-route-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-route-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add route button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Provide the desired route information in the &lt;a href="#route-fields">fields&lt;/a> &lt;ol type="A">&lt;li>Select the destination cluster or node&lt;/li>&lt;li>Enter the destination network in CIDR notation. For a single IP use /32.&lt;/li>&lt;li>Enter a metric between 1 and 200.&lt;/li>&lt;li>Optionally, provide a description.&lt;/li>&lt;/ol>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="new-route-entry.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="new-route-entry.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
 &lt;li>Click the Save button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="save-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Save route button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="saved-route.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example of a saved route
 &lt;/figcaption>
 &lt;/figure>
@@ -379,9 +448,10 @@ As stated above, the route changes are not actually implemented until you click 
 &lt;ol>
 &lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
 &lt;li>The Routes table is selected by default
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Virtual Network &amp;gt; Routes
 &lt;/figcaption>
 &lt;/figure>
@@ -392,23 +462,26 @@ You could filter by the CIDR address or part of the destination node/cluster nam
 &lt;/div>
 &lt;/li>
 &lt;li>Click the red X on the far right of the route being removed.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="delete-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;img src="delete-route.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
 &lt;/figure>
 &lt;/li>
 &lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
 &lt;li>Click the Save button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="save-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Save route button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="saved-route.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example of a saved route
 &lt;/figcaption>
 &lt;/figure>
@@ -543,9 +616,10 @@ Example of a saved route
 &lt;h3 id="force-health-validation">Force Health Validation&lt;/h3>
 &lt;p>The cluster health state is evaluated when certain events occurs, such as a member disconnecting/reconnecting or the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-member-health">member health state&lt;/a> changes. Occasionally this can lead to the state being reported incorrectly or a delay before the proper state is displayed.&lt;/p>
 &lt;p>If you wish to force the health state to be re-evaluated you can use the &amp;ldquo;Validate Health&amp;rdquo; command under Actions on the Cluster Overview panel.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="cluster-validate-health.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="cluster-validate-health.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Validate Health action
 &lt;/figcaption>
 &lt;/figure></description></item><item><title>Docs: Thresholds</title><link>https://docs.trustgrid.io/docs/domain/thresholds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/thresholds/</guid><description>
@@ -554,8 +628,9 @@ Validate Health action
 &lt;/div>
 &lt;p>To view thresholds, a user will need &lt;code>domains::read&lt;/code> permissions. To configure them, they will need &lt;code>domains::configure:threshold&lt;/code> permissions.&lt;/p>
 &lt;p>Navigate to your domain, and click &lt;code>Thresholds&lt;/code> on the left.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="domain-thresholds.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;img src="domain-thresholds.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
 &lt;/figure>
 &lt;h3 id="load-thresholds">Load Thresholds&lt;/h3>
 &lt;p>Load thresholds measure the health of the node itself.&lt;/p>
@@ -690,9 +765,10 @@ Validate Health action
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Virtual networks define an overlay network and routes for layer 3 connectivity. Trustgrid &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> are then assigned to networks. Virtual network overlays work similarly to Amazon&amp;rsquo;s VPCs but can span between clouds, data centers, and the edge.&lt;/p>
 &lt;/div>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="virtual-networks-page.png" alt="table showing a single virtual network" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="virtual-networks-page.png" alt="table showing a single virtual network" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Virtual Networks
 &lt;/figcaption>
 &lt;/figure>
@@ -759,7 +835,7 @@ challenges like conflicting subnets in large, non-centralized networks.&lt;/p>
 &lt;td>&lt;p>Network CIDR that includes all desired &lt;a href="#virtual-ip-addresses">virtual IP addresses&lt;/a>.&lt;/p>
 &lt;ul>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">Virtual network defined routes&lt;/a> can only point to destination CIDRs within this Network CIDR.&lt;/li>
-&lt;li>This restriction can be overridden by defining routes at the node or cluster &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/static-routing/">VPN &amp;gt; Static routes&lt;/a> level.&lt;/li>
+&lt;li>This restriction can be overridden by defining routes at the node or cluster &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/static-routing/">VPN &amp;gt; Static routes&lt;/a> level.&lt;/li>
 &lt;/ul>
 &lt;/td>
 &lt;/tr>
@@ -771,7 +847,7 @@ challenges like conflicting subnets in large, non-centralized networks.&lt;/p>
 &lt;th>NO-NAT Mode&lt;/th>
 &lt;td>&lt;ul>
 &lt;li>Enabled - Nodes attached to the this virtual network &lt;strong>will not require&lt;/strong> traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network.&lt;/li>
-&lt;li>Disabled &lt;em>(default)&lt;/em> - Nodes attached to this virtual network &lt;strong>will require&lt;/strong> traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network. Or, will require the &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/nats/#traffic-matching-mode">traffic matching mode&lt;/a> be set to allow either Inbound or Outbound traffic that does not match.&lt;/li>
+&lt;li>Disabled &lt;em>(default)&lt;/em> - Nodes attached to this virtual network &lt;strong>will require&lt;/strong> traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network. Or, will require the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/nats/#traffic-matching-mode">traffic matching mode&lt;/a> be set to allow either Inbound or Outbound traffic that does not match.&lt;/li>
 &lt;/ul>
 &lt;/td>
 &lt;/tr>

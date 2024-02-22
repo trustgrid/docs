@@ -95,8 +95,9 @@ In the below &lt;code>:latest&lt;/code> can be replaced by a specific version ta
 &lt;ol>
 &lt;li>Enter &lt;code>thousandeyes/enterprise-agent&lt;/code> in the image section&lt;/li>
 &lt;li>Leave &lt;code>latest&lt;/code> in the tag field unless you want to specify a different version tag published
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="te-docker-hub.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="te-docker-hub.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;/li>
 &lt;/ol>
@@ -115,9 +116,10 @@ In the below &lt;code>:latest&lt;/code> can be replaced by a specific version ta
 &lt;li>Add a variable named &lt;code>TEAGENT_INET&lt;/code> with a value of 4&lt;/li>
 &lt;/ol>
 &lt;p>(Optional) the &lt;code>HOSTNAME&lt;/code> variable can be defined to determine the name used to register the agent in the ThousandEyes system. By default it will register using the the hostname of the Trustgrid node.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="te-env-vars.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="te-env-vars.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Environmental Variables
 &lt;/figcaption>
 &lt;/figure>
@@ -158,9 +160,10 @@ Environmental Variables
 &lt;li>Repeat with the other two mounts&lt;/li>
 &lt;/ol>
 &lt;p>Click the Save button&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="te-vol-mounts.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="te-vol-mounts.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Volume Mounts
 &lt;/figcaption>
 &lt;/figure>
@@ -177,9 +180,10 @@ The below settings are based on the resource available on a &lt;strong>dual core
 &lt;li>Leave the IO and Limits settings blank.&lt;/li>
 &lt;li>Click Save&lt;/li>
 &lt;/ol>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="te-resource-limits.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="te-resource-limits.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Resource Limits for a device with 4G of available memory
 &lt;/figcaption>
 &lt;/figure>
@@ -216,8 +220,9 @@ Resource Limits for a device with 4G of available memory
 &lt;li>Navigate to Container Management → Containers and select the ThousandEyes container&lt;/li>
 &lt;li>If dealing with clustered nodes do this from the Cluster page&lt;/li>
 &lt;li>On the Overview page change the Execution Type from “On Demand” to “Service
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="te-exec-type.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;img src="te-exec-type.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Click Save&lt;/li>

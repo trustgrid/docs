@@ -69,9 +69,10 @@
 &lt;ol>
 &lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
 &lt;li>The Routes table is selected by default
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Virtual Network &amp;gt; Routes
 &lt;/figcaption>
 &lt;/figure>
@@ -80,31 +81,35 @@ Tip: Use the search field to filter the list of routes so you can see the routes
 &lt;/div>
 &lt;/li>
 &lt;li>Click the add route button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-route-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-route-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add route button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Provide the desired route information in the &lt;a href="#route-fields">fields&lt;/a> &lt;ol type="A">&lt;li>Select the destination cluster or node&lt;/li>&lt;li>Enter the destination network in CIDR notation. For a single IP use /32.&lt;/li>&lt;li>Enter a metric between 1 and 200.&lt;/li>&lt;li>Optionally, provide a description.&lt;/li>&lt;/ol>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="new-route-entry.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="new-route-entry.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
 &lt;li>Click the Save button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="save-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Save route button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="saved-route.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example of a saved route
 &lt;/figcaption>
 &lt;/figure>
@@ -117,9 +122,10 @@ As stated above, the route changes are not actually implemented until you click 
 &lt;ol>
 &lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
 &lt;li>The Routes table is selected by default
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Virtual Network &amp;gt; Routes
 &lt;/figcaption>
 &lt;/figure>
@@ -130,23 +136,26 @@ You could filter by the CIDR address or part of the destination node/cluster nam
 &lt;/div>
 &lt;/li>
 &lt;li>Click the red X on the far right of the route being removed.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="delete-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;img src="delete-route.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
 &lt;/figure>
 &lt;/li>
 &lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
 &lt;li>Click the Save button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="save-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Save route button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="saved-route.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example of a saved route
 &lt;/figcaption>
 &lt;/figure>
@@ -190,16 +199,17 @@ Example of a saved route
 &lt;li>Click save.&lt;/li>
 &lt;/ol></description></item><item><title>Docs: Virtual Network Port Forwards</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-Virtual Network Port Forwards allow a virtual IP address to be associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">TCP Layer 4 service&lt;/a> on a remote node or cluster without the need to specify a route for that virtual IP address.
+Virtual Network Port Forwards allow a virtual IP address to be associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">TCP Layer 4 service&lt;/a> on a remote node or cluster without the need to specify a route for that virtual IP address.
 &lt;/div>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remote-port-forward.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remote-port-forward.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Virtual Network Port Forward
 &lt;/figcaption>
 &lt;/figure>
 &lt;h2 id="description">Description&lt;/h2>
-&lt;p>As noted above, a Virtual Network Port Forward (or remote port forward) associates a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> defined on a node or cluster with a virtual IP address within the virtual network without needing to specifically &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">route&lt;/a> that IP to the node/cluster.&lt;/p>
+&lt;p>As noted above, a Virtual Network Port Forward (or remote port forward) associates a &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">service&lt;/a> defined on a node or cluster with a virtual IP address within the virtual network without needing to specifically &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">route&lt;/a> that IP to the node/cluster.&lt;/p>
 &lt;p>Any node attached to the virtual network that receives VPN traffic destined for the configure IP and port will proxy the connection and send the traffic to the target node which will then send the traffic to the IP and port configured for the target service.&lt;/p>
 &lt;table>
 &lt;thead>
@@ -284,13 +294,14 @@ Example Virtual Network Port Forward
 &lt;/tr>
 &lt;tr id="dns-server-ip" style="scroll-margin-top: 10rem;">
 &lt;th>DNS Server IP&lt;/th>
-&lt;td>This is the IP address that should be used as the resolver. There is no need to create a VPN route for this IP. If the ingress node was the &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/dns/">DNS feature enabled&lt;/a> it will automatically handle responses for the query.&lt;/td>
+&lt;td>This is the IP address that should be used as the resolver. There is no need to create a VPN route for this IP. If the ingress node was the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/dns/">DNS feature enabled&lt;/a> it will automatically handle responses for the query.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-dns-settings.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-dns-settings.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 DNS Settings
 &lt;/figcaption>
 &lt;/figure>
@@ -301,9 +312,10 @@ DNS Settings
 &lt;li>Configure specific DNS records to resolve to IPs/hosts on the virtual network&lt;/li>
 &lt;li>Configure a node as a resolver for this zone. Requests will be forwarded to that node and resolved by its DNS servers or configured upstream servers.&lt;/li>
 &lt;/ul>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-dns-zones.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-dns-zones.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 DNS Zone Settings
 &lt;/figcaption>
 &lt;/figure>
@@ -315,9 +327,10 @@ DNS Zone Settings
 &lt;li>Optionally, provide a description for the zone.&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to save the zone.&lt;/li>
 &lt;/ol>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-dns-add-zone.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-dns-add-zone.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Adding a DNS Zone
 &lt;/figcaption>
 &lt;/figure>
@@ -369,9 +382,10 @@ You cannot have both custom DNS records and a resolver configured for the same z
 &lt;li>Click on the zone name to enter its configuration page.&lt;/li>
 &lt;li>Under &amp;ldquo;DNS Records&amp;rdquo;, click &amp;ldquo;Add Record&amp;rdquo;&lt;/li>
 &lt;li>Provide the required fields
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="vnet-dns-add-record.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="vnet-dns-add-record.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add DNS Record prompt
 &lt;/figcaption>
 &lt;/figure>
@@ -379,7 +393,51 @@ Add DNS Record prompt
 &lt;li>Click save.&lt;/li>
 &lt;li>(Optional) repeat to add more records to the current zone.&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review and apply changes&lt;/a> to save the record(s).&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
+&lt;/ol></description></item><item><title>Docs: Virtual Network IP Pools</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/ip-pool/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/ip-pool/</guid><description>
+&lt;p>Virtual Network IP Pools are used for automatically assigning virtual management to nodes. This is optional but makes configuration and management easier.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+At this time only agent-based nodes support automatic IP assignment
+&lt;/div>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="ip-pools.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;/figure>
+&lt;h2 id="address-assignment">Address Assignment&lt;/h2>
+&lt;p>Addresses are assigned sequentially from the pool by Trustgrid. When a node is attached to a virtual network with an IP pool configured, it will automatically be assigned the next available IP from the pool. When a node is detached its IP is returned to the pool for reuse. However, the released addresses are not used until all addresses in the pool have cycled through once.&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+You will still need to create &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">domain routes&lt;/a> to point the assigned IP to the targeted node.
+&lt;/div>
+&lt;h2 id="adding-pools">Adding Pools&lt;/h2>
+&lt;p>You can add one or more virtual pool ranges to a virtual network. It is recommended to size the initial pool to a realistic estimate of your expected nodes plus some overhead. Additional ranges can be added later if needed.&lt;/p>
+&lt;ol>
+&lt;li>Click the &lt;strong>Add IP Pool&lt;/strong> button.&lt;/li>
+&lt;li>Provide the requested information: &lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="cidr" style="scroll-margin-top: 10rem;">
+&lt;th>CIDR&lt;/th>
+&lt;td>Provide the CIDR of the network you want to make available in the pool. For example, 10.1.1.0/24&lt;/td>
+&lt;/tr>
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
+&lt;th>Description&lt;/th>
+&lt;td>(optional)Provide a user-friendly description of the pool.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/li>
+&lt;li>Click Save&lt;/li>
+&lt;/ol>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="add-ip-pool.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Add IP Pool
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Docs: Review Changes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Because changes to a domain &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> affect &lt;em>all&lt;/em> &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> configuration changes must be reviewed before applied, and are applied all at once.&lt;/p>
 &lt;/div>

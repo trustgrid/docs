@@ -4,9 +4,10 @@
 &lt;li>Choose the node that may be causing the problem&lt;/li>
 &lt;li>Scroll down to &lt;code>Events&lt;/code>&lt;/li>
 &lt;li>Look for any critical problems
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-alerts.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-alerts.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Events for the currently viewed node
 &lt;/figcaption>
 &lt;/figure>
@@ -16,9 +17,10 @@ Events for the currently viewed node
 &lt;ol>
 &lt;li>Choose the &lt;code>Operations&lt;/code> tab&lt;/li>
 &lt;li>View &lt;code>Events&lt;/code> across the organization
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="alerts-page.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="alerts-page.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Organization wide events
 &lt;/figcaption>
 &lt;/figure>
@@ -29,17 +31,19 @@ Organization wide events
 &lt;h2 id="generating-log-files">Generating Log Files&lt;/h2>
 &lt;ol>
 &lt;li>The Debug Log button is located in the top right of a Node Details page.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="debug-logs-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="debug-logs-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Debug Logs button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The Debug Log dialogue will show any previously generated log files. Clicking the Fetch Newest Logs
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="debug-logs-fetch.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="debug-logs-fetch.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Debug Logs dialogue and fetch button
 &lt;/figcaption>
 &lt;/figure>
@@ -48,9 +52,10 @@ A node must be online and connected to the Trustgrid control plane to generate a
 &lt;/div>
 &lt;/li>
 &lt;li>Once the node has completed compressing and uploading the logs a new entry will appear. Clicking the Download button will pull down the zip filed to your local system.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="debug-logs-new.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="debug-logs-new.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Download button next to newly generated file
 &lt;/figcaption>
 &lt;/figure>

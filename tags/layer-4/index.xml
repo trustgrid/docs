@@ -1,12 +1,13 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– layer 4</title><link>https://docs.trustgrid.io/tags/layer-4/</link><description>Recent content in layer 4 on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/layer-4/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Connectors</title><link>https://docs.trustgrid.io/docs/nodes/connectors/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/connectors/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– layer 4</title><link>https://docs.trustgrid.io/tags/layer-4/</link><description>Recent content in layer 4 on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/layer-4/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Connectors</title><link>https://docs.trustgrid.io/docs/nodes/shared/connectors/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/connectors/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Connectors are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">services&lt;/a> to define a local listening port for layer 4 (L4) connectivity.&lt;/p>
+&lt;p>Connectors are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">services&lt;/a> to define a local listening port for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
 &lt;h4 id="configuration">Configuration&lt;/h4>
 &lt;p>Connectors are configured under the Networking &amp;gt; Connectors tab of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-connector.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 45%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-connector.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 45%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Connector dialogue
 &lt;/figcaption>
 &lt;/figure>
@@ -40,7 +41,7 @@ Add Connector dialogue
 &lt;/tr>
 &lt;tr id="remote-service" style="scroll-margin-top: 10rem;">
 &lt;th>Remote Service&lt;/th>
-&lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
+&lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
 &lt;/tr>
 &lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 10rem;">
 &lt;th>Rate Limit (Mb/s)&lt;/th>
@@ -49,30 +50,32 @@ Add Connector dialogue
 &lt;tr id="sniff-traffic" style="scroll-margin-top: 10rem;">
 &lt;th>Sniff Traffic&lt;/th>
 &lt;td>&lt;p>Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the &lt;a href="#listen-port">listening port&lt;/a>.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="connector-sniff-traffic.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;img src="connector-sniff-traffic.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 &lt;/figure>
 &lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/services/</guid><description>
+&lt;/table></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/shared/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/services/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
+&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
 &lt;h2 id="description">Description&lt;/h2>
-&lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
+&lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
 &lt;h2 id="functionality">Functionality&lt;/h2>
 &lt;p>On the local network, a connection&amp;rsquo;s &lt;strong>source IP&lt;/strong> will be the node&amp;rsquo;s interface IP.&lt;/p>
 &lt;ul>
 &lt;li>If the service is defined on a cluster, the active cluster members IP will be used.&lt;/li>
-&lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
+&lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
 &lt;/ul>
 &lt;p>If the service&amp;rsquo;s &lt;a href="#host">host field&lt;/a> is set to a DNS name, the node will use its WAN interface DNS servers to resolve the address.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>Services are configured under the Networking &amp;gt; Services panel of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Service dialogue
 &lt;/figcaption>
 &lt;/figure>
@@ -98,7 +101,7 @@ Add Service dialogue
 &lt;/tr>
 &lt;tr id="service-name" style="scroll-margin-top: 10rem;">
 &lt;th>Service Name&lt;/th>
-&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
+&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
 &lt;/tr>
 &lt;tr id="host" style="scroll-margin-top: 10rem;">
 &lt;th>Host&lt;/th>
@@ -115,8 +118,9 @@ Add Service dialogue
 &lt;tr id="test-connectivity" style="scroll-margin-top: 10rem;">
 &lt;th>Test Connectivity&lt;/th>
 &lt;td>&lt;p>Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="service-test-connectivity.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="service-test-connectivity.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/td>
 &lt;/tr>

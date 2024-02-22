@@ -1,0 +1,30 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Containers</title><link>https://docs.trustgrid.io/docs/nodes/appliances/containers/</link><description>Recent content in Containers on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/docs/nodes/appliances/containers/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Images</title><link>https://docs.trustgrid.io/docs/nodes/appliances/containers/images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/containers/images/</guid><description>
+&lt;p>The images section shows the container images that have been downloaded to the node. They may be deleted to free up space.&lt;/p>
+&lt;p>&lt;img src="images.png" alt="Container Images">&lt;/p></description></item><item><title>Docs: Volumes</title><link>https://docs.trustgrid.io/docs/nodes/appliances/containers/volumes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/containers/volumes/</guid><description>
+&lt;p>Volumes allow containers to persist data between executions.&lt;/p>
+&lt;p>&lt;img src="volumes.png" alt="Container Volumes">&lt;/p>
+&lt;h2 id="create-a-volume">Create a Volume&lt;/h2>
+&lt;p>&lt;img src="add-volume.png" alt="Add Volume Modal">&lt;/p>
+&lt;p>Volumes have the following fields:&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
+&lt;th>Name&lt;/th>
+&lt;td>The name of the volume.&lt;/td>
+&lt;/tr>
+&lt;tr id="encrypted" style="scroll-margin-top: 10rem;">
+&lt;th>Encrypted&lt;/th>
+&lt;td>Whether or not to encrypt the volume. Encrypted volumes The type of volume.&lt;/td>
+&lt;/tr>
+&lt;tr id="location" style="scroll-margin-top: 10rem;">
+&lt;th>Location&lt;/th>
+&lt;td>Optionally, specify a location in the node &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/">data store&lt;/a>.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item></channel></rss>

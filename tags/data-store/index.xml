@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– data store</title><link>https://docs.trustgrid.io/tags/data-store/</link><description>Recent content in data store on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/data-store/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Data Store</title><link>https://docs.trustgrid.io/docs/nodes/datastore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/datastore/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– data store</title><link>https://docs.trustgrid.io/tags/data-store/</link><description>Recent content in data store on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/data-store/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Data Store</title><link>https://docs.trustgrid.io/docs/nodes/appliances/datastore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/datastore/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>The data store allows artifacts (i.e. container volumes, virtual machine images) to be synced from/to a node. The data store view is located under Compute &amp;gt; Data Store.&lt;/p>
 &lt;/div>
@@ -9,9 +9,9 @@
 &lt;li>&lt;img src="home.png" alt="img"> - Takes you to the Root of the directory hierarchy.&lt;/li>
 &lt;li>&lt;img src="back.png" alt="img"> - Takes you up one directory from your current location in the directory hierarchy.&lt;/li>
 &lt;li>&lt;img src="refresh.png" alt="img"> - Refreshes the directory hierarchy to get the latest state of the data store.&lt;/li>
-&lt;li>&lt;img src="create_dir.png" alt="img"> - Create a new sub directory. See &lt;a href="https://docs.trustgrid.io/docs/nodes/datastore/mkdir/">Directory Creation&lt;/a> for more information&lt;/li>
-&lt;li>&lt;img src="sync.png" alt="img"> - Transfer a file to the data store. See &lt;a href="https://docs.trustgrid.io/docs/nodes/datastore/sync/">File Sync&lt;/a> for more information&lt;/li>
-&lt;li>&lt;img src="upload.png" alt="img"> - Upload a file from the data store. See &lt;a href="https://docs.trustgrid.io/docs/nodes/datastore/sync/">File Sync&lt;/a> for more information&lt;/li>
+&lt;li>&lt;img src="create_dir.png" alt="img"> - Create a new sub directory. See &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/mkdir/">Directory Creation&lt;/a> for more information&lt;/li>
+&lt;li>&lt;img src="sync.png" alt="img"> - Transfer a file to the data store. See &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/sync/">File Sync&lt;/a> for more information&lt;/li>
+&lt;li>&lt;img src="upload.png" alt="img"> - Upload a file from the data store. See &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/sync/">File Sync&lt;/a> for more information&lt;/li>
 &lt;li>&lt;img src="delete.png" alt="img"> - Delete a file from the data store.&lt;/li>
 &lt;/ul>
 &lt;h3 id="recent-tasks">Recent Tasks&lt;/h3>

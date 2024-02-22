@@ -6,9 +6,10 @@
 &lt;p>Adding or deleting documents requires &lt;code>documents::modify&lt;/code> permissions. Downloading and viewing documents requires &lt;code>documents::read&lt;/code> permissions.
 (show how to add and delete and download a document).&lt;/p></description></item><item><title>Docs: Submit a Support Request</title><link>https://docs.trustgrid.io/docs/support/support-request/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/support/support-request/</guid><description>
 &lt;p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="support-req.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="support-req.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Support Request section
 &lt;/figcaption>
 &lt;/figure>
@@ -43,8 +44,9 @@ The support requests will be submitted with your user account email address.
 &lt;tr id="impacted-nodes/clusters" style="scroll-margin-top: 10rem;">
 &lt;th>Impacted Nodes/Clusters&lt;/th>
 &lt;td>&lt;p>This field will allow you to search for and select the impacted nodes. If a large number of nodes is impacted please provide at least a few examples and clarify the impact in the &lt;a href="#problem-description">Problem Description&lt;/a> field.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="support-node-list.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;img src="support-node-list.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 &lt;/figure>
 &lt;/td>
 &lt;/tr>

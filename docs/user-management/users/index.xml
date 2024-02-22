@@ -6,9 +6,10 @@
 &lt;li>Login to the Trustgrid portal using your current password and provide your MFA code&lt;/li>
 &lt;li>In another browser tab navigate to &lt;a href="https://auth.trustgrid.io/account/change-password">https://auth.trustgrid.io/account/change-password&lt;/a>&lt;/li>
 &lt;li>Provide your current password, enter a new password twice, and click submit.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="change-password.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="change-password.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Change password prompt
 &lt;/figcaption>
 &lt;/figure>
@@ -22,9 +23,10 @@ Change password prompt
 &lt;li>Scan the provided QR code with your new MFA application&lt;/li>
 &lt;li>Enter the Authenticator Code provided by your new MFA application&lt;/li>
 &lt;li>Enter your current password and click submit.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="change-mfa.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="change-mfa.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Change MFA prompt
 &lt;/figcaption>
 &lt;/figure>

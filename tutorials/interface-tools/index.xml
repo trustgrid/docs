@@ -4,21 +4,24 @@
 &lt;ol>
 &lt;li>Login to the Trustgrid portal and navigate to the Node from which you want to view traffic.&lt;/li>
 &lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section. Then from the dropdown select the interface whose traffic you want to monitor.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sniff-int-select.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="sniff-int-select.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Selecting the desired interface
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Click the Sniff Traffic button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sniff-int-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;img src="sniff-int-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Set the Interface and Filters to match the traffic you wish to monitor.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sniff-int-filter.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;img src="sniff-int-filter.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 &lt;/figure>
 &lt;table>
 &lt;thead>
@@ -39,9 +42,10 @@ Selecting the desired interface
 &lt;/tbody>
 &lt;/table>&lt;/li>
 &lt;li>Click &lt;code>Execute&lt;/code> to view the captured traffic
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sniff-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="sniff-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example output of sniffing interface traffic
 &lt;/figcaption>
 &lt;/figure>
@@ -65,17 +69,19 @@ Example output of sniffing interface traffic
 &lt;li>Login to the Trustgrid portal and navigate to the Node from which you want to test connectivity.&lt;/li>
 &lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/li>
 &lt;li>Click the &lt;code>Interface TCP Port Test&lt;/code> button
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="network-tools.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="network-tools.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Selecting TCP Port Test
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Update the host with the target IP address and the port with the target TCP port. Click &lt;code>Execute&lt;/code> to test connectivity.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="config.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="config.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Configuring the TCP Port Test
 &lt;/figcaption>
 &lt;/figure>
@@ -83,9 +89,10 @@ Configuring the TCP Port Test
 &lt;li>A new window will open with the results. If a new window does not open, check your browser&amp;rsquo;s pop-up blocker settings.
 &lt;ul>
 &lt;li>A successful test will look like this:
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="success.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="success.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Successful TCP Port Test result
 &lt;/figcaption>
 &lt;/figure>
@@ -93,17 +100,19 @@ Successful TCP Port Test result
 &lt;li>A failed connection will depend on the nature of the failure. Examples include
 &lt;ul>
 &lt;li>A connection actively refused (e.g. possibly firewall/ACL rejecting connections)
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="failed-refused.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="failed-refused.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Connection refused result
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>A connection timeout or no route message if there is no response (e.g. firewall/ACL dropping connection, bad destination IP, or no route to destination)
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="failed-noroute.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="failed-noroute.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 No route to host result
 &lt;/figcaption>
 &lt;/figure>
@@ -132,9 +141,10 @@ The pcap files will include part of the data payload of any communication captur
 &lt;p>Because of the risk of data being visible, there are several restrictions and controls in place:&lt;/p>
 &lt;ol>
 &lt;li>The permission to run this tool (&lt;code>node-advanced::service:tg-capture&lt;/code>) must be granted on a per-user basis in a &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#creatingediting-policies">custom policy&lt;/a>. Not even administrators have this feature by default.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="pcap-permissions.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="pcap-permissions.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example policy with tg-capture allowed
 &lt;/figcaption>
 &lt;/figure>
@@ -147,14 +157,16 @@ Example policy with tg-capture allowed
 &lt;li>Log in to the Trustgrid portal and navigate to the node you want to capture traffic from.&lt;/li>
 &lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/li>
 &lt;li>On the right side under Interface Tools use the dropdown to select Traffic Capture.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="capture-dropdown.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;img src="capture-dropdown.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
 &lt;/figure>
 .&lt;/li>
 &lt;li>The capture tool prompt will be displayed. Select the interface to capture from using the dropdown and enter a filter if desired. Click the start button to begin capturing.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="capture-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="capture-prompt.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Traffic Capture management popup
 &lt;/figcaption>
 &lt;/figure>
@@ -191,9 +203,10 @@ Traffic Capture management popup
 &lt;/tbody>
 &lt;/table>&lt;/li>
 &lt;li>Click the start button to begin capturing traffic. A message will display to indicate the capture has started. The Traffic Capture dialogue can be closed and the capture will continue running in the background.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="capture-started.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="capture-started.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Traffic capture started message
 &lt;/figcaption>
 &lt;/figure>
@@ -205,8 +218,9 @@ Traffic capture started message
 &lt;li>Log in to the Trustgrid portal and navigate to the node you want to capture traffic from.&lt;/li>
 &lt;li>Select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/li>
 &lt;li>On the right side under Interface Tools use the dropdown to select Traffic Capture.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="capture-dropdown.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;img src="capture-dropdown.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
 &lt;/figure>
 .&lt;/li>
 &lt;li>Click the Stop button to end the capture. A message will display to indicate the capture has stopped and the files are being written.&lt;/li>

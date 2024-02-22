@@ -26,7 +26,7 @@ Formerly the active member was referred to as the “master.” We are in the pr
 &lt;div class="alert alert-primary" role="alert">
 Local ACLs allow only the partner cluster member to connect to the listening port.
 &lt;/div>
-&lt;p>Heartbeat communication is configured on each node&amp;rsquo;s &lt;a href="https://docs.trustgrid.io/docs/nodes/cluster/">cluster&lt;/a> page.&lt;/p>
+&lt;p>Heartbeat communication is configured on each node&amp;rsquo;s &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/cluster/">cluster&lt;/a> page.&lt;/p>
 &lt;h3 id="cluster-mode">Cluster Mode&lt;/h3>
 &lt;p>A cluster can be configured in two different modes to determine what happens when a failed member returns to healthy status:&lt;/p>
 &lt;ul>
@@ -129,7 +129,7 @@ Use caution before configuring multiple services with health checks. This could 
 &lt;/li>
 &lt;/ul>
 &lt;h2 id="tags">Tags&lt;/h2>
-&lt;p>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">Tags&lt;/a> are visible at the bottom of the overview page for the resource.&lt;/p>
+&lt;p>&lt;a href="https://docs.trustgrid.io/docs/nodes/shared/tags/">Tags&lt;/a> are visible at the bottom of the overview page for the resource.&lt;/p>
 &lt;p>&lt;img src="cluster-tags.png" alt="img">&lt;/p>
 &lt;h3 id="modifying-tags">Modifying Tags&lt;/h3>
 &lt;p>To add a tag:&lt;/p>

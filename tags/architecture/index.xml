@@ -1,24 +1,34 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– architecture</title><link>https://docs.trustgrid.io/tags/architecture/</link><description>Recent content in architecture on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 30 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/tags/architecture/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting-Started: Basic Architecture</title><link>https://docs.trustgrid.io/getting-started/basic-architecture/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/basic-architecture/</guid><description>
-&lt;h3 id="cloud-components">Cloud Components&lt;/h3>
+&lt;h2 id="nodes">Nodes&lt;/h2>
+&lt;p>The basic building block of a Trustgrid network is a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a>. Nodes are &lt;a href="https://docs.trustgrid.io/getting-started/deployment/">deployed&lt;/a> on-premises or in your cloud provider and connected to each other to build a &lt;a href="%5B#data-plane%5D">data plane&lt;/a> on top of which additional services such as &lt;a href="#virtual-networks">virtual networking&lt;/a>, &lt;a href="#ztna-access">ztna access&lt;/a>, and &lt;a href="#edge-compute">compute&lt;/a> can be provided.&lt;/p>
+&lt;p>Nodes can be &lt;a href="../deployment">deployed&lt;/a> either as an &lt;strong>agent&lt;/strong>, a service running in an existing operating system, or as an &lt;strong>appliance&lt;/strong> which bundles the operating system and Trustgrid software together.&lt;/p>
+&lt;p>Additionally, appliance-based nodes can be &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustered&lt;/a> to provide high availability at a site.&lt;/p>
+&lt;h3 id="gateways">Gateways&lt;/h3>
+&lt;p>While all nodes can act as edge nodes (making only outbound connections), appliance-based nodes can also be configured to act as &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/gateway/gateway-server/">gateway servers&lt;/a> which listen for inbound connections from other edge nodes in the account.&lt;/p>
+&lt;p>These connections create the &lt;a href="#data-plane">private data plane&lt;/a> which enabls the Trustgrid network services.&lt;/p>
+&lt;h2 id="data-plane">Data Plane&lt;/h2>
+&lt;p>The data plane is built between edge nodes and their gateways nodes to allow private connectivity between sites. It provides a virtual network overlay on top of the public internet to securely connect distributed systems and applications.&lt;/p>
+&lt;h3 id="virtual-networks">Virtual Networks&lt;/h3>
+&lt;p>Nodes can be attached to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual networks&lt;/a>, which provide a way to share network configuration like &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">routes&lt;/a>, NATs, and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">ACLs&lt;/a> at scale.&lt;/p>
+&lt;h4 id="layer-4-proxy">Layer 4 Proxy&lt;/h4>
+&lt;p>The data plane can also be used to enable Layer 4 proxy connections across two nodes. In this setup, one node will act at the &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connector&lt;/a> listening on a specified port. When traffic is received on that port it will be forwarded to the configured &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">service&lt;/a>. The node that hosts that service will then forward the traffic on to the configured IP and port using it&amp;rsquo;s local interfaces.&lt;/p>
+&lt;h3 id="ztna-applications">ZTNA Applications&lt;/h3>
+&lt;p>&lt;a href="https://docs.trustgrid.io/docs/applications/">ZTNA Applications&lt;/a> can be exposed through nodes or clusters. Access to an application can be restricted via &lt;a href="https://docs.trustgrid.io/docs/applications/access-policy/">access policies&lt;/a>, for example to only allow users from a specific country.&lt;/p>
+&lt;h2 id="control-plane">Control plane&lt;/h2>
+&lt;p>In addition to the data plane, all Trustgrid nodes build connections to the Trustgrid control plane. This allows centralized management and monitoring of all nodes from the Trustgrid portal and api including:&lt;/p>
 &lt;ul>
-&lt;li>Portal - The cloud management UI.&lt;/li>
-&lt;li>Gatekeeper - Provides configuration updates to edge nodes.&lt;/li>
-&lt;li>Zuul - Maintains persistent connection with &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> for reporting, &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a>, and updates.&lt;/li>
-&lt;li>API - The management API that exposes 100% of UI elements to automation.&lt;/li>
-&lt;li>Repo - The APT repository that stores all firmware, OS, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> updates.&lt;/li>
+&lt;li>Software updates are provided through our apt repository that ensures nodes have security updates available and only run with tested software permutations&lt;/li>
+&lt;li>Network, node, user, and application configuration is managed through our web portal&lt;/li>
+&lt;li>Configuration changes are broadcast to nodes as needed, for example when adding routes or adding a gateway to your network&lt;/li>
 &lt;/ul>
-&lt;h3 id="edge-components">Edge Components&lt;/h3>
-&lt;ul>
-&lt;li>Node - The software that provides core functionality in the edge including &lt;a href="https://docs.trustgrid.io/getting-started/networking/">networking&lt;/a>, &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a>, compute, and management features. Edge nodes build outbound connections to gateway nodes.&lt;/li>
-&lt;/ul>
-&lt;h3 id="use-cases">Use Cases&lt;/h3>
-&lt;ul>
-&lt;li>Software Defined Networking - Create a mesh &lt;a href="https://docs.trustgrid.io/getting-started/networking/">network&lt;/a> that connects cloud applications to edge data with load balancing, &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustering&lt;/a>, and failover managed through a portal or API.&lt;/li>
-&lt;li>Edge Compute - Deploy applications to the edge to access datasets not appropriate for replication to the cloud due to &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a> or compliance concerns, latency, or cost.&lt;/li>
-&lt;li>Device Management - Manage thousands of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> with advanced tools to reduce the burden of operations at enterprise scale.&lt;/li>
-&lt;li>Edge API - Integrate thousands of edge datasets with a single API interface and ETL functions executing at the edge.&lt;/li>
-&lt;li>Security - Leverage Trustgrid&amp;rsquo;s advanced &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a> to protect against a wide range of threats.&lt;/li>
-&lt;/ul></description></item><item><title>Getting-Started: Networking</title><link>https://docs.trustgrid.io/getting-started/networking/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/networking/</guid><description>
+&lt;p>All services of the control plane are contained &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">Trustgrid&amp;rsquo;s reserved address spaces&lt;/a> to limit the required firewall rules required for an edge node to operate behind a firewall.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="basic-connectivity.png" alt="Basic connectivity diagram" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Basic Connectivity Diagram
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Getting-Started: Networking</title><link>https://docs.trustgrid.io/getting-started/networking/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/networking/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid delivers a software defined wide area network (SD-WAN) that enables connectivity between cloud environments, data centers, and edge or on-premise hosts. Our robust networking feature set provides layer 3 and layer 4 network overlays with cloud management tools.&lt;/p>
 &lt;/div>

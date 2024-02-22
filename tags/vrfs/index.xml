@@ -1,25 +1,25 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– vrfs</title><link>https://docs.trustgrid.io/tags/vrfs/</link><description>Recent content in vrfs on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/vrfs/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vrfs/</guid><description>
-&lt;h3 id="overview">Overview&lt;/h3>
-&lt;p>VRFs can be used route / nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated to an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as ipsec or gre. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– VRFs</title><link>https://docs.trustgrid.io/tags/vrfs/</link><description>Recent content in VRFs on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/vrfs/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/appliances/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/vrfs/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>VRFs can be used to route and/or nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated with an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as IPSEC or GRE. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
 &lt;p>For standard use cases of source nat and/or destination nat creating a route and a NAT is sufficient. Traffic rules can be used for more advanced controls. An applicable ACL is required for any traffic to pass as a zero trust methodology is applied.&lt;/p>
-&lt;h3 id="address-translation">Address Translation&lt;/h3>
+&lt;h2 id="address-translation">Address Translation&lt;/h2>
 &lt;p>This is where NATs are created in order to translate the traffic to appear as desired on the network.
 NATs support translating both source and destination CIDRs as well as masquerading as the egress interface address.&lt;/p>
-&lt;h6 id="snat--dnat-example">SNAT / DNAT Example&lt;/h6>
+&lt;h3 id="snat--dnat-example">SNAT / DNAT Example&lt;/h3>
 &lt;p>Using the example NAT below if a source packet was initiated from 10.10.10.100 destined for 10.10.20.100 the source address would be translated to 192.168.10.100 and the destination address would be translated to 192.168.20.100.
 It is important to note that nat translations occur before routing decisions are made.&lt;/p>
 &lt;p>&lt;img src="nat1.png" alt="img">&lt;/p>
-&lt;h6 id="maquerade-example">Maquerade Example&lt;/h6>
-&lt;p>Using the example below if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24 the source would be translated to the interface address the packet is egressing on. If it was a single interface Trustgrid node it would be sourced as the wan facing interface address.&lt;/p>
+&lt;h3 id="masquerade-example">Masquerade Example&lt;/h3>
+&lt;p>Using the example below, if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24, the source would be translated to the interface address from which the packet is egressing. If it were a single interface Trustgrid node it would be sourced as the wan facing interface address.&lt;/p>
 &lt;p>&lt;img src="masquerade1.png" alt="img">&lt;/p>
-&lt;h3 id="routes">Routes&lt;/h3>
+&lt;h2 id="routes">Routes&lt;/h2>
 &lt;p>Note that NAT translations happen before routing so routes should be created for the destination NAT CIDR if applicable.
-Routes require a destination CIDR, interface and metric.
-A next hop is optional and only applicable for non-tunnel interfaces such as physical interfaces or vlan subinterfaces.
+Routes require a destination CIDR, interface, and metric.
+A next hop is optional and only applicable for non-tunnel interfaces such as physical interfaces or VLAN subinterfaces.
 The gateway of the applicable interface will be used if no next hop is defined.&lt;/p>
-&lt;p>The example below would be used for example to offload all internet bound traffic directly out the WAN facing interface&lt;/p>
+&lt;p>The example below would be used for example to offload all internet-bound traffic directly out of the WAN facing interface&lt;/p>
 &lt;p>&lt;img src="offload.png" alt="img">&lt;/p>
-&lt;h3 id="traffic-rules">Traffic Rules&lt;/h3>
+&lt;h2 id="traffic-rules">Traffic Rules&lt;/h2>
 &lt;p>Traffic rules can be used for more advanced granular traffic manipulation beyond standard source and destination nat.
 There are many more parameters that can be applied to the traffic depending on the specific use case.
 When creating a traffic rule an ACL is required for traffic to pass. The available parameters are defined below.
@@ -84,8 +84,8 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;td>Forward all traffic to the DNAT destination IP/Port. For example in order to forward all http traffic through a proxy&lt;/td>
 &lt;/tr>
 &lt;tr id="destination-mac" style="scroll-margin-top: 10rem;">
-&lt;th>Destination Mac&lt;/th>
-&lt;td>The destination mac address defined overwrites the source mac address of the packet. Necessary only for some container deployments such as Snort inpsecting traffic.&lt;/td>
+&lt;th>Destination MAC&lt;/th>
+&lt;td>The destination MAC address defined overwrites the source MAC address of the packet. Necessary only for some container deployments such as Snort inspecting traffic.&lt;/td>
 &lt;/tr>
 &lt;tr id="ports" style="scroll-margin-top: 10rem;">
 &lt;th>Ports&lt;/th>
@@ -93,7 +93,7 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h6 id="traffic-rule-example">Traffic Rule Example&lt;/h6>
-&lt;p>In the below example the first rule on line number 1 is forwarding all traffic destined to 10.0.20.0/24 to a virtual network tunnel interface. Any NATs configured under Address Translation will be applied before the packet is forwarded to its destination. The rule on line number 10 will forward all traffic that does not match the first rule out to the internet masquerading as the WAN interfaces address.
+&lt;h3 id="traffic-rule-example">Traffic Rule Example&lt;/h3>
+&lt;p>In the below example, the first rule on line number 1 is forwarding all traffic destined to 10.0.20.0/24 to a virtual network tunnel interface. Any NATs configured under Address Translation will be applied before the packet is forwarded to its destination. The rule on line number 10 will forward all traffic that does not match the first rule out to the internet masquerading as the WAN interfaces address.
 If the line numbers were reversed the virtual network rule would never be matched as all traffic would match the internet offload rule which is configured for all source and destination traffic.&lt;/p>
 &lt;p>&lt;img src="trafficrule1.png" alt="img">&lt;/p></description></item></channel></rss>

@@ -205,7 +205,7 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;li>An Azure resource group to deploy the resources into&lt;/li>
 &lt;li>An Azure Virtual Network (vNet) with at least two subnets:
 &lt;ul>
-&lt;li>An &amp;ldquo;outside&amp;rdquo; subnet for the appliance to connect to the Trustgrid control plane and data plane gateways, and accept incoming connections if the Azure Trustgrid appliance will be acting as a &lt;a href="https://docs.trustgrid.io/docs/nodes/gateway/">data plane gateway&lt;/a>&lt;/li>
+&lt;li>An &amp;ldquo;outside&amp;rdquo; subnet for the appliance to connect to the Trustgrid control plane and data plane gateways, and accept incoming connections if the Azure Trustgrid appliance will be acting as a &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/gateway/">data plane gateway&lt;/a>&lt;/li>
 &lt;li>An &amp;ldquo;inside&amp;rdquo; subnet for communicating with other virtual machines and services within the Azure vNet&lt;/li>
 &lt;li>&lt;strong>(For Clustered Appliances)&lt;/strong> An &lt;a href="#azure-route-table">Azure routing table&lt;/a> associated with the &amp;ldquo;inside&amp;rdquo; subnet.&lt;/li>
 &lt;/ul>
@@ -296,8 +296,9 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;h3 id="other-vm-requirements">Other VM Requirements&lt;/h3>
 &lt;ul>
 &lt;li>&lt;a href="https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm">System-assigned Managed Identity&lt;/a> needs to be enabled for both VMs in the cluster.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="system-managed-identity.png" alt="System-assigned Managed Identity" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="system-managed-identity.png" alt="System-assigned Managed Identity" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>&lt;a href="https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics">Boot Diagnostics&lt;/a> needs to be enabled to allow access via the Serial Console&lt;/li>
@@ -312,8 +313,9 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;li>From the navigation panel select Subnets&lt;/li>
 &lt;li>Select your inside/private subnet that is attached to the LAN interface of your Trustgrid VMs&lt;/li>
 &lt;li>There should be a route table
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="azure-route-table.png" alt="Example subnet showing assigned Route Table" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;img src="azure-route-table.png" alt="Example subnet showing assigned Route Table" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 &lt;/figure>
 &lt;/li>
 &lt;/ol>
@@ -326,8 +328,9 @@ If you are not a direct Trustgrid customer please work with your vendor to get t
 &lt;li>Select the Region that your VMs are deployed in&lt;/li>
 &lt;li>Give the Route Table a name consistent with your naming conventions&lt;/li>
 &lt;li>(Optional) change the Propagate Gateway routes option.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="propagate-routes.png" alt="Propagate Routes Option" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;img src="propagate-routes.png" alt="Propagate Routes Option" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Click Review + Create, review then click Review + Create again&lt;/li>

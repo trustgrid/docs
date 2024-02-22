@@ -1,12 +1,13 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– networking</title><link>https://docs.trustgrid.io/tags/networking/</link><description>Recent content in networking on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/networking/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Connectors</title><link>https://docs.trustgrid.io/docs/nodes/connectors/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/connectors/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– networking</title><link>https://docs.trustgrid.io/tags/networking/</link><description>Recent content in networking on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/networking/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Connectors</title><link>https://docs.trustgrid.io/docs/nodes/shared/connectors/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/connectors/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Connectors are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">services&lt;/a> to define a local listening port for layer 4 (L4) connectivity.&lt;/p>
+&lt;p>Connectors are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">services&lt;/a> to define a local listening port for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
 &lt;h4 id="configuration">Configuration&lt;/h4>
 &lt;p>Connectors are configured under the Networking &amp;gt; Connectors tab of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-connector.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 45%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-connector.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 45%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Connector dialogue
 &lt;/figcaption>
 &lt;/figure>
@@ -40,7 +41,7 @@ Add Connector dialogue
 &lt;/tr>
 &lt;tr id="remote-service" style="scroll-margin-top: 10rem;">
 &lt;th>Remote Service&lt;/th>
-&lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
+&lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
 &lt;/tr>
 &lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 10rem;">
 &lt;th>Rate Limit (Mb/s)&lt;/th>
@@ -49,30 +50,32 @@ Add Connector dialogue
 &lt;tr id="sniff-traffic" style="scroll-margin-top: 10rem;">
 &lt;th>Sniff Traffic&lt;/th>
 &lt;td>&lt;p>Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the &lt;a href="#listen-port">listening port&lt;/a>.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="connector-sniff-traffic.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;img src="connector-sniff-traffic.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 &lt;/figure>
 &lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/services/</guid><description>
+&lt;/table></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/shared/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/services/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
+&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
 &lt;h2 id="description">Description&lt;/h2>
-&lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
+&lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
 &lt;h2 id="functionality">Functionality&lt;/h2>
 &lt;p>On the local network, a connection&amp;rsquo;s &lt;strong>source IP&lt;/strong> will be the node&amp;rsquo;s interface IP.&lt;/p>
 &lt;ul>
 &lt;li>If the service is defined on a cluster, the active cluster members IP will be used.&lt;/li>
-&lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
+&lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
 &lt;/ul>
 &lt;p>If the service&amp;rsquo;s &lt;a href="#host">host field&lt;/a> is set to a DNS name, the node will use its WAN interface DNS servers to resolve the address.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>Services are configured under the Networking &amp;gt; Services panel of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Service dialogue
 &lt;/figcaption>
 &lt;/figure>
@@ -98,7 +101,7 @@ Add Service dialogue
 &lt;/tr>
 &lt;tr id="service-name" style="scroll-margin-top: 10rem;">
 &lt;th>Service Name&lt;/th>
-&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
+&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
 &lt;/tr>
 &lt;tr id="host" style="scroll-margin-top: 10rem;">
 &lt;th>Host&lt;/th>
@@ -115,44 +118,45 @@ Add Service dialogue
 &lt;tr id="test-connectivity" style="scroll-margin-top: 10rem;">
 &lt;th>Test Connectivity&lt;/th>
 &lt;td>&lt;p>Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="service-test-connectivity.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="service-test-connectivity.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Tunnels</title><link>https://docs.trustgrid.io/docs/nodes/tunnels/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tunnels/</guid><description>
+&lt;/table></description></item><item><title>Docs: Tunnels</title><link>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/</guid><description>
 &lt;h3 id="tunnels-overview">Tunnels Overview&lt;/h3>
-&lt;p>Trustgrid Supports configuring various tunneling protocols in order to establish secure connectivity between any appliance that supports the underlying protocol.
+&lt;p>Trustgrid Supports configuring various tunneling protocols to establish secure connectivity between any appliance that supports the underlying protocol.
 The supported tunnels are listed below.&lt;/p>
 &lt;ul>
-&lt;li>IPsec - Internet Protocol Security supporting ikev1 and ikev2 tunnels&lt;/li>
+&lt;li>IPsec - Internet Protocol Security supporting IKEv1 and IKEv2 tunnels&lt;/li>
 &lt;li>GRE - Generic Routing Encapsulation used for setting up a direct point to point network connection&lt;/li>
 &lt;li>Vnet - The virtual network tunnel is the Trustgrid Proprietary VPN tunneling protocol and therefore can only be used to establish connectivity to other Trustgrid nodes in the organization&lt;/li>
 &lt;li>Wireguard - The latest open source tunneling protocol aiming to provide better performance than the traditional ipsec or openvpn protocols&lt;/li>
 &lt;/ul>
-&lt;p>&amp;ldquo;Wireguard&amp;rdquo; is a registered trademark of Jason A. Donenfeld&lt;/p></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vrfs/</guid><description>
-&lt;h3 id="overview">Overview&lt;/h3>
-&lt;p>VRFs can be used route / nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated to an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as ipsec or gre. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
+&lt;p>&amp;ldquo;Wireguard&amp;rdquo; is a registered trademark of Jason A. Donenfeld&lt;/p></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/appliances/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/vrfs/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>VRFs can be used to route and/or nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated with an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as IPSEC or GRE. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
 &lt;p>For standard use cases of source nat and/or destination nat creating a route and a NAT is sufficient. Traffic rules can be used for more advanced controls. An applicable ACL is required for any traffic to pass as a zero trust methodology is applied.&lt;/p>
-&lt;h3 id="address-translation">Address Translation&lt;/h3>
+&lt;h2 id="address-translation">Address Translation&lt;/h2>
 &lt;p>This is where NATs are created in order to translate the traffic to appear as desired on the network.
 NATs support translating both source and destination CIDRs as well as masquerading as the egress interface address.&lt;/p>
-&lt;h6 id="snat--dnat-example">SNAT / DNAT Example&lt;/h6>
+&lt;h3 id="snat--dnat-example">SNAT / DNAT Example&lt;/h3>
 &lt;p>Using the example NAT below if a source packet was initiated from 10.10.10.100 destined for 10.10.20.100 the source address would be translated to 192.168.10.100 and the destination address would be translated to 192.168.20.100.
 It is important to note that nat translations occur before routing decisions are made.&lt;/p>
 &lt;p>&lt;img src="nat1.png" alt="img">&lt;/p>
-&lt;h6 id="maquerade-example">Maquerade Example&lt;/h6>
-&lt;p>Using the example below if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24 the source would be translated to the interface address the packet is egressing on. If it was a single interface Trustgrid node it would be sourced as the wan facing interface address.&lt;/p>
+&lt;h3 id="masquerade-example">Masquerade Example&lt;/h3>
+&lt;p>Using the example below, if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24, the source would be translated to the interface address from which the packet is egressing. If it were a single interface Trustgrid node it would be sourced as the wan facing interface address.&lt;/p>
 &lt;p>&lt;img src="masquerade1.png" alt="img">&lt;/p>
-&lt;h3 id="routes">Routes&lt;/h3>
+&lt;h2 id="routes">Routes&lt;/h2>
 &lt;p>Note that NAT translations happen before routing so routes should be created for the destination NAT CIDR if applicable.
-Routes require a destination CIDR, interface and metric.
-A next hop is optional and only applicable for non-tunnel interfaces such as physical interfaces or vlan subinterfaces.
+Routes require a destination CIDR, interface, and metric.
+A next hop is optional and only applicable for non-tunnel interfaces such as physical interfaces or VLAN subinterfaces.
 The gateway of the applicable interface will be used if no next hop is defined.&lt;/p>
-&lt;p>The example below would be used for example to offload all internet bound traffic directly out the WAN facing interface&lt;/p>
+&lt;p>The example below would be used for example to offload all internet-bound traffic directly out of the WAN facing interface&lt;/p>
 &lt;p>&lt;img src="offload.png" alt="img">&lt;/p>
-&lt;h3 id="traffic-rules">Traffic Rules&lt;/h3>
+&lt;h2 id="traffic-rules">Traffic Rules&lt;/h2>
 &lt;p>Traffic rules can be used for more advanced granular traffic manipulation beyond standard source and destination nat.
 There are many more parameters that can be applied to the traffic depending on the specific use case.
 When creating a traffic rule an ACL is required for traffic to pass. The available parameters are defined below.
@@ -217,8 +221,8 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;td>Forward all traffic to the DNAT destination IP/Port. For example in order to forward all http traffic through a proxy&lt;/td>
 &lt;/tr>
 &lt;tr id="destination-mac" style="scroll-margin-top: 10rem;">
-&lt;th>Destination Mac&lt;/th>
-&lt;td>The destination mac address defined overwrites the source mac address of the packet. Necessary only for some container deployments such as Snort inpsecting traffic.&lt;/td>
+&lt;th>Destination MAC&lt;/th>
+&lt;td>The destination MAC address defined overwrites the source MAC address of the packet. Necessary only for some container deployments such as Snort inspecting traffic.&lt;/td>
 &lt;/tr>
 &lt;tr id="ports" style="scroll-margin-top: 10rem;">
 &lt;th>Ports&lt;/th>
@@ -226,34 +230,60 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h6 id="traffic-rule-example">Traffic Rule Example&lt;/h6>
-&lt;p>In the below example the first rule on line number 1 is forwarding all traffic destined to 10.0.20.0/24 to a virtual network tunnel interface. Any NATs configured under Address Translation will be applied before the packet is forwarded to its destination. The rule on line number 10 will forward all traffic that does not match the first rule out to the internet masquerading as the WAN interfaces address.
+&lt;h3 id="traffic-rule-example">Traffic Rule Example&lt;/h3>
+&lt;p>In the below example, the first rule on line number 1 is forwarding all traffic destined to 10.0.20.0/24 to a virtual network tunnel interface. Any NATs configured under Address Translation will be applied before the packet is forwarded to its destination. The rule on line number 10 will forward all traffic that does not match the first rule out to the internet masquerading as the WAN interfaces address.
 If the line numbers were reversed the virtual network rule would never be matched as all traffic would match the internet offload rule which is configured for all source and destination traffic.&lt;/p>
-&lt;p>&lt;img src="trafficrule1.png" alt="img">&lt;/p></description></item><item><title>Docs: GRE</title><link>https://docs.trustgrid.io/docs/nodes/tunnels/gre/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tunnels/gre/</guid><description>
+&lt;p>&lt;img src="trafficrule1.png" alt="img">&lt;/p></description></item><item><title>Docs: GRE</title><link>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/gre/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/gre/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid supports configuring GRE tunnels that can be used to establish connectivity to any appliance that supports the GRE protocol.
-A GRE tunnel interface is created which can then be attached to an interface on a node. VRFs can then be used to control the flow of traffic and how it should appear on the network.&lt;/p>
+A GRE tunnel interface is created which can then be attached to an interface on a node. &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRFs&lt;/a> can then be used to control the flow of traffic and how it should appear on the network.&lt;/p>
 &lt;/div>
 &lt;h2 id="configure-gre-tunnel">Configure GRE Tunnel&lt;/h2>
-&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu and select Add Tunnel and then select GRE&lt;/p>
+&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu, select Add Tunnel, and then select GRE&lt;/p>
 &lt;p>&lt;img src="add_tunnel.png" alt="img">&lt;/p>
 &lt;p>&lt;img src="add_gre.png" alt="img">&lt;/p>
 &lt;p>&lt;img src="gre.png" alt="img">&lt;/p>
 &lt;h3 id="gre-tunnel-configuration-parameters">GRE Tunnel Configuration Parameters&lt;/h3>
-&lt;ul>
-&lt;li>Name - the name of the GRE tunnel interface that will be created on the Trustgrid node&lt;/li>
-&lt;li>Description - optional field to used to document the purpose of the tunnel&lt;/li>
-&lt;li>IP - the ip address the tunnel is created with in CIDR&lt;/li>
-&lt;li>Peer - the remote IP address of the appliance the tunnel is being established with&lt;/li>
-&lt;li>VRF - existing VRF on the node the tunnel is being associated to&lt;/li>
-&lt;li>MTU - the MTU of the tunnel interface. Typically can be set to 1476.&lt;/li>
-&lt;/ul></description></item><item><title>Docs: IPSec</title><link>https://docs.trustgrid.io/docs/nodes/tunnels/ipsec/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tunnels/ipsec/</guid><description>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
+&lt;th>Name&lt;/th>
+&lt;td>The name of the GRE tunnel interface that will be created on the Trustgrid node&lt;/td>
+&lt;/tr>
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
+&lt;th>Description&lt;/th>
+&lt;td>(optional) Used to document the purpose of the tunnel&lt;/td>
+&lt;/tr>
+&lt;tr id="ip" style="scroll-margin-top: 10rem;">
+&lt;th>IP&lt;/th>
+&lt;td>the IP address assigned to the node&amp;rsquo;s tunnel interface in CIDR notation&lt;/td>
+&lt;/tr>
+&lt;tr id="peer" style="scroll-margin-top: 10rem;">
+&lt;th>Peer&lt;/th>
+&lt;td>the remote IP address of the device the tunnel is being established with&lt;/td>
+&lt;/tr>
+&lt;tr id="vrf" style="scroll-margin-top: 10rem;">
+&lt;th>VRF&lt;/th>
+&lt;td>existing &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> on the node the tunnel is being associated with&lt;/td>
+&lt;/tr>
+&lt;tr id="mtu" style="scroll-margin-top: 10rem;">
+&lt;th>MTU&lt;/th>
+&lt;td>the maximum transmission unit (MTU) of the tunnel interface. Typically should be set to 1476 or lower.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Docs: IPSec</title><link>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/ipsec/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/ipsec/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Trustgrid supports configuring traditional IPSec tunnels that can be used to establish connectivity to any appliance that supports the IPSec protocol.
-Once an IPSec tunnel is configured an IPSec virtual interface is created that can be attached to a node interface. VRFs can be used in conjunction to explicitly control what traffic is allowed (VRF ACLs) to pass and how it should look on the network (VRF NATs or Traffic Rules).&lt;/p>
+Once an IPSec tunnel is configured an IPSec virtual interface is created that can be attached to a node interface. VRFs can be used in conjunction to explicitly control what traffic is allowed (&lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> ACLs) to pass and how it should look on the network (VRF NATs or Traffic Rules).&lt;/p>
 &lt;/div>
 &lt;h2 id="configure-ipsec-tunnel">Configure IPSec Tunnel&lt;/h2>
-&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu and select Add Tunnel and then select IPSEC&lt;/p>
+&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu, and select Add Tunnel and then select IPSEC&lt;/p>
 &lt;p>&lt;img src="add_tunnel.png" alt="img">&lt;/p>
 &lt;p>&lt;img src="add_ipsec.png" alt="img">&lt;/p>
 &lt;p>&lt;img src="ipsec_config.png" alt="img">&lt;/p>
@@ -263,11 +293,11 @@ Once an IPSec tunnel is configured an IPSec virtual interface is created that ca
 &lt;li>Name - the name of the IPSec tunnel interface that will be created on the node and displayed in the Trustgrid Portal&lt;/li>
 &lt;li>Description - used to document the purpose of the tunnel&lt;/li>
 &lt;li>Interface - the network interface the tunnel will be listening on. Typically this will be network adapter 1 which is the WAN interface&lt;/li>
-&lt;li>Interface IP - the ip address the tunnel will be created to use in CIDR. Typically this would be a /30.&lt;/li>
-&lt;li>Interface VRF - the VRF the tunnel will be associated with in order to apply ACLs / NATs / Routes or Traffic Rules&lt;/li>
+&lt;li>Interface IP - the IP address the tunnel will be created to use in CIDR. Typically this would be a /30.&lt;/li>
+&lt;li>Interface VRF - the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> the tunnel will be associated with in order to apply ACLs / NATs / Routes or Traffic Rules&lt;/li>
 &lt;li>Interface MTU - the specified MTU of the tunnel interface. Typically this can be left to the default of 1436&lt;/li>
 &lt;li>IKE Version - select version 1 or version 2&lt;/li>
-&lt;li>Peer IP - The remote ip address of the appliance the tunnel is being established with&lt;/li>
+&lt;li>Peer IP - The remote IP address of the appliance the tunnel is being established with&lt;/li>
 &lt;li>IKE Cipher - The cipher used for phase 1&lt;/li>
 &lt;li>IKE DH Group - The Diffie-Hellman Group used for phase 1&lt;/li>
 &lt;li>IPSEC Cipher - the cipher used for phase 2&lt;/li>
@@ -275,7 +305,7 @@ Once an IPSec tunnel is configured an IPSec virtual interface is created that ca
 &lt;li>DPD Interval - seconds for dead peer detection&lt;/li>
 &lt;li>DPD Retries - number of dead peer detection retries before the tunnel is re-keyed / torn down&lt;/li>
 &lt;li>Rekey Interval - time in seconds before a re-key of the tunnel is initiated&lt;/li>
-&lt;li>Replay Window - size of the replay window which is used to prevent replay attacks. Typically set between 64 and 128&lt;/li>
+&lt;li>Replay Window - the size of the replay window which is used to prevent replay attacks. Typically set between 64 and 128&lt;/li>
 &lt;li>Local Subnet - the local subnet in CIDR that will be considered interesting traffic and be allowed to forward over the tunnel&lt;/li>
 &lt;li>Remote Subnet - the remote subnet in CIDR will be considered interesting traffic and be received on the tunnel&lt;/li>
 &lt;li>Auto Add - the connection is added and then waits for the remote peer to initiate the tunnel establishment&lt;/li>
@@ -285,34 +315,57 @@ Once an IPSec tunnel is configured an IPSec virtual interface is created that ca
 &lt;h4 id="optional-parameters">Optional Parameters&lt;/h4>
 &lt;ul>
 &lt;li>Virtual Network - associate the tunnel to a Trustgrid Virtual Network&lt;/li>
-&lt;li>IKE Local ID - The IP address that will be seen by the remote peer to establish the tunnel. Typically this would be the public facing WAN IP of the Trustgrid Node.&lt;/li>
+&lt;li>IKE Local ID - The IP address that will be seen by the remote peer to establish the tunnel. Typically this would be the public-facing WAN IP of the Trustgrid Node.&lt;/li>
 &lt;li>IKE Remote ID - Used for identity validation. Typically this is the same address as the Peer IP&lt;/li>
-&lt;/ul></description></item><item><title>Docs: VNET</title><link>https://docs.trustgrid.io/docs/nodes/tunnels/vnet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tunnels/vnet/</guid><description>
+&lt;/ul></description></item><item><title>Docs: VNET</title><link>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/vnet/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/vnet/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>A virtual network tunnel interface can be configured on a Trustgrid node or cluster to allow forwarding of traffic to a remote Trustgrid Node or Cluster that is attached to the same virtual network. The tunnel interface is associated to a vrf which is used to define and control what traffic is allowed to pass and how it should appear on the network. There is no attachment of the vnet interface to a node interface required but the virtual network does need to be attached to the node or cluster before the tunnel interface is created.&lt;/p>
+&lt;p>A virtual network tunnel interface can be configured on a Trustgrid node or cluster to allow the forwarding of traffic to a remote Trustgrid Node or Cluster that is attached to the same virtual network. The tunnel interface is associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> which is used to define and control what traffic is allowed to pass and how it should appear on the network. There is no attachment of the vnet interface to a node interface required but the virtual network does need to be attached to the node or cluster before the tunnel interface is created.&lt;/p>
 &lt;/div>
-&lt;h2 id="configure-vnet-tunnel">Configure Vnet Tunnel&lt;/h2>
-&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu and select Add Tunnel and then select VNET&lt;/p>
+&lt;h2 id="configure-vnet-tunnel">Configure VNET Tunnel&lt;/h2>
+&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu, select Add Tunnel, and then select VNET&lt;/p>
 &lt;p>&lt;img src="add_tunnel.png" alt="img">&lt;/p>
 &lt;p>&lt;img src="add_vnet.png" alt="img">&lt;/p>
 &lt;p>&lt;img src="vnet.png" alt="img">&lt;/p>
 &lt;h4 id="configuration-parameters">Configuration Parameters&lt;/h4>
-&lt;ul>
-&lt;li>Name - the name of the tunnel interface created on the Trustgrid Node or Cluster&lt;/li>
-&lt;li>Description - optional descriptive parameters related to the tunnel&lt;/li>
-&lt;li>Virtual Network - the Trustgrid virtual network the tunnel is being associated to. The virtual network should already be attached to the node or cluster to be selectable.&lt;/li>
-&lt;li>VRF - The vrf the tunnel is being associated to. Only vrf&amp;rsquo;s which exist on the Trustgrid Node or Cluster can be selected&lt;/li>
-&lt;li>MTU - the mtu size of the tunnel interface. Typically the default of 1430 should be used&lt;/li>
-&lt;/ul></description></item><item><title>Docs: WireGuard</title><link>https://docs.trustgrid.io/docs/nodes/tunnels/wireguard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/tunnels/wireguard/</guid><description>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
+&lt;th>Name&lt;/th>
+&lt;td>the name of the tunnel interface created on the Trustgrid Node or Cluster&lt;/td>
+&lt;/tr>
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
+&lt;th>Description&lt;/th>
+&lt;td>(optional) descriptive parameters related to the tunnel&lt;/td>
+&lt;/tr>
+&lt;tr id="virtual-network" style="scroll-margin-top: 10rem;">
+&lt;th>Virtual Network&lt;/th>
+&lt;td>the Trustgrid virtual network the tunnel is being associated with. The virtual network should already be attached to the node or cluster to be selectable.&lt;/td>
+&lt;/tr>
+&lt;tr id="vrf" style="scroll-margin-top: 10rem;">
+&lt;th>VRF&lt;/th>
+&lt;td>The &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> the tunnel is being associated with. Only VRF&amp;rsquo;s which exist on the Trustgrid Node or Cluster can be selected.&lt;/td>
+&lt;/tr>
+&lt;tr id="mtu" style="scroll-margin-top: 10rem;">
+&lt;th>MTU&lt;/th>
+&lt;td>the maximum transmission unit (MTU) size of the tunnel interface. Typically the default of 1430 should be used.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Docs: WireGuard</title><link>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/wireguard/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/tunnels/wireguard/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A WireGuard tunnel interface can be configured to allow a WireGuard client to connect to a Trustgrid Node running as a WireGuard server.
-The tunnel interface is associated to a vrf which is used to define and control what traffic is allowed to pass and how it should appear on the network.&lt;/p>
+The tunnel interface is associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> which is used to define and control what traffic is allowed to pass and how it should appear on the network.&lt;/p>
 &lt;/div>
 &lt;h2 id="configure-wireguard-tunnel">Configure WireGuard Tunnel&lt;/h2>
-&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu and select Add Tunnel and then select WireGuard&lt;/p>
+&lt;p>On a Trustgrid Node navigate to Tunnels under the Network Menu, select Add Tunnel, and then select WireGuard&lt;/p>
 &lt;p>&lt;img src="add_tunnel.png" alt="img">&lt;/p>
-&lt;p>&lt;img src="add_WireGuard.png" alt="img">&lt;/p>
-&lt;p>&lt;img src="WireGuard.png" alt="img">&lt;/p>
+&lt;p>&lt;img src="add_wireguard.png" alt="img">&lt;/p>
+&lt;p>&lt;img src="wireguard.png" alt="img">&lt;/p>
 &lt;h3 id="wireguard-configuration-parameters">WireGuard Configuration Parameters&lt;/h3>
 &lt;table>
 &lt;thead>
@@ -340,26 +393,27 @@ The tunnel interface is associated to a vrf which is used to define and control 
 &lt;/tr>
 &lt;tr id="pre-shared-key" style="scroll-margin-top: 10rem;">
 &lt;th>Pre-shared Key&lt;/th>
-&lt;td>Optional 256 bit to provide an additonal level of security.&lt;/td>
+&lt;td>Optional 256-bit to provide an additional level of security.&lt;/td>
 &lt;/tr>
 &lt;tr id="vrf" style="scroll-margin-top: 10rem;">
 &lt;th>VRF&lt;/th>
-&lt;td>The Virtual Routing and Fowarding (VRF) table the WireGuard tunnel will be attached to&lt;/td>
+&lt;td>The Virtual Routing and Forwarding (&lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a>) table of the WireGuard tunnel will be attached to&lt;/td>
 &lt;/tr>
 &lt;tr id="mtu" style="scroll-margin-top: 10rem;">
 &lt;th>MTU&lt;/th>
-&lt;td>The maximum transmission unit (MTU) of the WireGuard tunnel interface. Defaults of 1430 or lower recommended.&lt;/td>
+&lt;td>The maximum transmission unit (MTU) of the WireGuard tunnel interface. Defaults of 1430 or lower are recommended.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
 &lt;h2 id="example-client-config">Example Client Config&lt;/h2>
 &lt;p>As you configure a WireGuard tunnel interface the portal UI will automatically generate an example WireGuard configuration for the peer/client based on the information provided.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="WireGuard-tunnel-example-config.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="wireguard-tunnel-example-config.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example WireGuard client config
 &lt;/figcaption>
 &lt;/figure>
 &lt;div class="alert alert-info" role="alert">
-Note: this is only a partial config. You will likely need to adjust to the &lt;code>AllowedIps&lt;/code> and other fields to meet the needs of the configured tunnel.
+Note: this is only a partial config. You will likely need to adjust the &lt;code>AllowedIps&lt;/code> and other fields to meet the needs of the configured tunnel.
 &lt;/div></description></item></channel></rss>

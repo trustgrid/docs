@@ -11,57 +11,39 @@
 &lt;h4 id="secure-gateway-nodes">Secure Gateway Nodes&lt;/h4>
 &lt;p>Trustgrid customer&amp;rsquo;s should apply access controls to ingress traffic for gateway nodes. By restricting ingress access to edge nodes IP ranges the system security is improved and many common attacks easily avoided.&lt;/p>
 &lt;h4 id="encrypt-traffic-with-customer-certificates">Encrypt Traffic with Customer Certificates&lt;/h4>
-&lt;p>By default, Trustgrid encrypts all traffic on the data and control planes with privately issued certificates from our PKI. Customers may elect to provide their own certificates for data plane encryption ensuring Trustgrid maintains a zero-knowledge security posture of all data plane traffic.&lt;/p></description></item><item><title>Getting-Started: Basic Architecture</title><link>https://docs.trustgrid.io/getting-started/basic-architecture/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/basic-architecture/</guid><description>
-&lt;h3 id="cloud-components">Cloud Components&lt;/h3>
-&lt;ul>
-&lt;li>Portal - The cloud management UI.&lt;/li>
-&lt;li>Gatekeeper - Provides configuration updates to edge nodes.&lt;/li>
-&lt;li>Zuul - Maintains persistent connection with &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> for reporting, &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a>, and updates.&lt;/li>
-&lt;li>API - The management API that exposes 100% of UI elements to automation.&lt;/li>
-&lt;li>Repo - The APT repository that stores all firmware, OS, and &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> updates.&lt;/li>
-&lt;/ul>
-&lt;h3 id="edge-components">Edge Components&lt;/h3>
-&lt;ul>
-&lt;li>Node - The software that provides core functionality in the edge including &lt;a href="https://docs.trustgrid.io/getting-started/networking/">networking&lt;/a>, &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a>, compute, and management features. Edge nodes build outbound connections to gateway nodes.&lt;/li>
-&lt;/ul>
-&lt;h3 id="use-cases">Use Cases&lt;/h3>
-&lt;ul>
-&lt;li>Software Defined Networking - Create a mesh &lt;a href="https://docs.trustgrid.io/getting-started/networking/">network&lt;/a> that connects cloud applications to edge data with load balancing, &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustering&lt;/a>, and failover managed through a portal or API.&lt;/li>
-&lt;li>Edge Compute - Deploy applications to the edge to access datasets not appropriate for replication to the cloud due to &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a> or compliance concerns, latency, or cost.&lt;/li>
-&lt;li>Device Management - Manage thousands of &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> with advanced tools to reduce the burden of operations at enterprise scale.&lt;/li>
-&lt;li>Edge API - Integrate thousands of edge datasets with a single API interface and ETL functions executing at the edge.&lt;/li>
-&lt;li>Security - Leverage Trustgrid&amp;rsquo;s advanced &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a> to protect against a wide range of threats.&lt;/li>
-&lt;/ul></description></item><item><title>Docs: Advanced Options</title><link>https://docs.trustgrid.io/docs/nodes/advanced/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/advanced/</guid><description>
+&lt;p>By default, Trustgrid encrypts all traffic on the data and control planes with privately issued certificates from our PKI. Customers may elect to provide their own certificates for data plane encryption ensuring Trustgrid maintains a zero-knowledge security posture of all data plane traffic.&lt;/p></description></item><item><title>Docs: Advanced Options</title><link>https://docs.trustgrid.io/docs/nodes/appliances/advanced/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/advanced/</guid><description>
 &lt;p>The Advance section provides additional configuration options for customizing the node behavior from the &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/">default settings&lt;/a>.
 &lt;div class="alert alert-warn" role="alert">
 Default settings work in most environments and should only be changed if needed based on your specific requirements.
 &lt;/div>
 &lt;/p>
 &lt;h2 id="config-options">Config Options&lt;/h2>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="config-options.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="config-options.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Advanced Config Options
 &lt;/figcaption>
 &lt;/figure>
-&lt;p>The Config Options panel allows customizing various advanced settings for the node such as &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/">network flow defaults&lt;/a>. Each settings provides a description of what it controls and the value field. Additionally the button on the far right allows resetting a setting back to the default value.&lt;/p>
+&lt;p>The Config Options panel allows customizing various advanced settings for the node such as &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/network-flows/">network flow defaults&lt;/a>. Each setting provides a description of what it controls and the value field. Additionally, the button on the far right allows resetting a setting back to the default value.&lt;/p>
 &lt;p>After changing a setting click the Save button. &lt;strong>Some changes may require a node restart to take effect.&lt;/strong>&lt;/p>
 &lt;h2 id="jvm-memory">JVM Memory&lt;/h2>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="jvm-memory.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="jvm-memory.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Java Virtual Machine (JVM) memory settings
 &lt;/figcaption>
 &lt;/figure>
 &lt;p>The JVM Memory panel allows changing the &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/jvm/">default JVM settings&lt;/a> for the node process.&lt;/p>
-&lt;p>&lt;strong>The node must be restarted for any change to be effective.&lt;/strong>&lt;/p></description></item><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/audits/</guid><description>
+&lt;p>&lt;strong>The node must be restarted for any change to be effective.&lt;/strong>&lt;/p></description></item><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/shared/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/audits/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Node audits provide records when services on a node are invoked, or when upgrades are applied. This can be helpful to see historical maintenance of a node.&lt;/p>
+&lt;p>Node audits provide records when services on a node are invoked, or when upgrades are applied. This can be helpful to see the historical maintenance of a node.&lt;/p>
 &lt;/div>
 &lt;p>Node audits can be viewed for a specific node by navigating to &lt;code>Audits&lt;/code> under the &lt;code>History&lt;/code> section on the node view.&lt;/p>
 &lt;p>Users will need &lt;code>audits::read:node&lt;/code> permissions to view node audits.&lt;/p>
 &lt;p>&lt;img src="node-list.png" alt="img">&lt;/p>
-&lt;p>Node audits can also be found for the entire organization by navigating to &lt;code>Operations&lt;/code>-&amp;gt;&lt;code>Node Audits&lt;/code>.&lt;/p></description></item><item><title>Docs: BGP</title><link>https://docs.trustgrid.io/docs/nodes/bgp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/bgp/</guid><description>
+&lt;p>Node audits can also be found for the entire organization by navigating to &lt;code>Operations&lt;/code>-&amp;gt;&lt;code>Node Audits&lt;/code>.&lt;/p></description></item><item><title>Docs: BGP</title><link>https://docs.trustgrid.io/docs/nodes/appliances/bgp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/bgp/</guid><description>
 &lt;h2 id="summary">Summary&lt;/h2>
 &lt;p>Trustgrid nodes can be configured to connect to an external BGP router to advertise and receive routes. This allows Trustgrid networks to be integrated into an existing routing fabric.&lt;/p>
 &lt;p>The BGP panel is listed under the Network panel group.&lt;/p>
@@ -94,9 +76,10 @@ Java Virtual Machine (JVM) memory settings
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="bgp-config.png" alt="table with BGP router settings" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="bgp-config.png" alt="table with BGP router settings" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 BGP router settings
 &lt;/figcaption>
 &lt;/figure>
@@ -106,9 +89,10 @@ BGP router settings
 &lt;ol>
 &lt;li>Click &lt;strong>+Add Peer Group&lt;/strong> and provide a name.&lt;/li>
 &lt;li>Click Add.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-peer-group.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-peer-group.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Peer Group button
 &lt;/figcaption>
 &lt;/figure>
@@ -148,9 +132,10 @@ Add Peer Group button
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-peer.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-peer.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Add Peer Dialog
 &lt;/figcaption>
 &lt;/figure>
@@ -262,33 +247,37 @@ Example Add Peer Dialog
 &lt;h2 id="management-tools">Management Tools&lt;/h2>
 &lt;h3 id="restart-bgp-server">Restart BGP Server&lt;/h3>
 &lt;p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="restart-bgp.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="restart-bgp.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Restart BGP button
 &lt;/figcaption>
 &lt;/figure>
 It is sometimes necessary to completely restart the BGP server to clear any issues or force new settings to go into effect immediately. The &lt;strong>Restart BGP&lt;/strong> button is available in the tools section of the BGP panel.&lt;/p>
 &lt;p>Once issued you should see the confirmation message: Restart request sent.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="restart-bgp-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="restart-bgp-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 BGP Restart Confirmation
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
 &lt;h3 id="bgp-status">BGP Status&lt;/h3>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="bgp-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="bgp-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 BGP Status button
 &lt;/figcaption>
 &lt;/figure>
 &lt;p>The BGP Status tool allows you to see information about the state of BGP peering.&lt;/p>
 &lt;p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="bgp-status-output.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="bgp-status-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 BGP Status Output
 &lt;/figcaption>
 &lt;/figure>
@@ -326,7 +315,7 @@ BGP Status Output
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>&lt;/p></description></item><item><title>Getting-Started: Trustgrid's Access to Nodes</title><link>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</guid><description>
-&lt;p>By default, Trustgrid support has access to all &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> via the Control Plane, subject to Trustgrid policies and procedures. Trustgrid customers may opt to disallow Trustgrid support access to their &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>. Disabling support access does not interfere with automated management features such as patching, updating, logging, or authentication.&lt;/p>
+&lt;p>By default, Trustgrid support has access to all nodes via the Control Plane, subject to Trustgrid policies and procedures. Trustgrid customers may opt to disallow Trustgrid support access to their nodes by &lt;a href="https://docs.trustgrid.io/docs/support/#remote-support">disabling remote support&lt;/a>. Disabling support access does not interfere with automated management features such as patching, updating, logging, or authentication.&lt;/p>
 &lt;p>Changes to the support flag are audited.&lt;/p></description></item><item><title>Release-Notes: February</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2022/february/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2022/february/</guid><description>
 &lt;h2 id="data-plane-status-panel">Data Plane Status Panel&lt;/h2>
 &lt;p>The previous release added a pop-up table that displayed statistics about a node’s connections to other node such as gateways. We’ve now moved most of this information to a new panel dedicated for this purpose.&lt;/p>
@@ -404,7 +393,8 @@ BGP Status Output
 &lt;p>Now the JSON payload sent to alarm &lt;a href="https://docs.trustgrid.io/docs/alarms/channels/">channels&lt;/a> (email, Slack, PagerDuty, etc.) can include the data points used to calculate the average that exceeded the threshold. This is in a new section called &lt;code>details&lt;/code> and the values are in pairs of the timestamp &lt;code>t&lt;/code> (unix time) and value &lt;code>v&lt;/code> (in milliseconds in the example below).&lt;/p>
 &lt;div class="td-card card border me-4">
 &lt;div class="card-header bg-white">
-Alert Payload&lt;/div>
+Alert Payload
+&lt;/div>
 &lt;div class="card-body code p-0 m-0">
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-JSON" data-lang="JSON">&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
@@ -419,7 +409,7 @@ Alert Payload&lt;/div>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a40000">...&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>
-&lt;/div></description></item><item><title>Docs: Cluster</title><link>https://docs.trustgrid.io/docs/nodes/cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/cluster/</guid><description>
+&lt;/div></description></item><item><title>Docs: Cluster Heartbeat Configuration</title><link>https://docs.trustgrid.io/docs/nodes/appliances/cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/cluster/</guid><description>
 &lt;div class="alert alert-primary" role="alert">
 Cluster configuration is only available for nodes that are members of a &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.
 &lt;/div>
@@ -468,15 +458,16 @@ The same interface should be selected for all cluster members
 &lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Connectors</title><link>https://docs.trustgrid.io/docs/nodes/connectors/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/connectors/</guid><description>
+&lt;/table></description></item><item><title>Docs: Connectors</title><link>https://docs.trustgrid.io/docs/nodes/shared/connectors/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/connectors/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Connectors are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">services&lt;/a> to define a local listening port for layer 4 (L4) connectivity.&lt;/p>
+&lt;p>Connectors are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">services&lt;/a> to define a local listening port for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
 &lt;h4 id="configuration">Configuration&lt;/h4>
 &lt;p>Connectors are configured under the Networking &amp;gt; Connectors tab of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-connector.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 45%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-connector.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 45%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Connector dialogue
 &lt;/figcaption>
 &lt;/figure>
@@ -510,7 +501,7 @@ Add Connector dialogue
 &lt;/tr>
 &lt;tr id="remote-service" style="scroll-margin-top: 10rem;">
 &lt;th>Remote Service&lt;/th>
-&lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
+&lt;td>Either the friendly name of &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">service&lt;/a> that is defined on the remote node, or the IP:Port of the remote service to connect to.&lt;/td>
 &lt;/tr>
 &lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 10rem;">
 &lt;th>Rate Limit (Mb/s)&lt;/th>
@@ -519,8 +510,9 @@ Add Connector dialogue
 &lt;tr id="sniff-traffic" style="scroll-margin-top: 10rem;">
 &lt;th>Sniff Traffic&lt;/th>
 &lt;td>&lt;p>Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the &lt;a href="#listen-port">listening port&lt;/a>.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="connector-sniff-traffic.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;img src="connector-sniff-traffic.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 &lt;/figure>
 &lt;/td>
 &lt;/tr>
@@ -639,15 +631,16 @@ Add Connector dialogue
 &lt;p>&lt;img src="node-visor.png" alt="AWS Metadata">&lt;/p>
 &lt;h2 id="timestamps-for-virtual-network-changes">Timestamps for Virtual Network Changes&lt;/h2>
 &lt;p>Before changes are committed to a virtual network setting, such as the virtual network route table, they are listed in the Changes panel for approval. This made it easier to see if other users had outstanding changes that might be in conflict. However, it wasn’t clear if the other user just made that change or if it had been left accidentally. With this release we’ve added a timestamp that shows when the user saved the change.&lt;/p>
-&lt;p>&lt;img src="modified-route.png" alt="Change Example">&lt;/p></description></item><item><title>Docs: Data Plane</title><link>https://docs.trustgrid.io/docs/nodes/data-plane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/data-plane/</guid><description>
+&lt;p>&lt;img src="modified-route.png" alt="Change Example">&lt;/p></description></item><item><title>Docs: Data Plane</title><link>https://docs.trustgrid.io/docs/nodes/appliances/data-plane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/data-plane/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>The Data Plane panel shows a list of all statistics known peers, their connection status, provides tools for testing connectivity and can display statistics for the connection between the node and the peer.&lt;/p>
 &lt;/div>
 &lt;h2 id="export-list-of-peers">Export List of Peers&lt;/h2>
 &lt;p>You can export a CSV formatted list of all peers by clicking Actions -&amp;gt; Export
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="data-plane-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="data-plane-export.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Export button
 &lt;/figcaption>
 &lt;/figure>
@@ -676,7 +669,7 @@ Export button
 &lt;p>&lt;img src="performance-output.png" alt="Gateway Performance Output">&lt;/p>
 &lt;p>The periods are posted for about every 1MB of data sent. If you see exclamation marks this can indicate lost packets.&lt;/p>
 &lt;h3 id="trace-route-and-mtr">Trace Route and MTR&lt;/h3>
-&lt;p>Both of the links here will populate the &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/">interface tool of the same name&lt;/a> with the selected peer&amp;rsquo;s IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.&lt;/p>
+&lt;p>Both of the links here will populate the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/">interface tool of the same name&lt;/a> with the selected peer&amp;rsquo;s IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 This is most effective if run from the client/edge node to a gateway since the gateway is the only one actually listening on that port. If run in the other direction (gateway -&amp;gt; client) it is likely any firewall between will drop the connections and the client will definitely not respond on that port.
 &lt;/div>
@@ -758,9 +751,9 @@ Gateway nodes will list edge nodes in their peers table
 &lt;p>&lt;img src="rack-mounts.png" alt="Rack Mount">&lt;/p>
 &lt;blockquote>
 &lt;p>Access to the Provisioning section of the portal is not a part of a builtin policy at this time. Access admins should create policies to grant users orders permissions and attach to the appropriate users.&lt;/p>
-&lt;/blockquote></description></item><item><title>Docs: Node Flow Logs</title><link>https://docs.trustgrid.io/docs/nodes/flow-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/flow-logs/</guid><description>
+&lt;/blockquote></description></item><item><title>Docs: Node Flow Logs</title><link>https://docs.trustgrid.io/docs/nodes/shared/flow-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/flow-logs/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>This page will show the most recent 1000 flow logs for the specific node being viewed.&lt;/p>
+&lt;p>This page will show the most recent flow logs for the specific node being viewed and allow for advanced searches scoped to the current node.&lt;/p>
 &lt;/div>
 &lt;p>See this page for more info on &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/">Flow Logs&lt;/a>&lt;/p></description></item><item><title>Release-Notes: June</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2022/june/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2022/june/</guid><description>
 &lt;h2 id="faster-node-overview-graphs">Faster Node Overview Graphs&lt;/h2>
@@ -839,46 +832,103 @@ Gateway nodes will list edge nodes in their peers table
 &lt;p>It should be noted the accuracy of this information varies between ISPs&lt;/p>
 &lt;h2 id="identity-provider-idp-logins-in-authentication-audits">Identity Provider (IdP) Logins in Authentication Audits&lt;/h2>
 &lt;p>Previously, the logs under the Operations → Authentication Audits only displayed logins using the Trustgrid native authentication provider. If you were using an IdP you would need to review the providers logs to see when users logged in.&lt;/p>
-&lt;p>With this release we now display IdP portal logins the same way native logins are reported.&lt;/p></description></item><item><title>Docs: Infovisor</title><link>https://docs.trustgrid.io/docs/nodes/infovisor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/infovisor/</guid><description>
+&lt;p>With this release we now display IdP portal logins the same way native logins are reported.&lt;/p></description></item><item><title>Docs: Infovisor</title><link>https://docs.trustgrid.io/docs/nodes/shared/infovisor/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/infovisor/</guid><description>
 &lt;p>The infovisor displays details about the Trustgrid node and can be displayed by clicking the Info button in the top right or hitting the backtick &lt;code>`&lt;/code> key.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="info-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="info-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Button to open Infovisor
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
-&lt;p>It contains information such as:&lt;/p>
-&lt;ul>
-&lt;li>Name&lt;/li>
-&lt;li>Control and Data Plane Status&lt;/li>
-&lt;li>Public IP - This is the IP observed by the Trustgrid Control plane as the source IP by traffic from the node&lt;/li>
-&lt;li>Version and Package Version - The Trustgrid software version running on the node&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Enabled / Disabled Status&lt;/a>&lt;/li>
-&lt;li>Device Type&lt;/li>
-&lt;li>Operating System (OS) Version&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#trustgrid-resource-names-or-tgrn">TGRN or Trustgrid Resource Name&lt;/a>&lt;/li>
-&lt;li>Upgrade Status&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">Tags&lt;/a>&lt;/li>
-&lt;li>On AWS Nodes additional information is reported based on the metadata service
-&lt;ul>
-&lt;li>Availability Zone&lt;/li>
-&lt;li>Instance ID&lt;/li>
-&lt;li>Instance type&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
+&lt;p>It displays the following information in a card layout:
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="infovisor.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="infovisor.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example infovisor
 &lt;/figcaption>
-&lt;/figure></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/interfaces/</guid><description>
+&lt;/figure>
+&lt;/p>
+&lt;p>It contains the below information but can vary between appliance and agent-based nodes. The table below lists the field and if it is displayed or not.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field&lt;/th>
+&lt;th>Agent&lt;/th>
+&lt;th>Appliance&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Name&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Control and Data Plane Status&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Public IP - Source IP observed by the Trustgrid control plane&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Version&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Package Version&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Enabled / Disabled Status&lt;/a>&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Device Type&lt;/td>
+&lt;td>Show &amp;ldquo;Agent&amp;rdquo; as type&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Operating System (OS) Version&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://docs.trustgrid.io/docs/user-management/policies/#trustgrid-resource-names-or-tgrn">TGRN or Trustgrid Resource Name&lt;/a>&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Upgrade Status&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;a href="https://docs.trustgrid.io/docs/nodes/shared/tags/">Tags&lt;/a>&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;ul>&lt;li>AWS metadata (AWS Nodes only)&lt;/li>&lt;ul>&lt;li>Availability Zone&lt;/li>&lt;li>Instance ID&lt;/li>&lt;li>Instance type&lt;/li>&lt;/ul>&lt;/ul>&lt;/td>
+&lt;td>❌&lt;/td>
+&lt;td>✅&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/appliances/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/interfaces/</guid><description>
 &lt;h2 id="network-interfaces">Network Interfaces&lt;/h2>
 &lt;p>Navigate to a node, then select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="interfaces.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="interfaces.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Interfaces panel
 &lt;/figcaption>
 &lt;/figure>
@@ -909,7 +959,7 @@ Interfaces panel
 &lt;/tr>
 &lt;tr id="interface-vrf" style="scroll-margin-top: 10rem;">
 &lt;th>Interface VRF&lt;/th>
-&lt;td>Selects to which &lt;a href="https://docs.trustgrid.io/docs/nodes/vrfs/">VRF&lt;/a> the interface is attached.&lt;/td>
+&lt;td>Selects to which &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> the interface is attached.&lt;/td>
 &lt;/tr>
 &lt;tr id="vlan-id-subinterfaces-only" style="scroll-margin-top: 10rem;">
 &lt;th>VLAN ID (Subinterfaces Only)&lt;/th>
@@ -1079,9 +1129,10 @@ Changing the node status will trigger a restart of the Trustgrid node service.
 &lt;li>Navigate to that node in the Trustgrid portal.&lt;/li>
 &lt;li>Open the &lt;strong>Info&lt;/strong> tab by clicking the dropdown in the top-right, or hitting the &lt;code>`&lt;/code> key.&lt;/li>
 &lt;li>From the Status dropdown change to Disable or Enable
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="info-tab-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="info-tab-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Info tab with Status dropdown
 &lt;/figcaption>
 &lt;/figure>
@@ -1098,9 +1149,10 @@ Note that if you change this any selected nodes will be de-selected.
 &lt;/li>
 &lt;li>Use the checkbox on the left to select the nodes you wish to disable or enable.&lt;/li>
 &lt;li>From the Actions dropdown select either &lt;strong>Enable&lt;/strong> or &lt;strong>Disable&lt;/strong>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="nodes-table-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="nodes-table-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Status actions on Nodes table
 &lt;/figcaption>
 &lt;/figure>
@@ -1110,7 +1162,103 @@ Status actions on Nodes table
 &lt;p>Nodes can be enabled or disabled via the Trustgrid published Terraform provider using the &lt;a href="https://registry.terraform.io/providers/trustgrid/tg/latest/docs/resources/node_state/" target="_blank">tg_node_state&lt;/a> resource.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 The Trustgrid API refers to this state via the &lt;code>status&lt;/code> attribute. The value &lt;code>ACTIVE&lt;/code> means the node is &lt;strong>enabled&lt;/strong> and the value &lt;code>INACTIVE&lt;/code> indicates the node is currently &lt;strong>disabled&lt;/strong>
-&lt;/div></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
+&lt;/div></description></item><item><title>Getting-Started: Basic Architecture</title><link>https://docs.trustgrid.io/getting-started/basic-architecture/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/basic-architecture/</guid><description>
+&lt;h2 id="nodes">Nodes&lt;/h2>
+&lt;p>The basic building block of a Trustgrid network is a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a>. Nodes are &lt;a href="https://docs.trustgrid.io/getting-started/deployment/">deployed&lt;/a> on-premises or in your cloud provider and connected to each other to build a &lt;a href="%5B#data-plane%5D">data plane&lt;/a> on top of which additional services such as &lt;a href="#virtual-networks">virtual networking&lt;/a>, &lt;a href="#ztna-access">ztna access&lt;/a>, and &lt;a href="#edge-compute">compute&lt;/a> can be provided.&lt;/p>
+&lt;p>Nodes can be &lt;a href="../deployment">deployed&lt;/a> either as an &lt;strong>agent&lt;/strong>, a service running in an existing operating system, or as an &lt;strong>appliance&lt;/strong> which bundles the operating system and Trustgrid software together.&lt;/p>
+&lt;p>Additionally, appliance-based nodes can be &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustered&lt;/a> to provide high availability at a site.&lt;/p>
+&lt;h3 id="gateways">Gateways&lt;/h3>
+&lt;p>While all nodes can act as edge nodes (making only outbound connections), appliance-based nodes can also be configured to act as &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/gateway/gateway-server/">gateway servers&lt;/a> which listen for inbound connections from other edge nodes in the account.&lt;/p>
+&lt;p>These connections create the &lt;a href="#data-plane">private data plane&lt;/a> which enabls the Trustgrid network services.&lt;/p>
+&lt;h2 id="data-plane">Data Plane&lt;/h2>
+&lt;p>The data plane is built between edge nodes and their gateways nodes to allow private connectivity between sites. It provides a virtual network overlay on top of the public internet to securely connect distributed systems and applications.&lt;/p>
+&lt;h3 id="virtual-networks">Virtual Networks&lt;/h3>
+&lt;p>Nodes can be attached to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual networks&lt;/a>, which provide a way to share network configuration like &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">routes&lt;/a>, NATs, and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">ACLs&lt;/a> at scale.&lt;/p>
+&lt;h4 id="layer-4-proxy">Layer 4 Proxy&lt;/h4>
+&lt;p>The data plane can also be used to enable Layer 4 proxy connections across two nodes. In this setup, one node will act at the &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connector&lt;/a> listening on a specified port. When traffic is received on that port it will be forwarded to the configured &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">service&lt;/a>. The node that hosts that service will then forward the traffic on to the configured IP and port using it&amp;rsquo;s local interfaces.&lt;/p>
+&lt;h3 id="ztna-applications">ZTNA Applications&lt;/h3>
+&lt;p>&lt;a href="https://docs.trustgrid.io/docs/applications/">ZTNA Applications&lt;/a> can be exposed through nodes or clusters. Access to an application can be restricted via &lt;a href="https://docs.trustgrid.io/docs/applications/access-policy/">access policies&lt;/a>, for example to only allow users from a specific country.&lt;/p>
+&lt;h2 id="control-plane">Control plane&lt;/h2>
+&lt;p>In addition to the data plane, all Trustgrid nodes build connections to the Trustgrid control plane. This allows centralized management and monitoring of all nodes from the Trustgrid portal and api including:&lt;/p>
+&lt;ul>
+&lt;li>Software updates are provided through our apt repository that ensures nodes have security updates available and only run with tested software permutations&lt;/li>
+&lt;li>Network, node, user, and application configuration is managed through our web portal&lt;/li>
+&lt;li>Configuration changes are broadcast to nodes as needed, for example when adding routes or adding a gateway to your network&lt;/li>
+&lt;/ul>
+&lt;p>All services of the control plane are contained &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">Trustgrid&amp;rsquo;s reserved address spaces&lt;/a> to limit the required firewall rules required for an edge node to operate behind a firewall.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="basic-connectivity.png" alt="Basic connectivity diagram" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Basic Connectivity Diagram
+&lt;/figcaption>
+&lt;/figure></description></item><item><title>Docs: Agent Address Translation</title><link>https://docs.trustgrid.io/docs/nodes/agents/vpn/nat/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/agents/vpn/nat/</guid><description>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="agent-nat.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;/figure>
+&lt;h2 id="enable-forwarding">Enable Forwarding&lt;/h2>
+&lt;p>This check box determines if an agent will attempt to forward traffic to/from between the VPN tunnel interface and IP addresses and networks accessible via other interfaces on the agent.&lt;/p>
+&lt;h3 id="managing-forwarding">Managing Forwarding&lt;/h3>
+&lt;p>This option is deselected by default. To enable, select the check box and click Save.&lt;/p>
+&lt;h2 id="network-address-translation">Network Address Translation&lt;/h2>
+&lt;p>By default, all forwarded traffic retains the original IP address local to the agent. It is common to want or need to translate these addresses to avoid IP conflicts or to maintain consistent IP address spaces. The Network Address Translation table allows for mapping the local IP addresses or networks to virtual IP addresses or networks.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="local-cidr" style="scroll-margin-top: 10rem;">
+&lt;th>Local CIDR&lt;/th>
+&lt;td>The local IP address or address block that should be mapped into the virtual network. It should be entered in CIDR block format (eg - &lt;code>192.168.100.0/24&lt;/code> or &lt;code>192.168.100.51/32&lt;/code>).&lt;/td>
+&lt;/tr>
+&lt;tr id="virtual-cidr" style="scroll-margin-top: 10rem;">
+&lt;th>Virtual CIDR&lt;/th>
+&lt;td>The virtual network IP address or addresses that the local IP addresses should be mapped to, also entered in CIDR block format.&lt;/td>
+&lt;/tr>
+&lt;tr id="description" style="scroll-margin-top: 10rem;">
+&lt;th>Description&lt;/th>
+&lt;td>(optional) Allows for a user friendly description of the NAT rule.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="example-nat">Example NAT&lt;/h3>
+&lt;p>Using the example shown in the screenshot above, the local IP address 172.16.55.199 is translated to 10.200.101.1 when forwarding traffic from the VPN tunnel interface to the local network.&lt;/p>
+&lt;pre class="mermaid">flowchart LR
+remoteNode[Remote Node&amp;lt;br&amp;gt;10.200.0.1]
+originalReq[[Source IP: 100.200.0.1&amp;lt;br&amp;gt;Destination IP:10.200.101.1]]
+localNode[Local Agent Node]
+natReq[[Source IP: 10.200.0.1&amp;lt;br&amp;gt;Destination IP: 172.16.55.199]]
+localServer[Local Server&amp;lt;br&amp;gt;172.16.55.199]
+remoteNode--&amp;gt;originalReq--&amp;gt;localNode--&amp;gt;natReq--&amp;gt;localServer&lt;/pre>
+&lt;p>The translation works in the other direction as well&lt;/p>
+&lt;pre class="mermaid">flowchart LR
+remoteNode[Remote Node&amp;lt;br&amp;gt;10.200.0.1]
+originalReq[[Source IP: 172.16.55.199&amp;lt;br&amp;gt;Destination IP:10.200.0.1]]
+localNode[Local Agent Node]
+natReq[[Source IP: 10.200.101.1&amp;lt;br&amp;gt;Destination IP: 10.200.0.1]]
+localServer[Local Server&amp;lt;br&amp;gt;172.16.55.199]
+localServer--&amp;gt;originalReq--&amp;gt;localNode--&amp;gt;natReq--&amp;gt;remoteNode&lt;/pre>
+&lt;h3 id="managing-nat-rules">Managing NAT Rules&lt;/h3>
+&lt;h4 id="add-agent-nat-rule">Add Agent NAT Rule&lt;/h4>
+&lt;ol>
+&lt;li>Navigate to the desired Agent&amp;rsquo;s Address Translation page.&lt;/li>
+&lt;li>Click the &amp;ldquo;Add Entry&amp;rdquo; link below the Network Address Translations table.&lt;/li>
+&lt;li>Enter the Virtual CIDR and Local CIDR address ranges to map. Optionally, provide a description.&lt;/li>
+&lt;li>Click the green check box to the right of the rule.&lt;/li>
+&lt;li>(Optionally), repeat with additional rules.&lt;/li>
+&lt;li>Click Save&lt;/li>
+&lt;/ol>
+&lt;h4 id="delete-agent-nat-rule">Delete Agent NAT Rule&lt;/h4>
+&lt;ol>
+&lt;li>Navigate to the desired Agent&amp;rsquo;s Address Translation page.&lt;/li>
+&lt;li>Click the X symbol to the right of the rule you wish to remove.&lt;/li>
+&lt;li>(Optionally), repeat with additional rules.&lt;/li>
+&lt;li>Click Save&lt;/li>
+&lt;/ol></description></item><item><title>Docs: Network Objects</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A network object allows naming a CIDR inside a VPN for easier rule management.&lt;/p>
 &lt;/div>
@@ -1276,15 +1424,116 @@ Change entry for active member change
 &lt;/div>
 &lt;/div>
 &lt;/div>
-&lt;/div></description></item><item><title>Help-Center: Review Node Events</title><link>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</guid><description>
+&lt;/div></description></item><item><title>Docs: Overview</title><link>https://docs.trustgrid.io/docs/nodes/agents/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/agents/overview/</guid><description>
+&lt;p>The overview page for agent-based nodes shows several graphs and provides a table of recent flow logs.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="agent-overview.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 95%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Example Overview panel for an agent
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="graphs">Graphs&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>Node Performance&lt;/strong> - This section shows graphs of CPU, memory, disk, and network usage over time for the agent node.&lt;/li>
+&lt;li>&lt;strong>Agent Process Performance&lt;/strong> - This section shows the CPU, memory, and disk IO usage of the actual Trustgrid agent process.&lt;/li>
+&lt;li>&lt;strong>Traffic Throughput&lt;/strong> - This section shows the total sent and received traffic in megabits per second (Mbps) for all interfaces on the agent.&lt;/li>
+&lt;li>&lt;strong>VPN Traffic Throughput&lt;/strong> - This section shows the total sent and received traffic specifically over the virtual network tunnel interface in megabits per second (Mbps).&lt;/li>
+&lt;/ul>
+&lt;div class="alert alert-warning" role="alert">
+&lt;h4 class="alert-heading">Note about agent statistics&lt;/h4>
+&lt;strong>Agent-based&lt;/strong> nodes report their statistics to the Trustgrid control plane periodically which are then processed and available for display. As such there can be a delay of up to 5 minutes before the graphs show a data point. &lt;strong>Appliance-based&lt;/strong> nodes can report their stats in realtime when online and connected to the portal.
+&lt;/div>
+&lt;h2 id="recent-flow-logs">Recent Flow Logs&lt;/h2>
+&lt;p>This section gives a quick view of the most recent reported flow logs and provides a link to the &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/">Flow Logs&lt;/a> page for more advanced filtering and analysis.&lt;/p></description></item><item><title>Getting-Started: Request Trustgrid Trial Account</title><link>https://docs.trustgrid.io/getting-started/trial/request-trial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/trial/request-trial/</guid><description>
+&lt;p>The process below will guide you through requesting a free 30-day trial account.&lt;/p>
+&lt;h2 id="high-level-steps">High-Level Steps&lt;/h2>
+&lt;ul>
+&lt;li>Sign up for a Trustgrid trial account&lt;/li>
+&lt;li>Verify email&lt;/li>
+&lt;li>Sign in&lt;/li>
+&lt;/ul>
+&lt;h2 id="prerequisites">Prerequisites&lt;/h2>
+&lt;ul>
+&lt;li>Email address&lt;/li>
+&lt;li>Chrome-based browser&lt;/li>
+&lt;/ul>
+&lt;h2 id="step-1---create-a-trustgrid-account">Step 1 - Create a Trustgrid account&lt;/h2>
+&lt;ol>
+&lt;li>Using Chrome or a similar browser navigate to &lt;a href="https://portal.trustgrid.io/">https://portal.trustgrid.io/&lt;/a>&lt;/li>
+&lt;li>Click the link at the bottom of the page to &amp;ldquo;Start a free trial&amp;rdquo;
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="start-trial.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>Provide the requested information. Note that the account will be created based on the provided Company Name.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="sign-up-form.png" alt="Sign up form" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>A verification email will be sent to the provided address.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="email-verify.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>Check your email inbox for the verification email from Trustgrid. It may be in your spam folder. Click the link to verify your email address.&lt;/li>
+&lt;li>You will be redirected to the login page. Sign in using the credentials you provided during sign-up.&lt;/li>
+&lt;li>Upon login, you will be required to configure one-time password multifactor authentication (MFA). Use an app such as Google Authenticator or Authy to scan the QR code. Enter the returned one-time password when prompted.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="mfa-setup.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>You will be returned to the sign-in page to complete your login. Enter your email, password, and the one-time password from your authentication app.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="final-signin.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;p>Note: If you are not automatically redirected back to the Trustgrid portal just click the Portal link in the top right.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="auth-portal-link.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 35%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Link back to Portal
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="step-2---choose-a-domain">Step 2 - Choose a domain&lt;/h2>
+&lt;p>All Trustgrid accounts have a base domain that is used to create fully qualified domain names (FQDN) for resources such as nodes and clusters.&lt;/p>
+&lt;ol>
+&lt;li>On initial login, you will be prompted to provide the subdomain for your FQDN. This will be appended with &lt;code>.trustgrid.io&lt;/code> automatically.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="domain-setup.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Prompt to create account domain
+&lt;/figcaption>
+&lt;/figure>
+&lt;ul>
+&lt;li>This name must be unique among all Trustgrid customers, if you choose a domain name that is already taken you will be prompted to choose another.&lt;/li>
+&lt;li>The subdomain can only consist of lower-case letters, numbers, and hyphens(&lt;code>-&lt;/code>).&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;div class="alert alert-warning" role="alert">
+Once created the domain cannot be changed. Please choose carefully.
+&lt;/div>
+&lt;h2 id="next-steps">Next Steps&lt;/h2>
+&lt;p>You now have access to the Trustgrid portal and can begin &lt;a href="https://docs.trustgrid.io/getting-started/trial/base-setup">installing agents&lt;/a>.&lt;/p></description></item><item><title>Help-Center: Review Node Events</title><link>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/ops-logs/review-node-events/</guid><description>
 &lt;p>When troubleshooting a problem on edge or gateway nodes, reviewing node &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> can provide critical information about the nature of the problem.&lt;/p>
 &lt;ol>
 &lt;li>Choose the node that may be causing the problem&lt;/li>
 &lt;li>Scroll down to &lt;code>Events&lt;/code>&lt;/li>
 &lt;li>Look for any critical problems
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-alerts.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-alerts.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Events for the currently viewed node
 &lt;/figcaption>
 &lt;/figure>
@@ -1294,14 +1543,15 @@ Events for the currently viewed node
 &lt;ol>
 &lt;li>Choose the &lt;code>Operations&lt;/code> tab&lt;/li>
 &lt;li>View &lt;code>Events&lt;/code> across the organization
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="alerts-page.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="alerts-page.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Organization wide events
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
-&lt;/ol></description></item><item><title>Docs: Gateway Server Settings</title><link>https://docs.trustgrid.io/docs/nodes/gateway/gateway-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/gateway/gateway-server/</guid><description>
+&lt;/ol></description></item><item><title>Docs: Gateway Server Settings</title><link>https://docs.trustgrid.io/docs/nodes/appliances/gateway/gateway-server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/gateway/gateway-server/</guid><description>
 &lt;p>Gateways servers are nodes that are configured to receive connections from other Trustgrid nodes (clients). These are the only nodes that need to have ports open and listening on the internet or WAN network.&lt;/p>
 &lt;p>The server sub-panel provides the settings controlling if a node will act as a server and if so how clients will connect to it.&lt;/p>
 &lt;h2 id="gateway-server-types">Gateway Server Types&lt;/h2>
@@ -1366,33 +1616,37 @@ Organization wide events
 &lt;div class="alert alert-warning" role="alert">
 Enabling and disabling the gateway server will require a restart of the node service which will disrupt all node functionality for a brief period.
 &lt;/div>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="gateway-server.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="gateway-server.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Gateway Server settings
 &lt;/figcaption>
 &lt;/figure>
 &lt;h2 id="gateway-clients">Gateway Clients&lt;/h2>
 &lt;p>This section is only used if the node is configured as a &lt;a href="#gateway-server-types">private gateway server&lt;/a>. Only clients listed on this page will attempt to connect to the server.&lt;br>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="gateway-private-clients.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;img src="gateway-private-clients.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
 &lt;/figure>
 &lt;/p>
 &lt;h3 id="add-gateway-clients">Add Gateway Clients&lt;/h3>
 &lt;p>To add clients:&lt;/p>
 &lt;ol>
 &lt;li>Type part of their name in the &amp;ldquo;Add Gateway Client&amp;rdquo; box.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-client-filter.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-client-filter.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example showing filtered list of nodes
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Select the desired node from the list. After selecting you should see the node in the table with &lt;code>Enabled&lt;/code> set to true.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-client-list.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-client-list.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Selected node added to table
 &lt;/figcaption>
 &lt;/figure>
@@ -1405,15 +1659,87 @@ Selected node added to table
 &lt;ol>
 &lt;li>Optionally, use the search box to the top right of the table to filter the displayed clients.&lt;/li>
 &lt;li>Click the black X to the right of the client you wish to remove.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="delete-client.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="delete-client.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Black X will remove the client
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Click Save.&lt;/li>
-&lt;/ol></description></item><item><title>Release-Notes: December</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</guid><description>
+&lt;/ol></description></item><item><title>Tutorials: Node Agent Deployments</title><link>https://docs.trustgrid.io/tutorials/agent-deploy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/agent-deploy/</guid><description>
+&lt;h2 id="supported-operating-systems">Supported Operating Systems&lt;/h2>
+&lt;h3 id="linux">Linux&lt;/h3>
+&lt;ul>
+&lt;li>Ubuntu 22.04 LTS&lt;/li>
+&lt;/ul>
+&lt;h3 id="container">Container&lt;/h3>
+&lt;p>The Trustgrid agent can be deployed as a container on Linux systems. This provides an isolated environment for the agent without requiring a full operating system instance.&lt;/p>
+&lt;p>Trustgrid provides a Docker image that contains the agent pre-configured and optimized to run in Docker or similar container hosting environments like Kubernetes.&lt;/p>
+&lt;h2 id="agent-installation">Agent Installation&lt;/h2>
+&lt;p>Installation instructions are also shown in the portal after &lt;a href="https://docs.trustgrid.io/tutorials/agent-deploy/#adding-agents">adding an agent&lt;/a>.
+&lt;ul class="nav nav-tabs" id="tabs-1" role="tablist">
+&lt;li class="nav-item">
+&lt;button class="nav-link active"
+id="tabs-01-00-tab" data-bs-toggle="tab" data-bs-target="#tabs-01-00" role="tab"
+aria-controls="tabs-01-00" aria-selected="true">
+Ubuntu 22.04
+&lt;/button>
+&lt;/li>
+&lt;/ul>
+&lt;div class="tab-content" id="tabs-1-content">
+&lt;div class="tab-body tab-pane fade show active"
+id="tabs-01-00" role="tabpanel" aria-labelled-by="tabs-01-00-tab" tabindex="1">
+Follow the process below to install on Ubuntu 22.04 Jammy Jellyfish operating systems:
+&lt;ol>
+&lt;li>From the &lt;a href="https://docs.trustgrid.io/docs/nodes/">Nodes table&lt;/a>, click the &lt;code>+ Add Agent&lt;/code> button to generate an agent token.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/img/agent/add-agent-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Add Agent Button
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>When prompted provide a name and choose the Virtual Network the agent will connect to. Then click &lt;code>Add&lt;/code>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/img/agent/name-agent.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Name &amp;#39;agent1&amp;#39; and assigned to &amp;#39;default&amp;#39; virtual network
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Make sure the &amp;ldquo;Ubuntu Jammy&amp;rdquo; tab is selected and then click the copy button to copy the install command to your clipboard.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/img/agent/ubuntu-install-command.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;/figure>
+&lt;div class="alert alert-warning" role="alert">
+The agent token and install command are only visible on this panel. Once closed it is not retrievable. Either keep the panel open until you&amp;rsquo;ve completed the below steps or copy the token to a secure location
+&lt;/div>
+&lt;/li>
+&lt;li>Login to your Ubuntu instances as a user with sudo permissions.&lt;/li>
+&lt;li>Paste the command from your clipboard and hit enter. The install process will run automatically.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/img/agent/tg-agent-install.gif" alt="Terminal window showing the Trustgrid agent being installed" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 95%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>After it completes you can return to the portal and close the Add Agent panel. You should see the new agent listed in the Nodes table and online.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/img/agent/agent-online.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 65%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+agent1 shows as online
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ol>
+&lt;/div>
+&lt;/div>
+&lt;/p></description></item><item><title>Release-Notes: December</title><link>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/archive/2021/december/</guid><description>
 &lt;h2 id="data-plane-status-table">Data Plane Status Table&lt;/h2>
 &lt;p>Previously Trustgrid had a visual indicator on the Node detail page to show the Data Plane health of a node, but it only showed the state as &lt;code>Connected&lt;/code>, &lt;code>Degraded&lt;/code> or &lt;code>Disconnected&lt;/code>. While connected and disconnected were clear, there was little information on why the status was Degraded.&lt;/p>
 &lt;p>With this release hovering over the Data Plane status icon will bring up a pop-up screen showing all the peers and and their connection status. Additionally, if the peer is connected it will show:&lt;/p>
@@ -1435,22 +1761,82 @@ Black X will remove the client
 &lt;ul>
 &lt;li>You can now search the Nodes table for Management IPs and Device types&lt;/li>
 &lt;li>Fixed a broken link in the new user invite email for customers without IDP integration&lt;/li>
-&lt;/ul></description></item><item><title>Docs: Location</title><link>https://docs.trustgrid.io/docs/nodes/location/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/location/</guid><description>
+&lt;/ul></description></item><item><title>Docs: Location</title><link>https://docs.trustgrid.io/docs/nodes/shared/location/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/location/</guid><description>
 &lt;p>Trustgrid uses each node&amp;rsquo;s public IP address to derive location information. If it&amp;rsquo;s incorrect, the fields can be set manually. If set manually, IP changes will not update the node&amp;rsquo;s location when viewed from the nodes table or the network map.&lt;/p>
 &lt;p>&lt;img src="node-location.png" alt="img">&lt;/p>
 &lt;h6 id="to-change-the-node-location">To change the Node Location:&lt;/h6>
-&lt;p>Change the details to desired settings then click &lt;code>Save&lt;/code> when done.&lt;/p></description></item><item><title>Docs: Additional Metrics</title><link>https://docs.trustgrid.io/docs/nodes/metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/metrics/</guid><description>
-&lt;p>The Metrics page will be used to display additional available statistics that are not displayed on the &lt;a href="https://docs.trustgrid.io/docs/nodes/overview/">overview&lt;/a> page. Similar to the overview page these stats are viewable in 1, 2, 6, 12 and 24 hour views, and 1 week and 1 month views.&lt;/p>
+&lt;p>Change the details to desired settings then click &lt;code>Save&lt;/code> when done.&lt;/p></description></item><item><title>Docs: Additional Metrics</title><link>https://docs.trustgrid.io/docs/nodes/appliances/metrics/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/metrics/</guid><description>
+&lt;p>The Metrics page will be used to display additional available statistics that are not displayed on the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/overview/">overview&lt;/a> page. Similar to the overview page these stats are viewable in 1, 2, 6, 12, and 24-hour views, and 1 week and 1 month views.&lt;/p>
 &lt;h2 id="jvm-heap">JVM Heap&lt;/h2>
-&lt;p>The Trustgrid service running on appliances run via the Java Virtual Machine (jvm). When launched the java process claims a minimum amount of memory from the operating system. As the process runs additional memory can be claimed up to a configured maximum. Not all of this memory is actively in use by Java. Once the maximum amount of memory has been claimed or a period of time has elapsed Java will run a garbage collection process to free up pages of memory that are no longer being actively used.&lt;/p>
+&lt;p>The Trustgrid service on appliance-based nodes runs via the Java Virtual Machine (JVM). When launched the java process claims a minimum amount of memory from the operating system. As the process runs additional memory can be claimed up to a configured maximum. Not all of this memory is actively in use by Java. Once the maximum amount of memory has been claimed or a period of time has elapsed Java will run a garbage collection process to free up pages of memory that are no longer being actively used.&lt;/p>
 &lt;p>The JVM Heap statistic shows how much of the claimed memory is actively being used. The sharp reductions in the graph below indicate times where the garbage collection process has run freeing up available memory by reducing the current heap size.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="metrics-jvm-heap.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="metrics-jvm-heap.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example JVM Heap chart
 &lt;/figcaption>
 &lt;/figure>
-&lt;/p></description></item><item><title>Docs: Overview</title><link>https://docs.trustgrid.io/docs/nodes/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/overview/</guid><description>
+&lt;/p></description></item><item><title>Docs: Data Plane</title><link>https://docs.trustgrid.io/docs/nodes/agents/data-plane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/agents/data-plane/</guid><description>
+&lt;p>The Data Plane panel provides information about the tunnels between the agent and its gateway peers that allow for data plane communication.&lt;br>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="agent-peers.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Table of connected gateway peers and stats
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;p>Each peer will show the following data:
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="status" style="scroll-margin-top: 10rem;">
+&lt;th>Status&lt;/th>
+&lt;td>This field will display a green circle if connected and a red circle if disconnected.&lt;/td>
+&lt;/tr>
+&lt;tr id="name" style="scroll-margin-top: 10rem;">
+&lt;th>Name&lt;/th>
+&lt;td>The name of the peer node.&lt;/td>
+&lt;/tr>
+&lt;tr id="ip" style="scroll-margin-top: 10rem;">
+&lt;th>IP&lt;/th>
+&lt;td>The IP address the peer node is advertising for connectivity.&lt;/td>
+&lt;/tr>
+&lt;tr id="path" style="scroll-margin-top: 10rem;">
+&lt;th>Path&lt;/th>
+&lt;td>Name of additional path if one is defined. When blank the default WAN/internet path is implied.&lt;/td>
+&lt;/tr>
+&lt;tr id="rtt" style="scroll-margin-top: 10rem;">
+&lt;th>RTT&lt;/th>
+&lt;td>Return trip time. The agent sends a ping every 20 seconds and records the time for a response. This field shows the most recent result for each peer.&lt;/td>
+&lt;/tr>
+&lt;tr id="mode" style="scroll-margin-top: 10rem;">
+&lt;th>Mode&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>TLS - Connections using only the Trustgrid TLS tunnel method&lt;/li>
+&lt;li>TLS/UPD - Connections using both Trustgrid TLS and UDP tunnels&lt;/li>
+&lt;/ul>
+UDP is something that needs to be enabled on the gateway node. &lt;/td>
+&lt;/tr>
+&lt;tr id="type" style="scroll-margin-top: 10rem;">
+&lt;th>Type&lt;/th>
+&lt;td>For an agent this will always show &lt;strong>client&lt;/strong> since it only makes outbound connections. Appliance-based nodes could show &lt;strong>server&lt;/strong> (gateway) or &lt;strong>client&lt;/strong>.&lt;/td>
+&lt;/tr>
+&lt;tr id="ports" style="scroll-margin-top: 10rem;">
+&lt;th>Ports&lt;/th>
+&lt;td>The destination port(s) used for creating the tunnel to the peer.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/p>
+&lt;div class="alert alert-info" role="alert">
+Organization using the Trustgrid hosted gateway for trial will not see any peers listed at this time.
+&lt;/div></description></item><item><title>Docs: Overview</title><link>https://docs.trustgrid.io/docs/nodes/appliances/overview/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/overview/</guid><description>
 &lt;h3 id="stats">Stats&lt;/h3>
 &lt;p>The Node overview page shows performance and network traffic data.&lt;/p>
 &lt;p>Supported time windows are selectable at the top. VPN and network statistics can be targeted to specific virtual networks and interfaces.&lt;/p>
@@ -1600,38 +1986,41 @@ Example JVM Heap chart
 &lt;/ul>
 &lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/wan-interface-ip/">Changing Trustgrid node IP addresses&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/nats/">Adding, modifying&lt;/a> and testing NATs on Edge devices&lt;/li>
-&lt;li>Modifying &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#interface-routes">interface&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#managing-virtual-network-routes">domain routes&lt;/a>, including facilitating &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/">failover between sites&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/nats/">Adding, modifying&lt;/a> and testing NATs on Edge devices&lt;/li>
+&lt;li>Modifying &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#interface-routes">interface&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#managing-virtual-network-routes">domain routes&lt;/a>, including facilitating &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/">failover between sites&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Disabling&lt;/a> and removing &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/deleting-clusters/">clusters&lt;/a>, and related configurations (e.g. routes) when no longer needed&lt;/li>
 &lt;/ul>
 &lt;div class="alert alert-primary" role="alert">
 Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment
 &lt;/div></description></item><item><title>Docs: Repositories</title><link>https://docs.trustgrid.io/docs/repositories/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/repositories/</guid><description>
 &lt;h2 id="summary">Summary&lt;/h2>
-&lt;p>Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy &lt;a href="https://docs.trustgrid.io/docs/nodes/containers/">containerized applications securely to their Trustgrid node appliances.&lt;/a>&lt;/p>
+&lt;p>Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/containers/">containerized applications securely to their Trustgrid node appliances.&lt;/a>&lt;/p>
 &lt;h2 id="container-namespace">Container Namespace&lt;/h2>
 &lt;p>Each customer is isolated to their own container namespace that is listed at the bottom of the Repositories page.&lt;/p>
 &lt;p>To push a container to your private registry it must be named with your namespace as a prefix when tagged.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-namespace.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-namespace.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Trustgrid repository namespace
 &lt;/figcaption>
 &lt;/figure>
 &lt;h2 id="list-view">List View&lt;/h2>
 &lt;p>Uploaded container images may be viewed by navigating to Repositories in the portal.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-repo-list.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-repo-list.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Repositories list view
 &lt;/figcaption>
 &lt;/figure>
 &lt;p>From this view you can se all containers uploaded to your namespace.&lt;/p>
 &lt;h3 id="container-repository-view">Container Repository View&lt;/h3>
 &lt;p>Each repository can be managed. Clicking into a container will show its uploaded tags and digests, as well as the URI that can be used to pull the container.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-repo-example.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-repo-example.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example repository for nginx container with two tag versions
 &lt;/figcaption>
 &lt;/figure>
@@ -1642,9 +2031,10 @@ Example repository for nginx container with two tag versions
 &lt;li>Select the desired container repository.&lt;/li>
 &lt;li>From the Actions dropdown select &lt;strong>Delete&lt;/strong>.&lt;/li>
 &lt;li>When prompted enter the repository name and click &lt;strong>Confirm&lt;/strong>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-repo-delete-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-repo-delete-prompt.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Prompt to delete an example nginx repository
 &lt;/figcaption>
 &lt;/figure>
@@ -1656,9 +2046,10 @@ Prompt to delete an example nginx repository
 &lt;li>Select the desired tag version.&lt;/li>
 &lt;li>From the Actions dropdown select &lt;strong>Delete&lt;/strong>.&lt;/li>
 &lt;li>When prompted enter the tag name and click &lt;strong>Confirm&lt;/strong>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-tag-delete-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-tag-delete-prompt.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Prompt to delete an example nginx tag version
 &lt;/figcaption>
 &lt;/figure>
@@ -1668,17 +2059,19 @@ Prompt to delete an example nginx tag version
 &lt;h3 id="docker-login">Docker Login&lt;/h3>
 &lt;p>In order to push to or pull containers from the private registry, your local docker client must first authenticate with your credentials.&lt;/p>
 &lt;p>To authenticate with the registry, use the command provided in the &lt;strong>Docker Login&lt;/strong> section at the bottom of the repositories page.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-login-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-login-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Docker Login with copy button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
 &lt;p>Use the copy button to copy the docker login command and paste it into your terminal to authenticate your docker client. This will cache your credentials locally for approximately 24 hours.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-login-example.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-login-example.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example docker login command
 &lt;/figcaption>
 &lt;/figure>
@@ -1688,9 +2081,10 @@ Example docker login command
 &lt;p>In the below example we will show how to pull down a container image (Alpine Linux) from the public hub.docker.com registry and then push it to the Trustgrid private registry under our namespace.&lt;/p>
 &lt;ol>
 &lt;li>First pull the Alpine image from Docker Hub with the command &lt;code>docker pull alpine&lt;/code>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-example-pull.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-example-pull.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Pull Alpine image from Docker Hub
 &lt;/figcaption>
 &lt;/figure>
@@ -1700,48 +2094,52 @@ Note the tag is automatically set to &lt;code>latest&lt;/code> by Docker. If des
 &lt;/div>
 &lt;/li>
 &lt;li>Tag the image with your namespace prefix. &lt;code>docker tag alpine:latest docker.trustgrid.io/namespace.trustgrid.io/alpine:latest&lt;/code> make sure you replace &lt;code>namespace.trustgrid.io&lt;/code> with your actual namespace.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-example-tag.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-example-tag.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Tag image with namespace prefix
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>If you haven&amp;rsquo;t already, Authenticate your Docker client with the Trustgrid registry using the &lt;a href="#docker-login">Docker login command provided on the Repositories page&lt;/a>&lt;/li>
 &lt;li>Push the tagged image to the private registry. &lt;code>docker push docker.trustgrid.io/namespace.trustgrid.io/alpine:latest&lt;/code>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-example-push.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-example-push.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Push tagged image to private registry
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Back on the Trustgrid portal, navigate to Repositories and you should see the pushed image listed.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="docker-example-repo.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="docker-example-repo.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Pushed image listed in portal
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
-&lt;/ol></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/services/</guid><description>
+&lt;/ol></description></item><item><title>Docs: Services</title><link>https://docs.trustgrid.io/docs/nodes/shared/services/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/services/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
+&lt;p>Services are configured in conjunction with &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/port-forwarding/">port forwards&lt;/a> to define a host (IP or DNS) and port to connect to for layer 4 (L4) connectivity.&lt;/p>
 &lt;/div>
 &lt;h2 id="description">Description&lt;/h2>
-&lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
+&lt;p>Services define the host name or IP and port of a server that can be accessed by the Trustgrid node (or members of the cluster) where it is defined. Remote clients can then access the service via peer nodes using &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connectors&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/port-forwarding/">VPN port forwards&lt;/a>.&lt;/p>
 &lt;h2 id="functionality">Functionality&lt;/h2>
 &lt;p>On the local network, a connection&amp;rsquo;s &lt;strong>source IP&lt;/strong> will be the node&amp;rsquo;s interface IP.&lt;/p>
 &lt;ul>
 &lt;li>If the service is defined on a cluster, the active cluster members IP will be used.&lt;/li>
-&lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
+&lt;li>If the node has multiple interfaces, the source will be the interface that has a matching &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#interface-routes">interface route&lt;/a> for the target IP.&lt;/li>
 &lt;/ul>
 &lt;p>If the service&amp;rsquo;s &lt;a href="#host">host field&lt;/a> is set to a DNS name, the node will use its WAN interface DNS servers to resolve the address.&lt;/p>
 &lt;h2 id="configuration">Configuration&lt;/h2>
 &lt;p>Services are configured under the Networking &amp;gt; Services panel of the node or cluster configuration section in the Trustgrid Portal.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="service.png" alt="Dialogue to add a service with fields for enabled" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Service dialogue
 &lt;/figcaption>
 &lt;/figure>
@@ -1767,7 +2165,7 @@ Add Service dialogue
 &lt;/tr>
 &lt;tr id="service-name" style="scroll-margin-top: 10rem;">
 &lt;th>Service Name&lt;/th>
-&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
+&lt;td>A friendly name for the service that will be used in the Remote Service field of a &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">connector&lt;/a>. Can only contain letters, numbers, and the &lt;code>-&lt;/code> character.&lt;/td>
 &lt;/tr>
 &lt;tr id="host" style="scroll-margin-top: 10rem;">
 &lt;th>Host&lt;/th>
@@ -1784,26 +2182,29 @@ Add Service dialogue
 &lt;tr id="test-connectivity" style="scroll-margin-top: 10rem;">
 &lt;th>Test Connectivity&lt;/th>
 &lt;td>&lt;p>Show only on the Services table for TCP Protocol services. When clicked, the client node will attempt a TCP port connection to the configured host and port and display success or failure.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="service-test-connectivity.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="service-test-connectivity.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Thresholds</title><link>https://docs.trustgrid.io/docs/nodes/thresholds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/thresholds/</guid><description>
+&lt;/table></description></item><item><title>Docs: Thresholds</title><link>https://docs.trustgrid.io/docs/nodes/appliances/thresholds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/thresholds/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Thresholds provide a way to trigger events when different measurements exceed a given value. Thresholds configured at the node level can override &lt;a href="https://docs.trustgrid.io/docs/domain/thresholds/">Domain Thresholds&lt;/a>.&lt;/p>
 &lt;/div>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-thresholds.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-thresholds.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Thresholds page on a node
 &lt;/figcaption>
 &lt;/figure>
 &lt;h2 id="node-level-threshold-status">Node Level Threshold Status&lt;/h2>
 &lt;p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-threshold-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="node-threshold-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;table>
 &lt;thead>
@@ -1831,8 +2232,9 @@ To view and configure thresholds, a user will need &lt;code>nodes::configure::th
 &lt;ol>
 &lt;li>Navigate to the node in the portal.&lt;/li>
 &lt;li>In the left-side navigation bar find Thresholds in the System section and click it.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="system-threshold.png" alt="System &amp;gt; Thresholds" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="system-threshold.png" alt="System &amp;gt; Thresholds" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Change the Status to &amp;ldquo;Enabled&amp;rdquo;.&lt;/li>
@@ -1976,17 +2378,19 @@ To view and configure thresholds, a user will need &lt;code>nodes::configure::th
 &lt;h2 id="generating-log-files">Generating Log Files&lt;/h2>
 &lt;ol>
 &lt;li>The Debug Log button is located in the top right of a Node Details page.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="debug-logs-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="debug-logs-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Debug Logs button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The Debug Log dialogue will show any previously generated log files. Clicking the Fetch Newest Logs
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="debug-logs-fetch.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="debug-logs-fetch.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Debug Logs dialogue and fetch button
 &lt;/figcaption>
 &lt;/figure>
@@ -1995,9 +2399,10 @@ A node must be online and connected to the Trustgrid control plane to generate a
 &lt;/div>
 &lt;/li>
 &lt;li>Once the node has completed compressing and uploading the logs a new entry will appear. Clicking the Download button will pull down the zip filed to your local system.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="debug-logs-new.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="debug-logs-new.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Download button next to newly generated file
 &lt;/figcaption>
 &lt;/figure>
@@ -2043,7 +2448,7 @@ Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a st
 &lt;p>At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.&lt;/p>
 &lt;p>Hardware devices are recommended to be connected to ports configured for 1000 Mbps and full duplex with auto negotiation on.&lt;/p>
 &lt;h2 id="gateway-node-network-requirements">Gateway Node Network Requirements&lt;/h2>
-&lt;p>In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway.&lt;/p></description></item><item><title>Docs: Gateway Client Settings</title><link>https://docs.trustgrid.io/docs/nodes/gateway/gateway-client/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/gateway/gateway-client/</guid><description>
+&lt;p>In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway.&lt;/p></description></item><item><title>Docs: Gateway Client Settings</title><link>https://docs.trustgrid.io/docs/nodes/appliances/gateway/gateway-client/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/gateway/gateway-client/</guid><description>
 &lt;p>Settings on this page determine how a node&amp;rsquo;s client connection to gateway peers behave.&lt;/p>
 &lt;h2 id="settings">Settings&lt;/h2>
 &lt;table>
@@ -2078,9 +2483,10 @@ Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a st
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="gateway-client-settings.png" alt="screenshot of gateway client settings" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="gateway-client-settings.png" alt="screenshot of gateway client settings" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Gateway Client settings
 &lt;/figcaption>
 &lt;/figure>
@@ -2124,9 +2530,10 @@ Gateway Client settings
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="gateway-paths.png" alt="Screenshot of the gateway paths table" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="gateway-paths.png" alt="Screenshot of the gateway paths table" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 85%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Gateway Path
 &lt;/figcaption>
 &lt;/figure>
@@ -2142,7 +2549,29 @@ Example Gateway Path
 &lt;ol>
 &lt;li>Click the X to the right of the desired path.&lt;/li>
 &lt;li>Click save.&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Network Groups</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</guid><description>
+&lt;/ol></description></item><item><title>Docs: Network Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/agents/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/agents/interfaces/</guid><description>
+&lt;p>The Interfaces page displays the network interfaces on the agent node and their IPv4 addresses.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="agent-interface.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Agent Interfaces
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;ul>
+&lt;li>All fields have buttons to allow for easily copying the information into the clipboard.&lt;/li>
+&lt;li>You can export all the interface data as a CSV file by clicking Actions-&amp;gt;Export Interface Information.&lt;/li>
+&lt;/ul>
+&lt;h2 id="tools">Tools&lt;/h2>
+&lt;ul>
+&lt;li>Sniff Traffic - Opens the &lt;a href="https://docs.trustgrid.io/tutorials/interface-tools/sniff-interface-traffic/">Sniff Traffic Interface tool&lt;/a> for viewing traffic on the interface in realtime.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="agent-int-sniff-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;/figure>
+&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Network Groups</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>A network group is a list of &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network objects&lt;/a> that allows for easier rule management.&lt;/p>
 &lt;/div>
@@ -2214,28 +2643,28 @@ Example Gateway Path
 &lt;li>Node agent will start automatically on reboot&lt;/li>
 &lt;li>Expect the node to alert for disconnect/connect&lt;/li>
 &lt;li>Does not require a cloud gateway&lt;/li>
-&lt;/ol></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/vrfs/</guid><description>
-&lt;h3 id="overview">Overview&lt;/h3>
-&lt;p>VRFs can be used route / nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated to an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as ipsec or gre. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
+&lt;/ol></description></item><item><title>Docs: VRFs</title><link>https://docs.trustgrid.io/docs/nodes/appliances/vrfs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/vrfs/</guid><description>
+&lt;h2 id="overview">Overview&lt;/h2>
+&lt;p>VRFs can be used to route and/or nat and filter what traffic is allowed to pass and how it should appear on the network. VRFs can be associated with an interface whether it be a physical interface / virtual network interface or other tunnel interfaces such as IPSEC or GRE. VRFs are segmented on a layer 3 level from all other traffic traversing the Trustgrid node.&lt;/p>
 &lt;p>For standard use cases of source nat and/or destination nat creating a route and a NAT is sufficient. Traffic rules can be used for more advanced controls. An applicable ACL is required for any traffic to pass as a zero trust methodology is applied.&lt;/p>
-&lt;h3 id="address-translation">Address Translation&lt;/h3>
+&lt;h2 id="address-translation">Address Translation&lt;/h2>
 &lt;p>This is where NATs are created in order to translate the traffic to appear as desired on the network.
 NATs support translating both source and destination CIDRs as well as masquerading as the egress interface address.&lt;/p>
-&lt;h6 id="snat--dnat-example">SNAT / DNAT Example&lt;/h6>
+&lt;h3 id="snat--dnat-example">SNAT / DNAT Example&lt;/h3>
 &lt;p>Using the example NAT below if a source packet was initiated from 10.10.10.100 destined for 10.10.20.100 the source address would be translated to 192.168.10.100 and the destination address would be translated to 192.168.20.100.
 It is important to note that nat translations occur before routing decisions are made.&lt;/p>
 &lt;p>&lt;img src="nat1.png" alt="img">&lt;/p>
-&lt;h6 id="maquerade-example">Maquerade Example&lt;/h6>
-&lt;p>Using the example below if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24 the source would be translated to the interface address the packet is egressing on. If it was a single interface Trustgrid node it would be sourced as the wan facing interface address.&lt;/p>
+&lt;h3 id="masquerade-example">Masquerade Example&lt;/h3>
+&lt;p>Using the example below, if a source packet is initiated from within 10.10.10.0/24 destined for anything in 192.168.10.0/24, the source would be translated to the interface address from which the packet is egressing. If it were a single interface Trustgrid node it would be sourced as the wan facing interface address.&lt;/p>
 &lt;p>&lt;img src="masquerade1.png" alt="img">&lt;/p>
-&lt;h3 id="routes">Routes&lt;/h3>
+&lt;h2 id="routes">Routes&lt;/h2>
 &lt;p>Note that NAT translations happen before routing so routes should be created for the destination NAT CIDR if applicable.
-Routes require a destination CIDR, interface and metric.
-A next hop is optional and only applicable for non-tunnel interfaces such as physical interfaces or vlan subinterfaces.
+Routes require a destination CIDR, interface, and metric.
+A next hop is optional and only applicable for non-tunnel interfaces such as physical interfaces or VLAN subinterfaces.
 The gateway of the applicable interface will be used if no next hop is defined.&lt;/p>
-&lt;p>The example below would be used for example to offload all internet bound traffic directly out the WAN facing interface&lt;/p>
+&lt;p>The example below would be used for example to offload all internet-bound traffic directly out of the WAN facing interface&lt;/p>
 &lt;p>&lt;img src="offload.png" alt="img">&lt;/p>
-&lt;h3 id="traffic-rules">Traffic Rules&lt;/h3>
+&lt;h2 id="traffic-rules">Traffic Rules&lt;/h2>
 &lt;p>Traffic rules can be used for more advanced granular traffic manipulation beyond standard source and destination nat.
 There are many more parameters that can be applied to the traffic depending on the specific use case.
 When creating a traffic rule an ACL is required for traffic to pass. The available parameters are defined below.
@@ -2300,8 +2729,8 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;td>Forward all traffic to the DNAT destination IP/Port. For example in order to forward all http traffic through a proxy&lt;/td>
 &lt;/tr>
 &lt;tr id="destination-mac" style="scroll-margin-top: 10rem;">
-&lt;th>Destination Mac&lt;/th>
-&lt;td>The destination mac address defined overwrites the source mac address of the packet. Necessary only for some container deployments such as Snort inpsecting traffic.&lt;/td>
+&lt;th>Destination MAC&lt;/th>
+&lt;td>The destination MAC address defined overwrites the source MAC address of the packet. Necessary only for some container deployments such as Snort inspecting traffic.&lt;/td>
 &lt;/tr>
 &lt;tr id="ports" style="scroll-margin-top: 10rem;">
 &lt;th>Ports&lt;/th>
@@ -2309,490 +2738,7 @@ For example passing through an IDS container such as Snort.&lt;/li>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h6 id="traffic-rule-example">Traffic Rule Example&lt;/h6>
-&lt;p>In the below example the first rule on line number 1 is forwarding all traffic destined to 10.0.20.0/24 to a virtual network tunnel interface. Any NATs configured under Address Translation will be applied before the packet is forwarded to its destination. The rule on line number 10 will forward all traffic that does not match the first rule out to the internet masquerading as the WAN interfaces address.
+&lt;h3 id="traffic-rule-example">Traffic Rule Example&lt;/h3>
+&lt;p>In the below example, the first rule on line number 1 is forwarding all traffic destined to 10.0.20.0/24 to a virtual network tunnel interface. Any NATs configured under Address Translation will be applied before the packet is forwarded to its destination. The rule on line number 10 will forward all traffic that does not match the first rule out to the internet masquerading as the WAN interfaces address.
 If the line numbers were reversed the virtual network rule would never be matched as all traffic would match the internet offload rule which is configured for all source and destination traffic.&lt;/p>
-&lt;p>&lt;img src="trafficrule1.png" alt="img">&lt;/p></description></item><item><title>Docs: ZTNA Gateway</title><link>https://docs.trustgrid.io/docs/nodes/ztna-gateway/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/ztna-gateway/</guid><description>
-&lt;p>Navigate to a node, then select &lt;code>ZTNA Gateway&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
-&lt;p>&lt;img src="ztna-gateway.png" alt="ztna-gateway">&lt;/p>
-&lt;h2 id="https-endpoint">HTTPS Endpoint&lt;/h2>
-&lt;p>The HTTPS endpoint is used to provide connectivity for non-WireGuard ZTNA &lt;a href="https://docs.trustgrid.io/docs/applications/">applications&lt;/a>.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="enabled" style="scroll-margin-top: 10rem;">
-&lt;th>Enabled&lt;/th>
-&lt;td>When enabled, this node will listen for ZTNA traffic.&lt;/td>
-&lt;/tr>
-&lt;tr id="public-fqdn" style="scroll-margin-top: 10rem;">
-&lt;th>Public FQDN&lt;/th>
-&lt;td>The IP or FQDN of the node or the load balancer in front of the node. If using a domain name without a load balancer, be sure to select the appropriate &lt;a href="https://docs.trustgrid.io/docs/certificates/">certificate&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="port" style="scroll-margin-top: 10rem;">
-&lt;th>Port&lt;/th>
-&lt;td>The port to listen on. Users will always connect on port 443, so only change this if the node is behind a load balancer.&lt;/td>
-&lt;/tr>
-&lt;tr id="certificate" style="scroll-margin-top: 10rem;">
-&lt;th>Certificate&lt;/th>
-&lt;td>The certificate to use for TLS traffic. Only needed if the node is to be directly accessed by users (i.e., without a load balancer) and the FQDN is a domain name.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="wireguard-endpoint">WireGuard Endpoint&lt;/h2>
-&lt;p>The WireGuard endpoint is used to provide connectivity for WireGuard ZTNA &lt;a href="https://docs.trustgrid.io/docs/applications/">applications&lt;/a>.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="enabled" style="scroll-margin-top: 10rem;">
-&lt;th>Enabled&lt;/th>
-&lt;td>When enabled, this node will listen for WireGuard traffic.&lt;/td>
-&lt;/tr>
-&lt;tr id="public-fqdn" style="scroll-margin-top: 10rem;">
-&lt;th>Public FQDN&lt;/th>
-&lt;td>The IP or FQDN of the node or the load balancer in front of the node.&lt;/td>
-&lt;/tr>
-&lt;tr id="port" style="scroll-margin-top: 10rem;">
-&lt;th>Port&lt;/th>
-&lt;td>The port to listen on.&lt;/td>
-&lt;/tr>
-&lt;tr id="public-key" style="scroll-margin-top: 10rem;">
-&lt;th>Public Key&lt;/th>
-&lt;td>The node&amp;rsquo;s WireGuard public key. This can be generated or imported using the actions dropdown. Note that regenerated the key will disconnect existing clients and require users to reconfigure their WireGuard connection.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;em>“WireGuard” is a registered trademark of Jason A. Donenfeld.&lt;/em>&lt;/p></description></item><item><title>Docs: Gateway Diagnostics</title><link>https://docs.trustgrid.io/docs/nodes/gateway/gateway-diag/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/gateway/gateway-diag/</guid><description>
-&lt;p>The diagnostics page includes stats on aggregate traffic across all peer tunnels regardless of overlay service as well as tools for troubleshooting connectivity.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="gateway-diags.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Gateway Diagnostics Page
-&lt;/figcaption>
-&lt;/figure>
-&lt;h2 id="gateway-troubleshooting-tool">Gateway Troubleshooting Tool&lt;/h2>
-&lt;p>The Troubleshoot Gateway Traffic tool allows you to inspect live diagnostic messages about traffic between this node and its configured peers.
-&lt;figure class="centered-image">
-&lt;img src="gateway-diag-troubleshoot.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Gateway Troubleshooting Tool
-&lt;/figcaption>
-&lt;/figure>
-&lt;/p>
-&lt;p>Clicking the &amp;ldquo;Troubleshoot Gateway Traffic&amp;rdquo; button will open the below diaglog that allows for filtering the output seen in the Troubleshoot Gateway tool by peer, local or service. Selecting what to filter on and clicking &amp;ldquo;Apply&amp;rdquo; will update the output seen in the tool. Accepting the default will display all gateway messages.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="launch-troubleshoot-gateway.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Troubleshoot Gateway Traffic Filter Dialog
-&lt;/figcaption>
-&lt;/figure>
-&lt;p>The output can be useful in troubleshooting why a node and a peer are not connecting.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="troubleshoot-gateway-traffic.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example output of Troubleshoot Gateway tool
-&lt;/figcaption>
-&lt;/figure></description></item><item><title>Docs: Routes</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/routes/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Routes configured under &lt;a href="https://docs.trustgrid.io/docs/domain/">Domains&lt;/a> determine to which &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">Trustgrid virtual network&lt;/a> should route traffic for a specific subnet.&lt;/p>
-&lt;/div>
-&lt;h2 id="virtual-network-routes">Virtual Network Routes&lt;/h2>
-&lt;p>Routes defined a the virtual network level allow creating a global route table shared with all nodes and clusters attached to the virtual network. This table is then used to evaluate where to send VPN traffic for a specified destination CIDR.&lt;/p>
-&lt;p>&lt;img src="routes-list.png" alt="img">&lt;/p>
-&lt;h3 id="route-fields">Route Fields&lt;/h3>
-&lt;p>A Route has the following fields:&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="destination" style="scroll-margin-top: 10rem;">
-&lt;th>Destination&lt;/th>
-&lt;td>This will be the name of the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> that traffic will be routed to. This list is auto-populated based on the nodes and clusters in the selected &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="destination-cidr" style="scroll-margin-top: 10rem;">
-&lt;th>Destination CIDR&lt;/th>
-&lt;td>This is the CIDR notation of the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> that should be routed to the above destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/td>
-&lt;/tr>
-&lt;tr id="metric" style="scroll-margin-top: 10rem;">
-&lt;th>Metric&lt;/th>
-&lt;td>If there are multiple routes for the same &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> the metric will determine which route will be used. The lowest number is the highest priority. See the &amp;ldquo;Automatic Failover&amp;rdquo; text below.&lt;/td>
-&lt;/tr>
-&lt;tr id="description" style="scroll-margin-top: 10rem;">
-&lt;th>Description&lt;/th>
-&lt;td>(Optional) This field can be used to provide additional information about the purpose of the route. e.g. it could label a route as a DR route indicating that in normal circumstances it would have a higher metric than a primary route.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h2 id="managing-virtual-network-routes">Managing Virtual Network Routes&lt;/h2>
-&lt;h3 id="adding-virtual-network-routes">Adding Virtual Network Routes&lt;/h3>
-&lt;ol>
-&lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
-&lt;li>The Routes table is selected by default
-&lt;figure class="centered-image">
-&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Virtual Network &amp;gt; Routes
-&lt;/figcaption>
-&lt;/figure>
-&lt;div class="alert alert-info" role="alert">
-Tip: Use the search field to filter the list of routes so you can see the routes you are adding. You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes you are adding.
-&lt;/div>
-&lt;/li>
-&lt;li>Click the add route button.
-&lt;figure class="centered-image">
-&lt;img src="add-route-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Add route button
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>Provide the desired route information in the &lt;a href="#route-fields">fields&lt;/a> &lt;ol type="A">&lt;li>Select the destination cluster or node&lt;/li>&lt;li>Enter the destination network in CIDR notation. For a single IP use /32.&lt;/li>&lt;li>Enter a metric between 1 and 200.&lt;/li>&lt;li>Optionally, provide a description.&lt;/li>&lt;/ol>
-&lt;figure class="centered-image">
-&lt;img src="new-route-entry.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;/figure>
-&lt;/li>
-&lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
-&lt;li>Click the Save button.
-&lt;figure class="centered-image">
-&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Save route button
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
-&lt;figure class="centered-image">
-&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example of a saved route
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;/ol>
-&lt;div class="alert alert-warning" role="alert">
-As stated above, the route changes are not actually implemented until you click the Apply button the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">Review Changes&lt;/a> panel.
-&lt;/div>
-&lt;h3 id="deleting-virtual-network-routes">Deleting Virtual Network Routes&lt;/h3>
-&lt;ol>
-&lt;li>Navigate to Domain &amp;gt; Virtual Networks and select the desired Virtual Network.&lt;/li>
-&lt;li>The Routes table is selected by default
-&lt;figure class="centered-image">
-&lt;img src="vnet-route-table.png" alt="Virtual Network named vNet1 with the Routes option selected in the navigation menu" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Virtual Network &amp;gt; Routes
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>Use the search field to filter the list of routes.
-&lt;div class="alert alert-info" role="alert">
-You could filter by the CIDR address or part of the destination node/cluster names. This will show any existing matching routes, and will make it easy to see the new routes so you can delete them.
-&lt;/div>
-&lt;/li>
-&lt;li>Click the red X on the far right of the route being removed.
-&lt;figure class="centered-image">
-&lt;img src="delete-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
-&lt;/figure>
-&lt;/li>
-&lt;li>Repeat the above two steps for any additional routes you wish to add.&lt;/li>
-&lt;li>Click the Save button.
-&lt;figure class="centered-image">
-&lt;img src="save-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 20%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Save route button
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;li>There should be a notification saying &amp;ldquo;Routes Updated&amp;rdquo; but you will need to &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/review-changes/">review and apply changes&lt;/a> before the changes are actually be published to nodes in your environment.
-&lt;figure class="centered-image">
-&lt;img src="saved-route.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example of a saved route
-&lt;/figcaption>
-&lt;/figure>
-&lt;/li>
-&lt;/ol>
-&lt;h2 id="route-failover">Route Failover &lt;/h2>
-&lt;p>Route failover allows a subnet to be routed to an alternate &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> in the event of a failure.  This can be automatic or performed manually.&lt;/p>
-&lt;h3 id="prerequisites">Prerequisites &lt;/h3>
-&lt;p>In either configuration, the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> settings under VPN settings for the primary and backup destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/clusters/">clusters&lt;/a> must match. Including:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>Network Virtual Route&lt;/p>
-&lt;p>&lt;img src="virtual-network-route.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Network Group under Outside NAT Table&lt;/p>
-&lt;p>&lt;img src="outside-nat-table.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Virtual CIDR under Inside NAT Table&lt;/p>
-&lt;p>&lt;img src="inside-nat-table.png" alt="img">&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="automatic-failover">Automatic Failover&lt;/h3>
-&lt;p>To have the route failover without manual intervention you must define two routes for the same subnet (Destination CIDR) with different metrics.  The lowest numerical metric will take precedence unless the destination &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> or &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> is offline.&lt;/p>
-&lt;p>In the below example configuration we want traffic for the 10.20.0.0/24 network to the &lt;code>edge&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> first, and failover to the &lt;code>edge-dr&lt;/code> &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>.&lt;/p>
-&lt;p>&lt;img src="automatic-failover.png" alt="img">&lt;/p>
-&lt;h3 id="preventing-automated-failback-or-forcing-a-failover">Preventing Automated Failback or Forcing a Failover&lt;/h3>
-&lt;p>As mentioned above if multiple routes are configured traffic will route to destination with the lowest metric number. So if the primary destination fails but then comes back online traffic will be routed back automatically.&lt;/p>
-&lt;p>However, there are some circumstances where this is not desirable. For example, if the primary site is unstable you may wish to keep traffic at the backup site until the primary is stabilized. Alternately, you may wish to preemptively reroute traffic to the backup site in advance of planned maintenance at the primary site.&lt;/p>
-&lt;p>To preemptively reroute traffic to the backup site, update the backup route to have a lower metric than the primary route.&lt;/p>
-&lt;h3 id="manual-failover">Manual Failover&lt;/h3>
-&lt;p>In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a>.  To initiate a failover you&amp;rsquo;ll need to update the destination &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a>/&lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a>.&lt;/p>
-&lt;ol>
-&lt;li>Login to the Portal and select your domain.&lt;/li>
-&lt;li>Click the link to the desired &lt;a href="https://docs.trustgrid.io/docs/domain/">domain&lt;/a> under the &amp;ldquo;Name&amp;rdquo; column.&lt;/li>
-&lt;li>Scroll down to the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">&amp;ldquo;Virtual Networks&amp;rdquo;&lt;/a> section and select the &amp;ldquo;Routes&amp;rdquo; tab.&lt;/li>
-&lt;li>Find the route you wish to failover.&lt;/li>
-&lt;li>Update the destination device. (e.g. in the below you would switch from edge to edge-dr).
-&lt;img src="update-destination.png" alt="Update Destination">&lt;/li>
-&lt;li>Click save.&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Virtual Network Port Forwards</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</link><pubDate>Tue, 11 Jul 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/remote-port-forward/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-Virtual Network Port Forwards allow a virtual IP address to be associated with a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">TCP Layer 4 service&lt;/a> on a remote node or cluster without the need to specify a route for that virtual IP address.
-&lt;/div>
-&lt;figure class="centered-image">
-&lt;img src="remote-port-forward.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example Virtual Network Port Forward
-&lt;/figcaption>
-&lt;/figure>
-&lt;h2 id="description">Description&lt;/h2>
-&lt;p>As noted above, a Virtual Network Port Forward (or remote port forward) associates a &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">service&lt;/a> defined on a node or cluster with a virtual IP address within the virtual network without needing to specifically &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/">route&lt;/a> that IP to the node/cluster.&lt;/p>
-&lt;p>Any node attached to the virtual network that receives VPN traffic destined for the configure IP and port will proxy the connection and send the traffic to the target node which will then send the traffic to the IP and port configured for the target service.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="virtual-ip-address" style="scroll-margin-top: 10rem;">
-&lt;th>Virtual IP Address&lt;/th>
-&lt;td>Virtual IP address assigned to the port forward.&lt;/td>
-&lt;/tr>
-&lt;tr id="virtual-port" style="scroll-margin-top: 10rem;">
-&lt;th>Virtual Port&lt;/th>
-&lt;td>TCP port on which the port forward will listen for connections.&lt;/td>
-&lt;/tr>
-&lt;tr id="destination-node" style="scroll-margin-top: 10rem;">
-&lt;th>Destination Node&lt;/th>
-&lt;td>Node or Cluster where the target &lt;strong>service&lt;/strong> is defined.&lt;/td>
-&lt;/tr>
-&lt;tr id="destination-service" style="scroll-margin-top: 10rem;">
-&lt;th>Destination Service&lt;/th>
-&lt;td>Service that traffic for the &lt;strong>virtual IP&lt;/strong> and &lt;strong>virtual port&lt;/strong> will be forwarded to. Alternately, you can specify an IP and port local to the &lt;strong>destination node&lt;/strong>.&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table></description></item><item><title>Docs: Access Policy</title><link>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</link><pubDate>Wed, 28 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>An access policy is a list of rules that each allow, reject, or drop traffic at the VPN level.&lt;/p>
-&lt;/div>
-&lt;p>If no rules are defined, traffic will not pass through the &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a>.&lt;/p>
-&lt;p>&lt;strong>A rule can match traffic based on the following fields:&lt;/strong>&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="action" style="scroll-margin-top: 10rem;">
-&lt;th>Action&lt;/th>
-&lt;td>Whether to ALLOW, DROP, or REJECT the traffic.&lt;/td>
-&lt;/tr>
-&lt;tr id="protocol" style="scroll-margin-top: 10rem;">
-&lt;th>Protocol&lt;/th>
-&lt;td>You can choose ANY, UDP, ICMP, or TCP.&lt;/td>
-&lt;/tr>
-&lt;tr id="source" style="scroll-margin-top: 10rem;">
-&lt;th>Source&lt;/th>
-&lt;td>The source of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
-&lt;/tr>
-&lt;tr id="destination" style="scroll-margin-top: 10rem;">
-&lt;th>Destination&lt;/th>
-&lt;td>The destination of the traffic. You can select a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-objects/">network object&lt;/a>, a &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/network-groups/">network group&lt;/a>, or provide a CIDR.&lt;/td>
-&lt;/tr>
-&lt;tr id="line-number" style="scroll-margin-top: 10rem;">
-&lt;th>Line Number&lt;/th>
-&lt;td>Rules are evaluated starting with the lowest numbered rule. Once a rule matches, later rules are ignored even if they might also match the traffic.&lt;/td>
-&lt;/tr>
-&lt;tr id="port-range" style="scroll-margin-top: 10rem;">
-&lt;th>Port Range&lt;/th>
-&lt;td>For TCP and UDP traffic, you can specify a port (e.g., 80) or a range (e.g., 8000-9000).&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;img src="access-policy.png" alt="img">&lt;/p>
-&lt;p>&lt;strong>Note that &lt;em>all specified&lt;/em> fields must be matched for the rule to match.&lt;/strong>&lt;/p></description></item><item><title>Help-Center: Network Flow Logs</title><link>https://docs.trustgrid.io/help-center/flow-logs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/flow-logs/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>Flow logs are a records of for network traffic that passes through a node. They can be used to troubleshoot connectivity issues, or to monitor traffic patterns.&lt;/p>
-&lt;/div>
-&lt;h2 id="what-are-flow-logs">What are flow logs?&lt;/h2>
-&lt;p>Flow logs are records containing metadata about each network traffic flow, or conversation, from the initial connection (e.g. the first SYN packet for TCP) to the closing of the connection (e.g. FIN or RST packets for TCP). Flow logs &lt;strong>do not contain any payload data&lt;/strong> for the flow which makes them much smaller and more secure than a full packet capture of the same flow.&lt;/p>
-&lt;p>Flow logs can be used for troubleshooting by:&lt;/p>
-&lt;ul>
-&lt;li>Verifying that both the expected source and destination node have the appropriate logs.&lt;/li>
-&lt;li>That any &lt;a href="#nat-impact-on-source-and-destination-fields">NATs&lt;/a> are applying as expected.&lt;/li>
-&lt;li>That the expected number of flows or sent/received byte are being passed.&lt;/li>
-&lt;li>TCP Flags can be used to confirm a successful connection is being made. For example:
-&lt;ul>
-&lt;li>A TCP Flow with only a SYN flag is never completing the TCP Handshake process indicating an issue, such as a firewall or routing configuration problem, preventing the destination IP from either receiving packets or replying successfully&lt;/li>
-&lt;li>A TCP Flow with only a SYN &amp;amp; RST flag indicates something in the path is actively resetting the connection attempt. This could be a firewall or an application IP restriction.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="flow-log-data">Flow Log Data&lt;/h3>
-&lt;p>Below are the potential fields of a single flow log.&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Field Name&lt;/th>
-&lt;th>Description&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr id="start-time" style="scroll-margin-top: 10rem;">
-&lt;th>Start Time&lt;/th>
-&lt;td>The time the flow started&lt;/td>
-&lt;/tr>
-&lt;tr id="end-time" style="scroll-margin-top: 10rem;">
-&lt;th>End Time&lt;/th>
-&lt;td>The time the flow ended&lt;/td>
-&lt;/tr>
-&lt;tr id="protocol" style="scroll-margin-top: 10rem;">
-&lt;th>Protocol&lt;/th>
-&lt;td>The protocol of the traffic TCP, UDP, ICMP&lt;/td>
-&lt;/tr>
-&lt;tr id="source-node" style="scroll-margin-top: 10rem;">
-&lt;th>Source Node&lt;/th>
-&lt;td>The node that initiated the flow&lt;/td>
-&lt;/tr>
-&lt;tr id="source-ip" style="scroll-margin-top: 10rem;">
-&lt;th>Source IP&lt;/th>
-&lt;td>The IP address through which the node initiated the flow&lt;/td>
-&lt;/tr>
-&lt;tr id="source-port" style="scroll-margin-top: 10rem;">
-&lt;th>Source Port&lt;/th>
-&lt;td>The port through which the node initiated the flow&lt;/td>
-&lt;/tr>
-&lt;tr id="dest-node" style="scroll-margin-top: 10rem;">
-&lt;th>Dest Node&lt;/th>
-&lt;td>The node that received the flow&lt;/td>
-&lt;/tr>
-&lt;tr id="dest-ip" style="scroll-margin-top: 10rem;">
-&lt;th>Dest IP&lt;/th>
-&lt;td>The IP address to which traffic was sent&lt;/td>
-&lt;/tr>
-&lt;tr id="dest-port" style="scroll-margin-top: 10rem;">
-&lt;th>Dest Port&lt;/th>
-&lt;td>The port to which traffic was sent&lt;/td>
-&lt;/tr>
-&lt;tr id="recv-bytes" style="scroll-margin-top: 10rem;">
-&lt;th>Recv Bytes&lt;/th>
-&lt;td>Bytes received at the source node&lt;/td>
-&lt;/tr>
-&lt;tr id="sent-bytes" style="scroll-margin-top: 10rem;">
-&lt;th>Sent Bytes&lt;/th>
-&lt;td>Bytes sent from the source node&lt;/td>
-&lt;/tr>
-&lt;tr id="tcp-flags" style="scroll-margin-top: 10rem;">
-&lt;th>TCP Flags&lt;/th>
-&lt;td>&lt;p>All TCP Flags set on any packets seen over the duration of the flow:&lt;/p>
-&lt;ul>
-&lt;li>SYN - sync packet&lt;/li>
-&lt;li>PSH - push packet&lt;/li>
-&lt;li>ACK - ack packet&lt;/li>
-&lt;li>URG - urgent packet&lt;/li>
-&lt;li>FIN - finish packet&lt;/li>
-&lt;li>RST - reset packet&lt;/li>
-&lt;/ul>
-&lt;p>TCP Flags are only available for &lt;strong>TCP&lt;/strong> flows that traverse the layer 3 VPN function. ICMP and UDP traffic, &lt;a href="https://docs.trustgrid.io/docs/nodes/services/">Layer 4 services&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/port-forwarding/">VPN Port Forwards&lt;/a> will not have this data.&lt;/p>
-&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h3 id="nat-impact-on-source-and-destination-fields">NAT Impact on Source and Destination Fields&lt;/h3>
-&lt;p>When &lt;a href="https://docs.trustgrid.io/docs/nodes/vpn/nats/">NATs&lt;/a> are applied to a flow they will influence the source/destination IP and port values.&lt;/p>
-&lt;p>Consider this flow:&lt;/p>
-&lt;pre class="mermaid">graph LR
-client(HTTP Client\n192.168.100.1) -- src: 192.168.100.1\ndest: 10.100.1.1--&amp;gt; Node1
-subgraph Virtual Network
-Node1 -- src: 10.100.2.1\ndest: 10.100.1.1 --&amp;gt; Node2[Node2 \n Local IP\n172.16.1.100]
-end
-Node2 --src: 172.16.1.100 \n dest:172.16.1.20 --&amp;gt; server(HTTP Server\n172.16.1.20)&lt;/pre>
-&lt;p>Node1 would report the flow before any NATs were applied&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Source IP&lt;/th>
-&lt;th>Destination IP&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>192.168.100.1&lt;/td>
-&lt;td>10.100.1.1&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>Node2 would report the flow after the NATs on Node1 were applied (changing the source 10.100.2.1) and the NATs on Node2 were applied (changing the source to 172.16.1.100 and the destination to 172.16.1.20)&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>Source IP&lt;/th>
-&lt;th>Destination IP&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>192.168.100.1&lt;/td>
-&lt;td>10.100.1.1&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;div class="alert alert-info" role="alert">
-&lt;h4 class="alert-heading">Note:&lt;/h4>
-For simplicity, ports were excluded. Destination ports will not be changed by NATs. Source ports would also be maintained for any 1:1 NAT, but would change if a many:1 (or overload) NAT was applied to the flow.
-&lt;/div>
-&lt;h2 id="viewing-flow-logs">Viewing Flow Logs&lt;/h2>
-&lt;p>Flow logs are visible at an organization level by navigating to &lt;a href="https://docs.trustgrid.io/docs/operations/flow-logs/">Operations &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 10,000 flows of &lt;strong>all&lt;/strong> nodes in the organization.&lt;/p>
-&lt;p>To view Flow Logs only for traffic through a specific node, navigate to that node and go to &lt;a href="https://docs.trustgrid.io/docs/nodes/flow-logs/">History &amp;gt; Flow Logs&lt;/a>. This will show you the most recent 10,000 flows for the &lt;strong>currently selected&lt;/strong> node.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="flow-logs-node.png" alt="table showing flow log entries for a node" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Example flow log table for a node
-&lt;/figcaption>
-&lt;/figure>
-&lt;h3 id="advanced-search">Advanced Search&lt;/h3>
-&lt;p>Flow logs can be filtered by any of the fields listed above. To filter by a field, click the &lt;code>Advanced Search&lt;/code> button at the top right of the flow logs table.&lt;/p>
-&lt;p>In addition, the ordering can be changed so that the oldest flows (or flows closest to the time range specified) can be shown first. There is a limit of 10,000 flows returned per search.&lt;/p>
-&lt;figure class="centered-image">
-&lt;img src="advanced-search.png" alt="Dialog showing the various search filter parameters available in advanced search." style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
-Advanced Search dialog
-&lt;/figcaption>
-&lt;/figure>
-&lt;h3 id="exporting-flow-logs-to-csv">Exporting Flow Logs to CSV&lt;/h3>
-&lt;p>From the Flow logs table, you can export the current filtered logs to a CSV file for further analysis or reporting.&lt;/p>
-&lt;h4 id="start-and-end">Start and End&lt;/h4>
-&lt;p>Both of these fields are exported in two different formats:&lt;/p>
-&lt;ul>
-&lt;li>Human friendly in the format: MM/DD/YYYY HH:MM:SS AM/PM&lt;/li>
-&lt;li>Timestamp in milliseconds since epoch for machine parsing and sorting&lt;/li>
-&lt;/ul></description></item></channel></rss>
+&lt;p>&lt;img src="trafficrule1.png" alt="img">&lt;/p></description></item></channel></rss>

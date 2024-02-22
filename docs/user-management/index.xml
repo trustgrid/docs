@@ -81,10 +81,11 @@ In order to grant users access to the portal a second policy is required grantin
 &lt;h6 id="node-tgrn">Node TGRN&lt;/h6>
 &lt;p>A node’s TGRN will start with the below prefix:
 &lt;code>tgrn:tg::nodes:node/&lt;/code>
-Followed by the UID of the node. The node TGRN is accessible from the &lt;a href="https://docs.trustgrid.io/docs/nodes/infovisor/">infovisor&lt;/a> for a node by clicking on the &amp;ldquo;Copy&amp;rdquo; button to the right of the TGRN entry.
+Followed by the UID of the node. The node TGRN is accessible from the &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/infovisor/">infovisor&lt;/a> for a node by clicking on the &amp;ldquo;Copy&amp;rdquo; button to the right of the TGRN entry.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-tgrn.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-tgrn.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 TRGN entry in the Inforvisor panel
 &lt;/figcaption>
 &lt;/figure>
@@ -95,9 +96,10 @@ TRGN entry in the Inforvisor panel
 &lt;code>tgrn:tg::nodes:cluster/&lt;/code>
 This is followed by the cluster’s fully qualified domain name (fqdn) which is the combination of the cluster name and your organization&amp;rsquo;s Trustgrid domain.&lt;/p>
 &lt;p>You can copy the Cluster TGRN from a cluster&amp;rsquo;s Overview page by clicking the &amp;ldquo;Copy&amp;rdquo; button to the right of TGRN.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="cluster-tgrn.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="cluster-tgrn.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Cluster TGRN on Overview page
 &lt;/figcaption>
 &lt;/figure>
@@ -107,9 +109,10 @@ Cluster TGRN on Overview page
 &lt;h4 id="creatingediting-policies">Creating/Editing Policies&lt;/h4>
 &lt;ol>
 &lt;li>Navigate to &lt;code>User Management&lt;/code> → &lt;code>Policies&lt;/code>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="policy-management.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="policy-management.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Policy Management Page
 &lt;/figcaption>
 &lt;/figure>
@@ -122,9 +125,10 @@ Policy Management Page
 &lt;li>Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)&lt;/li>
 &lt;li>You will notice the Policy JSON updated as you select permissions&lt;/li>
 &lt;li>Click &lt;code>Save&lt;/code>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="new-policy.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="new-policy.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Policy updated notification
 &lt;/figcaption>
 &lt;/figure>
@@ -134,18 +138,20 @@ Policy updated notification
 &lt;/ol>
 &lt;h4 id="clone-existing-policy">Clone Existing Policy&lt;/h4>
 &lt;p>To clone an existing policy click the copy button on the far right of the policy row. This will create a new policy with the same permissions pre-selected which can then be edited and named as desired.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="clone-policy.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="clone-policy.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Policy table showing the clone/copy policy button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
 &lt;h4 id="attaching-policies-and-viewing-effective-permissions">Attaching Policies and Viewing Effective Permissions&lt;/h4>
 &lt;p>Policies are attached and their cumulative effect can be viewed under &lt;code>User Management&lt;/code> → &lt;code>Users&lt;/code> by selecting the desired user.&lt;/p></description></item><item><title>Docs: Users</title><link>https://docs.trustgrid.io/docs/user-management/users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/</guid><description>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="users.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="users.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Users page
 &lt;/figcaption>
 &lt;/figure>
@@ -157,40 +163,46 @@ Users page
 &lt;ol>
 &lt;li>Navigate to &lt;code>User Management&lt;/code> → &lt;code>Users&lt;/code>&lt;/li>
 &lt;li>Under &lt;code>Actions&lt;/code> select &lt;code>Invite User&lt;/code>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="invite.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="invite.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Invite User action
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Enter the user’s valid email address and select the desired base policy (more can be attached later).
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="send-invite.png" alt="Enter email and base policy" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;img src="send-invite.png" alt="Enter email and base policy" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
 &lt;/figure>
 &lt;/li>
 &lt;li>Click &lt;code>Send Invite&lt;/code>. You should see a confirmation that the invite was sent like the one below.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="invite-sent.png" alt="Invite sent confirmation" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="invite-sent.png" alt="Invite sent confirmation" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>The user will receive an email with a link to the &lt;a href="https://portal.trustgrid.io">Trustgrid Portal&lt;/a> or similar. They will need to click said link.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="linky.png" alt="" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;img src="linky.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
 &lt;/figure>
 &lt;/li>
 &lt;li>Once at the Portal, the user will need to click the &lt;code>Start a free trial&lt;/code> option. &lt;strong>The user must use the same email address that was invited to get access to your account&lt;/strong>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sign-up-1.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="sign-up-1.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Click Start a free trial
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>The user will be prompted for their email, name, password, and company. &lt;strong>The user must use the same email address that was invited to get access to your account&lt;/strong>.&lt;br>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sign-up-2.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="sign-up-2.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Enter required information and click Sign Up
 &lt;/figcaption>
 &lt;/figure>
@@ -200,8 +212,9 @@ Enter required information and click Sign Up
 &lt;ol>
 &lt;li>Scan the QR code with your app.&lt;/li>
 &lt;li>Enter the passcode and click the &lt;code>Submit&lt;/code> button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="sign-up-4.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;img src="sign-up-4.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 &lt;/figure>
 &lt;/li>
 &lt;/ol>
@@ -216,17 +229,19 @@ Some IdP’s allow for users to be synchronized automatically making this step u
 &lt;ol>
 &lt;li>Navigate to &lt;code>User Management&lt;/code> → &lt;code>Users&lt;/code>&lt;/li>
 &lt;li>Click the &lt;code>Add User&lt;/code> button
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-user.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;img src="add-user.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Enter in the user’s email address. &lt;strong>This must be the same email address the IdP sends back to Trustgrid, if unsure consult with your IdP Admin&lt;/strong>.&lt;/li>
 &lt;li>Select your Identity Provider (if more than one)&lt;/li>
 &lt;li>Select the desired base policy. More can be attached later.&lt;/li>
 &lt;li>Click &lt;code>Save&lt;/code>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="save-new-user.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="save-new-user.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add User Prompt
 &lt;/figcaption>
 &lt;/figure>
@@ -241,13 +256,15 @@ Add User Prompt
 &lt;li>To add a new policy:
 &lt;ol>
 &lt;li>Click the &lt;code>Attach Policy&lt;/code> button
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="attach-policy.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="attach-policy.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Search for the desired policy then select it.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="choose-policy.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;img src="choose-policy.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Click &lt;code>Attach&lt;/code>&lt;/li>
@@ -259,8 +276,9 @@ Add User Prompt
 &lt;ol>
 &lt;li>Under &lt;code>User Management&lt;/code> → &lt;code>User search&lt;/code> for the target user and click their name.&lt;/li>
 &lt;li>Click &lt;code>Detach&lt;/code> located to the right of policy you wish to remove.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="detach-policy.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;img src="detach-policy.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
 &lt;/figure>
 &lt;/li>
 &lt;/ol>
@@ -269,9 +287,10 @@ Add User Prompt
 &lt;ol>
 &lt;li> Under `User Management` → `User search` for the target user and click their name. &lt;/li>
 &lt;li> In the right `Effective Permissions` pane, find the permission in question. These permissions are grouped by category. Each entry will show:
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="effective-permissions.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="effective-permissions.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example effective permissions
 &lt;/figcaption>
 &lt;/figure>
@@ -289,9 +308,10 @@ Example effective permissions
 &lt;ol>
 &lt;li>Under &lt;code>User Management&lt;/code> → &lt;code>User search&lt;/code> for the target user and click their name.&lt;/li>
 &lt;li>Enter in the desired landing page path (e.g. &lt;code>/apps&lt;/code>) and click &lt;code>Save&lt;/code>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="change-landing.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="change-landing.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Change user landing page
 &lt;/figcaption>
 &lt;/figure>
@@ -306,9 +326,10 @@ To view:&lt;/p>
 &lt;li>Select the &lt;code>Groups&lt;/code> panel on the left.&lt;/li>
 &lt;li>&lt;code>Groups&lt;/code> will be listed in a table in the main panel.&lt;/li>
 &lt;/ol>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="user-groups-table.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="user-groups-table.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example group membership table
 &lt;/figcaption>
 &lt;/figure>
@@ -319,9 +340,10 @@ Example group membership table
 &lt;li>Select the Groups panel from the left navigation bar.&lt;/li>
 &lt;li>Click the &amp;ldquo;Add to Group(s)&amp;rdquo; button.&lt;/li>
 &lt;li>From the prompt select the group or groups you want to add the user to. If there are many groups you can start typing the name to filter the options.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-user-group-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-user-group-prompt.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Groups prompt
 &lt;/figcaption>
 &lt;/figure>
@@ -333,9 +355,10 @@ Add Groups prompt
 &lt;ol>
 &lt;li>Select the radio checkbox next to the group you wish to remove.&lt;/li>
 &lt;li>From Actions, select Delete.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="user-group-delete.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="user-group-delete.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Deleting a group membership
 &lt;/figcaption>
 &lt;/figure>
@@ -349,9 +372,10 @@ To view:&lt;/p>
 &lt;li>Under &lt;code>User Management&lt;/code> → &lt;code>User search&lt;/code> for the target user and click their name.&lt;/li>
 &lt;li>Select the &lt;code>Identity Provider&lt;/code> panel on the left.&lt;/li>
 &lt;li>The identity Providers will be listed in a table in the main panel. If no IdP is listed this indicates the user is using the Trustgrid native authentication system.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="user-idp-table.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="user-idp-table.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example User Identity Provider table
 &lt;/figcaption>
 &lt;/figure>

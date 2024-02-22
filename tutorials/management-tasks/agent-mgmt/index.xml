@@ -1,0 +1,100 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Agent Node Management</title><link>https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/</link><description>Recent content in Agent Node Management on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/index.xml" rel="self" type="application/rss+xml"/><item><title>Tutorials: Restart Agent Node Service</title><link>https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/restart-agent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/restart-agent/</guid><description>
+&lt;p>Restarting the agent service is sometimes necessary to reload configuration changes or restart the agent process. The steps to restart the agent service depends on the operating system.&lt;/p>
+&lt;div class="alert alert-warning" role="alert">
+Restarting the agent service will disrupt traffic across the node.
+&lt;/div>
+&lt;h2 id="restarting-linux-agent">Restarting Linux Agent&lt;/h2>
+&lt;h3 id="restart-ubuntu-agents">Restart Ubuntu Agents&lt;/h3>
+&lt;ol>
+&lt;li>Gain console access to the agent host system via SSH or local console with a user with sudo access to run the below commands.&lt;/li>
+&lt;li>Run the command &lt;div class="codeblock-container">
+&lt;pre>&lt;code>sudo systemctl restart tg-agent&lt;/code>&lt;/pre>
+&lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
+&lt;/div>
+&lt;script>
+function copyToClipboard(element) {
+var text = element.previousElementSibling.textContent;
+navigator.clipboard.writeText(text).then(function() {
+console.log('Text copied to clipboard');
+}).catch(function(err) {
+console.error('Could not copy text: ', err);
+});
+}
+&lt;/script>
+&lt;style>
+.codeblock-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.codeblock-container pre {
+margin: 0;
+font-family: monospace;
+background-color: #f4f4f4;
+padding: 10px;
+border-radius: 5px;
+flex-grow: 1;
+}
+.codeblock-container button {
+margin-left: 10px;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+&lt;/style>
+&lt;/li>
+&lt;/ol></description></item><item><title>Tutorials: Upgrade Trustgrid Agent Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/upgrade-agent/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/upgrade-agent/</guid><description>
+&lt;h2 id="how-an-agent-node-upgrades">How an Agent Node Upgrades&lt;/h2>
+&lt;p>The Trustgrid agent upgrade process will depend on the operating system the agent runs on. For the most part the process will include:&lt;/p>
+&lt;ol>
+&lt;li>Gaining console access to the agent host system either via SSH or local console&lt;/li>
+&lt;li>Running a package management tool to update the agent software package&lt;/li>
+&lt;li>Restarting the agent service if not done automatically by the package manager&lt;/li>
+&lt;/ol>
+&lt;div class="alert alert-warning" role="alert">
+Restarting the agent service is important to ensure it loads the latest configuration and starts with the updated code but will disrupt traffic across the node.
+&lt;/div>
+&lt;h2 id="agent-upgrade-process-on-linux">Agent Upgrade Process on Linux&lt;/h2>
+&lt;h3 id="upgrade-ubuntu-based-agent">Upgrade Ubuntu-based Agent&lt;/h3>
+&lt;ol>
+&lt;li>Gain console access to the agent host system via SSH or local console with a user with sudo access to run the below commands.&lt;/li>
+&lt;li>Run the command &lt;div class="codeblock-container">
+&lt;pre>&lt;code>sudo apt update &amp;&amp; sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tg-agent&lt;/code>&lt;/pre>
+&lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
+&lt;/div>
+&lt;script>
+function copyToClipboard(element) {
+var text = element.previousElementSibling.textContent;
+navigator.clipboard.writeText(text).then(function() {
+console.log('Text copied to clipboard');
+}).catch(function(err) {
+console.error('Could not copy text: ', err);
+});
+}
+&lt;/script>
+&lt;style>
+.codeblock-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.codeblock-container pre {
+margin: 0;
+font-family: monospace;
+background-color: #f4f4f4;
+padding: 10px;
+border-radius: 5px;
+flex-grow: 1;
+}
+.codeblock-container button {
+margin-left: 10px;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+}
+&lt;/style>
+&lt;/li>
+&lt;li>The above command will refresh the package list and install the latest version of the tg-agent package. This will automatically restart the tg-agent service.&lt;/li>
+&lt;/ol></description></item></channel></rss>

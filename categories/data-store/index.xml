@@ -1,10 +1,10 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– data store</title><link>https://docs.trustgrid.io/categories/data-store/</link><description>Recent content in data store on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/categories/data-store/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Directory Creation</title><link>https://docs.trustgrid.io/docs/nodes/datastore/mkdir/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/datastore/mkdir/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– data store</title><link>https://docs.trustgrid.io/categories/data-store/</link><description>Recent content in data store on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/categories/data-store/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Directory Creation</title><link>https://docs.trustgrid.io/docs/nodes/appliances/datastore/mkdir/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/datastore/mkdir/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Data store directory creation allows you to add new directories to organize your files in a hierarchical, tree-like structure.&lt;/p>
 &lt;/div>
 &lt;p>&lt;img src="mkdir.png" alt="img">&lt;/p>
 &lt;div class="alert alert-info" role="alert">
-The destination where the directory will be created can be changed by selecting a particular directory as the parent from the &lt;a href="https://docs.trustgrid.io/docs/nodes/datastore/">File Explorer&lt;/a> side bar.
+The destination where the directory will be created can be changed by selecting a particular directory as the parent from the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/">File Explorer&lt;/a> sidebar.
 &lt;/div>
 &lt;p>&lt;img src="mkdir_config.png" alt="img">&lt;/p>
 &lt;table>
@@ -24,7 +24,7 @@ The destination where the directory will be created can be changed by selecting 
 &lt;td>The name of the directory to create.&lt;/td>
 &lt;/tr>
 &lt;/tbody>
-&lt;/table></description></item><item><title>Docs: File Sync</title><link>https://docs.trustgrid.io/docs/nodes/datastore/sync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/datastore/sync/</guid><description>
+&lt;/table></description></item><item><title>Docs: File Sync</title><link>https://docs.trustgrid.io/docs/nodes/appliances/datastore/sync/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/datastore/sync/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>File syncing allows a user to transfer files to the data store as well as upload files from the data store.&lt;/p>
 &lt;/div>
@@ -32,7 +32,7 @@ The destination where the directory will be created can be changed by selecting 
 &lt;p>A user can populate the data store by transferring files from an Amazon S3 bucket or from an HTTP endpoint.&lt;/p>
 &lt;p>&lt;img src="file_explorer_toolbar_sync.png" alt="img">&lt;/p>
 &lt;div class="alert alert-info" role="alert">
-The destination where the file will be stored can be changed by selecting a particular directory from the &lt;a href="https://docs.trustgrid.io/docs/nodes/datastore/">File Explorer&lt;/a> side bar.
+The destination where the file will be stored can be changed by selecting a particular directory from the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/">File Explorer&lt;/a> sidebar.
 &lt;/div>
 &lt;h4 id="amazon-s3-transfer">Amazon S3 Transfer&lt;/h4>
 &lt;p>A user can select to transfer a file from an S3 URI.&lt;/p>
@@ -123,7 +123,7 @@ In general, it is recommended to first use Max Concurrent Requests to lower tran
 &lt;p>A user can extract files from the datastore by uploading them to an Amazon S3 bucket or to an HTTP endpoint.&lt;/p>
 &lt;p>&lt;img src="file_upload.png" alt="img">&lt;/p>
 &lt;div class="alert alert-info" role="alert">
-A file needs to be selected first before the File Upload button gets enabled on the &lt;a href="https://docs.trustgrid.io/docs/nodes/datastore/">File Explorer&lt;/a> menu bar.
+A file needs to be selected first before the File Upload button gets enabled on the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/">File Explorer&lt;/a> menu bar.
 &lt;/div>
 &lt;h4 id="amazon-s3-upload">Amazon S3 Upload&lt;/h4>
 &lt;p>A user can select to transfer a file to an S3 URI.&lt;/p>

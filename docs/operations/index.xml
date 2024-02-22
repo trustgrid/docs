@@ -60,9 +60,10 @@ This page shows Flow Logs from all nodes in an organization.
 &lt;p>See this page for more info on &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/">Flow Logs&lt;/a>&lt;/p>
 &lt;h2 id="flow-log-export">Flow Log Export&lt;/h2>
 &lt;p>Trustgrid can export flow logs to any S3 bucket. Set your bucket name and apply the policy provided, and then Trustgrid will configure replication for your flow logs into your bucket.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="s3-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="s3-export.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Fields for configuring S3 replication
 &lt;/figcaption>
 &lt;/figure>

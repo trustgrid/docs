@@ -1,19 +1,20 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– node</title><link>https://docs.trustgrid.io/tags/node/</link><description>Recent content in node on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/tags/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/audits/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– node</title><link>https://docs.trustgrid.io/tags/node/</link><description>Recent content in node on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 12 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/tags/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/shared/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/audits/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
-&lt;p>Node audits provide records when services on a node are invoked, or when upgrades are applied. This can be helpful to see historical maintenance of a node.&lt;/p>
+&lt;p>Node audits provide records when services on a node are invoked, or when upgrades are applied. This can be helpful to see the historical maintenance of a node.&lt;/p>
 &lt;/div>
 &lt;p>Node audits can be viewed for a specific node by navigating to &lt;code>Audits&lt;/code> under the &lt;code>History&lt;/code> section on the node view.&lt;/p>
 &lt;p>Users will need &lt;code>audits::read:node&lt;/code> permissions to view node audits.&lt;/p>
 &lt;p>&lt;img src="node-list.png" alt="img">&lt;/p>
-&lt;p>Node audits can also be found for the entire organization by navigating to &lt;code>Operations&lt;/code>-&amp;gt;&lt;code>Node Audits&lt;/code>.&lt;/p></description></item><item><title>Docs: Data Plane</title><link>https://docs.trustgrid.io/docs/nodes/data-plane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/data-plane/</guid><description>
+&lt;p>Node audits can also be found for the entire organization by navigating to &lt;code>Operations&lt;/code>-&amp;gt;&lt;code>Node Audits&lt;/code>.&lt;/p></description></item><item><title>Docs: Data Plane</title><link>https://docs.trustgrid.io/docs/nodes/appliances/data-plane/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/data-plane/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>The Data Plane panel shows a list of all statistics known peers, their connection status, provides tools for testing connectivity and can display statistics for the connection between the node and the peer.&lt;/p>
 &lt;/div>
 &lt;h2 id="export-list-of-peers">Export List of Peers&lt;/h2>
 &lt;p>You can export a CSV formatted list of all peers by clicking Actions -&amp;gt; Export
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="data-plane-export.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="data-plane-export.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 25%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Export button
 &lt;/figcaption>
 &lt;/figure>
@@ -42,7 +43,7 @@ Export button
 &lt;p>&lt;img src="performance-output.png" alt="Gateway Performance Output">&lt;/p>
 &lt;p>The periods are posted for about every 1MB of data sent. If you see exclamation marks this can indicate lost packets.&lt;/p>
 &lt;h3 id="trace-route-and-mtr">Trace Route and MTR&lt;/h3>
-&lt;p>Both of the links here will populate the &lt;a href="https://docs.trustgrid.io/docs/nodes/interfaces/">interface tool of the same name&lt;/a> with the selected peer&amp;rsquo;s IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.&lt;/p>
+&lt;p>Both of the links here will populate the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/">interface tool of the same name&lt;/a> with the selected peer&amp;rsquo;s IP address and TCP port. This allows you to trace the route or run MTR diagnostics directly between the current node and the selected peer.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 This is most effective if run from the client/edge node to a gateway since the gateway is the only one actually listening on that port. If run in the other direction (gateway -&amp;gt; client) it is likely any firewall between will drop the connections and the client will definitely not respond on that port.
 &lt;/div>
@@ -54,12 +55,13 @@ Gateway nodes will list edge nodes in their peers table
 &lt;p>&lt;img src="peer-list.png" alt="img">&lt;/p>
 &lt;p>Once a peer is selected, the monitoring section will populate with relevant data.&lt;/p>
 &lt;p>&lt;img src="monitoring.png" alt="img">&lt;/p>
-&lt;p>Hop data is only available for nodes that have hop monitoring enabled. See &lt;a href="https://docs.trustgrid.io/tutorials/gateway-tools/monitoring-network-hops-to-peers/">Monitoring Network Hops to Peers&lt;/a>.&lt;/p></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/interfaces/</guid><description>
+&lt;p>Hop data is only available for nodes that have hop monitoring enabled. See &lt;a href="https://docs.trustgrid.io/tutorials/gateway-tools/monitoring-network-hops-to-peers/">Monitoring Network Hops to Peers&lt;/a>.&lt;/p></description></item><item><title>Docs: Interfaces</title><link>https://docs.trustgrid.io/docs/nodes/appliances/interfaces/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/interfaces/</guid><description>
 &lt;h2 id="network-interfaces">Network Interfaces&lt;/h2>
 &lt;p>Navigate to a node, then select &lt;code>Interfaces&lt;/code> under the &lt;code>Network&lt;/code> section.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="interfaces.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="interfaces.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Interfaces panel
 &lt;/figcaption>
 &lt;/figure>
@@ -90,7 +92,7 @@ Interfaces panel
 &lt;/tr>
 &lt;tr id="interface-vrf" style="scroll-margin-top: 10rem;">
 &lt;th>Interface VRF&lt;/th>
-&lt;td>Selects to which &lt;a href="https://docs.trustgrid.io/docs/nodes/vrfs/">VRF&lt;/a> the interface is attached.&lt;/td>
+&lt;td>Selects to which &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vrfs/">VRF&lt;/a> the interface is attached.&lt;/td>
 &lt;/tr>
 &lt;tr id="vlan-id-subinterfaces-only" style="scroll-margin-top: 10rem;">
 &lt;th>VLAN ID (Subinterfaces Only)&lt;/th>
@@ -223,38 +225,99 @@ Only visible on LAN interfaces and Subinterfaces
 &lt;h3 id="edge-nodes">Edge Nodes&lt;/h3>
 &lt;p>Edge Nodes build outgoing TLS tunnels to Gateway Nodes. Bidirectional traffic is supported through this tunnel, subject to ACLs and &lt;a href="https://docs.trustgrid.io/getting-started/security/">security&lt;/a> policy restrictions. Edge Nodes will only require a firewall rule change if outbound internet restrictions are in place. Edge nodes can be a target for software deployment. Edge Nodes can be deployed with a single or multiple ethernet connections to support deployments behind a firewall or adjacent to a firewall (public WAN / private LAN).&lt;/p>
 &lt;h3 id="gateway-nodes">Gateway Nodes&lt;/h3>
-&lt;p>Gateway Nodes accept incoming TLS tunnels from Edge Nodes. Traffic on these tunnels is bidirectional, as permitted by ACLs or policy. Gateway Nodes usually require a firewall change to permit the incoming traffic. Gateway Nodes are identical to Edge Nodes but with a gateway configuration applied. Gateway nodes only connect to other gateways if one is of type &lt;code>hub&lt;/code>. Read more about &lt;a href="https://docs.trustgrid.io/docs/nodes/gateway/">gateway configuration&lt;/a>.&lt;/p>
+&lt;p>Gateway Nodes accept incoming TLS tunnels from Edge Nodes. Traffic on these tunnels is bidirectional, as permitted by ACLs or policy. Gateway Nodes usually require a firewall change to permit the incoming traffic. Gateway Nodes are identical to Edge Nodes but with a gateway configuration applied. Gateway nodes only connect to other gateways if one is of type &lt;code>hub&lt;/code>. Read more about &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/gateway/">gateway configuration&lt;/a>.&lt;/p>
 &lt;h3 id="management-nodes">Management Nodes&lt;/h3>
 &lt;p>Management Nodes are not like other &lt;a href="https://docs.trustgrid.io/docs/nodes/">nodes&lt;/a> because they do not connect to the data plane, only the control plane. Management Nodes are deployed by Trustgrid for each customer and are multi-tenant like other control plane components. Customers may elect to deploy their own Management Nodes in place of multi-tenant Management Nodes. Management Nodes facilitate the monitoring, management, and support of Edge and Gateway Nodes.&lt;/p>
+&lt;h2 id="node-form-factors">Node Form Factors&lt;/h2>
+&lt;p>Nodes are available in two form factors:&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/">&lt;strong>Appliance&lt;/strong>&lt;/a> - This is a combination of a fully managed operating system and Trustgrid software pre-installed.&lt;/li>
+&lt;li>&lt;strong>Agent&lt;/strong> - This is a software package that can installed on supported operating systems. Users can install additional software and configure the operating system as needed.&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Functionality&lt;/th>
+&lt;th>Agent&lt;/th>
+&lt;th>Appliance&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Gateway Capabilities&lt;/td>
+&lt;td>None&lt;/td>
+&lt;td>Data Plane or ZTNA&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Operating System&lt;/td>
+&lt;td>&lt;a href="https://docs.trustgrid.io/tutorials/agent-deploy/#supported-operating-systems">Multiple Supported OS&lt;/a>, install additional software&lt;/td>
+&lt;td>Fully managed OS and Trustgrid service, no additional software permitted&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Updates&lt;/td>
+&lt;td>Managed by user via OS native tools&lt;/td>
+&lt;td>OS and Trustgrid updates managed via Trustgrid&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Interface IP Management&lt;/td>
+&lt;td>Managed by user via OS native tools&lt;/td>
+&lt;td>Configurable via Trustgrid portal or &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/">local console&lt;/a>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Layer 3 VPN&lt;/td>
+&lt;td>Single Virtual Network connectivity&lt;/td>
+&lt;td>Support for multiple Virtual Networks&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Layer 4 Proxy&lt;/td>
+&lt;td>Full Support&lt;/td>
+&lt;td>Full Support&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Compute&lt;/td>
+&lt;td>Commands only&lt;/td>
+&lt;td>Commands, Containers or VMs supported&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h2 id="node-list-view">Node List View&lt;/h2>
-&lt;h3 id="adding-nodes---generating-licenses">Adding Nodes - Generating Licenses&lt;/h3>
-&lt;p>A node needs a license generated by the Trustgrid control plan to register with your organization. This license can be generated in the portal from the Nodes page.&lt;/p>
+&lt;h3 id="adding-node-appliances---generating-licenses">Adding Node Appliances - Generating Licenses&lt;/h3>
+&lt;p>Appliance-based nodes need a license generated by the Trustgrid control plane to register with your organization. This license can be generated in the portal from the Nodes page.&lt;/p>
 &lt;ol>
 &lt;li>Navigate to the Nodes list view.&lt;/li>
 &lt;li>Click the &lt;strong>Add Node&lt;/strong> button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node-button.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node-button.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Add Node button on Nodes page
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Enter a name for the node and click &lt;strong>Create License&lt;/strong>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node-prompt.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node-prompt.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Node Name prompt
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>A license key will be generated and displayed. Clicking in the license text window will automatically copy the license into your clipboard, or you can click the &lt;strong>Download License&lt;/strong> button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node-license-key.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node-license-key.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example license key
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
+&lt;/ol>
+&lt;h3 id="adding-node-agents---generating-tokens">Adding Node Agents - Generating Tokens&lt;/h3>
+&lt;p>Agent-based nodes require a token generated by the Trustgrid control plane to register with your organization. This token is also generated in the portal from the Nodes page.&lt;/p>
+&lt;ol>
+&lt;li>Navigate to the Nodes list view.&lt;/li>
+&lt;li>Click the &lt;strong>Add Agent&lt;/strong> button.&lt;/li>
 &lt;/ol>
 &lt;h3 id="adding-a-tag-as-a-column-on-the-nodes-table">Adding a Tag as a Column on the Nodes Table&lt;/h3>
 &lt;p>Adding a tag as a column on the nodes tables is good way to make valuable information visible for multiple nodes at the same time. To add the column:&lt;/p>
@@ -291,20 +354,22 @@ Example license key
 &lt;p>Click &lt;code>Apply Tag Filter&lt;/code> and the table will only show matching nodes.&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;p>&lt;img src="applied-filters2.png" alt="img">&lt;/p></description></item><item><title>Docs: Thresholds</title><link>https://docs.trustgrid.io/docs/nodes/thresholds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/thresholds/</guid><description>
+&lt;p>&lt;img src="applied-filters2.png" alt="img">&lt;/p></description></item><item><title>Docs: Thresholds</title><link>https://docs.trustgrid.io/docs/nodes/appliances/thresholds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/thresholds/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Thresholds provide a way to trigger events when different measurements exceed a given value. Thresholds configured at the node level can override &lt;a href="https://docs.trustgrid.io/docs/domain/thresholds/">Domain Thresholds&lt;/a>.&lt;/p>
 &lt;/div>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-thresholds.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-thresholds.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example Thresholds page on a node
 &lt;/figcaption>
 &lt;/figure>
 &lt;h2 id="node-level-threshold-status">Node Level Threshold Status&lt;/h2>
 &lt;p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-threshold-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="node-threshold-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;table>
 &lt;thead>
@@ -332,8 +397,9 @@ To view and configure thresholds, a user will need &lt;code>nodes::configure::th
 &lt;ol>
 &lt;li>Navigate to the node in the portal.&lt;/li>
 &lt;li>In the left-side navigation bar find Thresholds in the System section and click it.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="system-threshold.png" alt="System &amp;gt; Thresholds" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;img src="system-threshold.png" alt="System &amp;gt; Thresholds" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;/li>
 &lt;li>Change the Status to &amp;ldquo;Enabled&amp;rdquo;.&lt;/li>
@@ -497,7 +563,7 @@ To view and configure thresholds, a user will need &lt;code>nodes::configure::th
 &lt;/li>
 &lt;/ul>
 &lt;h3 id="determine-production-status-of-the-trustgrid-node">Determine Production Status of the Trustgrid Node&lt;/h3>
-&lt;p>Use the &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/prod-status-tag/%7D">Production Status Tags&lt;/a> to determine if the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> is in use and expected to be online.&lt;/p>
+&lt;p>Use the &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/tags/prod-status-tag/%7D">Production Status Tags&lt;/a> to determine if the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> is in use and expected to be online.&lt;/p>
 &lt;h3 id="confirm-high-availability-or-disaster-recover-is-functioning">Confirm High Availability or Disaster Recover is Functioning&lt;/h3>
 &lt;p>Before troubleshooting why a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> is down we should determine if the services it provided can be provided in the interim by a cluster member or devices at a secondary/disaster-recovery site.&lt;/p>
 &lt;h5 id="is-the-node-a-cluster-member">Is the Node a Cluster Member&lt;/h5>

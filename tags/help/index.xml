@@ -186,7 +186,7 @@ ii. If the browser says it cannot connect this indicates a firewall or routing i
 &lt;/li>
 &lt;/ul>
 &lt;h3 id="determine-production-status-of-the-trustgrid-node">Determine Production Status of the Trustgrid Node&lt;/h3>
-&lt;p>Use the &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/prod-status-tag/%7D">Production Status Tags&lt;/a> to determine if the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> is in use and expected to be online.&lt;/p>
+&lt;p>Use the &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/tags/prod-status-tag/%7D">Production Status Tags&lt;/a> to determine if the &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> is in use and expected to be online.&lt;/p>
 &lt;h3 id="confirm-high-availability-or-disaster-recover-is-functioning">Confirm High Availability or Disaster Recover is Functioning&lt;/h3>
 &lt;p>Before troubleshooting why a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> is down we should determine if the services it provided can be provided in the interim by a cluster member or devices at a secondary/disaster-recovery site.&lt;/p>
 &lt;h5 id="is-the-node-a-cluster-member">Is the Node a Cluster Member&lt;/h5>

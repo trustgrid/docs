@@ -117,7 +117,7 @@ style cluster fill:#c8c8c8&lt;/pre>
 &lt;li>Connecting each member WAN interface to different DMZ private networks configured to use different ISPs for internet access&lt;/li>
 &lt;li>A combination of public and private WAN networks&lt;/li>
 &lt;/ul>
-&lt;p>In this configuration, the master/active member of the node will determine which ISP is being utilized. If one ISP is preferred you will need to have operational procedures in place to ensure the member node connected to it stays the master node. It is recommended that you keep the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-mode">cluster mode configured as Automatic Failback&lt;/a> and your organization establishes a &lt;a href="https://docs.trustgrid.io/docs/nodes/tags/">tag&lt;/a> to designate the preferred member.&lt;/p>
+&lt;p>In this configuration, the master/active member of the node will determine which ISP is being utilized. If one ISP is preferred you will need to have operational procedures in place to ensure the member node connected to it stays the master node. It is recommended that you keep the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-mode">cluster mode configured as Automatic Failback&lt;/a> and your organization establishes a &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/tags/">tag&lt;/a> to designate the preferred member.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
 Because the WAN interfaces are on different networks, this configuration &lt;strong>requires at least one additional LAN interface&lt;/strong> to be configured for accessing internal resources and providing the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-heartbeat-communication">cluster heartbeat&lt;/a> communication
 &lt;/div>

@@ -43,9 +43,10 @@
 &lt;h3 id="force-health-validation">Force Health Validation&lt;/h3>
 &lt;p>The cluster health state is evaluated when certain events occurs, such as a member disconnecting/reconnecting or the &lt;a href="https://docs.trustgrid.io/docs/clusters/#cluster-member-health">member health state&lt;/a> changes. Occasionally this can lead to the state being reported incorrectly or a delay before the proper state is displayed.&lt;/p>
 &lt;p>If you wish to force the health state to be re-evaluated you can use the &amp;ldquo;Validate Health&amp;rdquo; command under Actions on the Cluster Overview panel.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="cluster-validate-health.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="cluster-validate-health.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Validate Health action
 &lt;/figcaption>
 &lt;/figure></description></item><item><title>Docs: Manage Cluster Members</title><link>https://docs.trustgrid.io/docs/clusters/manage-members/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/clusters/manage-members/</guid><description>
@@ -53,34 +54,38 @@ Validate Health action
 &lt;p>This will add the selected node to the cluster and gain any configuration defined at the cluster level.&lt;/p>
 &lt;ol>
 &lt;li>Click Actions &amp;gt; Add Node.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node.png" alt="Action &amp;gt; Add Node" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node.png" alt="Action &amp;gt; Add Node" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Action &amp;gt; Add Node
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>Select the desired node from the list. This is a type-ahead field that will filter the list as you type. Click Add Node.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="add-node-list.png" alt="Add node dialog with list of nodes filtered to show those matching &amp;#39;edge&amp;#39;" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="add-node-list.png" alt="Add node dialog with list of nodes filtered to show those matching &amp;#39;edge&amp;#39;" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Member node selection list
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>You are prompted if you want to configure cluster heartbeat settings.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="config-heart1.png" alt="Prompt to configure heartbeat settings" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="config-heart1.png" alt="Prompt to configure heartbeat settings" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Prompt to configure heartbeat settings
 &lt;/figcaption>
 &lt;/figure>
 &lt;ol>
-&lt;li>No - The node is added to the cluster and you will manually need to navigate to the &lt;a href="https://docs.trustgrid.io/docs/nodes/cluster/">node&amp;rsquo;s cluster settings&lt;/a> and configure the heartbeat before it will be healthy.&lt;/li>
-&lt;li>Yes - The configuration prompt allows you to set the &lt;a href="https://docs.trustgrid.io/docs/nodes/cluster/#heartbeat">Heartbeat&lt;/a> and, optionally, the &lt;a href="https://docs.trustgrid.io/docs/nodes/cluster/#status-endpoint">Status Endpoint&lt;/a> settings.
+&lt;li>No - The node is added to the cluster and you will manually need to navigate to the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/cluster/">node&amp;rsquo;s cluster settings&lt;/a> and configure the heartbeat before it will be healthy.&lt;/li>
+&lt;li>Yes - The configuration prompt allows you to set the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/cluster/#heartbeat">Heartbeat&lt;/a> and, optionally, the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/cluster/#status-endpoint">Status Endpoint&lt;/a> settings.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="config-heart2.png" alt="Dialog to enter heartbeat IP and port, and status endpoint port" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="config-heart2.png" alt="Dialog to enter heartbeat IP and port, and status endpoint port" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Heartbeat and Status Endpoint settings
 &lt;/figcaption>
 &lt;/figure>
@@ -93,9 +98,10 @@ Heartbeat and Status Endpoint settings
 &lt;ol>
 &lt;li>Select the desired node from the member table.&lt;/li>
 &lt;li>Click Action &amp;gt; Remove Node.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="remove-node.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="remove-node.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Remove Node option from Actions
 &lt;/figcaption>
 &lt;/figure>

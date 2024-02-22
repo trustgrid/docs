@@ -1,8 +1,8 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– virtual machines</title><link>https://docs.trustgrid.io/categories/virtual-machines/</link><description>Recent content in virtual machines on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/categories/virtual-machines/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Virtual Machines</title><link>https://docs.trustgrid.io/docs/nodes/kvm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/kvm/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– virtual machines</title><link>https://docs.trustgrid.io/categories/virtual-machines/</link><description>Recent content in virtual machines on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/categories/virtual-machines/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Virtual Machines</title><link>https://docs.trustgrid.io/docs/nodes/appliances/kvm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/kvm/</guid><description>
 &lt;p>Trustgrid nodes can deploy virtual machines (if supported) using the open source virtualization technology &lt;code>Kernel-base Virtual Machine (KVM)&lt;/code>which allows the node to act as a hypervisor to run multiple, isolated virtual guests.&lt;/p>
 &lt;p>The virtual machine can be attached to both the local and virtual network space which allows both local and remote resources to communicate with the virtual machine. For example an API could be deployed on a Trustgrid Gateway which sends API calls via the virtual network space to a virtual machine running on a Trustgrid Edge Node. The API call could then be translated to make a call to a database running on the local network and passed back up to the gateway host.&lt;/p>
 &lt;div class="alert alert-info" role="alert">
-Before being able to deploy a virtual machine to a node, an &lt;a href="https://docs.trustgrid.io/docs/nodes/kvm/images/">image&lt;/a> needs to be created.
+Before being able to deploy a virtual machine to a node, an &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/kvm/images/">image&lt;/a> needs to be created.
 &lt;/div>
 &lt;h2 id="management">Management&lt;/h2>
 &lt;p>Navigate to &lt;code>VM Management&lt;/code> &amp;gt; &lt;code>Virtual Machines&lt;/code> on a node.&lt;/p>
@@ -237,7 +237,7 @@ You can find the full cloud-init documentation &lt;strong>&lt;a href="https://cl
 &lt;div class="alert alert-info" role="alert">
 Active flows can be manually terminated.
 &lt;/div>
-&lt;p>&lt;img src="vm_history_flows.png" alt="img">&lt;/p></description></item><item><title>Docs: Images</title><link>https://docs.trustgrid.io/docs/nodes/kvm/images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/kvm/images/</guid><description>
+&lt;p>&lt;img src="vm_history_flows.png" alt="img">&lt;/p></description></item><item><title>Docs: Images</title><link>https://docs.trustgrid.io/docs/nodes/appliances/kvm/images/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/kvm/images/</guid><description>
 &lt;p>The images section allows a user to add/delete virtual machine images.&lt;/p>
 &lt;p>&lt;img src="vm_images.png" alt="img">&lt;/p>
 &lt;div class="alert alert-info" role="alert">
@@ -279,7 +279,7 @@ If an incorrect &lt;code>Operating System&lt;/code> is selected for the image, t
 &lt;ol>
 &lt;li>Yes - The image will be attempted to be deleted from the node first before the image entry is removed.&lt;/li>
 &lt;li>No - The image will not be deleted from the node and the image entry will be removed.&lt;/li>
-&lt;/ol></description></item><item><title>Docs: Volumes</title><link>https://docs.trustgrid.io/docs/nodes/kvm/volumes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/kvm/volumes/</guid><description>
+&lt;/ol></description></item><item><title>Docs: Volumes</title><link>https://docs.trustgrid.io/docs/nodes/appliances/kvm/volumes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/kvm/volumes/</guid><description>
 &lt;p>Volumes are used to allocate disks or to attach CD-ROMs to virtual machines.&lt;/p>
 &lt;p>&lt;img src="vm_volumes.png" alt="img">&lt;/p>
 &lt;p>&lt;img src="vm_add_volume.png" alt="img">&lt;/p>

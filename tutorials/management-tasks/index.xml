@@ -1,4 +1,4 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Management Operations</title><link>https://docs.trustgrid.io/tutorials/management-tasks/</link><description>Recent content in Management Operations on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 23 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/tutorials/management-tasks/index.xml" rel="self" type="application/rss+xml"/><item><title>Tutorials: Changing Node Status (Enabling / Disabling)</title><link>https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Management Operations</title><link>https://docs.trustgrid.io/tutorials/management-tasks/</link><description>Recent content in Management Operations on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 23 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/tutorials/management-tasks/index.xml" rel="self" type="application/rss+xml"/><item><title>Tutorials: Agent Node Management</title><link>https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/agent-mgmt/</guid><description/></item><item><title>Tutorials: Changing Node Status (Enabling / Disabling)</title><link>https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/</guid><description>
 &lt;p>Trustgrid nodes can be in two states:&lt;/p>
 &lt;ul>
 &lt;li>Enabled - In this state the node will connected to the Trustgrid Control Plane and any Data Plane gateways the node is configured to use.&lt;/li>
@@ -14,9 +14,10 @@ Changing the node status will trigger a restart of the Trustgrid node service.
 &lt;li>Navigate to that node in the Trustgrid portal.&lt;/li>
 &lt;li>Open the &lt;strong>Info&lt;/strong> tab by clicking the dropdown in the top-right, or hitting the &lt;code>`&lt;/code> key.&lt;/li>
 &lt;li>From the Status dropdown change to Disable or Enable
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="info-tab-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="info-tab-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Info tab with Status dropdown
 &lt;/figcaption>
 &lt;/figure>
@@ -33,9 +34,10 @@ Note that if you change this any selected nodes will be de-selected.
 &lt;/li>
 &lt;li>Use the checkbox on the left to select the nodes you wish to disable or enable.&lt;/li>
 &lt;li>From the Actions dropdown select either &lt;strong>Enable&lt;/strong> or &lt;strong>Disable&lt;/strong>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="nodes-table-status.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="nodes-table-status.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Status actions on Nodes table
 &lt;/figcaption>
 &lt;/figure>
@@ -84,8 +86,8 @@ The Trustgrid API refers to this state via the &lt;code>status&lt;/code> attribu
 &lt;li>Node agent will start automatically on reboot&lt;/li>
 &lt;li>Expect the node to alert for disconnect/connect&lt;/li>
 &lt;li>Does not require a cloud gateway&lt;/li>
-&lt;/ol></description></item><item><title>Tutorials: Upgrading Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
-&lt;h2 id="how-a-node-appliance-upgrades">How a Node Appliance Upgrades&lt;/h2>
+&lt;/ol></description></item><item><title>Tutorials: Upgrading Trustgrid Appliance Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</link><pubDate>Tue, 02 May 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/upgrade-nodes/</guid><description>
+&lt;h2 id="how-an-appliance-node-upgrades">How an Appliance Node Upgrades&lt;/h2>
 &lt;p>The upgrade process will:&lt;/p>
 &lt;ol>
 &lt;li>Upgrade the Trustgrid application package. As part of this process the node will backup the current running version.&lt;/li>
@@ -139,25 +141,28 @@ The above is only a partial policy. Use the policy creator to define a complete 
 &lt;ol>
 &lt;li>Navigate to the node that will be upgraded.&lt;/li>
 &lt;li>From the tool bar click the Upgrade button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-upgrade-button.png" alt="Toolbar showing an Upgrade (surrounded by a red rectangle), Refresh and Info buttons." style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-upgrade-button.png" alt="Toolbar showing an Upgrade (surrounded by a red rectangle), Refresh and Info buttons." onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Upgrade button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>When prompted enter the node&amp;rsquo;s name and click confirm.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="node-upgrade-confirm.png" alt="Dialogue asking to enter the node name to confirm" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="node-upgrade-confirm.png" alt="Dialogue asking to enter the node name to confirm" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Node upgrade confirmation
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>A dialogue will indicate the command was successfully sent.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="single-node-upgrade-report.png" alt="Dialogue stating &amp;#39;Upgrade in progress" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="single-node-upgrade-report.png" alt="Dialogue stating &amp;#39;Upgrade in progress" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Node upgrade response
 &lt;/figcaption>
 &lt;/figure>
@@ -172,33 +177,37 @@ Note: if you change the search or tag filter any selected nodes will be deselect
 &lt;/div>
 &lt;/li>
 &lt;li>Use the check boxes to select the desired nodes.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="multi-node-select.png" alt="Nodes table showing two nodes selected" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="multi-node-select.png" alt="Nodes table showing two nodes selected" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Nodes table
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>From the actions dropdown select Upgrade.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="nodes-upgrade-action.png" alt="Action dropdown menu with red box around Upgrade option" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="nodes-upgrade-action.png" alt="Action dropdown menu with red box around Upgrade option" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Action &amp;gt; Upgrade
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>When prompted, confirm you want to proceed with the bulk upgrade.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="multi-node-upgrade-confirm.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="multi-node-upgrade-confirm.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Confirm bulk upgrade
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
 &lt;li>A table will be presented showing the status of each node upgrade request.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="multi-node-upgrade-report.png" alt="Upgrade Operation Report table showing two nodes were requested to upgrade and both are in progress" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="multi-node-upgrade-report.png" alt="Upgrade Operation Report table showing two nodes were requested to upgrade and both are in progress" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Upgrade Operation Report
 &lt;/figcaption>
 &lt;/figure>
@@ -206,9 +215,10 @@ Upgrade Operation Report
 &lt;/ol>
 &lt;h2 id="monitoring-upgrade-progress">Monitoring Upgrade Progress&lt;/h2>
 &lt;p>You can monitor the upgrade status from a node&amp;rsquo;s Info tab.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="upgrade-status-inprog.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="upgrade-status-inprog.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Info tab, Upgrade in Progress
 &lt;/figcaption>
 &lt;/figure>
@@ -242,9 +252,10 @@ Info tab, Upgrade in Progress
 Note: if an upgrade is currently &lt;strong>In Progress&lt;/strong>, then this will be the completion time of the prior upgrade operations
 &lt;/div>
 &lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="upgrade-status-completed.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="upgrade-status-completed.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Example of Completed upgrade status
 &lt;/figcaption>
 &lt;/figure></description></item><item><title>Tutorials: Deleting Trustgrid Nodes</title><link>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</link><pubDate>Fri, 28 Apr 2023 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/</guid><description>
@@ -254,7 +265,7 @@ Example of Completed upgrade status
 &lt;h2 id="best-practices">Best Practices&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Disable the node(s)&lt;/a> for several days prior to deleting. This way if it is discovered that it is still needed it is simple to re-enable.&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/prod-status-tag/">Update any status tag&lt;/a> to indicate the node(s) is being decommissioned.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/shared/tags/prod-status-tag/">Update any status tag&lt;/a> to indicate the node(s) is being decommissioned.&lt;/li>
 &lt;li>Before deleting, &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the node as a destination. While these can be removed later, they will be easier to find while the node is still listed as the destination.&lt;/li>
 &lt;/ul>
 &lt;h2 id="deleting-nodes">Deleting Nodes&lt;/h2>
@@ -267,9 +278,10 @@ Optionally, Use the search to filter the displayed nodes.
 &lt;/div>
 &lt;/li>
 &lt;li>From the Actions menu select the Delete option.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="delete-node-action.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="delete-node-action.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Delete node action
 &lt;/figcaption>
 &lt;/figure>
@@ -285,7 +297,7 @@ Delete node action
 &lt;h2 id="best-practices">Best Practices&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#remove-member">Remove all members&lt;/a> for a period of time to ensure the configuration is no longer needed.&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/tags/prod-status-tag/">Update any status tag&lt;/a> to indicate the cluster(s) is being decommissioned.&lt;/li>
+&lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/shared/tags/prod-status-tag/">Update any status tag&lt;/a> to indicate the cluster(s) is being decommissioned.&lt;/li>
 &lt;li>Before deleting, &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#deleting-virtual-network-routes">remove any virtual network routes&lt;/a> with the cluster as a destination. While these can be removed later, they will be easier to find while the cluster is still listed as the destination.&lt;/li>
 &lt;/ul>
 &lt;h2 id="deleting-clusters">Deleting Clusters&lt;/h2>
@@ -297,9 +309,10 @@ Optionally, Use the search to filter the displayed clusters.
 &lt;/div>
 &lt;/li>
 &lt;li>From the Actions menu select the Delete option.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="delete-cluster-action.png" alt="" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
-&lt;figcaption style="text-align: center; margin-top: 0.5rem;font-weight:lighter;">
+&lt;img src="delete-cluster-action.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 30%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 Delete cluster action
 &lt;/figcaption>
 &lt;/figure>
