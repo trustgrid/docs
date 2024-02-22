@@ -4,7 +4,7 @@ linkTitle: Advanced Network Config
 description: For changing IP, Speed/Duplex and MTU when not possible via control plane
 ---
 
-{{<alert color="warning">}} The setting below should be changed via the Trustgrid portal [interface configuration]({{<ref "/docs/nodes/interfaces#configuration">}}) if at all possible. These tools should only be used if the correct configuration is preventing successful communication to the control plane.. {{</alert>}}
+{{<alert color="warning">}} The setting below should be changed via the Trustgrid portal [interface configuration]({{<ref "/docs/nodes/appliances/interfaces#configuration">}}) if at all possible. These tools should only be used if the correct configuration is preventing successful communication to the control plane.. {{</alert>}}
 
 
 ## Modify Network Settings

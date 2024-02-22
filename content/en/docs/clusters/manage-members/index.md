@@ -12,8 +12,8 @@ This will add the selected node to the cluster and gain any configuration define
 {{<tgimg src="add-node-list.png" width="50%" caption="Member node selection list" alt="Add node dialog with list of nodes filtered to show those matching 'edge'">}}
 3. You are prompted if you want to configure cluster heartbeat settings.
 {{<tgimg src="config-heart1.png" width="60%" caption="Prompt to configure heartbeat settings" alt="Prompt to configure heartbeat settings">}}
-   1. No - The node is added to the cluster and you will manually need to navigate to the [node's cluster settings]({{<ref "/docs/nodes/cluster">}}) and configure the heartbeat before it will be healthy.
-   2. Yes - The configuration prompt allows you to set the [Heartbeat]({{<ref "/docs/nodes/cluster#heartbeat">}}) and, optionally, the [Status Endpoint]({{<ref "/docs/nodes/cluster#status-endpoint">}}) settings.
+   1. No - The node is added to the cluster and you will manually need to navigate to the [node's cluster settings]({{<ref "/docs/nodes/appliances/cluster">}}) and configure the heartbeat before it will be healthy.
+   2. Yes - The configuration prompt allows you to set the [Heartbeat]({{<ref "/docs/nodes/appliances/cluster#heartbeat">}}) and, optionally, the [Status Endpoint]({{<ref "/docs/nodes/appliances/cluster#status-endpoint">}}) settings.
    {{<tgimg src="config-heart2.png" width="60%" caption="Heartbeat and Status Endpoint settings" alt="Dialog to enter heartbeat IP and port, and status endpoint port">}}
 
 

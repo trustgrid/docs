@@ -68,14 +68,14 @@ All TCP Flags set on any packets seen over the duration of the flow:
 - RST - reset packet
 
 
-TCP Flags are only available for **TCP** flows that traverse the layer 3 VPN function. ICMP and UDP traffic, [Layer 4 services]({{<ref "/docs/nodes/services">}}) and [VPN Port Forwards]({{<ref "/docs/nodes/vpn/port-forwarding">}}) will not have this data.
+TCP Flags are only available for **TCP** flows that traverse the layer 3 VPN function. ICMP and UDP traffic, [Layer 4 services]({{<ref "/docs/nodes/shared/services">}}) and [VPN Port Forwards]({{<ref "/docs/nodes/appliances/vpn/port-forwarding">}}) will not have this data.
 
 {{</field >}}
 
 {{</fields>}}
 
 ### NAT Impact on Source and Destination Fields
-When [NATs]({{<ref "/docs/nodes/vpn/nats">}}) are applied to a flow they will influence the source/destination IP and port values.  
+When [NATs]({{<ref "/docs/nodes/appliances/vpn/nats">}}) are applied to a flow they will influence the source/destination IP and port values.  
 
 Consider this flow:
 ```mermaid
@@ -106,7 +106,7 @@ Node2 would report the flow after the NATs on Node1 were applied (changing the s
 ## Viewing Flow Logs
 Flow logs are visible at an organization level by navigating to [Operations > Flow Logs]({{<ref "/docs/operations/flow-logs">}}). This will show you the most recent 10,000 flows of **all** nodes in the organization.
 
-To view Flow Logs only for traffic through a specific node, navigate to that node and go to [History > Flow Logs]({{<ref "docs/nodes/flow-logs">}}). This will show you the most recent 10,000 flows for the **currently selected** node.
+To view Flow Logs only for traffic through a specific node, navigate to that node and go to [History > Flow Logs]({{<ref "docs/nodes/shared/flow-logs">}}). This will show you the most recent 10,000 flows for the **currently selected** node.
 
 {{<tgimg src="flow-logs-node.png" caption="Example flow log table for a node" width="80%" alt="table showing flow log entries for a node">}}
 

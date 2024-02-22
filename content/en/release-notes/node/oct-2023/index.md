@@ -28,7 +28,7 @@ This release also allows the user at the console to deregister a node. This will
 - The ability to modify an interface's MTU settings from the [Advanced Network Configuration]({{<ref "/tutorials/local-console-utility/advanced-network-config#change-interface-mtu">}})
 
 ## New Tool for Monitoring Connectors
-This release includes a new service that will allow you to see active [L4 Connector]({{<ref "/docs/nodes/connectors">}}) sessions. This gives visibility into the active usage of any connector.
+This release includes a new service that will allow you to see active [L4 Connector]({{<ref "/docs/nodes/shared/connectors">}}) sessions. This gives visibility into the active usage of any connector.
 
 
 ## Other Improvements and Fixes

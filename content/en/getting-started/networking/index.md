@@ -3,6 +3,7 @@ categories: ["overview"]
 tags: ["architecture"]
 title: "Networking"
 date: 2022-12-30
+weight: 40
 description: >
   Trustgrid networking overview
 ---

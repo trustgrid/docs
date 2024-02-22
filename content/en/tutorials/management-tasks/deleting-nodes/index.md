@@ -9,7 +9,7 @@ weight: 80
 
 ## Best Practices
 * [Disable the node(s)]({{<ref "/tutorials/management-tasks/changing-node-status">}}) for several days prior to deleting. This way if it is discovered that it is still needed it is simple to re-enable.
-* [Update any status tag]({{<ref "/docs/nodes/tags/prod-status-tag">}}) to indicate the node(s) is being decommissioned.
+* [Update any status tag]({{<ref "/docs/nodes/shared/tags/prod-status-tag">}}) to indicate the node(s) is being decommissioned.
 * Before deleting, [remove any virtual network routes]({{<ref "/docs/domain/virtual-networks/routes#deleting-virtual-network-routes">}}) with the node as a destination. While these can be removed later, they will be easier to find while the node is still listed as the destination.
 
 ## Deleting Nodes

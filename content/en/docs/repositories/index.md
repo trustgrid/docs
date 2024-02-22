@@ -6,7 +6,7 @@ weight: 17
 
 ## Summary 
 
-Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy [containerized applications securely to their Trustgrid node appliances.]({{<ref "/docs/nodes/containers">}}) 
+Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy [containerized applications securely to their Trustgrid node appliances.]({{<ref "/docs/nodes/appliances/containers">}}) 
 
 ## Container Namespace
 

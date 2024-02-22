@@ -9,7 +9,7 @@ The DNS feature allows nodes in the virtual network to act as DNS servers for in
 ## DNS Settings
 {{<fields>}}
 {{<field "Enable/Disable DNS" >}}This field enables or disables the DNS feature on the virtual network.{{</field>}}
-{{<field "DNS Server IP">}}This is the IP address that should be used as the resolver. There is no need to create a VPN route for this IP. If the ingress node was the [DNS feature enabled]({{<ref "/docs/nodes/vpn/dns">}}) it will automatically handle responses for the query.{{</field>}}
+{{<field "DNS Server IP">}}This is the IP address that should be used as the resolver. There is no need to create a VPN route for this IP. If the ingress node was the [DNS feature enabled]({{<ref "/docs/nodes/appliances/vpn/dns">}}) it will automatically handle responses for the query.{{</field>}}
 {{</fields>}}
 
 {{<tgimg src="vnet-dns-settings.png" caption="DNS Settings" width="60%">}}
