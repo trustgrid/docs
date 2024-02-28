@@ -1446,7 +1446,7 @@ Example Overview panel for an agent
 &lt;/div>
 &lt;h2 id="recent-flow-logs">Recent Flow Logs&lt;/h2>
 &lt;p>This section gives a quick view of the most recent reported flow logs and provides a link to the &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/">Flow Logs&lt;/a> page for more advanced filtering and analysis.&lt;/p></description></item><item><title>Getting-Started: Request Trustgrid Trial Account</title><link>https://docs.trustgrid.io/getting-started/trial/request-trial/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/trial/request-trial/</guid><description>
-&lt;p>The process below will guide you through requesting a free 30-day trial account.&lt;/p>
+&lt;p>The process below will guide you through requesting a free trial account.&lt;/p>
 &lt;h2 id="high-level-steps">High-Level Steps&lt;/h2>
 &lt;ul>
 &lt;li>Sign up for a Trustgrid trial account&lt;/li>
