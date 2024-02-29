@@ -92,13 +92,16 @@ Once created the domain cannot be changed. Please choose carefully.
 &lt;h2 id="prerequisites">Prerequisites&lt;/h2>
 &lt;ul>
 &lt;li>&lt;a href="https://docs.trustgrid.io/getting-started/trial/request-trial/">Trustgrid Trial Account&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://docs.trustgrid.io/getting-started/trial/base-setup/ubuntu2204/">Two instances of Ubuntu 22.04&lt;/a> with &lt;code>sudo&lt;/code> privileges to install additional repositories and packages.
+&lt;li>&lt;a href="https://docs.trustgrid.io/getting-started/trial/base-setup/ubuntu2204/">Two instances of Ubuntu 22.04&lt;/a> x86-64/AMD64 with &lt;code>sudo&lt;/code> privileges to install additional repositories and packages.
 &lt;ul>
 &lt;li>Both instances need to be able to make &lt;strong>outbound connections to the internet on ports 443 and 8443&lt;/strong> and cannot be subject to TLS inspection that alters the certificate chain.&lt;/li>
 &lt;li>Ideally, these devices should not be able to communicate with each other directly. This is not a hard requirement.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;div class="alert alert-info" role="alert">
+At this time only x86-64/AMD64 based operating systems are supported.
+&lt;/div>
 &lt;h2 id="understanding-the-default-network">Understanding the Default Network&lt;/h2>
 &lt;p>To facilitate a smooth trial a default &lt;a href="https://docs.trustgrid.io/getting-started/basic-architecture/#virtual-networks">virtual network&lt;/a> is created. This network uses the carrier-grade NAT address space 100.64.0.0/10 as an &lt;a href="">IP Pool&lt;/a>. Agents are automatically assigned an IP address from this pool when they are attached to the virtual network and routes are automatically created to allow communication between agents on the same virtual network.&lt;/p>
 &lt;h2 id="step-1---setup-agents">Step 1 - Setup Agents&lt;/h2>

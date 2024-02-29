@@ -1672,8 +1672,11 @@ Black X will remove the client
 &lt;h2 id="supported-operating-systems">Supported Operating Systems&lt;/h2>
 &lt;h3 id="linux">Linux&lt;/h3>
 &lt;ul>
-&lt;li>Ubuntu 22.04 LTS&lt;/li>
+&lt;li>Ubuntu 22.04 LTS x86-64/AMD64&lt;/li>
 &lt;/ul>
+&lt;div class="alert alert-info" role="alert">
+At this time only x86-64/AMD64 based operating systems are supported.
+&lt;/div>
 &lt;h3 id="container">Container&lt;/h3>
 &lt;p>The Trustgrid agent can be deployed as a container on Linux systems. This provides an isolated environment for the agent without requiring a full operating system instance.&lt;/p>
 &lt;p>Trustgrid provides a Docker image that contains the agent pre-configured and optimized to run in Docker or similar container hosting environments like Kubernetes.&lt;/p>
