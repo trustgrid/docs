@@ -15,10 +15,11 @@ In this section, we will cover the initial setup of two Trustgrid agents on sepa
 
 ## Prerequisites
 - [Trustgrid Trial Account]({{<relref "../request-trial">}})
-- [Two instances of Ubuntu 22.04]({{<relref "./ubuntu2204">}}) with `sudo` privileges to install additional repositories and packages.
+- [Two instances of Ubuntu 22.04]({{<relref "./ubuntu2204">}}) x86-64/AMD64 with `sudo` privileges to install additional repositories and packages.
   - Both instances need to be able to make **outbound connections to the internet on ports 443 and 8443** and cannot be subject to TLS inspection that alters the certificate chain.
   - Ideally, these devices should not be able to communicate with each other directly. This is not a hard requirement.
 
+{{<alert color="info">}}At this time only x86-64/AMD64 based operating systems are supported.{{</alert>}}
 
 ## Understanding the Default Network
 To facilitate a smooth trial a default [virtual network]({{<relref "/getting-started/basic-architecture#virtual-networks">}}) is created. This network uses the carrier-grade NAT address space 100.64.0.0/10 as an [IP Pool](). Agents are automatically assigned an IP address from this pool when they are attached to the virtual network and routes are automatically created to allow communication between agents on the same virtual network.

@@ -10,7 +10,9 @@ Weight: 11
 
 ### Linux 
 
-- Ubuntu 22.04 LTS
+- Ubuntu 22.04 LTS x86-64/AMD64
+
+{{<alert color="info">}}At this time only x86-64/AMD64 based operating systems are supported.{{</alert>}}
 
 ### Container
 The Trustgrid agent can be deployed as a container on Linux systems. This provides an isolated environment for the agent without requiring a full operating system instance. 
