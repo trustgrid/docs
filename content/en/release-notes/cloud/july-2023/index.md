@@ -27,33 +27,33 @@ The WAN interface used to include a field labeled "Public IP" that was the IP ad
 
 Some users were confused by this IP and believed it was the assigned IP address for the WAN interface which is not always true.  Therefore we have removed this from the WAN interface panel.  
 
-The observed Public IP is still visible in the [Infovisor]({{<ref "/docs/nodes/infovisor">}}).
+The observed Public IP is still visible in the [Infovisor]({{<ref "/docs/nodes/shared/infovisor">}}).
 
 ## Data Plane Panel
 ### Export Data Plane Peers
 
-You can now export a CSV-formatted list of peers from the [Data Plane panel]({{<ref "/docs/nodes/data-plane">}}). 
-{{<tgimg src="/docs/nodes/data-plane/data-plane-export.png" caption="Export button" width="25%">}}
+You can now export a CSV-formatted list of peers from the [Data Plane panel]({{<ref "/docs/nodes/appliances/data-plane">}}). 
+{{<tgimg src="/docs/nodes/appliances/data-plane/data-plane-export.png" caption="Export button" width="25%">}}
 
 ### List Gateway Ports
-The [Data Plane Panel]({{<ref "/docs/nodes/data-plane">}}) now lists the Gateway Port for each tunnel. This is the port the client node uses to connect to the listed gateway. 
+The [Data Plane Panel]({{<ref "/docs/nodes/appliances/data-plane">}}) now lists the Gateway Port for each tunnel. This is the port the client node uses to connect to the listed gateway. 
 
 While this is typically port 8443,, it can be configured differently and having that info visible aids in troubleshooting.
 
 ## BGP Status Tool
-A new [BGP Status tool]({{<ref "/docs/nodes/bgp#bgp-status">}}) has been added to the BGP panel. This tool displays the current BGP peer status including peer connection status, uptime, routes received and advertised, and more.
+A new [BGP Status tool]({{<ref "/docs/nodes/appliances/bgp#bgp-status">}}) has been added to the BGP panel. This tool displays the current BGP peer status including peer connection status, uptime, routes received and advertised, and more.
 {{<tgimg src="/docs/nodes/bgp/bgp-status-output.png" caption="BGP Status" width="80%">}}
 
 ## Flow Logs Advanced Search Improvement
 The [flow logs advanced search]({{<ref "/help-center/flow-logs#advanced-search">}}) now allows selecting clusters as the source or destination nodes.  This enables search for flows that were sent to or received from a cluster, rather than individual nodes.
 
 ## Trustgrid Resource Names (TGRN) in Infovisor
-When creating [Resource Scoped Policies]({{<ref "/docs/user-management/policies#resource-scoped-policies">}}) to limit a user's visibility to specific nodes or clusters you specify resources using Trustgrid Resource Names (TGRNs). Prior to this release it was necessary to generate the TGRN for by combining the common prefix with the node's UID.  With this release the TGRN is available in the node's [Infovisor]({{<ref "/docs/nodes/infovisor">}}) panel with a button to easily copy the TGRN into your clipboard. 
+When creating [Resource Scoped Policies]({{<ref "/docs/user-management/policies#resource-scoped-policies">}}) to limit a user's visibility to specific nodes or clusters you specify resources using Trustgrid Resource Names (TGRNs). Prior to this release, it was necessary to generate the TGRN for by combining the common prefix with the node's UID.  With this release the TGRN is available in the node's [Infovisor]({{<ref "/docs/nodes/shared/infovisor">}}) panel with a button to easily copy the TGRN into your clipboard. 
 
 {{<tgimg src="infovisor-tgrn.png" caption="Copy TGRN field on Infovisor" width="70%" >}}
 
 ## Override Default Container DNS and IP
-This release when combined with a node running the [July 2023 Node releases]({{<ref "/release-notes/node/july-2023">}}) adds the ability to [override the default DNS and IP settings]({{<ref "/docs/nodes/containers#dns">}}) for containers. 
+This release when combined with a node running the [July 2023 Node releases]({{<ref "/release-notes/node/july-2023">}}) adds the ability to [override the default DNS and IP settings]({{<ref "/docs/nodes/appliances/containers#dns">}}) for containers. 
 
 
 ## Other Notable Fixes

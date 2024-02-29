@@ -51,7 +51,7 @@ Removing a favorite page is the same process but unselecting the star icon inste
 Based on feedback from users the Dashboard page has been removed and users now land on the Nodes table on login. You can also configure a [custom landing page for users if desired]({{<relref "/docs/user-management/users#change-a-user-landing-page">}})
 
 ### Advanced Node Options
-A new [Advanced Options]({{<relref "/docs/nodes/advanced">}}) section has been added to nodes allowing the configuration of additional options like:
+A new [Advanced Options]({{<ref "/docs/nodes/appliances/advanced">}}) section has been added to nodes allowing the configuration of additional options like:
 - JVM Memory settings
 - Network flow timeout and time to live (TTL) and ARP intervals
 
@@ -60,7 +60,7 @@ To make it easier to [duplicate existing policies]({{<relref "/docs/user-managem
 {{<tgimg src="clone-policy.png" width="80%">}}
 
 ## Other Issues Resolved
-- Resolves an issue causing the [Gateway Clients]({{< relref "/docs/nodes/gateway/gateway-client">}}) page to load as a blank white page.
+- Resolves an issue causing the [Gateway Clients]({{< relref "/docs/nodes/appliances/gateway/gateway-client">}}) page to load as a blank white page.
 - Resolves an issue that caused some statistics on the Node Overview graphs to double the real value. This caused a spike in the graphs which was misleading.
 - Resolves an issue with some of the "breadcrumb" links at the top of the page not working as expected. 
 - Prevents external API dependencies, such as our status page, from delaying portal pages from loading.

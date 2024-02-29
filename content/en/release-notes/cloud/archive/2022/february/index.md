@@ -134,7 +134,7 @@ Previously it wasn’t always clear why a threshold alert, such as an alarm rega
 
 Now the JSON payload sent to alarm [channels]({{<ref "/docs/alarms/channels">}}) (email, Slack, PagerDuty, etc.) can include the data points used to calculate the average that exceeded the threshold. This is in a new section called `details` and the values are in pairs of the timestamp `t` (unix time) and value `v` (in milliseconds in the example below). 
 
-{{<card-code header="Alert Payload" lang="JSON">}}
+{{<card code=true header="Alert Payload" lang="JSON">}}
 ...
 "details":	{
 	"values":	[
@@ -146,7 +146,7 @@ Now the JSON payload sent to alarm [channels]({{<ref "/docs/alarms/channels">}})
 	],
 }
 ...
-{{</card-code>}}
+{{</card>}}
 
 
 

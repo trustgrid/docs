@@ -6,7 +6,7 @@ title: "Deploy to Azure"
 - An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/)
 - An Azure resource group to deploy the resources into
 - An Azure Virtual Network (vNet) with at least two subnets:
-  - An "outside" subnet for the appliance to connect to the Trustgrid control plane and data plane gateways, and accept incoming connections if the Azure Trustgrid appliance will be acting as a [data plane gateway]({{< relref "/docs/nodes/gateway" >}})
+  - An "outside" subnet for the appliance to connect to the Trustgrid control plane and data plane gateways, and accept incoming connections if the Azure Trustgrid appliance will be acting as a [data plane gateway]({{< relref "/docs/nodes/appliances/gateway" >}})
   - An "inside" subnet for communicating with other virtual machines and services within the Azure vNet
   - **(For Clustered Appliances)** An [Azure routing table]({{<relref "#azure-route-table">}}) associated with the "inside" subnet. 
 

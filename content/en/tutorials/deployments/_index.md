@@ -1,5 +1,5 @@
 ---
 title: "Node Appliance Deployments"
-linkTitle: "Node Deployments"
+linkTitle: "Appliance Deployments"
 Weight: 10
 ---

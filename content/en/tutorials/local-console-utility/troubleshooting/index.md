@@ -47,7 +47,7 @@ These commands include:
 * `mtr` - this is a more robust version of `traceroute` and can be used to confirm connectivity with a command like `mtr repo.trustgrid.io`
 * `nc` 
     * use this to confirm connectivity with a command like `nc -vz repo.trustgrid.io 443` 
-    * or confirm connectivity with a [specific gateway IP address and port]({{<ref "/docs/nodes/gateway#server-settings">}}) with a command like `nc -vz 35.171.100.16 8443"
+    * or confirm connectivity with a [specific gateway IP address and port]({{<ref "/docs/nodes/appliances/gateway#server-settings">}}) with a command like `nc -vz 35.171.100.16 8443"
 * `openssl` - this can be use to confirm a [nothing is interfering with a valid TLS connection]({{<ref "/help-center/kb/startup-process/ssl-tls-tampering">}}) and view the certificates used with a command like `openssl s_client -connect repo.trustgrid.io:443 -showcerts | less` (use `:q` to exit)
 * `curl`
 * `ip` 
@@ -55,8 +55,9 @@ These commands include:
     * `ip address` or `ip a` lists the IP addresses assigned to all interfaces
     * append `show <interface name>` to either of the above to limit to a specific interface. e.g. `ip a show enp0s20f0`
     * `ip route` lists the current OS routing table
-    
-
+* `dig` for confirming DNS resolution
+    * `dig repo.trustgrid.io +short` will provide just the IP address using the configured DNS servers
+    * `dig @8.8.8.8 repo.trustgrid.io +short` will query Google's DNS server directly and provide the IP address
 ## ARPing
 This command can be used to confirm layer 2 connectivity between the Trustgrid appliance and other devices on the same network.  For example, to confirm the default gateway IP address is reachable use a command like `arping -I eth0 192.168.127.1`. This will send an ARP request to the default gateway IP address and display the resulting MAC address.  
 

@@ -24,7 +24,7 @@ This process is intended to help customer support personnel quickly identify the
 
 ### Determine Production Status of the Trustgrid Node
 
-Use the [Production Status Tags]({{<ref "/docs/nodes/tags/prod-status-tag" >}}}) to determine if the [node]({{<ref "docs/nodes" >}}) is in use and expected to be online.
+Use the [Production Status Tags]({{<ref "/docs/nodes/shared/tags/prod-status-tag" >}}}) to determine if the [node]({{<ref "docs/nodes" >}}) is in use and expected to be online.
 
 ### Confirm High Availability or Disaster Recover is Functioning
 

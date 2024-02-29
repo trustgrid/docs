@@ -86,7 +86,7 @@ By default the Resources field is populated with `*` which grants permissions to
 
 A node’s TGRN will start with the below prefix:
 `tgrn:tg::nodes:node/`
-Followed by the UID of the node. The node TGRN is accessible from the [infovisor]({{<relref "docs/nodes/infovisor" >}}) for a node by clicking on the "Copy" button to the right of the TGRN entry.
+Followed by the UID of the node. The node TGRN is accessible from the [infovisor]({{<relref "docs/nodes/shared/infovisor" >}}) for a node by clicking on the "Copy" button to the right of the TGRN entry.
 {{<tgimg src="node-tgrn.png" width="70%" caption="TRGN entry in the Inforvisor panel">}}
 
 A complete [node]({{<ref "docs/nodes" >}}) TGRN looks like: `tgrn:tg::nodes:node/ab3550cf-f3da-4d90-b4b1-b870fc85c9c7`

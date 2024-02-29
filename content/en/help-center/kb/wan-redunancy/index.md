@@ -79,7 +79,7 @@ Another method of providing redundancy takes advantage of Trustgrid [clustering]
 * Connecting each member WAN interface to different DMZ private networks configured to use different ISPs for internet access
 * A combination of public and private WAN networks
 
-In this configuration, the master/active member of the node will determine which ISP is being utilized.  If one ISP is preferred you will need to have operational procedures in place to ensure the member node connected to it stays the master node. It is recommended that you keep the [cluster mode configured as Automatic Failback]({{<ref "/docs/clusters#cluster-mode">}}) and your organization establishes a [tag]({{<ref "/docs/nodes/tags">}}) to designate the preferred member.  
+In this configuration, the master/active member of the node will determine which ISP is being utilized.  If one ISP is preferred you will need to have operational procedures in place to ensure the member node connected to it stays the master node. It is recommended that you keep the [cluster mode configured as Automatic Failback]({{<ref "/docs/clusters#cluster-mode">}}) and your organization establishes a [tag]({{<ref "/docs/nodes/shared/tags">}}) to designate the preferred member.  
 
 {{<alert color="info">}}Because the WAN interfaces are on different networks, this configuration **requires at least one additional LAN interface** to be configured for accessing internal resources and providing the [cluster heartbeat]({{<ref "/docs/clusters/#cluster-heartbeat-communication">}}) communication{{</alert>}}
 
