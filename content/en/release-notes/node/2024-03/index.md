@@ -19,7 +19,7 @@ Appliances running this release will now share with the control plane the number
 With this release nodes running BGP will now report [rejected routes]({{<relref "/docs/nodes/appliances/bgp#rejected-routes">}}) when a peer advertises a route that doesn't match the import policy. This makes it easier to determine if a route is not being advertised by the peer or if the import policy is misconfigured. 
 
 ## Gateway Path Improvements
-This release allows for disabling additional [gateway paths]({{<relref "/docs/nodes/appliances/gateway/gateway-client#gateway-paths">}}) rather than requiring them to be completely removed.   It also resolves an issue where the Ping and Test Performance tools on the [Data Plane panel]({{<relref "/docs/nodes/appliances/data-plane">}}) would not actually utilize the path selected for the test.
+This release allows for disabling additional [gateway paths]({{<relref "/docs/nodes/appliances/gateway/gateway-client#gateway-paths">}}) rather than requiring them to be completely removed.   It also resolves an issue where the Ping and Test Performance tools on the [Data Plane panel]({{<relref "/docs/nodes/appliances/data-plane">}}) would not utilize the path selected for the test.
 
 ## Other Fixes and Changes
 - Resolves an issue with Wireguard ZTNA access not releasing ephemeral ports properly. 
