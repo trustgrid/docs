@@ -256,7 +256,7 @@ BGP Status button
 &lt;p>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="bgp-status-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="bgp-status-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 BGP Status Output
 &lt;/figcaption>
@@ -287,11 +287,21 @@ BGP Status Output
 &lt;/tr>
 &lt;tr id="advertised-routes" style="scroll-margin-top: 10rem;">
 &lt;th>Advertised Routes&lt;/th>
-&lt;td>Lists the routes being advertised to the peer router&lt;/td>
+&lt;td>&lt;p>Hovering over the view button displays the routes received from the peer that matched an &lt;a href="#define-import-policies">import policy&lt;/a>and their associated metrics&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="bgp-applied-routes.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;/figure>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="received-routes" style="scroll-margin-top: 10rem;">
 &lt;th>Received Routes&lt;/th>
-&lt;td>Hovering over the view button displays the routes received from the peer and their associated metrics&lt;/td>
+&lt;td>&lt;p>Hovering over the view button displays the routes received from the peer that did not match an &lt;a href="#define-import-policies">import policy&lt;/a> or was rejected for other reasons&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="bgp-rejected-routes.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;/figure>
+&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>&lt;/p></description></item><item><title>Docs: Cluster Heartbeat Configuration</title><link>https://docs.trustgrid.io/docs/nodes/appliances/cluster/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/cluster/</guid><description>

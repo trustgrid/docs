@@ -57,7 +57,12 @@
 &lt;p>&lt;code>.2.3.0&lt;/code> - Lists the Control Plane connectivity status. Returns UP if connected and DOWN if disconnected&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>&lt;code>.2.4.0&lt;/code> - Lists Data Plane connectivity status. Returns UP if connected to all gateways and DOWN if disconnected from at least one configured gateway&lt;/p>
+&lt;p>&lt;code>.2.4.0&lt;/code> - Lists Data Plane connectivity status. Returns a string based on the number of established data plane connections. Possible values are:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>UP&lt;/code> - If all available peer connections are online&lt;/li>
+&lt;li>&lt;code>DEGRADED&lt;/code> - If some but not all peer connections are online&lt;/li>
+&lt;li>&lt;code>DOWN&lt;/code> - If no available peer connections are online&lt;/li>
+&lt;/ul>
 &lt;/li>
 &lt;li>
 &lt;p>&lt;code>.2.5.1&lt;/code> - Table with name and value of all tags associated with the node&lt;/p>

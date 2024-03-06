@@ -1,4 +1,41 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 15 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: February 2024 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-02/</link><pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-02/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 05 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: March 2024 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-03/</link><pubDate>Tue, 05 Mar 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-03/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20240306-1999&lt;/td>
+&lt;td>20240306-161006.62ba5a5&lt;/td>
+&lt;td>n-2.19.0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="dynamic-access-policy-evaluation">Dynamic Access Policy Evaluation&lt;/h2>
+&lt;p>Previously &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/access-policy/">Access Policies&lt;/a> were only evaluated at the time a flow was created. With this release, access policies will be re-evaluated in realtime for active flows. This allows dynamically changing policies to immediately take effect without requiring existing flows to timeout or reset.&lt;/p>
+&lt;h2 id="system-resources-overview">System Resources Overview&lt;/h2>
+&lt;p>Appliances running this release will now share with the control plane the number of CPU cores, total system memory (RAM), and total disk size. This information will be displayed on the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/overview/">Overview graph&lt;/a>. This will provide additional context to the percentage utilization statistics the node provides in the graph.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="overview-resources.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="bgp-status-tool-improvement">BGP Status Tool Improvement&lt;/h2>
+&lt;p>With this release nodes running BGP will now report &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/bgp/#rejected-routes">rejected routes&lt;/a> when a peer advertises a route that doesn&amp;rsquo;t match the import policy. This makes it easier to determine if a route is not being advertised by the peer or if the import policy is misconfigured.&lt;/p>
+&lt;h2 id="gateway-path-improvements">Gateway Path Improvements&lt;/h2>
+&lt;p>This release allows for disabling additional &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/gateway/gateway-client/#gateway-paths">gateway paths&lt;/a> rather than requiring them to be completely removed. It also resolves an issue where the Ping and Test Performance tools on the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/data-plane/">Data Plane panel&lt;/a> would not utilize the path selected for the test.&lt;/p>
+&lt;h2 id="other-fixes-and-changes">Other Fixes and Changes&lt;/h2>
+&lt;ul>
+&lt;li>Resolves an issue with Wireguard ZTNA access not releasing ephemeral ports properly.&lt;/li>
+&lt;li>Resolves an issue with the Virtual Sniff tool not showing Wireguard ZTNA traffic.&lt;/li>
+&lt;li>Resolves an issue where VPN attachments to VLANs were not completely removed without a restart.&lt;/li>
+&lt;li>The Trustgrid service will no longer bring up interfaces that are not enabled and configured.&lt;/li>
+&lt;li>The &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/snmp/oids/">data plane status SNMP OID .2.4.0&lt;/a> now reflects a degraded status if some but not all of the data plane peers are connected. It also now factors in additional gateway paths.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: February 2024 Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-02/</link><pubDate>Thu, 15 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-02/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>

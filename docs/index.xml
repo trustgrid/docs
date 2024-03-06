@@ -276,7 +276,7 @@ BGP Status button
 &lt;p>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
-&lt;img src="bgp-status-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;img src="bgp-status-output.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
 &lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
 BGP Status Output
 &lt;/figcaption>
@@ -307,11 +307,21 @@ BGP Status Output
 &lt;/tr>
 &lt;tr id="advertised-routes" style="scroll-margin-top: 10rem;">
 &lt;th>Advertised Routes&lt;/th>
-&lt;td>Lists the routes being advertised to the peer router&lt;/td>
+&lt;td>&lt;p>Hovering over the view button displays the routes received from the peer that matched an &lt;a href="#define-import-policies">import policy&lt;/a>and their associated metrics&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="bgp-applied-routes.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;/figure>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="received-routes" style="scroll-margin-top: 10rem;">
 &lt;th>Received Routes&lt;/th>
-&lt;td>Hovering over the view button displays the routes received from the peer and their associated metrics&lt;/td>
+&lt;td>&lt;p>Hovering over the view button displays the routes received from the peer that did not match an &lt;a href="#define-import-policies">import policy&lt;/a> or was rejected for other reasons&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="bgp-rejected-routes.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;/figure>
+&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>&lt;/p></description></item><item><title>Getting-Started: Trustgrid's Access to Nodes</title><link>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/getting-started/security/trustgrid-node-access/</guid><description>
@@ -2503,6 +2513,14 @@ Gateway Client settings
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
+&lt;tr id="status" style="scroll-margin-top: 10rem;">
+&lt;th>Status&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>Enabled - The node &lt;strong>will&lt;/strong> attempt to build and utilize the additional path.&lt;/li>
+&lt;li>Disabled - The node &lt;strong>will not&lt;/strong> build the additional path.&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
 &lt;tr id="name" style="scroll-margin-top: 10rem;">
 &lt;th>Name&lt;/th>
 &lt;td>A name for the path.&lt;/td>

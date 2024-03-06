@@ -167,6 +167,14 @@ Gateway Client settings
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
+&lt;tr id="status" style="scroll-margin-top: 10rem;">
+&lt;th>Status&lt;/th>
+&lt;td>&lt;ul>
+&lt;li>Enabled - The node &lt;strong>will&lt;/strong> attempt to build and utilize the additional path.&lt;/li>
+&lt;li>Disabled - The node &lt;strong>will not&lt;/strong> build the additional path.&lt;/li>
+&lt;/ul>
+&lt;/td>
+&lt;/tr>
 &lt;tr id="name" style="scroll-margin-top: 10rem;">
 &lt;th>Name&lt;/th>
 &lt;td>A name for the path.&lt;/td>
