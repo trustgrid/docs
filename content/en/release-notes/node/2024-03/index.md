@@ -5,7 +5,7 @@ type: docs
 date: 2024-03-05
 description: "Release notes for the March 2024 Trustgrid Appliance release focused"
 ---
-{{< node-release package-version="1.5.20240301-1996" core-version="20240301-160618.70fef45" release="n-2.19.0" >}}
+{{< node-release package-version="1.5.20240306-1999" core-version="20240306-161006.62ba5a5" release="n-2.19.0" >}}
 
 ## Dynamic Access Policy Evaluation
 Previously [Access Policies]({{<relref "/docs/domain/virtual-networks/access-policy">}}) were only evaluated at the time a flow was created. With this release, access policies will be re-evaluated in realtime for active flows. This allows dynamically changing policies to immediately take effect without requiring existing flows to timeout or reset.
@@ -19,7 +19,7 @@ Appliances running this release will now share with the control plane the number
 With this release nodes running BGP will now report [rejected routes]({{<relref "/docs/nodes/appliances/bgp#rejected-routes">}}) when a peer advertises a route that doesn't match the import policy. This makes it easier to determine if a route is not being advertised by the peer or if the import policy is misconfigured. 
 
 ## Gateway Path Improvements
-This release allows for disabling additional [gateway paths]({{<relref "/docs/nodes/appliances/gateway/gateway-client#gateway-paths">}}) rather than requiring them to be completely removed. 
+This release allows for disabling additional [gateway paths]({{<relref "/docs/nodes/appliances/gateway/gateway-client#gateway-paths">}}) rather than requiring them to be completely removed.   It also resolves an issue where the Ping and Test Performance tools on the [Data Plane panel]({{<relref "/docs/nodes/appliances/data-plane">}}) would not actually utilize the path selected for the test.
 
 ## Other Fixes and Changes
 - Resolves an issue with Wireguard ZTNA access not releasing ephemeral ports properly. 
