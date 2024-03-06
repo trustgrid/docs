@@ -45,7 +45,10 @@ The following custom data points are made available under Trustgrid’s Enterpri
 
 - `.2.3.0` - Lists the Control Plane connectivity status. Returns UP if connected and DOWN if disconnected
 
-- `.2.4.0` - Lists Data Plane connectivity status. Returns UP if connected to all gateways and DOWN if disconnected from at least one configured gateway
+- `.2.4.0` - Lists Data Plane connectivity status. Returns a string based on the number of established data plane connections. Possible values are:
+    - `UP` - If all available peer connections are online
+    - `DEGRADED` - If some but not all peer connections are online
+    - `DOWN` - If no available peer connections are online
 
 - `.2.5.1` - Table with name and value of all tags associated with the node
 

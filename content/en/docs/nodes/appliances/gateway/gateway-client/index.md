@@ -40,6 +40,10 @@ Options are `Allowed` or `Denied`. If set to `Denied` this will cause the node t
 Allows you to define alternate paths to a gateway server
 
 {{<fields>}}
+{{<field Status>}}
+- Enabled - The node **will** attempt to build and utilize the additional path.
+- Disabled - The node **will not** build the additional path.
+{{</field>}}
 {{<field "Name" >}}
 A name for the path.
 {{</field >}}

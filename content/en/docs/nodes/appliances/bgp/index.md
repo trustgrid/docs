@@ -113,12 +113,12 @@ Once issued you should see the confirmation message: Restart request sent.
 
 The BGP Status tool allows you to see information about the state of BGP peering.
 
-{{<tgimg src="bgp-status-output.png" caption="BGP Status Output" width="80%">}}
+{{<tgimg src="bgp-status-output.png" caption="BGP Status Output" width="90%">}}
 {{<fields>}}
 {{<field "Status">}}Shows if the peer is actively connected or not{{</field>}}
 {{<field "Connected">}}If connected, shows how long the peering has been established{{</field>}}
 {{<field "ASN">}}The Autonomous System Number that identifies the router{{</field>}}
 {{<field "Peer IP">}}The IP address of the peer router{{</field>}}
-{{<field "Advertised Routes">}}Lists the routes being advertised to the peer router{{</field>}}
-{{<field "Received Routes">}}Hovering over the view button displays the routes received from the peer and their associated metrics{{</field>}}
+{{<field "Advertised Routes">}}Hovering over the view button displays the routes received from the peer that matched an [import policy](#define-import-policies )and their associated metrics {{<tgimg src="bgp-applied-routes.png" width="60%">}}{{</field>}}
+{{<field "Received Routes">}}Hovering over the view button displays the routes received from the peer that did not match an [import policy](#define-import-policies) or was rejected for other reasons {{<tgimg src="bgp-rejected-routes.png" width="75%" >}} {{</field>}}
 {{</fields>}}
