@@ -196,6 +196,9 @@ az vm create \
 ```
 
 This command enables boot diagnostics so that the serial console can be accessed.
+```bash
+az vm boot-diagnostics enable --name $name --resource-group $resourceGroup 
+```
 See the example output in the [AZ CLI Example Walkthrough](./az-cli-example/#create-trustgrid-appliance-vm)
 
 ### Get MAC Address
