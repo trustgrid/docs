@@ -194,8 +194,9 @@ Both security groups will be created with the &lt;a href="https://learn.microsof
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --os-disk-delete-option &lt;span style="color:#4e9a06">&amp;#39;Delete&amp;#39;&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --size &lt;span style="color:#000">$size&lt;/span> &lt;span style="color:#4e9a06">\
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#4e9a06">&lt;/span> --ssh-key-name &lt;span style="color:#000">$sshKeyName&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command enables boot diagnostics so that the serial console can be accessed.
-See the example output in the &lt;a href="./az-cli-example/#create-trustgrid-appliance-vm">AZ CLI Example Walkthrough&lt;/a>&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>This command enables boot diagnostics so that the serial console can be accessed.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az vm boot-diagnostics &lt;span style="color:#204a87">enable&lt;/span> --name &lt;span style="color:#000">$name&lt;/span> --resource-group &lt;span style="color:#000">$resourceGroup&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>See the example output in the &lt;a href="./az-cli-example/#create-trustgrid-appliance-vm">AZ CLI Example Walkthrough&lt;/a>&lt;/p>
 &lt;h3 id="get-mac-address">Get MAC Address&lt;/h3>
 &lt;p>To make &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/#logging-in">Console login&lt;/a> easier run the below command to get the outside interface&amp;rsquo;s MAC address:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>az network nic show --name &lt;span style="color:#000">$name&lt;/span>-outside &lt;span style="color:#4e9a06">\
