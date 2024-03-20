@@ -9,13 +9,13 @@ User Management Groups defined can be used to make Remote Access applications vi
 
 ## Types of Groups
 
-### Trustgrid-native Groups
+### Trustgrid-Native Groups
 
-These groups are created in the portal via the `Add Group` button. Membership is managed directly within the portal by administrators.
+These groups are created in the Portal via the `Add Group` button. Membership is managed directly within the Portal by administrators.
 
 ### Identity Provider-Synchronized Groups
 
-These groups are create based on Identity Provider (IdP) configuration for select IdPs (currently Gsuite and Azure OpenID). The IdP can be configured to sync all or select groups, and the sync process will update the group membership automatically.
+These groups are created based on Identity Provider (IdP) configuration for select IdPs (currently G Suite and Azure OpenID). The IdP can be configured to sync all or select groups, and the sync process will update the group membership automatically.
 
 > if users are added to an IdP-synced group in the Trustgrid portal they will automatically be removed the next time they sync runs.
 
