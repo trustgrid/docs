@@ -1,7 +1,7 @@
 ---
 title: March 2024 Release Notes
 linkTitle: March 2024 Release
-date: 2024-03-21
+date: 2024-03-20
 description: "March 2024 cloud release"
 type: docs
 ---
