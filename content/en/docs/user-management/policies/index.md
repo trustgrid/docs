@@ -7,24 +7,24 @@ Date: 2023-1-12
 User Management Policies define what an authenticated user is allowed to do within the Trustgrid system. Policies either allow or explicitly deny specific actions by the user.
 {{% /pageinfo %}}
 
-### Types of Policies
+## Types of Policies
 
-#### Trustgrid Managed Policies
+### Trustgrid Managed Policies
 
 These policies start with the prefix `builtin-tg` and are created and managed by Trustgrid to provide a starting level of permissions based on common user types. Descriptions of the user types for each role are listed below.
 
-As Trustgrid adds new features or actions theses policies will automatically be updated to include appropriate permissions. These policies cannot be edited by customers.
+As Trustgrid adds new features or actions these policies will automatically be updated to include appropriate permissions. These policies cannot be edited by customers.
 
-#### Customer Managed Policies
+### Customer Managed Policies
 
 These policies can be defined by customers to meet the specific needs of their teams.
 
-#### Best Practices
+### Best Practices
 
-- Start by attaching the Trustgrid Managed Policies that best fits the user's minimum, required needs following the principle of “least privilege.”
+- Start by attaching the Trustgrid Managed Policies that best fit the user's minimum, required needs following the principle of “least privilege.”
 - If additional permissions are required, create a Customer Managed Policy that includes those specific rights rights. Then attach that policy to the user.
 
-#### Trustgrid Managed Policy Descriptions
+### Trustgrid Managed Policy Descriptions
 
 Below are the basic descriptions of the Trustgrid Managed Policies including an example role description. Trustgrid will use this description to guide if it is appropriate to add new permissions to the policies.
 
@@ -46,29 +46,29 @@ Target User: Project manager or executive sponsor that needs to view information
 
 This policy provides mostly read-only access but also has the ability to view and use tools within the portal and perform actions to resolve common issues (e.g. restarting/rebooting nodes).
 
-Target User: Entry level technical resources responsible for initial triage of support issues.
+Target User: Entry-level technical resources responsible for initial triage of support issues.
 
 #### tg-builtin-node-admin
 
 This policy provides the ability to make changes to most resources but is restricted from making changes that can have a wide impact such as changing a gateway node server settings.
 
-Target User: Mid-level technical resources that need to make changes to things like node VPN configuration and virtual networks routes, but should be restricted from making changes that can impact an entire organization when possible.
+Target User: Mid-level technical resources that need to make changes to things like node VPN configuration and virtual network routes, but should be restricted from making changes that can impact an entire organization when possible.
 
 #### tg-builtin-admin
 
-This policy has permissions to change almost all resources with the exceptions of Identity Providers and User Management.
+This policy has permission to change almost all resources with the exceptions of Identity Providers and User Management.
 
 Target User: Senior technical resources needing near full access.
 
 #### tg-builtin-access-admin
 
-This policy grants the ability to manage permissions and identity related resources including configuring Identity Providers, Add/Inviting Users, and creating and assigning policies
+This policy grants the ability to manage permissions and identity-related resources including configuring Identity Providers, Adding/Inviting Users, and creating and assigning policies
 
-Target User: Management or access control related resources responsible for granting access to the Trustgrid system.
+Target User: Management or access control-related resources responsible for granting access to the Trustgrid system.
 
-#### Resource-Scoped Policies
+## Resource-Scoped Policies
 
-Policies have a Resources section that allow the permissions granted to be limited to specific Trustgrid resources, such as nodes and clusters. This can be used to present a user with an extremely limited view in the portal. For example, an edge site technical contact could be given a login that was only permitted to see the nodes at their site.
+Policies have a Resources section that allows the permissions granted to be limited to specific Trustgrid resources, such as nodes and clusters. This can be used to present a user with an extremely limited view in the portal. For example, an edge site technical contact could be given a login that was only permitted to see the nodes at their site.
 
 ![img](resources.png)
 
@@ -79,8 +79,7 @@ Policies have a Resources section that allow the permissions granted to be limit
 Trustgrid has adopted a resource naming convention that follows the basic format: `tgrn:tg::<service>:<resource-type>/<resource-id>`
 
 ###### Wildcard TGRN
-
-By default the Resources field is populated with `*` which grants permissions to all resources. This is included by default for new policies and would need to be removed to provide TGRN restricted permissions.
+By default, the Resources field is populated with `*` which grants permissions to all resources. This is included by default for new policies and would need to be removed to provide TGRN restricted permissions.
 
 ###### Node TGRN
 
@@ -102,23 +101,25 @@ You can copy the Cluster TGRN from a cluster's Overview page by clicking the "Co
 
 A complete [cluster]({{<ref "docs/clusters" >}}) TGRN looks like: `tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io`
 
-### Policy Management
+## Policy Management
 
-#### Creating/Editing Policies
+### Creating/Editing Policies
 
 1. Navigate to `User Management` → `Policies` {{<tgimg src="policy-management.png" width="40%" caption="Policy Management Page">}}
 2. For a new policy click `Create Policy`. To edit an existing find it in the list and click on its name.
 3. The policy wizard has two sections. The left section groups permissions by category and is where you allow or deny permissions. The right section shows the resulting JSON of the policy and is read only.
-4. As an example we will create a role to grant users the ability to see, edit and comment on Provisioning orders.
+As an example, we will create a role to grant users the ability to see, edit, and comment on Provisioning orders.
    1. Under Permissions, search for `orders`
    1. Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)
    1. You will notice the Policy JSON updated as you select permissions
    1. Click `Save`{{<tgimg src="new-policy.png" caption="Policy updated notification" >}}
 
-#### Clone Existing Policy
+### Clone Existing Policy
 To clone an existing policy click the copy button on the far right of the policy row. This will create a new policy with the same permissions pre-selected which can then be edited and named as desired. 
 {{<tgimg src="clone-policy.png" width="80%" caption="Policy table showing the clone/copy policy button">}}
 
-#### Attaching Policies and Viewing Effective Permissions
+### Attaching Policies and Viewing Effective Permissions
 
-Policies are attached and their cumulative effect can be viewed under `User Management` → `Users` by selecting the desired user.
+Policies can attached at either:
+- The [User level]({{<relref "/docs/user-management/users#attaching-policies">}}) which applies the permission to only the individual user
+- The [Group Level]({{<relref "">}})
