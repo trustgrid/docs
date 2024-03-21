@@ -4,7 +4,15 @@
 &lt;p>To change your Trustgrid password:&lt;/p>
 &lt;ol>
 &lt;li>Login to the Trustgrid portal using your current password and provide your MFA code&lt;/li>
-&lt;li>In another browser tab navigate to &lt;a href="https://auth.trustgrid.io/account/change-password">https://auth.trustgrid.io/account/change-password&lt;/a>&lt;/li>
+&lt;li>From your user profile dropdown, select &amp;ldquo;Security&amp;rdquo;
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="security.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Security menu option
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
 &lt;li>Provide your current password, enter a new password twice, and click submit.
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
@@ -19,7 +27,15 @@ Change password prompt
 &lt;p>To change your multi-factor authentication (MFA) application:&lt;/p>
 &lt;ol>
 &lt;li>Login to the Trustgrid portal using your current password and provide your MFA code&lt;/li>
-&lt;li>In another browser tab navigate to &lt;a href="https://auth.trustgrid.io/account/change-mfa">https://auth.trustgrid.io/account/change-mfa&lt;/a>&lt;/li>
+&lt;li>From your user profile dropdown, select &amp;ldquo;Security&amp;rdquo;
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="security.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Security menu option
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
 &lt;li>Scan the provided QR code with your new MFA application&lt;/li>
 &lt;li>Enter the Authenticator Code provided by your new MFA application&lt;/li>
 &lt;li>Enter your current password and click submit.
@@ -31,7 +47,10 @@ Change MFA prompt
 &lt;/figcaption>
 &lt;/figure>
 &lt;/li>
-&lt;/ol></description></item><item><title>Docs: Password Complexity and MFA Requirements</title><link>https://docs.trustgrid.io/docs/user-management/users/password-complexity-requirements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/password-complexity-requirements/</guid><description>
+&lt;/ol>
+&lt;div class="alert alert-info" role="alert">
+If you are unable to login to the Trustgrid portal you will need to work with Trustgrid support to regain access
+&lt;/div></description></item><item><title>Docs: Password Complexity and MFA Requirements</title><link>https://docs.trustgrid.io/docs/user-management/users/password-complexity-requirements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/password-complexity-requirements/</guid><description>
 &lt;p>Invited users utilize Trustgrid&amp;rsquo;s native authentication provider for password complexity and multi-factor authentication.&lt;/p>
 &lt;blockquote>
 &lt;p>Users authenticating via a custom &lt;a href="https://docs.trustgrid.io/docs/idps/">identity provider&lt;/a> will use that system&amp;rsquo;s password complexity and MFA requirements.&lt;/p>

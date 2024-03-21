@@ -1,4 +1,35 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 14 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: February 2024 Release Notes - Minor</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-02/</link><pubDate>Wed, 14 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-02/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: March 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-03/</link><pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-03/</guid><description>
+&lt;h2 id="portal-notification-improvements">Portal Notification Improvements&lt;/h2>
+&lt;p>This release makes several changes to how a portal user is notified of new &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> and commands (such as Restart and Reboot) related to the node being viewed. The toast pop-up notifications have a new look as shown below:
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="new-notifications.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Example notifications of a restart request and the resulting events
+&lt;/figcaption>
+&lt;/figure>
+The notifications will automatically close or can be dismissed by clicking the X at the top corner.&lt;/p>
+&lt;p>This release also will notify if a Restart request fails to complete successfully by showing a Failed status toast and a message in the center of the screen. A future node appliance release will enable the same for Reboot requests.&lt;/p>
+&lt;h2 id="assign-policies-via-groups">Assign Policies via Groups&lt;/h2>
+&lt;p>Historically policies had to be assigned to specific users. This release introduces the ability to &lt;a href="https://docs.trustgrid.io/docs/user-management/groups/#manage-group-permissions">assign policies to groups&lt;/a>. Policies assigned to a group will be inherited by all users in that group. This simplifies managing permissions when dealing with large numbers of users.&lt;/p>
+&lt;h2 id="user-account-management-improvement">User Account Management Improvement&lt;/h2>
+&lt;p>We&amp;rsquo;ve added a Security menu option for users to manage their own account details like password and MFA settings. This link does not apply to users associated with an external Identity Provider (IdP).
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/user-management/users/account-mgmt/security.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Security menu option
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="other-issues-and-improvements">Other Issues and Improvements&lt;/h2>
+&lt;ul>
+&lt;li>Disconnected peers in the Data Plane panel now show as a red X icon instead of a red circle.&lt;/li>
+&lt;li>Resolve an issue with &lt;a href="https://docs.trustgrid.io/docs/clusters/manage-members/#add-member">adding cluster members&lt;/a>. Prior to this release, if you select &amp;ldquo;Yes&amp;rdquo; to the prompt about configuring the heartbeat settings the portal failed to configure those settings. This release resolves that failure.&lt;/li>
+&lt;li>Resolves an issue that caused flow log exports to not match the current filtered view.&lt;/li>
+&lt;li>Resolves an issue where odd characters appeared in terminal windows for users running Windows-based operating systems.&lt;/li>
+&lt;li>Resolves an issue that prevented deleting users associated with multiple IDPs&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: February 2024 Release Notes - Minor</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-02/</link><pubDate>Wed, 14 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-02/</guid><description>
 &lt;h2 id="flow-log-performance-improvements">Flow Log Performance Improvements&lt;/h2>
 &lt;p>This release further increases the performance of flow log search using our new database.&lt;/p>
 &lt;h2 id="other-improvements">Other Improvements&lt;/h2>

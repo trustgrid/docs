@@ -1,26 +1,54 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– User Management</title><link>https://docs.trustgrid.io/docs/user-management/</link><description>Recent content in User Management on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Fri, 30 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/user-management/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Groups</title><link>https://docs.trustgrid.io/docs/user-management/groups/</link><pubDate>Fri, 30 Dec 2022 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/groups/</guid><description>
 &lt;p>&lt;img src="group-ss.png" alt="img">&lt;/p>
 &lt;p>User Management Groups defined can be used to make Remote Access applications visible to users.&lt;/p>
-&lt;p>There are two sources for Groups&lt;/p>
-&lt;h4 id="trustgrid-native-groups">Trustgrid-native Groups&lt;/h4>
-&lt;p>These groups are created in the portal via the &lt;code>Add Group&lt;/code> button.
-Users can be added to the group by:&lt;/p>
-&lt;ol>
-&lt;li>From the &lt;code>Groups&lt;/code> page you can select the group, then click &lt;code>Add Member&lt;/code>.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="add-to-group.png" alt="img">&lt;/p>
-&lt;ol start="2">
-&lt;li>From the &lt;code>user&lt;/code> section, search for and add the email address of the desired user.&lt;/li>
-&lt;/ol>
-&lt;p>&lt;img src="user-email.png" alt="img">&lt;/p>
-&lt;ol start="3">
-&lt;li>Click &lt;code>Save&lt;/code> and repeat process to add other users.&lt;/li>
-&lt;/ol>
-&lt;h4 id="identity-provider-synchronized-groups">Identity Provider-Synchronized Groups&lt;/h4>
-&lt;p>These groups are create based on Identity Provider (IdP) configuration for select IdPs (currently Gsuite and Azure OpenID). The IdP can be configured to sync all or select groups, and the sync process will update the group membership automatically.&lt;/p>
+&lt;h2 id="types-of-groups">Types of Groups&lt;/h2>
+&lt;h3 id="trustgrid-native-groups">Trustgrid-Native Groups&lt;/h3>
+&lt;p>These groups are created in the Portal via the &lt;code>Add Group&lt;/code> button. Membership is managed directly within the Portal by administrators.&lt;/p>
+&lt;h3 id="identity-provider-synchronized-groups">Identity Provider-Synchronized Groups&lt;/h3>
+&lt;p>These groups are created based on Identity Provider (IdP) configuration for select IdPs (currently G Suite and Azure OpenID). The IdP can be configured to sync all or select groups, and the sync process will update the group membership automatically.&lt;/p>
 &lt;blockquote>
 &lt;p>if users are added to an IdP-synced group in the Trustgrid portal they will automatically be removed the next time they sync runs.&lt;/p>
-&lt;/blockquote></description></item><item><title>Docs: API Access</title><link>https://docs.trustgrid.io/docs/user-management/api-access/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/api-access/</guid><description>
+&lt;/blockquote>
+&lt;h2 id="group-management">Group Management&lt;/h2>
+&lt;h3 id="manage-group-members-trustgrid-native-groups">Manage Group Members (Trustgrid-native groups)&lt;/h3>
+&lt;p>The members of a group can be viewed from the group details page under the &amp;ldquo;Users&amp;rdquo; tab.&lt;/p>
+&lt;p>This tab can also be used to add or remove group members for Trustgrid-native groups.&lt;/p>
+&lt;h4 id="add-users-to-group">Add Users to Group&lt;/h4>
+&lt;ol>
+&lt;li>Navigate to the group&amp;rsquo;s detail page by going to User Management &amp;gt; Groups and selecting the desired group.&lt;/li>
+&lt;li>The Users tab should already be selected.&lt;/li>
+&lt;li>Click the &lt;code>+Add Member&lt;/code> button.&lt;/li>
+&lt;li>Search for and select the email address of the desired user.&lt;/li>
+&lt;li>Click Save.&lt;/li>
+&lt;li>Optionally, repeat with additional users.&lt;/li>
+&lt;/ol>
+&lt;h4 id="remove-users-from-group">Remove Users from Group&lt;/h4>
+&lt;ol>
+&lt;li>Navigate to the group&amp;rsquo;s detail page by going to User Management &amp;gt; Groups and selecting the desired group.&lt;/li>
+&lt;li>The Users tab should already be selected.&lt;/li>
+&lt;li>Select the radio button to the left of the desired users.&lt;/li>
+&lt;li>From the Actions drop-down menu select Delete.&lt;/li>
+&lt;li>When prompted confirm the removal by clicking Ok.&lt;/li>
+&lt;li>Optionally, repeat with additional users.&lt;/li>
+&lt;/ol>
+&lt;h3 id="manage-group-permissions">Manage Group Permissions&lt;/h3>
+&lt;p>Permissions can be granted to members of a group by attaching a &lt;a href="https://docs.trustgrid.io/docs/user-management/policies/">policy&lt;/a> to the group. This is done on the group details page under the &amp;ldquo;Permissions&amp;rdquo; tab.&lt;/p>
+&lt;p>The permissions tab will also show the effective permissions of all policies attached to a group.&lt;/p>
+&lt;h4 id="attach-policy-to-group">Attach Policy to Group&lt;/h4>
+&lt;ol>
+&lt;li>Navigate to the group&amp;rsquo;s detail page by going to User Management &amp;gt; Groups and selecting the desired group.&lt;/li>
+&lt;li>Select the Permissions tab.&lt;/li>
+&lt;li>Click the &lt;code>+Attach Policy&lt;/code> button.&lt;/li>
+&lt;li>Select the desired group.&lt;/li>
+&lt;li>Click Attach&lt;/li>
+&lt;li>Optionally, repeat with additional policies.&lt;/li>
+&lt;/ol>
+&lt;h4 id="detach-policy-from-group">Detach Policy from Group&lt;/h4>
+&lt;ol>
+&lt;li>Navigate to the group&amp;rsquo;s detail page by going to User Management &amp;gt; Groups and selecting the desired group.&lt;/li>
+&lt;li>Select the Permissions tab.&lt;/li>
+&lt;li>Locate the policy you wish to remove from the table of attached policies and click the Detach button to the right.&lt;/li>
+&lt;/ol></description></item><item><title>Docs: API Access</title><link>https://docs.trustgrid.io/docs/user-management/api-access/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/api-access/</guid><description>
 &lt;h4 id="generating-an-api-key">Generating an API Key&lt;/h4>
 &lt;p>Navigate to &lt;code>User Management&lt;/code> -&amp;gt; &lt;code>API Access&lt;/code>, and click &lt;code>Regenerate API keys&lt;/code>. This will invalidate your existing API key, if it exists. The API key is tied to your user and will have the same permissions.&lt;/p>
 &lt;blockquote>
@@ -36,18 +64,18 @@ Anything that can be done in the Trustgrid Portal can be done with the API (exce
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>User Management Policies define what an authenticated user is allowed to do within the Trustgrid system. Policies either allow or explicitly deny specific actions by the user.&lt;/p>
 &lt;/div>
-&lt;h3 id="types-of-policies">Types of Policies&lt;/h3>
-&lt;h4 id="trustgrid-managed-policies">Trustgrid Managed Policies&lt;/h4>
+&lt;h2 id="types-of-policies">Types of Policies&lt;/h2>
+&lt;h3 id="trustgrid-managed-policies">Trustgrid Managed Policies&lt;/h3>
 &lt;p>These policies start with the prefix &lt;code>builtin-tg&lt;/code> and are created and managed by Trustgrid to provide a starting level of permissions based on common user types. Descriptions of the user types for each role are listed below.&lt;/p>
-&lt;p>As Trustgrid adds new features or actions theses policies will automatically be updated to include appropriate permissions. These policies cannot be edited by customers.&lt;/p>
-&lt;h4 id="customer-managed-policies">Customer Managed Policies&lt;/h4>
+&lt;p>As Trustgrid adds new features or actions these policies will automatically be updated to include appropriate permissions. These policies cannot be edited by customers.&lt;/p>
+&lt;h3 id="customer-managed-policies">Customer Managed Policies&lt;/h3>
 &lt;p>These policies can be defined by customers to meet the specific needs of their teams.&lt;/p>
-&lt;h4 id="best-practices">Best Practices&lt;/h4>
+&lt;h3 id="best-practices">Best Practices&lt;/h3>
 &lt;ul>
-&lt;li>Start by attaching the Trustgrid Managed Policies that best fits the user&amp;rsquo;s minimum, required needs following the principle of “least privilege.”&lt;/li>
+&lt;li>Start by attaching the Trustgrid Managed Policies that best fit the user&amp;rsquo;s minimum, required needs following the principle of “least privilege.”&lt;/li>
 &lt;li>If additional permissions are required, create a Customer Managed Policy that includes those specific rights rights. Then attach that policy to the user.&lt;/li>
 &lt;/ul>
-&lt;h4 id="trustgrid-managed-policy-descriptions">Trustgrid Managed Policy Descriptions&lt;/h4>
+&lt;h3 id="trustgrid-managed-policy-descriptions">Trustgrid Managed Policy Descriptions&lt;/h3>
 &lt;p>Below are the basic descriptions of the Trustgrid Managed Policies including an example role description. Trustgrid will use this description to guide if it is appropriate to add new permissions to the policies.&lt;/p>
 &lt;p>The policies are listed from lowest permissions to highest.&lt;/p>
 &lt;h4 id="tg-builtin-apps-user">tg-builtin-apps-user&lt;/h4>
@@ -58,18 +86,18 @@ Anything that can be done in the Trustgrid Portal can be done with the API (exce
 &lt;p>Target User: Project manager or executive sponsor that needs to view information in the portal, but does not require tools required to troubleshoot or resolve issues.&lt;/p>
 &lt;h4 id="tg-builtin-operator">tg-builtin-operator&lt;/h4>
 &lt;p>This policy provides mostly read-only access but also has the ability to view and use tools within the portal and perform actions to resolve common issues (e.g. restarting/rebooting nodes).&lt;/p>
-&lt;p>Target User: Entry level technical resources responsible for initial triage of support issues.&lt;/p>
+&lt;p>Target User: Entry-level technical resources responsible for initial triage of support issues.&lt;/p>
 &lt;h4 id="tg-builtin-node-admin">tg-builtin-node-admin&lt;/h4>
 &lt;p>This policy provides the ability to make changes to most resources but is restricted from making changes that can have a wide impact such as changing a gateway node server settings.&lt;/p>
-&lt;p>Target User: Mid-level technical resources that need to make changes to things like node VPN configuration and virtual networks routes, but should be restricted from making changes that can impact an entire organization when possible.&lt;/p>
+&lt;p>Target User: Mid-level technical resources that need to make changes to things like node VPN configuration and virtual network routes, but should be restricted from making changes that can impact an entire organization when possible.&lt;/p>
 &lt;h4 id="tg-builtin-admin">tg-builtin-admin&lt;/h4>
-&lt;p>This policy has permissions to change almost all resources with the exceptions of Identity Providers and User Management.&lt;/p>
+&lt;p>This policy has permission to change almost all resources with the exceptions of Identity Providers and User Management.&lt;/p>
 &lt;p>Target User: Senior technical resources needing near full access.&lt;/p>
 &lt;h4 id="tg-builtin-access-admin">tg-builtin-access-admin&lt;/h4>
-&lt;p>This policy grants the ability to manage permissions and identity related resources including configuring Identity Providers, Add/Inviting Users, and creating and assigning policies&lt;/p>
-&lt;p>Target User: Management or access control related resources responsible for granting access to the Trustgrid system.&lt;/p>
-&lt;h4 id="resource-scoped-policies">Resource-Scoped Policies&lt;/h4>
-&lt;p>Policies have a Resources section that allow the permissions granted to be limited to specific Trustgrid resources, such as nodes and clusters. This can be used to present a user with an extremely limited view in the portal. For example, an edge site technical contact could be given a login that was only permitted to see the nodes at their site.&lt;/p>
+&lt;p>This policy grants the ability to manage permissions and identity-related resources including configuring Identity Providers, Adding/Inviting Users, and creating and assigning policies&lt;/p>
+&lt;p>Target User: Management or access control-related resources responsible for granting access to the Trustgrid system.&lt;/p>
+&lt;h2 id="resource-scoped-policies">Resource-Scoped Policies&lt;/h2>
+&lt;p>Policies have a Resources section that allows the permissions granted to be limited to specific Trustgrid resources, such as nodes and clusters. This can be used to present a user with an extremely limited view in the portal. For example, an edge site technical contact could be given a login that was only permitted to see the nodes at their site.&lt;/p>
 &lt;p>&lt;img src="resources.png" alt="img">&lt;/p>
 &lt;div class="alert alert-warning" role="alert">
 In order to grant users access to the portal a second policy is required granting the &lt;code>portal::access&lt;/code> permission to the &lt;code>*&lt;/code> resource.
@@ -77,7 +105,7 @@ In order to grant users access to the portal a second policy is required grantin
 &lt;h4 id="trustgrid-resource-names-or-tgrn">Trustgrid Resource Names or TGRN&lt;/h4>
 &lt;p>Trustgrid has adopted a resource naming convention that follows the basic format: &lt;code>tgrn:tg::&amp;lt;service&amp;gt;:&amp;lt;resource-type&amp;gt;/&amp;lt;resource-id&amp;gt;&lt;/code>&lt;/p>
 &lt;h6 id="wildcard-tgrn">Wildcard TGRN&lt;/h6>
-&lt;p>By default the Resources field is populated with &lt;code>*&lt;/code> which grants permissions to all resources. This is included by default for new policies and would need to be removed to provide TGRN restricted permissions.&lt;/p>
+&lt;p>By default, the Resources field is populated with &lt;code>*&lt;/code> which grants permissions to all resources. This is included by default for new policies and would need to be removed to provide TGRN restricted permissions.&lt;/p>
 &lt;h6 id="node-tgrn">Node TGRN&lt;/h6>
 &lt;p>A node’s TGRN will start with the below prefix:
 &lt;code>tgrn:tg::nodes:node/&lt;/code>
@@ -105,8 +133,8 @@ Cluster TGRN on Overview page
 &lt;/figure>
 &lt;/p>
 &lt;p>A complete &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> TGRN looks like: &lt;code>tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io&lt;/code>&lt;/p>
-&lt;h3 id="policy-management">Policy Management&lt;/h3>
-&lt;h4 id="creatingediting-policies">Creating/Editing Policies&lt;/h4>
+&lt;h2 id="policy-management">Policy Management&lt;/h2>
+&lt;h3 id="creatingediting-policies">Creating/Editing Policies&lt;/h3>
 &lt;ol>
 &lt;li>Navigate to &lt;code>User Management&lt;/code> → &lt;code>Policies&lt;/code>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
@@ -118,8 +146,8 @@ Policy Management Page
 &lt;/figure>
 &lt;/li>
 &lt;li>For a new policy click &lt;code>Create Policy&lt;/code>. To edit an existing find it in the list and click on its name.&lt;/li>
-&lt;li>The policy wizard has two sections. The left section groups permissions by category and is where you allow or deny permissions. The right section shows the resulting JSON of the policy and is read only.&lt;/li>
-&lt;li>As an example we will create a role to grant users the ability to see, edit and comment on Provisioning orders.
+&lt;li>The policy wizard has two sections. The left section groups permissions by category and is where you allow or deny permissions. The right section shows the resulting JSON of the policy and is read only.
+As an example, we will create a role to grant users the ability to see, edit, and comment on Provisioning orders.
 &lt;ol>
 &lt;li>Under Permissions, search for &lt;code>orders&lt;/code>&lt;/li>
 &lt;li>Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)&lt;/li>
@@ -136,7 +164,7 @@ Policy updated notification
 &lt;/ol>
 &lt;/li>
 &lt;/ol>
-&lt;h4 id="clone-existing-policy">Clone Existing Policy&lt;/h4>
+&lt;h3 id="clone-existing-policy">Clone Existing Policy&lt;/h3>
 &lt;p>To clone an existing policy click the copy button on the far right of the policy row. This will create a new policy with the same permissions pre-selected which can then be edited and named as desired.
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
@@ -146,8 +174,12 @@ Policy table showing the clone/copy policy button
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
-&lt;h4 id="attaching-policies-and-viewing-effective-permissions">Attaching Policies and Viewing Effective Permissions&lt;/h4>
-&lt;p>Policies are attached and their cumulative effect can be viewed under &lt;code>User Management&lt;/code> → &lt;code>Users&lt;/code> by selecting the desired user.&lt;/p></description></item><item><title>Docs: Users</title><link>https://docs.trustgrid.io/docs/user-management/users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/</guid><description>
+&lt;h3 id="attaching-policies-and-viewing-effective-permissions">Attaching Policies and Viewing Effective Permissions&lt;/h3>
+&lt;p>Policies can attached at either:&lt;/p>
+&lt;ul>
+&lt;li>The &lt;a href="https://docs.trustgrid.io/docs/user-management/users/#attaching-policies">User level&lt;/a> which applies the permission to only the individual user&lt;/li>
+&lt;li>The &lt;a href="">Group Level&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>Docs: Users</title><link>https://docs.trustgrid.io/docs/user-management/users/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/</guid><description>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
 &lt;img src="users.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 90%;">
