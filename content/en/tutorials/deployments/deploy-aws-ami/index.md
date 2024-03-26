@@ -100,6 +100,25 @@ SSH keypair to SSH to the instance as ubuntu user if necessary
 **NOTE**: SSH access requires a security group change allowing access. We strongly recommend that SSH is not allowed from anywhere (0.0.0.0/0).
 {{</field>}}
 
+Encrypted EBS Volume
+
+By default the cloud formation template provided will configure an encrypted EBS volume on the Trustgrid Node.
+The following permissions need to be applied to the associated IAM role to provide access to the default ebs key. 
+Note you will need to input your applicable aws account ID/region where this node is being deployed.
+
+```json
+ {
+	"Effect": "Allow",
+	"Action": [
+        "kms:Decrypt",
+        "kms:DescribeKey",
+        "kms:ReEncrypt*",
+        "kms:GenerateDataKey*"
+        ],
+        "Resource": "arn:aws:kms:us-east-1:$aws_accountid:alias/aws/ebs"        
+}
+```
+
 ## Management Configuration
 
 {{<field "Security Group">}}
