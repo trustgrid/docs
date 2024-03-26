@@ -160,7 +160,21 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;p>&lt;strong>NOTE&lt;/strong>: SSH access requires a security group change allowing access. We strongly recommend that SSH is not allowed from anywhere (0.0.0.0/0).&lt;/p>
 &lt;/td>
 &lt;/tr>
-&lt;h2 id="management-configuration">Management Configuration&lt;/h2>
+&lt;p>Encrypted EBS Volume&lt;/p>
+&lt;p>By default the cloud formation template provided will configure an encrypted EBS volume on the Trustgrid Node.
+The following permissions need to be applied to the associated IAM role to provide access to the default ebs key.
+Note you will need to input your applicable aws account ID/region where this node is being deployed.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Action&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:Decrypt&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:DescribeKey&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:ReEncrypt*&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:GenerateDataKey*&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kms:us-east-1:$aws_accountid:alias/aws/ebs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="management-configuration">Management Configuration&lt;/h2>
 &lt;tr id="security-group" style="scroll-margin-top: 10rem;">
 &lt;th>Security Group&lt;/th>
 &lt;td>Needs to allow outbound traffic to other gateways and our public IP range, at a minimum. If it&amp;rsquo;s a gateway node, needs to allow inbound access on desired gateway port.&lt;/td>
