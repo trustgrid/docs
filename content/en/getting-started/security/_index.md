@@ -22,10 +22,10 @@ Trustgrid uses a token to authorize communication between Trustgrid [nodes]({{<r
 
 ### TLS Encryption
 
-All data on Trustgrid is encrypted from [node]({{<ref "/docs/nodes" >}}) to node using next-generation encryption – TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement to IPSec VPN. The TLS tunnels use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
+All data on between Trustgrid nodes for both control and data plane is encrypted using TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement to IPSec VPN. The TLS tunnels use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
 
 ### UDP Data Plane Encryption
-Trustgrid nodes with UDP enabled use [ChaCha20](http://cr.yp.to/chacha.html) for symmetric encryption and [Poly1305](http://cr.yp.to/mac.html) for authentication. The encryption keys are securely generated on the server and shared with the client of the existing TLS tunnel to the client. The keys are rotated automatically every 5 minutes. 
+Trustgrid nodes with UDP enabled use [ChaCha20](http://cr.yp.to/chacha.html)-[Poly1305](http://cr.yp.to/mac.html) for encryption. The encryption keys are securely generated on the server and shared with the client of the existing TLS tunnel to the client. The keys are rotated automatically every 5 minutes. 
 
 {{<alert color="info">}}The UDP server endpoint is also “dark” in the sense that it will not respond to any traffic unless it is verified to be encrypted/signed by an endpoint and key that is valid. {{</alert>}}
 
