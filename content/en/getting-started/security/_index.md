@@ -10,7 +10,7 @@ Trustgrid’s mission is to replace aging Edge connectivity solutions with innov
 
 ## Authentication
 
-Pre-shared keys (PSK) are the most common method for authenticated connectivity and present a significant risk when implemented poorly. Certificate-based authentication is difficult and requires advanced skill sets. Trustgrid is the ‘root of trust’ in a Public Key Infrastructure (PKI) built by our security experts to enable automated certificate management across Trustgrid networks. All devices enroll in the PKI and are managed centrally from Trustgrid’s cloud infrastructure. Certificates are issued per device and are used to authenticate, and for encryption of all traffic.
+Pre-shared keys (PSK) are the most common method for authenticated connectivity and present a significant risk when implemented poorly. Certificate-based authentication is difficult and requires advanced skill sets. Trustgrid is the ‘root of trust’ in a Public Key Infrastructure (PKI) built by our security experts to enable automated certificate management across Trustgrid networks. All devices enroll in the PKI are managed centrally from Trustgrid’s cloud infrastructure. Certificates are issued per device and are used to authenticate, and for encryption of all traffic.
 
 ## Authorization
 
