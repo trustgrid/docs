@@ -10,7 +10,7 @@ Trustgrid’s mission is to replace aging Edge connectivity solutions with innov
 
 ## Authentication
 
-Pre-shared keys (PSK) are the most common method for authenticated connectivity and present a significant risk when implemented poorly. Certificate-based authentication is difficult and requires advanced skill sets. Trustgrid is the ‘root of trust’ in a Public Key Infrastructure (PKI) built by our security experts to enable automated certificate management across Trustgrid networks. All devices enroll in the PKI are managed centrally from Trustgrid’s cloud infrastructure. Certificates are issued per device and are used to authenticate, and for encryption of all traffic.
+Pre-shared keys (PSK) are the most common method for authenticated connectivity and present a significant risk when implemented poorly. Certificate-based authentication is difficult and requires advanced skill sets. Trustgrid is the ‘root of trust’ in a Public Key Infrastructure (PKI) built by our security experts to enable automated certificate management across Trustgrid networks. All devices enrolled in the PKI are managed centrally from Trustgrid’s cloud infrastructure. Certificates are issued per device and are used to authenticate, and for encryption of all traffic.
 
 ## Authorization
 
@@ -22,7 +22,7 @@ Trustgrid uses a token to authorize communication between Trustgrid [nodes]({{<r
 
 ### TLS Encryption
 
-All data on between Trustgrid nodes for both control and data plane is encrypted using TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement to IPSec VPN. The TLS tunnels use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
+All data between Trustgrid nodes for both the control and data plane is encrypted using TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement for IPSec VPN. The TLS tunnels use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
 
 ### UDP Data Plane Encryption
 Trustgrid nodes with UDP enabled use [ChaCha20](http://cr.yp.to/chacha.html)-[Poly1305](http://cr.yp.to/mac.html) for encryption. The encryption keys are securely generated on the server and shared with the client of the existing TLS tunnel to the client. The keys are rotated automatically every 5 minutes. 
