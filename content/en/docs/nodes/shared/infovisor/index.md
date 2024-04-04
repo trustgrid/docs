@@ -13,7 +13,7 @@ The infovisor displays details about the Trustgrid node and can be displayed by 
 It displays the following information in a card layout:
 {{<tgimg src="infovisor.png" caption="Example infovisor" width="80%">}}
 
-It contains the below information but can vary between appliance and agent-based nodes. The table below lists the field and if it is displayed or not.
+It contains the below information but can vary between appliance and agent-based nodes. The table below lists the fields and if they are displayed depending on node type.
 
 |Field | Agent | Appliance |
 |---|---|---|
