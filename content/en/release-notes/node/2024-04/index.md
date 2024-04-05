@@ -14,4 +14,3 @@ Before this release, both the appliance acting as the gateway server and the edg
 - Resolves an issue that prevented the [Trustgrid SNMP OID]({{<relref "/docs/nodes/appliances/snmp/oids">}}) from providing VPN stats if attached to a VLAN interface. 
 - Fixes an issue that sometimes causes client peers to be removed from a gateway's data plane panel table on disconnect and not be added back when they reconnect.
 - Resolves an issue related to VPN traffic to agent-based nodes running in a container.
-- Fixes a leak related to DNS requests made by containers running on appliance-based nodes.
