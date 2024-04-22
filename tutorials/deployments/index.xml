@@ -48,7 +48,7 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;p>This concludes the cluster configuration specifics for AWS deployment. Appropriate VPN configuration will need to be applied in order for traffic to pass end to end between the gateways and edge node sites.&lt;/p>
 &lt;/li>
 &lt;/ol></description></item><item><title>Tutorials: Deploy a Trustgrid Node AMI in AWS</title><link>https://docs.trustgrid.io/tutorials/deployments/deploy-aws-ami/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/tutorials/deployments/deploy-aws-ami/</guid><description>
-&lt;p>Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes in AWS use two network interfaces - a management and data interface. The management interface communicates with Trustgrid Cloud Management systems. The data interface is used to terminate TLS tunnels from Edge Nodes.&lt;/p>
+&lt;p>Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes in AWS use two network interfaces - a management and a data interface. The management interface communicates with Trustgrid Cloud Management systems. The data interface is used to terminate TLS tunnels from Edge Nodes.&lt;/p>
 &lt;h2 id="notes">Notes&lt;/h2>
 &lt;ul>
 &lt;li>The cloudformation template below works with an AMI currently published in US-EAST1. Deploying in other regions requires working with Trustgrid Support&lt;/li>
@@ -81,14 +81,14 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;li>Outbound traffic to Trustgrid’s control plane IP (TCP 80/443 &amp;amp; 8443 to 35.171.100.16/28 &amp;amp; 34.223.12.192/28)&lt;/li>
 &lt;li>Outbound traffic to AWS API (TCP 443) &lt;a href="https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html">https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html&lt;/a>&lt;/li>
 &lt;li>Inbound &amp;amp; Outbound to/from management NIC security group on cluster port (typically TCP port 9000)&lt;/li>
-&lt;li>For the initial deployment outbound access for TCP 80/443 should be allowed. Upon successful registration with the Trustgrid Portal this can be removed.&lt;/li>
+&lt;li>For the initial deployment outbound access for TCP 80/443 should be allowed. Upon successful registration with the Trustgrid Portal, this can be removed.&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>
 &lt;p>IAM role for the instance with policies allowing changes to the routing table of the data NIC - See attached doc&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>All Interfaces on the Trustgrid Gateway should have source / destination check disabled in AWS&lt;/p>
+&lt;p>All Interfaces on the Trustgrid Gateway should have source/destination check disabled in AWS&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>Security group for data NIC - No configuration for now&lt;/p>
@@ -97,7 +97,7 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;p>An IP in the private subnet that will be used by the data NIC&lt;/p>
 &lt;/li>
 &lt;li>
-&lt;p>An SSH keypair that can be used to SSH to the instance if necessary&lt;/p>
+&lt;p>An SSH key-pair that can be used to SSH to the instance if necessary&lt;/p>
 &lt;/li>
 &lt;li>
 &lt;p>VPC must have unallocated public IP that will be claimed during provisioning&lt;/p>
@@ -113,7 +113,7 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/ul>
 &lt;/li>
 &lt;li>
-&lt;p>Select the appropriate Cloud Formation Template based on the AWS region being deployed in.&lt;/p>
+&lt;p>Select the appropriate Cloud Formation Template based on the AWS region in which the Trustgrid node is being deployed&lt;/p>
 &lt;ul>
 &lt;li>US-EAST-1: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json&lt;/a>&lt;/li>
 &lt;li>US-EAST-2: &lt;a href="https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json">https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json&lt;/a>&lt;/li>
@@ -125,18 +125,59 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;p>Fill out the fields in the CloudFormation form&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h2 id="instance-configuration">Instance Configuration&lt;/h2>
-&lt;tr id="stack-name" style="scroll-margin-top: 10rem;">
-&lt;th>Stack Name&lt;/th>
-&lt;td>Unique name to describe this deployment&lt;/td>
+&lt;h2 id="parameters">Parameters&lt;/h2>
+&lt;h3 id="stack-name">Stack Name&lt;/h3>
+&lt;p>Unique name to describe this deployment&lt;/p>
+&lt;h3 id="instance-configuration">Instance Configuration&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
 &lt;/tr>
+&lt;/thead>
+&lt;tbody>
 &lt;tr id="instance-type" style="scroll-margin-top: 10rem;">
 &lt;th>Instance Type&lt;/th>
 &lt;td>Set the instance type of the EC2 instance to deploy (bigger instances cost more)&lt;/td>
 &lt;/tr>
+&lt;tr id="ssh-keypair" style="scroll-margin-top: 10rem;">
+&lt;th>SSH Keypair&lt;/th>
+&lt;td>&lt;p>SSH keypair to SSH to the instance as ubuntu user if necessary&lt;/p>
+&lt;blockquote>
+&lt;p>SSH access requires a security group change allowing access. We strongly recommend that SSH is not allowed from anywhere (0.0.0.0/0).&lt;/p>
+&lt;/blockquote>
+&lt;/td>
+&lt;/tr>
 &lt;tr id="host-iam-role" style="scroll-margin-top: 10rem;">
 &lt;th>Host IAM Role&lt;/th>
-&lt;td>&lt;p>An IAM role that can either be empty or, if the node will be clustered (Layer 3), requires the following permissions (&lt;code>ec2:DescribeRouteTables&lt;/code> for all resources and &lt;code>ec2:CreateRoute&lt;/code> and &lt;code>ec2:DeleteRoute&lt;/code> on the route table):&lt;/p>
+&lt;td>An IAM role needs to be created with the permissions listed in the &lt;a href="#iam-role-requirements">IAM Role Requirements section below&lt;/a>.&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="iam-role-requirements">IAM Role Requirements&lt;/h4>
+&lt;h5 id="encrypted-ebs-volume">Encrypted EBS Volume&lt;/h5>
+&lt;blockquote>
+&lt;p>Required for all nodes&lt;/p>
+&lt;/blockquote>
+&lt;p>By default, the cloud formation template provided will configure an encrypted EBS volume on the Trustgrid Node.
+The following permissions need to be applied to the associated IAM role to provide access to the default EBS key.
+Note you will need to input your applicable AWS account ID/region where this node is being deployed.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Action&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:Decrypt&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:DescribeKey&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:ReEncrypt*&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:GenerateDataKey*&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kms:us-east-1:$aws_accountid:alias/aws/ebs&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="route-table">Route Table&lt;/h5>
+&lt;blockquote>
+&lt;p>Required for &lt;a href="https://docs.trustgrid.io/docs/clusters/">clustered nodes&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;p>If the node will be clustered the IAM role requires the following permissions (&lt;code>ec2:DescribeRouteTables&lt;/code> for all resources and &lt;code>ec2:CreateRoute&lt;/code> and &lt;code>ec2:DeleteRoute&lt;/code> on the route table):&lt;/p>
 &lt;p>Route Table Policy&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
@@ -149,56 +190,73 @@ If deploying gateways in different availability zones then LAN interface routes 
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ec2:CreateRoute&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;ec2:DeleteRoute&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ec2:us-east-1:079972220921:route-table/rtb-f428d58b&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:ec2:us-east-1:$aws_accountid:route-table/rtb-f428d58b&amp;#34;&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>NOTE&lt;/strong>: Set the Resource field to the ARN of the Routing Table associated with the data NICs of the instance.&lt;/p>
-&lt;/td>
+&lt;h2 id="management-configuration">Management Configuration&lt;/h2>
+&lt;p>This section covers the configuration of the outside, internet-facing interface of the EC2 instance.
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
 &lt;/tr>
-&lt;tr id="ssh-keypair" style="scroll-margin-top: 10rem;">
-&lt;th>SSH Keypair&lt;/th>
-&lt;td>&lt;p>SSH keypair to SSH to the instance as ubuntu user if necessary&lt;/p>
-&lt;p>&lt;strong>NOTE&lt;/strong>: SSH access requires a security group change allowing access. We strongly recommend that SSH is not allowed from anywhere (0.0.0.0/0).&lt;/p>
-&lt;/td>
-&lt;/tr>
-&lt;p>Encrypted EBS Volume&lt;/p>
-&lt;p>By default the cloud formation template provided will configure an encrypted EBS volume on the Trustgrid Node.
-The following permissions need to be applied to the associated IAM role to provide access to the default ebs key.
-Note you will need to input your applicable aws account ID/region where this node is being deployed.&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-json" data-lang="json">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Effect&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;Allow&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Action&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#000;font-weight:bold">[&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:Decrypt&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:DescribeKey&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:ReEncrypt*&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">,&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#4e9a06">&amp;#34;kms:GenerateDataKey*&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#000;font-weight:bold">],&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#204a87;font-weight:bold">&amp;#34;Resource&amp;#34;&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span> &lt;span style="color:#4e9a06">&amp;#34;arn:aws:kms:us-east-1:$aws_accountid:alias/aws/ebs&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#000;font-weight:bold">}&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="management-configuration">Management Configuration&lt;/h2>
+&lt;/thead>
+&lt;tbody>
 &lt;tr id="security-group" style="scroll-margin-top: 10rem;">
 &lt;th>Security Group&lt;/th>
-&lt;td>Needs to allow outbound traffic to other gateways and our public IP range, at a minimum. If it&amp;rsquo;s a gateway node, needs to allow inbound access on desired gateway port.&lt;/td>
+&lt;td>&lt;ul>
+&lt;li>Needs to allow outbound traffic to other gateways and the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#network-requirements-for-all-nodes">Trustgrid public IP range&lt;/a>, at a minimum.&lt;/li>
+&lt;li>If it&amp;rsquo;s a gateway node, needs to allow inbound access on the gateway port, typically TCP/UDP 8443.&lt;/li>
+&lt;/ul>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="subnet" style="scroll-margin-top: 10rem;">
 &lt;th>Subnet&lt;/th>
-&lt;td>The VPC subnet to put the EC2 instance in. This needs to be a subnet with public IP enables (the instance will automatically claim one; the Auto-Assign Public IP does not need to be enabled)&lt;/td>
+&lt;td>The VPC subnet for the public, internet-facing interface. The EIP that is created by the CloudFormation template will be associated with the interface on this subnet.&lt;/td>
 &lt;/tr>
+&lt;/tbody>
+&lt;/table>&lt;/p>
 &lt;h2 id="data-path-configuration">Data Path Configuration&lt;/h2>
+&lt;p>This section covers the configuration of the inward, private-facing interface of the EC2 instance.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
 &lt;tr id="security-group" style="scroll-margin-top: 10rem;">
 &lt;th>Security Group&lt;/th>
-&lt;td>The security group for the data path - needs to allow outbound communication to other gateways, and inbound communication on its gateway port&lt;/td>
+&lt;td>&lt;p>The security group for the data path interface.&lt;/p>
+&lt;ul>
+&lt;li>Needs to allow communication between any private AWS network resources that need to access the Trustgrid EC2 node&amp;rsquo;s private IP or any &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/">virtual network&lt;/a> resources that will be accessed across the Trustgrid network.&lt;/li>
+&lt;li>If the EC2 instance node will be clustered, the security group should allow communication between the private IPs of all the clustered nodes on the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/cluster/#heartbeat">cluster heartbeat port&lt;/a>, typically port TCP 9000.&lt;/li>
+&lt;/ul>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="subnet" style="scroll-margin-top: 10rem;">
 &lt;th>Subnet&lt;/th>
-&lt;td>The VPC subnet to put the data interface in - if it&amp;rsquo;s a cloud-accessible gateway, should be a public subnet, if it&amp;rsquo;s only for internal AWS traffic, can be a private subnet. Will need outbound access either through IGW or NAT GW.&lt;/td>
+&lt;td>The VPC subnet for the data path interface.&lt;/td>
 &lt;/tr>
 &lt;tr id="data-ip" style="scroll-margin-top: 10rem;">
 &lt;th>Data IP&lt;/th>
-&lt;td>The private IP for the data path - must belong to the subnet&lt;/td>
+&lt;td>The private IP for the data path - must belong to the subnet and not already be allocated.&lt;/td>
 &lt;/tr>
+&lt;/tbody>
+&lt;/table>
 &lt;h2 id="trustgrid-configuration">Trustgrid Configuration&lt;/h2>
-&lt;tr id="security-group" style="scroll-margin-top: 10rem;">
-&lt;th>Security Group&lt;/th>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Field Name&lt;/th>
+&lt;th>Description&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr id="trustgrid-license" style="scroll-margin-top: 10rem;">
+&lt;th>Trustgrid License&lt;/th>
 &lt;td>&lt;p>Copy/paste the license from the portal.&lt;/p>
 &lt;p>Note: It is critical that you copy/paste the license correctly.&lt;/p>
 &lt;/td>
@@ -206,9 +264,11 @@ Note you will need to input your applicable aws account ID/region where this nod
 &lt;div class="alert alert-primary" role="alert">
 If you are not a direct Trustgrid customer please work with your vendor to get these licenses generated and sent to you.
 &lt;/div>
+&lt;/tbody>
+&lt;/table>
 &lt;h2 id="creating-the-stack">Creating the Stack&lt;/h2>
 &lt;ol>
-&lt;li>Create the stack. Check the box acknowleding that AWS CloudFormation might create IAM resources. This is required because we create an instance profile for the to-be-run EC2 instance.&lt;/li>
+&lt;li>Create the stack. Check the box acknowledging that AWS CloudFormation might create IAM resources. This is required because we create an instance profile for the to-be-run EC2 instance.&lt;/li>
 &lt;li>When the node appears in the Portal, activate it.&lt;/li>
 &lt;li>In the EC2 console, reboot the node (it will be named trustgrid-node)&lt;/li>
 &lt;li>You can now manage the node as you would any other in the Portal UI.&lt;/li>
