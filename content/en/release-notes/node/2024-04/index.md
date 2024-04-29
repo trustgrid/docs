@@ -2,7 +2,7 @@
 title: April 2024 Minor Appliance Release Notes
 linkTitle: April 2024 Minor
 type: docs
-date: 2024-04-04
+date: 2024-04-29
 description: "Release notes for the April 2024 Minor Trustgrid Appliance release"
 ---
 {{< node-release package-version="TBD" core-version="TBD" release="n-2.19.1" >}}
