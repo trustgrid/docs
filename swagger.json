@@ -11,10 +11,11 @@
   "paths": {
     "/alert": {
       "get": {
-        "description": "List events, newest first\n\n---\n\nRequires `alerts::read` permission.",
+        "deprecated": true,
+        "description": "List events, newest first. This is deprecated; use `/v2/event` instead.\n\n---\n\nRequires `alerts::read` permission.",
         "parameters": [
           {
-            "description": "Cursor returned from previous request",
+            "description": "Start time (unix timestamp) to query from",
             "in": "query",
             "name": "timestamp",
             "type": "number"
@@ -91,6 +92,42 @@
             "in": "query",
             "name": "itemType",
             "type": "string"
+          },
+          {
+            "description": "Start time (unix timestamp) to query from",
+            "in": "query",
+            "name": "timestamp",
+            "type": "string"
+          },
+          {
+            "description": "End time (unix timestamp) to query to",
+            "in": "query",
+            "name": "eTime",
+            "type": "string"
+          },
+          {
+            "description": "Audit type to filter (create, delete, change, or action)",
+            "in": "query",
+            "name": "auditEvent",
+            "type": "string"
+          },
+          {
+            "description": "IP address filter",
+            "in": "query",
+            "name": "ip",
+            "type": "string"
+          },
+          {
+            "description": "User name filter",
+            "in": "query",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            "description": "Details text filter",
+            "in": "query",
+            "name": "details",
+            "type": "string"
           }
         ],
         "produces": [
@@ -111,7 +148,7 @@
         "description": "Download node audits\n\n---\n\nRequires `audits::read:node` permission.",
         "parameters": [
           {
-            "description": "Cursor returned from the previous request",
+            "description": "Start time (unix timestamp) to query from",
             "in": "query",
             "name": "timestamp",
             "type": "string"
@@ -157,9 +194,51 @@
         "description": "List configuration change audits\n\n---\n\nRequires `audits::read:config` permission.",
         "parameters": [
           {
-            "description": "Cursor returned from the previous request",
+            "description": "ID for the item to audit. If specified, must include itemType.",
+            "in": "query",
+            "name": "itemID",
+            "type": "string"
+          },
+          {
+            "description": "Type of item to audit, e.g., Node or Cluster. If specified, must include itemID",
+            "in": "query",
+            "name": "itemType",
+            "type": "string"
+          },
+          {
+            "description": "Start time (unix timestamp) to query from",
             "in": "query",
             "name": "timestamp",
+            "type": "string"
+          },
+          {
+            "description": "End time (unix timestamp) to query to",
+            "in": "query",
+            "name": "eTime",
+            "type": "string"
+          },
+          {
+            "description": "Audit type to filter (create, delete, change, or action)",
+            "in": "query",
+            "name": "auditEvent",
+            "type": "string"
+          },
+          {
+            "description": "IP address filter",
+            "in": "query",
+            "name": "ip",
+            "type": "string"
+          },
+          {
+            "description": "User name filter",
+            "in": "query",
+            "name": "user",
+            "type": "string"
+          },
+          {
+            "description": "Details text filter",
+            "in": "query",
+            "name": "details",
             "type": "string"
           }
         ],
@@ -190,7 +269,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "b08d05ad-34fb-4307-9dfe-842f666d7f74",
+                    "example": "bcca8e60-5632-4290-a481-8938d9f2e232",
                     "type": "object"
                   },
                   "itemType": {
@@ -205,12 +284,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1714493263,
+                    "example": 1714521132,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "229e2e4a-8016-4343-83c5-ce7c2fc648a7",
+                    "example": "32ce577c-5241-423e-a4a6-184afa17ec4a",
                     "type": "object"
                   },
                   "userName": {
@@ -232,7 +311,8 @@
     },
     "/audit/tail/flow_logs": {
       "get": {
-        "description": "List recent flow logs\n\n---\n\nRequires `audits::read:flows` permission.",
+        "deprecated": true,
+        "description": "List recent flow logs. This is deprecated; use `/v2/audit/flow-logs` instead.\n\n---\n\nRequires `audits::read:flows` permission.",
         "parameters": [
           {
             "description": "Unix timestamp for the start of the log window",
@@ -392,7 +472,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "84e06aec-168d-4d24-9d6c-94ed4b6bdbc7",
+                    "example": "ee49800d-e5b3-4079-87a1-3b4846ec7709",
                     "type": "object"
                   },
                   "destBytes": {
@@ -463,12 +543,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "84e06aec-168d-4d24-9d6c-94ed4b6bdbc7",
+                    "example": "ee49800d-e5b3-4079-87a1-3b4846ec7709",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "84e06aec-168d-4d24-9d6c-94ed4b6bdbc7",
+                    "example": "ee49800d-e5b3-4079-87a1-3b4846ec7709",
                     "type": "object"
                   }
                 },
@@ -488,7 +568,7 @@
         "description": "List node audits\n\n---\n\nRequires `audits::read:node` permission.",
         "parameters": [
           {
-            "description": "Cursor returned from the previous request",
+            "description": "Start time (unix timestamp) to query from",
             "in": "query",
             "name": "timestamp",
             "type": "string"
@@ -4820,6 +4900,265 @@
         },
         "tags": [
           "Applications"
+        ]
+      }
+    },
+    "/v2/audit/flow-logs": {
+      "get": {
+        "description": "List recent flow logs\n\n---\n\nRequires `audits::read:flows` permission.",
+        "parameters": [
+          {
+            "description": "Unix timestamp for the start of the log window",
+            "in": "query",
+            "name": "sTime",
+            "type": "number"
+          },
+          {
+            "description": "Unix timestamp for the end of the log window",
+            "in": "query",
+            "name": "eTime",
+            "type": "number"
+          },
+          {
+            "description": "Comparison operator for the end of the log window",
+            "enum": [
+              "eq",
+              "ne",
+              "gt",
+              "gte",
+              "lt",
+              "lte"
+            ],
+            "in": "query",
+            "name": "eTimeOp",
+            "type": "string"
+          },
+          {
+            "description": "IP protocol",
+            "in": "query",
+            "name": "protocol",
+            "type": "string"
+          },
+          {
+            "description": "Source IP address",
+            "in": "query",
+            "name": "srcIp",
+            "type": "string"
+          },
+          {
+            "description": "Destination IP address",
+            "in": "query",
+            "name": "dstIp",
+            "type": "string"
+          },
+          {
+            "description": "Source port",
+            "in": "query",
+            "name": "srcPort",
+            "type": "number"
+          },
+          {
+            "description": "Comparison operator for the source port",
+            "enum": [
+              "eq",
+              "ne",
+              "gt",
+              "gte",
+              "lt",
+              "lte"
+            ],
+            "in": "query",
+            "name": "srcPortOp",
+            "type": "string"
+          },
+          {
+            "description": "Destination port",
+            "in": "query",
+            "name": "dstPort",
+            "type": "number"
+          },
+          {
+            "description": "Comparison operator for the dest port",
+            "enum": [
+              "eq",
+              "ne",
+              "gt",
+              "gte",
+              "lt",
+              "lte"
+            ],
+            "in": "query",
+            "name": "dstPortOp",
+            "type": "string"
+          },
+          {
+            "description": "Maximum number of results to return",
+            "in": "query",
+            "name": "limit",
+            "type": "number"
+          },
+          {
+            "description": "Source node name",
+            "in": "query",
+            "name": "srcNode",
+            "type": "string"
+          },
+          {
+            "description": "Dest node name",
+            "in": "query",
+            "name": "dstNode",
+            "type": "string"
+          },
+          {
+            "description": "Flow logging node ID",
+            "in": "query",
+            "name": "node",
+            "type": "string"
+          },
+          {
+            "description": "Page of results to return",
+            "in": "query",
+            "name": "page",
+            "type": "string"
+          },
+          {
+            "description": "Sort results, like `port:desc`",
+            "in": "query",
+            "name": "sort",
+            "type": "string"
+          },
+          {
+            "description": "When true, newer flow logs will be listed first",
+            "in": "query",
+            "name": "reverse",
+            "type": "boolean"
+          },
+          {
+            "description": "If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
+            "in": "query",
+            "items": {
+              "items": {
+                "example": [
+                  1,
+                  2
+                ],
+                "items": {
+                  "description": "tcpFlags",
+                  "type": "number"
+                },
+                "type": "array"
+              }
+            },
+            "name": "tcpFlags",
+            "type": "array"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "x-total-count": {
+                "description": "Total number of flows matching query",
+                "type": "number"
+              }
+            },
+            "schema": {
+              "items": {
+                "description": "FlowLog",
+                "properties": {
+                  "activityID": {
+                    "description": "Threat Intelligence activity ID",
+                    "example": "ee49800d-e5b3-4079-87a1-3b4846ec7709",
+                    "type": "object"
+                  },
+                  "destBytes": {
+                    "description": "Destination bytes transferred",
+                    "example": 100,
+                    "type": "number"
+                  },
+                  "destIP": {
+                    "description": "Destination IP address",
+                    "example": "1.1.1.1",
+                    "type": "object"
+                  },
+                  "destNode": {
+                    "description": "Destination node name",
+                    "example": "mynode",
+                    "type": "object"
+                  },
+                  "destPort": {
+                    "description": "Destination port",
+                    "example": 1234,
+                    "type": "number"
+                  },
+                  "endTime": {
+                    "description": "Start time of the flow",
+                    "example": "2022-11-01T22:46:02.730Z",
+                    "type": "object"
+                  },
+                  "protocol": {
+                    "description": "Protocol",
+                    "enum": [
+                      "TCP",
+                      "UDP",
+                      "ICMP",
+                      "UNKNOWN"
+                    ],
+                    "example": "TCP",
+                    "type": "object"
+                  },
+                  "sourceBytes": {
+                    "description": "Source bytes transferred",
+                    "example": 100,
+                    "type": "number"
+                  },
+                  "sourceIP": {
+                    "description": "Source IP address",
+                    "example": "2.2.2.2",
+                    "type": "object"
+                  },
+                  "sourceNode": {
+                    "description": "Source node name",
+                    "example": "mynode",
+                    "type": "object"
+                  },
+                  "sourcePort": {
+                    "description": "Source port",
+                    "example": 1234,
+                    "type": "number"
+                  },
+                  "startTime": {
+                    "description": "Start time of the flow",
+                    "example": "2022-11-01T22:46:01.765Z",
+                    "type": "object"
+                  },
+                  "tcpFlags": {
+                    "description": "TCP Flags encoded in hex:\n* 0x01 - FIN\n* 0x02 - SYN\n* 0x04 - RST\n* 0x08 - PSH\n* 0x10 - ACK\n* 0x20 - URG",
+                    "example": "00100001",
+                    "type": "object"
+                  },
+                  "ztnaAppID": {
+                    "description": "ZTNA application ID",
+                    "example": "ee49800d-e5b3-4079-87a1-3b4846ec7709",
+                    "type": "object"
+                  },
+                  "ztnaSessionID": {
+                    "description": "ZTNA application ID",
+                    "example": "ee49800d-e5b3-4079-87a1-3b4846ec7709",
+                    "type": "object"
+                  }
+                },
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Audit"
         ]
       }
     },
@@ -12193,7 +12532,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "b08d05ad-34fb-4307-9dfe-842f666d7f74",
+          "example": "bcca8e60-5632-4290-a481-8938d9f2e232",
           "type": "string"
         },
         "timestamp": {
@@ -12251,7 +12590,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "b08d05ad-34fb-4307-9dfe-842f666d7f74",
+          "example": "bcca8e60-5632-4290-a481-8938d9f2e232",
           "type": "string"
         },
         "nodeName": {
@@ -12536,7 +12875,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "813c6c44-b94c-492e-86bd-78f329ae7989",
+          "example": "738da11f-b740-44f1-bafe-5990e2777148",
           "type": "string"
         },
         "image": {
@@ -12693,7 +13032,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "87cd5e8b-cfdf-43f2-8836-27ee1607a7cd",
+          "example": "3bf86ed7-9a63-48b4-a713-0452072edaa4",
           "type": "string"
         }
       },
@@ -12836,7 +13175,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "fffee8d7-c32b-496c-9d75-f0e1ceed1ddf",
+          "example": "971971c3-de1d-4237-b4e5-bfe8fdb87f27",
           "type": "string"
         }
       },
@@ -12871,7 +13210,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "a4d8d5d2-5251-4694-bb04-0547d2c5ea54",
+          "example": "365b61ee-81d5-4c3b-a068-fd977acdb318",
           "type": "string"
         }
       },
@@ -12926,7 +13265,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "6c732bdc-b33d-4c6e-91be-9b40523cc344",
+          "example": "0fcfe0a5-0f8d-4b8e-b617-4d5175173a3b",
           "type": "string"
         }
       },
@@ -13808,7 +14147,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "b08d05ad-34fb-4307-9dfe-842f666d7f74",
+          "example": "bcca8e60-5632-4290-a481-8938d9f2e232",
           "type": "string"
         }
       },
