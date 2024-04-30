@@ -5,7 +5,7 @@ type: docs
 date: 2024-04-29
 description: "Release notes for the April 2024 Minor Trustgrid Appliance release"
 ---
-{{< node-release package-version="TBD" core-version="TBD" release="n-2.19.1" >}}
+{{< node-release package-version="1.5.20240422-2039" core-version="20240422-165737.3d6b62c" release="n-2.19.1" >}}
 ## Abnormal Disconnect Messages limited to Clients
 Before this release, both the appliances that are acting as the gateway server and the edge node client would send abnormal disconnect events. This change limits abnormal disconnect messages to only be sent from the client to avoid excessive alert notifications on the gateway server.
 
