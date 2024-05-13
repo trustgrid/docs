@@ -1,8 +1,8 @@
 ---
-title: April 2024 Release Notes
-linkTitle: April 2024 Release
-date: 2024-04-04
-description: "April 2024 cloud release introducing Alert Center"
+title: May 2024 Release Notes
+linkTitle: May 2024 Release
+date: 2024-05-04
+description: "May 2024 cloud release introducing Alert Center"
 type: docs
 ---
 ## Introducing Alert Center
