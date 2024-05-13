@@ -39,9 +39,10 @@ func addAlertAPI(api *s.API) {
 		Prop("alert_message", s.NewSchema("More information about the alert", s.S_String, s.S_Example("Node mynode abnormally disconnected"))).
 		Ref()
 
-	p.Get("List events, newest first").
-		Param(s.NewParam("timestamp", "Cursor returned from previous request", s.P_Number)).
+	p.Get("List events, newest first. This is deprecated; use `/v2/event` instead.").
+		Param(s.NewParam("timestamp", "Start time (unix timestamp) to query from", s.P_Number)).
 		Param(s.NewParam("limit", "Limit number of alerts to return", s.P_Number)).
+		Deprecated().
 		Response(200, "OK", s.NewArraySchema(alert))
 
 	p = p.PathParam(params.nodeID)
@@ -628,7 +629,14 @@ func addAuditAPI(api *s.API) {
 		Permission("audits::read:config").
 		Produces("application/json").
 		Get("List configuration change audits").
-		Param(s.NewParam("timestamp", "Cursor returned from the previous request", s.P_Query)).
+		Param(s.NewParam("itemID", "ID for the item to audit. If specified, must include itemType.", s.P_Query)).
+		Param(s.NewParam("itemType", "Type of item to audit, e.g., Node or Cluster. If specified, must include itemID", s.P_Query)).
+		Param(s.NewParam("timestamp", "Start time (unix timestamp) to query from", s.P_Query)).
+		Param(s.NewParam("eTime", "End time (unix timestamp) to query to", s.P_Query)).
+		Param(s.NewParam("auditEvent", "Audit type to filter (create, delete, change, or action)", s.P_Query)).
+		Param(s.NewParam("ip", "IP address filter", s.P_Query)).
+		Param(s.NewParam("user", "User name filter", s.P_Query)).
+		Param(s.NewParam("details", "Details text filter", s.P_Query)).
 		Response(200, "OK", s.NewArraySchema(configAudit))
 
 	p.Path("/download/config").
@@ -637,6 +645,12 @@ func addAuditAPI(api *s.API) {
 		Get("Download configuration change audits").
 		Param(s.NewParam("itemID", "ID for the item to audit. If specified, must include itemType.", s.P_Query)).
 		Param(s.NewParam("itemType", "Type of item to audit, e.g., Node or Cluster. If specified, must include itemID", s.P_Query)).
+		Param(s.NewParam("timestamp", "Start time (unix timestamp) to query from", s.P_Query)).
+		Param(s.NewParam("eTime", "End time (unix timestamp) to query to", s.P_Query)).
+		Param(s.NewParam("auditEvent", "Audit type to filter (create, delete, change, or action)", s.P_Query)).
+		Param(s.NewParam("ip", "IP address filter", s.P_Query)).
+		Param(s.NewParam("user", "User name filter", s.P_Query)).
+		Param(s.NewParam("details", "Details text filter", s.P_Query)).
 		Response(200, "OK", nil)
 
 	tcpFlags := []string{"* 0x01 - FIN", "* 0x02 - SYN", "* 0x04 - RST", "* 0x08 - PSH", "* 0x10 - ACK", "* 0x20 - URG"}
@@ -661,10 +675,38 @@ func addAuditAPI(api *s.API) {
 	tcpFlagParam := s.NewArraySchema(s.NewSchema("tcpFlags", s.S_Number))
 	tcpFlagParam.Example = []int{1, 2}
 
-	p.Path("/tail/flow_logs").
+	v2 := api.Path("/v2/audit").Consumes("application/json").Tag("Audit")
+	v2.Path("/flow-logs").
 		Permission("audits::read:flows").
 		Produces("application/json").
 		Get("List recent flow logs").
+		Param(s.NewParam("sTime", "Unix timestamp for the start of the log window", s.P_Query, s.P_Number)).
+		Param(s.NewParam("eTime", "Unix timestamp for the end of the log window", s.P_Query, s.P_Number)).
+		Param(s.NewParam("eTimeOp", "Comparison operator for the end of the log window", s.P_Query, s.P_Enum("eq", "ne", "gt", "gte", "lt", "lte"))).
+		Param(s.NewParam("protocol", "IP protocol", s.P_Query)).
+		Param(s.NewParam("srcIp", "Source IP address", s.P_Query)).
+		Param(s.NewParam("dstIp", "Destination IP address", s.P_Query)).
+		Param(s.NewParam("srcPort", "Source port", s.P_Query, s.P_Number)).
+		Param(s.NewParam("srcPortOp", "Comparison operator for the source port", s.P_Query, s.P_Enum("eq", "ne", "gt", "gte", "lt", "lte"))).
+		Param(s.NewParam("dstPort", "Destination port", s.P_Query, s.P_Number)).
+		Param(s.NewParam("dstPortOp", "Comparison operator for the dest port", s.P_Query, s.P_Enum("eq", "ne", "gt", "gte", "lt", "lte"))).
+		Param(s.NewParam("limit", "Maximum number of results to return", s.P_Query, s.P_Number)).
+		Param(s.NewParam("srcNode", "Source node name", s.P_Query)).
+		Param(s.NewParam("dstNode", "Dest node name", s.P_Query)).
+		Param(s.NewParam("node", "Flow logging node ID", s.P_Query)).
+		Param(s.NewParam("page", "Page of results to return", s.P_Query)).
+		Param(s.NewParam("sort", "Sort results, like `port:desc`", s.P_Query)).
+		Param(s.NewParam("reverse", "When true, newer flow logs will be listed first", s.P_Query, s.P_Boolean)).
+		Param(s.NewParam("tcpFlags",
+			"If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
+			s.P_Query, s.P_Array, s.P_ArraySchema(tcpFlagParam))).
+		Response(200, "OK", s.NewArraySchema(flowLog), s.Header{Name: "x-total-count", Type: "number", Description: "Total number of flows matching query"})
+
+	p.Path("/tail/flow_logs").
+		Permission("audits::read:flows").
+		Produces("application/json").
+		Get("List recent flow logs. This is deprecated; use `/v2/audit/flow-logs` instead.").
+		Deprecated().
 		Param(s.NewParam("sTime", "Unix timestamp for the start of the log window", s.P_Query, s.P_Number)).
 		Param(s.NewParam("eTime", "Unix timestamp for the end of the log window", s.P_Query, s.P_Number)).
 		Param(s.NewParam("eTimeOp", "Comparison operator for the end of the log window", s.P_Query, s.P_Enum("eq", "ne", "gt", "gte", "lt", "lte"))).
@@ -699,12 +741,12 @@ func addAuditAPI(api *s.API) {
 		Get("Download authentication audits").
 		Response(200, "OK", nil)
 
-		// TODO add output type here
+	// TODO add output type here
 	p.Path("/tail/node").
 		Permission("audits::read:node").
 		Produces("application/json").
 		Get("List node audits").
-		Param(s.NewParam("timestamp", "Cursor returned from the previous request", s.P_Query)).
+		Param(s.NewParam("timestamp", "Start time (unix timestamp) to query from", s.P_Query)).
 		Param(s.NewParam("FQDN", "Node FQDN", s.P_Query)).
 		Response(200, "OK", nil)
 
@@ -712,7 +754,7 @@ func addAuditAPI(api *s.API) {
 		Permission("audits::read:node").
 		Produces("text/csv").
 		Get("Download node audits").
-		Param(s.NewParam("timestamp", "Cursor returned from the previous request", s.P_Query)).
+		Param(s.NewParam("timestamp", "Start time (unix timestamp) to query from", s.P_Query)).
 		Param(s.NewParam("FQDN", "Node FQDN", s.P_Query)).
 		Response(200, "OK", nil)
 }

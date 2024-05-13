@@ -29,10 +29,16 @@ type Action struct {
 	parent      *Path
 	parameters  []*Param
 	responses   map[int]*Response
+	deprecated  bool
 }
 
 func (a *Action) Permission(perm string) *Action {
 	a.permissions[perm] = true
+	return a
+}
+
+func (a *Action) Deprecated() *Action {
+	a.deprecated = true
 	return a
 }
 
@@ -166,6 +172,7 @@ func (a *Action) MarshalJSON() ([]byte, error) {
 		Responses   map[int]*Response `json:"responses,omitempty"`
 		Parameters  []*Param          `json:"parameters,omitempty"`
 		Consumes    []string          `json:"consumes,omitempty"`
+		Deprecated  *bool             `json:"deprecated,omitempty"`
 	}
 
 	out.Description = a.description
@@ -173,6 +180,9 @@ func (a *Action) MarshalJSON() ([]byte, error) {
 	out.Produces = a.computeProduces()
 	out.Responses = a.responses
 	out.Parameters = a.parameters
+	if a.deprecated {
+		out.Deprecated = &a.deprecated
+	}
 
 	if a.method == http.MethodPost || a.method == http.MethodPut {
 		out.Consumes = a.computeConsumes()
