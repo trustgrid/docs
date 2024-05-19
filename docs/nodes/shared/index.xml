@@ -1,4 +1,13 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Agent and Appliance Shared Configuration</title><link>https://docs.trustgrid.io/docs/nodes/shared/</link><description>Recent content in Agent and Appliance Shared Configuration on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 28 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/nodes/shared/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/shared/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/audits/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Agent and Appliance Shared Configuration</title><link>https://docs.trustgrid.io/docs/nodes/shared/</link><description>Recent content in Agent and Appliance Shared Configuration on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 28 Dec 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/docs/nodes/shared/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Alert Center</title><link>https://docs.trustgrid.io/docs/nodes/shared/alert-center/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/alert-center/</guid><description>
+&lt;p>The Alert Center provides a centralized view of open alerts for a node. Alerts can be resolved from this screen individually, or all can be resolved using the &amp;ldquo;Mark all as resolved&amp;rdquo; button.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="alert-center.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Example alert center with 3 open alerts
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p></description></item><item><title>Docs: Audits</title><link>https://docs.trustgrid.io/docs/nodes/shared/audits/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/audits/</guid><description>
 &lt;div class="pageinfo pageinfo-primary">
 &lt;p>Node audits provide records when services on a node are invoked, or when upgrades are applied. This can be helpful to see the historical maintenance of a node.&lt;/p>
 &lt;/div>
@@ -87,7 +96,7 @@ Example infovisor
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
-&lt;p>It contains the below information but can vary between appliance and agent-based nodes. The table below lists the field and if it is displayed or not.&lt;/p>
+&lt;p>It contains the below information but can vary between appliance and agent-based nodes. The table below lists the fields and if they are displayed depending on node type.&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>

@@ -1,4 +1,20 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 20 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: March 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-03/</link><pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-03/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 04 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: May 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-05/</link><pubDate>Sat, 04 May 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-05/</guid><description>
+&lt;h2 id="introducing-alert-center">Introducing Alert Center&lt;/h2>
+&lt;p>A new &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/alert-center/">Alert Center&lt;/a> has been added to the node page to centralize alert messages and simplify resolving multiple alerts. This removes the alerts from the &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/infovisor/">Infovisor&lt;/a> menu and makes resolving multiple alerts easier.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/nodes/shared/alert-center/alert-center.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 60%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Example alert center with 3 open alerts
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="other-improvements-and-fixes">Other Improvements and Fixes&lt;/h2>
+&lt;ul>
+&lt;li>Further improvements in &lt;a href="https://docs.trustgrid.io/help-center/flow-logs/">flow log&lt;/a> query performance for faster results and resolved an issue that caused exports to not be complete.&lt;/li>
+&lt;li>Detaching Policies now prompts for confirmation.&lt;/li>
+&lt;li>Renaming nodes now forces all characters to be lower-case. Lower-case has been enforced on creation but this wasn&amp;rsquo;t previously enforced on rename.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: March 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-03/</link><pubDate>Wed, 20 Mar 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-03/</guid><description>
 &lt;h2 id="portal-notification-improvements">Portal Notification Improvements&lt;/h2>
 &lt;p>This release makes several changes to how a portal user is notified of new &lt;a href="https://docs.trustgrid.io/docs/alarms/events/">events&lt;/a> and commands (such as Restart and Reboot) related to the node being viewed. The toast pop-up notifications have a new look as shown below:
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
