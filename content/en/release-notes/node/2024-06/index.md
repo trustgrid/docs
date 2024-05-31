@@ -1,9 +1,9 @@
 ---
-title: May 2024 Minor Appliance Release Notes
-linkTitle: May 2024 Minor
+title: June 2024 Minor Appliance Release Notes
+linkTitle: June 2024 Minor
 type: docs
-date: 2024-04-29
-description: "Release notes for the May 2024 Minor Trustgrid Appliance release"
+date: 2024-06-01
+description: "Release notes for the June 2024 Minor Trustgrid Appliance release"
 ---
 
 ## Issues Resolved
