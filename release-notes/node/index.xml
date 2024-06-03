@@ -1,4 +1,10 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 29 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: April 2024 Minor Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-04/</link><pubDate>Mon, 29 Apr 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-04/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 01 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: June 2024 Minor Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-06/</link><pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-06/</guid><description>
+&lt;h2 id="issues-resolved">Issues Resolved&lt;/h2>
+&lt;ul>
+&lt;li>Flow logs related to &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/port-forwarding/">port forwards&lt;/a> were not showing on the receiving device&lt;/li>
+&lt;li>An issue was preventing some security packages from being updated&lt;/li>
+&lt;li>Updated the AWS library being utilized in the AWS dependency package&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: April 2024 Minor Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-04/</link><pubDate>Mon, 29 Apr 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-04/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
