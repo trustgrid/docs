@@ -13,18 +13,16 @@
 &lt;/ul>
 &lt;h2 id="step-1---create-a-trustgrid-account">Step 1 - Create a Trustgrid account&lt;/h2>
 &lt;ol>
-&lt;li>Using Chrome or a similar browser navigate to &lt;a href="https://portal.trustgrid.io/">https://portal.trustgrid.io/&lt;/a>&lt;/li>
-&lt;li>Click the link at the bottom of the page to &amp;ldquo;Start a free trial&amp;rdquo;
-&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
-&lt;figure class="centered-image">
-&lt;img src="start-trial.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
-&lt;/figure>
-&lt;/li>
+&lt;li>Using Chrome or a similar browser navigate to &lt;a href="https://portal.trustgrid.io/signup">https://portal.trustgrid.io/signup&lt;/a>&lt;/li>
+&lt;li>
+&lt;ol>
 &lt;li>Provide the requested information. Note that the account will be created based on the provided Company Name.
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
 &lt;figure class="centered-image">
 &lt;img src="sign-up-form.png" alt="Sign up form" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
 &lt;/figure>
+&lt;/li>
+&lt;/ol>
 &lt;/li>
 &lt;li>A verification email will be sent to the provided address.
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
@@ -40,12 +38,7 @@
 &lt;img src="mfa-setup.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
 &lt;/figure>
 &lt;/li>
-&lt;li>You will be returned to the sign-in page to complete your login. Enter your email, password, and the one-time password from your authentication app.
-&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
-&lt;figure class="centered-image">
-&lt;img src="final-signin.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
-&lt;/figure>
-&lt;/li>
+&lt;li>You will be redirected to the Trustgrid portal to continue the setup process by &lt;a href="#step-2---choose-a-domain">choosing a domain&lt;/a>&lt;/li>
 &lt;/ol>
 &lt;p>Note: If you are not automatically redirected back to the Trustgrid portal just click the Portal link in the top right.
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
