@@ -55,6 +55,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
@@ -103,6 +106,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>

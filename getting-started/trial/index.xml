@@ -181,6 +181,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -240,6 +243,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;div class="alert alert-info" role="alert">
@@ -289,6 +295,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
@@ -385,6 +394,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -427,6 +439,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -482,6 +497,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -519,6 +537,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 You should see ping responses from the other agent, confirming ICMP traffic is still permitted by the default &amp;ldquo;Allow All&amp;rdquo; policy.&lt;/li>
@@ -603,6 +624,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -640,6 +664,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 You should see ping responses from the other agents are now filtered.
@@ -688,6 +715,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -725,6 +755,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 You should see a &amp;ldquo;Connection refused&amp;rdquo; message indicating the TCP connection was blocked by the deny all policy.
@@ -799,6 +832,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -836,6 +872,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 You should see ping responses from the other agent, confirming ICMP traffic is still permitted by the new policy.
@@ -909,6 +948,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -946,6 +988,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
@@ -993,6 +1038,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;div class="alert alert-info" role="alert">
@@ -1033,6 +1081,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
@@ -1109,6 +1160,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -1146,6 +1200,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -1238,6 +1295,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -1275,6 +1335,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -1326,6 +1389,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 You should see replies from the IP on agent1&amp;rsquo;s lo2 interface.
@@ -1407,6 +1473,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
@@ -1444,6 +1513,9 @@ padding: 5px 10px;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
 }
 &lt;/style>
 &lt;/li>
