@@ -4,7 +4,7 @@ date: 2023-2-7
 ---
 
 {{% pageinfo %}}
-This feature collects traceroute-like data to all its connected peers and stores the results in the Trustgrid cloud for historical review.  
+This feature collects traceroute-like data from all its connected peers and stores the results in the Trustgrid cloud for historical review.  
 {{% /pageinfo %}}
 
 {{< alert color="info" >}}Network hop monitoring requires version 20220808 or newer to gather the required data.{{</ alert >}}
@@ -13,16 +13,16 @@ This feature collects traceroute-like data to all its connected peers and stores
 
 1. The node will send out packets to each peer's public IP and port (if a gateway) with incrementing Time To Live (TTL) values.
 1. As the packets pass through each router (or hop) along the way the TTL is decreased by one.
-1. Any time a router receives a packet with at TTL with the value 1 it will drop the packet and can reply with an ICMP packet saying “Time to Live has been exceeded”
-1. The node uses these ICMP packets to calculate latency to each hop.
+1. Any time a router receives a packet with a TTL value of 1 it will drop the packet and can reply with an ICMP packet saying “Time to Live has been exceeded”
+1. The node uses these ICMP packets to calculate the latency to each hop.
 
 ## Known Limitations
 
-There are several known limitations with gathering this data:
+There are several known limitations to gathering this data:
 
 - Routers on the internet are not required to respond with ICMP. This will lead to gaps in the Hop numbers.
 - Those that do respond sometimes deprioritize their response which leads to misleading latency numbers.
-- - If you see a hop with high values, but the the values for higher hop numbers is normal this is not likely the cause of problems
+- - If you see a hop with high values, but the values for higher hop numbers are normal this is not likely the cause of problems
 - - **If a hop has high values and all subsequent hops have higher values this is likely the source of the latency/loss**
 - Firewall rules have to allow the packets and the responses.
 - - By utilizing the same TCP port as the gateway, all data collected from edge nodes should be allowed out.
@@ -34,9 +34,9 @@ There are several known limitations with gathering this data:
 ## Enabling Network Hop Monitoring
 
 1. Navigate to the node you want to enable
-1. Verify there version is 20220808 or higher ![img](version-check.png)
-1. Navigate to `Gateway` under the `System` section
-1. Enable `Network Hop Monitoring` and click `Save` ![img](enable-monitor-hops.png)
+1. Verify there version is 20220808 or higher {{<tgimg src="version-check.png" width="70%" caption="Infovisor showing version information">}}
+1. In the left side navigation bar select **Gateway** under the **System** section. Then click the **Client** panel. {{<tgimg src="gateway-client.png" width="50%" caption="Navigating to the client panel">}}
+1. Enable **Monitor Network Hops to Peers** and click **Save** {{<tgimg src="enable-monitor-hops.png" width="70%" caption="Enabling network hop monitoring">}}
 
 ## Special Considerations
 
