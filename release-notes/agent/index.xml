@@ -1,4 +1,40 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/</link><description>Recent content in Node Agent Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Mon, 19 Feb 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/agent/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: February 2024 Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/2024-02/</link><pubDate>Mon, 19 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/agent/2024-02/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/</link><description>Recent content in Node Agent Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 18 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/agent/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: June 2024 Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/2024-06/</link><pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/agent/2024-06/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>0.2.20240618-2083&lt;/td>
+&lt;td>a-0.2.0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="display-available-resource-statistics">Display Available Resource Statistics&lt;/h2>
+&lt;p>The agent has previously reported the percent utilization of CPU, memory, and disk space. With this release, we also report the total available resources to provide more context to those statistics. This information includes:&lt;/p>
+&lt;ul>
+&lt;li>The number of CPU cores&lt;/li>
+&lt;li>The total amount of memory&lt;/li>
+&lt;li>The total amount of disk space&lt;/li>
+&lt;/ul>
+&lt;p>This information is displayed in the Host Performance graph on the Overview page.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="resource-stats.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 70%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Header to the Host Performance graph showing the total available resources
+&lt;/figcaption>
+&lt;/figure>
+&lt;h2 id="other-resolved-issues">Other Resolved Issues:&lt;/h2>
+&lt;ul>
+&lt;li>Layer 4 &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">Connector&lt;/a> rate limiting now works as expected&lt;/li>
+&lt;li>The Data Plane status indicator now reports the correct count and state of peers&lt;/li>
+&lt;li>Prevents the debug log service from being called multiple times which causes issues&lt;/li>
+&lt;li>The agent will now adjust the &lt;code>iptables&lt;/code> rules it creates if the host IP address changes&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: February 2024 Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/2024-02/</link><pubDate>Mon, 19 Feb 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/agent/2024-02/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
