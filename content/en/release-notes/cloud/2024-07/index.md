@@ -7,17 +7,17 @@ type: docs
 ---
 
 ## Portal Backend Library Update
-With this release we are updating the React library used in the Portal to a more recent version. While for the most part this update should be invisible to users there are a few notable improvements including:
+With this release, we are updating the React library used in the Portal to a more recent version. This change should be mostly invisible to users there are a few notable improvements including:
 - Resizable columns: In most tables including the Nodes and Flow Logs tables. This will make it easier to read the data in the tables.
 - Notifications are improved: Node actions show in-progress status and node alerts appear as stackable bottom-right alerts expanding on hover.
 - Faster page rendering.
 
 ## Bulk Upgrade Improvement
-Previously if you selected multiple nodes from the Nodes table and used the Actions>Upgrade option the confirmation dialog didn't include the actual names of the selected nodes. With this release each selected node is listed prior to confirmation. 
+Previously if you selected multiple nodes from the Nodes table and used the Actions>Upgrade option the confirmation dialog didn't include the actual names of the selected nodes. Now each selected node is listed prior to confirmation. 
 {{<tgimg src="bulk-upgrade-confirm.png" width="50%" caption="List of nodes to be upgraded">}}
 
 ## Threshold Alert Improvements
-This release will change alert resolution messages to include the **new** value of the threshold. Previously the message would only include the **old** value. E.g. if CPU was over 90% but dropped back to 55% that new value will be included in the event message.
+This release will change alert resolution messages to include the **new** value of the threshold. Previously the message would only include the **old** value. E.g. if CPU utilization was over 90% but dropped back to 55% that new value will be included in the event message.
 
 ## JVM Garbage Collection Action
 There is a new button in the [Advanced > JVM Memory]({{<relref "/docs/nodes/appliances/advanced#execute-garbage-collection">}}) panel that will force the JVM to clean up memory and execute garbage collection. This is useful if you are seeing memory issues and want to force the JVM to clean up memory.
