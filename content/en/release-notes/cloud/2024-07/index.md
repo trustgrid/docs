@@ -28,6 +28,9 @@ This release introduces a [new event type]({{<relref "/docs/alarms/event-types">
 ## Improved NAT Validation
 NAT validation previously allowed invalid CIDR such as 10.0.0.8/8. This release will now prevent invalid CIDRs from being saved.
 
+## Status Page Notification Banner
+The status notification banner for maintenance and incidents has been moved from a pop-up in the bottom right to a banner at the bottom of the screen.  This will make it a bit less intrusive when working within the portal.
+{{<tgimg src="status-notification.png" width="80%">}}
 
 ## Other Fixes and Improvements
 - Flow log exports include TCP Flags
