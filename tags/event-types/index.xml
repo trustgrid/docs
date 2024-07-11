@@ -142,6 +142,12 @@
 &lt;td>Alerts when a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> disconnects from the control plane.&lt;/td>
 &lt;/tr>
 &lt;tr>
+&lt;td>Node Delete&lt;/td>
+&lt;td>WARNING&lt;/td>
+&lt;td>Node deleted&lt;/td>
+&lt;td>Event generated whenever a node is deleted&lt;/td>
+&lt;/tr>
+&lt;tr>
 &lt;td>Node Stop Error&lt;/td>
 &lt;td>ERROR&lt;/td>
 &lt;td>Failed to stop the Node service cleanly&lt;/td>

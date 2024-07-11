@@ -35,6 +35,16 @@ Advanced Config Options
 Java Virtual Machine (JVM) memory settings
 &lt;/figcaption>
 &lt;/figure>
+&lt;h3 id="execute-garbage-collection">Execute Garbage Collection&lt;/h3>
+&lt;p>This button forces the Java process to clean up memory and execute garbage collection. This is useful if you are seeing memory issues and want to force the JVM to clean up memory.&lt;/p>
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="garbage-collection.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 40%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Garbage Collection button
+&lt;/figcaption>
+&lt;/figure>
+&lt;h3 id="jvm-memory-settings">JVM Memory Settings&lt;/h3>
 &lt;p>The JVM Memory panel allows changing the &lt;a href="https://docs.trustgrid.io/help-center/kb/default-settings/jvm/">default JVM settings&lt;/a> for the node process.&lt;/p>
 &lt;p>&lt;strong>The node must be restarted for any change to be effective.&lt;/strong>&lt;/p></description></item><item><title>Docs: Alert Center</title><link>https://docs.trustgrid.io/docs/nodes/shared/alert-center/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/shared/alert-center/</guid><description>
 &lt;p>The Alert Center provides a centralized view of open alerts for a node. Alerts can be resolved from this screen individually, or all can be resolved using the &amp;ldquo;Mark all as resolved&amp;rdquo; button.
