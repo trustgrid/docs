@@ -1,4 +1,42 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 22 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: May 2024 2nd Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-05-2/</link><pubDate>Wed, 22 May 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-05-2/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 11 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-07/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-07/</guid><description>
+&lt;h2 id="portal-backend-library-update">Portal Backend Library Update&lt;/h2>
+&lt;p>With this release, we are updating the React library used in the Portal to a more recent version. This change should be mostly invisible to users there are a few notable improvements including:&lt;/p>
+&lt;ul>
+&lt;li>Resizable columns: In most tables including the Nodes and Flow Logs tables. This will make it easier to read the data in the tables.&lt;/li>
+&lt;li>Notifications are improved: Node actions show in-progress status and node alerts appear as stackable bottom-right alerts expanding on hover.&lt;/li>
+&lt;li>Faster page rendering.&lt;/li>
+&lt;/ul>
+&lt;h2 id="bulk-upgrade-improvement">Bulk Upgrade Improvement&lt;/h2>
+&lt;p>Previously if you selected multiple nodes from the Nodes table and used the Actions&amp;gt;Upgrade option the confirmation dialog didn&amp;rsquo;t include the actual names of the selected nodes. Now each selected node is listed prior to confirmation.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="bulk-upgrade-confirm.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+List of nodes to be upgraded
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="threshold-alert-improvements">Threshold Alert Improvements&lt;/h2>
+&lt;p>This release will change alert resolution messages to include the &lt;strong>new&lt;/strong> value of the threshold. Previously the message would only include the &lt;strong>old&lt;/strong> value. E.g. if CPU utilization was over 90% but dropped back to 55% that new value will be included in the event message.&lt;/p>
+&lt;h2 id="jvm-garbage-collection-action">JVM Garbage Collection Action&lt;/h2>
+&lt;p>There is a new button in the &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/advanced/#execute-garbage-collection">Advanced &amp;gt; JVM Memory&lt;/a> panel that will force the JVM to clean up memory and execute garbage collection. This is useful if you are seeing memory issues and want to force the JVM to clean up memory.&lt;/p>
+&lt;h2 id="node-deletion-event">Node Deletion Event&lt;/h2>
+&lt;p>This release introduces a &lt;a href="https://docs.trustgrid.io/docs/alarms/event-types/">new event type&lt;/a> generated whenever a node is deleted. Deletions were always tracked as part of &lt;a href="https://docs.trustgrid.io/docs/operations/changes/">Changes&lt;/a> but this new event type allows for an &lt;a href="https://docs.trustgrid.io/docs/alarms/alarm-filters/">alarm filter&lt;/a> to be configured to alert a channel when a deletion occurs.&lt;/p>
+&lt;h2 id="improved-nat-validation">Improved NAT Validation&lt;/h2>
+&lt;p>NAT validation previously allowed invalid CIDR such as 10.0.0.8/8. This release will now prevent invalid CIDRs from being saved.&lt;/p>
+&lt;h2 id="status-page-notification-banner">Status Page Notification Banner&lt;/h2>
+&lt;p>The status notification banner for maintenance and incidents has been moved from a pop-up in the bottom right to a banner at the bottom of the screen. This will make it a bit less intrusive when working within the portal.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="status-notification.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="other-fixes-and-improvements">Other Fixes and Improvements&lt;/h2>
+&lt;ul>
+&lt;li>Flow log exports include TCP Flags&lt;/li>
+&lt;li>Removing a VLAN sub-interface no longer requires saving after confirmation&lt;/li>
+&lt;li>VRF Traffic Rules now allow for selecting Public or Private covering the respective address spaces&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: May 2024 2nd Minor Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-05-2/</link><pubDate>Wed, 22 May 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-05-2/</guid><description>
 &lt;h2 id="issues-resolved">Issues Resolved&lt;/h2>
 &lt;ul>
 &lt;li>Nodes or Clusters with upper case letters were impacted by a number of UI bugs that prevented:
