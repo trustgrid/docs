@@ -17,9 +17,8 @@ The process below will guide you through requesting a free trial account.
 - Chrome-based browser
 
 ## Step 1 - Create a Trustgrid account
-1. Using Chrome or a similar browser navigate to https://portal.trustgrid.io/
-1. Click the link at the bottom of the page to "Start a free trial" {{<tgimg src="start-trial.png" width="70%">}}
-1. Provide the requested information. Note that the account will be created based on the provided Company Name.
+1. Using Chrome or a similar browser navigate to https://portal.trustgrid.io/signup 
+1. 1. Provide the requested information. Note that the account will be created based on the provided Company Name.
 {{<tgimg src="sign-up-form.png" alt="Sign up form" width="50%">}}
 1. A verification email will be sent to the provided address. 
 {{<tgimg src="email-verify.png" width="50%">}}
@@ -27,8 +26,7 @@ The process below will guide you through requesting a free trial account.
 1. You will be redirected to the login page. Sign in using the credentials you provided during sign-up.
 1. Upon login, you will be required to configure one-time password multifactor authentication (MFA). Use an app such as Google Authenticator or Authy to scan the QR code. Enter the returned one-time password when prompted.
 {{<tgimg src="mfa-setup.png" width="40%">}}
-1. You will be returned to the sign-in page to complete your login. Enter your email, password, and the one-time password from your authentication app.
-{{<tgimg src="final-signin.png" width="40%">}}
+1. You will be redirected to the Trustgrid portal to continue the setup process by [choosing a domain](#step-2---choose-a-domain)
 
 Note: If you are not automatically redirected back to the Trustgrid portal just click the Portal link in the top right.
 {{<tgimg src="auth-portal-link.png" width="35%" caption="Link back to Portal">}}
