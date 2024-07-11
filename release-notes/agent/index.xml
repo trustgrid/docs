@@ -1,4 +1,20 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/</link><description>Recent content in Node Agent Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 18 Jun 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/agent/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: June 2024 Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/2024-06/</link><pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/agent/2024-06/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/</link><description>Recent content in Node Agent Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/agent/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2024 Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/2024-07/</link><pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/agent/2024-07/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>0.2.20240709-2101&lt;/td>
+&lt;td>a-0.2.1&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="certificate-expiration">Certificate Expiration&lt;/h2>
+&lt;p>This release resolves an issue with an expired client certificate that can cause connectivity issues. It also takes steps to prevent future occurrences.&lt;/p></description></item><item><title>Release-Notes: June 2024 Agent Release Notes</title><link>https://docs.trustgrid.io/release-notes/agent/2024-06/</link><pubDate>Tue, 18 Jun 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/agent/2024-06/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>
