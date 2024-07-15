@@ -32,6 +32,13 @@ NAT validation previously allowed invalid CIDR such as 10.0.0.8/8. This release 
 The status notification banner for maintenance and incidents has been moved from a pop-up in the bottom right to a banner at the bottom of the screen.  This will make it a bit less intrusive when working within the portal.
 {{<tgimg src="status-notification.png" width="80%">}}
 
+## Node Health Check Visibility
+Node information about SSH connectivity, DNS access, and repo connectivity are now surfaced in the Portal, both in the nodes table and on each node's overview page.
+
+* SSH Lockdown - When `disabled`, the node is listening for SSH on an external interface.
+* DNS Resolution - When `unhealthy`, the node cannot resolve DNS names. This can prevent things like control plane failovers from working correctly.
+* Repo Connectivity - When `disconnected`, the node is unable to fetch software updates from Trustgrid.
+
 ## Other Fixes and Improvements
 - Flow log exports include TCP Flags
 - Removing a VLAN sub-interface no longer requires saving after confirmation
