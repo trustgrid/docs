@@ -31,6 +31,13 @@ List of nodes to be upgraded
 &lt;img src="status-notification.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 80%;">
 &lt;/figure>
 &lt;/p>
+&lt;h2 id="node-health-check-visibility">Node Health Check Visibility&lt;/h2>
+&lt;p>Node information about SSH connectivity, DNS access, and repo connectivity are now surfaced in the Portal, both in the nodes table and on each node&amp;rsquo;s overview page.&lt;/p>
+&lt;ul>
+&lt;li>SSH Lockdown - When &lt;code>disabled&lt;/code>, the node is listening for SSH on an external interface.&lt;/li>
+&lt;li>DNS Resolution - When &lt;code>unhealthy&lt;/code>, the node cannot resolve DNS names. This can prevent things like control plane failovers from working correctly.&lt;/li>
+&lt;li>Repo Connectivity - When &lt;code>disconnected&lt;/code>, the node is unable to fetch software updates from Trustgrid.&lt;/li>
+&lt;/ul>
 &lt;h2 id="other-fixes-and-improvements">Other Fixes and Improvements&lt;/h2>
 &lt;ul>
 &lt;li>Flow log exports include TCP Flags&lt;/li>
