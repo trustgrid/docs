@@ -21,4 +21,7 @@ These steps should be performed via the Terminal or the [appliance console Netwo
 1. Confirm Network connectivity to the rest api endpoint with the command {{<codeblock>}}nc -vz gatekeeper.trustgrid.io 8443{{</codeblock>}}
     1. If this succeeds as shown in this image proceed to the next troubleshooting step. {{<tgimg src="nc-gatekeeper-success.png" width="75%">}}
     1. If this fails, confirm any firewall or access control list allows connectivity to [all required control plane networks]({{<relref "/help-center/kb/site-requirements#trustgrid-control-plane">}}) on TCP port 8443.
-1. 
+1. Follow [these instructions to verify nothing is interfering with the TLS certificate chain.]({{<relref "/help-center/kb/startup-process/ssl-tls-tampering#verification">}})
+1. Attempt to run the command: {{<codeblock>}}curl https://gatekeeper.trustgrid.io:8443/domain-info{{</codeblock>}}  The expected output is {{<codeblock>}}{"error":"node not authorized"}{{</codeblock>}}
+    1. If you receive no response this indicates the connection is still failing.
+    1. If you receive a different response Trustgrid support will likely need to assist in troubleshooting.
