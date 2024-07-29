@@ -16,7 +16,7 @@ During failover between cluster members, the node will now send reset packets (R
 
 ## Console Improvements
 - The console [Network Tools Shell]({{<relref "/tutorials/local-console-utility/troubleshooting#network-tools-shell">}}) now allows users to run `tcpdump` to view traffic on the node.
-- The [Force Upgrade]({{<relref "/local-console-utility/troubleshooting#force-upgrade">}}) process will now force the user to log back into the console. This ensures any future actions from the console utilize the upgraded code.
+- The [Force Upgrade]({{<relref "/tutorials/local-console-utility/troubleshooting#force-upgrade">}}) process will now force the user to log back into the console. This ensures any future actions from the console utilize the upgraded code.
 
 ## Other Improvements and Fixes
 - Resolves an issue where containers reported their running status incorrectly when Enabled and Stopped
