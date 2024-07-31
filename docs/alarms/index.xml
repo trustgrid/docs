@@ -416,9 +416,15 @@ Example Slack Event
 &lt;/tr>
 &lt;tr>
 &lt;td>Cluster Failover&lt;/td>
-&lt;td>Info&lt;/td>
+&lt;td>INFO&lt;/td>
 &lt;td>&lt;a href="https://docs.trustgrid.io/docs/nodes/">Node&lt;/a> is no longer the active &lt;a href="https://docs.trustgrid.io/docs/clusters/">cluster&lt;/a> member&lt;/td>
 &lt;td>Sent by a &lt;a href="https://docs.trustgrid.io/docs/nodes/">node&lt;/a> when it releases the active role.&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Configuration Update Failure&lt;/td>
+&lt;td>INFO&lt;/td>
+&lt;td>Unexpected error pulling the most recent configuration form the cloud endpoint&lt;/td>
+&lt;td>Indicate the node is unable to connect to the configuration REST API endpoint within the Trustgrid Control Plane. &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">Verify all required communication is allowed to Control Plane.&lt;/a>&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>Connection Flapping&lt;/td>

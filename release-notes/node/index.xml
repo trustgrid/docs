@@ -1,4 +1,47 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Wed, 10 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2024 Minor Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-07/</link><pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-07/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Node Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/</link><description>Recent content in Node Appliance Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 28 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/node/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2024 Major Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-07-2/</link><pubDate>Sun, 28 Jul 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-07-2/</guid><description>
+&lt;table style="margin: 0 auto;">
+&lt;thead>
+&lt;tr>
+&lt;th>Package Version&lt;/th>
+&lt;th>Core Version&lt;/th>
+&lt;th>Release&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1.5.20240719-2112&lt;/td>
+&lt;td>20240719-202719.9cf7134&lt;/td>
+&lt;td>n-2.20.0&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="configuration-retrieval-improvements">Configuration Retrieval Improvements&lt;/h2>
+&lt;p>Appliances retrieve their configuration from the control plane services. Before this release, it was not obvious if a node was unable to pull down its configuration which could lead to unexpected behavior. Two improvements have been made:&lt;/p>
+&lt;ul>
+&lt;li>A new event called &lt;code>Configuration Update Failure&lt;/code> has been created that the appliance will send if it is unable to &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">connect to the configuration control plane API endpoint&lt;/a>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="config-update-fail.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Example Configuration Update Failure event
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Appliances attempt to pull the latest configuration at startup. With previous versions, the appliance would attempt this multiple times before continuing the startup process. It was discovered that in some cases, such as if the connection timed out rather than being immediately rejected, this would cause the startup process to take more than 15 minutes. This release changes the flow so the node will attempt once and if that fails it will startup with the local configuration and continue attempting the retrieval in the background.&lt;/li>
+&lt;/ul>
+&lt;h2 id="cluster-failover-improvements">Cluster Failover Improvements&lt;/h2>
+&lt;p>During failover between cluster members, the node will now send reset packets (RST) to the local IPs of any active TCP connections as part of the failover process. This should make it faster for applications to recognize the connection is no longer valid and a new connection is needed.&lt;/p>
+&lt;h2 id="console-improvements">Console Improvements&lt;/h2>
+&lt;ul>
+&lt;li>The console &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/#network-tools-shell">Network Tools Shell&lt;/a> now allows users to run &lt;code>tcpdump&lt;/code> to view traffic on the node.&lt;/li>
+&lt;li>The &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/#force-upgrade">Force Upgrade&lt;/a> process will now force the user to log back into the console. This ensures any future actions from the console utilize the upgraded code.&lt;/li>
+&lt;/ul>
+&lt;h2 id="other-improvements-and-fixes">Other Improvements and Fixes&lt;/h2>
+&lt;ul>
+&lt;li>Resolves an issue where containers reported their running status incorrectly when Enabled and Stopped&lt;/li>
+&lt;li>Nodes will no longer try to connect to gateways once they begin their shutdown/restart process. Previously this caused error messages in the logs.&lt;/li>
+&lt;li>Resolves an issue on clustered nodes that led to Netplan error messages in the logs during the shutdown process.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: July 2024 Minor Appliance Release Notes</title><link>https://docs.trustgrid.io/release-notes/node/2024-07/</link><pubDate>Wed, 10 Jul 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/node/2024-07/</guid><description>
 &lt;table style="margin: 0 auto;">
 &lt;thead>
 &lt;tr>

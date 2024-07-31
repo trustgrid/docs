@@ -1,4 +1,167 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Edge Node Startup</title><link>https://docs.trustgrid.io/help-center/kb/startup-process/</link><description>Recent content in Edge Node Startup on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/help-center/kb/startup-process/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Edge Node Behavior When DNS Resolution Fails</title><link>https://docs.trustgrid.io/help-center/kb/startup-process/dns-failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/startup-process/dns-failure/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Edge Node Startup</title><link>https://docs.trustgrid.io/help-center/kb/startup-process/</link><description>Recent content in Edge Node Startup on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/help-center/kb/startup-process/index.xml" rel="self" type="application/rss+xml"/><item><title>Help-Center: Configuration Update Failure Troubleshooting</title><link>https://docs.trustgrid.io/help-center/kb/startup-process/config-update-failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/startup-process/config-update-failure/</guid><description>
+&lt;h2 id="symptoms">Symptoms&lt;/h2>
+&lt;ul>
+&lt;li>Changes made via the portal or api are not implemented on the actual node&lt;/li>
+&lt;li>In versions after 20240719, the &lt;code>Configuration Update Failure&lt;/code> event will be sent by appliance nodes
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="config-update-fail.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; ">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Example Configuration Update Failure event
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="causes">Causes&lt;/h2>
+&lt;p>Possible causes include:&lt;/p>
+&lt;ul>
+&lt;li>The node is unable to resolve Trustgrid.io DNS names, in this case specifically &lt;code>gatekeeper.trustgrid.io&lt;/code>&lt;/li>
+&lt;li>The node is unable to connect to the the &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">entire Trustgrid Control Plane networks&lt;/a> on port 8443&lt;/li>
+&lt;/ul>
+&lt;h2 id="troubleshooting">Troubleshooting&lt;/h2>
+&lt;p>These steps should be performed via the Terminal or the &lt;a href="https://docs.trustgrid.io/tutorials/local-console-utility/troubleshooting/#network-tools-shell">appliance console Network Tools Shell&lt;/a>.&lt;/p>
+&lt;ol>
+&lt;li>Test DNS Resolution
+&lt;ol>
+&lt;li>Determine the configured DNS server by viewing the WAN interface in the portal.&lt;/li>
+&lt;li>Use &lt;code>dig @&amp;lt;DNS IP&amp;gt; gatekeeper.trustgrid.io +short&lt;/code> to confirm you get a response from each of your DNS servers. E.g. if the appliance is configured to use 8.8.8.8 and 1.1.1.1 use the commands &lt;code>dig @8.8.8.8 gatekeeper.trustgrid.io +short&lt;/code> and &lt;code>dig @1.1.1.1 gatekeeper.trustgrid.io +short&lt;/code>&lt;/li>
+&lt;li>If the above does not resolve, make sure any firewall or access control list between the node and the WAN interface IP allows the IP to make DNS connections to the configured DNS servers on TCP &amp;amp; UDP port 53. If it successfully resolves, continue to the next step.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Confirm Network connectivity to the rest api endpoint with the command &lt;div class="codeblock-container">
+&lt;pre>&lt;code>nc -vz gatekeeper.trustgrid.io 8443&lt;/code>&lt;/pre>
+&lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
+&lt;/div>
+&lt;script>
+function copyToClipboard(element) {
+var text = element.previousElementSibling.textContent;
+navigator.clipboard.writeText(text).then(function() {
+console.log('Text copied to clipboard');
+}).catch(function(err) {
+console.error('Could not copy text: ', err);
+});
+}
+&lt;/script>
+&lt;style>
+.codeblock-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.codeblock-container pre {
+margin: 0;
+font-family: monospace;
+background-color: #f4f4f4;
+padding: 10px;
+border-radius: 5px;
+flex-grow: 1;
+}
+.codeblock-container button {
+margin-left: 10px;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
+}
+&lt;/style>
+&lt;ol>
+&lt;li>If this succeeds as shown in this image proceed to the next troubleshooting step.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="nc-gatekeeper-success.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 75%;">
+&lt;/figure>
+&lt;/li>
+&lt;li>If this fails, confirm any firewall or access control list allows connectivity to &lt;a href="https://docs.trustgrid.io/help-center/kb/site-requirements/#trustgrid-control-plane">all required control plane networks&lt;/a> on TCP port 8443.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>Follow &lt;a href="https://docs.trustgrid.io/help-center/kb/startup-process/ssl-tls-tampering/#verification">these instructions to verify nothing is interfering with the TLS certificate chain.&lt;/a>&lt;/li>
+&lt;li>Attempt to run the command: &lt;div class="codeblock-container">
+&lt;pre>&lt;code>curl https://gatekeeper.trustgrid.io:8443/domain-info&lt;/code>&lt;/pre>
+&lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
+&lt;/div>
+&lt;script>
+function copyToClipboard(element) {
+var text = element.previousElementSibling.textContent;
+navigator.clipboard.writeText(text).then(function() {
+console.log('Text copied to clipboard');
+}).catch(function(err) {
+console.error('Could not copy text: ', err);
+});
+}
+&lt;/script>
+&lt;style>
+.codeblock-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.codeblock-container pre {
+margin: 0;
+font-family: monospace;
+background-color: #f4f4f4;
+padding: 10px;
+border-radius: 5px;
+flex-grow: 1;
+}
+.codeblock-container button {
+margin-left: 10px;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
+}
+&lt;/style>
+The expected output is &lt;div class="codeblock-container">
+&lt;pre>&lt;code>{"error":"node not authorized"}&lt;/code>&lt;/pre>
+&lt;button onclick="copyToClipboard(this)">Copy&lt;/button>
+&lt;/div>
+&lt;script>
+function copyToClipboard(element) {
+var text = element.previousElementSibling.textContent;
+navigator.clipboard.writeText(text).then(function() {
+console.log('Text copied to clipboard');
+}).catch(function(err) {
+console.error('Could not copy text: ', err);
+});
+}
+&lt;/script>
+&lt;style>
+.codeblock-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.codeblock-container pre {
+margin: 0;
+font-family: monospace;
+background-color: #f4f4f4;
+padding: 10px;
+border-radius: 5px;
+flex-grow: 1;
+}
+.codeblock-container button {
+margin-left: 10px;
+padding: 5px 10px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+&amp;:active {
+background-color: rgb(200, 200, 200);
+}
+}
+&lt;/style>
+&lt;ol>
+&lt;li>If you receive no response this indicates the connection is still failing.&lt;/li>
+&lt;li>If you receive a different response Trustgrid support will likely need to assist in troubleshooting.&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol></description></item><item><title>Help-Center: Edge Node Behavior When DNS Resolution Fails</title><link>https://docs.trustgrid.io/help-center/kb/startup-process/dns-failure/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/help-center/kb/startup-process/dns-failure/</guid><description>
 &lt;h2 id="symptoms">Symptoms&lt;/h2>
 &lt;ul>
 &lt;li>Node does not connect to the Portal&lt;/li>
