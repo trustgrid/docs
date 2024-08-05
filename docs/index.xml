@@ -1956,6 +1956,12 @@ Organization using the Trustgrid hosted gateway for trial will not see any peers
 &lt;td>None&lt;/td>
 &lt;/tr>
 &lt;tr>
+&lt;td>Hardware appliance&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;td>Shared&lt;/td>
+&lt;td>None&lt;/td>
+&lt;/tr>
+&lt;tr>
 &lt;td>Control Plane Connectivity&lt;/td>
 &lt;td>Shared&lt;/td>
 &lt;td>Shared - Customer Site&lt;/td>
@@ -2014,6 +2020,7 @@ Organization using the Trustgrid hosted gateway for trial will not see any peers
 &lt;li>&lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/vpn/nats/">Adding, modifying&lt;/a> and testing NATs on Edge devices&lt;/li>
 &lt;li>Modifying &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/interfaces/#interface-routes">interface&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/domain/virtual-networks/routes/#managing-virtual-network-routes">domain routes&lt;/a>, including facilitating &lt;a href="https://docs.trustgrid.io/tutorials/operations-runbook/site-failover/">failover between sites&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/changing-node-status/">Disabling&lt;/a> and removing &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/deleting-nodes/">nodes&lt;/a>, &lt;a href="https://docs.trustgrid.io/tutorials/management-tasks/deleting-clusters/">clusters&lt;/a>, and related configurations (e.g. routes) when no longer needed&lt;/li>
+&lt;li>For customers with Enhanced Support SLA, Trustgrid provides advanced replacement for failed hardware appliances&lt;/li>
 &lt;/ul>
 &lt;div class="alert alert-primary" role="alert">
 Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment
