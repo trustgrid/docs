@@ -47,6 +47,7 @@ Site with Trustgrid node(s) deployed and managed by the End-User.
 | Issue Type                                                      | Trustgrid           | Customer               | End-User               |
 | --------------------------------------------------------------- | ------------------- | ---------------------- | ---------------------- |
 | Trustgrid software or operating system issues                   | Full                | None                   | None                   |
+| Hardware appliance | Shared | Shared | None |
 | Control Plane Connectivity                                      | Shared              | Shared - Customer Site | Shared - End-User Site |
 | Data Plane Connectivity                                         | Limited<sup>1</sup> | Shared                 | Shared                 |
 | Data Plane Performance                                          | Shared              | Shared                 | Shared                 |
@@ -71,5 +72,6 @@ Example tasks include:
 - [Adding, modifying]({{<relref "/docs/nodes/appliances/vpn/nats">}}) and testing NATs on Edge devices
 - Modifying [interface]({{<relref "/docs/nodes/appliances/interfaces#interface-routes">}}) and [domain routes]({{<relref "/docs/domain/virtual-networks/routes#managing-virtual-network-routes">}}), including facilitating [failover between sites]({{<relref "/tutorials/operations-runbook/site-failover">}})
 - [Disabling]({{<relref "/tutorials/management-tasks/changing-node-status">}}) and removing [nodes]({{<relref "/tutorials/management-tasks/deleting-nodes">}}), [clusters]({{<relref "/tutorials/management-tasks/deleting-clusters">}}), and related configurations (e.g. routes) when no longer needed
+- For customers with Enhanced Support SLA, Trustgrid provides advanced replacement for failed hardware appliances
 
 {{<alert>}} Note: Some of the above services are managed by Trustgrid Professional Services during initial deployment {{</alert>}}

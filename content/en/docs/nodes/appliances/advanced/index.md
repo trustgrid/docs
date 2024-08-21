@@ -19,6 +19,13 @@ After changing a setting click the Save button. **Some changes may require a nod
 ## JVM Memory
 {{<tgimg src="jvm-memory.png" width="40%" caption="Java Virtual Machine (JVM) memory settings">}}
 
+### Execute Garbage Collection
+This button forces the Java process to clean up memory and execute garbage collection. This is useful if you are seeing memory issues and want to force the JVM to clean up memory.
+
+{{<tgimg src="garbage-collection.png" width="40%" caption="Garbage Collection button">}}
+
+### JVM Memory Settings
+
 The JVM Memory panel allows changing the [default JVM settings]({{<relref "/help-center/kb/default-settings/jvm">}}) for the node process. 
 
 **The node must be restarted for any change to be effective.**
