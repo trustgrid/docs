@@ -672,9 +672,6 @@ func addAuditAPI(api *s.API) {
 		Prop("protocol", s.NewSchema("Protocol", s.S_Example("TCP"), s.S_Enum("TCP", "UDP", "ICMP", "UNKNOWN"))).
 		Prop("tcpFlags", s.NewSchema("TCP Flags encoded in hex:\n"+strings.Join(tcpFlags, "\n"), s.S_Example("00100001")))
 
-	tcpFlagParam := s.NewArraySchema(s.NewSchema("tcpFlags", s.S_Number))
-	tcpFlagParam.Example = []int{1, 2}
-
 	v2 := api.Path("/v2/audit").Consumes("application/json").Tag("Audit")
 	v2.Path("/flow-logs").
 		Permission("audits::read:flows").
@@ -699,7 +696,7 @@ func addAuditAPI(api *s.API) {
 		Param(s.NewParam("reverse", "When true, newer flow logs will be listed first", s.P_Query, s.P_Boolean)).
 		Param(s.NewParam("tcpFlags",
 			"If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
-			s.P_Query, s.P_Array, s.P_ArraySchema(tcpFlagParam))).
+			s.P_Query, s.P_Array, s.P_ArraySchema(s.NewSchema("", s.S_Number)))).
 		Response(200, "OK", s.NewArraySchema(flowLog), s.Header{Name: "x-total-count", Type: "number", Description: "Total number of flows matching query"})
 
 	p.Path("/tail/flow_logs").
@@ -724,7 +721,7 @@ func addAuditAPI(api *s.API) {
 		Param(s.NewParam("reverse", "When true, newer flow logs will be listed first", s.P_Query, s.P_Boolean)).
 		Param(s.NewParam("tcpFlags",
 			"If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
-			s.P_Query, s.P_Array, s.P_ArraySchema(tcpFlagParam))).
+			s.P_Query, s.P_ArraySchema(s.NewSchema("", s.S_Number)))).
 		Param(s.NewParam("cursor", "Continuation cursor from previous query", s.P_Query)).
 		Response(200, "OK", s.NewArraySchema(flowLog), s.Header{Name: "x-cursor", Type: "string", Description: "Continuation cursor for the next query"})
 
@@ -773,13 +770,10 @@ func addNodeAPI(api *s.API) {
 		Prop("online", s.NewSchema("True when the node is connected to the control plane", s.S_Boolean)).
 		Ref()
 
-	projection := s.NewArraySchema(s.NewSchema("projection", s.S_String))
-	projection.Example = []string{"uid", `["config", "apigw", "enabled"]`}
-
 	p.Get("List nodes").
 		Permission("nodes::read").
 		Param(s.NewParam("tags", "Comma-separated key:value pairs for tag filtering, e.g., location:Austin,device:Trustgrid", s.P_Query)).
-		Param(s.NewParam("projection", "List of fields to return from the API. Supports nested fields and anything in the Node schema", s.P_Query, s.P_Schema(projection))).
+		Param(s.NewParam("projection", "List of fields to return from the API. Supports nested fields and anything in the Node schema", s.P_Query)).
 		Response(200, "OK", s.NewArraySchema(node))
 
 	p = p.PathParam(params.nodeID)

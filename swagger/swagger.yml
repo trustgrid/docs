@@ -93,7 +93,7 @@ paths:
       summary: Delete a group by UID
       description: Requires `groups::modify` permissions
       parameters:
-        - name: groupId
+        - name: uid
           in: path
           description: ID of the group to delete
           required: true
@@ -181,7 +181,7 @@ paths:
         - User
         - Group
       parameters:
-        - name: groupId
+        - name: uid
           in: path
           description: ID of the group to add a member to
           required: true
@@ -4796,7 +4796,7 @@ definitions:
     title: UserModel
   
   GroupModel:
-    type: Object
+    type: object
     properties:
       uid:
         type: string
@@ -5602,7 +5602,6 @@ definitions:
         type: string
       description:
         type: string
-        nullable: true
 
   GroupMember:
     type: object
@@ -5617,7 +5616,6 @@ definitions:
     properties:
       groupReferenceId:
         type: string
-        nullable: true
       idp:
         type: string
       group:
@@ -5666,12 +5664,12 @@ definitions:
             localIp:
               type: string
               description: local IP address
-            required:
-              - id
-              - node
-              - port
-              - protocol
-              - service
+          required:
+            - id
+            - node
+            - port
+            - protocol
+            - service
     example:
       connectors:
         - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5e 
@@ -5724,12 +5722,12 @@ definitions:
                 - rdp
                 - vnc
                 - ssh
-            required:
-              - id
-              - host
-              - port
-              - protocol
-              - name
+          required:
+            - id
+            - host
+            - port
+            - protocol
+            - name
     example:
       services:
         - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5f 

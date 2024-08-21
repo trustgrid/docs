@@ -269,7 +269,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "70aae6aa-1fa2-45fc-a720-ae78e92b321b",
+                    "example": "ce8c6bee-313a-406f-b84c-b7e144775373",
                     "type": "object"
                   },
                   "itemType": {
@@ -284,12 +284,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1712620708,
+                    "example": 1724275317,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "74762e45-d47d-40e4-932b-a80f8283f724",
+                    "example": "d7bc90c3-bc7b-461a-81a8-5f1cbb7ecb55",
                     "type": "object"
                   },
                   "userName": {
@@ -432,20 +432,10 @@
             "description": "If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
             "in": "query",
             "items": {
-              "items": {
-                "example": [
-                  1,
-                  2
-                ],
-                "items": {
-                  "description": "tcpFlags",
-                  "type": "number"
-                },
-                "type": "array"
-              }
+              "type": "number"
             },
             "name": "tcpFlags",
-            "type": "array"
+            "type": "string"
           },
           {
             "description": "Continuation cursor from previous query",
@@ -472,7 +462,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "1e1f66fc-76ae-4cbd-b8cf-6ad8a9bc441a",
+                    "example": "1ddbb470-1bd4-4afc-9be5-9b7e4412db17",
                     "type": "object"
                   },
                   "destBytes": {
@@ -543,12 +533,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "1e1f66fc-76ae-4cbd-b8cf-6ad8a9bc441a",
+                    "example": "1ddbb470-1bd4-4afc-9be5-9b7e4412db17",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "1e1f66fc-76ae-4cbd-b8cf-6ad8a9bc441a",
+                    "example": "1ddbb470-1bd4-4afc-9be5-9b7e4412db17",
                     "type": "object"
                   }
                 },
@@ -1962,7 +1952,7 @@
           {
             "description": "ID of the group to delete",
             "in": "path",
-            "name": "groupId",
+            "name": "uid",
             "required": true,
             "type": "string"
           }
@@ -2072,7 +2062,7 @@
           {
             "description": "ID of the group to add a member to",
             "in": "path",
-            "name": "groupId",
+            "name": "uid",
             "required": true,
             "type": "string"
           },
@@ -2112,17 +2102,6 @@
             "description": "List of fields to return from the API. Supports nested fields and anything in the Node schema",
             "in": "query",
             "name": "projection",
-            "schema": {
-              "example": [
-                "uid",
-                "[\"config\", \"apigw\", \"enabled\"]"
-              ],
-              "items": {
-                "description": "projection",
-                "type": "string"
-              },
-              "type": "array"
-            },
             "type": "string"
           }
         ],
@@ -5037,17 +5016,7 @@
             "description": "If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
             "in": "query",
             "items": {
-              "items": {
-                "example": [
-                  1,
-                  2
-                ],
-                "items": {
-                  "description": "tcpFlags",
-                  "type": "number"
-                },
-                "type": "array"
-              }
+              "type": "number"
             },
             "name": "tcpFlags",
             "type": "array"
@@ -5071,7 +5040,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "1e1f66fc-76ae-4cbd-b8cf-6ad8a9bc441a",
+                    "example": "1ddbb470-1bd4-4afc-9be5-9b7e4412db17",
                     "type": "object"
                   },
                   "destBytes": {
@@ -5142,12 +5111,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "1e1f66fc-76ae-4cbd-b8cf-6ad8a9bc441a",
+                    "example": "1ddbb470-1bd4-4afc-9be5-9b7e4412db17",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "1e1f66fc-76ae-4cbd-b8cf-6ad8a9bc441a",
+                    "example": "1ddbb470-1bd4-4afc-9be5-9b7e4412db17",
                     "type": "object"
                   }
                 },
@@ -12532,7 +12501,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "70aae6aa-1fa2-45fc-a720-ae78e92b321b",
+          "example": "ce8c6bee-313a-406f-b84c-b7e144775373",
           "type": "string"
         },
         "timestamp": {
@@ -12590,7 +12559,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "70aae6aa-1fa2-45fc-a720-ae78e92b321b",
+          "example": "ce8c6bee-313a-406f-b84c-b7e144775373",
           "type": "string"
         },
         "nodeName": {
@@ -12825,18 +12794,18 @@
                 ],
                 "type": "string"
               },
-              "required": [
-                "id",
-                "node",
-                "port",
-                "protocol",
-                "service"
-              ],
               "service": {
                 "description": "service name",
                 "type": "string"
               }
             },
+            "required": [
+              "id",
+              "node",
+              "port",
+              "protocol",
+              "service"
+            ],
             "type": "object"
           },
           "type": "array"
@@ -12875,7 +12844,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "dffeb952-d2bf-4fcb-a8fe-c126c9cb9c18",
+          "example": "00c0a492-d862-47d7-b756-df37c29c1161",
           "type": "string"
         },
         "image": {
@@ -13032,7 +13001,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "48f444dc-bcb4-45f5-b9aa-825d49b9e986",
+          "example": "505190a3-932a-496d-a183-cf13cb9afaf0",
           "type": "string"
         }
       },
@@ -13175,7 +13144,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "25a4bdb5-fd7f-462c-acde-750d2b468b04",
+          "example": "6937e666-105f-42bd-ae49-811d7b549718",
           "type": "string"
         }
       },
@@ -13210,7 +13179,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "a6a48813-c5a3-4be5-99ee-3d6fdfbde7f6",
+          "example": "ddf13139-303b-4e00-bc92-82f9d54fa3e2",
           "type": "string"
         }
       },
@@ -13265,7 +13234,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "df46bfa9-4a8e-4c98-9a35-d47214683c32",
+          "example": "3847b8e2-5901-4e8a-8743-ffe8d7d2659b",
           "type": "string"
         }
       },
@@ -13687,7 +13656,6 @@
     "Group": {
       "properties": {
         "description": {
-          "nullable": true,
           "type": "string"
         },
         "name": {
@@ -13729,7 +13697,7 @@
         }
       },
       "title": "GroupModel",
-      "type": "Object"
+      "type": "object"
     },
     "IdentityProviderModel": {
       "allOf": [
@@ -13769,7 +13737,6 @@
           "type": "string"
         },
         "groupReferenceId": {
-          "nullable": true,
           "type": "string"
         },
         "idp": {
@@ -14147,7 +14114,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "70aae6aa-1fa2-45fc-a720-ae78e92b321b",
+          "example": "ce8c6bee-313a-406f-b84c-b7e144775373",
           "type": "string"
         }
       },
@@ -14590,15 +14557,15 @@
                   "ssh"
                 ],
                 "type": "string"
-              },
-              "required": [
-                "id",
-                "host",
-                "port",
-                "protocol",
-                "name"
-              ]
+              }
             },
+            "required": [
+              "id",
+              "host",
+              "port",
+              "protocol",
+              "name"
+            ],
             "type": "object"
           },
           "type": "array"
