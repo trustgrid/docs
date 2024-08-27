@@ -48,7 +48,7 @@
     },
     "/alert/{nodeID}": {
       "get": {
-        "description": "List events for a node, newest first\n\n---\n\nRequires `alerts::read` permission.",
+        "description": "List events for a node (appliance or agent), newest first\n\n---\n\nRequires `alerts::read` permission.",
         "produces": [
           "application/json"
         ],
@@ -145,7 +145,7 @@
     },
     "/audit/download/node": {
       "get": {
-        "description": "Download node audits\n\n---\n\nRequires `audits::read:node` permission.",
+        "description": "Download node (appliance or agent) audits\n\n---\n\nRequires `audits::read:node` permission.",
         "parameters": [
           {
             "description": "Start time (unix timestamp) to query from",
@@ -269,7 +269,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "f94a9b5e-833b-4374-a229-d368a5392fa1",
+                    "example": "b1744ca1-cbf5-4fe0-a548-5b68609651e4",
                     "type": "object"
                   },
                   "itemType": {
@@ -284,12 +284,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1724281530,
+                    "example": 1724774677,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "9484cb6c-ee92-471a-b478-dde9fcdb5630",
+                    "example": "3d6c4312-b219-4c8f-8e23-018bae6285b4",
                     "type": "object"
                   },
                   "userName": {
@@ -462,7 +462,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "20380776-1f61-4db5-ad93-1c531fd983f6",
+                    "example": "02c6d590-b431-4957-952c-98578f0736ee",
                     "type": "object"
                   },
                   "destBytes": {
@@ -533,12 +533,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "20380776-1f61-4db5-ad93-1c531fd983f6",
+                    "example": "02c6d590-b431-4957-952c-98578f0736ee",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "20380776-1f61-4db5-ad93-1c531fd983f6",
+                    "example": "02c6d590-b431-4957-952c-98578f0736ee",
                     "type": "object"
                   }
                 },
@@ -555,7 +555,7 @@
     },
     "/audit/tail/node": {
       "get": {
-        "description": "List node audits\n\n---\n\nRequires `audits::read:node` permission.",
+        "description": "List node (appliance or agent) audits\n\n---\n\nRequires `audits::read:node` permission.",
         "parameters": [
           {
             "description": "Start time (unix timestamp) to query from",
@@ -2090,7 +2090,7 @@
     },
     "/node": {
       "get": {
-        "description": "List nodes\n\n---\n\nRequires `nodes::read` permission.",
+        "description": "List nodes (appliances and agents)\n\n---\n\nRequires `nodes::read` permission.",
         "parameters": [
           {
             "description": "Comma-separated key:value pairs for tag filtering, e.g., location:Austin,device:Trustgrid",
@@ -2120,7 +2120,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       }
     },
@@ -2163,7 +2164,7 @@
     },
     "/node/{nodeID}": {
       "delete": {
-        "description": "Delete a node\n\n---\n\nRequires `nodes::delete` permission.",
+        "description": "Delete a node (appliance or agent)\n\n---\n\nRequires `nodes::delete` permission.",
         "produces": [
           "application/json"
         ],
@@ -2176,11 +2177,12 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       },
       "get": {
-        "description": "Get a node\n\n---\n\nRequires `nodes::read` permission.",
+        "description": "Get a node (appliance or agent)\n\n---\n\nRequires `nodes::read` permission.",
         "produces": [
           "application/json"
         ],
@@ -2196,7 +2198,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       },
       "parameters": [
@@ -2212,7 +2215,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update a node\n\n---\n\nRequires `nodes::manage` permission.",
+        "description": "Update a node (appliance or agent)\n\n---\n\nRequires `nodes::manage` permission.",
         "parameters": [
           {
             "description": "Node updates",
@@ -2248,6 +2251,7 @@
           }
         },
         "tags": [
+          "Agent",
           "Node"
         ]
       }
@@ -2262,7 +2266,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update alert configuration for a given node\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
+        "description": "Update alert configuration for a given node (appliance)\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
         "parameters": [
           {
             "description": "Config body",
@@ -2297,7 +2301,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update cluster configuration for a given node\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
+        "description": "Update cluster configuration for a given node (appliance)\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
         "parameters": [
           {
             "description": "Config body",
@@ -2332,7 +2336,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update connectors configuration for a given node\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
+        "description": "Update connectors configuration for a given node (appliance or agent)\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
         "parameters": [
           {
             "description": "Config body",
@@ -2354,7 +2358,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       }
     },
@@ -2368,7 +2373,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update network configuration for a given node\n\n---\n\nRequires `node::configure:network` permissions\n",
+        "description": "Update network configuration for a given node (appliance)\n\n---\n\nRequires `node::configure:network` permissions\n",
         "parameters": [
           {
             "description": "Network Config",
@@ -3174,7 +3179,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update services configuration for a given node\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
+        "description": "Update services configuration for a given node (appliance or agent)\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
         "parameters": [
           {
             "description": "Config body",
@@ -3195,7 +3200,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       }
     },
@@ -3209,7 +3215,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update SNMP configuration for a given node\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
+        "description": "Update SNMP configuration for a given node (appliance)\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
         "parameters": [
           {
             "description": "Config body",
@@ -3244,7 +3250,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update ZTNA gateway configuration for a given node\n\nNote that this endpoint used to be `apigw`. The config section is still named `apigw`.\n---\n\n\"WireGuard\" is a registered trademark of Jason A. Donenfeld.\n",
+        "description": "Update ZTNA gateway configuration for a given node (appliance)\n\nNote that this endpoint used to be `apigw`. The config section is still named `apigw`.\n---\n\n\"WireGuard\" is a registered trademark of Jason A. Donenfeld.\n",
         "parameters": [
           {
             "in": "body",
@@ -3437,7 +3443,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       }
     },
@@ -3453,7 +3460,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Delete a tag from a node",
+        "description": "Delete a tag from a node (appliance or agent)",
         "produces": [
           "application/json"
         ],
@@ -3463,7 +3470,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       },
       "parameters": [
@@ -3482,7 +3490,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Set a tag on a node",
+        "description": "Set a tag on a node (appliance or agent)",
         "parameters": [
           {
             "in": "body",
@@ -3502,7 +3510,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       }
     },
@@ -3519,7 +3528,7 @@
         }
       ],
       "post": {
-        "description": "Trigger an event on a node",
+        "description": "Trigger an event on a node (appliance or agent)",
         "parameters": [
           {
             "description": "If present, the request will return the node's event output",
@@ -3538,7 +3547,8 @@
           }
         },
         "tags": [
-          "Node"
+          "Node",
+          "Agent"
         ]
       }
     },
@@ -3914,7 +3924,7 @@
             }
           }
         },
-        "summary": "Retrieve usage data for nodes",
+        "summary": "Retrieve usage data for nodes (appliances or agents)",
         "tags": [
           "Node"
         ]
@@ -4491,7 +4501,7 @@
     },
     "/v2/alert/{nodeID}": {
       "get": {
-        "description": "List alerts for a node, newest first\n\n---\n\nRequires `alerts::read` permission.",
+        "description": "List alerts for a node (appliance or agent), newest first\n\n---\n\nRequires `alerts::read` permission.",
         "produces": [
           "application/json"
         ],
@@ -5040,7 +5050,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "20380776-1f61-4db5-ad93-1c531fd983f6",
+                    "example": "02c6d590-b431-4957-952c-98578f0736ee",
                     "type": "object"
                   },
                   "destBytes": {
@@ -5111,12 +5121,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "20380776-1f61-4db5-ad93-1c531fd983f6",
+                    "example": "02c6d590-b431-4957-952c-98578f0736ee",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "20380776-1f61-4db5-ad93-1c531fd983f6",
+                    "example": "02c6d590-b431-4957-952c-98578f0736ee",
                     "type": "object"
                   }
                 },
@@ -6043,7 +6053,7 @@
     },
     "/v2/cluster/{clusterFQDN}/vpn/{networkName}": {
       "delete": {
-        "description": "Deletes a vpn network - this change is not staged and will immediately affect the node",
+        "description": "Deletes a vpn network",
         "produces": [
           "application/json"
         ],
@@ -6089,7 +6099,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update a VPN network - this change is not staged and will immediately affect the node",
+        "description": "Update a VPN network",
         "parameters": [
           {
             "in": "body",
@@ -8911,7 +8921,7 @@
     },
     "/v2/event/{nodeId}": {
       "get": {
-        "description": "Get all events for node",
+        "description": "Get all events for node (appliance or agent)",
         "produces": [
           "application/json"
         ],
@@ -10524,7 +10534,7 @@
     },
     "/v2/node/{nodeID}/kvm/machine/{id}": {
       "delete": {
-        "description": "Delete a KVM machine from a node\n\n---\n\nRequires `node-kvm::modify` permissions\n",
+        "description": "Delete a KVM machine from a node (appliance)\n\n---\n\nRequires `node-kvm::modify` permissions\n",
         "produces": [
           "application/json"
         ],
@@ -11042,7 +11052,7 @@
     },
     "/v2/node/{nodeID}/plugin-logs/gateway-details": {
       "get": {
-        "description": "Get gateway connection telemetry logs for a given node\n",
+        "description": "Get gateway connection telemetry logs for a given node (appliance)\n",
         "responses": {
           "200": {
             "description": "OK",
@@ -11211,7 +11221,7 @@
     },
     "/v2/node/{nodeID}/vpn/{networkName}": {
       "delete": {
-        "description": "Deletes a vpn network - this change is not staged and will immediately affect the node",
+        "description": "Deletes a vpn network",
         "produces": [
           "application/json"
         ],
@@ -11257,7 +11267,7 @@
         "consumes": [
           "application/json"
         ],
-        "description": "Update a VPN network - this change is not staged and will immediately affect the node",
+        "description": "Update a VPN network",
         "parameters": [
           {
             "in": "body",
@@ -12501,7 +12511,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "f94a9b5e-833b-4374-a229-d368a5392fa1",
+          "example": "b1744ca1-cbf5-4fe0-a548-5b68609651e4",
           "type": "string"
         },
         "timestamp": {
@@ -12559,7 +12569,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "f94a9b5e-833b-4374-a229-d368a5392fa1",
+          "example": "b1744ca1-cbf5-4fe0-a548-5b68609651e4",
           "type": "string"
         },
         "nodeName": {
@@ -12646,8 +12656,8 @@
         }
       },
       "required": [
-        "name",
-        "action"
+        "action",
+        "name"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -12844,7 +12854,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "c6f8e6bc-eb83-4778-9639-5bd44ad3a31a",
+          "example": "e27eee4e-a0ca-4cde-95d1-3f7b74a63494",
           "type": "string"
         },
         "image": {
@@ -13001,7 +13011,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "51b377b2-84cf-49f4-8545-31bce36cb9cc",
+          "example": "f03e9c10-414c-476f-bd51-b94ae84f4789",
           "type": "string"
         }
       },
@@ -13144,7 +13154,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "eb2c1791-e977-4b46-bd10-5805f55b9129",
+          "example": "d2fa0020-db3d-4117-9f9b-66ec31f824d4",
           "type": "string"
         }
       },
@@ -13179,7 +13189,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "c475b1f8-dd4e-4dbe-9927-f7e471ca2814",
+          "example": "7473fec7-041f-493b-b5c3-e7b54053ba65",
           "type": "string"
         }
       },
@@ -13234,7 +13244,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "ae9461cb-7ee9-4beb-8b43-01e457806cd2",
+          "example": "51fb1b95-333c-48fb-af5a-51c0859dd22f",
           "type": "string"
         }
       },
@@ -14114,7 +14124,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "f94a9b5e-833b-4374-a229-d368a5392fa1",
+          "example": "b1744ca1-cbf5-4fe0-a548-5b68609651e4",
           "type": "string"
         }
       },
