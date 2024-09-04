@@ -20,3 +20,13 @@ To change your multi-factor authentication (MFA) application:
 1. Enter your current password and click submit. {{<tgimg src="change-mfa.png" width="50%" caption="Change MFA prompt">}}
 
 {{<alert color="info">}}If you are unable to login to the Trustgrid portal you will need to work with Trustgrid support to regain access{{</alert>}}
+
+## Reset MFA
+Users with the `users::modify` permission, such as those with the `builtin-tg-access-admin` policy, can reset another user's MFA by following the steps below:
+1. Login to the Trustgrid portal using your current password and provide your MFA code
+1. Navigate to User Management > Users
+1. Select the user you want to reset and select the "Reset MFA" option from the Actions drop down.
+ {{<tgimg src="reset-mfa.png" width="50%" caption="Reset MFA prompt">}}
+1. The user will be required to reconfigure MFA on their next login.
+
+{{<alert color="info">}}This action only impacts MFA configured for users in the Trustgrid user database.  It does not impact MFA configured for users in your identity provider.{{</alert>}}
