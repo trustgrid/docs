@@ -58,6 +58,7 @@ These commands include:
 * `dig` for confirming DNS resolution
     * `dig repo.trustgrid.io +short` will provide just the IP address using the configured DNS servers
     * `dig @8.8.8.8 repo.trustgrid.io +short` will query Google's DNS server directly and provide the IP address
+* `sudo tcpdump` - use this to capture traffic on the network interface. For example, to capture traffic on the eth0 interface use a command like `sudo tcpdump -i eth0`.  If you are unsure of the interface names you can check the portal or run `ip a` to see all the interfaces and their IP addresses.
 ## ARPing
 This command can be used to confirm layer 2 connectivity between the Trustgrid appliance and other devices on the same network.  For example, to confirm the default gateway IP address is reachable use a command like `arping -I eth0 192.168.127.1`. This will send an ARP request to the default gateway IP address and display the resulting MAC address.  
 

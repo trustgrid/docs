@@ -46,7 +46,7 @@ func addAlertAPI(api *s.API) {
 		Response(200, "OK", s.NewArraySchema(alert))
 
 	p = p.PathParam(params.nodeID)
-	p.Get("List events for a node, newest first").Response(200, "OK", s.NewArraySchema(alert))
+	p.Get("List events for a node (appliance or agent), newest first").Response(200, "OK", s.NewArraySchema(alert))
 }
 
 func addV2AlertAPI(api *s.API) {
@@ -65,7 +65,7 @@ func addV2AlertAPI(api *s.API) {
 		Response(200, "OK", s.NewArraySchema(alert))
 
 	p = p.PathParam(params.nodeID)
-	p.Get("List alerts for a node, newest first").Response(200, "OK", s.NewArraySchema(alert))
+	p.Get("List alerts for a node (appliance or agent), newest first").Response(200, "OK", s.NewArraySchema(alert))
 
 	p = p.PathParam(s.NewParam("alertType", "Alert type, eg Node Disconnect", s.P_Path, s.P_Required))
 	p.Delete("Resolve alert").Response(200, "OK", nil)
@@ -672,9 +672,6 @@ func addAuditAPI(api *s.API) {
 		Prop("protocol", s.NewSchema("Protocol", s.S_Example("TCP"), s.S_Enum("TCP", "UDP", "ICMP", "UNKNOWN"))).
 		Prop("tcpFlags", s.NewSchema("TCP Flags encoded in hex:\n"+strings.Join(tcpFlags, "\n"), s.S_Example("00100001")))
 
-	tcpFlagParam := s.NewArraySchema(s.NewSchema("tcpFlags", s.S_Number))
-	tcpFlagParam.Example = []int{1, 2}
-
 	v2 := api.Path("/v2/audit").Consumes("application/json").Tag("Audit")
 	v2.Path("/flow-logs").
 		Permission("audits::read:flows").
@@ -699,7 +696,7 @@ func addAuditAPI(api *s.API) {
 		Param(s.NewParam("reverse", "When true, newer flow logs will be listed first", s.P_Query, s.P_Boolean)).
 		Param(s.NewParam("tcpFlags",
 			"If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
-			s.P_Query, s.P_Array, s.P_ArraySchema(tcpFlagParam))).
+			s.P_Query, s.P_Array, s.P_ArraySchema(s.NewSchema("", s.S_Number)))).
 		Response(200, "OK", s.NewArraySchema(flowLog), s.Header{Name: "x-total-count", Type: "number", Description: "Total number of flows matching query"})
 
 	p.Path("/tail/flow_logs").
@@ -724,7 +721,7 @@ func addAuditAPI(api *s.API) {
 		Param(s.NewParam("reverse", "When true, newer flow logs will be listed first", s.P_Query, s.P_Boolean)).
 		Param(s.NewParam("tcpFlags",
 			"If provided, a flow must match at least one of the TCP flags provided. Decimal encoded, see flow log TCP flag encoding.",
-			s.P_Query, s.P_Array, s.P_ArraySchema(tcpFlagParam))).
+			s.P_Query, s.P_ArraySchema(s.NewSchema("", s.S_Number)))).
 		Param(s.NewParam("cursor", "Continuation cursor from previous query", s.P_Query)).
 		Response(200, "OK", s.NewArraySchema(flowLog), s.Header{Name: "x-cursor", Type: "string", Description: "Continuation cursor for the next query"})
 
@@ -745,7 +742,7 @@ func addAuditAPI(api *s.API) {
 	p.Path("/tail/node").
 		Permission("audits::read:node").
 		Produces("application/json").
-		Get("List node audits").
+		Get("List node (appliance or agent) audits").
 		Param(s.NewParam("timestamp", "Start time (unix timestamp) to query from", s.P_Query)).
 		Param(s.NewParam("FQDN", "Node FQDN", s.P_Query)).
 		Response(200, "OK", nil)
@@ -753,14 +750,14 @@ func addAuditAPI(api *s.API) {
 	p.Path("/download/node").
 		Permission("audits::read:node").
 		Produces("text/csv").
-		Get("Download node audits").
+		Get("Download node (appliance or agent) audits").
 		Param(s.NewParam("timestamp", "Start time (unix timestamp) to query from", s.P_Query)).
 		Param(s.NewParam("FQDN", "Node FQDN", s.P_Query)).
 		Response(200, "OK", nil)
 }
 
 func addNodeAPI(api *s.API) {
-	p := api.Path("/node").Produces("application/json").Consumes("application/json").Tag("Node")
+	p := api.Path("/node").Produces("application/json").Consumes("application/json").Tag("Node").Tag("Agent")
 
 	node := api.Model("Node").
 		Prop("uid", s.NewSchema("Node ID", s.S_String, s.S_Example(examples.nodeID))).
@@ -773,18 +770,15 @@ func addNodeAPI(api *s.API) {
 		Prop("online", s.NewSchema("True when the node is connected to the control plane", s.S_Boolean)).
 		Ref()
 
-	projection := s.NewArraySchema(s.NewSchema("projection", s.S_String))
-	projection.Example = []string{"uid", `["config", "apigw", "enabled"]`}
-
-	p.Get("List nodes").
+	p.Get("List nodes (appliances and agents)").
 		Permission("nodes::read").
 		Param(s.NewParam("tags", "Comma-separated key:value pairs for tag filtering, e.g., location:Austin,device:Trustgrid", s.P_Query)).
-		Param(s.NewParam("projection", "List of fields to return from the API. Supports nested fields and anything in the Node schema", s.P_Query, s.P_Schema(projection))).
+		Param(s.NewParam("projection", "List of fields to return from the API. Supports nested fields and anything in the Node schema", s.P_Query)).
 		Response(200, "OK", s.NewArraySchema(node))
 
 	p = p.PathParam(params.nodeID)
 
-	p.Get("Get a node").
+	p.Get("Get a node (appliance or agent)").
 		Permission("nodes::read").
 		Response(200, "OK", node).
 		Response(404, "Not Found", nil)
@@ -794,12 +788,12 @@ func addNodeAPI(api *s.API) {
 		Prop("state", s.NewSchema("Node state", s.S_String, s.S_Enum("ACTIVE", "INACTIVE"))).
 		Prop("cluster", s.NewSchema("Cluster FQDN - requires `nodes::cluster` permission to modify", s.S_String, s.S_Example(examples.clusterFQDN)))
 
-	p.Put("Update a node").
+	p.Put("Update a node (appliance or agent)").
 		Permission("nodes::manage").
 		Param(s.NewParam("updates", "Node updates", s.P_Body, s.P_Schema(updates))).
 		Response(200, "OK", nil)
 
-	p.Delete("Delete a node").
+	p.Delete("Delete a node (appliance or agent)").
 		Permission("nodes::delete").
 		Response(200, "OK", nil).
 		Response(404, "Not Found", nil)
@@ -953,7 +947,7 @@ func addNodeConfigAPIs(api *s.API) {
 		Prop("clients", s.NewArraySchema(client)).
 		Prop("udpPort", s.NewSchema("UDP port", s.S_Number, s.S_Example(8081)))
 
-	p.Path("/gateway").Put("Update gateway configuration").
+	p.Path("/gateway").Tag("Agent").Put("Update gateway configuration").
 		Permission("nodes::configure:gateway").
 		Param(s.NewParam("config", "Gateway config", s.P_Body, s.P_Schema(gatewayConfig))).
 		Response(200, "OK", nil).

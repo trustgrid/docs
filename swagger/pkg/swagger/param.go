@@ -73,9 +73,7 @@ func P_Schema(s *Schema) ParamConfig {
 
 func P_ArraySchema(items *Schema) ParamConfig {
 	return func(p *Param) {
-		p.Items = &Schema{
-			Items: items,
-		}
+		p.Items = items
 	}
 }
 

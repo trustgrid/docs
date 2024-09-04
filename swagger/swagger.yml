@@ -16,7 +16,7 @@ paths:
     get:
       tags:
         - Node
-      summary: Retrieve usage data for nodes
+      summary: Retrieve usage data for nodes (appliances or agents)
       description: Returns an array of usage data buckets for specified nodes within the specified time range and interval.
       parameters:
         - in: query
@@ -93,7 +93,7 @@ paths:
       summary: Delete a group by UID
       description: Requires `groups::modify` permissions
       parameters:
-        - name: groupId
+        - name: uid
           in: path
           description: ID of the group to delete
           required: true
@@ -181,7 +181,7 @@ paths:
         - User
         - Group
       parameters:
-        - name: groupId
+        - name: uid
           in: path
           description: ID of the group to add a member to
           required: true
@@ -1806,7 +1806,7 @@ paths:
           schema:
             "$ref": "#/definitions/VpnClusterNetworkInventoryModel"
     put:
-      description: Update a VPN network - this change is not staged and will immediately affect the node
+      description: Update a VPN network
       produces:
         - application/json
       tags:
@@ -1826,7 +1826,7 @@ paths:
           schema:
             "$ref": "#/definitions/ValidationFailed"
     delete:
-      description: Deletes a vpn network - this change is not staged and will immediately affect the node
+      description: Deletes a vpn network
       produces:
         - application/json
       tags:
@@ -1909,9 +1909,10 @@ paths:
         type: string
         description: Tag name
     put:
-      description: Set a tag on a node
+      description: Set a tag on a node (appliance or agent)
       tags:
         - Node
+        - Agent
       consumes:
         - application/json
       produces:
@@ -1926,9 +1927,10 @@ paths:
         200:
           description: OK
     delete:
-      description: Delete a tag from a node
+      description: Delete a tag from a node (appliance or agent)
       tags:
         - Node
+        - Agent
       consumes:
         - application/json
       produces:
@@ -1949,9 +1951,10 @@ paths:
         required: true
         type: string
     post:
-      description: Trigger an event on a node
+      description: Trigger an event on a node (appliance or agent)
       tags:
         - Node
+        - Agent
       produces:
         - application/json
       parameters:
@@ -1969,7 +1972,7 @@ paths:
       - "$ref": "#/parameters/nodeID"
     put:
       description: |
-        Update cluster configuration for a given node
+        Update cluster configuration for a given node (appliance)
 
         ---
 
@@ -1996,7 +1999,7 @@ paths:
       - "$ref": "#/parameters/nodeID"
     put:
       description: |
-        Update alert configuration for a given node
+        Update alert configuration for a given node (appliance)
 
         ---
 
@@ -2023,7 +2026,7 @@ paths:
       - "$ref": "#/parameters/nodeID"
     put:
       description: |
-        Update SNMP configuration for a given node
+        Update SNMP configuration for a given node (appliance)
 
         ---
 
@@ -2050,7 +2053,7 @@ paths:
       - "$ref": "#/parameters/nodeID"
     put:
       description: |
-        Update ZTNA gateway configuration for a given node
+        Update ZTNA gateway configuration for a given node (appliance)
 
         Note that this endpoint used to be `apigw`. The config section is still named `apigw`.
         ---
@@ -2111,7 +2114,7 @@ paths:
       - "$ref": "#/parameters/nodeID"
     put:
       description: |
-        Update network configuration for a given node
+        Update network configuration for a given node (appliance)
 
         ---
 
@@ -2709,13 +2712,14 @@ paths:
       - "$ref": "#/parameters/nodeID"
     put:
       description: |
-        Update services configuration for a given node
+        Update services configuration for a given node (appliance or agent)
 
         ---
 
         Note: request body will be validated by JSON schema of the plugin
       tags:
         - Node
+        - Agent
       consumes:
         - application/json
       produces:
@@ -2736,13 +2740,14 @@ paths:
       - "$ref": "#/parameters/nodeID"
     put:
       description: |
-        Update connectors configuration for a given node
+        Update connectors configuration for a given node (appliance or agent)
 
         ---
 
         Note: request body will be validated by JSON schema of the plugin
       tags:
         - Node
+        - Agent
       consumes:
         - application/json
       produces:
@@ -2776,7 +2781,7 @@ paths:
       tags:
         - Node
       description: |
-        Get gateway connection telemetry logs for a given node
+        Get gateway connection telemetry logs for a given node (appliance)
       responses:
         200:
           description: OK
@@ -3417,7 +3422,7 @@ paths:
           schema:
             "$ref": "#/definitions/VpnNodeNetworkInventoryModel"
     put:
-      description: Update a VPN network - this change is not staged and will immediately affect the node
+      description: Update a VPN network
       produces:
         - application/json
       tags:
@@ -3437,7 +3442,7 @@ paths:
           schema:
             "$ref": "#/definitions/ValidationFailed"
     delete:
-      description: Deletes a vpn network - this change is not staged and will immediately affect the node
+      description: Deletes a vpn network
       produces:
         - application/json
       tags:
@@ -3523,7 +3528,7 @@ paths:
             "$ref": "#/definitions/KVMMachine"
     delete:
       description: |
-        Delete a KVM machine from a node
+        Delete a KVM machine from a node (appliance)
 
         ---
 
@@ -4301,7 +4306,7 @@ paths:
         required: true
         type: string
     get:
-      description: Get all events for node
+      description: Get all events for node (appliance or agent)
       tags:
         - Alarms
       produces:
@@ -4796,7 +4801,7 @@ definitions:
     title: UserModel
   
   GroupModel:
-    type: Object
+    type: object
     properties:
       uid:
         type: string
@@ -5602,7 +5607,6 @@ definitions:
         type: string
       description:
         type: string
-        nullable: true
 
   GroupMember:
     type: object
@@ -5617,7 +5621,6 @@ definitions:
     properties:
       groupReferenceId:
         type: string
-        nullable: true
       idp:
         type: string
       group:
@@ -5666,12 +5669,12 @@ definitions:
             localIp:
               type: string
               description: local IP address
-            required:
-              - id
-              - node
-              - port
-              - protocol
-              - service
+          required:
+            - id
+            - node
+            - port
+            - protocol
+            - service
     example:
       connectors:
         - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5e 
@@ -5724,12 +5727,12 @@ definitions:
                 - rdp
                 - vnc
                 - ssh
-            required:
-              - id
-              - host
-              - port
-              - protocol
-              - name
+          required:
+            - id
+            - host
+            - port
+            - protocol
+            - name
     example:
       services:
         - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5f 
