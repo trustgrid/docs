@@ -59,6 +59,16 @@ Reset MFA prompt
 &lt;/figcaption>
 &lt;/figure>
 &lt;/p>
+&lt;h2 id="history-table-timestamps">History Table Timestamps&lt;/h2>
+&lt;p>With this release tables in the History section such as Events, Flow Logs, and Changes now display the second field of timestamps as well as the timezone offset used to display the user&amp;rsquo;s local time. This makes it easier to see exactly what order things occurred and clarifies what is being shown when screenshots are shared with users in different time zones.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="history-table-timestamps.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+History table timestamps
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
 &lt;h2 id="other-fixes-and-improvements">Other Fixes and Improvements&lt;/h2>
 &lt;ul>
 &lt;li>Resolves an issue where too many policies attached to a user/group prevented them from all displaying on the screen.&lt;/li>
