@@ -28,7 +28,10 @@ The protocol that the listener for the connector will use. Options are TCP, UDP,
  {{</field >}}
 
 {{<field "Listen Interface" >}}
-The interface that you want the connector to listen on. If set to "All", the connector will listen on 0.0.0.0.
+The interface that you want the connector to listen on. 
+- All - listens on all interfaces (0.0.0.0/0). This can be a security risk if any of the interfaces are connected to an untrusted network, like a public internet connection.
+- Interface # - This will only listen on the IP of the selected interface.
+- Bridge Interface - The bridge interface sits between the container and the host. This is useful if you want a container to be able to access a remote service via local port.
 {{</field >}}
 
 {{<field "Listen Port" >}}
@@ -46,6 +49,11 @@ Either the friendly name of [service]({{<ref "docs/nodes/shared/services" >}}) t
 {{<field "Rate Limit (Mb/s)" >}}
 The maximum amount of throughput that will be allowed to traverse the tunnel when connecting to the connector. This can be used to prevent saturating the connection at either the local or remote sites.
 {{</field >}}
+
+{{<field "Source Block">}}
+(Optional, Appliances Only) This comma separated list of Network CIDRs will restict what IPs can connect to the connector.
+{{</field>}}
+
 {{<field "Sniff Traffic">}}
 Listed only on the Connectors table, this will automatically launch a Sniff Traffic tool for the [listening port](#listen-port).
 {{<tgimg src="connector-sniff-traffic.png" width="60%">}}
