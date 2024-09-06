@@ -34,6 +34,10 @@ Appliances running version [July 2024 version]({{<relref "/release-notes/node/20
 This release adds the ability of user with the `users::modify` permission, such as those with the `builtin-tg-access-admin` policy, to [reset the multi-factor authentication]({{<relref "/docs/user-management/users/account-mgmt#reset-mfa">}}) of users in the Trustgrid user database. This reset is logged under [Operation > Changes]({{<relref "/docs/operations/changes">}}).
 {{<tgimg src="/docs/user-management/users/account-mgmt/reset-mfa.png" width="50%" caption="Reset MFA prompt">}}
 
+## History Table Timestamps
+With this release tables in the History section such as Events, Flow Logs, and Changes now display the second field of timestamps as well as the timezone offset used to display the user's local time.  This makes it easier to see exactly what order things occurred and clarifies what is being shown when screenshots are shared with users in different time zones.
+{{<tgimg src="history-table-timestamps.png" width="50%" caption="History table timestamps">}}
+
 ## Other Fixes and Improvements
 - Resolves an issue where too many policies attached to a user/group prevented them from all displaying on the screen.
 - The network interface "Disable" button has been removed on AWS, Azure and GCP nodes as this is not supported in those environments.
