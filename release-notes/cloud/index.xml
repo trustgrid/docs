@@ -1,4 +1,71 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Thu, 11 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: July 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-07/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-07/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– Control Plane Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/</link><description>Recent content in Control Plane Release Notes on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sun, 01 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://docs.trustgrid.io/release-notes/cloud/index.xml" rel="self" type="application/rss+xml"/><item><title>Release-Notes: September 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-09/</link><pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-09/</guid><description>
+&lt;h2 id="data-plane-status-for-gateways">Data Plane Status for Gateways&lt;/h2>
+&lt;p>A recent change to the data plane panel to display disconnected peers had the unintended side-effect that appliances acting as gateways would show a &lt;code>Degraded&lt;/code> status if any of their clients wasn&amp;rsquo;t connected, even if that client was offline. As this is a pretty normal state the status was confusing for users. The data plane status indicator has been changed to only count the connections the node is responsible for &lt;strong>initiating&lt;/strong> and does not count any inbound connections.&lt;/p>
+&lt;h2 id="layer-4-l4-improvements">Layer 4 (L4) Improvements&lt;/h2>
+&lt;ul>
+&lt;li>Flow logs are now displayed on both the &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/">Connector&lt;/a> and &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/services/">Service&lt;/a> nodes.&lt;/li>
+&lt;li>Connectors on appliances now support an optional &lt;a href="https://docs.trustgrid.io/docs/nodes/shared/connectors/#source-block">source block&lt;/a> field to restrict access to the port.&lt;/li>
+&lt;li>A &amp;ldquo;Copy to Clipboard&amp;rdquo; option has been added to the Actions of both the Connectors and Services tables. This will copy all the information about the selected connector or service to the clipboard to make it easier to share with others.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="connector-copy.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Copying a connector to the clipboard
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>Connectors can now be set to listen on the Bridge interface. This is useful if you want a container to be able to access a remote service via local port.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="connector-bridge.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 35%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Bridge interface for connectors
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="nodes-table">Nodes Table&lt;/h2>
+&lt;h3 id="role-column">Role Column&lt;/h3>
+&lt;p>This release adds a new option column called &amp;ldquo;Role&amp;rdquo; that will list if a node is configured to act as a gateway (public, private or hub) or only as an edge node client.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="role-column.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 35%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Nodes table with Role column
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h3 id="node-table-fixes">Node Table Fixes&lt;/h3>
+&lt;p>This release resolves several issues with the Nodes table.&lt;/p>
+&lt;ul>
+&lt;li>Restores the ability to sort by additional columns like Tags, Clusters, etc.&lt;/li>
+&lt;li>The &amp;ldquo;Tag Filter&amp;rdquo; dialog no longer blocks access to the tool bar at the top of the table.&lt;/li>
+&lt;li>Nodes running outdated versions falsely reported the new &lt;a href="https://docs.trustgrid.io/release-notes/cloud/2024-07/#node-health-check-visibility">Node Health Checks&lt;/a> as &lt;code>Unhealthy&lt;/code>. This release changes this to &lt;code>Unknown&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="uptime-metric">Uptime Metric&lt;/h2>
+&lt;p>Appliances running version &lt;a href="https://docs.trustgrid.io/release-notes/node/2024-07-2/">July 2024 version&lt;/a> or newer will now display how long the OS has been online since the last reboot at the top of the Overview page.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="node-uptime.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 35%;">
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="user-mfa-reset">User MFA Reset&lt;/h2>
+&lt;p>This release adds the ability of user with the &lt;code>users::modify&lt;/code> permission, such as those with the &lt;code>builtin-tg-access-admin&lt;/code> policy, to &lt;a href="https://docs.trustgrid.io/docs/user-management/users/account-mgmt/#reset-mfa">reset the multi-factor authentication&lt;/a> of users in the Trustgrid user database. This reset is logged under &lt;a href="https://docs.trustgrid.io/docs/operations/changes/">Operation &amp;gt; Changes&lt;/a>.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="https://docs.trustgrid.io/docs/user-management/users/account-mgmt/reset-mfa.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Reset MFA prompt
+&lt;/figcaption>
+&lt;/figure>
+&lt;/p>
+&lt;h2 id="other-fixes-and-improvements">Other Fixes and Improvements&lt;/h2>
+&lt;ul>
+&lt;li>Resolves an issue where too many policies attached to a user/group prevented them from all displaying on the screen.&lt;/li>
+&lt;li>The network interface &amp;ldquo;Disable&amp;rdquo; button has been removed on AWS, Azure and GCP nodes as this is not supported in those environments.&lt;/li>
+&lt;li>The VPN &lt;a href="https://docs.trustgrid.io/tutorials/remote-tools/view-virtual-route-table/">Virtual Route Table&lt;/a> now correctly sorts by additional columns like Path and Master.&lt;/li>
+&lt;li>Incidents from Trustgrid&amp;rsquo;s &lt;a href="https://status.trustgrid.io/">Statuspage&lt;/a> are now displayed at the bottom of the portal while the incident is on-going.&lt;/li>
+&lt;/ul></description></item><item><title>Release-Notes: July 2024 Release Notes</title><link>https://docs.trustgrid.io/release-notes/cloud/2024-07/</link><pubDate>Thu, 11 Jul 2024 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/release-notes/cloud/2024-07/</guid><description>
 &lt;h2 id="portal-backend-library-update">Portal Backend Library Update&lt;/h2>
 &lt;p>With this release, we are updating the React library used in the Portal to a more recent version. This change should be mostly invisible to users there are a few notable improvements including:&lt;/p>
 &lt;ul>

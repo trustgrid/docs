@@ -50,6 +50,25 @@ Change MFA prompt
 &lt;/ol>
 &lt;div class="alert alert-info" role="alert">
 If you are unable to login to the Trustgrid portal you will need to work with Trustgrid support to regain access
+&lt;/div>
+&lt;h2 id="reset-mfa">Reset MFA&lt;/h2>
+&lt;p>Users with the &lt;code>users::modify&lt;/code> permission, such as those with the &lt;code>builtin-tg-access-admin&lt;/code> policy, can reset another user&amp;rsquo;s MFA by following the steps below:&lt;/p>
+&lt;ol>
+&lt;li>Login to the Trustgrid portal using your current password and provide your MFA code&lt;/li>
+&lt;li>Navigate to User Management &amp;gt; Users&lt;/li>
+&lt;li>Select the user you want to reset and select the &amp;ldquo;Reset MFA&amp;rdquo; option from the Actions drop down.
+&lt;script src="https://docs.trustgrid.io/js/fullscreen.js">&lt;/script>
+&lt;figure class="centered-image">
+&lt;img src="reset-mfa.png" alt="" onclick="toggleImageSize(this)" style="display: block; margin-left: auto; margin-right: auto; width: 50%;">
+&lt;figcaption style="text-align: center; margin-top: 0.5rem; font-weight: lighter;">
+Reset MFA prompt
+&lt;/figcaption>
+&lt;/figure>
+&lt;/li>
+&lt;li>The user will be required to reconfigure MFA on their next login.&lt;/li>
+&lt;/ol>
+&lt;div class="alert alert-info" role="alert">
+This action only impacts MFA configured for users in the Trustgrid user database. It does not impact MFA configured for users in your identity provider.
 &lt;/div></description></item><item><title>Docs: Password Complexity and MFA Requirements</title><link>https://docs.trustgrid.io/docs/user-management/users/password-complexity-requirements/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/user-management/users/password-complexity-requirements/</guid><description>
 &lt;p>Invited users utilize Trustgrid&amp;rsquo;s native authentication provider for password complexity and multi-factor authentication.&lt;/p>
 &lt;blockquote>

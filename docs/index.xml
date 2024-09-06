@@ -518,7 +518,13 @@ Add Connector dialogue
 &lt;/tr>
 &lt;tr id="listen-interface" style="scroll-margin-top: 10rem;">
 &lt;th>Listen Interface&lt;/th>
-&lt;td>The interface that you want the connector to listen on. If set to &amp;ldquo;All&amp;rdquo;, the connector will listen on 0.0.0.0.&lt;/td>
+&lt;td>&lt;p>The interface that you want the connector to listen on.&lt;/p>
+&lt;ul>
+&lt;li>All - listens on all interfaces (0.0.0.0/0). This can be a security risk if any of the interfaces are connected to an untrusted network, like a public internet connection.&lt;/li>
+&lt;li>Interface # - This will only listen on the IP of the selected interface.&lt;/li>
+&lt;li>Bridge Interface - The bridge interface sits between the container and the host. This is useful if you want a container to be able to access a remote service via local port.&lt;/li>
+&lt;/ul>
+&lt;/td>
 &lt;/tr>
 &lt;tr id="listen-port" style="scroll-margin-top: 10rem;">
 &lt;th>Listen Port&lt;/th>
@@ -535,6 +541,10 @@ Add Connector dialogue
 &lt;tr id="rate-limit-mb/s" style="scroll-margin-top: 10rem;">
 &lt;th>Rate Limit (Mb/s)&lt;/th>
 &lt;td>The maximum amount of throughput that will be allowed to traverse the tunnel when connecting to the connector. This can be used to prevent saturating the connection at either the local or remote sites.&lt;/td>
+&lt;/tr>
+&lt;tr id="source-block" style="scroll-margin-top: 10rem;">
+&lt;th>Source Block&lt;/th>
+&lt;td>(Optional, Appliances Only) This comma separated list of Network CIDRs will restict what IPs can connect to the connector.&lt;/td>
 &lt;/tr>
 &lt;tr id="sniff-traffic" style="scroll-margin-top: 10rem;">
 &lt;th>Sniff Traffic&lt;/th>
