@@ -5709,7 +5709,7 @@ definitions:
               type: string
               description: destination host name
             name:
-              type: number
+              type: string
               description: service name
             port:
               type: number
@@ -5736,6 +5736,7 @@ definitions:
     example:
       services:
         - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5f 
+          name: nginx
           enabled: true
           description: nginx
           host: 127.0.0.1
