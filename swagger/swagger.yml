@@ -5666,6 +5666,9 @@ definitions:
             service:
               type: string
               description: service name
+            sourceBlock:
+              type: string
+              description: if provided, only traffic from this CIDR block will be allowed
             localIp:
               type: string
               description: local IP address
