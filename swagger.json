@@ -269,7 +269,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "b138c253-b908-4a16-8640-cd394f4ebc12",
+                    "example": "a4031f7c-b118-42d0-8626-ad121c78f038",
                     "type": "object"
                   },
                   "itemType": {
@@ -284,12 +284,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1726157585,
+                    "example": 1726159071,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "acd0cbe3-57e8-4d43-b3d8-5cb91391fc36",
+                    "example": "578c34af-e177-4ff5-b9f4-6bd082033d64",
                     "type": "object"
                   },
                   "userName": {
@@ -462,7 +462,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "c0d5b01d-d0a0-4e56-9b8e-6158b7b4a6fa",
+                    "example": "4efa5127-de6c-49b9-a7be-338d6e23723e",
                     "type": "object"
                   },
                   "destBytes": {
@@ -533,12 +533,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "c0d5b01d-d0a0-4e56-9b8e-6158b7b4a6fa",
+                    "example": "4efa5127-de6c-49b9-a7be-338d6e23723e",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "c0d5b01d-d0a0-4e56-9b8e-6158b7b4a6fa",
+                    "example": "4efa5127-de6c-49b9-a7be-338d6e23723e",
                     "type": "object"
                   }
                 },
@@ -2177,8 +2177,8 @@
           }
         },
         "tags": [
-          "Agent",
-          "Node"
+          "Node",
+          "Agent"
         ]
       },
       "get": {
@@ -2251,8 +2251,8 @@
           }
         },
         "tags": [
-          "Node",
-          "Agent"
+          "Agent",
+          "Node"
         ]
       }
     },
@@ -5124,7 +5124,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "c0d5b01d-d0a0-4e56-9b8e-6158b7b4a6fa",
+                    "example": "4efa5127-de6c-49b9-a7be-338d6e23723e",
                     "type": "object"
                   },
                   "destBytes": {
@@ -5195,12 +5195,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "c0d5b01d-d0a0-4e56-9b8e-6158b7b4a6fa",
+                    "example": "4efa5127-de6c-49b9-a7be-338d6e23723e",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "c0d5b01d-d0a0-4e56-9b8e-6158b7b4a6fa",
+                    "example": "4efa5127-de6c-49b9-a7be-338d6e23723e",
                     "type": "object"
                   }
                 },
@@ -12585,7 +12585,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "b138c253-b908-4a16-8640-cd394f4ebc12",
+          "example": "a4031f7c-b118-42d0-8626-ad121c78f038",
           "type": "string"
         },
         "timestamp": {
@@ -12643,7 +12643,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "b138c253-b908-4a16-8640-cd394f4ebc12",
+          "example": "a4031f7c-b118-42d0-8626-ad121c78f038",
           "type": "string"
         },
         "nodeName": {
@@ -12730,8 +12730,8 @@
         }
       },
       "required": [
-        "action",
-        "name"
+        "name",
+        "action"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -12932,7 +12932,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "259f2198-8330-41e8-896e-cc32431598e1",
+          "example": "a455250d-4ffc-4a88-889c-0209634e798c",
           "type": "string"
         },
         "image": {
@@ -13089,7 +13089,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "2622a289-bebb-48ca-83cc-c7a3ca2cb448",
+          "example": "e9773b74-64e6-499b-aef4-bd2233c5960d",
           "type": "string"
         }
       },
@@ -13232,7 +13232,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "dc29feeb-3470-43f6-b275-04a914779aa4",
+          "example": "b148b05c-5f51-4e17-8ca7-9961fbd36388",
           "type": "string"
         }
       },
@@ -13267,7 +13267,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "596aa2f3-2577-4d3d-b177-c4e005342c79",
+          "example": "45b13ea1-2c63-4f8d-ae62-94ceb7815a60",
           "type": "string"
         }
       },
@@ -13322,7 +13322,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "91ab01ec-e538-4b7f-93a9-504ea7684250",
+          "example": "0b6c47d2-4861-4bd7-9859-6e367d832519",
           "type": "string"
         }
       },
@@ -14200,9 +14200,17 @@
           "description": "Node tags",
           "type": "object"
         },
+        "type": {
+          "description": "Device type",
+          "enum": [
+            "Agent",
+            "Node"
+          ],
+          "type": "string"
+        },
         "uid": {
           "description": "Node ID",
-          "example": "b138c253-b908-4a16-8640-cd394f4ebc12",
+          "example": "a4031f7c-b118-42d0-8626-ad121c78f038",
           "type": "string"
         }
       },
