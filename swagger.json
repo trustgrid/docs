@@ -269,7 +269,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "7c7eaaf3-1886-4563-99b8-622bb177873b",
+                    "example": "aac4dc95-71a4-4237-8866-712bd3f2f704",
                     "type": "object"
                   },
                   "itemType": {
@@ -284,12 +284,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1725630641,
+                    "example": 1726153782,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "18021079-bbce-4b8f-bed5-ca0cb0d33ea4",
+                    "example": "2c6b0145-73e6-49ca-a69b-fb0ccb0e8a6d",
                     "type": "object"
                   },
                   "userName": {
@@ -462,7 +462,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "a0c903ce-2d03-4edb-834e-c5d53d1f71b6",
+                    "example": "023e5a5b-4556-4ff6-a2b2-a757f1c8ef9b",
                     "type": "object"
                   },
                   "destBytes": {
@@ -533,12 +533,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "a0c903ce-2d03-4edb-834e-c5d53d1f71b6",
+                    "example": "023e5a5b-4556-4ff6-a2b2-a757f1c8ef9b",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "a0c903ce-2d03-4edb-834e-c5d53d1f71b6",
+                    "example": "023e5a5b-4556-4ff6-a2b2-a757f1c8ef9b",
                     "type": "object"
                   }
                 },
@@ -2120,8 +2120,8 @@
           }
         },
         "tags": [
-          "Agent",
-          "Node"
+          "Node",
+          "Agent"
         ]
       }
     },
@@ -2177,8 +2177,8 @@
           }
         },
         "tags": [
-          "Node",
-          "Agent"
+          "Agent",
+          "Node"
         ]
       },
       "get": {
@@ -3205,41 +3205,6 @@
         ]
       }
     },
-    "/node/{nodeID}/config/snmp": {
-      "parameters": [
-        {
-          "$ref": "#/parameters/nodeID"
-        }
-      ],
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Update SNMP configuration for a given node (appliance)\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
-        "parameters": [
-          {
-            "description": "Config body",
-            "in": "body",
-            "name": "config",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "tags": [
-          "Node"
-        ]
-      }
-    },
     "/node/{nodeID}/config/ztnagw": {
       "parameters": [
         {
@@ -3454,6 +3419,115 @@
           "$ref": "#/parameters/nodeID"
         }
       ]
+    },
+    "/node/{nodeID}/snmp": {
+      "parameters": [
+        {
+          "description": "Node ID",
+          "in": "path",
+          "name": "nodeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update SNMP configuration\n\n---\n\nRequires `nodes::configure:snmp` permission.",
+        "parameters": [
+          {
+            "description": "SNMP config",
+            "in": "body",
+            "name": "config",
+            "schema": {
+              "description": "SNMP config",
+              "properties": {
+                "authPassphrase": {
+                  "description": "Auth passphrase",
+                  "example": "myauthpass",
+                  "type": "string"
+                },
+                "authProtocol": {
+                  "description": "Auth passphrase",
+                  "enum": [
+                    "SHA",
+                    "MD5"
+                  ],
+                  "type": "string"
+                },
+                "enabled": {
+                  "description": "Enable SNMP plugin",
+                  "type": "boolean"
+                },
+                "engineId": {
+                  "description": "Engine ID",
+                  "example": "myengineid",
+                  "type": "string"
+                },
+                "interface": {
+                  "description": "Interface",
+                  "example": "eth0",
+                  "type": "string"
+                },
+                "port": {
+                  "description": "Port",
+                  "example": 161,
+                  "type": "number"
+                },
+                "privacyPassphrase": {
+                  "description": "Privacy passphrase",
+                  "example": "myprivpass",
+                  "type": "string"
+                },
+                "privacyProtocol": {
+                  "description": "Privacy protocol",
+                  "enum": [
+                    "AES128",
+                    "AES192",
+                    "AES256",
+                    "DES"
+                  ],
+                  "type": "string"
+                },
+                "username": {
+                  "description": "Username",
+                  "example": "myuser",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "enabled"
+              ],
+              "type": "object"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Node",
+          "Agent"
+        ]
+      }
     },
     "/node/{nodeID}/tag/{tagName}": {
       "delete": {
@@ -5050,7 +5124,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "a0c903ce-2d03-4edb-834e-c5d53d1f71b6",
+                    "example": "023e5a5b-4556-4ff6-a2b2-a757f1c8ef9b",
                     "type": "object"
                   },
                   "destBytes": {
@@ -5121,12 +5195,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "a0c903ce-2d03-4edb-834e-c5d53d1f71b6",
+                    "example": "023e5a5b-4556-4ff6-a2b2-a757f1c8ef9b",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "a0c903ce-2d03-4edb-834e-c5d53d1f71b6",
+                    "example": "023e5a5b-4556-4ff6-a2b2-a757f1c8ef9b",
                     "type": "object"
                   }
                 },
@@ -12511,7 +12585,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "7c7eaaf3-1886-4563-99b8-622bb177873b",
+          "example": "aac4dc95-71a4-4237-8866-712bd3f2f704",
           "type": "string"
         },
         "timestamp": {
@@ -12569,7 +12643,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "7c7eaaf3-1886-4563-99b8-622bb177873b",
+          "example": "aac4dc95-71a4-4237-8866-712bd3f2f704",
           "type": "string"
         },
         "nodeName": {
@@ -12854,7 +12928,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "87252cd4-0d84-490b-9524-fe34598bd6b5",
+          "example": "ec5443aa-3422-4985-aa92-17c8baf3c17b",
           "type": "string"
         },
         "image": {
@@ -13011,7 +13085,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "15b9fbc3-2506-45ce-945e-84b42490a9c9",
+          "example": "eb6c4d03-a150-4b4a-ae56-4219c7edbd1b",
           "type": "string"
         }
       },
@@ -13154,7 +13228,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "c905f981-3e78-4efd-aebd-434db91ab54a",
+          "example": "d1b7d598-4de7-4feb-a619-d87f3c758638",
           "type": "string"
         }
       },
@@ -13189,7 +13263,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "11bff48a-65d6-44e8-a133-c234cc114249",
+          "example": "b40088bf-e6df-443e-b296-8ed09c8fe259",
           "type": "string"
         }
       },
@@ -13244,7 +13318,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "e2dc6480-6f2d-4521-9bc5-b2590dfde852",
+          "example": "5cdfbd2a-f8e4-469e-95b9-a807e44226f9",
           "type": "string"
         }
       },
@@ -13417,9 +13491,9 @@
         }
       },
       "required": [
-        "dest",
         "protocol",
-        "source"
+        "source",
+        "dest"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -14124,7 +14198,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "7c7eaaf3-1886-4563-99b8-622bb177873b",
+          "example": "aac4dc95-71a4-4237-8866-712bd3f2f704",
           "type": "string"
         }
       },
