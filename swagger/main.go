@@ -767,6 +767,7 @@ func addNodeAPI(api *s.API) {
 		Prop("config", s.NewSchema("Node config")).
 		Prop("shadow", s.NewSchema("Node shadow")).
 		Prop("tags", s.NewSchema("Node tags")).
+		Prop("type", s.NewSchema("Device type", s.S_String, s.S_Enum("Agent", "Node"))).
 		Prop("online", s.NewSchema("True when the node is connected to the control plane", s.S_Boolean)).
 		Ref()
 
