@@ -952,6 +952,23 @@ func addNodeConfigAPIs(api *s.API) {
 		Param(s.NewParam("config", "Gateway config", s.P_Body, s.P_Schema(gatewayConfig))).
 		Response(200, "OK", nil).
 		Response(422, "Validation failed", validationFailure)
+
+	snmpConfig := s.NewSchema("SNMP config").
+		Prop("enabled", s.NewSchema("Enable SNMP plugin", s.S_Boolean, s.S_Required)).
+		Prop("authPassphrase", s.NewSchema("Auth passphrase", s.S_String, s.S_Example("myauthpass"))).
+		Prop("authProtocol", s.NewSchema("Auth passphrase", s.S_String, s.S_Enum("SHA", "MD5"))).
+		Prop("engineId", s.NewSchema("Engine ID", s.S_String, s.S_Example("myengineid"))).
+		Prop("interface", s.NewSchema("Interface", s.S_String, s.S_Example("eth0"))).
+		Prop("port", s.NewSchema("Port", s.S_Number, s.S_Example(161))).
+		Prop("privacyPassphrase", s.NewSchema("Privacy passphrase", s.S_String, s.S_Example("myprivpass"))).
+		Prop("privacyProtocol", s.NewSchema("Privacy protocol", s.S_String, s.S_Enum("AES128", "AES192", "AES256", "DES"))).
+		Prop("username", s.NewSchema("Username", s.S_String, s.S_Example("myuser")))
+
+	p.Path("/snmp").Put("Update SNMP configuration").
+		Permission("nodes::configure:snmp").
+		Param(s.NewParam("config", "SNMP config", s.P_Body, s.P_Schema(snmpConfig))).
+		Response(200, "OK", nil).
+		Response(422, "Validation failed", validationFailure)
 }
 
 func addIDPAPI(api *s.API) {
