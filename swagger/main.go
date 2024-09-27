@@ -27,6 +27,163 @@ var examples struct {
 	clusterFQDN string
 }
 
+func addUpgradeManagerAPI(api *s.API) {
+	p := api.Path("/upgrade-manager/api/v1").Produces("application/json").Consumes("application/json").Tag("Upgrade Manager")
+
+	nodeUpgrade := api.Model("NodeUpgrade").
+		Prop("name", s.NewSchema("Node name", s.S_String, s.S_Example(examples.nodeName))).
+		Prop("state", s.NewSchema("Upgrade state", s.S_String)).
+		Prop("error", s.NewSchema("Error message", s.S_String)).
+		Prop("tags", s.NewSchema("Node tags", s.S_AdditionalProperties(s.NewSchema("Tag values", s.S_String)))).
+		Prop("nodeID", s.NewSchema("Node ID", s.S_String, s.S_Example(examples.nodeID)))
+
+	clusterUpgrade := api.Model("ClusterUpgrade").
+		Prop("fqdn", s.NewSchema("Cluster FQDN", s.S_String, s.S_Example(examples.clusterFQDN))).
+		Prop("state", s.NewSchema("Upgrade state", s.S_String)).
+		Prop("error", s.NewSchema("Error message", s.S_String)).
+		Prop("tags", s.NewSchema("Cluster tags", s.S_AdditionalProperties(s.NewSchema("Tag values", s.S_String)))).
+		Prop("nodeUpgrades", s.NewArraySchema(nodeUpgrade))
+
+	upgrade := api.Model("Upgrade").
+		Prop("uid", s.NewSchema("Unique ID of upgrade", s.S_String, s.S_Example("2DqxLdknjWxEkGt474d2Cstsa1O"))).
+		Prop("name", s.NewSchema("Name of upgrade", s.S_String, s.S_Example("Sep27"))).
+		Prop("status", s.NewSchema("Status of upgrade", s.S_String, s.S_Enum("active", "planning", "complete"))).
+		Prop("nodeUpgrades", s.NewArraySchema(nodeUpgrade)).
+		Prop("clusterUpgrades", s.NewArraySchema(clusterUpgrade)).
+		Prop("includeTags", s.NewSchema("Include devices with these tags", s.S_AdditionalProperties(s.NewSchema("Tag values", s.S_String)))).
+		Prop("excludeTags", s.NewSchema("Exclude devices with these tags", s.S_AdditionalProperties(s.NewSchema("Tag values", s.S_String)))).
+		Prop("startedAt", s.NewSchema("Upgrade start time", s.S_String)).
+		Prop("completedAt", s.NewSchema("Upgrade completion time", s.S_String)).
+		Prop("manualFailover", s.NewSchema("Whether to require approval to failover clusters", s.S_Boolean)).
+		Prop("failoverApproved", s.NewSchema("True once a user has approved cluster failovers", s.S_Boolean)).
+		Prop("dryRun", s.NewSchema("Whether this was a dry-run", s.S_Boolean)).
+		Prop("upgradeTimeout", s.NewSchema("Minutes to wait before failing (timing out) a workflow", s.S_Number)).
+		Prop("offlineTimeout", s.NewSchema("Minutes to wait before failing (timing out) a workflow for a node in the offline state", s.S_Number))
+
+	upgradeUpdateParams := api.Model("UpgradeUpdateParams").
+		Prop("name", s.NewSchema("Upgrade name", s.S_String, s.S_Required)).
+		Prop("manualFailover", s.NewSchema("Whether to require approval to failover clusters", s.S_Boolean)).
+		Prop("upgradeTimeout", s.NewSchema("Minutes to wait before failing (timing out) a workflow", s.S_Number)).
+		Prop("includeTags", s.NewSchema("Include devices with these tags", s.S_AdditionalProperties(s.NewSchema("Tag values", s.S_String)))).
+		Prop("excludeTags", s.NewSchema("Exclude devices with these tags", s.S_AdditionalProperties(s.NewSchema("Tag values", s.S_String)))).
+		Prop("offlineTimeout", s.NewSchema("Minutes to wait before failing (timing out) a workflow for a node in the offline state", s.S_Number))
+
+	upgrades := p.Path("/upgrades")
+
+	upgrades.
+		Get("List upgrades").
+		Permission("upgrade-manager::read").
+		Response(200, "OK", s.NewArraySchema(upgrade))
+
+	upgrades.
+		Path("/active").
+		Get("Get the active upgrade").
+		Permission("upgrade-manager::read").
+		Response(200, "OK", upgrade).
+		Response(404, "Not Found - no upgrade is active", nil)
+
+	singleUpgrade := upgrades.PathParam(s.NewParam("upgradeID", "Unique ID of upgrade", s.P_Path, s.P_Required))
+
+	singleUpgrade.
+		Get("Get an upgrade").
+		Permission("upgrade-manager::read").
+		Response(200, "OK", upgrade).
+		Response(404, "Not Found", nil)
+
+	upgradeUpdateInput := s.NewParam("Upgrade", "Upgrade Input", s.P_Body, s.P_Schema(upgradeUpdateParams), s.P_Required)
+
+	singleUpgrade.
+		Put("Update an upgrade").
+		Permission("upgrade-manager::modify").
+		Param(upgradeUpdateInput).
+		Response(200, "OK", upgrade).
+		Response(422, "Validation failed", validationFailure).
+		Response(404, "Not Found", nil)
+
+	singleUpgrade.
+		Delete("Delete an upgrade").
+		Permission("upgrade-manager::modify").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+
+	log := api.Model("UpgradeLog").
+		Prop("uid", s.NewSchema("Unique ID of log entry", s.S_String, s.S_Example(uuid.New().String()))).
+		Prop("timestamp", s.NewSchema("Timestamp of log entry", s.S_String, s.S_Example(time.Now().String()))).
+		Prop("level", s.NewSchema("Level of log, like error/warn/info", s.S_String)).
+		Prop("entity", s.NewSchema("Log subject type", s.S_String, s.S_Example("Node"))).
+		Prop("entityID", s.NewSchema("Log subject ID", s.S_String, s.S_Example(examples.nodeID))).
+		Prop("message", s.NewSchema("Log message", s.S_String))
+
+	uid := api.Model("UID").
+		Prop("uid", s.NewSchema("Unique ID", s.S_String, s.S_Example(uuid.New().String())))
+
+	upgrades.
+		Post("Create a new upgrade").
+		Permission("upgrade-manager::modify").
+		Response(200, "OK", uid)
+
+	singleUpgrade.
+		Path("/logs").
+		Permission("upgrade-manager::read").
+		Get("Get logs for an upgrade").
+		Response(200, "OK", s.NewArraySchema(log)).
+		Response(404, "Not Found", nil)
+
+	singleUpgrade.
+		Path("/dryrun").
+		Permission("upgrade-manager::modify").
+		Post("Dry run an upgrade. This will clone the upgrade and start the cloned copy and return the copy's UID").
+		Response(200, "OK", uid).
+		Response(404, "Not Found", nil)
+
+	singleUpgrade.
+		Path("/start").
+		Permission("upgrade-manager::modify").
+		Post("Start an upgrade").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+
+	singleUpgrade.
+		Path("/approve-failover").
+		Permission("upgrade-manager::modify").
+		Post("Approve an upgrade to failover clusters").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+
+	singleUpgrade.
+		Path("/complete").
+		Permission("upgrade-manager::modify").
+		Post("Mark an upgrade complete").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+
+	workflowParam := s.NewParam("workflowID", "Unique ID of workflow", s.P_Path, s.P_Required)
+	singleUpgrade.
+		Path("/retry").
+		Permission("upgrade-manager::modify").
+		PathParam(workflowParam).
+		Post("Retry a workflow").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+
+	singleUpgrade.
+		Path("/dismiss").
+		Permission("upgrade-manager::modify").
+		PathParam(workflowParam).
+		Post("Dismiss a workflow").
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+
+	singleUpgrade.
+		Path("/note").
+		Permission("upgrade-manager::modify").
+		PathParam(workflowParam).
+		Post("Add a note to a workflow").
+		Param(s.NewParam("note", "Note", s.P_Body, s.P_Schema(s.NewSchema("Note", s.S_String)), s.P_Required)).
+		Response(200, "OK", nil).
+		Response(404, "Not Found", nil)
+}
+
 func addAlertAPI(api *s.API) {
 	p := api.Path("/alert").Permission("alerts::read").Produces("application/json").Tag("Alerts")
 
@@ -1307,6 +1464,7 @@ func main() {
 	validationFailure.Type = s.ST_Array
 	validationFailure.Items = s.NewSchema("Validation failure", s.S_String)
 
+	addUpgradeManagerAPI(api)
 	addAlertAPI(api)
 	addV2AlertAPI(api)
 	addTagsAPI(api)
