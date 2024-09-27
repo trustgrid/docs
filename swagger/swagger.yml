@@ -2021,33 +2021,6 @@ paths:
         200:
           description: OK
 
-  "/node/{nodeID}/config/snmp":
-    parameters:
-      - "$ref": "#/parameters/nodeID"
-    put:
-      description: |
-        Update SNMP configuration for a given node (appliance)
-
-        ---
-
-        Note: request body will be validated by JSON schema of the plugin
-      tags:
-        - Node
-      consumes:
-        - application/json
-      produces:
-        - application/json
-      parameters:
-        - name: config
-          in: body
-          required: true
-          description: Config body
-          schema:
-            type: object
-      responses:
-        200:
-          description: OK
-
   "/node/{nodeID}/config/ztnagw":
     parameters:
       - "$ref": "#/parameters/nodeID"
@@ -5666,6 +5639,9 @@ definitions:
             service:
               type: string
               description: service name
+            sourceBlock:
+              type: string
+              description: if provided, only traffic from this CIDR block will be allowed
             localIp:
               type: string
               description: local IP address
@@ -5709,7 +5685,7 @@ definitions:
               type: string
               description: destination host name
             name:
-              type: number
+              type: string
               description: service name
             port:
               type: number
@@ -5736,6 +5712,7 @@ definitions:
     example:
       services:
         - id: 1e1d36b2-63b6-46bb-8334-a80a828afb5f 
+          name: nginx
           enabled: true
           description: nginx
           host: 127.0.0.1
