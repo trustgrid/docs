@@ -1,19 +1,3 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>– data store</title><link>https://docs.trustgrid.io/tags/data-store/</link><description>Recent content in data store on</description><generator>Hugo -- gohugo.io</generator><atom:link href="https://docs.trustgrid.io/tags/data-store/index.xml" rel="self" type="application/rss+xml"/><item><title>Docs: Data Store</title><link>https://docs.trustgrid.io/docs/nodes/appliances/datastore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/datastore/</guid><description>
-&lt;div class="pageinfo pageinfo-primary">
-&lt;p>The data store allows artifacts (i.e. container volumes, virtual machine images) to be synced from/to a node. The data store view is located under Compute &amp;gt; Data Store.&lt;/p>
-&lt;/div>
-&lt;h3 id="file-explorer">File Explorer&lt;/h3>
-&lt;p>Allows a user to navigate, sync, create directories, delete artifacts from the data store.&lt;/p>
-&lt;p>&lt;img src="file_explorer.png" alt="img">&lt;/p>
-&lt;ul>
-&lt;li>&lt;img src="home.png" alt="img"> - Takes you to the Root of the directory hierarchy.&lt;/li>
-&lt;li>&lt;img src="back.png" alt="img"> - Takes you up one directory from your current location in the directory hierarchy.&lt;/li>
-&lt;li>&lt;img src="refresh.png" alt="img"> - Refreshes the directory hierarchy to get the latest state of the data store.&lt;/li>
-&lt;li>&lt;img src="create_dir.png" alt="img"> - Create a new sub directory. See &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/mkdir/">Directory Creation&lt;/a> for more information&lt;/li>
-&lt;li>&lt;img src="sync.png" alt="img"> - Transfer a file to the data store. See &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/sync/">File Sync&lt;/a> for more information&lt;/li>
-&lt;li>&lt;img src="upload.png" alt="img"> - Upload a file from the data store. See &lt;a href="https://docs.trustgrid.io/docs/nodes/appliances/datastore/sync/">File Sync&lt;/a> for more information&lt;/li>
-&lt;li>&lt;img src="delete.png" alt="img"> - Delete a file from the data store.&lt;/li>
-&lt;/ul>
-&lt;h3 id="recent-tasks">Recent Tasks&lt;/h3>
-&lt;p>Allows a user to view the status of any long running tasks (i.e. Transfer file from Amazon S3, Upload file to HTTP endpoint, etc). Any task that is executing can be cancelled. Completed tasks can be cleared manually or they will be automatically removed 6 hours after completion time.&lt;/p>
-&lt;p>&lt;img src="recent_tasks.png" alt="img">&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Data Store on</title><link>https://docs.trustgrid.io/tags/data-store/</link><description>Recent content in Data Store on</description><generator>Hugo</generator><language>en</language><atom:link href="https://docs.trustgrid.io/tags/data-store/index.xml" rel="self" type="application/rss+xml"/><item><title>Data Store</title><link>https://docs.trustgrid.io/docs/nodes/appliances/datastore/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://docs.trustgrid.io/docs/nodes/appliances/datastore/</guid><description>The data store allows artifacts (i.e. container volumes, virtual machine images) to be synced from/to a node. The data store view is located under Compute &amp;gt; Data Store.
+File Explorer Allows a user to navigate, sync, create directories, delete artifacts from the data store.
+- Takes you to the Root of the directory hierarchy. - Takes you up one directory from your current location in the directory hierarchy. - Refreshes the directory hierarchy to get the latest state of the data store.</description></item></channel></rss>
