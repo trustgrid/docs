@@ -114,4 +114,4 @@ But, we also want to make sure other TCP traffic isn't allowed.
 {{<tgimg src="tcp-5001-refused.png" width="75%" caption="Connection refused on port 5001">}}
 
 ## Next Steps
-So far we've only seen traffic passing between two agent IPs.  In the next tutorial, you will see how you can [route traffic to adjacent network devices]({{<relref "../subnet-routing">}}).
+So far we've only seen traffic passing between two agent IPs.  In the next tutorial, you will see how you can [route traffic to adjacent network devices]({{<relref "/getting-started/trial/subnet-routing">}}).
