@@ -31,7 +31,7 @@ You must [enable bucket versioning](https://docs.aws.amazon.com/AmazonS3/latest/
 
 #### Configure Bucket Policy
 
-Below is an example Bucket Policy with the required permissions to push flow logs to your S3 bucket. Be sure you replace `example-flowlogs` in lines 19 & 20 with the name of your bucket and [add this bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/add-bucket-policy.html) to your S3 bucket.
+Below is an example Bucket Policy with the required permissions to push flow logs to your S3 bucket. Be sure you replace `example-flowlogs` in lines 19 & 20 with the name of your bucket and [add this bucket policy](https://docs.aws.amazon.com/AmazonS3/latest/userguide/add-bucket-policy.html) to your S3 bucket. **A customized policy is automatically generated in the portal for ease of use after you populate the Account ID and Bucket Name.**
 
 <pre class="line-numbers language-json" data-line="19-20">
 <code>{
@@ -41,7 +41,7 @@ Below is an example Bucket Policy with the required permissions to push flow log
       "Sid": "allow-tg-writes",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::079972220921:root"
+        "AWS": "arn:aws:iam::078223296091:root"
       },
       "Action": [
         "s3:ReplicateObject",
