@@ -76,10 +76,11 @@ This confirms that traffic destined for the adjacent network IP is:
 1. Replies return over the same path
 
 ### Test TCP Connectivity
-Similarly, we can verify TCP traffic is being routed and forwarded as expected.  Similar to the [access policy tutorial]({{relref . "../access-policies"}}), we will test connectivity to the netcat listener but in this case, we will bind the listener to the loopback interface IP.
+Similarly, we can verify TCP traffic is being routed and forwarded as expected.  Similar to the [access policy tutorial]({{<relref "/getting-started/trial/access-policies">}}), we will test connectivity to the netcat listener but in this case, we will bind the listener to the loopback interface IP.
 
 #### Update Access Policies
-In the [access policy tutorial]({{relref . "../access-policies"}}) we specified a rule that only allowed TCP access to port 5000 when the destination IP was agent1's trustgrid0 IP, `100.64.0.1`. Since we are now routing traffic to agent1's loopback IP `172.31.255.1` instead, we need to update the policy to allow access to that IP/port instead.
+In the [access policy tutorial]({{<relref "/getting-started/trial/access-policies">}}) we specified a rule that only allowed TCP access to port 5000 when the destination IP was agent1's trustgrid0 IP, `100.64.0.1`. Since we are now routing traffic to agent1's loopback IP `172.31.255.1` instead, we need to update the policy to allow access to that IP/port instead.
+
 1. In the Trustgrid portal navigate to the Virtual Networks page and select the default network. 
 1. Click the edit icon to the right of the TCP 5000 rule previously created. {{<tgimg src="edit-acl.png" width="95%">}}
 1. Change the Destination to `172.31.255.1/32` and click Save.{{<tgimg src="tcp-acl-change.png" width="70%">}}
