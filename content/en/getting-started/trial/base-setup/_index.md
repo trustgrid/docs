@@ -19,15 +19,28 @@ In this section, we will cover the initial setup of two Trustgrid agents on sepa
   - Both instances need to be able to make **outbound connections to the internet on ports 443 and 8443** and cannot be subject to TLS inspection that alters the certificate chain.
   - Ideally, these devices should not be able to communicate with each other directly. This is not a hard requirement.
 
-{{<alert color="info">}}At this time only x86-64/AMD64 based operating systems are supported.{{</alert>}}
+{{<alert color="info">}}At this time only x86-64/AMD64 architectures are supported.{{</alert>}}
 
 ## Understanding the Default Network
-To facilitate a smooth trial a default [virtual network]({{<relref "/getting-started/basic-architecture#virtual-networks">}}) is created. This network uses the carrier-grade NAT address space 100.64.0.0/10 as an [IP Pool](). Agents are automatically assigned an IP address from this pool when they are attached to the virtual network and routes are automatically created to allow communication between agents on the same virtual network.
+To facilitate a smooth trial, a default [virtual network]({{<relref "/getting-started/basic-architecture#virtual-networks">}}) is created. This network uses the carrier-grade NAT address space 100.64.0.0/10 as an [IP Pool]({{<relref "/docs/domain/virtual-networks/ip-pool">}}). Agents are automatically assigned an IP address from this pool when they are attached to the virtual network and routes are automatically created to allow communication between agents on the same virtual network.
 
 
 ## Step 1 - Setup Agents
 ### Install First Agent
+
+{{< tabpane highlight=true >}}
+{{< tab header="Ubuntu 22.04" text=true >}}
+Follow the process below to install on Ubuntu 22.04 Jammy Jellyfish operating systems:
+
 {{< readfile file="/tutorials/agent-deploy/ubuntu2204-install.md" >}}
+
+{{< /tab >}}
+{{< tab header="Docker" text=true >}}
+
+{{< readfile file="/tutorials/agent-deploy/docker-install.md" >}}
+
+{{< /tab >}}
+{{< /tabpane >}}
 
 #### Determine agent1 IP address
 As part of registration, each agent is automatically assigned an IP address on the Trustgrid virtual network. We will need this IP address to confirm communication between the agents in later steps.
