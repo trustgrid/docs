@@ -16,17 +16,15 @@ In the [July 2024 cloud release]({{<relref "/release-notes/cloud/2024-07#node-he
 With this release, rather than waiting for the health checks to rerun and update the state of each check you can now force the node to rerun each check.  
 In the [infovisor]({{<relref "/docs/nodes/shared/infovisor">}}) refresh buttons have been added next to each health check.  Clicking this will force the node to verify if the check is healthy or nor.
 {{<tgimg src="health-check-refresh.png" width="75%" caption="Infovisor with health check refresh buttons">}}
-### Health Check Events
-
 
 ## UDP Tunnels
 ### Additional Path UDP Support
 With this release, appliances with UDP enabled will attempt to build connections for any [additional paths]({{<relref "/docs/nodes/appliances/gateway/gateway-client#gateway-paths">}}) defined in the Gateway > Client settings. 
 
 ### UDP Tunnel Events and Logging
-** Need to populate once we have a build with the change ***
 
-## New Event Types
+
+## Addtional New Event Types
 The following events have been added or updated:
 - Clustered AWS-based appliances will now send an event if they are unable to retrieve AWS credentials needed for updating AWS route table entries.
 - The new `Networking Framework Memory Management` event type will alert if the appliance's java virtual machine experience out of memory errors. 
@@ -36,3 +34,4 @@ The following events have been added or updated:
 - Addresses an issue with [port forwards]({{<relref "/docs/nodes/appliances/vpn/port-forwarding">}}) that could cause failures under high load.
 - Changing the listening interface on a [connector]({{<relref "/docs/nodes/shared/connectors">}}) no longer requires a restart to be effective.
 - Resolves an issue that caused the active cluster member to flap between devices. This issue would present in the logs with repeated messages about `Connection closed: node=<peer node>,reason=Session closed locally/remotely`
+- Resolve an issue that prevented the [Traffic Capture]({{<relref "/tutorials/interface-tools/traffic-capture">}}) tool from working on appliances using the Ubuntu 22.04 operating system.
