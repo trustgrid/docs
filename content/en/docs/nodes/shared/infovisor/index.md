@@ -24,6 +24,9 @@ It contains the below information but can vary between appliance and agent-based
 |Package Version| ❌ |✅|
 |[Enabled / Disabled Status]({{<ref "/tutorials/management-tasks/changing-node-status" >}})| ✅ |✅|
 |Device Type | Show "Agent" as type|✅|
+|SSH Lockdown |❌|✅|
+|DNS Resolution | ❌|✅|
+|Repo Connectivity| ❌|✅|
 |Operating System (OS) Version| ✅ |✅|
 |[TGRN or Trustgrid Resource Name]({{<ref "/docs/user-management/policies#trustgrid-resource-names-or-tgrn">}})| ✅ |✅|
 | Upgrade Status| ❌ |✅|
