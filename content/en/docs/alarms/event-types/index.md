@@ -22,8 +22,8 @@ Date: 2022-12-28
 | Gateway Connectivity Health Check  | CRITICAL |  | Alerts when an edge node is unable to communicate with a gateway node.   |
 | Gateway Connectivity Health Check  | INFO |  | Alerts when an edge node reestablishes connectivity to a gateway node after a failure is reported.   |
 | Gateway Ingress Limit Reached  | ERROR  |  | Alerts when a gateway node’s ingress limit is above 95 percent utilization for two minutes straight.   |
-| Gateway UDP Tunnel Error | INFO | UDP Tunnel connection has been re-established for node=<peer-node> and endpoint=<peer-ip>:<peer-port> | Event generated when a previously disconnected UDP tunnel is re-established and traffic should flow through it again. |  
-| Gateway UDP Tunnel Error | ERROR | UDP Tunnel has timed out for node=<peer-node> and endpoint=<peer-ip>:<peer-port> | Alerts when a UDP tunnel times out after not receiving the keep alive packet for 2 minutes (default gateway timeout). |  
+| Gateway UDP Tunnel Error | INFO | UDP Tunnel connection has been re-established for node=`<peer-node>` and endpoint=`<peer-ip>:<peer-port>` | Event generated when a previously disconnected UDP tunnel is re-established and traffic should flow through it again. |  
+| Gateway UDP Tunnel Error | ERROR | UDP Tunnel has timed out for node=`<peer-node>` and endpoint=`<peer-ip>:<peer-port>` | Alerts when a UDP tunnel times out after not receiving the keep alive packet for 2 minutes (default gateway timeout). |  
 | Metric Threshold Violation | ERROR  |  | Alerts when a [node]({{<ref "docs/nodes" >}}) cpu, ram, disk, or latency configured metric threshold is violated.  |
 | Metric Threshold Violation | INFO |  | Alerts when a previously reported threshold violation has been cleared.    |
 | Network Error  | CRITICAL | Stale ARP detected   | Alerts when a stale ARP entry is detected for a [node’s]({{<ref "docs/nodes" >}}) [cluster]({{<ref "docs/clusters" >}}) IP.  |
