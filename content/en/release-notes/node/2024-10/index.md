@@ -2,10 +2,10 @@
 title: October 2024 Major Appliance Release Notes
 linkTitle: October 2024 Major
 type: docs
-date: 2024-10-07
+date: 2024-10-11
 description: "Release notes for the October 2024 Major Trustgrid Appliance release"
 ---
-{{< node-release package-version="TBD" core-version="TBD" release="n-2.21.0" >}}
+{{< node-release package-version="1.5.20241010-2172" core-version="20241010-161952.c6810b2" release="n-2.21.0" >}}
 
 
 ## Force Node Health Check Refresh
