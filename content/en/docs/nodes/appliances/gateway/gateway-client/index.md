@@ -35,7 +35,7 @@ Options are `Allowed` or `Denied`. If set to `Denied` this will cause the node t
 
 {{<tgimg src="gateway-client-settings.png" width="85%" caption="Gateway Client settings" alt="screenshot of gateway client settings">}}
 
-#### Gateway Paths
+## Gateway Paths
 
 Allows you to define alternate paths to a gateway server
 
