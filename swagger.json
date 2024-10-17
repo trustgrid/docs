@@ -269,7 +269,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "fb8a2c08-543e-4b09-98d9-a50136f32290",
+                    "example": "453d111a-bab5-4b12-be3b-2496d5bb9337",
                     "type": "object"
                   },
                   "itemType": {
@@ -284,12 +284,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1727969583,
+                    "example": 1729185967,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "e6504c85-93b3-4531-b3d4-a8bf9056834e",
+                    "example": "f6bcf217-1245-4b44-afc0-4c614ca89454",
                     "type": "object"
                   },
                   "userName": {
@@ -462,7 +462,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "514924e7-44f8-48af-9c21-18e9d0e12516",
+                    "example": "b3065184-d253-49c7-88b2-84c6c3377ea5",
                     "type": "object"
                   },
                   "destBytes": {
@@ -533,12 +533,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "514924e7-44f8-48af-9c21-18e9d0e12516",
+                    "example": "b3065184-d253-49c7-88b2-84c6c3377ea5",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "514924e7-44f8-48af-9c21-18e9d0e12516",
+                    "example": "b3065184-d253-49c7-88b2-84c6c3377ea5",
                     "type": "object"
                   }
                 },
@@ -2177,8 +2177,8 @@
           }
         },
         "tags": [
-          "Agent",
-          "Node"
+          "Node",
+          "Agent"
         ]
       },
       "get": {
@@ -5124,7 +5124,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "514924e7-44f8-48af-9c21-18e9d0e12516",
+                    "example": "b3065184-d253-49c7-88b2-84c6c3377ea5",
                     "type": "object"
                   },
                   "destBytes": {
@@ -5195,12 +5195,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "514924e7-44f8-48af-9c21-18e9d0e12516",
+                    "example": "b3065184-d253-49c7-88b2-84c6c3377ea5",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "514924e7-44f8-48af-9c21-18e9d0e12516",
+                    "example": "b3065184-d253-49c7-88b2-84c6c3377ea5",
                     "type": "object"
                   }
                 },
@@ -12585,7 +12585,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "fb8a2c08-543e-4b09-98d9-a50136f32290",
+          "example": "453d111a-bab5-4b12-be3b-2496d5bb9337",
           "type": "string"
         },
         "timestamp": {
@@ -12643,7 +12643,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "fb8a2c08-543e-4b09-98d9-a50136f32290",
+          "example": "453d111a-bab5-4b12-be3b-2496d5bb9337",
           "type": "string"
         },
         "nodeName": {
@@ -12769,8 +12769,8 @@
         }
       },
       "required": [
-        "chain",
-        "private_key"
+        "private_key",
+        "chain"
       ],
       "title": "CertificateParts",
       "type": "object"
@@ -12932,7 +12932,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "c9720db4-1dd7-4b56-b25a-321d4fffbe00",
+          "example": "8ddcf131-b89d-4f0e-9c16-822e501a48d7",
           "type": "string"
         },
         "image": {
@@ -13089,7 +13089,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "6cde8976-3d41-496d-97cb-ed12f07ac36b",
+          "example": "6799c4d8-e221-4e26-9ddc-eac6a0e9ce08",
           "type": "string"
         }
       },
@@ -13232,7 +13232,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "2739d231-80ec-45e9-96f2-cb481b8c6294",
+          "example": "5688052b-bef9-405d-9db4-3d21545a2647",
           "type": "string"
         }
       },
@@ -13267,7 +13267,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "e7b50d2a-cfa1-4ee7-9c64-79aa904c62ca",
+          "example": "692744c3-de64-4c9e-95dd-db7c47cf94eb",
           "type": "string"
         }
       },
@@ -13322,7 +13322,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "9206c98e-cbae-403e-9ac6-3c674ae07fe3",
+          "example": "51fe8f5f-74be-458f-aa79-4e97b7396bad",
           "type": "string"
         }
       },
@@ -13495,9 +13495,9 @@
         }
       },
       "required": [
-        "dest",
         "protocol",
-        "source"
+        "source",
+        "dest"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -14210,7 +14210,7 @@
         },
         "uid": {
           "description": "Node ID",
-          "example": "fb8a2c08-543e-4b09-98d9-a50136f32290",
+          "example": "453d111a-bab5-4b12-be3b-2496d5bb9337",
           "type": "string"
         }
       },
