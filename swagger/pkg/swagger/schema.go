@@ -16,16 +16,17 @@ const (
 )
 
 type Schema struct {
-	Name        string
-	Required    bool
-	Type        SchemaType
-	Description string
-	Properties  map[string]*Schema
-	Items       *Schema
-	Example     interface{}
-	Default     interface{}
-	Enum        []string
-	ref         bool
+	Name                 string
+	Required             bool
+	Type                 SchemaType
+	Description          string
+	Properties           map[string]*Schema
+	AdditionalProperties *Schema
+	Items                *Schema
+	Example              interface{}
+	Default              interface{}
+	Enum                 []string
+	ref                  bool
 }
 
 type SchemaConfig func(s *Schema)
@@ -44,6 +45,12 @@ func S_String(s *Schema) {
 
 func S_Boolean(s *Schema) {
 	s.Type = ST_Boolean
+}
+
+func S_AdditionalProperties(ap *Schema) SchemaConfig {
+	return func(s *Schema) {
+		s.AdditionalProperties = ap
+	}
 }
 
 func S_Enum(values ...string) SchemaConfig {
@@ -107,15 +114,16 @@ func (s *Schema) MarshalJSON() ([]byte, error) {
 	}
 
 	var out struct {
-		Name        string             `json:"title,omitempty"`
-		Required    []string           `json:"required,omitempty"`
-		Type        SchemaType         `json:"type,omitempty"`
-		Description string             `json:"description,omitempty"`
-		Properties  map[string]*Schema `json:"properties,omitempty"`
-		Items       *Schema            `json:"items,omitempty"`
-		Example     interface{}        `json:"example,omitempty"`
-		Default     interface{}        `json:"default,omitempty"`
-		Enum        []string           `json:"enum,omitempty"`
+		Name                 string             `json:"title,omitempty"`
+		Required             []string           `json:"required,omitempty"`
+		Type                 SchemaType         `json:"type,omitempty"`
+		Description          string             `json:"description,omitempty"`
+		Properties           map[string]*Schema `json:"properties,omitempty"`
+		AdditionalProperties *Schema            `json:"additionalProperties,omitempty"`
+		Items                *Schema            `json:"items,omitempty"`
+		Example              interface{}        `json:"example,omitempty"`
+		Default              interface{}        `json:"default,omitempty"`
+		Enum                 []string           `json:"enum,omitempty"`
 	}
 
 	out.Name = s.Name
@@ -126,6 +134,8 @@ func (s *Schema) MarshalJSON() ([]byte, error) {
 	out.Example = s.Example
 	out.Enum = s.Enum
 	out.Default = s.Default
+	out.AdditionalProperties = s.AdditionalProperties
+
 	for k, p := range s.Properties {
 		if p.Required {
 			out.Required = append(out.Required, k)
