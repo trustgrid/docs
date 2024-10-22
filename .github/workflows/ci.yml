@@ -1,9 +1,6 @@
-name: hugo build and (maybe) publish
+name: hugo build and run checks
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
 
 jobs:
@@ -21,12 +18,11 @@ jobs:
           hugo-version: '0.133.1'
           extended: true
 
-      - name: Build
-        run: hugo --minify
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+      - uses: actions/setup-go@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          go-version: "1.23"
+
+      - name: Validate Swagger
+        run: |
+          go install github.com/go-swagger/go-swagger/cmd/swagger@latest
+          swagger validate static/swagger.yml
