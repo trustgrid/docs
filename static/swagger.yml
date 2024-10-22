@@ -2782,7 +2782,8 @@ paths:
           schema:
             $ref: '#/definitions/ValidationFailed'
       tags:
-        - Cluster
+        - Node
+        - Agent
 
   /v2/node/{nodeID}/config/services/upgrade:
     parameters:
@@ -2806,7 +2807,8 @@ paths:
           schema:
             $ref: '#/definitions/ValidationFailed'
       tags:
-        - Cluster
+        - Node
+        - Agent
 
   /v2/node/{nodeID}/config/services/{serviceID}:
     parameters:
@@ -2842,7 +2844,8 @@ paths:
           schema:
             $ref: '#/definitions/ValidationFailed'
       tags:
-        - Cluster
+        - Node
+        - Agent
     delete:
       consumes:
         - application/json
@@ -2858,7 +2861,8 @@ paths:
         '200':
           description: OK
       tags:
-        - Cluster
+        - Node
+        - Agent
 
   /node/{nodeID}/config/ztnagw:
     parameters:
