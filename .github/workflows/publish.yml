@@ -21,9 +21,6 @@ jobs:
           hugo-version: '0.133.1'
           extended: true
 
-      - name: Generate Swagger
-        run: make swagger
-
       - name: Build
         run: hugo --minify
 
