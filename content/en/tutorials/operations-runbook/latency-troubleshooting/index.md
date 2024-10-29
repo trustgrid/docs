@@ -42,12 +42,20 @@ The Data Plane panel shows the tunnel latency to all connected peers.
 2. If the node is connected to other gateways in different regions, check the latency to those gateways as well.
     - If the latency to the other gateways is also high, this indicates a problem closer to the edge node like the site ISP. 
 
-### 4. (Clustered Edge Nodes Only) Check Latency to Cluster Peer
-If the reporting edge node is a member of a cluster, check the latency to the other cluster member.
+### 4. (Clustered Edge Nodes Only) Check Latency from Cluster Peer
+If the reporting edge node is a member of a cluster, check the latency from the other cluster member to the same gateway.  
 1. Navigate to the Data Plane panel on the other member of the clusters.
 1. Repeat [Step 3](#3-check-latency-to-other-gateways). to see if the other member of the cluster is impacted as well.
     - If the latency to the other cluster member is also high, this indicates a problem closer to the edge node like the site ISP.
     - If the latency to the other cluster member is normal, check to see if it is using a different ISP than the reporting edge node by viewing the ISP field in the [Location]({{<relref "/docs/nodes/shared/location">}}) panel. **If the cluster member is using a different ISP, making the non-impacted member the active member of the cluster will likely restore normal functionality while the impacted member's ISP issue is investigated further.**
+
+### 5. Run Data Plane Performance Test
+You can utilize the Data Plane Performance Tool to test the bandwidth and performance of the tunnel between the edge node and the gateway. This can help identify if the issue is bandwidth congestion or if it is only impacting traffic in one direction. 
+
+1. Navigate to the Data Plane panel on the impacted edge node.
+1. Click the ["Test Performance" button]({{<relref "docs/nodes/appliances/data-plane#data-plane-performance-tool">}}) in the row with one of the impacted gateways. This tool tests **sending** data from the current node to the selected peer/gateway. 
+    - If one of the impacted gateways is not currently the active member of its cluster this will allow for testing without concern of impacting production traffic. 
+1. Start with the default value of 10 MB to send.  If the test completes very quickly, increase the amount of data to send but keep in mind you are consuming bandwidth. 
 
 ## Post Incident Triage Steps
 If the incident has resolve itself there will be a limit to the information that can be gathered.  For example, running MTR on the impacted node will not provide any information because the node is no longer experiencing the issue. The steps below are intended to determine what information is available and set up having more information if the issue reoccurs. 
@@ -73,6 +81,7 @@ The Data Plane panel can be used to view the tunnel latency to all connected pee
         - If the gateway is a member of a cluster, view the other member of the cluster to see if it is also impacted.
         - Select other gateways in other data centers/regions to see if they are also impacted.
 
+Based on the data you collected consult the [Latency Issue Matrix](#latency-issue-matrix) to determine the likely area of the issue. 
 
 ## Latency Issue Matrix
 The below matrix will assume that 
@@ -96,8 +105,54 @@ If Edge1 is the active member of a cluster **and the member use different ISPs**
 - If the local ISP for Edge1 is the source of the issue, you would not see any latency on the other member of the cluster.  It would be recommended to promote the other member as the active member of the cluster.
 - If the issue lies closer to the gateways internet connect, you wil likely see latency on both members of the cluster but it will be more pronounced on the active member because it has more traffic.
 
+## Advanced Troubleshooting Steps
+The steps below can help gather more data but may require allowing additional traffic between the gateway and edge nodes.
 
-## What is High Tunnel Latency?
+### Determine Path MTU with Ping
+The MTU is the maximum size of a packet that can be transmitted over a network. On the internet the default is 1500 bytes. If the MTU is too small on a router between the nodes packets can be fragmented, which can cause delays and packet loss. It is important to test in both directions because routing can be different in each direction.
+
+1. Make sure ICMP is allowed between the gateway and edge nodes in both directions. Verify that it is allowed by pinging each node's public IP from the other node. Replace the `xx.xx.xx.xx` with the target public IP. {{<codeblock>}}ping xx.xx.xx.xx{{</codeblock>}} {{<alert color="info">}}If the edge node is being NAT'd to a public IP the site technical contact should make sure that the device hosting the public IP responds to ICMP ping messages.{{</alert>}}
+1. Run ping with flags specified to determine the MTU. Replace the `xx.xx.xx.xx` with the target public IP. {{<codeblock>}}ping -s 1472 -M do -c 1 xx.xx.xx.xx{{</codeblock>}}
+    - The `-s` flag specifies the data payload size of the packet to be sent. The default value is 56 bytes. For this test we will use 1472 because that plus the IP header size of 28 bytes is 1500 bytes, the internet default. 
+    - The `-M do` tells ping to attempt to do path MTU discovery by disabling fragmentation. 
+    - the `-c` flag specifies the number of packets to send. This can be omitted if you think the MTU issue is intermittent and want to leave the ping running. 
+1. Repeat the above step from the other node using the peers public IP.  
+
+#### Successful Ping Path Discovery
+If the ping succeeds, the output will look similar to the following:
+{{<tgimg src="ping-mtu-success.png" alt="MTU Ping Successful" caption="MTU Ping Successful" width="70%">}}
+
+#### Failed Ping Path Discovery
+If the ping fails, the output will look similar to the following:
+{{<tgimg src="ping-mtu-failed.png" alt="MTU Ping Failed" caption="MTU Ping Failed" width="70%" >}}
+A few things to notice:
+- The first line displays the payload size, 1500 bytes, and then the resulting **packet size** of 1528 bytes after the header information is included. The size of the header can vary depending on the options used to send the packet.
+- The ping error shows the recommended MTU size of 1500 bytes. 
+
+If recommended MTU size is lower than 1500 you have a few options:
+##### Work with the ISP and/or local networking team to increase the MTU of the path. 
+This involves using MTR to identify the point in the path that is rejecting the large packets. Run MTR from the same node you ran the ping from with the following options:
+    - Protocol: ICMP
+    - Hostname: The public IP of the node you are pinging
+    - Ping Count: 1 (or more if you think it is intermittent)
+    - Use Report Mode: checked
+    - Advanced options `-s 1472`
+    - All other options at default and Execute
+
+
+You should see at some point the packets start failing and that indicates that the hop listed is rejecting the packets or a hop before is the issue.
+
+
+##### Change the WAN Interface MTU
+[Change the MTU of the WAN interface]({{<relref "/docs/nodes/appliances/interfaces#mtu">}}) of the edge node to the lower value recommended.  If the node is offline, you can also [change the MTU via the console]({{<relref "/tutorials/local-console-utility/advanced-network-config/#change-interface-mtu">}}). 
+
+The upside of this approach is that you should be able resolve the issue immediately.  The downside is a potential small decrease in throughput and that both changes will require a restart of the node service which is disruptive.
+
+{{<alert color="warning">}}Adjusting the MTU size of a gateway node is discouraged as this will impact **all nodes connected to that gateway.**{{</alert>}}
+
+
+## FAQ
+### What is High Tunnel Latency and what are common causes?
 High tunnel latency is a condition where the time it takes for data to travel between gateway and edge nodes is significantly longer than normal. This can be caused by a variety of factors, including packet loss and latency on the internet between the gateway and edge nodes, or tunnel traffic exceeding the hardware capabilities of the gateway or edge node. 
 
 Packet loss and latency can occur on the internet due to various factors, including network congestion, inadequate bandwidth, and routing inefficiencies. When data is transmitted between a source internet source provider (ISP) and a destination ISP, the two may have different peering relationships—either direct peering, where they exchange traffic directly, or transit relationships, where one ISP pays another to carry its traffic. These relationships can influence the speed and reliability of data transfer. For instance, if there is congestion at a peering point or if the transit path is suboptimal, packets may be delayed or lost altogether, leading to higher latency and poor VPN performance.
@@ -108,6 +163,11 @@ While both TCP and UDP traffic on the internet would be subject to the same late
 TCP is designed for reliability, ensuring that all packets are delivered in the correct order and without errors. When packet loss occurs in a TCP tunnel, the protocol triggers retransmission of lost packets, which can lead to increased latency and reduced overall throughput. If the application utilizing the tunnel also retransmits lost packets, the latency can be further exacerbated.
 
 In contrast, UDP prioritizes speed over reliability, allowing packets to be sent without waiting for acknowledgments. This means that while UDP-based VPNs may experience some data loss, they can maintain better performance and lower latency, making them more resilient to packet loss in real-time applications provided the applications utilizing the tunnel properly manage retransmission of lost packets.
+
+### Why does the tunnel show latency but hop monitor data doesn't?
+The biggest difference between the two data sets is that the tunnel latency is based on packets **inside** the tunnel mixed in with all other tunnel traffic, while the hop monitor data is based on packets **outside** the tunnel and does not need to be queued up with other tunnel traffic.  If the tunnel is attempting to retransmit dropped packets this will add latency to the the tunnel latency data.  This is not the case with the hop monitor data.
+
+The other difference is that the hop monitor probes are SYN packets with no data payload.  If the issue between the gateway and edge node is related to a hop having a smaller than expected MTU (maximum transmission unit) size, the small SYN packet is not going to be impacted. But the queued tunnel traffic will be impacted and delay the tunnel latency probe.
 
 
 
