@@ -269,7 +269,7 @@
                   },
                   "itemId": {
                     "description": "Unique ID of the item that was changed",
-                    "example": "9600ff4f-8f84-49df-964d-042e6337707e",
+                    "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
                     "type": "object"
                   },
                   "itemType": {
@@ -284,12 +284,12 @@
                   },
                   "timestamp": {
                     "description": "Unix timestamp when the change happened",
-                    "example": 1725907067,
+                    "example": 1727474900,
                     "type": "object"
                   },
                   "uid": {
                     "description": "Unique ID of the change",
-                    "example": "c2a6a661-8e67-4c23-a63c-df88ab3dd87d",
+                    "example": "325f9bae-656a-44aa-b800-707588116df4",
                     "type": "object"
                   },
                   "userName": {
@@ -462,7 +462,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "2fa05bb3-5bcf-49e4-a311-a9da5428a228",
+                    "example": "77755ce5-9dff-432e-9317-61c1da50f299",
                     "type": "object"
                   },
                   "destBytes": {
@@ -533,12 +533,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "2fa05bb3-5bcf-49e4-a311-a9da5428a228",
+                    "example": "77755ce5-9dff-432e-9317-61c1da50f299",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "2fa05bb3-5bcf-49e4-a311-a9da5428a228",
+                    "example": "77755ce5-9dff-432e-9317-61c1da50f299",
                     "type": "object"
                   }
                 },
@@ -3205,41 +3205,6 @@
         ]
       }
     },
-    "/node/{nodeID}/config/snmp": {
-      "parameters": [
-        {
-          "$ref": "#/parameters/nodeID"
-        }
-      ],
-      "put": {
-        "consumes": [
-          "application/json"
-        ],
-        "description": "Update SNMP configuration for a given node (appliance)\n\n---\n\nNote: request body will be validated by JSON schema of the plugin\n",
-        "parameters": [
-          {
-            "description": "Config body",
-            "in": "body",
-            "name": "config",
-            "required": true,
-            "schema": {
-              "type": "object"
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "tags": [
-          "Node"
-        ]
-      }
-    },
     "/node/{nodeID}/config/ztnagw": {
       "parameters": [
         {
@@ -4091,6 +4056,1220 @@
           "type": "string"
         }
       ]
+    },
+    "/upgrade-manager/api/v1/upgrades": {
+      "get": {
+        "description": "List upgrades\n\n---\n\nRequires `upgrade-manager::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "description": "Upgrade",
+                "properties": {
+                  "clusterUpgrades": {
+                    "items": {
+                      "description": "ClusterUpgrade",
+                      "properties": {
+                        "error": {
+                          "description": "Error message",
+                          "type": "string"
+                        },
+                        "fqdn": {
+                          "description": "Cluster FQDN",
+                          "example": "mycluster.trustgrid.io",
+                          "type": "string"
+                        },
+                        "nodeUpgrades": {
+                          "items": {
+                            "description": "NodeUpgrade",
+                            "properties": {
+                              "error": {
+                                "description": "Error message",
+                                "type": "string"
+                              },
+                              "name": {
+                                "description": "Node name",
+                                "example": "mynode",
+                                "type": "string"
+                              },
+                              "nodeID": {
+                                "description": "Node ID",
+                                "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                                "type": "string"
+                              },
+                              "state": {
+                                "description": "Upgrade state",
+                                "type": "string"
+                              },
+                              "tags": {
+                                "additionalProperties": {
+                                  "description": "Tag values",
+                                  "type": "string"
+                                },
+                                "description": "Node tags",
+                                "type": "object"
+                              }
+                            },
+                            "title": "NodeUpgrade",
+                            "type": "object"
+                          },
+                          "type": "array"
+                        },
+                        "state": {
+                          "description": "Upgrade state",
+                          "type": "string"
+                        },
+                        "tags": {
+                          "additionalProperties": {
+                            "description": "Tag values",
+                            "type": "string"
+                          },
+                          "description": "Cluster tags",
+                          "type": "object"
+                        }
+                      },
+                      "title": "ClusterUpgrade",
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "completedAt": {
+                    "description": "Upgrade completion time",
+                    "type": "string"
+                  },
+                  "dryRun": {
+                    "description": "Whether this was a dry-run",
+                    "type": "boolean"
+                  },
+                  "excludeTags": {
+                    "additionalProperties": {
+                      "description": "Tag values",
+                      "type": "string"
+                    },
+                    "description": "Exclude devices with these tags",
+                    "type": "object"
+                  },
+                  "failoverApproved": {
+                    "description": "True once a user has approved cluster failovers",
+                    "type": "boolean"
+                  },
+                  "includeTags": {
+                    "additionalProperties": {
+                      "description": "Tag values",
+                      "type": "string"
+                    },
+                    "description": "Include devices with these tags",
+                    "type": "object"
+                  },
+                  "manualFailover": {
+                    "description": "Whether to require approval to failover clusters",
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "description": "Name of upgrade",
+                    "example": "Sep27",
+                    "type": "string"
+                  },
+                  "nodeUpgrades": {
+                    "items": {
+                      "description": "NodeUpgrade",
+                      "properties": {
+                        "error": {
+                          "description": "Error message",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Node name",
+                          "example": "mynode",
+                          "type": "string"
+                        },
+                        "nodeID": {
+                          "description": "Node ID",
+                          "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                          "type": "string"
+                        },
+                        "state": {
+                          "description": "Upgrade state",
+                          "type": "string"
+                        },
+                        "tags": {
+                          "additionalProperties": {
+                            "description": "Tag values",
+                            "type": "string"
+                          },
+                          "description": "Node tags",
+                          "type": "object"
+                        }
+                      },
+                      "title": "NodeUpgrade",
+                      "type": "object"
+                    },
+                    "type": "array"
+                  },
+                  "offlineTimeout": {
+                    "description": "Minutes to wait before failing (timing out) a workflow for a node in the offline state",
+                    "type": "number"
+                  },
+                  "startedAt": {
+                    "description": "Upgrade start time",
+                    "type": "string"
+                  },
+                  "status": {
+                    "description": "Status of upgrade",
+                    "enum": [
+                      "active",
+                      "planning",
+                      "complete"
+                    ],
+                    "type": "string"
+                  },
+                  "uid": {
+                    "description": "Unique ID of upgrade",
+                    "example": "2DqxLdknjWxEkGt474d2Cstsa1O",
+                    "type": "string"
+                  },
+                  "upgradeTimeout": {
+                    "description": "Minutes to wait before failing (timing out) a workflow",
+                    "type": "number"
+                  }
+                },
+                "title": "Upgrade",
+                "type": "object"
+              },
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Create a new upgrade\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "UID",
+              "properties": {
+                "uid": {
+                  "description": "Unique ID",
+                  "example": "589548d0-1e9b-4a7d-af35-eed27d88327d",
+                  "type": "string"
+                }
+              },
+              "title": "UID",
+              "type": "object"
+            }
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/active": {
+      "get": {
+        "description": "Get the active upgrade\n\n---\n\nRequires `upgrade-manager::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "Upgrade",
+              "properties": {
+                "clusterUpgrades": {
+                  "items": {
+                    "description": "ClusterUpgrade",
+                    "properties": {
+                      "error": {
+                        "description": "Error message",
+                        "type": "string"
+                      },
+                      "fqdn": {
+                        "description": "Cluster FQDN",
+                        "example": "mycluster.trustgrid.io",
+                        "type": "string"
+                      },
+                      "nodeUpgrades": {
+                        "items": {
+                          "description": "NodeUpgrade",
+                          "properties": {
+                            "error": {
+                              "description": "Error message",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Node name",
+                              "example": "mynode",
+                              "type": "string"
+                            },
+                            "nodeID": {
+                              "description": "Node ID",
+                              "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                              "type": "string"
+                            },
+                            "state": {
+                              "description": "Upgrade state",
+                              "type": "string"
+                            },
+                            "tags": {
+                              "additionalProperties": {
+                                "description": "Tag values",
+                                "type": "string"
+                              },
+                              "description": "Node tags",
+                              "type": "object"
+                            }
+                          },
+                          "title": "NodeUpgrade",
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "state": {
+                        "description": "Upgrade state",
+                        "type": "string"
+                      },
+                      "tags": {
+                        "additionalProperties": {
+                          "description": "Tag values",
+                          "type": "string"
+                        },
+                        "description": "Cluster tags",
+                        "type": "object"
+                      }
+                    },
+                    "title": "ClusterUpgrade",
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "completedAt": {
+                  "description": "Upgrade completion time",
+                  "type": "string"
+                },
+                "dryRun": {
+                  "description": "Whether this was a dry-run",
+                  "type": "boolean"
+                },
+                "excludeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Exclude devices with these tags",
+                  "type": "object"
+                },
+                "failoverApproved": {
+                  "description": "True once a user has approved cluster failovers",
+                  "type": "boolean"
+                },
+                "includeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Include devices with these tags",
+                  "type": "object"
+                },
+                "manualFailover": {
+                  "description": "Whether to require approval to failover clusters",
+                  "type": "boolean"
+                },
+                "name": {
+                  "description": "Name of upgrade",
+                  "example": "Sep27",
+                  "type": "string"
+                },
+                "nodeUpgrades": {
+                  "items": {
+                    "description": "NodeUpgrade",
+                    "properties": {
+                      "error": {
+                        "description": "Error message",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Node name",
+                        "example": "mynode",
+                        "type": "string"
+                      },
+                      "nodeID": {
+                        "description": "Node ID",
+                        "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                        "type": "string"
+                      },
+                      "state": {
+                        "description": "Upgrade state",
+                        "type": "string"
+                      },
+                      "tags": {
+                        "additionalProperties": {
+                          "description": "Tag values",
+                          "type": "string"
+                        },
+                        "description": "Node tags",
+                        "type": "object"
+                      }
+                    },
+                    "title": "NodeUpgrade",
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "offlineTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow for a node in the offline state",
+                  "type": "number"
+                },
+                "startedAt": {
+                  "description": "Upgrade start time",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Status of upgrade",
+                  "enum": [
+                    "active",
+                    "planning",
+                    "complete"
+                  ],
+                  "type": "string"
+                },
+                "uid": {
+                  "description": "Unique ID of upgrade",
+                  "example": "2DqxLdknjWxEkGt474d2Cstsa1O",
+                  "type": "string"
+                },
+                "upgradeTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow",
+                  "type": "number"
+                }
+              },
+              "title": "Upgrade",
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found - no upgrade is active"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}": {
+      "delete": {
+        "description": "Delete an upgrade\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      },
+      "get": {
+        "description": "Get an upgrade\n\n---\n\nRequires `upgrade-manager::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "Upgrade",
+              "properties": {
+                "clusterUpgrades": {
+                  "items": {
+                    "description": "ClusterUpgrade",
+                    "properties": {
+                      "error": {
+                        "description": "Error message",
+                        "type": "string"
+                      },
+                      "fqdn": {
+                        "description": "Cluster FQDN",
+                        "example": "mycluster.trustgrid.io",
+                        "type": "string"
+                      },
+                      "nodeUpgrades": {
+                        "items": {
+                          "description": "NodeUpgrade",
+                          "properties": {
+                            "error": {
+                              "description": "Error message",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Node name",
+                              "example": "mynode",
+                              "type": "string"
+                            },
+                            "nodeID": {
+                              "description": "Node ID",
+                              "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                              "type": "string"
+                            },
+                            "state": {
+                              "description": "Upgrade state",
+                              "type": "string"
+                            },
+                            "tags": {
+                              "additionalProperties": {
+                                "description": "Tag values",
+                                "type": "string"
+                              },
+                              "description": "Node tags",
+                              "type": "object"
+                            }
+                          },
+                          "title": "NodeUpgrade",
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "state": {
+                        "description": "Upgrade state",
+                        "type": "string"
+                      },
+                      "tags": {
+                        "additionalProperties": {
+                          "description": "Tag values",
+                          "type": "string"
+                        },
+                        "description": "Cluster tags",
+                        "type": "object"
+                      }
+                    },
+                    "title": "ClusterUpgrade",
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "completedAt": {
+                  "description": "Upgrade completion time",
+                  "type": "string"
+                },
+                "dryRun": {
+                  "description": "Whether this was a dry-run",
+                  "type": "boolean"
+                },
+                "excludeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Exclude devices with these tags",
+                  "type": "object"
+                },
+                "failoverApproved": {
+                  "description": "True once a user has approved cluster failovers",
+                  "type": "boolean"
+                },
+                "includeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Include devices with these tags",
+                  "type": "object"
+                },
+                "manualFailover": {
+                  "description": "Whether to require approval to failover clusters",
+                  "type": "boolean"
+                },
+                "name": {
+                  "description": "Name of upgrade",
+                  "example": "Sep27",
+                  "type": "string"
+                },
+                "nodeUpgrades": {
+                  "items": {
+                    "description": "NodeUpgrade",
+                    "properties": {
+                      "error": {
+                        "description": "Error message",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Node name",
+                        "example": "mynode",
+                        "type": "string"
+                      },
+                      "nodeID": {
+                        "description": "Node ID",
+                        "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                        "type": "string"
+                      },
+                      "state": {
+                        "description": "Upgrade state",
+                        "type": "string"
+                      },
+                      "tags": {
+                        "additionalProperties": {
+                          "description": "Tag values",
+                          "type": "string"
+                        },
+                        "description": "Node tags",
+                        "type": "object"
+                      }
+                    },
+                    "title": "NodeUpgrade",
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "offlineTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow for a node in the offline state",
+                  "type": "number"
+                },
+                "startedAt": {
+                  "description": "Upgrade start time",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Status of upgrade",
+                  "enum": [
+                    "active",
+                    "planning",
+                    "complete"
+                  ],
+                  "type": "string"
+                },
+                "uid": {
+                  "description": "Unique ID of upgrade",
+                  "example": "2DqxLdknjWxEkGt474d2Cstsa1O",
+                  "type": "string"
+                },
+                "upgradeTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow",
+                  "type": "number"
+                }
+              },
+              "title": "Upgrade",
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "put": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Update an upgrade\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "parameters": [
+          {
+            "description": "Upgrade Input",
+            "in": "body",
+            "name": "Upgrade",
+            "required": true,
+            "schema": {
+              "description": "UpgradeUpdateParams",
+              "properties": {
+                "excludeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Exclude devices with these tags",
+                  "type": "object"
+                },
+                "includeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Include devices with these tags",
+                  "type": "object"
+                },
+                "manualFailover": {
+                  "description": "Whether to require approval to failover clusters",
+                  "type": "boolean"
+                },
+                "name": {
+                  "description": "Upgrade name",
+                  "type": "string"
+                },
+                "offlineTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow for a node in the offline state",
+                  "type": "number"
+                },
+                "upgradeTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow",
+                  "type": "number"
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "title": "UpgradeUpdateParams",
+              "type": "object"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "Upgrade",
+              "properties": {
+                "clusterUpgrades": {
+                  "items": {
+                    "description": "ClusterUpgrade",
+                    "properties": {
+                      "error": {
+                        "description": "Error message",
+                        "type": "string"
+                      },
+                      "fqdn": {
+                        "description": "Cluster FQDN",
+                        "example": "mycluster.trustgrid.io",
+                        "type": "string"
+                      },
+                      "nodeUpgrades": {
+                        "items": {
+                          "description": "NodeUpgrade",
+                          "properties": {
+                            "error": {
+                              "description": "Error message",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Node name",
+                              "example": "mynode",
+                              "type": "string"
+                            },
+                            "nodeID": {
+                              "description": "Node ID",
+                              "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                              "type": "string"
+                            },
+                            "state": {
+                              "description": "Upgrade state",
+                              "type": "string"
+                            },
+                            "tags": {
+                              "additionalProperties": {
+                                "description": "Tag values",
+                                "type": "string"
+                              },
+                              "description": "Node tags",
+                              "type": "object"
+                            }
+                          },
+                          "title": "NodeUpgrade",
+                          "type": "object"
+                        },
+                        "type": "array"
+                      },
+                      "state": {
+                        "description": "Upgrade state",
+                        "type": "string"
+                      },
+                      "tags": {
+                        "additionalProperties": {
+                          "description": "Tag values",
+                          "type": "string"
+                        },
+                        "description": "Cluster tags",
+                        "type": "object"
+                      }
+                    },
+                    "title": "ClusterUpgrade",
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "completedAt": {
+                  "description": "Upgrade completion time",
+                  "type": "string"
+                },
+                "dryRun": {
+                  "description": "Whether this was a dry-run",
+                  "type": "boolean"
+                },
+                "excludeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Exclude devices with these tags",
+                  "type": "object"
+                },
+                "failoverApproved": {
+                  "description": "True once a user has approved cluster failovers",
+                  "type": "boolean"
+                },
+                "includeTags": {
+                  "additionalProperties": {
+                    "description": "Tag values",
+                    "type": "string"
+                  },
+                  "description": "Include devices with these tags",
+                  "type": "object"
+                },
+                "manualFailover": {
+                  "description": "Whether to require approval to failover clusters",
+                  "type": "boolean"
+                },
+                "name": {
+                  "description": "Name of upgrade",
+                  "example": "Sep27",
+                  "type": "string"
+                },
+                "nodeUpgrades": {
+                  "items": {
+                    "description": "NodeUpgrade",
+                    "properties": {
+                      "error": {
+                        "description": "Error message",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Node name",
+                        "example": "mynode",
+                        "type": "string"
+                      },
+                      "nodeID": {
+                        "description": "Node ID",
+                        "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                        "type": "string"
+                      },
+                      "state": {
+                        "description": "Upgrade state",
+                        "type": "string"
+                      },
+                      "tags": {
+                        "additionalProperties": {
+                          "description": "Tag values",
+                          "type": "string"
+                        },
+                        "description": "Node tags",
+                        "type": "object"
+                      }
+                    },
+                    "title": "NodeUpgrade",
+                    "type": "object"
+                  },
+                  "type": "array"
+                },
+                "offlineTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow for a node in the offline state",
+                  "type": "number"
+                },
+                "startedAt": {
+                  "description": "Upgrade start time",
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Status of upgrade",
+                  "enum": [
+                    "active",
+                    "planning",
+                    "complete"
+                  ],
+                  "type": "string"
+                },
+                "uid": {
+                  "description": "Unique ID of upgrade",
+                  "example": "2DqxLdknjWxEkGt474d2Cstsa1O",
+                  "type": "string"
+                },
+                "upgradeTimeout": {
+                  "description": "Minutes to wait before failing (timing out) a workflow",
+                  "type": "number"
+                }
+              },
+              "title": "Upgrade",
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "422": {
+            "description": "Validation failed",
+            "schema": {
+              "description": "ValidationFailed",
+              "items": {
+                "description": "Validation failure",
+                "type": "string"
+              },
+              "title": "ValidationFailed",
+              "type": "array"
+            }
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/approve-failover": {
+      "parameters": [
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Approve an upgrade to failover clusters\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/complete": {
+      "parameters": [
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Mark an upgrade complete\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/dismiss/{workflowID}": {
+      "parameters": [
+        {
+          "description": "Unique ID of workflow",
+          "in": "path",
+          "name": "workflowID",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Dismiss a workflow\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/dryrun": {
+      "parameters": [
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Dry run an upgrade. This will clone the upgrade and start the cloned copy and return the copy's UID\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "UID",
+              "properties": {
+                "uid": {
+                  "description": "Unique ID",
+                  "example": "589548d0-1e9b-4a7d-af35-eed27d88327d",
+                  "type": "string"
+                }
+              },
+              "title": "UID",
+              "type": "object"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/logs": {
+      "get": {
+        "description": "Get logs for an upgrade\n\n---\n\nRequires `upgrade-manager::read` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "items": {
+                "description": "UpgradeLog",
+                "properties": {
+                  "entity": {
+                    "description": "Log subject type",
+                    "example": "Node",
+                    "type": "string"
+                  },
+                  "entityID": {
+                    "description": "Log subject ID",
+                    "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                    "type": "string"
+                  },
+                  "level": {
+                    "description": "Level of log, like error/warn/info",
+                    "type": "string"
+                  },
+                  "message": {
+                    "description": "Log message",
+                    "type": "string"
+                  },
+                  "timestamp": {
+                    "description": "Timestamp of log entry",
+                    "example": "2024-09-27 16:08:20.68159367 -0600 MDT m=+0.000427887",
+                    "type": "string"
+                  },
+                  "uid": {
+                    "description": "Unique ID of log entry",
+                    "example": "c2b35bfc-0f33-4f76-ad75-bc79c9570ab0",
+                    "type": "string"
+                  }
+                },
+                "title": "UpgradeLog",
+                "type": "object"
+              },
+              "type": "array"
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      },
+      "parameters": [
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/note/{workflowID}": {
+      "parameters": [
+        {
+          "description": "Unique ID of workflow",
+          "in": "path",
+          "name": "workflowID",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Add a note to a workflow\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "parameters": [
+          {
+            "description": "Note",
+            "in": "body",
+            "name": "note",
+            "required": true,
+            "schema": {
+              "description": "Note",
+              "type": "string"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/retry/{workflowID}": {
+      "parameters": [
+        {
+          "description": "Unique ID of workflow",
+          "in": "path",
+          "name": "workflowID",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Retry a workflow\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
+    },
+    "/upgrade-manager/api/v1/upgrades/{upgradeID}/start": {
+      "parameters": [
+        {
+          "description": "Unique ID of upgrade",
+          "in": "path",
+          "name": "upgradeID",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "description": "Start an upgrade\n\n---\n\nRequires `upgrade-manager::modify` permission.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "Upgrade Manager"
+        ]
+      }
     },
     "/user": {
       "get": {
@@ -5159,7 +6338,7 @@
                 "properties": {
                   "activityID": {
                     "description": "Threat Intelligence activity ID",
-                    "example": "2fa05bb3-5bcf-49e4-a311-a9da5428a228",
+                    "example": "77755ce5-9dff-432e-9317-61c1da50f299",
                     "type": "object"
                   },
                   "destBytes": {
@@ -5230,12 +6409,12 @@
                   },
                   "ztnaAppID": {
                     "description": "ZTNA application ID",
-                    "example": "2fa05bb3-5bcf-49e4-a311-a9da5428a228",
+                    "example": "77755ce5-9dff-432e-9317-61c1da50f299",
                     "type": "object"
                   },
                   "ztnaSessionID": {
                     "description": "ZTNA application ID",
-                    "example": "2fa05bb3-5bcf-49e4-a311-a9da5428a228",
+                    "example": "77755ce5-9dff-432e-9317-61c1da50f299",
                     "type": "object"
                   }
                 },
@@ -12620,7 +13799,7 @@
         },
         "node_id": {
           "description": "Node ID that generated the alert",
-          "example": "9600ff4f-8f84-49df-964d-042e6337707e",
+          "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
           "type": "string"
         },
         "timestamp": {
@@ -12678,7 +13857,7 @@
         },
         "nodeId": {
           "description": "Node ID that generated the alert",
-          "example": "9600ff4f-8f84-49df-964d-042e6337707e",
+          "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
           "type": "string"
         },
         "nodeName": {
@@ -12765,8 +13944,8 @@
         }
       },
       "required": [
-        "name",
-        "action"
+        "action",
+        "name"
       ],
       "title": "Application Access Rule",
       "type": "object"
@@ -12804,8 +13983,8 @@
         }
       },
       "required": [
-        "chain",
-        "private_key"
+        "private_key",
+        "chain"
       ],
       "title": "CertificateParts",
       "type": "object"
@@ -12848,6 +14027,70 @@
         }
       },
       "title": "ClusterModel",
+      "type": "object"
+    },
+    "ClusterUpgrade": {
+      "description": "ClusterUpgrade",
+      "properties": {
+        "error": {
+          "description": "Error message",
+          "type": "string"
+        },
+        "fqdn": {
+          "description": "Cluster FQDN",
+          "example": "mycluster.trustgrid.io",
+          "type": "string"
+        },
+        "nodeUpgrades": {
+          "items": {
+            "description": "NodeUpgrade",
+            "properties": {
+              "error": {
+                "description": "Error message",
+                "type": "string"
+              },
+              "name": {
+                "description": "Node name",
+                "example": "mynode",
+                "type": "string"
+              },
+              "nodeID": {
+                "description": "Node ID",
+                "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                "type": "string"
+              },
+              "state": {
+                "description": "Upgrade state",
+                "type": "string"
+              },
+              "tags": {
+                "additionalProperties": {
+                  "description": "Tag values",
+                  "type": "string"
+                },
+                "description": "Node tags",
+                "type": "object"
+              }
+            },
+            "title": "NodeUpgrade",
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "Upgrade state",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "description": "Tag values",
+            "type": "string"
+          },
+          "description": "Cluster tags",
+          "type": "object"
+        }
+      },
+      "title": "ClusterUpgrade",
       "type": "object"
     },
     "ConnectorConfig": {
@@ -12916,6 +14159,10 @@
               "service": {
                 "description": "service name",
                 "type": "string"
+              },
+              "sourceBlock": {
+                "description": "if provided, only traffic from this CIDR block will be allowed",
+                "type": "string"
               }
             },
             "required": [
@@ -12963,7 +14210,7 @@
         },
         "id": {
           "description": "Container ID",
-          "example": "33714d4f-229a-4a5a-86d4-f3b4fe722bb0",
+          "example": "80ae8c2d-4f2f-42c1-b63f-93bfe447131f",
           "type": "string"
         },
         "image": {
@@ -13120,7 +14367,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "d795f3a9-040a-42e3-8d9d-fec086634493",
+          "example": "1b7db19a-a7cb-41a2-9727-21f179b33075",
           "type": "string"
         }
       },
@@ -13263,7 +14510,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "2fbe4e83-ed35-46f2-bd4f-0ad4dae10bf1",
+          "example": "2646a68c-a5a9-4db3-ad64-8df4f9ddf0e8",
           "type": "string"
         }
       },
@@ -13298,7 +14545,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "42cca9ae-8336-4666-ba60-e89e69c6b1ad",
+          "example": "91beaddb-3f84-48e8-8f37-0a47f9992217",
           "type": "string"
         }
       },
@@ -13353,7 +14600,7 @@
         },
         "uid": {
           "description": "UID",
-          "example": "c8d7c72f-f665-4529-9c92-468d0aad2743",
+          "example": "bdd28378-0262-4649-83e3-8ce84d174766",
           "type": "string"
         }
       },
@@ -13526,9 +14773,9 @@
         }
       },
       "required": [
+        "dest",
         "protocol",
-        "source",
-        "dest"
+        "source"
       ],
       "title": "Domain Network Access Policy",
       "type": "object"
@@ -14231,13 +15478,54 @@
           "description": "Node tags",
           "type": "object"
         },
+        "type": {
+          "description": "Device type",
+          "enum": [
+            "Agent",
+            "Node"
+          ],
+          "type": "string"
+        },
         "uid": {
           "description": "Node ID",
-          "example": "9600ff4f-8f84-49df-964d-042e6337707e",
+          "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
           "type": "string"
         }
       },
       "title": "Node",
+      "type": "object"
+    },
+    "NodeUpgrade": {
+      "description": "NodeUpgrade",
+      "properties": {
+        "error": {
+          "description": "Error message",
+          "type": "string"
+        },
+        "name": {
+          "description": "Node name",
+          "example": "mynode",
+          "type": "string"
+        },
+        "nodeID": {
+          "description": "Node ID",
+          "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+          "type": "string"
+        },
+        "state": {
+          "description": "Upgrade state",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "description": "Tag values",
+            "type": "string"
+          },
+          "description": "Node tags",
+          "type": "object"
+        }
+      },
+      "title": "NodeUpgrade",
       "type": "object"
     },
     "OpenIDConfig": {
@@ -14629,6 +15917,7 @@
             "enabled": true,
             "host": "127.0.0.1",
             "id": "1e1d36b2-63b6-46bb-8334-a80a828afb5f",
+            "name": "nginx",
             "port": 80,
             "protocol": "tcp"
           }
@@ -14656,7 +15945,7 @@
               },
               "name": {
                 "description": "service name",
-                "type": "number"
+                "type": "string"
               },
               "port": {
                 "description": "destination port",
@@ -14726,6 +16015,268 @@
         "value"
       ],
       "title": "TagValueModel",
+      "type": "object"
+    },
+    "UID": {
+      "description": "UID",
+      "properties": {
+        "uid": {
+          "description": "Unique ID",
+          "example": "589548d0-1e9b-4a7d-af35-eed27d88327d",
+          "type": "string"
+        }
+      },
+      "title": "UID",
+      "type": "object"
+    },
+    "Upgrade": {
+      "description": "Upgrade",
+      "properties": {
+        "clusterUpgrades": {
+          "items": {
+            "description": "ClusterUpgrade",
+            "properties": {
+              "error": {
+                "description": "Error message",
+                "type": "string"
+              },
+              "fqdn": {
+                "description": "Cluster FQDN",
+                "example": "mycluster.trustgrid.io",
+                "type": "string"
+              },
+              "nodeUpgrades": {
+                "items": {
+                  "description": "NodeUpgrade",
+                  "properties": {
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Node name",
+                      "example": "mynode",
+                      "type": "string"
+                    },
+                    "nodeID": {
+                      "description": "Node ID",
+                      "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "Upgrade state",
+                      "type": "string"
+                    },
+                    "tags": {
+                      "additionalProperties": {
+                        "description": "Tag values",
+                        "type": "string"
+                      },
+                      "description": "Node tags",
+                      "type": "object"
+                    }
+                  },
+                  "title": "NodeUpgrade",
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "state": {
+                "description": "Upgrade state",
+                "type": "string"
+              },
+              "tags": {
+                "additionalProperties": {
+                  "description": "Tag values",
+                  "type": "string"
+                },
+                "description": "Cluster tags",
+                "type": "object"
+              }
+            },
+            "title": "ClusterUpgrade",
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "completedAt": {
+          "description": "Upgrade completion time",
+          "type": "string"
+        },
+        "dryRun": {
+          "description": "Whether this was a dry-run",
+          "type": "boolean"
+        },
+        "excludeTags": {
+          "additionalProperties": {
+            "description": "Tag values",
+            "type": "string"
+          },
+          "description": "Exclude devices with these tags",
+          "type": "object"
+        },
+        "failoverApproved": {
+          "description": "True once a user has approved cluster failovers",
+          "type": "boolean"
+        },
+        "includeTags": {
+          "additionalProperties": {
+            "description": "Tag values",
+            "type": "string"
+          },
+          "description": "Include devices with these tags",
+          "type": "object"
+        },
+        "manualFailover": {
+          "description": "Whether to require approval to failover clusters",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Name of upgrade",
+          "example": "Sep27",
+          "type": "string"
+        },
+        "nodeUpgrades": {
+          "items": {
+            "description": "NodeUpgrade",
+            "properties": {
+              "error": {
+                "description": "Error message",
+                "type": "string"
+              },
+              "name": {
+                "description": "Node name",
+                "example": "mynode",
+                "type": "string"
+              },
+              "nodeID": {
+                "description": "Node ID",
+                "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+                "type": "string"
+              },
+              "state": {
+                "description": "Upgrade state",
+                "type": "string"
+              },
+              "tags": {
+                "additionalProperties": {
+                  "description": "Tag values",
+                  "type": "string"
+                },
+                "description": "Node tags",
+                "type": "object"
+              }
+            },
+            "title": "NodeUpgrade",
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "offlineTimeout": {
+          "description": "Minutes to wait before failing (timing out) a workflow for a node in the offline state",
+          "type": "number"
+        },
+        "startedAt": {
+          "description": "Upgrade start time",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of upgrade",
+          "enum": [
+            "active",
+            "planning",
+            "complete"
+          ],
+          "type": "string"
+        },
+        "uid": {
+          "description": "Unique ID of upgrade",
+          "example": "2DqxLdknjWxEkGt474d2Cstsa1O",
+          "type": "string"
+        },
+        "upgradeTimeout": {
+          "description": "Minutes to wait before failing (timing out) a workflow",
+          "type": "number"
+        }
+      },
+      "title": "Upgrade",
+      "type": "object"
+    },
+    "UpgradeLog": {
+      "description": "UpgradeLog",
+      "properties": {
+        "entity": {
+          "description": "Log subject type",
+          "example": "Node",
+          "type": "string"
+        },
+        "entityID": {
+          "description": "Log subject ID",
+          "example": "de6b2de0-259e-4849-b7cd-bcb3408d7363",
+          "type": "string"
+        },
+        "level": {
+          "description": "Level of log, like error/warn/info",
+          "type": "string"
+        },
+        "message": {
+          "description": "Log message",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Timestamp of log entry",
+          "example": "2024-09-27 16:08:20.68159367 -0600 MDT m=+0.000427887",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Unique ID of log entry",
+          "example": "c2b35bfc-0f33-4f76-ad75-bc79c9570ab0",
+          "type": "string"
+        }
+      },
+      "title": "UpgradeLog",
+      "type": "object"
+    },
+    "UpgradeUpdateParams": {
+      "description": "UpgradeUpdateParams",
+      "properties": {
+        "excludeTags": {
+          "additionalProperties": {
+            "description": "Tag values",
+            "type": "string"
+          },
+          "description": "Exclude devices with these tags",
+          "type": "object"
+        },
+        "includeTags": {
+          "additionalProperties": {
+            "description": "Tag values",
+            "type": "string"
+          },
+          "description": "Include devices with these tags",
+          "type": "object"
+        },
+        "manualFailover": {
+          "description": "Whether to require approval to failover clusters",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Upgrade name",
+          "type": "string"
+        },
+        "offlineTimeout": {
+          "description": "Minutes to wait before failing (timing out) a workflow for a node in the offline state",
+          "type": "number"
+        },
+        "upgradeTimeout": {
+          "description": "Minutes to wait before failing (timing out) a workflow",
+          "type": "number"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "UpgradeUpdateParams",
       "type": "object"
     },
     "UserModel": {
