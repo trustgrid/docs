@@ -60,7 +60,7 @@ You can utilize the Data Plane Performance Tool to test the bandwidth and perfor
 ## Post Incident Triage Steps
 If the incident has resolve itself there will be a limit to the information that can be gathered.  For example, running MTR on the impacted node will not provide any information because the node is no longer experiencing the issue. The steps below are intended to determine what information is available and set up having more information if the issue reoccurs. 
 
-Before starting, determine the start and end time of the incident.  Be aware that the portal will display most things using your browsers local timezone, but timestamps send via[alarm channels]({{<relref "/docs/alarms/channels">}}) will be in UTC time. As are any timestamps in [debug logs]({{<relref "/help-center/ops-logs/debug-logs">}}).
+Before starting, determine the start and end time of the incident.  Be aware that the portal will display most things using your browsers local timezone, but timestamps send via [alarm channels]({{<relref "/docs/alarms/channels">}}) will be in UTC time. As are any timestamps in [debug logs]({{<relref "/help-center/ops-logs/debug-logs">}}).
 
 ### 1. Enable Hop Monitoring
 **Requires permissions to modify the edge node config. If your user is read-only skip to [Step 2](#2-run-mtr-to-reported-gateway).**
@@ -70,13 +70,13 @@ Hop monitoring uses TCP SYN packets to continuously monitor the path between an 
 If the impacted edge node is a member of a cluster, enable hop monitoring on the other member of the cluster as well.
 
 ### 2. Use Data Plane Panel to View Latency to Gateways
-The Data Plane panel can be used to view the tunnel latency to all connected peers( and hop monitoring data if enabled ) up to the past 90 days.  To view data from the past:
+The Data Plane panel can be used to view the tunnel latency to all connected peers ( and hop monitoring data if enabled ) up to the past 90 days.  To view data from the past:
 1. Navigate to the Data Plane panel on the impacted edge node.
 2. Click on one of the impacted gateway's name to view the latency to that gateway.
-3. By default the data for the last hour is show. Under Monitoring click **Custom** in the time selector. {{<tgimg src="post-incident-investigate-1.png" alt="Data Plane panel Monitoring time selector">}}
-4. Use the time selector to select a time range that includes the incident and click **Apply**. It is a good idea to include 15-30 minutes before the incident started and after the incident ended. {{<tgimg src="post-incident-investigate-2.png" alt="Data Plane panel custom time selector">}}
+3. By default, the data for the last hour is show. Under Monitoring click **Custom** in the time selector. {{<tgimg src="post-incident-investigate-1.png" alt="Data Plane panel Monitoring time selector" caption="Custom date/time selector" width="70%">}}
+4. Use the time selector to select a time range that includes the incident and click **Apply**. It is a good idea to include 15-30 minutes before the incident started and after the incident ended. {{<tgimg src="post-incident-investigate-2.png" alt="Data Plane panel custom time selector" width="70%" caption="Example date/time selection process">}}
 5. This will show the latency to the selected gateway over the selected time range. 
-    - If hop monitoring was enabled, clicking any point on the graph will update to show the data collected at that time. {{<tgimg src="post-incident-investigate-3.png" alt="Data Plane panel latency graph">}}
+    - If hop monitoring was enabled, clicking any point on the graph will update to show the data collected at that time. {{<tgimg src="post-incident-investigate-3.png" alt="Data Plane panel latency graph" width="90%" caption="Historical Tunnel Latency and Network Hop graphs" >}}
     - If you select other peers/gateways, the latency to those gateways will be shown during the same time period.
         - If the gateway is a member of a cluster, view the other member of the cluster to see if it is also impacted.
         - Select other gateways in other data centers/regions to see if they are also impacted.
