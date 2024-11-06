@@ -11,10 +11,10 @@ This release makes available the [Upgrade Manager]({{<relref "/docs/upgrade-mana
 
 Upgrade Manager also automates Cluster upgrades by starting with the standby node in the cluster, triggering a failover once it that node has completed the upgrade, and then upgrading the other member of the cluster. 
 
-By default, all users with the [tg-builtin-admin]({{<relref "/docs/user-management/policies#builtin-tg-admin">}}) policy will have **read-only** access to the Upgrade Manager.  The new [tg-builtin]({{<relref "/docs/user-management/policies#builtin-tg-upgrade-admin">}}) policy has been created to easily grant users permissions to run jobs in the Upgrade Manager. 
+By default, all users with the [tg-builtin-admin]({{<relref "/docs/user-management/policies#builtin-tg-admin">}}) policy will have **read-only** access to the Upgrade Manager.  The new [tg-builtin-upgrade-admin]({{<relref "/docs/user-management/policies#builtin-tg-upgrade-admin">}}) policy has been created to easily grant users permissions to run jobs in the Upgrade Manager. 
 
 ## NAT Hit Counter
-This release when combined nodes running the [October 2024 Trustgrid Appliance Release]({{<relref "/release-notes/node/2024-10">}}) and later, will add a **Hits** button to all NATs defined on the [VPN Address Translation]({{<relref "/docs/nodes/appliances/vpn/nats/">}}) page. When clicked the Hits button will display:
+This release, when combined with nodes running the [October 2024 Trustgrid Appliance Release]({{<relref "/release-notes/node/2024-10">}}) and later, will add a **Hits** button to all NATs defined on the [VPN Address Translation]({{<relref "/docs/nodes/appliances/vpn/nats/">}}) page. When clicked, the Hits button will display:
 - The number of times the NAT has been hit (or used) since the last reset or reboot.
 - The first (since reset) and most recent times the NAT has been hit.
 - Provides a button to reset the hit counter for that specific NAT.
@@ -26,7 +26,7 @@ This release add the ability to create a [Google Chat (gChat) channel]({{<relref
 
 ## Cluster Overview Changes
 ### Update to Cluster Terminology
-Over the past few years we've been moving away from the term "master" to "active" in regards to cluster status. With this release we've update the labels in the Cluster Overview table to use the new terminology.
+Over the past few years we've been moving away from the term "master" to "active" in regards to cluster status. With this release we've updated the labels in the Cluster Overview table to use the new terminology.
 ### Make Active Button
 This release adds a new button to the Cluster Overview table that allows you to make a node the configured active node in the cluster.  Previously this required selecting the node from the table, selecting the Actions menu and then selecting the "Set as Master" option.  And there was no confirmation of this action. 
 
@@ -51,6 +51,6 @@ Prior to this release selecting multiple nodes from the Nodes table and then per
 - Fixes an issue preventing setting flags on newly created agent-based nodes.
 - Reduces the number of domain update notifications generated when a node is enabled or disabled. Now only nodes that need to know the change should be updated. 
 - Fixes an issue preventing [application]({{<relref "/docs/applications">}}) session history from loading. This release also adds the ability to export the session and acces history to CSV.
-- Prior to this release if you attempted to export [flow logs]({{<relref "/docs/operations/flow-logs">}}) after changing to a different page of results the export would fail.  This release fixes this issue.
-- Introduces the [tg-builtin-provisioning-admin]({{<relref "/docs/user-management/policies#builtin-tg-provisioning-admin">}})
+- Prior to this release, if you attempted to export [flow logs]({{<relref "/docs/operations/flow-logs">}}) after changing to a different page of results the export would fail.  This release fixes this issue.
+- Introduces the [tg-builtin-provisioning-admin]({{<relref "/docs/user-management/policies#builtin-tg-provisioning-admin">}}) policy
 - Adds Alarm Filter type for the Gateway UDP Tunnel Error type.
