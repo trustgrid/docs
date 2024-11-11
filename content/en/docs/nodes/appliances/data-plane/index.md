@@ -29,8 +29,9 @@ The CSV file will include columns for:
 * Ports - The ports used to establish the connection
 
 ## Tools
-The far right column as links to launch the following tools:
-### Gateway Ping
+The far right column as links to launch the tools listed below:
+{{<tgimg src="data-plane-tools.png" caption="Data Plane Tools" width="25%">}}
+### Data Plane Ping
 
 <img src="gateway-ping-modal.png" width="400px" />
 
@@ -38,7 +39,7 @@ The gateway ping tool will launch a ping inside the data plane tunnel between th
 
 ![Ping Output](ping-output.png)
 
-### Gateway Performance Tool
+### Data Plane Performance Tool
 
 The gateway performance tool attempts to estimate the available **upload bandwidth** between current node and the selected peer. 
 
@@ -55,6 +56,12 @@ Both of the links here will populate the [interface tool of the same name]({{<re
 
 {{<alert color="info">}}This is most effective if run from the client/edge node to a gateway since the gateway is the only one actually listening on that port.  If run in the other direction (gateway -> client) it is likely any firewall between will drop the connections and the client will definitely not respond on that port. {{</alert>}}
 
+### Peer Disconnect
+The disconnect button will disconnect the node from the selected peer. The tunnel should be reestablished automatically but there will be a period of disruption. 
+After clicking the link, you will be prompted to confirm the action.
+{{<tgimg src="disconnect-confirm.png" caption="Disconnect prompt" width="45%">}}
+
+{{<alert color="warning">}} If the peer node is the primary site and a DR site with a higher metric exists, some traffic may be routed to the DR site.{{</alert>}}
 ## View Latency to Peers
 
 To view latency data between two nodes, select either the edge or gateway node, and then from the peers table, select the node to view.
