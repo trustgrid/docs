@@ -14,7 +14,6 @@ A cluster is a pair of [nodes]({{<ref "docs/nodes" >}}) at a single site that sh
 
 Certain settings such as network services and VPN settings can be configured for the cluster and these settings will override the individual [node's]({{<ref "docs/nodes" >}}) configuration.
 
-{{<alert>}}Formerly the active member was referred to as the “master.” We are in the process moving to the terms active and standby. This documentation will use those terms but elements in the UI may retain the _master_ term.{{</alert>}}
 
 ## Requirements
 
@@ -28,7 +27,7 @@ The active member of a cluster is determined by the following factors:
 
 - Cluster heartbeat communication
 - Cluster mode
-- Configured master
+- Configured active member
 - Cluster member health
 
 ### Cluster Heartbeat Communication
@@ -43,12 +42,12 @@ Heartbeat communication is configured on each node's [cluster]({{<ref "/docs/nod
 
 A cluster can be configured in two different modes to determine what happens when a failed member returns to healthy status:
 
-- Automatic Failback (Default) - In this mode the member set as the Configured Master (see below) will maintain the active/master role as long as it is online and healthy.
-- Manual Failback - In this mode, the active/master role only moves if either the current holder fails or the configured master is changed
+- Automatic Failback (Default) - In this mode the member set as the Configured Active (see below) will maintain the active role as long as it is online and healthy.
+- Manual Failback - In this mode, the active role only moves if either the current holder fails or the configured active is changed
 
 ![img](cluster-mode.png)
 
-Consider a cluster with members named Node1, the configured master, and Node2.
+Consider a cluster with members named Node1, the configured active, and Node2.
 
 | Event                           | Automatic Failback - Active Member | Manual Failback - Active Member |
 | ------------------------------- | ---------------------------------- | ------------------------------- |
@@ -56,18 +55,18 @@ Consider a cluster with members named Node1, the configured master, and Node2.
 | Node1 unhealthy/offline         | Node2                              | Node2                           |
 | Node1 returns to healthy/online | Node1                              | Node2                           |
 
-### Configured Master
+### Configured Active
 
 Each cluster will have one configured or preferred active member. This is reflected in the overview section.
 
-![img](nodes-list.png)
+{{<tgimg src="cluster-nodes-list.png" width="70%" alt="Cluster Nodes List" caption="Cluster Members list showing configured and current active member" >}}
 
-A node may be designated as the preferred active member by selecting the node and clicking the "Set as Master" action
 
-![img](set-as-master.png)
-
-The `Configured Master` field will change immediately, but the `Current Master` may take a minute to reflect the change as the nodes process the change and notify the control plane.
-
+#### Change Configured Active
+To change the configured active member:
+1.  Click the make active button in the row for the desired node. {{<tgimg src="make-active-button.png" width="70%" alt="Make Active Button highlighted" caption="Make Active Button" >}}
+1. A prompt will appear asking for confirmation. Click the "Confirm" button. {{<tgimg src="make-active-prompt.png" width="70%" alt="Confirm Make Active Button highlighted" caption="Confirm the change in the configured active member" >}}
+1. This change will be pushed to each member. They will then attempt to transfer the active role to the new configured active member assuming it is online and healthy. After this change the "Current Active" will be updated to reflect the new active member.
 ## Cluster Member Health
 
 There may be situations where both cluster members are online and can communicate with each other, but external conditions exist that make a node unsuitable to hold the active role. The Trustgrid node service monitors for such conditions and will make a node as unhealthy if one occurs. The node will release the active role and its standby member will take over if it is online and healthy.

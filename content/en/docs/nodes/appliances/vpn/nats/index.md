@@ -55,3 +55,19 @@ By default, when a device on the local network of a node receives traffic from a
 {{<alert type="note">}}An outside NAT is required for all nodes and clusters attached to a virtual network unless the virtual network is in NO-NAT mode.{{</alert>}}
 
 There are situations where it may be desirable to make multiple remote devices masquerade as one local IP address. This can be achieved by defining an outside nat in which the network CIDR contains a larger address space than the local CIDR. For instance, an entry with network CIDR 10.0.1.0/24 and local CIDR 192.168.100.10 would make all remote devices with network IP addresses in 10.0.1.0/24 appear as IP address 192.168.100.10 on the local network. In this configuration port address translation (PAT) is used for the source port of connections.
+
+## NAT Hit Counter
+To the right of each defined NAT is a "Hits" button. Clicking this button will display the number of times that NAT has been used since the node was last restarted/rebooted or the counter was reset. This is useful for troubleshooting NATs or to see if a configured NAT is still required. 
+
+{{<tgimg src="nat-hit-counter-example.png" alt="Inside NAT hit counter" width="70%" caption="Inside NAT hit counter" >}}
+
+{{<fields>}}
+{{<field "Virtual CIDR">}} Inside NAT only, shows the Virtual Network CIDR for the NAT{{</field>}}
+{{<field "Local CIDR">}} shows the Local network CIDR for the NAT{{</field>}}
+{{<field "Network Group">}} Outside NATs only, shows the Network Group or Virtual Network CIDR for the NAT{{</field>}}
+{{<field "Hits">}}Shows the number of flows that have been matched to this NAT since the last reset. {{</field>}}
+{{<field "Initial Hit">}}Shows the first time the NAT was hit since the last reset.{{</field>}}
+{{<field "Latest Hit">}}Shows the most recent time the NAT was hit.{{</field>}}
+{{<field "Reset">}}Clicking this button resets the hit counter. It is also reset when the node is restarted or rebooted.{{</field>}}
+
+{{</fields>}}

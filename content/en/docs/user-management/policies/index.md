@@ -30,41 +30,54 @@ Below are the basic descriptions of the Trustgrid Managed Policies including an 
 
 The policies are listed from lowest permissions to highest.
 
-#### tg-builtin-apps-user
+#### builtin-tg-apps-user
 
 This policy provides minimal permission for a user to connect to the Trustgrid applications portal for using Remote access apps. The user has no rights within the Trustgrid management portal and should likely be given a landing page of `/apps` to be redirected straight to the applications portal.
 
 Target User: End user for remote access applications with no knowledge of the Trustgrid system.
 
-#### tg-builtin-monitor
+#### builtin-tg-monitor
 
 This policy provides read-only access to non-sensitive resources in the Trustgrid management portal.
 
 Target User: Project manager or executive sponsor that needs to view information in the portal, but does not require tools required to troubleshoot or resolve issues.
 
-#### tg-builtin-operator
+#### builtin-tg-operator
 
 This policy provides mostly read-only access but also has the ability to view and use tools within the portal and perform actions to resolve common issues (e.g. restarting/rebooting nodes).
 
 Target User: Entry-level technical resources responsible for initial triage of support issues.
 
-#### tg-builtin-node-admin
+#### builtin-tg-node-admin
 
 This policy provides the ability to make changes to most resources but is restricted from making changes that can have a wide impact such as changing a gateway node server settings.
 
 Target User: Mid-level technical resources that need to make changes to things like node VPN configuration and virtual network routes, but should be restricted from making changes that can impact an entire organization when possible.
 
-#### tg-builtin-admin
+#### builtin-tg-admin
 
 This policy has permission to change almost all resources with the exceptions of Identity Providers and User Management.
 
 Target User: Senior technical resources needing near full access.
 
-#### tg-builtin-access-admin
+#### builtin-tg-access-admin
 
 This policy grants the ability to manage permissions and identity-related resources including configuring Identity Providers, Adding/Inviting Users, and creating and assigning policies
 
 Target User: Management or access control-related resources responsible for granting access to the Trustgrid system.
+
+#### builtin-tg-upgrade-admin
+
+This policy grants all the permissions required to upgrade nodes using the [Upgrade Manager]({{<relref "/docs/upgrade-manager">}}) system. 
+
+Target User: Users responsible for upgrading Trustgrid nodes.
+
+#### builtin-tg-provisioning-admin
+
+This policy grants the ability to create and manage orders in the provisioning section of the portal.
+
+Target User: Project Managers and other team members involved in managing orders of new Trustgrid nodes. 
+
 
 ## Resource-Scoped Policies
 
