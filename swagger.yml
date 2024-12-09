@@ -1794,14 +1794,20 @@ paths:
 
         Requires `nodes::read` permission.
       parameters:
-        - description: Comma-separated key:value pairs for tag filtering, e.g., location:Austin,device:Trustgrid
+        - description: Comma-separated key:value pairs for tag filtering, e.g., `location:Austin,device:Trustgrid`.
           in: query
           name: tags
           type: string
-        - description: List of fields to return from the API. Supports nested fields and anything in the Node schema
+        - description: |-
+            List of fields to return from the API. Supports nested fields and anything in the Node schema. Each field should be listed individually, e.g., `projection[]=online&projection[]=uid`.
+
+            ---
+
+            If using curl, the `-g` flag will automatically escape the brackets for you.
+
           in: query
-          name: projection
-          type: string
+          name: 'projection[]'
+          type: array
       produces:
         - application/json
       responses:
