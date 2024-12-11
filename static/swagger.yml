@@ -1901,10 +1901,10 @@ paths:
           in: body
           name: updates
           schema:
-            description: Node updates
+            description: Node updates (both fields are optional).
             properties:
               cluster:
-                description: Cluster FQDN - requires `nodes::cluster` permission to modify
+                description: Cluster FQDN - requires `nodes::cluster` permission to modify. If set to `null`, the node will be removed from the cluster.
                 example: mycluster.trustgrid.io
                 type: string
               state:
