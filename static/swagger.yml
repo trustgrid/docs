@@ -224,7 +224,7 @@ paths:
                 timestamp:
                   description: Unix timestamp when the change happened
                   example: 1729533326
-                  type: string
+                  type: number
                 uid:
                   description: Unique ID of the change
                   example: 8845f684-4ffe-4b01-a62f-5619a7eae486
@@ -1808,6 +1808,8 @@ paths:
           in: query
           name: 'projection[]'
           type: array
+          items:
+            type: string
       produces:
         - application/json
       responses:
@@ -11851,16 +11853,6 @@ definitions:
       - value
     title: TagValueModel
     type: object
-  UID:
-    description: UID
-    properties:
-      uid:
-        description: Unique ID
-        example: a9f7cfec-da06-4822-b4ab-389e4ad51931
-        type: string
-    title: UID
-    type: object
-
   Upgrade:
     description: Upgrade
     properties:
