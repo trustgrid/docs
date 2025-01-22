@@ -11647,6 +11647,21 @@ definitions:
       - name
     title: OrgModel
     type: object
+  PolicyExpression:
+    description: Policy expression
+    type: object
+    example:
+      "tg:node:tags:environment": ["production"]
+    properties:
+      eq:
+        type: object
+        properties:
+          additionalProperties:
+            description: Conditions to match
+            type: array
+            items:
+              type: string
+
   Policy:
     description: Policy
     properties:
@@ -11663,6 +11678,18 @@ definitions:
           description: TGRNs affected by the policy
           type: string
         type: array
+      conditions:
+        type: object
+        properties:
+          all:
+            description: All of these conditions must be met
+            $ref: '#/definitions/PolicyExpression'
+          any:
+            description: At least one of these conditions must be met
+            $ref: '#/definitions/PolicyExpression'
+          none:
+            description: None of these conditions must be met
+            $ref: '#/definitions/PolicyExpression'
       statements:
         items:
           description: Permission statement
