@@ -21,11 +21,12 @@ jobs:
           hugo-version: '0.133.1'
           extended: true
 
-      - name: Generate Swagger
-        run: make swagger
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "18.x"
 
       - name: Build
-        run: hugo --minify
+        run: npm i && hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

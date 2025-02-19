@@ -8,7 +8,7 @@ Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes
 
 ## Notes
 
-- The cloudformation template below works with an AMI currently published in US-EAST1. Deploying in other regions requires working with Trustgrid Support
+- The cloudformation template below works with an AMI currently published in US-EAST-1/2 and US-WEST-1/2. Deploying in other regions requires working with Trustgrid Support
 - Requires VPC and public subnet
 - Does not create security groups or roles - those have to be managed separately (more below)
 
