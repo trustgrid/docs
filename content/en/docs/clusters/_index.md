@@ -55,6 +55,8 @@ Consider a cluster with members named Node1, the configured active, and Node2.
 | Node1 unhealthy/offline         | Node2                              | Node2                           |
 | Node1 returns to healthy/online | Node1                              | Node2                           |
 
+### Cluster Timeout
+The cluster will wait a configurable amount of time before considering a failed member as lost. This timeout is configurable on the cluster page.
 ### Configured Active
 
 Each cluster will have one configured or preferred active member. This is reflected in the overview section.

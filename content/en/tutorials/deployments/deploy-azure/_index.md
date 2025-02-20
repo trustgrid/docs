@@ -68,126 +68,6 @@ For all clustered nodes:
 * [System-assigned Managed Identity](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm) needs to be enabled for both VMs in the cluster. {{<tgimg src="system-managed-identity.png" alt="System-assigned Managed Identity" width="80%">}}
 * [Boot Diagnostics](https://learn.microsoft.com/en-us/azure/virtual-machines/boot-diagnostics) needs to be enabled to allow access via the Serial Console
 
-
-## Requirements for HA Failover
-
-### Azure Routing Table
-
-An Azure routing table resource needs to be associated with the LAN interface's subnet.
-
-#### View LAN Subnet Routing Table
-
-1. In the Azure Portal search for Virtual Networks and select the service
-1. From the list of Virtual Networks select your target Virtual Network
-1. From the navigation panel select Subnets
-1. Select your inside/private subnet that is attached to the LAN interface of your Trustgrid VMs
-1. There should be a route table
-{{<tgimg src="azure-route-table.png" alt="Example subnet showing assigned Route Table" width="60%">}}
-
-#### Create Route Table for LAN Subnet
-
-1. If there is no Route Table associated with your LAN/inside/private subnet you will need to add it.
-1. In the Azure portal search for Route Tables and select the service
-1. Click the +Create button
-1. Select the Resource Group that contains your Virtual Network and VMs
-1. Select the Region that your VMs are deployed in
-1. Give the Route Table a name consistent with your naming conventions
-1. (Optional) change the Propagate Gateway routes option. {{<tgimg src="propagate-routes.png" alt="Propagate Routes Option" width="70%">}}
-1. Click Review + Create, review then click Review + Create again
-1. Repeat the above steps to “View LAN Subnet Routing Table” and change the route table from None to the newly created Route Table.
-1. Save the change
-
-### Permissions Required for Cluster Route Failover
-
-Copy this sample json file for use in creating a custom role with the required permissions. See process below.
-
-> The assignableScopes section will need to be modified to represent the resource information of the target Azure account.
-
-{{<highlight json>}}
-{
-	"properties": {
-		"roleName": "tg-route-table",
-		"description": "manage azure route table",
-		"assignableScopes": [
-		],
-		"permissions": [
-			{
-				"actions": [
-					"Microsoft.Network/networkWatchers/nextHop/action",
-					"Microsoft.Network/networkInterfaces/effectiveRouteTable/action",
-					"Microsoft.Network/routeTables/routes/delete",
-					"Microsoft.Network/routeTables/routes/write",
-					"Microsoft.Network/routeTables/routes/read",
-					"Microsoft.Network/routeTables/join/action",
-					"Microsoft.Network/routeTables/delete",
-					"Microsoft.Network/routeTables/write",
-					"Microsoft.Network/routeTables/read",
-					"Microsoft.Network/networkInterfaces/read",
-					"Microsoft.Network/virtualNetworks/read",
-					"Microsoft.Compute/virtualMachines/read"
-				],
-				"notActions": [],
-				"dataActions": [],
-				"notDataActions": []
-			}
-		]
-	}
-}
-{{</highlight>}}
-
-1. 1. A custom role needs to be created in the Azure subscription that allows the Trustgrid nodes to update the route table when failover occurs
-	1. Create the custom role
-		1. In the Azure portal search for “Subscriptions” and select the Subscriptions service
-		1. Select the subscription that contains the Trustgrid VMs 
-		1. Select “Access control (IAM),” then click “+Add”, then “Add custom role”
-
-			![Add Custom Role](add-custom-role.png)
-
-		1. Save the JSON above to a file named `azure-custom-role-sample.json`.
-		1. Select “Start from JSON” and from the file selector, select the downloaded json file.
-
-			![Create Custom Role](create-custom-role.png)
-
-		1. Optionally, update the role name to meet your internal naming conventions.
-		1. Click `Next`. 
-		1. On the Permissions page you will see the permissions that will be granted. Click `Next` again.
-		1. On the Assignable Scopes page click +Add Assignable Scope
-			1. From the Type select Resource Group
-			1. From the Subscription, select the subscription your VMs and virtual networks are in.
-			1. From the Select pane on the right search for and select the Resource Group containing you VM’s
-
-				![Resource Group](select-group.png)
-
-			1. Click `Select` and then `Next`.
-		1. On the JSON page, click the `Next` button.
-		1. Click Review + Create, then click Create.
-
-1. Assign the custom role to your Trustgrid VM’s system-assigned
-	1. In the Azure portal search for Resource Groups and select the service
-	1. Select your target Resource Group
-	1. Select the Access Control (IAM) panel, then click +Add, then “Add role assignment”
-
-		![Add Role Assignment](add-role.png)
-
-	1. Search for and select the desired role and click Next
-
-		![Find Role](role-list.png)
-
-	1. Under “Assign access to” select “Managed Identity” then click +Select members
-
-		![Select Members](select-members.png)
-
-	1. From the Managed Identity dropdown select Virtual Machine
-	1. Select the identity for your first Trustgrid VM
-
-		![Subscription](subscriptions.png)
-
-	1. Click select. 
-	1. Click +Select members again and repeat with your second Trustgrid VM
-	1. Click “Review + Assign” then “Review + Assign” a second time
-
-> These permissions can take some time to go into effect.
-
 ## Deployment Process
 
 One of more Virtual Machines will need to be deployed into the target Azure subscription to act as the Trustgrid nodes using the official community image.  Then the [remote registration process]({{<relref "/tutorials/local-console-utility/remote-registration">}}) can be used to activate the nodes in the Trustgrid portal.
@@ -223,3 +103,14 @@ One of more Virtual Machines will need to be deployed into the target Azure subs
 _Documentation Coming Soon for..._
 - Deploy via the Azure Portal 
 - Deploy via Azure Bicep modules
+
+## High Availability
+Trustgrid supports two methods for supporting high availability networking connectivity via clustered Trustgrid nodes in Azure. These methods can be used together or independently.
+
+-------------------------
+| Method | Description | Common Use Cases |
+| --- | --- | --- |
+| [Route failover]({{<relref "route-failover">}}) | Publishes routes to the Azure route table associated an interface or specified route tables. Automatically adjusts the `Next hop IP address` to point to the active node. | <ul><li>Environments with only a few route tables that need to be adjusted</li></ul>|
+| [IP failover]({{<relref "ip-failover">}})| Assigns a floating IP address to the interface of the active Trustgrid node. | <ul><li>Environments with many route tables.<sup>1</sup></li><li>Environments using Azure Virtual WAN.</li><li>Using [connectors]({{<relref "/docs/nodes/shared/connectors/">}}) on the Azure cluster.</li></ul>|
+-------------------------
+<sup>1</sup> Route based failover requires the nodes to have correct Azure permission to modify each route table. Environments with many route tables would have to grant permission to the containers (resource groups, subscriptions) for each table which makes maintaining least-privilege access difficult.
