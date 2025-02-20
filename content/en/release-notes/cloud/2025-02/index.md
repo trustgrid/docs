@@ -35,7 +35,7 @@ This release makes it easier to see if a node is enabled for [UDP data plane]({{
 {{<tgimg src="udp-infovisor.png" alt="UDP mode field in Infovisor" width="85%" caption="UDP mode field in Infovisor" >}}
 
 ## Azure Cluster IP Support
-This cloud release, combined with the [January 2025 Minor Appliance release]({{<relref "/release-notes/node/2025-01" >}})) adds support for using a floating, local cluster IP address for Azure-based appliances. This provides an alternative method of providing highly available network connectivity when working with Azure-based appliances that behaves similarly to on-premises appliances.  
+This cloud release, combined with the [January 2025 Minor Appliance release]({{<relref "/release-notes/node/2025-01" >}})) adds support for using a floating, local [cluster IP address for Azure-based appliances]({{<relref "/tutorials/deployments/deploy-azure/ip-failover">}}). This provides an alternative method of providing highly available network connectivity when working with Azure-based appliances that behaves similarly to on-premises appliances.  
 
 
 ## ARP Ping Interface Tool
@@ -44,7 +44,8 @@ This release adds an [ARP ping tool]({{<relref "/tutorials/interface-tools/arpin
 
 ## Other Improvements and Fixes
 - Resolve an issue that led to an incident on February 14, 2025 that caused a large number of nodes to show as disconnected from the control plane for a short period of time.
-- Fixes an issue that would cause some gateways to report Data Plane status as "Degraded" when clients are not connected.  Data Plane status should be based solely on the connections the current node is the client for. 
+- Fixes an issue that would cause some gateways to report Data Plane status as "Degraded" when clients are not connected.  Data Plane status should be based solely on the connections where the current node is the initiating client and does not cover the connections where the current node is the gateway server.
 - Changes the behavior when changing settings on the Gateway server and client panels so that each setting can be set individually. 
 - Resolves an issue with how Data Plane health status was reported for private gateways.
 - Routes for VLAN sub-interfaces now require a next hop address to be defined. 
+- [Slack alarm channels with formatting enabled]({{<relref "/docs/alarms/channels#slack-channel">}}) now specify that the time stamp is in UTC.
