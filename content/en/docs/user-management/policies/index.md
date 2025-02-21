@@ -87,14 +87,14 @@ Policies have a Resources section that allows the permissions granted to be limi
 
 {{<alert color="warning">}} In order to grant users access to the portal a second policy is required granting the `portal::access` permission to the `*` resource.  {{</alert>}}
 
-#### Trustgrid Resource Names or TGRN
+### Trustgrid Resource Names or TGRN
 
 Trustgrid has adopted a resource naming convention that follows the basic format: `tgrn:tg::<service>:<resource-type>/<resource-id>`
 
-###### Wildcard TGRN
+#### Wildcard TGRN
 By default, the Resources field is populated with `*` which grants permissions to all resources. This is included by default for new policies and would need to be removed to provide TGRN restricted permissions.
 
-###### Node TGRN
+#### Node TGRN
 
 A node’s TGRN will start with the below prefix:
 `tgrn:tg::nodes:node/`
@@ -113,6 +113,23 @@ You can copy the Cluster TGRN from a cluster's Overview page by clicking the "Co
 {{<tgimg src="cluster-tgrn.png" width="60%" caption="Cluster TGRN on Overview page">}}
 
 A complete [cluster]({{<ref "docs/clusters" >}}) TGRN looks like: `tgrn:tg::nodes:cluster/awscluster.training.trustgrid.io`
+
+## Condition-Scope Policies
+Conditions allow a policy to be scoped to objects that match specific conditions. This could be used in addition to or in place of resource-scoped policies. 
+{{<tgimg src="policy-conditions.png" width="70%" caption="Policy Conditions">}}
+### Tag Conditions
+Tag conditions allow a policy to be scoped to objects that have a specific tag or combination of tags. This is useful for allowing users to see and manage objects that have a specific tag. 
+
+There are three sections to specify tag conditions:
+- `All` - When this section is used all conditions specified in this section must be present on the object.
+- `Any` - When this section is used any conditions specified in this section must be present on the object.
+- `None` - When this section is used no conditions specified in this section can be present on the object.
+
+Each section has two fields:
+- `Tag Matches` requires the tag to be present with the matching value.
+- `Tag does NOT Match` requires the tag is NOT present or has a different value.
+
+{{<alert color="warning" title="Be Advised:">}} Using tag based policies means any user with the permissions to change the tag of an object can change what policies apply to that object. {{</alert>}}
 
 ## Policy Management
 

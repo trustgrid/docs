@@ -10071,6 +10071,67 @@ paths:
         name: group
         required: true
         type: string
+  /service-users/{name}:
+    get:
+      summary: Get a service user by name
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+          description: The name of the service user
+      responses:
+        200:
+          description: A service user
+          schema:
+            $ref: '#/definitions/ServiceUser'
+        404:
+          description: Service user not found
+      security:
+        - bearerAuth: []
+      tags:
+        - ServiceUser
+  /service-users:
+    get:
+      summary: Get all service users for an organization
+      responses:
+        200:
+          description: A list of service users
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ServiceUser'
+      security:
+        - bearerAuth: []
+      tags:
+        - ServiceUser
+    post:
+      summary: Create a new service user
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              name:
+                type: string
+              policyIds:
+                type: array
+                items:
+                  type: string
+      responses:
+        201:
+          description: Service user created
+          schema:
+            $ref: '#/definitions/ServiceUser'
+        400:
+          description: Invalid input
+      security:
+        - bearerAuth: []
+      tags:
+        - ServiceUser
+
 definitions:
   AlarmChannelModel:
     properties:
@@ -11647,6 +11708,21 @@ definitions:
       - name
     title: OrgModel
     type: object
+  PolicyExpression:
+    description: Policy expression
+    type: object
+    example:
+      "tg:node:tags:environment": ["production"]
+    properties:
+      eq:
+        type: object
+        properties:
+          additionalProperties:
+            description: Conditions to match
+            type: array
+            items:
+              type: string
+
   Policy:
     description: Policy
     properties:
@@ -11663,6 +11739,18 @@ definitions:
           description: TGRNs affected by the policy
           type: string
         type: array
+      conditions:
+        type: object
+        properties:
+          all:
+            description: All of these conditions must be met
+            $ref: '#/definitions/PolicyExpression'
+          any:
+            description: At least one of these conditions must be met
+            $ref: '#/definitions/PolicyExpression'
+          none:
+            description: None of these conditions must be met
+            $ref: '#/definitions/PolicyExpression'
       statements:
         items:
           description: Permission statement
@@ -12259,6 +12347,18 @@ definitions:
       port:
         type: number
     type: object
+  ServiceUser:
+    type: object
+    properties:
+      name:
+        type: string
+      orgId:
+        type: string
+      status:
+        type: string
+      tokenCreated:
+        type: string
+        format: date-time
   VpnWireguardUpdateModel:
     properties:
       clients:
