@@ -54,6 +54,8 @@ Used in configurations with more than one interface for local network connectivi
 {{<field "Ignore Health Check">}} Value can be Disable _(default)_ or Enable. If set to Enable, the interface's link status will no longer be used by the node to determine its [cluster member health state]({{<ref "/docs/clusters/#cluster-member-health-conditions">}}). Useful if a single node has a network connection it's peer does not such as an alternate WAN path.  {{</field>}}
 {{</fields>}}
 
+{{<alert title="Be Advised" color="warning">}}By default, Trustgrid uses the address space 172.18.0.0/16 for the container bridge network. Assigning an interface an IP address in this range can cause unexpected behavior and should be avoided. If required you can work with Trustgrid support to override the default network. {{</alert>}}	
+
 ## Interface Routes
 
 > If the node is part of a cluster, these must be configured at the cluster level
