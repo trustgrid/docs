@@ -25,7 +25,7 @@ In order to connect to the Trustgrid Control Plane, the following outbound traff
 {{<alert color="info">}} Trustgrid nodes will attempt connect to 169.254.169.254 on port 80. This is a standard instance metadata server in public clouds such as AWS and Azure. This connectivity is not required outside these providers. {{</alert>}}
 
 ### Container Address Space
-By default, Trustgrid uses the address space 172.18.0.0/16 for the container bridge network. Assigning an interface an IP address in this range can cause unexpected behavior and should be avoided. If required you can work with Trustgrid support to override the default network.
+By default, Trustgrid uses the address space 172.18.0.0/16 for the container bridge network. Assigning an interface an IP address in this range can cause unexpected behavior and should be avoided. If required, you can work with Trustgrid support to override the default network.
 
 ## Recommendations
 
