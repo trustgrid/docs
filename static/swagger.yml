@@ -4315,6 +4315,7 @@ paths:
             type: array
       tags:
         - Applications
+
   /v2/application/{applicationID}:
     delete:
       description: |-
@@ -4388,6 +4389,7 @@ paths:
             type: array
       tags:
         - Applications
+
   /v2/application/{applicationID}/access-policy:
     get:
       description: |-
@@ -4436,6 +4438,7 @@ paths:
           description: OK
       tags:
         - Applications
+
   /v2/application/{applicationID}/access-policy/{ruleID}:
     delete:
       description: |-
@@ -4485,6 +4488,7 @@ paths:
           description: OK
       tags:
         - Applications
+
   /v2/application/{applicationID}/access-policy/{ruleID}/{index}:
     parameters:
       - description: Desired index of rule
@@ -4508,7 +4512,7 @@ paths:
 
         ---
 
-        Requires `applications::modify` permission.
+        Requires `applications::read` permission.
       produces:
         - application/json
       responses:
@@ -4516,6 +4520,136 @@ paths:
           description: OK
       tags:
         - Applications
+
+  /v2/application/{applicationID}/access-logs:
+    parameters:
+      - description: Unique ID of application
+        in: path
+        name: applicationID
+        required: true
+        type: string
+    get:
+      description: |-
+        Retrieve the last 100 access logs for an application.
+
+        ---
+
+        Requires `applications::read` permission.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              description: AccessLog
+              properties:
+                uid:
+                  description: Unique log ID
+                  example: 9aa2bbc3-4265-475b-b977-c94b1ee25a1f
+                  type: string
+                  format: uuid
+                applicationId:
+                  description: Application ID
+                  example: 9aa2bbc3-4265-475b-b977-c94b1ee25a1a
+                  type: string
+                  format: uuid
+                user:
+                  description: User email
+                  example: user@trustgrid.io
+                  type: string
+                  format: email
+                userIp:
+                  description: User's IP address
+                  example: 1.2.3.4
+                  type: string
+                  format: ipv4
+                accessRuleId:
+                  description: ID of access rule that allowed or denied access
+                  example: 9aa2bbc3-4265-475b-b977-c94b1ee25a1b
+                  type: string
+                  format: uuid
+                action:
+                  description: Access attempt result
+                  example: allow
+                  type: string
+                  enum:
+                    - deny
+                    - allow
+                    - bypass
+              type: object
+            type: array
+      tags:
+        - Applications
+
+  /v2/application/{applicationID}/session-logs:
+    parameters:
+      - description: Unique ID of application
+        in: path
+        name: applicationID
+        required: true
+        type: string
+    get:
+      description: |-
+        Retrieve the last 100 session logs for an application.
+
+        ---
+
+        Requires `applications::read` permission.
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            items:
+              description: SessionLog
+              properties:
+                sessionId:
+                  description: Unique session ID
+                  example: 9aa2bbc3-4265-475b-b977-c94b1ee25a1f
+                  type: string
+                  format: uuid
+                user:
+                  description: User email
+                  example: user@trustgrid.io
+                  type: string
+                  format: email
+                userIp:
+                  description: User's IP address
+                  example: 1.2.3.4
+                  type: string
+                  format: ipv4
+                startTime:
+                  description: Session start time (UNIX timestamp)
+                  example: 1741371177
+                  type: number
+                endTime:
+                  description: Session end time (UNIX timestamp)
+                  example: 1741371207
+                  type: number
+                ip:
+                  description: IP address of the application
+                  example: 1.2.3.4
+                  type: string
+                  format: ipv4
+                port:
+                  description: Port of the application
+                  example: 1234
+                  type: number
+                bytesRead:
+                  description: Number of bytes read
+                  example: 100
+                  type: number
+                bytesWritten:
+                  description: Number of bytes written
+                  example: 100
+                  type: number
+              type: object
+            type: array
+      tags:
+        - Applications
+
   /v2/audit/flow-logs:
     get:
       description: |-
