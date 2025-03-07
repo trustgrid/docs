@@ -10177,15 +10177,33 @@ definitions:
           type: string
         type: array
       operator:
-        description: any/all/none
+        description: Logical operator for criteria matching
+        enum:
+          - any
+          - all
+          - none
         type: string
       tags:
         description: Tags expressed as key=value to match
         items:
           type: string
         type: array
+      tagsOperator:
+        description: How tag criteria should match
+        enum:
+          - any
+          - all
+        type: string
       threshold:
-        description: INFO/WARNING/ERROR/CRITICAL
+        description: Event threshold to match
+        enum:
+          - INFO
+          - WARNING
+          - ERROR
+          - CRITICAL
+        type: string
+      expr:
+        description: CEL expression to match
         type: string
       types:
         description: Event types to match
