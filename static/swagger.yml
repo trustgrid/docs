@@ -10071,7 +10071,8 @@ paths:
         name: group
         required: true
         type: string
-  /service-users/{name}:
+
+  /service-user/{name}:
     get:
       summary: Get a service user by name
       parameters:
@@ -10091,6 +10092,33 @@ paths:
         - bearerAuth: []
       tags:
         - ServiceUser
+
+  /service-user/{name}/token:
+    post:
+      summary: Generate API credentials for a service user
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+          description: The name of the service user
+      responses:
+        200:
+          description: API credentials
+          schema:
+            type: object
+            properties:
+              clientId:
+                type: string
+              secret:
+                type: string
+        404:
+          description: Service user not found
+      security:
+        - bearerAuth: []
+      tags:
+        - ServiceUser
+
   /service-users:
     get:
       summary: Get all service users for an organization
