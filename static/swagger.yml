@@ -10206,7 +10206,7 @@ paths:
         required: true
         type: string
 
-  /service-user/{name}:
+  /v2/service-user/{name}:
     get:
       summary: Get a service user by name
       parameters:
@@ -10227,7 +10227,7 @@ paths:
       tags:
         - ServiceUser
 
-  /service-user/{name}/token:
+  /v2/service-user/{name}/token:
     post:
       summary: Generate API credentials for a service user
       parameters:
@@ -10253,7 +10253,7 @@ paths:
       tags:
         - ServiceUser
 
-  /service-users:
+  /v2/service-user:
     get:
       summary: Get all service users for an organization
       responses:
