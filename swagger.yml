@@ -12534,8 +12534,17 @@ definitions:
         type: string
       orgId:
         type: string
+      policyIds:
+        description: Policy IDs attached to the user
+        example: ["policy1"]
+        type: array
+        items:
+          type: string
       status:
         type: string
+        enum:
+          - active
+          - inactive
       tokenCreated:
         type: string
         format: date-time
