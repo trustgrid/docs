@@ -11892,8 +11892,21 @@ definitions:
     description: Policy expression
     type: object
     example:
-      "tg:node:tags:environment": ["production"]
+      eq:
+        "tg:node:tags:environment": ["production"]
+        "tg:node:tags:another-tag": ["always-match"]
+      ne:
+        "tg:node:tags:environment": ["staging"]
+        "tg:node:tags:another-tag": ["dont-match"]
     properties:
+      ne:
+        type: object
+        properties:
+          additionalProperties:
+            description: Conditions to not match
+            type: array
+            items:
+              type: string
       eq:
         type: object
         properties:
