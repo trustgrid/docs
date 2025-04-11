@@ -9,3 +9,6 @@ run:
 
 clean:
 	rm -rf public
+
+apidocs:
+	npx @redocly/cli build-docs static/swagger.yml --output=static/apidocs.html

@@ -9,11 +9,12 @@ paths:
   /alert:
     get:
       deprecated: true
+      summary: List events, newest first. 
       description: |-
-        List events, newest first. This is deprecated; use `/v2/event` instead.
-
+        This is deprecated; use `/v2/event` instead.
+        
         ---
-
+        
         Requires `alerts::read` permission.
       parameters:
         - description: Start time (unix timestamp) to query from
@@ -37,6 +38,7 @@ paths:
         - Alerts
   /alert/{nodeID}:
     get:
+      summary: List events for a node 
       description: |-
         List events for a node (appliance or agent), newest first
 
@@ -62,11 +64,9 @@ paths:
         type: string
   /audit/download/config:
     get:
-      description: |-
+      summary: |-
         Download configuration change audits
-
-        ---
-
+      description: |-
         Requires `audits::read:config` permission.
       parameters:
         - description: ID for the item to audit. If specified, must include itemType.
@@ -110,11 +110,9 @@ paths:
         - Audit
   /audit/download/node:
     get:
-      description: |-
+      summary: |-
         Download node (appliance or agent) audits
-
-        ---
-
+      description: |-
         Requires `audits::read:node` permission.
       parameters:
         - description: Start time (unix timestamp) to query from
@@ -134,11 +132,10 @@ paths:
         - Audit
   /audit/download/user:
     get:
-      description: |-
+      summary: |-
         Download authentication audits
 
-        ---
-
+      description: |-
         Requires `audits::read:user` permission.
       produces:
         - text/csv
@@ -149,11 +146,10 @@ paths:
         - Audit
   /audit/tail/config:
     get:
-      description: |-
+      summary: |-
         List configuration change audits
 
-        ---
-
+      description: |-
         Requires `audits::read:config` permission.
       parameters:
         - description: ID for the item to audit. If specified, must include itemType.
@@ -241,8 +237,10 @@ paths:
   /audit/tail/flow_logs:
     get:
       deprecated: true
+      summary: |-
+        List recent flow logs. 
       description: |-
-        List recent flow logs. This is deprecated; use `/v2/audit/flow-logs` instead.
+        This is deprecated; use `/v2/audit/flow-logs` instead.
 
         ---
 
@@ -430,6 +428,9 @@ paths:
         - Audit
   /audit/tail/node:
     get:
+      summary: |-
+        List node audits
+
       description: |-
         List node (appliance or agent) audits
 
@@ -454,11 +455,9 @@ paths:
         - Audit
   /audit/tail/user:
     get:
-      description: |-
+      summary: |-
         List authentication audits
-
-        ---
-
+      description: |-
         Requires `audits::read:user` permission.
       produces:
         - application/json
@@ -469,7 +468,7 @@ paths:
         - Audit
   /cluster:
     get:
-      description: Get all clusters
+      summary: Get all clusters
       parameters:
         - description: If specified, the nodes will return with their associated configuration.
           in: query
@@ -523,7 +522,7 @@ paths:
       tags:
         - Cluster
     get:
-      description: Get a cluster
+      summary: Get a cluster
       produces:
         - application/json
       responses:
@@ -585,11 +584,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
+      summary: |
         Update connectors configuration for a cluster
-
-        ---
-
+      description: |
         Requires `node::configure::connectors` permissions
       parameters:
         - description: Config body
@@ -612,11 +609,9 @@ paths:
     delete:
       consumes:
         - application/json
-      description: |
+      summary: |
         Delete the connector config for a cluster
-
-        ---
-
+      description: |
         Requires `node::configure::connectors` permissions
       produces:
         - application/json
@@ -633,11 +628,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Add a connector to a cluster. Requires V2 connector config.
-
-        ---
-
+      description: |
         Requires `node::configure::connectors` permissions
       parameters:
         - description: Connector
@@ -664,11 +657,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Upgrade a cluster's connector config to V2.
-
-        ---
-
+      description: |
         Requires `node::configure::connectors` permissions
       produces:
         - application/json
@@ -693,8 +684,10 @@ paths:
     put:
       consumes:
         - application/json
+      summary: |
+        Update a connector on a cluster
       description: |
-        Update a connector on a cluster. Requires V2 connector config.
+        Requires V2 connector config.
 
         ---
 
@@ -720,11 +713,9 @@ paths:
     delete:
       consumes:
         - application/json
-      description: |
+      summary: |
         Delete a connector from a cluster. Requires V2 connector config.
-
-        ---
-
+      description: |
         Requires `node::configure::connectors` permissions
       produces:
         - application/json
@@ -741,11 +732,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
+      summary: |
         Update network configuration for a cluster
-
-        ---
-
+      description: |
         Requires `node::configure:network` permissions
       parameters:
         - description: Network Config
@@ -1343,11 +1332,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
+      summary: |
         Update services configuration for a cluster.
-
-        ---
-
+      description: |
         Requires `nodes::configure::services` permissions.
       parameters:
         - description: Config body
@@ -1370,11 +1357,9 @@ paths:
     delete:
       consumes:
         - application/json
-      description: |
+      summary: |
         Remove a cluster's services configuration.
-
-        ---
-
+      description: |
         Requires `nodes::configure::services` permissions.
       produces:
         - application/json
@@ -1390,11 +1375,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Add a service to a cluster. Requires V2 services config.
-
-        ---
-
+      description: |
         Requires `node::configure::services` permissions
       parameters:
         - description: Service
@@ -1421,11 +1404,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Upgrade a cluster's services config to V2.
-
-        ---
-
+      description: |
         Requires `node::configure::services` permissions
       produces:
         - application/json
@@ -1450,8 +1431,10 @@ paths:
     put:
       consumes:
         - application/json
+      summary: |
+        Update a service on a cluster.
       description: |
-        Update a service on a cluster. Requires V2 services config.
+        Requires V2 services config.
 
         ---
 
@@ -1477,8 +1460,10 @@ paths:
     delete:
       consumes:
         - application/json
+      summary: |
+        Delete a service from a cluster
       description: |
-        Delete a service from a cluster. Requires V2 services config.
+        Requires V2 services config.
 
         ---
 
@@ -1530,11 +1515,9 @@ paths:
         - Cluster
   /domain/{domainName}:
     get:
-      description: |-
+      summary: |-
         Get domain details
-
-        ---
-
+      description: |-
         Requires `domains::read` permission.
       produces:
         - application/json
@@ -1568,11 +1551,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update alert configuration
-
-        ---
-
+      description: |-
         Requires `domains::configure:thresholds` permission.
       parameters:
         - description: Alert configuration
@@ -1608,11 +1589,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update API GW configuration
-
-        ---
-
+      description: |-
         Requires `domains::configure:gateway` permission.
       parameters:
         - description: APIGW configuration
@@ -1640,6 +1619,7 @@ paths:
         - Domain
   /group:
     get:
+      summary: List all groups
       description: Requires `groups::read` permissions
       responses:
         '200':
@@ -1648,11 +1628,11 @@ paths:
             items:
               $ref: '#/definitions/Group'
             type: array
-      summary: List all groups in an organization
       tags:
         - User
         - Group
     post:
+      summary: Create a group
       description: Requires `groups::modify` permissions
       parameters:
         - description: The group object to be created
@@ -1664,7 +1644,6 @@ paths:
       responses:
         '200':
           description: Group successfully created
-      summary: Create a new group
       tags:
         - User
         - Group
@@ -1787,8 +1766,10 @@ paths:
         - Group
   /node:
     get:
+      summary: |-
+        List nodes
       description: |-
-        List nodes (appliances and agents)
+        List both appliances and agents.
 
         ---
 
@@ -1826,7 +1807,7 @@ paths:
     get:
       consumes:
         - application/json
-      description: Get a license to register a node
+      summary: Get a license to register a node
       produces:
         - text/plain
       responses:
@@ -1848,6 +1829,8 @@ paths:
         type: string
   /node/{nodeID}:
     delete:
+      summary: |-
+        Delete a node
       description: |-
         Delete a node (appliance or agent)
 
@@ -1865,6 +1848,8 @@ paths:
         - Node
         - Agent
     get:
+      summary: |-
+        Get a node
       description: |-
         Get a node (appliance or agent)
 
@@ -1892,6 +1877,8 @@ paths:
     put:
       consumes:
         - application/json
+      summary: |-
+        Update a node
       description: |-
         Update a node (appliance or agent)
 
@@ -1930,12 +1917,10 @@ paths:
     put:
       consumes:
         - application/json
+      summary: |
+        Update a node's alert config
       description: |
-        Update alert configuration for a node (appliance)
-
-        ---
-
-        Note: request body will be validated by JSON schema of the plugin
+        Applicable to appliances only.
       parameters:
         - description: Config body
           in: body
@@ -1956,12 +1941,10 @@ paths:
     put:
       consumes:
         - application/json
+      summary: |
+        Update a node's cluster config
       description: |
-        Update cluster configuration for a node (appliance)
-
-        ---
-
-        Note: request body will be validated by JSON schema of the plugin
+        Applicable to appliances only.
       parameters:
         - description: Config body
           in: body
@@ -1983,12 +1966,8 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
-        Update connectors configuration for a node (appliance or agent)
-
-        ---
-
-        Note: request body will be validated by JSON schema of the plugin
+      summary: |
+        Update a node's connector config
       parameters:
         - description: Config body
           in: body
@@ -2009,11 +1988,7 @@ paths:
       consumes:
         - application/json
       description: |
-        Delete the connector config for a node (appliance or agent)
-
-        ---
-
-        Requires `node::configure::connectors` permissions
+        Delete a node's connector config
       produces:
         - application/json
       responses:
@@ -2029,11 +2004,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Add a connector to a node (appliance or agent). Requires V2 connector config.
-
-        ---
-
+      description: |
         Requires `node::configure::connectors` permissions
       parameters:
         - description: Connector
@@ -2061,11 +2034,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Upgrade a node's (appliance or agent) connector config to V2.
-
-        ---
-
+      description: |
         Requires `node::configure::connectors` permissions
       produces:
         - application/json
@@ -2091,8 +2062,10 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
-        Update a connector on a node (appliance or agent). Requires V2 connector config.
+      summary: |
+        Update a node connector
+      description:
+        Applies to appliances and agents. Requires V2 connector config.
 
         ---
 
@@ -2120,6 +2093,8 @@ paths:
     delete:
       consumes:
         - application/json
+      summary: |
+        Delete a node connector
       description: |
         Delete a connector from a node (appliance or agent). Requires V2 connector config.
 
@@ -2141,6 +2116,7 @@ paths:
     put:
       consumes:
         - application/json
+      summary: Update a node's network config
       description: |
         Update network configuration for a node (appliance)
 
@@ -2739,6 +2715,7 @@ paths:
     put:
       consumes:
         - application/json
+      summary: Update a node's services config
       description: |
         Update services configuration for a node (appliance or agent)
 
@@ -2767,11 +2744,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Add a service to a node. Requires V2 services config.
-
-        ---
-
+      description: |
         Requires `node::configure::services` permissions
       parameters:
         - description: Service
@@ -2799,11 +2774,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Upgrade a node's services config to V2.
-
-        ---
-
+      description: |
         Requires `node::configure::services` permissions
       produces:
         - application/json
@@ -2829,6 +2802,7 @@ paths:
     put:
       consumes:
         - application/json
+      summary: Update a node service
       description: |
         Update a service on a node. Requires V2 services config.
 
@@ -2857,6 +2831,7 @@ paths:
     delete:
       consumes:
         - application/json
+      summary: Delete a node service
       description: |
         Delete a service from a node. Requires V2 services config.
 
@@ -2878,6 +2853,7 @@ paths:
     put:
       consumes:
         - application/json
+      summary: Update a node's ZTNA gateway config
       description: |
         Update ZTNA gateway configuration for a node (appliance)
 
@@ -2937,6 +2913,7 @@ paths:
     delete:
       consumes:
         - application/json
+      summary: Delete a node's ZTNA gateway config
       description: |
         Delete the ZTNA gateway configuration for a node (appliance)
 
@@ -2961,6 +2938,7 @@ paths:
     put:
       consumes:
         - application/json
+      summary: Update a node's gateway config
       description: |-
         Update gateway configuration
 
@@ -3064,6 +3042,7 @@ paths:
     put:
       consumes:
         - application/json
+      summary: Update a node's SNMP config
       description: |-
         Update SNMP configuration
 
@@ -3184,7 +3163,7 @@ paths:
         required: true
         type: string
     post:
-      description: Trigger an event on a node (appliance or agent)
+      summary: Trigger an event on a node
       parameters:
         - description: If present, the request will return the node's event output
           in: query
@@ -3215,7 +3194,8 @@ paths:
         - Org
   /provisioning/api/v1/orders:
     get:
-      description: Get all orders. The responses for orders from this API request are not fully hydrated (eg, no nodes).
+      summary: Get all orders
+      description: The responses for orders from this API request are not fully hydrated (eg, no nodes).
       produces:
         - application/json
       responses:
@@ -3228,7 +3208,7 @@ paths:
       tags:
         - Orders
     post:
-      description: Create an order. Omitted fields are not updated.
+      description: Create an order. Omitted fields are not written.
       parameters:
         - in: body
           name: order
@@ -3287,7 +3267,7 @@ paths:
         required: true
         type: string
     post:
-      description: Add a comment
+      description: Add a comment to an order
       parameters:
         - in: body
           name: comment body
@@ -3352,7 +3332,7 @@ paths:
       tags:
         - Repositories
     get:
-      description: Get information for a repository
+      summary: Get a repository
       produces:
         - application/json
       responses:
@@ -3438,7 +3418,7 @@ paths:
                   type: integer
               type: object
             type: array
-      summary: Retrieve usage data for nodes (appliances or agents)
+      summary: Retrieve usage data for nodes
       tags:
         - Node
   /tags:
@@ -3478,11 +3458,9 @@ paths:
 
   /upgrade-manager/api/v1/upgrades:
     get:
-      description: |-
+      summary: |-
         List upgrades
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::read` permission.
       produces:
         - application/json
@@ -3498,11 +3476,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a new upgrade
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3523,11 +3499,9 @@ paths:
 
   /upgrade-manager/api/v1/upgrades/active:
     get:
-      description: |-
+      summary: |-
         Get the active upgrade
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::read` permission.
       produces:
         - application/json
@@ -3543,11 +3517,9 @@ paths:
 
   /upgrade-manager/api/v1/upgrades/{upgradeID}:
     delete:
-      description: |-
+      summary: |-
         Delete an upgrade
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3559,11 +3531,9 @@ paths:
       tags:
         - Upgrade Manager
     get:
-      description: |-
+      summary: |-
         Get an upgrade
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::read` permission.
       produces:
         - application/json
@@ -3585,11 +3555,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update an upgrade
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       parameters:
         - description: Upgrade Input
@@ -3628,11 +3596,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Approve an upgrade to failover clusters
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3653,11 +3619,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Mark an upgrade complete
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3683,11 +3647,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Dismiss a workflow
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3708,11 +3670,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Dry run an upgrade. This will clone the upgrade and start the cloned copy and return the copy's UID
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3734,11 +3694,9 @@ paths:
         - Upgrade Manager
   /upgrade-manager/api/v1/upgrades/{upgradeID}/logs:
     get:
-      description: |-
+      summary: |-
         Get logs for an upgrade
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::read` permission.
       produces:
         - application/json
@@ -3774,11 +3732,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Add a note to a workflow
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       parameters:
         - description: Note
@@ -3813,11 +3769,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Retry a workflow
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3838,11 +3792,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Start an upgrade
-
-        ---
-
+      description: |-
         Requires `upgrade-manager::modify` permission.
       produces:
         - application/json
@@ -3855,12 +3807,10 @@ paths:
         - Upgrade Manager
   /user:
     get:
-      description: |
+      summary: |
         Get all users
-
-        ---
-
-        Note: changes to users sometimes take a few minutes to appear while being indexed
+      description: |
+        Changes to users sometimes take a few minutes to appear while being indexed
       produces:
         - application/json
       responses:
@@ -3875,8 +3825,9 @@ paths:
     post:
       consumes:
         - application/json
+      summary: Invite a user to the Portal
       description: |
-        Invite a user. For organizations using the default Trustgrid authentication provider, users must be **invited** and then they should sign up with the invited email address.
+        For organizations using the default Trustgrid authentication provider, users must be **invited** and then they should sign up with the invited email address.
         For custom IDP integrations, users should be **added** instead.
       parameters:
         - in: body
@@ -3904,6 +3855,8 @@ paths:
     post:
       consumes:
         - application/json
+      summary: |
+        Add a user to the Portal
       description: |
         Add a user. This is only available to organizations with custom IDP integrations.
       parameters:
@@ -3958,7 +3911,7 @@ paths:
         type: string
   /user/{email}/groups:
     get:
-      description: |
+      summary: |
         Get all user groups
       produces:
         - application/json
@@ -3979,7 +3932,7 @@ paths:
         type: string
   /v2/alarm:
     get:
-      description: Get alarms
+      summary: Get alarms
       produces:
         - application/json
       responses:
@@ -3992,7 +3945,7 @@ paths:
       tags:
         - Alarms
     post:
-      description: Create alarm
+      description: Create an alarm
       parameters:
         - description: Alarm body
           in: body
@@ -4013,7 +3966,7 @@ paths:
         - Alarms
   /v2/alarm-channel:
     get:
-      description: Returns available alarm channels
+      summary: Returns available alarm channels
       produces:
         - application/json
       responses:
@@ -4026,7 +3979,7 @@ paths:
       tags:
         - Alarms
     post:
-      description: Creates an alarm channel
+      description: Create an alarm channel
       parameters:
         - description: Alarm channel body
           in: body
@@ -4047,7 +4000,7 @@ paths:
         - Alarms
   /v2/alarm-channel/{uid}:
     delete:
-      description: Updates the alarm channel with the given uid
+      description: Update an alarm channel
       produces:
         - application/json
       responses:
@@ -4056,7 +4009,7 @@ paths:
       tags:
         - Alarms
     get:
-      description: Returns the alarm channel with the given uid
+      description: Get an alarm channel
       produces:
         - application/json
       responses:
@@ -4074,7 +4027,7 @@ paths:
     put:
       consumes:
         - application/json
-      description: Updates the alarm channel with the given uid
+      description: Update an alarm channel
       parameters:
         - description: Alarm channel body
           in: body
@@ -4182,11 +4135,9 @@ paths:
         - Alarms
   /v2/alert:
     get:
-      description: |-
+      summary: |-
         List alerts, newest first
-
-        ---
-
+      description: |-
         Requires `alerts::read` permission.
       produces:
         - application/json
@@ -4201,11 +4152,9 @@ paths:
         - Alerts
   /v2/alert/{nodeID}:
     get:
-      description: |-
+      summary: |-
         List alerts for a node (appliance or agent), newest first
-
-        ---
-
+      description: |-
         Requires `alerts::read` permission.
       produces:
         - application/json
@@ -4226,11 +4175,9 @@ paths:
         type: string
   /v2/alert/{nodeID}/{alertType}:
     delete:
+      summary: |-
+        Resolve an alert
       description: |-
-        Resolve alert
-
-        ---
-
         Requires `alerts::read` permission.
       produces:
         - application/json
@@ -4252,7 +4199,7 @@ paths:
         type: string
   /v2/application:
     get:
-      description: List applications your user can access
+      summary: List applications your user can access
       produces:
         - application/json
       responses:
@@ -4267,11 +4214,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create an application
-
-        ---
-
+      description: |-
         Requires `applications::modify` permission.
       parameters:
         - description: Application configuration
@@ -4298,11 +4243,9 @@ paths:
         - Applications
   /v2/application/all:
     get:
-      description: |-
+      summary: |-
         List applications
-
-        ---
-
+      description: |-
         Requires `applications::read` permission.
       produces:
         - application/json
@@ -4318,11 +4261,9 @@ paths:
 
   /v2/application/{applicationID}:
     delete:
-      description: |-
+      summary: |-
         Delete an application
-
-        ---
-
+      description: |-
         Requires `applications::modify` permission.
       produces:
         - application/json
@@ -4334,11 +4275,9 @@ paths:
       tags:
         - Applications
     get:
-      description: |-
+      summary: |-
         Get an application
-
-        ---
-
+      description: |-
         Requires `applications::read` permission.
       produces:
         - application/json
@@ -4360,11 +4299,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update an application
-
-        ---
-
+      description: |-
         Requires `applications::modify` permission.
       parameters:
         - description: Application configuration
@@ -4392,11 +4329,9 @@ paths:
 
   /v2/application/{applicationID}/access-policy:
     get:
-      description: |-
+      summary: |-
         List access rules
-
-        ---
-
+      description: |-
         Requires `applications::read` permission.
       produces:
         - application/json
@@ -4418,11 +4353,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create an access rule
-
-        ---
-
+      description: |-
         Requires `applications::modify` permission.
       parameters:
         - description: Access rule
@@ -4441,11 +4374,9 @@ paths:
 
   /v2/application/{applicationID}/access-policy/{ruleID}:
     delete:
-      description: |-
+      summary: |-
         Delete an access rule
-
-        ---
-
+      description: |-
         Requires `applications::modify` permission.
       produces:
         - application/json
@@ -4468,11 +4399,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update an access rule
-
-        ---
-
+      description: |-
         Requires `applications::modify` permission.
       parameters:
         - description: Access rule
@@ -4507,11 +4436,9 @@ paths:
         required: true
         type: string
     patch:
-      description: |-
+      summary: |-
         Move an access rule to a new place in the list
-
-        ---
-
+      description: |-
         Requires `applications::read` permission.
       produces:
         - application/json
@@ -4529,11 +4456,9 @@ paths:
         required: true
         type: string
     get:
-      description: |-
+      summary: |-
         Retrieve the last 100 access logs for an application.
-
-        ---
-
+      description: |-
         Requires `applications::read` permission.
       produces:
         - application/json
@@ -4590,11 +4515,9 @@ paths:
         required: true
         type: string
     get:
-      description: |-
+      summary: |-
         Retrieve the last 100 session logs for an application.
-
-        ---
-
+      description: |-
         Requires `applications::read` permission.
       produces:
         - application/json
@@ -4652,11 +4575,9 @@ paths:
 
   /v2/audit/flow-logs:
     get:
-      description: |-
+      summary: |-
         List recent flow logs
-
-        ---
-
+      description: |-
         Requires `audits::read:flows` permission.
       parameters:
         - description: Unix timestamp for the start of the log window
@@ -4845,11 +4766,9 @@ paths:
         - Audit
   /v2/certificates:
     get:
-      description: |-
+      summary: |-
         List certificates
-
-        ---
-
+      description: |-
         Requires `certificates::read` permission.
       produces:
         - application/json
@@ -4865,11 +4784,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a certificate
-
-        ---
-
+      description: |-
         Requires `certificates::modify` permission.
       parameters:
         - description: Certificate parts
@@ -4896,11 +4813,9 @@ paths:
         - Certificates
   /v2/certificates/{fqdn}:
     delete:
-      description: |-
+      summary: |-
         Delete a certificate
-
-        ---
-
+      description: |-
         Requires `certificates::modify` permission.
       produces:
         - application/json
@@ -4918,11 +4833,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a certificate
-
-        ---
-
+      description: |-
         Requires `certificates::modify` permission.
       parameters:
         - description: Certificate parts
@@ -4949,11 +4862,9 @@ paths:
         - Certificates
   /v2/cluster/{clusterFQDN}/exec/container:
     get:
-      description: |-
+      summary: |-
         List containers
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -4975,11 +4886,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a container
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Container
@@ -5005,11 +4914,9 @@ paths:
         - Compute
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}:
     delete:
-      description: |-
+      summary: |-
         Delete a container
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       produces:
         - application/json
@@ -5019,11 +4926,9 @@ paths:
       tags:
         - Compute
     get:
-      description: |-
+      summary: |-
         Get a container
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5048,11 +4953,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a container
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Container
@@ -5078,11 +4981,9 @@ paths:
         - Compute
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/capability:
     get:
-      description: |-
+      summary: |-
         Get container capabilities
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5119,11 +5020,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update container config
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Container config
@@ -5149,11 +5048,9 @@ paths:
         - Compute
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/healthcheck:
     get:
-      description: |-
+      summary: |-
         Get container health check
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5177,11 +5074,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/interface:
     get:
-      description: |-
+      summary: |-
         List container interfaces
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5207,11 +5102,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/limit:
     get:
-      description: |-
+      summary: |-
         List container limits
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5235,11 +5128,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/logging:
     get:
-      description: |-
+      summary: |-
         Get container logging configuration
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5263,11 +5154,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/mount:
     get:
-      description: |-
+      summary: |-
         List container mounts
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5293,11 +5182,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/port-mapping:
     get:
-      description: |-
+      summary: |-
         List container port mappings
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5323,11 +5210,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/variable:
     get:
-      description: |-
+      summary: |-
         List container variables
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5353,11 +5238,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/virtual-network:
     get:
-      description: |-
+      summary: |-
         List container virtual networks
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5383,11 +5266,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/volume:
     get:
-      description: |-
+      summary: |-
         List container volumes
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5413,11 +5294,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/container/{containerID}/vrf:
     get:
-      description: |-
+      summary: |-
         Get container VRF
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5441,11 +5320,9 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/exec/volume:
     get:
-      description: |-
+      summary: |-
         List volumes
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -5467,11 +5344,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create volume
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Volume
@@ -5497,11 +5372,9 @@ paths:
         - Compute
   /v2/cluster/{clusterFQDN}/exec/volume/{volumeName}:
     delete:
-      description: |-
+      summary: |-
         Delete a volume
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       produces:
         - application/json
@@ -5523,7 +5396,7 @@ paths:
         type: string
   /v2/cluster/{clusterFQDN}/vpn:
     get:
-      description: Returns all the VPN networks
+      summary: Returns all the VPN networks
       produces:
         - application/json
       responses:
@@ -5562,7 +5435,7 @@ paths:
         - VPN Network
   /v2/cluster/{clusterFQDN}/vpn/{networkName}:
     delete:
-      description: Deletes a vpn network
+      description: Delete a VPN network
       produces:
         - application/json
       responses:
@@ -5612,7 +5485,7 @@ paths:
     delete:
       consumes:
         - application/json
-      description: Delete a VPN Dns configuration
+      description: Delete a VPN DNS configuration
       produces:
         - application/json
       responses:
@@ -5621,7 +5494,7 @@ paths:
       tags:
         - VPN Network
     get:
-      description: Get All VPN Dns configuration
+      description: Get a VPN DNS configuration
       produces:
         - application/json
       responses:
@@ -5641,7 +5514,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Create a VPN Dns configuration
+      description: Create a VPN DNS configuration
       parameters:
         - in: body
           name: dns
@@ -5661,7 +5534,7 @@ paths:
     put:
       consumes:
         - application/json
-      description: Update a VPN Dns configuration
+      description: Update a VPN DNS configuration
       parameters:
         - in: body
           name: dns
@@ -5680,7 +5553,7 @@ paths:
         - VPN Network
   /v2/cluster/{clusterFQDN}/vpn/{networkName}/dynamic/export-route:
     get:
-      description: Get All VPN's dynamic export routes
+      description: Get a VPN's dynamic export routes
       produces:
         - application/json
       responses:
@@ -5702,7 +5575,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN export route
+      description: Create a VPN export route
       parameters:
         - in: body
           name: route
@@ -5765,7 +5638,7 @@ paths:
         - VPN Network
   /v2/cluster/{clusterFQDN}/vpn/{networkName}/dynamic/import-route:
     get:
-      description: Get All VPN's dynamic import routes
+      description: Get a VPN's dynamic import routes
       produces:
         - application/json
       responses:
@@ -5787,7 +5660,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN import route
+      description: Create a VPN import route
       parameters:
         - in: body
           name: route
@@ -5850,7 +5723,7 @@ paths:
         - VPN Network
   /v2/cluster/{clusterFQDN}/vpn/{networkName}/interface:
     get:
-      description: Get All VPN's interfaces
+      description: Get a VPN's interfaces
       produces:
         - application/json
       responses:
@@ -5935,7 +5808,7 @@ paths:
         - VPN Network
   /v2/cluster/{clusterFQDN}/vpn/{networkName}/route:
     get:
-      description: Get All VPN's routes
+      description: Get a VPN's routes
       produces:
         - application/json
       responses:
@@ -5957,7 +5830,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN route
+      description: Create a VPN route
       parameters:
         - in: body
           name: route
@@ -6020,7 +5893,7 @@ paths:
         - VPN Network
   /v2/cluster/{clusterFQDN}/vpn/{networkName}/service:
     get:
-      description: Gets all VPN services
+      description: Get a VPN's services
       produces:
         - application/json
       responses:
@@ -6042,7 +5915,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN Service
+      description: Create a VPN Service
       parameters:
         - in: body
           name: service
@@ -6116,7 +5989,7 @@ paths:
       tags:
         - VPN Network
     get:
-      description: Get All VPN WireGuard configuration
+      description: Get a VPN's WireGuard configuration
       produces:
         - application/json
       responses:
@@ -6155,11 +6028,9 @@ paths:
         - VPN Network
   /v2/domain/{domainName}/network:
     get:
-      description: |-
+      summary: |-
         List domain networks
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6181,11 +6052,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a domain network
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Virtual network configuration
@@ -6212,11 +6081,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}:
     delete:
-      description: |-
+      summary: |-
         Delete a domain network - this change is not staged and will immediately affect the domain
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -6238,11 +6105,9 @@ paths:
         type: string
   /v2/domain/{domainName}/network/{networkName}/access-policy:
     get:
-      description: |-
+      summary: |-
         List a network's access policies
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6269,11 +6134,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a network access policy
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Access policy configuration
@@ -6300,11 +6163,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/access-policy/{accessPolicyID}:
     delete:
-      description: |-
+      summary: |-
         Delete a network access policy
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -6341,11 +6202,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a network access policy
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Access policy configuration
@@ -6372,11 +6231,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/auth-group:
     get:
-      description: |-
+      summary: |-
         List a network's auth groups
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6403,11 +6260,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a network auth group
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network auth group configuration
@@ -6434,11 +6289,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/auth-group/{groupName}:
     delete:
-      description: |-
+      summary: |-
         Delete a network auth group
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -6448,11 +6301,9 @@ paths:
       tags:
         - Domain Network
     get:
-      description: |-
+      summary: |-
         List a network auth group's members
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6484,11 +6335,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Add a network auth group member
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network auth group member
@@ -6516,11 +6365,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a network auth group
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network auth group configuration
@@ -6547,11 +6394,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/auth-group/{groupName}/{memberID}:
     delete:
-      description: |-
+      summary: |-
         Remove a network auth group member
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -6584,11 +6429,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a membership
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network auth group member
@@ -6615,11 +6458,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/change:
     get:
-      description: |-
+      summary: |-
         List staged changes
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6656,11 +6497,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Commit staged changes
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Digest
@@ -6693,11 +6532,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/change/validate:
     get:
-      description: |-
+      summary: |-
         List validation errors for staged changes
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6736,11 +6573,9 @@ paths:
         type: string
   /v2/domain/{domainName}/network/{networkName}/change/{changeID}:
     delete:
-      description: |-
+      summary: |-
         Revert a staged change. If the item is newly added and not committed, the item will be deleted along with any associated changes.
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -6767,11 +6602,9 @@ paths:
         type: string
   /v2/domain/{domainName}/network/{networkName}/dns:
     get:
-      description: |-
+      summary: |-
         Get a network's DNS configuration
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6798,11 +6631,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a network's DNS configuration
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: DNS configuration
@@ -6829,11 +6660,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/dns-zone:
     get:
-      description: |-
+      summary: |-
         List a network's DNS zones
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6860,11 +6689,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a DNS zone
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: DNS zone configuration
@@ -6891,11 +6718,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/dns-zone/{zoneName}:
     delete:
-      description: |-
+      summary: |-
         Delete a DNS zone
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -6923,11 +6748,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a DNS zone
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: DNS zone configuration
@@ -6954,11 +6777,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/dns-zone/{zoneName}/dns-record:
     get:
-      description: |-
+      summary: |-
         List a network zone's DNS records
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -6990,11 +6811,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a DNS record
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: DNS record configuration
@@ -7021,11 +6840,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/dns-zone/{zoneName}/dns-record/{recordName}/{recordType}:
     delete:
-      description: |-
+      summary: |-
         Delete a DNS record
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -7063,11 +6880,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a DNS record
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: DNS record configuration
@@ -7094,11 +6909,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/network-group:
     get:
-      description: |-
+      summary: |-
         List a network's groups
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -7125,11 +6938,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a network group
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network group configuration
@@ -7156,11 +6967,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/network-group/{groupName}:
     delete:
-      description: |-
+      summary: |-
         Delete a network group
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -7170,11 +6979,9 @@ paths:
       tags:
         - Domain Network
     get:
-      description: |-
+      summary: |-
         List a network's group memberships
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -7206,11 +7013,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a network group
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network group configuration
@@ -7237,11 +7042,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/network-group/{groupName}/{objectName}:
     delete:
-      description: |-
+      summary: |-
         Remove a network object from a network group
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -7274,11 +7077,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Add a network object to a network group (represented by a network group membership
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -7289,11 +7090,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/network-object:
     get:
-      description: |-
+      summary: |-
         List a network's objects
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -7320,11 +7119,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a network object
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network object configuration
@@ -7351,11 +7148,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/network-object/{objectName}:
     delete:
-      description: |-
+      summary: |-
         Delete a network object
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -7383,11 +7178,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a network object
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Network object configuration
@@ -7414,11 +7207,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/port-forwarding:
     get:
-      description: |-
+      summary: |-
         List a network's port forwardings
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -7445,11 +7236,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a port forwarding
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Port forwarding configuration
@@ -7476,11 +7265,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/port-forwarding/{portForwardingID}:
     delete:
-      description: |-
+      summary: |-
         Get a port forwarding
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -7510,11 +7297,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a port forwarding
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Port forwarding configuration
@@ -7541,11 +7326,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/route:
     get:
-      description: |-
+      summary: |-
         List a network's routes
-
-        ---
-
+      description: |-
         Requires `virtual-networks::read` permission.
       produces:
         - application/json
@@ -7572,11 +7355,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a network route
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Route configuration
@@ -7603,11 +7384,9 @@ paths:
         - Domain Network
   /v2/domain/{domainName}/network/{networkName}/route/{routeID}:
     delete:
-      description: |-
+      summary: |-
         Delete a network route
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       produces:
         - application/json
@@ -7635,11 +7414,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a network route
-
-        ---
-
+      description: |-
         Requires `virtual-networks::modify` permission.
       parameters:
         - description: Route configuration
@@ -7680,7 +7457,7 @@ paths:
         - Alarms
   /v2/event/{nodeId}:
     get:
-      description: Get all events for node (appliance or agent)
+      description: Get all events for node
       produces:
         - application/json
       responses:
@@ -7733,7 +7510,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates an identity provider
+      description: Create an identity provider
       parameters:
         - in: body
           name: idp
@@ -7760,11 +7537,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Set OpenID settings for an IDP
-
-        ---
-
+      description: |-
         Requires `identity-providers::modify` permission.
       parameters:
         - description: OpenID config
@@ -7798,11 +7573,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Set SAML settings for an IDP
-
-        ---
-
+      description: |-
         Requires `identity-providers::modify` permission.
       parameters:
         - description: SAML config
@@ -7877,11 +7650,9 @@ paths:
         - IDP
   /v2/node/{nodeID}/data-store:
     delete:
-      description: |-
+      summary: |-
         Delete a file or directory
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       parameters:
         - description: rm
@@ -7919,11 +7690,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Copy a file from an HTTP location to the data store
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       parameters:
         - description: Download config
@@ -7970,11 +7739,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Upload a file from the node to an HTTP endpoint
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       parameters:
         - description: Upload config
@@ -8005,11 +7772,9 @@ paths:
         - Node
   /v2/node/{nodeID}/data-store/list:
     get:
-      description: |-
+      summary: |-
         List the data store contents
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       produces:
         - application/json
@@ -8042,11 +7807,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a directory
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       parameters:
         - description: mkdir
@@ -8078,11 +7841,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Copy a file from S3 to the data store
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       parameters:
         - description: Download config
@@ -8117,11 +7878,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Upload a file from the node to an S3 bucket
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       parameters:
         - description: Upload config
@@ -8148,11 +7907,9 @@ paths:
         - Node
   /v2/node/{nodeID}/data-store/tasks:
     get:
-      description: |-
+      summary: |-
         List recent data store activity
-
-        ---
-
+      description: |-
         Requires `nodes::service:datastore-manager` permission.
       produces:
         - application/json
@@ -8177,11 +7934,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container:
     get:
-      description: |-
+      summary: |-
         List containers
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8203,11 +7958,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a container
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Container
@@ -8233,11 +7986,9 @@ paths:
         - Compute
   /v2/node/{nodeID}/exec/container/{containerID}:
     delete:
-      description: |-
+      summary: |-
         Delete a container
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       produces:
         - application/json
@@ -8247,11 +7998,9 @@ paths:
       tags:
         - Compute
     get:
-      description: |-
+      summary: |-
         Get a container
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8276,11 +8025,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a container
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Container
@@ -8306,11 +8053,9 @@ paths:
         - Compute
   /v2/node/{nodeID}/exec/container/{containerID}/capability:
     get:
-      description: |-
+      summary: |-
         Get container capabilities
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8347,11 +8092,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update container config
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Container config
@@ -8377,11 +8120,9 @@ paths:
         - Compute
   /v2/node/{nodeID}/exec/container/{containerID}/healthcheck:
     get:
-      description: |-
+      summary: |-
         Get container health check
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8405,11 +8146,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/interface:
     get:
-      description: |-
+      summary: |-
         List container interfaces
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8435,11 +8174,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/limit:
     get:
-      description: |-
+      summary: |-
         List container limits
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8463,11 +8200,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/logging:
     get:
-      description: |-
+      summary: |-
         Get container logging configuration
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8491,11 +8226,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/mount:
     get:
-      description: |-
+      summary: |-
         List container mounts
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8521,11 +8254,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/port-mapping:
     get:
-      description: |-
+      summary: |-
         List container port mappings
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8551,11 +8282,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/variable:
     get:
-      description: |-
+      summary: |-
         List container variables
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8581,11 +8310,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/virtual-network:
     get:
-      description: |-
+      summary: |-
         List container virtual networks
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8611,11 +8338,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/volume:
     get:
-      description: |-
+      summary: |-
         List container volumes
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8641,11 +8366,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/container/{containerID}/vrf:
     get:
-      description: |-
+      summary: |-
         Get container VRF
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8669,11 +8392,9 @@ paths:
         type: string
   /v2/node/{nodeID}/exec/volume:
     get:
-      description: |-
+      summary: |-
         List volumes
-
-        ---
-
+      description: |-
         Requires `node-exec::read` permission.
       produces:
         - application/json
@@ -8695,11 +8416,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create volume
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       parameters:
         - description: Volume
@@ -8725,11 +8444,9 @@ paths:
         - Compute
   /v2/node/{nodeID}/exec/volume/{volumeName}:
     delete:
-      description: |-
+      summary: |-
         Delete a volume
-
-        ---
-
+      description: |-
         Requires `node-exec::modify` permission.
       produces:
         - application/json
@@ -8751,11 +8468,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/image:
     get:
-      description: |
+      summary: |
         List KVM images
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -8774,11 +8489,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Create an image
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       parameters:
         - in: body
@@ -8802,11 +8515,9 @@ paths:
     delete:
       consumes:
         - application/json
-      description: |
+      summary: |
         Delete an image
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       produces:
         - application/json
@@ -8817,11 +8528,9 @@ paths:
         - Node
         - KVM
     get:
-      description: |
+      summary: |
         Get an image
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -8843,11 +8552,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
+      summary: |
         Update an image
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       parameters:
         - in: body
@@ -8871,11 +8578,9 @@ paths:
         - KVM
   /v2/node/{nodeID}/kvm/machine:
     get:
-      description: |
+      summary: |
         List KVM machines
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -8894,11 +8599,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Create a KVM machines
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       parameters:
         - in: body
@@ -8920,11 +8623,9 @@ paths:
         - KVM
   /v2/node/{nodeID}/kvm/machine/{id}:
     delete:
-      description: |
+      summary: |
         Delete a KVM machine from a node (appliance)
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       produces:
         - application/json
@@ -8935,11 +8636,9 @@ paths:
         - Node
         - KVM
     get:
-      description: |
+      summary: |
         Get a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -8961,11 +8660,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
+      summary: |
         Update a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       parameters:
         - in: body
@@ -8987,11 +8684,9 @@ paths:
         - KVM
   /v2/node/{nodeID}/kvm/machine/{id}/cloud-init:
     get:
-      description: |
+      summary: |
         Get cloud init config for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9023,11 +8718,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |
+      summary: |
         Update a KVM machine config
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       parameters:
         - in: body
@@ -9049,11 +8742,9 @@ paths:
         - KVM
   /v2/node/{nodeID}/kvm/machine/{id}/cpu:
     get:
-      description: |
+      summary: |
         Get CPU config for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9076,11 +8767,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/machine/{id}/interface:
     get:
-      description: |
+      summary: |
         Get interfaces for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9103,11 +8792,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/machine/{id}/memory:
     get:
-      description: |
+      summary: |
         Get memory config for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9130,11 +8817,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/machine/{id}/port-mapping:
     get:
-      description: |
+      summary: |
         Get port mappings for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9157,11 +8842,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/machine/{id}/virtual-network:
     get:
-      description: |
+      summary: |
         Get virtual networks for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9184,11 +8867,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/machine/{id}/volume:
     get:
-      description: |
+      summary: |
         Get volumes for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9211,11 +8892,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/machine/{id}/vrf:
     get:
-      description: |
+      summary: |
         Get VRF config for a KVM machine
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9236,11 +8915,9 @@ paths:
         type: string
   /v2/node/{nodeID}/kvm/volume:
     get:
-      description: |
+      summary: |
         List volumes
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9259,11 +8936,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |
+      summary: |
         Create a volume
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       parameters:
         - in: body
@@ -9287,11 +8962,9 @@ paths:
     delete:
       consumes:
         - application/json
-      description: |
+      summary: |
         Delete a volume
-
-        ---
-
+      description: |
         Requires `node-kvm::modify` permissions
       produces:
         - application/json
@@ -9302,11 +8975,9 @@ paths:
         - Node
         - KVM
     get:
-      description: |
+      summary: |
         Get a volume
-
-        ---
-
+      description: |
         Requires `node-kvm::read` permissions
       produces:
         - application/json
@@ -9327,11 +8998,9 @@ paths:
         type: string
   /v2/node/{nodeID}/plugin-logs/gateway-details:
     get:
-      description: |
+      summary: |
         Get gateway connection telemetry logs for a node (appliance)
-      responses:
-        '200':
-          description: OK
+      description: |
           schema:
             items:
               properties:
@@ -9399,11 +9068,10 @@ paths:
         type: number
   /v2/node/{nodeID}/vpn:
     get:
-      description: Returns all the VPN networks
+      summary: Returns all the VPN networks
       produces:
         - application/json
       responses:
-        '200':
           description: OK
           schema:
             items:
@@ -9438,7 +9106,7 @@ paths:
         - VPN Network
   /v2/node/{nodeID}/vpn/{networkName}:
     delete:
-      description: Deletes a vpn network
+      description: Delete a VPN network
       produces:
         - application/json
       responses:
@@ -9447,7 +9115,7 @@ paths:
       tags:
         - VPN Network
     get:
-      description: Returns information about a VPN network
+      description: Get a VPN network
       produces:
         - application/json
       responses:
@@ -9488,7 +9156,7 @@ paths:
     delete:
       consumes:
         - application/json
-      description: Delete a VPN Dns configuration
+      description: Delete a VPN DNS configuration
       produces:
         - application/json
       responses:
@@ -9497,7 +9165,7 @@ paths:
       tags:
         - VPN Network
     get:
-      description: Get All VPN Dns configuration
+      description: Get a VPN's DNS configuration
       produces:
         - application/json
       responses:
@@ -9517,7 +9185,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Create a VPN Dns configuration
+      description: Create a VPN DNS configuration
       parameters:
         - in: body
           name: dns
@@ -9537,7 +9205,7 @@ paths:
     put:
       consumes:
         - application/json
-      description: Update a VPN Dns configuration
+      description: Update a VPN DNS configuration
       parameters:
         - in: body
           name: dns
@@ -9556,7 +9224,7 @@ paths:
         - VPN Network
   /v2/node/{nodeID}/vpn/{networkName}/dynamic/export-route:
     get:
-      description: Get All VPN's dynamic export routes
+      description: Get a VPN's dynamic export routes
       produces:
         - application/json
       responses:
@@ -9578,7 +9246,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN export route
+      description: Create a VPN export route
       parameters:
         - in: body
           name: route
@@ -9641,7 +9309,7 @@ paths:
         - VPN Network
   /v2/node/{nodeID}/vpn/{networkName}/dynamic/import-route:
     get:
-      description: Get All VPN's dynamic import routes
+      description: Get a VPN's dynamic import routes
       produces:
         - application/json
       responses:
@@ -9663,7 +9331,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN import route
+      description: Create a VPN import route
       parameters:
         - in: body
           name: route
@@ -9726,7 +9394,7 @@ paths:
         - VPN Network
   /v2/node/{nodeID}/vpn/{networkName}/interface:
     get:
-      description: Get All VPN's interfaces
+      description: Get a VPN's interfaces
       produces:
         - application/json
       responses:
@@ -9811,7 +9479,7 @@ paths:
         - VPN Network
   /v2/node/{nodeID}/vpn/{networkName}/route:
     get:
-      description: Get All VPN's routes
+      description: Get a VPN's routes
       produces:
         - application/json
       responses:
@@ -9833,7 +9501,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN route
+      description: Create a VPN route
       parameters:
         - in: body
           name: route
@@ -9896,7 +9564,7 @@ paths:
         - VPN Network
   /v2/node/{nodeID}/vpn/{networkName}/service:
     get:
-      description: Gets all VPN services
+      description: Get a VPN's services
       produces:
         - application/json
       responses:
@@ -9918,7 +9586,7 @@ paths:
     post:
       consumes:
         - application/json
-      description: Creates a VPN Service
+      description: Create a VPN Service
       parameters:
         - in: body
           name: service
@@ -9992,7 +9660,7 @@ paths:
       tags:
         - VPN Network
     get:
-      description: Get All VPN WireGuard configuration
+      description: Get a VPN WireGuard configuration
       produces:
         - application/json
       responses:
@@ -10031,11 +9699,9 @@ paths:
         - VPN Network
   /v2/policy:
     get:
-      description: |-
+      summary: |-
         List policies
-
-        ---
-
+      description: |-
         Requires `permissions::read` permission.
       produces:
         - application/json
@@ -10051,11 +9717,9 @@ paths:
     post:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Create a policy
-
-        ---
-
+      description: |-
         Requires `permissions::modify` permission.
       parameters:
         - description: Policy
@@ -10081,11 +9745,9 @@ paths:
         - Permissions
   /v2/policy/{name}:
     delete:
-      description: |-
+      summary: |-
         Delete a policy
-
-        ---
-
+      description: |-
         Requires `permissions::modify` permission.
       produces:
         - application/json
@@ -10097,11 +9759,9 @@ paths:
       tags:
         - Permissions
     get:
-      description: |-
+      summary: |-
         Get a policy
-
-        ---
-
+      description: |-
         Requires `permissions::read` permission.
       produces:
         - application/json
@@ -10123,11 +9783,9 @@ paths:
     put:
       consumes:
         - application/json
-      description: |-
+      summary: |-
         Update a policy
-
-        ---
-
+      description: |-
         Requires `permissions::modify` permission.
       parameters:
         - description: Policy
@@ -10229,7 +9887,7 @@ paths:
 
   /v2/service-user/{name}/token:
     post:
-      summary: Generate API credentials for a service user
+      summary: Generate server user credentials
       parameters:
         - name: name
           in: path
