@@ -11761,6 +11761,10 @@ definitions:
         type: string
       endUserAccountNum:
         type: string
+      projectID:
+        type: string
+      priority:
+        type: string
       flagged:
         type: boolean
       ha:
@@ -11816,6 +11820,9 @@ definitions:
               type: array
             name:
               type: string
+            linkedNode:
+              type: string
+              description: UID of the provisioned node for this order
           type: object
         type: array
       notes:
