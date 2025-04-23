@@ -49,7 +49,7 @@ Determines if the node will send reset (RST) packets for the TCP connections it 
 - **Disabled** - The node will not send reset packets.
 {{</field>}}
 {{<field "Monitor Hops SYN Payload Size" >}} Determines the size of the TCP SYN payload sent. By default the payload is the smaller of 1440 or the WAN MTU minus 60 bytes. Can be set between 0 and 1440. {{</field>}}
-
+{{</fields>}}
 ## Gateway Paths
 
 Allows you to define alternate paths to a gateway server
