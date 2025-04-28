@@ -8,6 +8,8 @@ Date: 2022-12-28
 | ---------------- | -------- | ------- | ----------- |
 | All Gateways Disconnected  | WARNING  |  | This [event]({{<ref "docs/alarms/events" >}}) will be triggered if an edge node loses connectivity to all it’s available gateways.  |
 | All Peers Disconnected | WARNING  |  | This [event]({{<ref "docs/alarms/events" >}}) will be triggered if a node is configured as a gateway an it lose connectivity to all it’s configured edge nodes.   |
+| BGP Peer Connectivity | ERROR  | BGP peer <peer IP> has disconnected	| This event will be triggered if a BGP peer disconnects.  |
+| BGP Peer Connectivity | INFO  | BGP peer <peer IP> has re-connected	| This event will be triggered if a BGP peer reconnects.  |
 | Certificate Expiring | WARNING  |  | Alerts when a certificate uploaded via Portal → Certificates is about to expire in less than three months.   |
 | Cluster Failover | INFO | [Node]({{<ref "docs/nodes" >}}) is the active [cluster]({{<ref "docs/clusters" >}}) member | Sent by a [node]({{<ref "docs/nodes" >}}) when it claims the active role.    |
 | Cluster Failover | INFO | [Node]({{<ref "docs/nodes" >}}) is no longer the active [cluster]({{<ref "docs/clusters" >}}) member | Sent by a [node]({{<ref "docs/nodes" >}}) when it releases the active role.    |

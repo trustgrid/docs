@@ -21,7 +21,7 @@ A gateway server can be one of three types:
 - `hub` - allows connections from edge nodes and other gateway nodes
 
 ## Settings
-
+ {{<tgimg src="gateway-server.png" caption="Example Gateway Server settings" width="90%">}}
 {{<fields>}}
 {{<field "Enabled" >}}
 Either `Enabled` or `Disabled`. This determines if the main TLS Gateway server will be started or not. When enabled, the node will listen and accept connections from other nodes on the [Public IP and DNS](#public-ip-or-dns) and [port](#port).
@@ -62,15 +62,15 @@ The ingress bandwidth limit for the gateway. Connections will be throttled when 
 The type of gateway. See [Gateway Types](#gateway-server-types) for more information.
 {{</field >}}
 
-
+{{<field "Request Clients Monitor Hops">}}
+Disabled by default. If enabled, all clients will attempt to [monitor hops]({{<relref "/tutorials/gateway-tools/monitoring-network-hops-to-peers">}}) to the gateway. This feature requires the [April 2025 major appliance release]({{<ref "/release-notes/node/2025-04/index.md">}}) or later to be visible. 
+{{</field >}}
 
 {{</fields>}}
 
 After changing any of the above settings you will need to click Save for the changes to go into effect. 
 
 {{<alert color="warning">}}Enabling and disabling the gateway server will require a restart of the node service which will disrupt all node functionality for a brief period.{{</alert>}}
-
- {{<tgimg src="gateway-server.png" caption="Example Gateway Server settings" width="90%">}}
 
 
  ## Gateway Clients
