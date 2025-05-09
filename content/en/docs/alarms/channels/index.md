@@ -14,7 +14,9 @@ A channel defines one or more method of delivering alert notifications to extern
 One or more email address (comma separated) that will receive messages from alerts@trustgrid.io
 
 ### PagerDuty Channel
-Trustgrid will generate an incident via the PagerDuty API if provided a valid API routing key. 
+Trustgrid will generate an incident via the PagerDuty API if provided a valid API routing key. To procure a routing key, create a [service in PagerDuty](https://support.pagerduty.com/main/docs/services-and-integrations) and add an `Events API V2` integration. After adding the integration, the `Integration Key` is your API routing key.
+
+Copy the routing key to the Trustgrid channel definition.
 
 ### OpsGenie Channel
 Trustgrid will generate an incident via the OpsGenie API if provided a valid API key with read and create and update permissions.
@@ -22,12 +24,12 @@ Trustgrid will generate an incident via the OpsGenie API if provided a valid API
 {{<alert>}} For both PagerDuty and OpsGenie the integration will automatically resolve issues if an [event]({{<ref "docs/alarms/events" >}}) occurs that negates the initial triggering event. For example, if an [event]({{<ref "docs/alarms/events" >}}) is triggered by a Node Disconnect and the [node]({{<ref "docs/nodes" >}}) reconnects, the Node Connect [event]({{<ref "docs/alarms/events" >}}) will resolve the incident via the API. {{</alert>}}
 
 ### Slack Channel
-Trustgrid can post the [event]({{<ref "docs/alarms/events" >}}) data to a configured channel via a webhook.
+Trustgrid can post the [event]({{<ref "docs/alarms/events" >}}) data to a configured channel via an incoming webhook. First, [create the webhook](https://api.slack.com/messaging/webhooks), and then copy the webhook URL into the Trustgrid channel definition.
 
 Optionally, you can configure the slack event to be posted with formatting to make it [easier to read]({{<ref "#example-formatted-slack-event">}}) as opposed to [raw JSON]({{<ref "#example-event-json">}}). {{<tgimg src="slack-format-option.png" width="50%" caption="Slack format option checkbox">}}
 
 ### Microsoft Teams Channel
-Trustgrid can post [event]({{<ref "docs/alarms/events" >}}) data to a configured Teams channel via an incoming webhook
+Trustgrid can post [event]({{<ref "docs/alarms/events" >}}) data to a configured Teams channel via an incoming webhook. First, [create the webhook](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook), and then copy the webhook URL into the Trustgrid channel definition.
 
 
 ### Google Chat Channel 
