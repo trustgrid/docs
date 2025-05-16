@@ -7,11 +7,11 @@ date: 2023-2-7
 This feature collects traceroute-like data from all its connected peers and stores the results in the Trustgrid cloud for historical review.  
 {{% /pageinfo %}}
 
-{{< alert color="info" >}}Network hop monitoring requires version 20220808 or newer to gather the required data.{{</ alert >}}
+{{< alert color="info" >}}Network hop monitoring as described below requires the [April 2025 major appliance release]({{<ref "/release-notes/node/2025-04/index.md">}}) or later. Versions from 20220808 until that version had no payload and were sent every 20 seconds{{</ alert >}}
 
 ## How it Works
 
-1. The node will send out packets to each peer's public IP and port (if a gateway) with incrementing Time To Live (TTL) values.
+1. The node will send out TCP SYN packets to each peer's public IP and port (if a gateway) with incrementing Time To Live (TTL) values every 5 seconds.  The packets have a payload of 1440 bytes (or the smaller of 1440 or the WAN MTU minus 60 bytes) to attempt to spot any MTU issues. 
 1. As the packets pass through each router (or hop) along the way the TTL is decreased by one.
 1. Any time a router receives a packet with a TTL value of 1 it will drop the packet and can reply with an ICMP packet saying “Time to Live has been exceeded”
 1. The node uses these ICMP packets to calculate the latency to each hop.
@@ -29,14 +29,22 @@ There are several known limitations to gathering this data:
 - - Some firewalls/routers have trouble correlating the TCP request with the ICMP response which leads to no data
 - Gathering this data requires compute resources on the node and the gateway. Trustgrid recommends only enabling on edge nodes that have frequent latency or packet loss issues as a troubleshooting tool.
 
-{{<alert color="warning">}}It is not recommended to enable this feature on public gateways or private gateways with a large number of clients{{</alert>}}
-
 ## Enabling Network Hop Monitoring
+There are two ways to enable hop monitoring:
 
+### Enable on a Specific Edge Node
+This method will configure the node in question to attempt hop monitoring to all connected gateway peers. 
 1. Navigate to the node you want to enable
-1. Verify there version is 20220808 or higher {{<tgimg src="version-check.png" width="70%" caption="Infovisor showing version information">}}
 1. In the left side navigation bar select **Gateway** under the **System** section. Then click the **Client** panel. {{<tgimg src="gateway-client.png" width="50%" caption="Navigating to the client panel">}}
-1. Enable **Monitor Network Hops to Peers** and click **Save** {{<tgimg src="enable-monitor-hops.png" width="70%" caption="Enabling network hop monitoring">}}
+1. Set the **Monitor Hops to Gateway Servers** to **Always**. 
+1. Click **Save**
+
+## Enable on a Gateway Node
+This method will tell all connected peers running the correct version of the node software to attempt hop monitoring to this specific gateway. 
+1. Navigate to the gateway node you want to enable.
+1. In the left side navigation bar select **Gateway** under the **System** section. Then click the **Server** panel. {{<tgimg src="gateway-server-panel.png" width="50%" caption="Navigating to the server panel">}}
+1. Set **Request Clients Monitor Hops** to Enabled.
+1. Click **Save**
 
 ## Special Considerations
 

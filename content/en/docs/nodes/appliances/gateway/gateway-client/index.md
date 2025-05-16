@@ -11,9 +11,9 @@ description: Configure client settings
 Settings on this page determine how a node's client connection to gateway peers behave.
 
 ## Settings
-
+{{<tgimg src="gateway-client-settings.png" width="85%" caption="Gateway Client settings" alt="screenshot of gateway client settings">}}
 {{<fields>}}
-{{<field "UDP Enabled" >}}
+{{<field "Enable UDP" >}}
 This settings can be configured on both the [gateway server](../gateway-server) and [gateway client](../gateway-client) sub-panel.
 
 - On a server, this will determine if the server will listen for UDP tunnel connections on the configured [UDP port](#udp-port).
@@ -25,16 +25,31 @@ This settings can be configured on both the [gateway server](../gateway-server) 
 {{<field "Max Egress Mbps" >}}
 The egress bandwidth limit for the gateway. Connections will be throttled when this limit is reached.
 {{</field >}}
-{{<field "Monitor Network Hops to Peers" >}}
-Whether to [monitor latency to peers]({{<relref "/tutorials/gateway-tools/monitoring-network-hops-to-peers">}}) through this gateway. This can have a performance impact and is not recommended for high-traffic gateways.
-{{</field >}}
 {{<field "Connectivity to Public Gateways">}}
 Options are `Allowed` or `Denied`. If set to `Denied` this will cause the node to not attempt connections to public gateways. This might be desired if you want the node to only connect to configured private gateways. Or if you have private gateways that do not need to connect to the public gateways in your organization.
 {{</field>}}
 {{</fields>}}
 
-{{<tgimg src="gateway-client-settings.png" width="85%" caption="Gateway Client settings" alt="screenshot of gateway client settings">}}
 
+
+## Hop Monitoring Settings
+{{<tgimg src="gateway-hop-monitor-settings.png" width="85%" caption="Gateway Hop Monitoring settings" alt="screenshot of gateway client hop monitor settings">}}
+{{<alert color="info">}} The settings below require the node to be running the [April 2025 major appliance release]({{<ref "/release-notes/node/2025-04/index.md">}}) or later. Prior versions only support enabled or disabled.{{</alert>}}
+{{<fields>}}
+{{<field "Monitor Hops to Gateway Servers" >}}
+Determines if the node will attempt to [monitor hops to gateway peers]({{<relref "/tutorials/gateway-tools/monitoring-network-hops-to-peers">}}). The possible values are:
+- **Always** - The node will attempt to monitor hops to all gateway peers.
+- **Only when peer requests** - The node will only attempt to monitor hops to gateway peers that request it. This is the default state.
+- **Never** - The node will never attempt to monitor hops to gateway peers, even if peers request it.
+{{</field>}}
+{{<field "Monitor Hops Interval" >}} The interval time, in seconds, between gathering hop monitoring data.{{</field>}}
+{{<field "Support Monitor Hops Resets" >}} 
+Determines if the node will send reset (RST) packets for the TCP connections it attempts.  Doing so reduces, but does not eliminate the number of resets seen on the WAN interface.
+- **Enabled** - The node will send reset packets. This is the default state.
+- **Disabled** - The node will not send reset packets.
+{{</field>}}
+{{<field "Monitor Hops SYN Payload Size" >}} Determines the size of the TCP SYN payload sent. By default the payload is the smaller of 1440 or the WAN MTU minus 60 bytes. Can be set between 0 and 1440. {{</field>}}
+{{</fields>}}
 ## Gateway Paths
 
 Allows you to define alternate paths to a gateway server
