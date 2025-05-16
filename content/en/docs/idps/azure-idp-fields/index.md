@@ -18,7 +18,7 @@ Specifies the Azure App OpenID metadata endpoint.
 Specifies the Azure App client ID.
 {{</field>}}
 {{<field "Secret">}}
-Specifies the Azure App secret.
+Specifies the Azure App secret value (not the secret ID). This is the value that appears only once when you create a new client secret.
 {{</field>}}
 {{</fields>}}
 
@@ -49,7 +49,7 @@ The following information is only partial Azure AD reference for configuring an 
 
 ![img](app_create.png) 
 
-2. Once you’ve registered your application you need to make a note of the Application Client ID and Metadata endpoint that provides the Open ID metadata.  You can find it by click on Endpoints at the top of the application.  The Application Client ID will be used for the Client ID configuration parameter of the Identity Provider in Trustgrid Portal. The metadata endpoint goes in the Issuer configuration parameter
+2. Once you've registered your application you need to make a note of the Application Client ID and Metadata endpoint that provides the Open ID metadata.  You can find it by click on Endpoints at the top of the application.  The Application Client ID will be used for the Client ID configuration parameter of the Identity Provider in Trustgrid Portal. The metadata endpoint goes in the Issuer configuration parameter
 of the Identity Provider in Trustgrid Portal.  It should be something like https://login.microsoftonline.com/<app_id>/v2.0 Ignore what comes after the /.well-known part.
 
 ![img](app_endpoints.png) 
@@ -58,7 +58,7 @@ of the Identity Provider in Trustgrid Portal.  It should be something like https
 
 ![img](app_auth.png)
 
-4. Add a platform by selecting the “Web” type and add the corresponding redirect uri and logout url, and select both Access Tokens and ID tokens checkboxes.
+4. Add a platform by selecting the "Web" type and add the corresponding redirect uri and logout url, and select both Access Tokens and ID tokens checkboxes.
 
 {{<fields>}}
 {{<field "Trustgrid Redirect URL">}}
@@ -69,13 +69,26 @@ https://id.trustgrid.io/logout
 {{</field>}}
 {{</fields>}}
 
-5. You need to create a secret for the authentication piece.  You can select the expiration to be any of the selections.  Once you create the secret make sure to make a note of the “value” since that piece of information is what is going to be used under the Secret configuration parameter of the Identity Provider in Trustgrid Portal.
+5. You need to create a secret for authentication.  You can select the expiration to be any of the selections but it is recommended to give at least 1 year for expiration.  Once you create the secret make sure to make a note of the "value" since that piece of information is what is going to be used under the Secret configuration parameter of the Identity Provider in Trustgrid Portal.
 
 ![img](app_secret.png)
 
-6. Once you’ve created the client secret, navigate to “Token Configuration” and add the “email” optional claim
+6. Once you've created the client secret, navigate to "Token Configuration" and add the "email" optional claim
 
 ![img](app_token_config.png)
 
-***
+#### Updating Expired App Secrets
 
+When your Azure AD client secret expires, you'll need to create a new secret and update it in the Trustgrid Portal. To create a new client secret:
+
+1. Sign in to the Azure portal and navigate to your App registration
+2. Select "Certificates & secrets" from the left menu
+3. Under "Client secrets", click "New client secret"
+4. Provide a description and select an expiration period
+5. Click "Add"
+6. **Important**: Copy the new secret's "Value" (not the secret ID) immediately, as it will only be shown once
+7. Update the Secret field in the Trustgrid Portal with this new value
+
+For more detailed instructions, refer to the [official Microsoft documentation on managing app secrets](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal#option-2-create-a-new-application-secret).
+
+***
