@@ -43,6 +43,6 @@ Date: 2022-12-28
 | Repo Connectivity | INFO | Repo connectivity re-established | Alerts when a node re-establishes connectivty to the Trustgrid update repository. This event clears the Repo Connectivity error alert.| 
 | SSH Lockdown | ERROR | SSH allowing connections from non local address and port | Alerts when SSH on an appliance-based node is configured to listen on any IP other than local host (127.0.0.1).|
 | SSH Lockdown | INFO | SSH listening only on local address and port | Alerts when SSH on an appliance- based node is properly locked down. This event clears the SSH Lockdown error alert.| 
-| Unauthorized IP  | WARNING  |  | Alerts when a [node's]({{<ref "docs/nodes" >}}) public IP has been locked but the connection to the control plane comes from a different IP.   |
+| Unauthorized IP  | WARNING  |  | Alerts when a [node's public IP has been locked]({{<ref "/tutorials/limit-node-functionality" >}}) but the connection to the control plane comes from a different IP.   |
 | Deregister | INFO | Device was deregistered from the console | Event is sent if a user with console access runs the [deregistration process]({{<ref "/tutorials/local-console-utility/remote-registration#deregistration-process">}}) | 
 ---
