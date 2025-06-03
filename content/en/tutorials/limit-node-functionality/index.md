@@ -1,6 +1,6 @@
 ---
 Title: "Limit Node Functionality to Current Public IP"
-Date: 2023-1-9
+Date: 2023-01-09
 ---
 
 {{% pageinfo %}}

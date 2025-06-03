@@ -1,6 +1,6 @@
 ---
 title: "Static Routing"
-date: 2023-2-14
+date: 2023-02-14
 aliases: 
     - /docs/nodes/vpn/static-routing
 description: Configure static routes for the virtual network for the selected node or cluster

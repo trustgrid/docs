@@ -1,6 +1,6 @@
 ---
 title: "TCP Port Test"
-date: 2023-2-8
+date: 2023-02-08
 description: "Simple TCP port connectivity test tool on using local IPs"
 ---
 

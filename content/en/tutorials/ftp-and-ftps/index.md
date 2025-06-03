@@ -1,6 +1,6 @@
 ---
 Title: "Configure FTP and FTPS"
-Date: 2023-2-13
+Date: 2023-02-13
 ---
 
 ## FTPS & FTPS Using Layer 3

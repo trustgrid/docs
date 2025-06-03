@@ -1,6 +1,6 @@
 ---
 Title: "Trustgrid Local Console Utility"
-Date: 2023-1-9
+Date: 2023-01-09
 ---
 
 {{% pageinfo %}}

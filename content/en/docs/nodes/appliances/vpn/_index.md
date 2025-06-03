@@ -1,6 +1,6 @@
 ---
 title: "VPN"
-date: 2023-2-14
+date: 2023-02-14
 weight: 22
 aliases: 
     - /docs/nodes/vpn

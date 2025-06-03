@@ -2,7 +2,7 @@
 tags: ["applications", "ztna"]
 title: "Applications"
 linkTitle: "Applications"
-date: 2023-1-11
+date: 2023-01-11
 weight: 1
 ---
 

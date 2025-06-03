@@ -2,7 +2,7 @@
 Title: "Find the Public IP Address of a Node"
 linkTitle: "Finding Public IP"
 description: "How to find the public IP address of a Trustgrid node"
-Date: 2023-1-3
+Date: 2023-01-03
 ---
 
 The public IP address refers to the source IP address observed by the Trustgrid cloud when the control plane connections are established. This is the IP address after any NATs are applied to outbound internet traffic on the node's WAN interface.

@@ -1,7 +1,7 @@
 ---
 title: "August"
 linktitle: "August"
-date: 2021-8-18
+date: 2021-08-18
 type: docs
 weight: 8
 ---

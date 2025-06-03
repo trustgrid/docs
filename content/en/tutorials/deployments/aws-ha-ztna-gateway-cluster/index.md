@@ -1,6 +1,6 @@
 ---
 Title: "AWS Requirements for HA ZTNA Gateway Cluster"
-Date: 2023-1-6
+Date: 2023-01-06
 ---
 1. Create EC2 target group and add both Trustgrid application gateways with the target being TCP port 80.
 
