@@ -1,7 +1,7 @@
 ---
 title: "February"
 linktitle: "February"
-date: 2022-24-2
+date: 2022-02-24
 type: docs
 weight: 2
 ---

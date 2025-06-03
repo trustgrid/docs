@@ -1,6 +1,6 @@
 ---
 Title: "Configure Layer 3 VPN"
-Date: 2023-1-12
+Date: 2023-01-12
 ---
 
 The VPN feature enables routing of IP packets by utilizing a virtual IP space that is configured on the nodes. In this configuration, the node can be used as the next hop for route destined for the virtual IP space, or the node can be used as the default gateway for a network. The virtual IP space is used as a transit network with NAT being utilized to translate IP addresses on to/from the virtual IP space on either side. It is also possible to preserve the original source and destination by having the virtual IP space be identical to the LAN network. 

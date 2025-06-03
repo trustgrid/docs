@@ -1,6 +1,6 @@
 ---
 Title: "Review Node Events"
-Date: 2023-1-9
+Date: 2023-01-09
 weight: 10
 ---
 When troubleshooting a problem on edge or gateway nodes, reviewing node [events]({{<relref "/docs/alarms/events">}}) can provide critical information about the nature of the problem. 

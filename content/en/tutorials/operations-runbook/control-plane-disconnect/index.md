@@ -1,6 +1,6 @@
 ---
 Title: "Control Plane Disconnect"
-Date: 2023-1-9
+Date: 2023-01-09
 Tags: ["control plane disconnect", "help", "troubleshoot"]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "October Third Release"
 linktitle: "October - Third Release"
-date: 2022-28-10
+date: 2022-10-28
 type: docs
 weight: 10
 ---
@@ -28,5 +28,4 @@ With this release, if a user changes which node is configured as the master (act
 {{<card header="Change entry for active member change">}}
 ![change list](changes.png)
 {{</card>}}
-</div>
 </div>

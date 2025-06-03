@@ -1,6 +1,6 @@
 ---
 title: "Ping Remote Node"
-date: 2023-2-10
+date: 2023-02-10
 ---
 
 {{% pageinfo %}}

@@ -1,7 +1,7 @@
 ---
 title: "October Second Release"
 linktitle: "October - Second Release"
-date: 2022-18-10
+date: 2022-10-18
 type: docs
 weight: 10
 ---
@@ -55,4 +55,3 @@ You can now load a history of your previous Advanced Flow Log searches by clicki
 
 The Events table now has a search field that will filter the events shown.  This has been added both at the Node Detail Events page and under Operation to see events across all nodes in the org. 
 
-![Events Table Search](events.png)

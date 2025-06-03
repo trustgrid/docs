@@ -1,6 +1,6 @@
 ---
 Title: "Limit Node Functionality to Current Public IP"
-Date: 2023-1-9
+Date: 2023-01-09
 ---
 
 {{% pageinfo %}}
@@ -18,4 +18,3 @@ This security feature allows restricting node functionality to the current publi
 
 ## Alerts
 Once locked changing the Public IP of the node will result in an alert being generated as seen belo. At this point no data plane traffic will be allowed.
-{{<tgimg src="alert-node-public-ip.png" caption="Alert generated when node attempts to connect from an unauthorized IP address.">}}

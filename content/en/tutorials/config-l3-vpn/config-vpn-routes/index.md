@@ -1,6 +1,6 @@
 ---
 Title: "Configure VPN Routes for a new Trustgrid Node"
-Date: 2023-1-13
+Date: 2023-01-13
 ---
 {{% pageinfo %}}
 Routes are used to allocate a portion of the virtual network overlay address space to a specific site (edge or gateway node).  All traffic destined for that subnet is then routed to the appropriate node and through the use of NAT (network address translation) is forwarded to the destination host on the local network. 
@@ -18,4 +18,3 @@ The example below will walk through adding routes for new Trustgrid Node. This c
 
 ![img](add-route-info.png)
 
-5. At any point if you wish to delete the route, just click the :x: directly beside the route.

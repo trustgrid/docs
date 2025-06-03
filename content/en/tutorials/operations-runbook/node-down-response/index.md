@@ -1,6 +1,6 @@
 ---
 Title: "Node Down Response"
-Date: 2023-1-9
+Date: 2023-01-09
 Tags: ["node", "troubleshoot", "help"]
 ---
 
@@ -78,4 +78,3 @@ The [node]({{<ref "docs/nodes" >}}) appears online from within the portal but re
 {{<field "Both Control and Data Plane Down" >}}
 In this situation the [node]({{<ref "docs/nodes" >}}) appears down in the Trustgrid Portal and users/applications are unable to reach services across the data plane between the Gateway and Edge sites. This is the most common scenario. While the Data Plane is most critical for the services provided across the device, first priority should be restoring the Control Plane connection so that additional troubleshooting tools are available. Often this process also uncovers the reason the data plane is down.
 {{</field >}}
-{{</fields>}}

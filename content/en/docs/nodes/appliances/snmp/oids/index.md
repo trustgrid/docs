@@ -1,7 +1,7 @@
 ---
 Title: "SNMP OIDs on Trustgrid Appliances"
 linkTitle: "SNMP OIDs"
-Date: 2023-1-12
+Date: 2023-01-12
 aliases: 
     - /docs/nodes/snmp/oids
 description: Explains SNMP OIDs exposed via the SNMP v3 service on appliance-based nodes
@@ -124,4 +124,3 @@ iso.3.6.1.4.1.53560.2.9.1.4.1 = INTEGER: 6
 iso.3.6.1.4.1.53560.2.9.1.5.1 = Counter64: 72351744
 iso.3.6.1.4.1.53560.2.9.1.6.1 = Counter64: 69206016
 iso.3.6.1.4.1.53560.2.9.1.7.1 = Counter64: 606076928
-{{< /highlight >}}

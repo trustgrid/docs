@@ -2,7 +2,7 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Network Groups"
-date: 2023-1-9
+date: 2023-01-09
 weight: 20
 ---
 
@@ -19,4 +19,3 @@ A network group requires a name to be set. This will be used to reference the gr
 
 Navigating into a network group allows management of the group’s member objects.
 
-![img](member-network-objects.png)

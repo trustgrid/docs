@@ -1,7 +1,7 @@
 ---
 title: "June"
 linktitle: "June"
-date: 2022-24-6
+date: 2022-06-24
 type: docs
 weight: 6
 ---
