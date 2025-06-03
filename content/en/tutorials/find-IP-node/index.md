@@ -15,3 +15,4 @@ The public IP address is a default column in the Nodes table list. You can use s
 ## Node Infovisor
 The public IP address is also listed in the [infovisor]({{<ref "/docs/nodes/shared/infovisor">}}) panel accessible from the node detail page.
 
+{{<tgimg src="node-infovisor-public-ip.png" caption="Public IP listed in infovisor" width="80%">}}

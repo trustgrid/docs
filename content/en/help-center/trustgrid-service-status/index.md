@@ -6,3 +6,4 @@ View the status of all Trustgrid services on our [Statuspage Account](https://st
 
 Within the Trustgrid Portal, hover over the username in the upper right corner and then select `Status`.
 
+![img](status.png)

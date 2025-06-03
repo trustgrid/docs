@@ -126,3 +126,4 @@ Previously the Trustgrid node would ARP on the local network for any IP containe
 
 This is still the default behavior, but there is now an option to disable this functionality when configuring Outside NATs. 
 
+![Proxy ARP Option](proxy-arp-option.png)

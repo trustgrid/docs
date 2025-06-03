@@ -18,3 +18,4 @@ The example below will walk through adding routes for new Trustgrid Node. This c
 
 ![img](add-route-info.png)
 
+5. At any point if you wish to delete the route, just click the :x: directly beside the route.

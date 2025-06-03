@@ -29,3 +29,4 @@ With this release, if a user changes which node is configured as the master (act
 ![change list](changes.png)
 {{</card>}}
 </div>
+</div>

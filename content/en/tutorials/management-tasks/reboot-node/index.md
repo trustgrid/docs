@@ -18,3 +18,4 @@ description: Describes how to completely reboot a node appliance including the o
 4. The node will reboot within 60 seconds
 5. Node agent will start automatically on reboot
 6. Expect the node to alert for disconnect/connect
+7. Does not require a cloud gateway
