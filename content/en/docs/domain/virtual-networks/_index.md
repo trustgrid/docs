@@ -76,3 +76,4 @@ The use of an outside NAT can eliminate the need to create [routes]({{<ref "/doc
 * Enabled - Nodes attached to the this virtual network **will not require** traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network.
 * Disabled _(default)_ - Nodes attached to this virtual network **will require** traffic match defined inside and outside NATs to allow traffic to ingress from or egress to the local network. Or, will require the [traffic matching mode]({{<ref "/docs/nodes/appliances/vpn/nats#traffic-matching-mode">}}) be set to allow either Inbound or Outbound traffic that does not match.
 {{</field>}}
+{{<fields>>}}
