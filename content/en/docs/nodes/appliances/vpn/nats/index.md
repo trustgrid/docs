@@ -69,4 +69,4 @@ To the right of each defined NAT is a "Hits" button. Clicking this button will d
 {{<field "Initial Hit">}}Shows the first time the NAT was hit since the last reset.{{</field>}}
 {{<field "Latest Hit">}}Shows the most recent time the NAT was hit.{{</field>}}
 {{<field "Reset">}}Clicking this button resets the hit counter. It is also reset when the node is restarted or rebooted.{{</field>}}
-
+{{</fields>}}

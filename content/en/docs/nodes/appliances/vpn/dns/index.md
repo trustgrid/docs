@@ -20,3 +20,4 @@ If configured, the node will use these servers to resolve DNS requests for [zone
 {{<field "Host IP Address">}}The upstream DNS server's IP address{{</field>}}
 {{<field "Host Port">}}The upstream DNS server's port (usually 53){{</field>}}
 {{<field "Description">}}(Optional) a user friends description of the server{{</field>}}
+{{</fields>}}

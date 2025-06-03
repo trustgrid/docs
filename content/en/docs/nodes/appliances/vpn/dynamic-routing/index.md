@@ -34,3 +34,4 @@ Import routes from other nodes in the virtual network.
 {{<field "Destination CIDR">}}The network to route traffic to.{{</field>}}
 {{<field "Metric">}}The route metric. Lower metrics are processed first.{{</field>}}
 {{<field "Gateway Path">}}An optional gateway path to use for the route.{{</field>}}
+{{</fields>}}
