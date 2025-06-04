@@ -1,6 +1,6 @@
 ---
 Title: "Check Trustgrid Services Status"
-Date: 2023-1-4
+Date: 2023-01-04
 ---
 View the status of all Trustgrid services on our [Statuspage Account](https://status.trustgrid.io/) 
 

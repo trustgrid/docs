@@ -28,7 +28,7 @@ Date: 2022-12-28
 | Gateway UDP Tunnel Error | ERROR | UDP Tunnel has timed out for node=`<peer-node>` and endpoint=`<peer-ip>:<peer-port>` | Alerts when a UDP tunnel times out after not receiving the keep alive packet for 2 minutes (default gateway timeout). |  
 | Metric Threshold Violation | ERROR  |  | Alerts when a [node]({{<ref "docs/nodes" >}}) cpu, ram, disk, or latency configured metric threshold is violated.  |
 | Metric Threshold Violation | INFO |  | Alerts when a previously reported threshold violation has been cleared.    |
-| Network Error  | CRITICAL | Stale ARP detected   | Alerts when a stale ARP entry is detected for a [node’s]({{<ref "docs/nodes" >}}) [cluster]({{<ref "docs/clusters" >}}) IP.  |
+| Network Error  | CRITICAL | Stale ARP detected   | Alerts when the active node in a cluster detects another MAC address responding to ARPs for a configured [cluster IP address]({{<relref "/docs/clusters/cluster-only-config#cluster-ip-address">}}).  This can occur briefly during a failover if the standby node begins arping before the previous active node releases that role. Other causes include an IP conflict, proxy ARP configured on another device on that network, or the attached switch not updating its ARP cache.  |
 | Network Error  | ERROR | Unable to create/update Azure IP configuration for nic=LAN. Error Code=&lt;Azure error code&gt; | Alerts when a [node]({{<ref "docs/nodes" >}}) is unable to create or update an Azure Cluster IP configuration. The error from the Azure API is included in the event. |
 | Network Error  | WARNING  | Interface {OS interface name} is running with half-duplex  | Alerts if an interface has been detected running at half-duplex. This is almost always a result of a failure to auto-negotiate the speed/duplex and can result in poor performance.  |
 | Networking Framework Memory Management | ERROR | The networking framework has exhausted all allocated memory. Please contact support@trustgrid.io to notify of this issue. | Alerts if the Java Virtual Machine the Trustgrid node service uses runs out of available memory. | 
@@ -43,6 +43,6 @@ Date: 2022-12-28
 | Repo Connectivity | INFO | Repo connectivity re-established | Alerts when a node re-establishes connectivty to the Trustgrid update repository. This event clears the Repo Connectivity error alert.| 
 | SSH Lockdown | ERROR | SSH allowing connections from non local address and port | Alerts when SSH on an appliance-based node is configured to listen on any IP other than local host (127.0.0.1).|
 | SSH Lockdown | INFO | SSH listening only on local address and port | Alerts when SSH on an appliance- based node is properly locked down. This event clears the SSH Lockdown error alert.| 
-| Unauthorized IP  | WARNING  |  | Alerts when a [node's]({{<ref "docs/nodes" >}}) public IP has been locked but the connection to the control plane comes from a different IP.   |
+| Unauthorized IP  | WARNING  |  | Alerts when a [node's public IP has been locked]({{<ref "/tutorials/limit-node-functionality" >}}) but the connection to the control plane comes from a different IP.   |
 | Deregister | INFO | Device was deregistered from the console | Event is sent if a user with console access runs the [deregistration process]({{<ref "/tutorials/local-console-utility/remote-registration#deregistration-process">}}) | 
 ---

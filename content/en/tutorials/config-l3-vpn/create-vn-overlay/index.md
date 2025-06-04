@@ -1,6 +1,6 @@
 ---
 Title: "Create Virtual Network Overlay"
-Date: 2023-1-13
+Date: 2023-01-13
 ---
 {{% pageinfo %}}
 Trustgrid utilizes a virtual network overlay to overcome many of the challenges often faced with traditional ipsec vpn deployments.  This virtual network will be used to carve out smaller networks for each edge or gateway node deployment.

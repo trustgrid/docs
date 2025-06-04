@@ -1,7 +1,7 @@
 ---
 title: "October Second Release"
 linktitle: "October - Second Release"
-date: 2022-18-10
+date: 2022-10-18
 type: docs
 weight: 10
 ---

@@ -38,15 +38,19 @@ The LAN interface needs to have **IP Forwarding Enabled** in order to forward th
 See [Azure virtual network traffic routing](https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview).
 
 ### Supported Regions
-The Trustgrid official community image, `trustgrid-node-2204-prod`, in the public gallery `trustgrid-45680719-9aa7-43b9-a376-dc03bcfdb0ac` is currently published in the following region.  If you need to deploy in another region please contact Trustgrid support. If you are not a direct customer of Trustgrid, please check with your vendor that is utilizing Trustgrid to have them contact support. 
+
+The Trustgrid official community image, `trustgrid-node-2204-prod`, in the public gallery `trustgrid-45680719-9aa7-43b9-a376-dc03bcfdb0ac` is currently published in the following regions. If you need to deploy in another region, please contact Trustgrid support. If you are not a direct customer of Trustgrid, please check with your vendor that is utilizing Trustgrid to have them contact support.
 
 | Region Display Name | Region Name |
 |-|-|
 |East US|eastus|
+|East US 2|eastus2|
 |Central US|centralus|
 |North Central US|northcentralus|
 |South Central US|southcentralus|
 |West US|westus|
+|West US 2|westus2|
+|West US 3|westus3|
 
 ### Network Access
 

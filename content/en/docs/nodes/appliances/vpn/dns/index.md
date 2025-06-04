@@ -1,6 +1,6 @@
 ---
 title: "DNS"
-date: 2023-2-14
+date: 2023-02-14
 aliases: 
     - /docs/nodes/vpn
 description: Configure a DNS 
