@@ -12,11 +12,11 @@ Observability enables exporters for Metrics (stats such as CPU, Memory, Disk, by
 
 Trustgrid currently supports an OpenTelemetry exporter for [Splunk]({{<ref "/tutorials/observability-platforms/splunk" >}}), as well as a generic HTTP exporter for platforms that accept either JSON or OTLP-encoded data, such as [Logstash]({{<ref "/tutorials/observability-platforms/logstash" >}}).
 
-![img](observability-exporters.png)
+{{<tgimg src="observability-exporters.png" width="75%">}}
 
-#### Adding an Exporter
+## Adding an Exporter
 
-![img](create-exporter.png)
+{{<tgimg src="create-exporter.png" width="75%">}}
 
 {{<fields>}}
 {{<field "Type">}}
@@ -34,9 +34,9 @@ Categories of data exported by Trustgrid.
 {{</fields>}}
 {{<alert>}}The Exporter type cannot be changed after adding an exporter{{</alert>}}
 
-#### Splunk Exporter Settings
+### Splunk Exporter Settings
 
-![img](splunk-exporter.png)
+{{<tgimg src="splunk-exporter.png" width="75%">}}
 {{<fields>}}
 {{<field "Status">}}
 Current exporter status.
@@ -76,9 +76,9 @@ Optional: Provide a custom CA certificate (in PEM format) for TLS validation.
 {{</field>}}
 {{</fields>}}
 
-#### HTTP Exporter Settings
+### HTTP Exporter Settings
 
-![img](http-exporter.png)
+{{<tgimg src="http-exporter.png" width="75%">}}
 {{<fields>}}
 {{<field "Status">}}
 Current exporter status.

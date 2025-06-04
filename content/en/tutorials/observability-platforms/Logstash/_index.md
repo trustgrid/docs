@@ -1,11 +1,11 @@
 ---
-title: Logstash
+title: Setting up Logstash for OpenTelemetry Export
 linkTitle: Logstash
 date: 2023-06-04
 weight: 20
 ---
 
-# Setting up Logstash for OpenTelemetry Export
+
 
 This guide covers how to configure Logstash to receive OpenTelemetry data from a Trustgrid HTTP exporter.
 
@@ -25,7 +25,7 @@ This guide covers how to configure Logstash to receive OpenTelemetry data from a
   - `Node Events`
   - `Changes`
 
-![Add Exporter](trustgrid-logstash-add-exporter.png)
+{{<tgimg src="trustgrid-logstash-add-exporter.png" width="50%" caption="Add Exporter">}}
 
 - **Endpoint**: Set this to your Logstash endpoint (e.g., `http://logstash.internal:5044`).
 
@@ -34,7 +34,7 @@ This guide covers how to configure Logstash to receive OpenTelemetry data from a
 > - `Metrics Endpoint`: Overrides default for metrics
 > - `Logs Endpoint`: Overrides default for logs (audits, events, changes)
 
-![Exporter Settings](trustgrid-logstash-exporter-settings.png)
+{{<tgimg src="trustgrid-logstash-exporter-settings.png" width="75%" caption="Exporter Settings">}}
 
 ## Step 3: Configure Logstash
 

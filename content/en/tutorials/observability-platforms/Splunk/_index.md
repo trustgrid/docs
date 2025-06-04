@@ -1,11 +1,9 @@
 ---
-title: Splunk
+title: Setting up Splunk for OpenTelemetry Export
 linkTitle: Splunk
 date: 2023-06-04
 weight: 20
 ---
-
-# Setting up Splunk for OpenTelemetry Export
 
 This guide walks you through configuring **Splunk** and the **Trustgrid Portal** to export OpenTelemetry (OTEL) data via the HTTP Event Collector (HEC) integration.
 
@@ -18,7 +16,7 @@ This guide walks you through configuring **Splunk** and the **Trustgrid Portal**
 1. Log into your Splunk instance.
 2. Navigate to: **Settings > Data Inputs**
 3. Click **Add New** next to **HTTP Event Collector (HEC)**  
-   ![Add HEC Input](splunk-add-hec.png)
+   {{<tgimg src="splunk-add-hec.png" width="95%" caption="Add HEC Input">}}
 
 ---
 
@@ -27,7 +25,7 @@ This guide walks you through configuring **Splunk** and the **Trustgrid Portal**
 1. Enter a **Name** for the input (e.g., `Trustgrid`)
 2. Leave other options at their default values unless otherwise required.
 3. Click **Next**  
-   ![HEC Input Config](splunk-add-input.png)
+   {{<tgimg src="splunk-add-input.png" width="95%" caption="HEC Input Config">}}
 
 ---
 
@@ -38,17 +36,17 @@ This guide walks you through configuring **Splunk** and the **Trustgrid Portal**
 
    #### Metric index
 
-   ![Create Metric Index](splunk-metric-index.png)
+   {{<tgimg src="splunk-metric-index.png" width="75%" caption="Create Metric Index">}}
 
    #### Event (Node Audits, Changes, Events) index
 
-   ![Create Event Index](splunk-event-index.png)
+   {{<tgimg src="splunk-event-index.png" width="75%" caption="Create Event Index">}}
 
 3. Save the new index
 4. Ensure it's:
    - Added to the **Allowed Indexes**
    - Selected as the **Default Index**
-     ![Index Settings](splunk-index-settings.png)
+     {{<tgimg src="splunk-index-settings.png" width="75%" caption="Index Settings">}}
 
 ---
 
@@ -56,7 +54,7 @@ This guide walks you through configuring **Splunk** and the **Trustgrid Portal**
 
 1. Click **Review** and then **Done**
 2. Copy the **Token Value** generated — you'll use this in the Trustgrid Portal setup  
-   ![Token Created](splunk-token-success.png)
+   {{<tgimg src="splunk-token-success.png" width="75%" caption="Token Created">}}
 
 ---
 
@@ -82,7 +80,7 @@ This guide walks you through configuring **Splunk** and the **Trustgrid Portal**
   - `Node Events`
   - `Changes`
 
-![Token Created](trustgrid-add-exporter-splunk.png)
+{{<tgimg src="trustgrid-add-exporter-splunk.png" width="50%" caption="Token Created">}}
 
 ---
 
@@ -96,6 +94,6 @@ This guide walks you through configuring **Splunk** and the **Trustgrid Portal**
 - **TLS Custom CA**: Optional - Upload a certificate if using a custom CA
 - **Skip TLS Verification**: Optional - Will skip TLS certificate verification (TLS will still be enabled)
 
-![Splunk Exporter Config](trustgrid-splunk-exporter-config.png)
+{{<tgimg src="trustgrid-splunk-exporter-config.png" width="85%" caption="Splunk Exporter Config">}}
 
 ---
