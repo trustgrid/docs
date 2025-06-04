@@ -10,7 +10,7 @@ weight: 4
 Observability enables exporters for Metrics (stats such as CPU, Memory, Disk, bytes sent/rcv'd, ..etc), [Events]({{<ref "/docs/alarms/events" >}}), [Node Audits]({{<ref "/docs/nodes/shared/audits">}}), and [Configuration Changes]({{<ref "/docs/operations/changes" >}})
 {{% /pageinfo %}}
 
-Trustgrid currently supports an OpenTelemetry exporter for Splunk, as well as a generic HTTP exporter for platforms that accept either JSON or OTLP-encoded data, such as Logstash.
+Trustgrid currently supports an OpenTelemetry exporter for [Splunk]({{<ref "/tutorials/observability-platforms/splunk" >}}), as well as a generic HTTP exporter for platforms that accept either JSON or OTLP-encoded data, such as [Logstash]({{<ref "/tutorials/observability-platforms/logstash" >}}).
 
 ![img](observability-exporters.png)
 
