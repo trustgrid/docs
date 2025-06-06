@@ -17,10 +17,13 @@ type: docs
 ## Cloud Integration Enhancements
 - Exposes AWS interface "allowance_exceeded" flag in the cloud UI for better visibility into quota-related issues.
 - Makes the AWS Route Table service available in the portal to provide more comprehensive cloud networking configuration.
-- Fixes an issue where AWS and Azure interface routes ignored the defined next hop, ensuring consistent routing behavior in hybrid cloud environments.
+- Removes the `next hop` field for interface routes on AWS and Azure nodes as both require the gateway for that network to handle traffic.
 
-## Gateway and Data Plane Improvements
-- Adjusts the display logic so that the Gateway Max Ingress setting correctly applies only to server nodes, reducing configuration confusion.
+## Gateway and Data Plane Improvements 
+- Move the below settings up to a header bar since these settings are not specific to the nodes gateway or client functions.
+  - Enable UDP
+  - Max Ingress
+  - Max Egress
 - Resolves an issue where column widths in the Data Plane panel could not be adjusted, improving UI flexibility and customization.
 - Restores functionality for gateway diagnostics in the portal.
 
