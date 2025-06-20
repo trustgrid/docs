@@ -28,7 +28,8 @@ To plan a new upgrade:
    - **Include Tags**: (Optional) Specify tags to include only specific devices
    - **Exclude Tags**: (Optional) Specify tags to exclude certain devices
 
-{{}}Be sure to save changes before starting an upgrade.{{}}
+{{<alert>}}Be sure to save changes before starting an upgrade.{{</alert>}}
+
 
 ### Special Behaviors
 
