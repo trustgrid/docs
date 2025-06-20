@@ -11,20 +11,8 @@ description: Configure client settings
 Settings on this page determine how a node's client connection to gateway peers behave.
 
 ## Settings
-{{<tgimg src="gateway-client-settings.png" width="85%" caption="Gateway Client settings" alt="screenshot of gateway client settings">}}
+{{<tgimg src="gateway-client-settings.png" width="50%" caption="Gateway Client settings" alt="screenshot of gateway client settings">}}
 {{<fields>}}
-{{<field "Enable UDP" >}}
-This settings can be configured on both the [gateway server](../gateway-server) and [gateway client](../gateway-client) sub-panel.
-
-- On a server, this will determine if the server will listen for UDP tunnel connections on the configured [UDP port](#udp-port).
-- On a client, this will determine if the client will attempt to build UDP tunnels to any server with UDP enabled.
-
-**UDP tunnels are only attempted if both the client and the server have the UDP Enabled field set to Enabled**
-
-{{</field >}}
-{{<field "Max Egress Mbps" >}}
-The egress bandwidth limit for the gateway. Connections will be throttled when this limit is reached.
-{{</field >}}
 {{<field "Connectivity to Public Gateways">}}
 Options are `Allowed` or `Denied`. If set to `Denied` this will cause the node to not attempt connections to public gateways. This might be desired if you want the node to only connect to configured private gateways. Or if you have private gateways that do not need to connect to the public gateways in your organization.
 {{</field>}}

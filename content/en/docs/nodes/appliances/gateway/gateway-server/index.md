@@ -29,15 +29,6 @@ Either `Enabled` or `Disabled`. This determines if the main TLS Gateway server w
 **If this setting is set to Disabled the below settings are extraneous and not used, with the exception of [UDP enabled](#udp-enabled) as it is also a client setting.**
 {{</field >}}
 
-{{<field "UDP Enabled" >}}
-This settings can be configured on both the [gateway server](../gateway-server) and [gateway client](../gateway-client) sub-panel. 
-- On a server, this will determine if the server will listen for UDP tunnel connections on the configured [UDP port](#udp-port).
-- On a client, this will determine if the client will attempt to build UDP tunnels to any server with UDP enabled.
-
-**UDP tunnels are only attempted if both the client and the server have the UDP Enabled field set to Enabled**
-
-{{</field >}}
-
 {{<field "Public IP or DNS" >}}
 The public IP or DNS name of the gateway. This is the address that other nodes will use to connect to this gateway.
 {{</field >}}
@@ -48,10 +39,6 @@ The TCP port that the gateway will listen on. This is the port that other nodes 
 
 {{<field "UDP Port" >}}
 The UDP port that the gateway will listen on for UDP tunnels. This is the port that other nodes will use to connect to this gateway.
-{{</field >}}
-
-{{<field "Max Ingress Mbps" >}}
-The ingress bandwidth limit for the gateway. Connections will be throttled when this limit is reached.
 {{</field >}}
 
 {{<field "Certificate" >}}
