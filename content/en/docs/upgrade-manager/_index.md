@@ -28,6 +28,9 @@ To plan a new upgrade:
    - **Include Tags**: (Optional) Specify tags to include only specific devices
    - **Exclude Tags**: (Optional) Specify tags to exclude certain devices
 
+{{<alert>}}Be sure to save changes before starting an upgrade.{{</alert>}}
+
+
 ### Special Behaviors
 
 - **Require approval before failover**: When checked, this option requires manual approval before proceeding with failovers during the upgrade process. This allows for additional control and verification steps.

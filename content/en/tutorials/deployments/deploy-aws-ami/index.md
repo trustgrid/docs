@@ -176,7 +176,6 @@ Note: It is critical that you copy/paste the license correctly.
 {{</fields>}}
 ## Creating the Stack
 
-1. Create the stack. Check the box acknowledging that AWS CloudFormation might create IAM resources. This is required because we create an instance profile for the to-be-run EC2 instance.
-1. When the node appears in the Portal, activate it.
-1. In the EC2 console, reboot the node (it will be named trustgrid-node)
+1. Create the stack. 
+    - Check the box acknowledging that AWS CloudFormation might create IAM resources. This is required because we create an instance profile for the to-be-run EC2 instance.
 1. You can now manage the node as you would any other in the Portal UI.
