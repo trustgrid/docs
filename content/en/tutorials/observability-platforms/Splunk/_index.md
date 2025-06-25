@@ -3,9 +3,14 @@ title: Setting up Splunk for OpenTelemetry Export
 linkTitle: Splunk
 date: 2023-06-04
 weight: 20
+description: This guide walks you through configuring Splunk and the Trustgrid Portal to export OpenTelemetry (OTEL) data via the HTTP Event Collector (HEC) integration.
 ---
 
-This guide walks you through configuring **Splunk** and the **Trustgrid Portal** to export OpenTelemetry (OTEL) data via the HTTP Event Collector (HEC) integration.
+{{< alert title="Early Access Notice" color="warning" >}}
+The Observability feature is currently in early access. We are actively gathering feedback and usage data to help determine if additional charges will apply in the future. Functionality and pricing are subject to change.  
+<br><br>
+To enable this feature for your account, please contact Trustgrid Support.
+{{< /alert >}}
 
 ---
 

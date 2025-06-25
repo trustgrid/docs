@@ -3,18 +3,42 @@ title: Setting up Logstash for OpenTelemetry Export
 linkTitle: Logstash
 date: 2023-06-04
 weight: 20
+description: This guide covers how to configure Logstash to receive OpenTelemetry data from a Trustgrid HTTP exporter.
 ---
 
+{{< alert title="Early Access Notice" color="warning" >}}
+The Observability feature is currently in early access. We are actively gathering feedback and usage data to help determine if additional charges will apply in the future. Functionality and pricing are subject to change.  
+<br><br>
+To enable this feature for your account, please contact Trustgrid Support.
+{{< /alert >}}
 
+---
 
-This guide covers how to configure Logstash to receive OpenTelemetry data from a Trustgrid HTTP exporter.
+## Part 1: Configure Logstash to Receive OTEL Data
 
-## Step 1: Navigate to Exporters
+Here is an example `logstash.conf` that matches the Trustgrid export format:
+
+```ruby
+input {
+  http {
+    port => 5044
+    codec => json
+  }
+}
+
+output {
+  stdout {
+    codec => rubydebug
+  }
+}
+```
+## Part 2:  Configure Trustgrid to Send OTEL Data
+### Step 1: Navigate to Exporters
 
 1. In the Trustgrid Portal, go to **Observability > Exporters**.
 2. Click **Add Exporter**.
-
-## Step 2: Configure the Exporter
+---
+### Step 2: Configure the Exporter
 
 - **Type**: Select `http`.
 - **Exporter Name**: Enter a descriptive name (e.g., `logstash`).
@@ -36,21 +60,5 @@ This guide covers how to configure Logstash to receive OpenTelemetry data from a
 
 {{<tgimg src="trustgrid-logstash-exporter-settings.png" width="75%" caption="Exporter Settings">}}
 
-## Step 3: Configure Logstash
+---
 
-Here is an example `logstash.conf` that matches the Trustgrid export format:
-
-```ruby
-input {
-  http {
-    port => 5044
-    codec => json
-  }
-}
-
-output {
-  stdout {
-    codec => rubydebug
-  }
-}
-```

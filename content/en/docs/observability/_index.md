@@ -10,11 +10,19 @@ weight: 4
 Observability enables exporters for Metrics (stats such as CPU, Memory, Disk, bytes sent/rcv'd, ..etc), [Events]({{<ref "/docs/alarms/events" >}}), [Node Audits]({{<ref "/docs/nodes/shared/audits">}}), and [Configuration Changes]({{<ref "/docs/operations/changes" >}})
 {{% /pageinfo %}}
 
+{{< alert title="Early Access Notice" color="warning" >}}
+The Observability feature is currently in early access. We are actively gathering feedback and usage data to help determine if additional charges will apply in the future. Functionality and pricing are subject to change.  
+<br><br>
+To enable this feature for your account, please contact Trustgrid Support.
+{{< /alert >}}
+
+## Exporters
+
 Trustgrid currently supports an OpenTelemetry exporter for [Splunk]({{<ref "/tutorials/observability-platforms/splunk" >}}), as well as a generic HTTP exporter for platforms that accept either JSON or OTLP-encoded data, such as [Logstash]({{<ref "/tutorials/observability-platforms/logstash" >}}).
 
 {{<tgimg src="observability-exporters.png" width="75%">}}
 
-## Adding an Exporter
+### Adding an Exporter
 
 {{<tgimg src="create-exporter.png" width="75%">}}
 
