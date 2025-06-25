@@ -28,7 +28,7 @@ Trustgrid currently supports an OpenTelemetry exporter for [Splunk]({{<ref "/tut
 
 {{<fields>}}
 {{<field "Type">}}
-Splunk & HTTP are currently suppored
+Splunk & HTTP are currently supported
 {{</field >}}
 {{<field "Name">}}
 Your desired exporter name
