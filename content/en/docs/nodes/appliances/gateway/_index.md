@@ -30,7 +30,7 @@ The header bar contains settings that apply to both the node's client and server
 The Troubleshoot Gateway Traffic tool allows you to inspect live diagnostic messages about traffic between this node and its configured peers. 
 {{<tgimg src="gateway-diag-troubleshoot.png" width="80%" caption="Gateway Troubleshooting Tool">}}
 
-Clicking the "Troubleshoot Gateway Traffic" button will open the below diaglog that allows for filtering the output seen in the Troubleshoot Gateway tool by peer, local or service. Selecting what to filter on and clicking "Apply" will update the output seen in the tool. Accepting the default will display all gateway messages.
+Clicking the "Troubleshoot Gateway Traffic" button will open the below dialog that allows for filtering the output seen in the Troubleshoot Gateway tool by peer, local or service. Selecting what to filter on and clicking "Apply" will update the output seen in the tool. Accepting the default will display all gateway messages.
 
 {{<tgimg src="launch-troubleshoot-gateway.png" width="50%" caption="Troubleshoot Gateway Traffic Filter Dialog">}}
 
