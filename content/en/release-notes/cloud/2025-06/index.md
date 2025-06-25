@@ -11,8 +11,10 @@ type: docs
 - Removes the node-level restriction on VLAN interface assignments.
 
 ## Infovisor Redesign
+This release includes a significant redesign of the Infovisor, providing a more intuitive and user-friendly interface. Some key improvements include:
+- Info is now grouped into multiple panels that can be collapsed or expanded, and even added/removed for easier navigation.
+- All info fields now include a copy button when hovered over, allowing for easy copying of information. {{<tgimg src="copy-button.png" width="35%" caption="Copy Button">}}
 - Displays NIC IP addresses in the Infovisor for easier interface identification.
-- Improves the Infovisor layout and structure for better usability.
 
 ## Cloud Integration Enhancements
 - Exposes AWS interface "allowance_exceeded" flag in the cloud UI for better visibility into quota-related issues.
@@ -28,12 +30,14 @@ type: docs
 - Restores functionality for gateway diagnostics in the portal.
 
 ## Other Improvements and Fixes
+- Generating a new API key now invalidates the previous one correctly
 - Corrects the export functionality for the node table, ensuring that Location and ISP data are accurately included in the exported CSV file.
 - Renames "TCP Errors" to "TCP Stats" in the Nodes Overview for clarity.
 - Enables sorting of domain routes by description to streamline navigation.
 - Enhances the Flows Tool to allow specifying "Any" as a protocol option.
 - Ensures that all permissions assigned to a user are displayed in the portal, aiding in effective access management.
-- Updates repository connectivity status indicators to reflect real-time "Enabled" or "Disabled" states accurately.
+- Changes the Repo Connectivity status to "Healthy" or "Unhealthy" instead of "Enabled" or "Disabled" for better clarity.
 - Adds support for applying route monitors at the domain level, improving route oversight.
 - Fixes GChat event handling so new alerts are not immediately marked as resolved, improving alert visibility and reliability in incident response workflows.
 - Renames local/remote peer fields in GRE Tunnel configurations to be more descriptive.
+- Fixes an issue where IDP user/group sync could fail to refresh daily.
