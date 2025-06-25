@@ -19,7 +19,7 @@ This release includes a significant redesign of the Infovisor, providing a more 
 ## Cloud Integration Enhancements
 - Adds new interface tools on AWS Nodes:
     - `AWS Route Tables` - This service will query the AWS API for all route tables associated with the interface and the associated routes and destinations.  This is useful for troubleshooting routes managed by clustered Trustgrid nodes.
-    - `AWS Stats` - This service will retrieve [metrics for the ENA Driver](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-network-performance-ena.html#network-performance-metrics) providing the ability to check if interface limits are being exceeded.
+    - `AWS Stats` - This service will retrieve <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/monitoring-network-performance-ena.html#network-performance-metrics" target="_blank" rel="noopener"> metrics for the ENA Driver</a> providing the ability to check if interface limits are being exceeded.
 - Removes the `next hop` field for interface routes on AWS and Azure nodes as both require the gateway for that network to handle traffic.
 
 ## Gateway and Data Plane Improvements 
