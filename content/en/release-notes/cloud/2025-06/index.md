@@ -34,7 +34,7 @@ This release includes a significant redesign of the Infovisor, providing a more 
 ## Observability
 This release includes early access to the [Observability]({{<relref "/docs/observability">}}) feature, which allows for exporting data such as metrics and events to external systems using the OpenTelemetry (OTel) protocol. Trustgrid will use this early access stage to gather feedback and usage data to help determine if additional charges will apply in the future. Functionality and pricing are subject to change. Contact Trustgrid Support to enable this feature for your account.
 
-Prelimiary testing has been done with [Splunk]({{<relref "/tutorials/observability-platforms/splunk">}}) and [Logstash]({{<relref "/tutorials/observability-platforms/logstash">}}) as exporters.
+Preliminary testing has been done with [Splunk]({{<relref "/tutorials/observability-platforms/splunk">}}) and [Logstash]({{<relref "/tutorials/observability-platforms/logstash">}}) as exporters.
 
 ## Other Improvements and Fixes
 - Generating a new API key now invalidates the previous key correctly
