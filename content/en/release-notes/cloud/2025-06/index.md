@@ -41,7 +41,6 @@ Preliminary testing has been done with [Splunk]({{<relref "/tutorials/observabil
 - Corrects the export functionality for the node table, ensuring that Location and ISP data are accurately included in the exported CSV file.
 - Renames "TCP Errors" to "TCP Stats" in the Nodes Overview for clarity.
 - Enables sorting of domain routes by description to streamline navigation.
-- Enhances the interface `Flows` Tool to allow specifying "Any" as a protocol option.
 - Ensures that all permissions assigned to a user are displayed in the portal, aiding in effective access management.
 - Changes the Repo Connectivity status to "Healthy" or "Unhealthy" instead of "Enabled" or "Disabled" for better clarity.
 - Adds support for applying route monitors at the domain level, improving route oversight.
