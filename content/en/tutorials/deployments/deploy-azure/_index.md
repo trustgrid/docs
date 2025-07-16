@@ -103,10 +103,8 @@ One of more Virtual Machines will need to be deployed into the target Azure subs
 ### Deployment Methods
 
 - [Deploy via Azure command line tool]({{<relref "/tutorials/deployments/deploy-azure/">}})
-
-_Documentation Coming Soon for..._
-- Deploy via the Azure Portal 
-- Deploy via Azure Bicep modules
+- [Deploy with Bicep Modules](https://github.com/trustgrid/trustgrid-infra-as-code/tree/main/azure/bicep) - This is a collection of Bicep modules that can be used to deploy Trustgrid nodes in Azure. It includes modules for deploying the virtual machines as well as creating IAM roles and networking resources.
+- [Deploy with Terraform](https://github.com/trustgrid/trustgrid-infra-as-code/tree/main/azure/terraform) - This is a collection of Terraform modules that can be used to deploy Trustgrid nodes in Azure. It includes modules for deploying the virtual machines as well as creating IAM roles and networking resources.
 
 ## High Availability
 Trustgrid supports two methods for supporting high availability networking connectivity via clustered Trustgrid nodes in Azure. These methods can be used together or independently.
