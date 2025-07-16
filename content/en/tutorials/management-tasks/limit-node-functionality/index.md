@@ -1,6 +1,8 @@
 ---
 Title: "Limit Node Functionality to Current Public IP"
 Date: 2023-01-09
+aliases: 
+    - /tutorial/limit-node-functionality
 ---
 
 {{% pageinfo %}}
