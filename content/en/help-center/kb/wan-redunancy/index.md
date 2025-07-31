@@ -28,14 +28,18 @@ This configuration shows a single node connected to a firewall or router that ha
 graph LR
     
     intHost[Internal Hosts]
-    intNet[[Internal\n Network]]
+    intNet[[Internal
+     Network]]
     intHost <-.Optional.-> intNet <-.Optional.-> snLAN 
     subgraph sn [Single Node]
-        snWAN[WAN\nInterface]
-        snLAN[LAN\nInterface]
+        snWAN[WAN
+        Interface]
+        snLAN[LAN
+        Interface]
     end
     firewall["Firewall/Router"]
-    dmzNet[[DMZ\n Network]]
+    dmzNet[[DMZ
+    Network]]
     firewall == Primary==> ISP1([ISP 1])
     firewall -. Failover/Backup .-> ISP2([ISP 2])
     snWAN --> dmzNet --> firewall
@@ -50,19 +54,25 @@ This configuration shows a cluster of Trustgrid nodes connected to a firewall or
 ``` mermaid
 graph LR
     intHost[Internal Hosts]
-    intNet[[Internal\n Network]]
+    intNet[[Internal
+     Network]]
     intHost <-.Optional.-> intNet <-.Optional.-> cl1LAN & cl2LAN
     subgraph cluster [" "]
        subgraph Cluster-Node1
-           cl1WAN[WAN\nInterface]
-           cl1LAN[LAN\nInterface]
+           cl1WAN[WAN
+           Interface]
+           cl1LAN[LAN
+           Interface]
        end
        subgraph Cluster-Node2
-           cl2WAN[WAN\nInterface]
-           cl2LAN[LAN\nInterface]
+           cl2WAN[WAN
+           Interface]
+           cl2LAN[LAN
+           Interface]
        end
     end
-    dmzNet[[DMZ\n Network]]    
+    dmzNet[[DMZ
+     Network]]    
     firewall["Firewall/Router"]
     firewall == Primary==> ISP1([ISP 1])
     firewall -. Failover/Backup .-> ISP2([ISP 2])
@@ -89,16 +99,21 @@ This configuration shows Cluster-Node1's WAN interface directly connected to one
 ``` mermaid
 graph LR
     intHost[Internal Hosts]
-    intNet[[Internal\n Network]]
+    intNet[[Internal
+     Network]]
     intHost <---> intNet <---> cl1LAN & cl2LAN
     subgraph cluster [" "]
         subgraph Cluster-Node1
-           cl1WAN[WAN\nInterface]
-           cl1LAN[LAN\nInterface]
+           cl1WAN[WAN
+            Interface]
+           cl1LAN[LAN
+            Interface]
         end
         subgraph Cluster-Node2
-           cl2WAN[WAN\nInterface]
-           cl2LAN[LAN\nInterface]
+           cl2WAN[WAN
+            Interface]
+           cl2LAN[LAN
+            Interface]
         end
     end
     cl1WAN ==> ISP1([ISP 1])
@@ -116,20 +131,27 @@ This configuration shows Cluster-Node1's WAN interface is connected to one DMZ/p
 ``` mermaid
 graph LR
     intHost[Internal Hosts]
-    intNet[[Internal\n Network]]
+    intNet[[Internal
+     Network]]
     intHost <---> intNet <---> cl1LAN & cl2LAN
     subgraph cluster [" "]
        subgraph Cluster-Node1
-           cl1WAN[WAN\nInterface]
-           cl1LAN[LAN\nInterface]
+           cl1WAN[WAN
+            Interface]
+           cl1LAN[LAN
+            Interface]
        end
        subgraph Cluster-Node2
-           cl2WAN[WAN\nInterface]
-           cl2LAN[LAN\nInterface]
+           cl2WAN[WAN
+            Interface]
+           cl2LAN[LAN
+            Interface]
        end
     end
-    dmzNet1[[DMZ\n Network 1]]
-    dmzNet2[[DMZ\n Network 2]]    
+    dmzNet1[[DMZ
+     Network 1]]
+    dmzNet2[[DMZ
+     Network 2]]    
     firewall1["Firewall/Router 1"]
     firewall2["Firewall/Router 2"]
     cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
@@ -148,19 +170,25 @@ This configuration shows Cluster-Node1's WAN interface is connected to a private
 ``` mermaid
 graph LR
     intHost[Internal Hosts]
-    intNet[[Internal\n Network]]
+    intNet[[Internal
+     Network]]
     intHost <---> intNet <---> cl1LAN & cl2LAN
     subgraph cluster [" "]
        subgraph Cluster-Node1
-           cl1WAN[WAN\nInterface]
-           cl1LAN[LAN\nInterface]
+           cl1WAN[WAN
+            Interface]
+           cl1LAN[LAN
+            Interface]
        end
        subgraph Cluster-Node2
-           cl2WAN[WAN\nInterface]
-           cl2LAN[LAN\nInterface]
+           cl2WAN[WAN
+            Interface]
+           cl2LAN[LAN
+            Interface]
        end
     end
-    dmzNet1[[DMZ\n Network 1]]    
+    dmzNet1[[DMZ
+     Network 1]]    
     firewall1["Firewall/Router 1"]
     cl1WAN --> dmzNet1 --> firewall1 ==> ISP1([ISP 1])
     cl2WAN ==> ISP2([ISP 2])
