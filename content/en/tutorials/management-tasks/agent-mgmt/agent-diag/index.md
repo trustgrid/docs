@@ -84,10 +84,10 @@ Most likely, all or none of these services will show OK. If, any are failing inv
 ### Connectivity
 Next, the agent will attempt to perform a TCP port connection, using `netcat` like test, to the appropriate ports for each control plane service. Specifically it will attempt connecting to:
 - TCP Port 8443 for:
-    - keymaster.trustgrid.io
     - gatekeeper.trustgrid.io
     - zuul.trustgrid.io
 - TCP Port 443 for:
+    - keymaster.trustgrid.io
     - repo.trustgrid.io
 
 If any of these are failing you will need to investigate any firewalls and routing between the agent and the internet.  If `traceroute` or `mtr` are installed, running the TCP versions of these tests to the appropriate port may help identify where the connection is being dropped.
