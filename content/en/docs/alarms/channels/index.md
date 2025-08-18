@@ -36,6 +36,11 @@ Trustgrid can post [event]({{<ref "docs/alarms/events" >}}) data to a configured
 Trustgrid can post [event]({{<ref "docs/alarms/events" >}}) data to a configured Google Chat (gChat) space via an incoming webhook.  First [create the webhook](https://developers.google.com/workspace/chat/quickstart/webhooks#create-webhook) and then copy the webhook URL into the Trustgrid channel definition.
 
 {{<alert>}} Only a single Slack or Teams channel, or Google Chat Space can be targeted by a Trustgrid channel definition. However, you can create multiple Trustgrid channels if you wish to post the [event]({{<ref "docs/alarms/events" >}}) data to more than one Slack/Teams channel. {{</alert>}}
+
+### Generic Webhook 
+
+Trustgrid can send event data to any HTTP endpoint using a generic webhook channel. This allows for integration with a wide variety of systems and services. The Event Data payload below is sent in `application/json` format to the URL specified. Any authentication credentials should be specified in the URL. 
+
 ## Example Event Data
 
 The [event]({{<ref "docs/alarms/events" >}}) data is delivered in JSON, as shown below, which depending on the integration can allow for additional parsing.
