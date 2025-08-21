@@ -3,7 +3,6 @@ categories: ["node"]
 tags: ["layer 4", "networking"]
 title: "Services"
 linkTitle: "Services"
-weight: 19
 aliases: 
     - /docs/nodes/services
 description: Configure Layer 4 (L4) services to make them accessible via peer nodes

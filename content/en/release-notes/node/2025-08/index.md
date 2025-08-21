@@ -20,7 +20,7 @@ With this release the DNS Health Check, located in the [Configuration Status sec
 - Activation codes for [remote registration]({{<relref "/tutorials/local-console-utility/remote-registration">}}) now display in a higher-contrast to make reading easier in some environments.
 
 ## Fixes
-- Changing WAN IPs using the [Try method]({{<>}})
+- Changing WAN IPs using the [Try method]({{<relref "/tutorials/wan-interface-ip">}}) now adds an audit entry in the [Changes](<{{<relref "/docs/nodes/shared/changes">}}>) section of the appliance.
 - Fixed an issue that prevented MTU changes on interfaces configured by DHCP.
 - Removed a logging statement on AWS nodes about "ARP'ing for cluster IPs" since custer IPs aren't supported in AWS.
 - 

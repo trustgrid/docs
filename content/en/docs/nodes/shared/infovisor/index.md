@@ -2,7 +2,6 @@
 title: Infovisor
 linkTitle: Infovisor
 description: The infovisor displays details about the Trustgrid node
-weight: 8
 aliases:
     - /docs/nodes/infovisor
 ---

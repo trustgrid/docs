@@ -1,7 +1,6 @@
 ---
 Title: "Location"
 linkTitle: "Location"
-weight: 12
 aliases: 
     - /docs/nodes/location
 description: View and set location information about the node
