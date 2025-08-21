@@ -63,10 +63,10 @@ This process is very similar to the above with the exception that <mark>**the ch
 1. You’ll be presented with a warning like the below. Type 'yes' and click `Confirm`. {{<tgimg src="wan-change-warning.png" width="60%" caption="Apply Confirmation">}}
 1. The device will be notified it has an updated configuration.  It will pull this configuration down and automatically restart the Trustgrid service using the new IP address.
     1. The restart usually takes less than a minute.
-    1. What ever interactive service you were using (Terminal, etc) should disconnect.
+    1. Whatever interactive service you were using (Terminal, etc) should disconnect.
 1. After the local site networking is updated (either physically by moving a cable, or logically by updating the connected switch port config) so that the new IP address can connect the device should come back online.  
 
-## Addition Post-IP Change Verification
+## Additional Post-IP Change Verification
 After the WAN IP has been changed there are a few areas where the WAN interface IP may have been used:
 
 ### Gateway Nodes
