@@ -1,11 +1,8 @@
 ---
 title: "Production Status Tags"
 date: 2022-12-28
+description: Production status tags recommended for identifying the current lifecycle state of Trustgrid nodes.
 ---
-
-{{% pageinfo %}}
-Production status tags are used for for organizing large Trustgrid deployments.
-{{% /pageinfo %}}
 
 It is recommended that customers use a [tag]({{<ref "/docs/nodes/shared/tags" >}}) to indicate if [nodes]({{<ref "docs/nodes" >}}) are currently in production or not. For example, you may wish to have a [tag]({{<ref "/docs/nodes/shared/tags" >}}) such as prod_status with possible values like
 

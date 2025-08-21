@@ -2,7 +2,6 @@
 tags: ["node"]
 title: "Audits"
 linkTitle: "Audits"
-weight: 1
 aliases: 
   - /docs/nodes/audits
 description: View audit logs of actions taken on a node

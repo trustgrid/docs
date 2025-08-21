@@ -2,7 +2,6 @@
 tags: ["tag"]
 title: "Tags"
 linkTitle: "Tags"
-weight: 20
 date: 2022-12-28
 aliases: 
 - /docs/nodes/tags

@@ -1,7 +1,6 @@
 ---
 Title: "Node Flow Logs"
 linkTitle: "Flow Logs"
-weight: 6
 aliases: 
     - /docs/nodes/flow-logs
 description: Flow logs scoped to selected node
