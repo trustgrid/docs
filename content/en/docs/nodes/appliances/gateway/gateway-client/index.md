@@ -30,13 +30,13 @@ Determines if the node will attempt to [monitor hops to gateway peers]({{<relref
 - **Only when peer requests** - The node will only attempt to monitor hops to gateway peers that request it. This is the default state.
 - **Never** - The node will never attempt to monitor hops to gateway peers, even if peers request it.
 {{</field>}}
-{{<field "Monitor Hops Interval" >}} The interval time, in seconds, between gathering hop monitoring data.{{</field>}}
+{{<field "Monitor Hops Interval" >}} The interval time, in seconds, between gathering hop monitoring data. Default is 20s. {{</field>}}
 {{<field "Support Monitor Hops Resets" >}} 
 Determines if the node will send reset (RST) packets for the TCP connections it attempts.  Doing so reduces, but does not eliminate the number of resets seen on the WAN interface.
 - **Enabled** - The node will send reset packets. This is the default state.
 - **Disabled** - The node will not send reset packets.
 {{</field>}}
-{{<field "Monitor Hops SYN Payload Size" >}} Determines the size of the TCP SYN payload sent. By default the payload is the smaller of 1440 or the WAN MTU minus 60 bytes. Can be set between 0 and 1440. {{</field>}}
+{{<field "Monitor Hops SYN Payload Size" >}} Determines the size of the TCP SYN payload sent. By default the payload is 0. Can be set between 0 and 1440. Recommended max is the lower of 1440 or the WAN MTU minus 60 bytes. {{</field>}}
 {{</fields>}}
 ## Gateway Paths
 
