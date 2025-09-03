@@ -45,6 +45,7 @@ The Trustgrid appliances need permissions to:
                     "Microsoft.Network/networkInterfaces/ipconfigurations/read",
                     "Microsoft.Network/networkInterfaces/ipconfigurations/join/action",
                     "Microsoft.Network/networkSecurityGroups/join/action",
+                    "Microsoft.Network/virtualNetworks/read",
                     "Microsoft.Network/virtualNetworks/subnets/read",
                     "Microsoft.Compute/virtualMachines/read",
                     "Microsoft.Network/virtualNetworks/subnets/join/action",
