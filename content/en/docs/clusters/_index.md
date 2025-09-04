@@ -19,7 +19,8 @@ Certain settings such as network services and VPN settings can be configured for
 
 - Nodes in the cluster must be using the same model of appliances
 - Nodes must be able to create direct TCP connections with each other
-- Nodes must be at the same physical site. Using multiple public cloud (AWS/Azure) availability zones (AZs) within the same region are acceptable as they provide highly reliable connectivity between the nodes.
+- Nodes must be at the same physical site. 
+  - Using multiple public cloud (AWS/Azure) availability zones (AZs) within the same region are acceptable as they provide highly reliable connectivity between the nodes.
 
 ## Active Member Determination
 
@@ -45,7 +46,7 @@ A cluster can be configured in two different modes to determine what happens whe
 - Automatic Failback (Default) - In this mode the member set as the Configured Active (see below) will maintain the active role as long as it is online and healthy.
 - Manual Failback - In this mode, the active role only moves if either the current holder fails or the configured active is changed
 
-![img](cluster-mode.png)
+{{<tgimg src="cluster-mode.png" width="60%" alt="Cluster Mode Diagram" caption="Cluster mode options: Automatic and Manual Failback" >}}
 
 Consider a cluster with members named Node1, the configured active, and Node2.
 
@@ -61,13 +62,13 @@ The cluster will wait a configurable amount of time before considering a failed 
 
 Each cluster will have one configured or preferred active member. This is reflected in the overview section.
 
-{{<tgimg src="cluster-nodes-list.png" width="70%" alt="Cluster Nodes List" caption="Cluster Members list showing configured and current active member" >}}
+{{<tgimg src="cluster-nodes-list.png" width="75%" alt="Cluster Nodes List" caption="Cluster Members list showing configured and current active member" >}}
 
 
 #### Change Configured Active
 To change the configured active member:
-1.  Click the make active button in the row for the desired node. {{<tgimg src="make-active-button.png" width="70%" alt="Make Active Button highlighted" caption="Make Active Button" >}}
-1. A prompt will appear asking for confirmation. Click the "Confirm" button. {{<tgimg src="make-active-prompt.png" width="70%" alt="Confirm Make Active Button highlighted" caption="Confirm the change in the configured active member" >}}
+1.  Click the make active button in the row for the desired node. {{<tgimg src="make-active-button.png" width="75%" alt="Make Active Button" caption="Make Active Button in cluster member row" >}}
+1. A prompt will appear asking for confirmation. Click the "Confirm" button. {{<tgimg src="make-active-prompt.png" width="50%" alt="Confirm Make Active Button" caption="Prompt to confirm change of active member" >}}
 1. This change will be pushed to each member. They will then attempt to transfer the active role to the new configured active member assuming it is online and healthy. After this change the "Current Active" will be updated to reflect the new active member.
 ## Cluster Member Health
 
@@ -114,22 +115,17 @@ Cluster members can share the configuration for the following services:
 
 ## Tags
 
-[Tags]({{<ref "/docs/nodes/shared/tags">}}) are visible at the bottom of the overview page for the resource.
+[Tags]({{<ref "/docs/nodes/shared/tags">}}) are visible at the bottom of the overview page for the resource.  Tags applied to a cluster will be applied to both members of the cluster.
 
-![img](cluster-tags.png)
+{{<tgimg src="cluster-tags.png" width="50%" alt="Cluster Tags" caption="Cluster tags shown at the bottom of the overview page" >}}
 
 ### Modifying Tags
 
 To add a tag:
 
 1. Click `Add Tag`.
-
-1. A new row will appear at the bottom of the tags table. There will be a list of existing tag names for your organization. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting `New selection: tagName`.
-
-  ![img](new-tag-name.png)
-
+1. A new row will appear at the bottom of the tags table. There will be a list of existing tag names for your organization. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting `New selection: tagName`. {{<tgimg src="new-tag-name.png" alt="Add Tag Name" width="40%" caption="Creating a new tag name for a cluster" >}}
 1. Next move to the values field. As with the name, existing values will be listed. To enter a new value type it in completely.
-
 1. Click `Save`
 
 Tag rows can be edited in-place. Change the name or value, then click `Save`.
@@ -140,20 +136,8 @@ To remove a tag, click the red X next to the tag name, then click `Save`.
 
 The clusters table can also be filtered to only show clusters with a specific tag name:value.
 
-1. On the clusters table click `Actions` and select `Add Tag Filter` from the drop-down menu.
-
-![img](add-tag-filter-2.png)
-
-1. After clicking `Add Tag Filter`, select the tag-name field and you will see a list of tag-names available. Select the desired tag.
-
-![img](pick-tag-filter-name2.png)
-
-You can also start typing to filter what tag names are shown.
-
-3. Select the tag value field and you will see a list of available values. Select the desired value.
-
-4. (Optional) Click `Add Tag Filter` to include an additional filter. Note that the two filters will be applied using AND only clusters with both tag name:value combinations matching will be shown.
-
-5. Click `Apply Tag Filter` and the table will only show matching clusters.
-
-![img](applied-filters2.png)
+1. On the clusters table click `Actions` and select `Add Tag Filter` from the drop-down menu. {{<tgimg src="add-tag-filter-2.png" width="50%" alt="Add Tag Filter" caption="Add Tag Filter option in clusters table" >}}
+1. After clicking `Add Tag Filter`, select the tag-name field and you will see a list of tag-names available. Select the desired tag. {{<tgimg src="pick-tag-filter-name2.png" width="80%" alt="Pick Tag Filter Name" caption="Selecting a tag name for filtering clusters" >}} You can also start typing to filter what tag names are shown.
+1. Select the tag value field and you will see a list of available values. Select the desired value.
+1. (Optional) Click `Add Tag Filter` to include an additional filter. Note that the two filters will be applied using AND only clusters with both tag name:value combinations matching will be shown.
+1. Click `Apply Tag Filter` and the table will only show matching clusters.{{<tgimg src="applied-filters2.png" width="80%" alt="Applied Tag Filters" caption="Clusters table filtered by tag name and value" >}}
