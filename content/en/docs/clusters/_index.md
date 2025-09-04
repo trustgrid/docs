@@ -10,7 +10,7 @@ weight: 3
 A cluster is a pair of [nodes]({{<ref "docs/nodes" >}}) that share configuration and an active/standby relationship, providing automated high-availability (HA) connectivity.
 {{% /pageinfo %}}
 
-A cluster is a pair of [nodes]({{<ref "docs/nodes" >}}) at a single site that share some configurations and provide automatic failover. An additional IP address is assigned as a Cluster Virtual IP address that can move between the [nodes]({{<ref "docs/nodes" >}}) if failover occurs.
+A cluster is a pair of [nodes]({{<ref "docs/nodes" >}}) **at a single site** that share some configurations and provide automatic failover. An additional IP address is assigned as a Cluster Virtual IP address that can move between the [nodes]({{<ref "docs/nodes" >}}) if failover occurs.
 
 Certain settings such as network services and VPN settings can be configured for the cluster and these settings will override the individual [node's]({{<ref "docs/nodes" >}}) configuration.
 
@@ -19,7 +19,7 @@ Certain settings such as network services and VPN settings can be configured for
 
 - Nodes in the cluster must be using the same model of appliances
 - Nodes must be able to create direct TCP connections with each other
-- Nodes should be at the same site or have high-bandwidth, high-reliability, low-latency connections between the devices
+- Nodes must be at the same physical site. Using multiple public cloud (AWS/Azure) availability zones (AZs) within the same region are acceptable as they provide highly reliable connectivity between the nodes.
 
 ## Active Member Determination
 
