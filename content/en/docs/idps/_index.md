@@ -1,7 +1,6 @@
 ---
-title: "Identity Providers"
-date: 2023-01-12
-weight: 9
+linkTitle: "Identity Providers"
+title: "Identity Providers (IdPs)"
 ---
 
 {{% pageinfo %}}

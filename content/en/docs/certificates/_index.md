@@ -1,7 +1,5 @@
 ---
 title: "Certificates"
-date: 2023-01-12
-weight: 3
 ---
 
 {{% pageinfo %}}

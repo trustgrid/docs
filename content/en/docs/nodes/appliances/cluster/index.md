@@ -1,7 +1,6 @@
 ---
 title: "Cluster Heartbeat Configuration"
 linkTitle: Cluster
-weight: 3
 description: Configure heartbeat communication between cluster members
 aliases: 
   - /docs/nodes/cluster

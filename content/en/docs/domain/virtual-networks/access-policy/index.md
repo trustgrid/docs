@@ -2,8 +2,6 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Access Policy"
-date: 2022-12-28
-weight: 40
 ---
 
 {{% pageinfo %}}

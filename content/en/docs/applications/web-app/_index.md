@@ -1,7 +1,6 @@
 ---
 tags: ["applications", "ztna"]
 title: "Web App"
-date: 2023-01-11
 ---
 
 {{% pageinfo %}}

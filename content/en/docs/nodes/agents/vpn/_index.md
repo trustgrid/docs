@@ -2,7 +2,6 @@
 title: Virtual Network(VPN)
 linkTitle: VPN
 description: Agent Virtual Network configuration
-weight: 25
 ---
 The VPN section allows for viewing and configuring an agent's virtual network settings and access tools for troubleshooting.
 

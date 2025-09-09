@@ -2,7 +2,6 @@
 title: Overview
 linkTitle: Overview
 description: Agent node statistics and recent flow logs
-weight: 10
 ---
 
 The overview page for agent-based nodes shows several graphs and provides a table of recent flow logs.

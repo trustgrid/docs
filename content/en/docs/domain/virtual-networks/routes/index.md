@@ -2,8 +2,6 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Routes"
-date: 2023-01-09
-weight: 30
 ---
 
 {{% pageinfo %}}

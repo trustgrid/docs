@@ -1,7 +1,6 @@
 ---
 title: "Agent Nodes"
 linkTitle: Agents
-weight: 1
 description: "Documentation of Trustgrid agent-based node configuration and functionality"
 ---
  

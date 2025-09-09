@@ -1,8 +1,6 @@
 ---
 Title: "Alarms"
 Tags: ["alarms"]
-date: 2022-12-28
-weight: 2
 ---
 
 {{% pageinfo %}}

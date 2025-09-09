@@ -2,8 +2,6 @@
 categories: ["monitoring"]
 tags: ["monitoring"]
 title: "Observability"
-date: 2025-06-03
-weight: 4
 ---
 
 {{% pageinfo %}}

@@ -1,6 +1,5 @@
 ---
 Title: "OpenID"
-Date: 2023-01-12
 ---
 
 ![img](idp-fields.png)

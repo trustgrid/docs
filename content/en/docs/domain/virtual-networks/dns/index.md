@@ -1,7 +1,6 @@
 ---
 linkTitle: DNS
 Title: "DNS"
-weight: 50
 ---
 
 The DNS feature allows nodes in the virtual network to act as DNS servers for ingress VPN traffic. The node can resolve queries custom defines DNS zones and records, or forward queries to upstream DNS servers.
