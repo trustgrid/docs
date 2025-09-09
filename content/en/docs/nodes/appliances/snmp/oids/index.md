@@ -1,7 +1,6 @@
 ---
 Title: "SNMP OIDs on Trustgrid Appliances"
 linkTitle: "SNMP OIDs"
-Date: 2023-01-12
 aliases: 
     - /docs/nodes/snmp/oids
 description: Explains SNMP OIDs exposed via the SNMP v3 service on appliance-based nodes

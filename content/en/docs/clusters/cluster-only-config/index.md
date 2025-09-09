@@ -1,6 +1,5 @@
 ---
 title: "Cluster-Only Configuration Items"
-weight: 10
 description: "Features and configuration options specific to clustered environments"
 ---
 

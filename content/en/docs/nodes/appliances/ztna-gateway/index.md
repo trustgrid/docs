@@ -1,7 +1,6 @@
 ---
 title: ZTNA Gateway
 description: Configure a node to allow end-user connectivity for ZTNA applications
-weight: 26
 aliases: 
     - /docs/nodes/ztna-gateway
 description: Configure the node to act as a Zero Trust Network Access server

@@ -2,7 +2,6 @@
 linkTitle: Server
 Title: Gateway Server Settings
 descriptions: Configure settings for the Trustgrid gateway server
-weight: 10
 aliases: 
     - /docs/nodes/gateway/gateway-server
 description: Configure gateway server settings

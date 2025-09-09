@@ -1,7 +1,6 @@
 ---
 Title: "Overview"
 linkTitle: "Overview"
-weight: 15
 aliases: 
     - /docs/nodes/overview
 description: View performance and network stats for the node

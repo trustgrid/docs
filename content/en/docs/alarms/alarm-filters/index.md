@@ -1,7 +1,6 @@
 ---
 Title: "Alarm Filters"
 Tags: ["alarms", "alarm filters"]
-Date: 2022-12-28
 ---
 
 {{% pageinfo %}}

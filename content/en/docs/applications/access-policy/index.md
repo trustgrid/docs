@@ -1,7 +1,6 @@
 ---
 tags: ["applications", "ztna"]
 title: "Access Policy"
-date: 2023-01-11
 ---
 
 {{% pageinfo %}}

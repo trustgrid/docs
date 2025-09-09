@@ -1,7 +1,6 @@
 ---
 tags: ["applications", "ztna"]
 title: "RDP App"
-date: 2023-01-11
 ---
 
 {{% pageinfo %}}

@@ -3,7 +3,6 @@ categories: ["node"]
 tags: ["VRFs", "networking"]
 title: "VRFs"
 linkTitle: "VRFs"
-weight: 22
 aliases: 
     - /docs/nodes/VRFs
 description: Configure Virtual Routing and Forwarding instances to segment and control network traffic

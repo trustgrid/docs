@@ -1,7 +1,6 @@
 ---
 title: "Network Address Translation (NATs)"
 linkTitle: Address Translation
-date: 2023-02-14
 aliases: 
     - /docs/nodes/vpn/nats
 description: Configure Network Address Translation for traffic entering or leaving the virtual network

@@ -1,6 +1,5 @@
 ---
 title: "Dynamic Routing"
-date: 2023-02-14
 aliases: 
     - /docs/nodes/vpn/dynamic-routing
 description: Configure import and export rules for dynamic routes on the virtual network
