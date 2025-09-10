@@ -62,7 +62,7 @@ Trustgrid offers two ways to upgrade multiple nodes: selecting multiple nodes fr
 |   | [Nodes Table](#bulk-upgrade-from-the-nodes-table) | [Upgrade Manager]({{<relref "/docs/upgrade-manager">}}) |
 |---|---|---|
 |Number of nodes supported | Limited initiating upgrades on 10 nodes at a time| Unlimited |
-| Feedback provided | Confirms if Node Appliance upgrade command was sent successfully. | Provides detailed monitoring of upgrade progress and error information. This includes the ability to export the completelion status across the ugprade cohort. |
+| Feedback provided | Confirms if Node Appliance upgrade command was sent successfully. | Provides detailed monitoring of upgrade progress and error information. This includes the ability to export the completion status across the upgrade cohort. |
 | Cluster upgrade coordination | Requires manually failing over nodes | Automatically handles cluster upgrades by upgrading the standby node first, then promoting it to active and upgrading the remaining member. |
 | Handling unhealthy clusters | Can upgrade clusters that are not in a healthy state. Note that if the only online member is upgraded and runs into issues, the entire site could end up offline. | Automatically skips clusters in an unhealthy state to avoid outages. |
 
