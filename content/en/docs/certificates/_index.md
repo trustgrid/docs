@@ -3,7 +3,7 @@ title: "Certificates"
 ---
 
 {{% pageinfo %}}
-Trustgrid allows importing of self-managed certificates that can encrypt traffic for both the Trustgrid mesh network (via the Gateway) and [ZTNA applications]({{<ref "/docs/applications">}}).
+Trustgrid allows importing of self-managed certificates that can encrypt traffic for both the Trustgrid mesh network (via the Gateway).
 {{% /pageinfo %}}
 
 ![img](certificates.png)

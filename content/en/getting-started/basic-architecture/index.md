@@ -32,10 +32,6 @@ Nodes can be attached to [virtual networks]({{<ref "docs/domain/virtual-networks
 #### Layer 4 Proxy
 The data plane can also be used to enable Layer 4 proxy connections across two nodes.  In this setup, one node will act at the [connector]({{<relref "docs/nodes/shared/connectors">}}) listening on a specified port.  When traffic is received on that port it will be forwarded to the configured [service]({{<relref "docs/nodes/shared/services">}}). The node that hosts that service will then forward the traffic on to the configured IP and port using it's local interfaces.
 
-### ZTNA Applications
-
-[ZTNA Applications]({{<ref "docs/applications">}}) can be exposed through nodes or clusters. Access to an application can be restricted via [access policies]({{<ref "docs/applications/access-policy">}}), for example to only allow users from a specific country.
-
 
 ## Control plane
 

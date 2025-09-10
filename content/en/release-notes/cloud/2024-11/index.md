@@ -50,7 +50,7 @@ Prior to this release selecting multiple nodes from the Nodes table and then per
 - Fixes an issue with Container configurations that prevented removing the Command and Stop Time values. 
 - Fixes an issue preventing setting flags on newly created agent-based nodes.
 - Reduces the number of domain update notifications generated when a node is enabled or disabled. Now only nodes that need to know the change should be updated. 
-- Fixes an issue preventing [application]({{<relref "/docs/applications">}}) session history from loading. This release also adds the ability to export the session and acces history to CSV.
+- Fixes an issue preventing application session history from loading. This release also adds the ability to export the session and acces history to CSV.
 - Prior to this release, if you attempted to export [flow logs]({{<relref "/docs/operations/flow-logs">}}) after changing to a different page of results the export would fail.  This release fixes this issue.
 - Introduces the [tg-builtin-provisioning-admin]({{<relref "/docs/user-management/policies#builtin-tg-provisioning-admin">}}) policy
 - Adds Alarm Filter type for the Gateway UDP Tunnel Error type.
