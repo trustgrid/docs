@@ -1,7 +1,5 @@
 ---
 title: "Documents"
-date: 1-27-2023
-weight: 4
 ---
 
 {{% pageinfo %}}

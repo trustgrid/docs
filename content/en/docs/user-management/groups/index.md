@@ -1,6 +1,5 @@
 ---
 Title: "Groups"
-Date: 2022-12-30
 ---
 
 ![img](group-ss.png)

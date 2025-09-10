@@ -3,8 +3,6 @@ categories: ["concepts"]
 tags: ["node", "concepts"]
 title: "Nodes"
 linkTitle: "Nodes"
-date: 2023-06-12
-weight: 14
 ---
 
 {{% pageinfo %}}

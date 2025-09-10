@@ -1,6 +1,5 @@
 ---
 title: "Production Status Tags"
-date: 2022-12-28
 description: Production status tags recommended for identifying the current lifecycle state of Trustgrid nodes.
 ---
 

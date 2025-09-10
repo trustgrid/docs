@@ -1,4 +1,5 @@
 ---
+linkTitle: "Password Complexity and MFA"
 title: "Password Complexity and MFA Requirements"
 ---
 

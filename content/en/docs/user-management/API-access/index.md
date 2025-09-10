@@ -1,6 +1,5 @@
 ---
 Title: "API Access"
-Date: 2023-01-12
 ---
 #### Generating an API Key
 Navigate to `User Management` -> `API Access`, and click `Regenerate API keys`. This will invalidate your existing API key, if it exists. The API key is tied to your user and will have the same permissions.

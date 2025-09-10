@@ -1,7 +1,6 @@
 ---
 tags: ["domain", "concepts"]
 title: "Thresholds"
-date: 2023-02-03
 ---
 
 {{% pageinfo %}}

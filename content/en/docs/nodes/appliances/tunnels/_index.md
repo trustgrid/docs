@@ -3,7 +3,6 @@ categories: ["node"]
 tags: ["tunnels", "networking"]
 title: "Tunnels"
 linkTitle: "Tunnels"
-weight: 22
 aliases: 
     - /docs/nodes/tunnels
 description: Configure manual tunnels with non-Trustgrid devices via standard protocols  

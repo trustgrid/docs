@@ -1,7 +1,6 @@
 ---
 title: Advanced Options
 linkTitle: Advanced
-weight: 1
 aliases: 
   - /docs/nodes/advanced
 description: Configure advanced settings on appliance-based nodes

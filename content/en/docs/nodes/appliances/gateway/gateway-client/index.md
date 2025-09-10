@@ -2,7 +2,6 @@
 linkTitle: Client
 Title: Gateway Client Settings
 descriptions: Configure settings for the Trustgrid gateway client
-weight: 20
 aliases: 
     - /docs/nodes/gateway/gateway-client
 description: Configure client settings 

@@ -2,7 +2,6 @@
 title: Network Interfaces
 linkTitle: Interfaces
 description: View information about agent interfaces
-weight: 20
 ---
 
 The Interfaces page displays the network interfaces on the agent node and their IPv4 addresses. 

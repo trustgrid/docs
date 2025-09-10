@@ -1,7 +1,5 @@
 ---
 Title: "User Management"
-Date: 2022-12-30
-weight: 21
 ---
 
 {{% pageinfo %}}

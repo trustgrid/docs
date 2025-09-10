@@ -2,7 +2,6 @@
 title: Virtual Network IP Pools
 linkTitle: IP Pools
 description: Define pools of IPs that are used for automatically assigning virtual management addresses to nodes
-weight: 60
 ---
 
 Virtual Network IP Pools are used for automatically assigning virtual management to nodes.  This is optional but makes configuration and management easier.

@@ -1,6 +1,5 @@
 ---
 title: "Containers"
-weight: 3
 aliases: 
   - /docs/nodes/containers
 description: Configure containers to run on appliance-based nodes

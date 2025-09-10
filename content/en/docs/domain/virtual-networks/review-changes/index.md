@@ -2,8 +2,6 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Review Changes"
-weight: 100
-date: 2023-01-09
 ---
 
 {{% pageinfo %}}

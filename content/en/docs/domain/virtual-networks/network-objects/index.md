@@ -2,8 +2,6 @@
 categories: ["concepts"]
 tags: ["domain", "concepts", "rewrite"]
 title: "Network Objects"
-date: 2023-01-09
-weight: 10
 ---
 
 {{% pageinfo %}}

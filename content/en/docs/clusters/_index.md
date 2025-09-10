@@ -2,8 +2,6 @@
 tags: ["cluster"]
 title: "Clusters"
 linkTitle: "Clusters"
-date: 2022-12-28
-weight: 3
 ---
 
 {{% pageinfo %}}

@@ -1,7 +1,5 @@
 ---
 title: "Repositories"
-date: 1-27-2023
-weight: 17
 ---
 
 ## Summary 

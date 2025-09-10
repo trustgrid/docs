@@ -3,7 +3,6 @@ tags: ["node"]
 title: "Interfaces"
 linkTitle: "Interfaces"
 description: Configure and manage the node's local network configuration
-weight: 9
 aliases: 
     - /docs/nodes/interface
 ---

@@ -1,7 +1,6 @@
 ---
 Title: "Gateway"
 linkTitle: "Gateway"
-weight: 7
 aliases: 
     - /docs/nodes/gateway
 description: Configure gateway server and client settings to manage connections to peer nodes, and run related diagnostics

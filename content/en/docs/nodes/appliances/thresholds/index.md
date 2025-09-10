@@ -2,7 +2,6 @@
 tags: ["node", "concepts"]
 title: "Thresholds"
 linkTitle: "Thresholds"
-weight: 19
 aliases: 
     - /docs/nodes/thresholds
 description: Define threshold limits for node resource utilization and trigger events

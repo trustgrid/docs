@@ -1,7 +1,6 @@
 ---
 Title: "SNMP"
 linkTitle: "SNMP"
-weight: 19
 aliases: 
     - /docs/nodes/snmp
 description: Configure SNMP v3 on Trustgrid node appliances

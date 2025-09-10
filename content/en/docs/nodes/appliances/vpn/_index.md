@@ -1,7 +1,5 @@
 ---
 title: "VPN"
-date: 2023-02-14
-weight: 22
 aliases: 
     - /docs/nodes/vpn
 description: Configure and manage VPN functionality between Trustgrid nodes

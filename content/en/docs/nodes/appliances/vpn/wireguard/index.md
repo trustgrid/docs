@@ -1,6 +1,5 @@
 ---
 title: "WireGuard ®"
-date: 2023-02-14
 aliases: 
     - /docs/nodes/vpn/wireguard
 description: Configure and manage a Wireguard server on the node to expose the virtual network

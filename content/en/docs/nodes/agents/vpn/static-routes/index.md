@@ -2,7 +2,6 @@
 title: Agent Virtual Network Static Routes
 linkTitle: Static Routes
 description: Define static routes for an agent's virtual network
-weight: 50
 ---
 Agents can define static routes for their virtual network to augment or override routes defined in the global [virtual network route table]({{<relref "/docs/domain/virtual-networks/routes">}}). 
 {{<tgimg src="agent-static-route.png" width="90%">}}

@@ -1,7 +1,6 @@
 ---
 title: Agent Address Translation
 linkTitle: Address Translation
-weight: 10
 description: Define how an agent forwards and translates VPN traffic
 ---
 {{<tgimg src="agent-nat.png" width="90%">}}

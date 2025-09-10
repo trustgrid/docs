@@ -1,7 +1,6 @@
 ---
 tags: ["applications", "ztna"]
 title: "VNC App"
-date: 2023-01-06
 ---
 
 {{% pageinfo %}}

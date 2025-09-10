@@ -1,6 +1,5 @@
 ---
 title: "Port Forwarding"
-date: 2023-05-08
 aliases: 
     - /docs/nodes/vpn/port-forwarding
 description: Configure port forwarding rules to expose local services as virtual IPs on the virtual network

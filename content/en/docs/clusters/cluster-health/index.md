@@ -1,7 +1,6 @@
 ---
 Title: "Cluster Site Health State"
 Tags: ["concepts", "clusters", "cluster health", "cluster management"]
-Date: 2022-12-28
 ---
 
 {{% pageinfo %}}
