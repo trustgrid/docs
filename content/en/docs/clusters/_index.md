@@ -77,21 +77,12 @@ When the condition clears the node will declare itself healthy and inform its pa
 ### Cluster Member Health Conditions
 
 - Loss of [cluster heartbeat]({{<ref "#cluster-heartbeat-communication">}}) communication - If a node cannot communicate with its partner nodes on the configured IP and port it will declare that partner node unhealthy and claim the active role if it has not already.
-
 - Interface Link (Up/Down) State - Any interface configured with an IP address in the Trustgrid is monitored for a successful connection to another network device
-
   - Example: In a two-interface setup it would be possible for the LAN interface to become unplugged but the node to remain online from the cloud and data plane perspective. However, the lack of LAN connectivity would prevent the node from delivering any Trustgrid services to that network
   - Note: If only a single node has an interface configured, such as an alternate MPLS path, Trustgrid support can configure it to be ignored for triggering.
-
 - Upstream Internet Issues - If a Trustgrid node is unable to build connections to both the Trustgrid control plane AND data plane connections to its gateways the node will be marked as unhealthy. This does require all the connections to be failing before it is triggered
-
   - Example: If an upstream internet provider or device experiences failure the node will not be able to provide any services.
-
 - WAN Interface DHCP failure - If the WAN interface is configured to use DHCP and it does not receive a DHCP lease it will mark itself unhealthy.
-
-- Layer 4 (L4 Proxy) Service Health Check - TCP L4 Proxy Services can be configured to regularly perform health checks to confirm a successful connection can be made. If these checks fail 5 times in a row the service will mark the cluster member as unhealthy.
-  - Example: If each cluster member’s LAN interface is connected to a different switch and one switch fails that member will be unable to connect to any IP:ports dependent on that path.  
-    {{<alert color="warning">}}Use caution before configuring multiple services with health checks. This could create a situation where both nodes declare themselves unhealthy because a single service is failing if the server providing the service goes offline. {{</alert>}}
 
 ## Cluster Member Shared Configuration
 
