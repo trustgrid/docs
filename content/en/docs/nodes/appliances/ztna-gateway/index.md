@@ -12,8 +12,6 @@ Navigate to a node, then select `ZTNA Gateway` under the `Network` section.
 
 ## HTTPS Endpoint
 
-The HTTPS endpoint is used to provide connectivity for non-WireGuard ZTNA [applications]({{<ref "/docs/applications">}}). 
-
 {{<fields>}}
 {{<field "Enabled">}}When enabled, this node will listen for ZTNA traffic.{{</field>}}
 {{<field "Public FQDN">}}The IP or FQDN of the node or the load balancer in front of the node. If using a domain name without a load balancer, be sure to select the appropriate [certificate]({{<ref "certificates">}}).{{</field>}}
@@ -23,7 +21,7 @@ The HTTPS endpoint is used to provide connectivity for non-WireGuard ZTNA [appli
 
 ## WireGuard Endpoint
 
-The WireGuard endpoint is used to provide connectivity for WireGuard ZTNA [applications]({{<ref "/docs/applications">}}). 
+The WireGuard endpoint is used to provide connectivity for WireGuard Tunnels. 
 
 {{<fields>}}
 {{<field "Enabled">}}When enabled, this node will listen for WireGuard traffic.{{</field>}}

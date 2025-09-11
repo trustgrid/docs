@@ -23,7 +23,7 @@ This button forces the Java process to clean up memory and execute garbage colle
 
 {{<tgimg src="garbage-collection.png" width="40%" caption="Garbage Collection button">}}
 
-### JVM Memory Settings
+### Memory Settings
 
 The JVM Memory panel allows changing the [default JVM settings]({{<relref "/help-center/kb/default-settings/jvm">}}) for the node process. 
 

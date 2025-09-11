@@ -57,7 +57,26 @@ In order to perform the below actions a user must have a [policy]({{<ref "/docs/
 1. A dialogue will indicate the command was successfully sent. {{<tgimg src="single-node-upgrade-report.png" width="40%" caption="Node upgrade response" alt="Dialogue stating 'Upgrade in progress">}}
 
 ## Upgrading Multiple Nodes
+Trustgrid offers two ways to upgrade multiple nodes: selecting multiple nodes from the Nodes table or using the [Upgrade Manager]({{<relref "/docs/upgrade-manager">}}).  Each method has its advantages and disadvantages, but typically for larger or organization-wide upgrades the Upgrade Manager is recommended.
 
+|   | [Nodes Table](#bulk-upgrade-from-the-nodes-table) | [Upgrade Manager]({{<relref "/docs/upgrade-manager">}}) |
+|---|---|---|
+|Number of nodes supported | Limited initiating upgrades on 10 nodes at a time| Unlimited |
+| Feedback provided | Confirms if Node Appliance upgrade command was sent successfully. | Provides detailed monitoring of upgrade progress and error information. This includes the ability to export the completion status across the upgrade cohort. |
+| Cluster upgrade coordination | Requires manually failing over nodes | Automatically handles cluster upgrades by upgrading the standby node first, then promoting it to active and upgrading the remaining member. |
+| Handling unhealthy clusters | Can upgrade clusters that are not in a healthy state. Note that if the only online member is upgraded and runs into issues, the entire site could end up offline. | Automatically skips clusters in an unhealthy state to avoid outages. |
+
+
+### Upgrade with Upgrade Manager
+
+The [Upgrade Manager]({{<relref "/docs/upgrade-manager">}}) page provides full details, but the high level process is:
+1. [Plan the upgrade]({{<relref "/docs/upgrade-manager#planning-an-upgrade">}}) by using include and/or exclude tag filters to determine which nodes and clusters will be upgraded. 
+1. (optional, but recommended) [Perform a dry run]({{<relref "/docs/upgrade-manager#dry-runs">}}) to confirm which nodes and clusters would be upgraded vs which would be skipped either due to tag filters or failing to meet health conditions. 
+1. Starting the upgrade job from the Actions drop-down menu.
+1. Monitoring and troubleshooting issues. This include the ability to retry a workflow for a node or cluster.
+1. Completing the job. This will happen automatically if all targeted nodes are upgraded, skipped or canceled. Or can be manually cancelled from the Actions drop-down menu.
+
+### Bulk Upgrade From the Nodes Table
 1. Navigate to the [Nodes table]({{<ref "/docs/nodes#node-list-view">}}).
 1. (Optional) Use the search box or [apply a tag filter]({{<ref "/docs/nodes#applying-a-tag-filter-to-the-nodes-table">}}) to filter the displayed nodes. {{<alert color="info">}}Note: if you change the search or tag filter any selected nodes will be deselected.{{</alert>}}
 1. Use the check boxes to select the desired nodes. {{<tgimg src="multi-node-select.png" width="40%" caption="Nodes table" alt="Nodes table showing two nodes selected" >}}
