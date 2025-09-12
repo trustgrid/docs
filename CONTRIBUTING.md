@@ -1,3 +1,29 @@
+
+# Trustgrid Docs: Content Authoring Instructions
+
+When working with pages under the `content` directory, follow these repository-specific guidelines:
+
+## 1. Front Matter Rules
+- Do **not** add `weight` or `date` fields to the front matter unless the page is in `content/en/release-notes`.
+- Always include:
+	- `linkTitle`: Use at most 3 words (prefer 2 or less).
+	- `title`: Use a longer, descriptive title (ideally less than 6 words).
+
+## 2. Internal Links
+- Use the `{{< relref >}}` shortcode for all references to other pages.
+- Remove any trailing `/` from the path and from anchor links.
+	- Example: `{{< relref "/docs/nodes#example" >}}` (not `/docs/nodes/#example`).
+
+## 3. Images & Screenshots
+- Use the `{{< tgimg >}}` shortcode for screenshots or images.
+- Default the width to 50%.
+- Suggest a filename and caption, but leave the actual image and final caption for the user to add.
+	- Example: `{{< tgimg src="suggested-name.png" width="50%" caption="Describe what this screenshot shows." >}}`
+
+## 4. Formatting Conventions
+- Use backticks (`` `text` ``) for user inputs, commands, or code.
+- Use bold (`**text**`) for UI elements or items that would be clicked on in the Trustgrid portal.
+
 # How to Contribute
 
 We'd love to accept your patches and contributions to this project. There are
