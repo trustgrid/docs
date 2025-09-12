@@ -12,6 +12,7 @@ These instructions are for the GitHub Copilot agent and Copilot Chat to follow w
 - Use the `{{<relref >}}` shortcode for all references to other pages (no space after `{{<`).
 - Always use relref as a Markdown link with link text, e.g. `[Link Text]({{<relref "docs/nodes#example" >}})`.
 - Do not use a leading `/` in the path for relref shortcodes.
+- Do not guess at pages. Search the repository to find the correct page if unsure.
 - Remove any trailing `/` from the path and from anchor links. Never use a slash before an anchor.
   - Example: `[Nodes]({{<relref "docs/nodes#example" >}})` (not `/docs/nodes/#example`, `/docs/nodes/#example/`, or with a leading `/`).
 
