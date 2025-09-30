@@ -1,11 +1,7 @@
-tags: ["aws"]
-title: "Deploy a Trustgrid Node AMI in AWS"
-date: 2023-02-09
-
 ---
 tags: ["aws"]
+linkTitle: "Deploy to AWS"
 title: "Deploy a Trustgrid Node AMI in AWS"
-date: 2023-02-09
 ---
 
 Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes in AWS use two network interfaces - a management and a data interface. The management interface communicates with Trustgrid Cloud Management systems. The data interface is used to terminate TLS tunnels from Edge Nodes.
