@@ -1,3 +1,7 @@
+tags: ["aws"]
+title: "Deploy a Trustgrid Node AMI in AWS"
+date: 2023-02-09
+
 ---
 tags: ["aws"]
 title: "Deploy a Trustgrid Node AMI in AWS"
@@ -12,6 +16,18 @@ Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes
 - Requires VPC and public subnet
 - Does not create security groups or roles - those have to be managed separately (more below)
 
+## Prerequisites
+
+
+| Known Supported Instance Types                | Architecture |
+|-----------------------------------------|--------------|
+| t2, t3, t3a, c5, c5n, c6i, c6in, c6a   | x86_64 only  |
+
+Additional x86_64 instances types may work but have not been tested. Contact Trustgrid support if a different type is believed necessary.
+
+
+> **Note:** ARM-based instances (such as Graviton) are not supported.
+
 {{<alert>}}
 If using a burstable performance instance types (T2, T3 and T3a) the following is advised:
 
@@ -19,8 +35,6 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
 
 - Configure monitoring of your CPU Credit Balance to alert if your credits are being consumed or you are being charged for additional CPU usage which might warrant resizing your devices. [Monitor your CPU credits - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-monitoring-cpu-credits.html)
 {{</alert>}}
-
-## Prerequisites
 
 - VPC with public and private subnets - Management NIC goes in the public subnet, Data NIC goes in the private subnet
   - Note: If doing a multi-AZ cluster deployment the private subnets need to use the same route table for automated route management to work
