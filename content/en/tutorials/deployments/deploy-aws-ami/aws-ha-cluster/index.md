@@ -1,6 +1,7 @@
 ---
 Title: "AWS Requirements for HA Wireguard Cluster"
-Date: 2023-01-06
+Description: "Steps to configure AWS Network Load Balancer for HA Wireguard Cluster"
+linkTitle: "AWS HA Wireguard Cluster"
 ---
 
 1. Create EC2 Target Group and add both Trustgrid gateways with the target being wireguard server port (Default UDP 51820) 
