@@ -1,7 +1,9 @@
 ---
 tags: ["aws"]
 title: "Configure HA Trustgrid Gateway Cluster in AWS"
-date: 2023-02-09
+description: "Steps to configure a high availability Trustgrid gateway cluster in AWS"
+linkTitle: "HA Gateway Cluster in AWS"
+type: docs
 ---
 
 1. Deploy a pair of Trustgrid gateways. Deployment guide includes an example Cloud Formation template that can be used directly or customized for your environment or converted to Terraform if preferred. Gateways can be deployed in the same availability zone or different ones to provide greater redundancy across AWS. [Deploy a Trustgrid Node AMI in AWS]({{<ref "deploy-aws-ami">}}).
