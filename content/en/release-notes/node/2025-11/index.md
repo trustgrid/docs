@@ -1,9 +1,9 @@
 ---
-title: October 2025 Second Minor Appliance Release Notes
-linkTitle: October 2025 Minor
+title: November 2025 Minor Appliance Release Notes
+linkTitle: November 2025 Minor
 type: docs
-date: 2025-10-24
-description: "Release notes for the October 2025 Second Minor Trustgrid Appliance release"
+date: 2025-11-03
+description: "Release notes for the November 2025 Minor Trustgrid Appliance release"
 ---
 
 {{< node-release package-version="FIX ME" core-version="FIX ME" release="n-2.23.2" >}}
