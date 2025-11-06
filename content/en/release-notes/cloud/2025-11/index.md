@@ -6,4 +6,5 @@ description: "November 2025 Minor Cloud Release Notes"
 type: docs
 ---
 
-* Bug fixes
+## Validation Fixes
+* Fixes an issue where /31 CIDRs couldn't pass validation.
