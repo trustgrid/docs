@@ -27,9 +27,24 @@ JSONinator allows you to automate configuration changes across multiple nodes. I
 
 ## How JSONinator Works
 
-- By default, JSONinator runs in **dry-run** mode. No changes are made to nodes; instead, a report is generated showing what would change.
-- To actually make changes, run with `-dryrun=false`.
-- All actions and results are logged to report files for review.
+
+JSONinator operates in three main stages defined in your plan file:
+
+1. [**Input**](#input): The `input` section queries the Trustgrid API to fetch the current configuration data for entities, like nodes or clusters, that you want to modify. This typically retrieves a list of nodes or clusters and their existing settings, which become the starting point for your changes.
+
+2. [**Pipeline**](#pipeline): The `pipeline` section processes each node or cluster's configuration using a series of processors:
+    - <a href="https://github.com/trustgrid/jsoninator/blob/main/README.md#filter" target="_blank" rel="noopener"><strong>filter</strong></a>: Selects which nodes or clusters to include or exclude based on criteria (such as name prefix, suffix, or custom Go template queries).
+    - <a href="https://github.com/trustgrid/jsoninator/blob/main/README.md#map" target="_blank" rel="noopener"><strong>map</strong></a>: Focuses on a nested field or sub-object within each node or cluster for further processing.
+    - <a href="https://github.com/trustgrid/jsoninator/blob/main/README.md#transform" target="_blank" rel="noopener"><strong>transform</strong></a>: Modifies, adds, or removes fields in the configuration using templates (for example, enabling UDP or setting a default port).
+    - <a href="https://github.com/trustgrid/jsoninator/blob/main/README.md#replace" target="_blank" rel="noopener"><strong>replace</strong></a>: Emits only the specified fields, allowing you to reshape the output as needed.
+    This pipeline creates the new, intended configuration for each node or cluster.
+
+3. [**Output**](#output): The `output` section defines where to send the processed (new) configuration. For each node or cluster, JSONinator posts the updated configuration to the specified HTTP endpoint (usually the Trustgrid API), using the method and headers you provide.
+
+All actions and results are logged to report files in the "reports" subdirectory of your working directory.
+
+By default, JSONinator runs in **dry-run** mode. No changes are made to nodes or clusters; instead, a report is generated showing what would change. To actually make changes, run with `-dryrun=false`.
+
 
 ## Plan YAML File Structure
 
