@@ -127,7 +127,7 @@ report:
 1. Identify the settings you want to change. Use the <a href="https://docs.trustgrid.io/api/" target="_blank" rel="noopener">Trustgrid API docs</a> to find field names and endpoints.
 2. For practical discovery, use your browser's DevTools (<a href="https://developer.chrome.com/docs/devtools/open/" target="_blank" rel="noopener">Chrome DevTools instructions</a>) while editing a node in the Trustgrid portal. Watch network requests to see which fields are updated and their names.
 3. If you want to filter by fields like `tags` or `name`, add those columns to the Nodes table in the portal and observe their API usage in DevTools.
-4. Once you know the fields you wish to modify and/or filter with build the plan's input `url` to return those fields for processing. See the example plan and the <a href="https://github.com/trustgrid/jsoninator/blob/main/README.md" target="_blank" rel="noopener">JSONinator README</a> for details.
+4. Once you know the fields you wish to modify and/or filter with, build the plan's input `url` to return those fields for processing. See the example plan and the <a href="https://github.com/trustgrid/jsoninator/blob/main/README.md" target="_blank" rel="noopener">JSONinator README</a> for details.
 
 Building a plan file may require some iteration. Start simple, test in dry-run mode, utilize a test/dev accounts if available, start with a single node/cluster and expand as needed. Trustgrid can assist with plan file creation on a best-effort basis during our business hours; contact your Trustgrid support for help.
 
