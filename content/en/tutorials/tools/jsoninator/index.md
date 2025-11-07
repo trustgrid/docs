@@ -137,18 +137,25 @@ Before running JSONinator, you must provide your Trustgrid API key ID and SECRET
 
 **macOS/Linux:**
 ```sh
-export TRUSTGRID_API_KEY_ID="your_key_id_here"
-export TRUSTGRID_API_KEY_SECRET="your_secret_here"
+echo -n "Enter API key ID: "
+read -s TRUSTGRID_API_KEY_ID
+echo
+echo -n "Enter API key secret: "
+read -s TRUSTGRID_API_KEY_SECRET
+echo
+export TRUSTGRID_API_KEY_ID
+export TRUSTGRID_API_KEY_SECRET
 ./jsoninator -plan=my-plan.yaml
 # When finished, unset the variables:
-unset TRUSTGRID_API_KEY_ID
-unset TRUSTGRID_API_KEY_SECRET
+ unset TRUSTGRID_API_KEY_ID
+ unset TRUSTGRID_API_KEY_SECRET
 ```
+> **Note:** Using read prevents the values provided from being saved in your shell history.
 
 **Windows PowerShell:**
 ```powershell
-$env:TRUSTGRID_API_KEY_ID="your_key_id_here"
-$env:TRUSTGRID_API_KEY_SECRET="your_secret_here"
+$env:TRUSTGRID_API_KEY_ID = Read-Host "Enter API key ID" -AsSecureString
+$env:TRUSTGRID_API_KEY_SECRET = Read-Host "Enter API key secret" -AsSecureString
 ./jsoninator -plan=my-plan.yaml
 # When finished, remove the variables:
 Remove-Item Env:TRUSTGRID_API_KEY_ID
@@ -157,18 +164,19 @@ Remove-Item Env:TRUSTGRID_API_KEY_SECRET
 
 **Windows Command Prompt:**
 ```cmd
-set TRUSTGRID_API_KEY_ID=your_key_id_here
-set TRUSTGRID_API_KEY_SECRET=your_secret_here
+set /p TRUSTGRID_API_KEY_ID=Enter API key ID:
+set /p TRUSTGRID_API_KEY_SECRET=Enter API key secret:
 jsoninator -plan=my-plan.yaml
 REM When finished, unset the variables:
 set TRUSTGRID_API_KEY_ID=
 set TRUSTGRID_API_KEY_SECRET=
 ```
 
+
 {{<alert color="warning">}}
 **Security Reminder:**
 
-Using `export` (macOS/Linux) or `set` (Windows Command Prompt) does not record your secrets in shell history. For best security, use your organization's secrets manager or environment variable management tool. Avoid putting secrets directly in your plan file or command line.
+Using `export` (macOS/Linux) or `set` (Windows Command Prompt) could record your secrets in shell history. For best security, use your organization's secrets manager or environment variable management tool. Avoid putting secrets directly in your plan file or command line.
 {{</alert>}}
 
 1. Place your plan YAML file in a working directory.
