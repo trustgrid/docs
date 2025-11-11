@@ -156,8 +156,8 @@ export TRUSTGRID_API_KEY_SECRET
 ```Powershell
 $TG_KeyID = Read-Host "Enter API key ID" -AsSecureString
 $TG_KeySecret = Read-Host "Enter API key secret" -AsSecureString
-TRUSTGRID_API_KEY_ID=[System.Net.NetworkCredential]::new("",$TG_KeyID).Password
-TRUSTGRID_API_KEY_SECRET=[System.Net.NetworkCredential]::new("",$TG_KeySecret).Password
+$TRUSTGRID_API_KEY_ID=[System.Net.NetworkCredential]::new("",$TG_KeyID).Password
+$TRUSTGRID_API_KEY_SECRET=[System.Net.NetworkCredential]::new("",$TG_KeySecret).Password
 jsoninator -plan=my-plan.yaml
 
 REM When finished, unset the variables:
