@@ -152,24 +152,19 @@ export TRUSTGRID_API_KEY_SECRET
 ```
 > **Note:** Using read prevents the values provided from being saved in your shell history.
 
-**Windows Command Prompt:**
+**Windows Powershell Prompt:**
 ```Powershell
 $TG_KeyID = Read-Host "Enter API key ID" -AsSecureString
 $TG_KeySecret = Read-Host "Enter API key secret" -AsSecureString
-$TRUSTGRID_API_KEY_ID=[System.Net.NetworkCredential]::new("",$TG_KeyID).Password
-$TRUSTGRID_API_KEY_SECRET=[System.Net.NetworkCredential]::new("",$TG_KeySecret).Password
+$env:TRUSTGRID_API_KEY_ID=[System.Net.NetworkCredential]::new("",$TG_KeyID).Password
+$env:TRUSTGRID_API_KEY_SECRET=[System.Net.NetworkCredential]::new("",$TG_KeySecret).Password
 jsoninator -plan=my-plan.yaml
-
-REM When finished, unset the variables:
-set TRUSTGRID_API_KEY_ID=
-set TRUSTGRID_API_KEY_SECRET=
 ```
 
 
 {{<alert color="warning">}}
 **Security Reminder:**
-
-Using `export` (macOS/Linux) or `set` (Windows Command Prompt) could record your secrets in shell history. For best security, use your organization's secrets manager or environment variable management tool. Avoid putting secrets directly in your plan file or command line.
+ For best security, use your organization's secrets manager or environment variable management tool. Avoid putting secrets directly in your plan file or command line.
 {{</alert>}}
 
 1. Place your plan YAML file in a working directory.
