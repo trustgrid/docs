@@ -152,21 +152,14 @@ export TRUSTGRID_API_KEY_SECRET
 ```
 > **Note:** Using read prevents the values provided from being saved in your shell history.
 
-**Windows PowerShell:**
-```powershell
-$env:TRUSTGRID_API_KEY_ID = Read-Host "Enter API key ID" -AsSecureString
-$env:TRUSTGRID_API_KEY_SECRET = Read-Host "Enter API key secret" -AsSecureString
-./jsoninator -plan=my-plan.yaml
-# When finished, remove the variables:
-Remove-Item Env:TRUSTGRID_API_KEY_ID
-Remove-Item Env:TRUSTGRID_API_KEY_SECRET
-```
-
 **Windows Command Prompt:**
-```cmd
-set /p TRUSTGRID_API_KEY_ID=Enter API key ID:
-set /p TRUSTGRID_API_KEY_SECRET=Enter API key secret:
+```Powershell
+$TG_KeyID = Read-Host "Enter API key ID" -AsSecureString
+$TG_KeySecret = Read-Host "Enter API key secret" -AsSecureString
+TRUSTGRID_API_KEY_ID=[System.Net.NetworkCredential]::new("",$TG_KeyID).Password
+TRUSTGRID_API_KEY_SECRET=[System.Net.NetworkCredential]::new("",$TG_KeySecret).Password
 jsoninator -plan=my-plan.yaml
+
 REM When finished, unset the variables:
 set TRUSTGRID_API_KEY_ID=
 set TRUSTGRID_API_KEY_SECRET=
