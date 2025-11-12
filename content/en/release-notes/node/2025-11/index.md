@@ -17,10 +17,10 @@ The fix introduces a version counter that increments whenever the configured act
 
 Additionally, cluster members will now log more clearly when the active role is being claimed or released, providing better visibility into the cluster's state.
 
-Finally, added better handling for the cluster server connections to prevent getting stuck in a close-wait state after network interruptions. This change also allows for modifying the cluster timeout without requiring a restart. 
+Finally, this release adds better handling for the cluster server connections to prevent getting stuck in a close-wait state after network interruptions. This change also allows for modifying the cluster timeout without requiring a restart. 
 
 ## VPN Route Sorting Fix
-This release changes the method used to sort VPN routes. The previous method could fail when multiple routes had the same destination CIDR and metric leading to a delay in processing updated routes. 
+This release changes the method used to sort VPN routes. The previous method could fail when multiple routes had the same destination CIDR and metric, leading to a delay in processing updated routes. 
 
 ## BGP Fix
 Resolves an issue that was causing BGP to fail to export routes on standby cluster members even if the export policy was configured with the `Cluster` setting to `No`.
