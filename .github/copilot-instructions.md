@@ -7,6 +7,8 @@ These instructions are for the GitHub Copilot agent and Copilot Chat to follow w
 - Always include:
   - `linkTitle`: Use at most 3 words (prefer 2 or less).
   - `title`: Use a longer, descriptive title (ideally less than 6 words).
+- Never:
+  - Remove the leading `---` from the start or end of the front matter.
 
 ## 2. Internal Links
 - Use the `{{<relref >}}` shortcode for all references to other pages (no space after `{{<`).
