@@ -133,7 +133,23 @@ Building a plan file may require some iteration. Start simple, test in dry-run m
 
 ## Running JSONinator
 
-Before running JSONinator, you must provide your Trustgrid API key ID and SECRET. The most secure way is to use your organization's existing secrets manager or environment variable management tool. If that is not available, set them as environment variables:
+### Provide API Credentials
+To run JSONinator, you must provide your Trustgrid API key ID and SECRET. This can be provided via command line prompt or environment variables.
+
+#### Provide with -prompt
+You can run JSONinator with the `-prompt` flag to securely enter your Trustgrid API key ID and SECRET at runtime:
+
+```sh
+./jsoninator -plan=my-plan.yaml -prompt
+```
+The downside to this approach is that you'll have to provide the credentials each time you run JSONinator.
+
+{{<tgimg src="jsoninator-prompt.png" caption="JSONinator Prompt for API Credentials" width="80%">}}
+
+#### Provide with Environment Variables
+The most secure way is to use your organization's existing secrets manager or environment variable management tool to set the API environment variables. 
+
+If that is not available, you can use a prompt to set the environment variables from the command line as shown below:
 
 **macOS/Linux:**
 ```sh
@@ -152,32 +168,16 @@ export TRUSTGRID_API_KEY_SECRET
 ```
 > **Note:** Using read prevents the values provided from being saved in your shell history.
 
-**Windows PowerShell:**
-```powershell
-$env:TRUSTGRID_API_KEY_ID = Read-Host "Enter API key ID" -AsSecureString
-$env:TRUSTGRID_API_KEY_SECRET = Read-Host "Enter API key secret" -AsSecureString
-./jsoninator -plan=my-plan.yaml
-# When finished, remove the variables:
-Remove-Item Env:TRUSTGRID_API_KEY_ID
-Remove-Item Env:TRUSTGRID_API_KEY_SECRET
-```
-
-**Windows Command Prompt:**
-```cmd
-set /p TRUSTGRID_API_KEY_ID=Enter API key ID:
-set /p TRUSTGRID_API_KEY_SECRET=Enter API key secret:
+**Windows Powershell Prompt:**
+```Powershell
+$TG_KeyID = Read-Host "Enter API key ID" -AsSecureString
+$TG_KeySecret = Read-Host "Enter API key secret" -AsSecureString
+$env:TRUSTGRID_API_KEY_ID=[System.Net.NetworkCredential]::new("",$TG_KeyID).Password
+$env:TRUSTGRID_API_KEY_SECRET=[System.Net.NetworkCredential]::new("",$TG_KeySecret).Password
 jsoninator -plan=my-plan.yaml
-REM When finished, unset the variables:
-set TRUSTGRID_API_KEY_ID=
-set TRUSTGRID_API_KEY_SECRET=
 ```
 
-
-{{<alert color="warning">}}
-**Security Reminder:**
-
-Using `export` (macOS/Linux) or `set` (Windows Command Prompt) could record your secrets in shell history. For best security, use your organization's secrets manager or environment variable management tool. Avoid putting secrets directly in your plan file or command line.
-{{</alert>}}
+### Execute JSONinator
 
 1. Place your plan YAML file in a working directory.
 2. Run JSONinator in dry-run mode (default):
@@ -189,6 +189,27 @@ Using `export` (macOS/Linux) or `set` (Windows Command Prompt) could record your
   ```sh
   ./jsoninator -plan=my-plan.yaml -dryrun=false
   ```
+### Understanding Command Line Output
+JSONinator will output progress to the console. Example output:
+
+```shell
+Processing mctest-clusterip-az-gw1.mctest.trustgrid.io
+2025/11/13 14:57:59 INFO running processor type=plan.Filter
+Processing mctest-clusterip-az-gw2.mctest.trustgrid.io
+2025/11/13 14:57:59 INFO running processor type=plan.Filter
+Processing mctest-edge3-2204.mctest.trustgrid.io
+2025/11/13 14:57:59 INFO running processor type=plan.Filter
+2025/11/13 14:57:59 INFO running processor type=plan.Map
+2025/11/13 14:57:59 INFO running processor type=plan.Transform
+```
+This example was run using a filter:
+```yaml
+        prefix:
+          name: mctest-e
+```
+You can see that the first two nodes were filtered out (no further processors run) because their names did not match. The third node passed the filter and was processed by the `Map` and `Transform` processors. 
+
+This can help you understand which nodes are being processed and identify any issues during execution, but [review the generated report files](#reviewing-reports) is the best way to see detailed results.
 
 ## Reviewing Reports
 
