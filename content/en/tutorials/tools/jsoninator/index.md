@@ -66,6 +66,12 @@ A plan file defines what changes to make, which data to operate on, and where to
 
 ### Example plan file
 
+This plan looks for appliance, not agent-based, nodes that start with `gw-` and then will modify their Gateway settings to:
+- Enables UDP
+- Set the UDP port to 8443 unless already set to another port.
+- Checks if the Max Egress (maxClientWriteMbps) is set to 0. This used to be allowed but is no anymore and will prevent the gateway setting from saving.
+- Makes sure the gateway certificate is set to null/nil, unless it has a prior value. 
+
 {{<codeblock lang="yaml">}}
 input:
   http:
@@ -87,7 +93,7 @@ pipeline:
         fields:
           udpEnabled: true
           udpPort: |
-            {{if .udpPort}}{{.udpPort}}{{else if .port}}{{.port}}{{else}}8995{{end}}
+            {{if .udpPort}}{{.udpPort}}{{else if .port}}{{.port}}{{else}}8443{{end}}
           maxClientWriteMbps: |
             {{if or (eq .maxClientWriteMbps 0.0) (not .maxClientWriteMbps)}}nil{{else}}{{.maxClientWriteMbps}}{{end}}
           cert: |
