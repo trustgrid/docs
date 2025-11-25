@@ -10,5 +10,5 @@ description: "Release notes for the November 2025 Minor Trustgrid Appliance rele
 
 This is a minor release that fixes the following issues:
 - There was a situation where a bad certificate for the control plane could cause a device to stop attempting to connect.
-- Simultaneous disconnections of the cluster heartbeat connections could cause a device to enter a deadlock state where it would not attempt to reconnect to it's cluster peers.
+- Simultaneous disconnections of the cluster heartbeat connections could cause a device to enter a deadlock state where it would not attempt to reconnect to its cluster peers.
 - Resolves an issue where non-cluster appliance nodes would log an error about looking for a cluster IP address.
