@@ -1,9 +1,9 @@
 ---
-title: November 2025 Second Minor Appliance Release Notes
-linkTitle: November 2025 Minor
+title: December 2025 Minor Appliance Release Notes
+linkTitle: December 2025 Minor
 type: docs
-date: 2025-11-21
-description: "Release notes for the November 2025 Minor Trustgrid Appliance release"
+date: 2025-12-01
+description: "Release notes for the December 2025 Minor Trustgrid Appliance release"
 ---
 
 {{< node-release package-version="1.5.20251124-2340" core-version="20251124-234159.0f29e39" release="n-2.23.3" >}}
