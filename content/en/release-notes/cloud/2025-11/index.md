@@ -11,4 +11,4 @@ type: docs
 * Fixes the `client` field validation for BGP configuration.
 
 ## Cluster Config Changes
-* Cluster configuration sent to nodes (appliances) now includes a version counter managed in the control plane. This prevents split brain scenarios where a node that is unable to connect to the control plane could repeatedly attempt to become the active member, even when the connected member has been designated active. This functionality will be employed on nodes in an upcoming release. 
+* Cluster configuration sent to nodes (appliances) now includes a version counter managed in the control plane. This prevents split brain scenarios where a node that is unable to connect to the control plane could repeatedly attempt to become the active member, even when the connected member has been designated active. This functionality is utilized by nodes running the [November 2025 Minor Appliance Release](../node/2025-11/) release. 
