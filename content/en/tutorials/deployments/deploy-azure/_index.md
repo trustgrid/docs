@@ -10,6 +10,11 @@ title: "Deploy to Azure"
   - An "inside" subnet for communicating with other virtual machines and services within the Azure vNet
   - **(For Clustered Appliances)** An [Azure routing table]({{<relref "#azure-route-table">}}) associated with the "inside" subnet. 
 
+  {{<alert color="warning" title="Azure Extension Conflicts">}} 
+  * Azure Backup - Like most network virtual appliances the Trustgrid appliance does not support being backed up using Azure Backup. The act of taking a snapshot with Azure Backup will disrupt appliance operations and may cause data plane disruption and cluster failovers. 
+  * Defender for Servers - The Trustgrid appliance OS is a minimal hardened Linux distribution. Installing Defender for Servers or similar endpoint protection software on the appliance may cause system instability and is not supported.
+  {{</alert>}}
+
 ## VM Requirements
 
 | Requirement | Description      |
