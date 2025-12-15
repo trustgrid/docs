@@ -7,6 +7,8 @@ title: "Deploy to Azure"
 - An Azure resource group to deploy the resources into
 - An Azure Virtual Network (vNet) with at least two subnets:
   - An "outside" subnet for the appliance to connect to the Trustgrid control plane and data plane gateways, and accept incoming connections if the Azure Trustgrid appliance will be acting as a [data plane gateway]({{< relref "/docs/nodes/appliances/gateway" >}})
+	- For clustered appliances, this subnet must allow communication between the two appliances on for the cluster heartbeat (typically TCP 9000).
+	- Clustered appliances will also need to be able to reach the Azure Management API endpoints. See [Azure Management API endpoints](https://learn.microsoft.com/en-us/azure/api-management/api-management-howto-ip-addresses) for ranges or utilize the [ApiManagement service tag](https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview#available-service-tags) in your security group rules. See [Public Cloud Appliance Requirements]({{<ref "/help-center/kb/site-requirements#public-cloud-appliance-requirements">}}) for more details.
   - An "inside" subnet for communicating with other virtual machines and services within the Azure vNet
   - **(For Clustered Appliances)** An [Azure routing table]({{<relref "#azure-route-table">}}) associated with the "inside" subnet. 
 
