@@ -38,7 +38,7 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
 
   - Inbound traffic on designated Trustgrid gateway port (typical TCP 8443) for remote nodes. Access to this port can be secured to only allow access from remote nodes if desired. This is only required if deploying a Trustgrid gateway. If the node is acting as an edge then no inbound access is required.
   - Outbound traffic to Trustgrid’s control plane IP (TCP 80/443 & 8443 to 35.171.100.16/28 & 34.223.12.192/28)
-  - Outbound traffic to AWS API (TCP 443) https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html
+  - Outbound traffic to AWS API (TCP 443) https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html (See [Public Cloud Appliance Requirements]({{<relref "/help-center/kb/site-requirements#public-cloud-appliance-requirements">}}) for more details)
   - Inbound & Outbound to/from management NIC security group on cluster port (typically TCP port 9000)
   - For the initial deployment outbound access for TCP 80/443 should be allowed. Upon successful registration with the Trustgrid Portal, this can be removed.
 

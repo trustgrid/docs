@@ -3,9 +3,11 @@ title: Edge Node Behavior When DNS Resolution Fails
 ---
 
 ## Symptoms
-
+- The node triggers the [DNS Resolution - DNS resolution failed]({{< ref "/docs/alarms/event-types#dns-resolution" >}}) event type. 
+- The node overview page will display a configuration alert stating "Node is having DNS resolution issues". {{<tgimg src="dns-unhealthy-banner.png" width="40%">}}
+- The DNS column (optionally visible) in the Nodes table in the Portal shows "Un-healthy" for the edge node. {{<tgimg src="dns-unhealthy-table.png" width="20%">}}
 - Node does not connect to the Portal
-- Packet captures show repeated DNS queries for gatekeeper.trustgrid.io but no response
+- Packet captures show repeated DNS queries for hosts such as zuul.trustgrid.io and gatekeeper.trustgrid.io but no response
 
 ## Cause
 
@@ -16,7 +18,7 @@ title: Edge Node Behavior When DNS Resolution Fails
 ## Troubleshooting Steps
 
 - Determine the configured DNS Servers - Connecting a monitor to the node will display the current IP configuration including the DNS Servers as shown below: ![img](dns.png)
-- (If possible) Capture traffic between the edge node and the internet and confirm you see both a DNS query (usually for gatekeeper.trustgrid.io) **AND** response ![img](pcap.png)
+- (If possible) Capture traffic between the edge node and the internet and confirm you see both a DNS query (usually for zuul.trustgrid.io) **AND** response ![img](pcap.png)
 
 ## Resolution
 

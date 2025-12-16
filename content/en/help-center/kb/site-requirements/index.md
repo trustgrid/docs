@@ -1,7 +1,5 @@
 ---
 title: "Site Requirements"
-date: 2017-01-05
-weight: 20
 description: >
   Network access requirements
 ---
@@ -9,6 +7,12 @@ description: >
 {{% pageinfo %}}
 Trustgrid’s architecture consists of Nodes deployed at the Edge (on-premise) and management infrastructure built in AWS. Nodes create tunnels to other nodes for data transfer, and to the management infrastructure for control. All tunnels are TLS connections and must be permitted by any firewall between
 {{% /pageinfo %}}
+
+## Recommendations
+
+At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.
+
+Hardware devices are recommended to be connected to ports configured for 1000 Mbps and full duplex with auto negotiation on.
 
 ## Network Requirements for All Nodes
 
@@ -27,12 +31,12 @@ In order to connect to the Trustgrid Control Plane, the following outbound traff
 ### Container Address Space
 By default, Trustgrid uses the address space 172.18.0.0/16 for the container bridge network. Assigning an interface an IP address in this range can cause unexpected behavior and should be avoided. If required, you can work with Trustgrid support to override the default network.
 
-## Recommendations
-
-At least 10 Mbps download speed is recommended for reasonable performance during upgrades. Actual bandwidth requirement will be specific to the workloads running across the device.
-
-Hardware devices are recommended to be connected to ports configured for 1000 Mbps and full duplex with auto negotiation on.
-
 ## Gateway Node Network Requirements
 
 In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway.
+
+## Public Cloud Appliance Requirements
+
+When deploying Trustgrid nodes in public clouds such as AWS, Azure, or GCP, additional network access may be required to the instance metadata services. These services are used to retrieve instance specific information such as tags, region, and other attributes. This is typically hosted at 169.254.169.254 on port TCP 80 and/or 443.
+
+Additionally when utilizing cluster features such as automatic route failover and IP Failover the nodes will need to be able to reach the cloud provider APIs to manage routing and IP assignments. Please refer to the specific cloud provider documentation for details on required API endpoints and access methods.
