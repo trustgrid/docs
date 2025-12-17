@@ -37,6 +37,9 @@ The "Tag Matches" criteria allows you to use [tag]({{<ref "/docs/nodes/shared/ta
 
 {{<tgimg src="tag-matches-option.png" width="60%">}}
 {{</field>}}
+{{<field "Lifecycle State">}}
+Allow for filtering based on the `Lifecycle State` attribute. You can select one or more lifecycle states to match. Note, if the filter is not set the filter will match any of the selected lifecycle states.
+{{</field>}}
 {{<field "Severity">}}
 Each [event]({{<ref "events" >}}) type has a severity level associated with it. This filter will match any [event]({{<ref "events" >}}) with the selected severity type or higher. This is the only mandatory criteria.
 
