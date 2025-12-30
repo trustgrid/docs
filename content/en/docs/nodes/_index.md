@@ -63,7 +63,10 @@ Many additional fields can be added to the Nodes table. These include:
 {{<field "DNS Resolution" >}}Shows if the node's configured DNS servers are resolving correctly.{{</field>}}
 {{<field "Repo Connectivity" >}}Shows if the node can reach the Trustgrid APT repository for software updates.{{</field>}}
 {{<field "Role" >}}Shows the node's role (Edge, Public Gateway, Private Gateway, Hub Gateway).{{</field>}}
+{{<field "Monitor Hops">}}Shows if [hop monitoring]({{<relref "tutorials/gateway-tools/monitoring-network-hops-to-peers">}}) is enabled on the node.{{</field>}}
 {{<field "Location and ISP" >}}Shows the geographical location and ISP of the node based on its public IP address.{{</field>}}
+{{<field "Disconnect Time">}}Shows the last time the node disconnected from the Trustgrid control plane.{{</field>}}
+{{<field "UDP Mode" >}}Shows if UDP data plane tunnels are enabled on the node.{{</field>}}
 {{<field "Lifecycle State" >}}Shows the node's lifecycle state (pre-production, production, maintenance, decommissioned).{{</field>}}
 {{<field "Tags" >}}Custom key:value pairs assigned to nodes.{{</field>}}
 {{<field "MGMT IP" >}}Shows the virtual management IP assigned to the node for each virtual network attached.{{</field>}}
