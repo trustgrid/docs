@@ -109,8 +109,6 @@ To change the configured active member:
 1. A prompt will appear asking for confirmation. Click the "Confirm" button. {{<tgimg src="make-active-prompt.png" width="50%" alt="Confirm Make Active Button" caption="Prompt to confirm change of active member" >}}
 1. This change will be pushed to each member. They will then attempt to transfer the active role to the new configured active member assuming it is online and healthy. After this change the "Current Active" will be updated to reflect the new active member.
 
-### View Cluster Health
-
 ## Cluster Health Tools
 These tools can be used to help diagnose issues with cluster members and their communication.
 

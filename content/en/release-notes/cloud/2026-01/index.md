@@ -60,7 +60,7 @@ If you see a visual regression or something that impacts workflow, please file a
 
 ## Other Improvements and Fixes
 
-- Resolves an issue where the `Path` field value disappered when editing VPN Dynamic and Static routes.
+- Resolves an issue where the `Path` field value disappeared when editing VPN Dynamic and Static routes.
 - Fixes an issue that caused flow logs sorted by Send/Receive bytes to not treat 0 bytes as the lowest value, improving sorting accuracy.
 - Container Repository images can now include multiple directories. E.g. example.trustgrid.io/directory/image:tag
 - Users will now receive a more helpful error message if their IdP credentials are invalid during SSO login attempts.
