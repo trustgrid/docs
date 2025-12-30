@@ -20,15 +20,29 @@ Certain settings such as network services and VPN settings can be configured for
 - Nodes must be at the same physical site. 
   - Using multiple public cloud (AWS/Azure) availability zones (AZs) within the same region are acceptable as they provide highly reliable connectivity between the nodes.
 
-## Active Member Determination
+## Cluster Member Shared Configuration
 
-The active member of a cluster is determined by the following factors:
+Cluster members can share the configuration for the following services:
 
-- Cluster heartbeat communication
-- Cluster mode
-- Configured active member
-- Cluster member health
+- Networking
+  - Interfaces
+    - Interface routes
+    - Cluster VIP (supported in on-premise, traditional network environment)
+    - AWS/Azure/GCP route table entries
+  - VPN
+  - Tunnels
+  - VRFs
+  - ZTNA gateway endpoints
+  - Layer 4 services and connectors
+- Compute
+  - Container and command definitions
+  - Resource limits
 
+  [Some configuration items are only available on clusters.]({{<ref "docs/clusters/cluster-only-config">}})
+
+
+## Cluster Configuration Settings
+These setting determine how the cluster itself operates and how members communicate with each other.
 ### Cluster Heartbeat Communication
 
 Cluster members utilize a direct TCP connection to each other to determine if their partner is online and share their health status. Each node will listen on a configured heartbeat IP and port, while at the same time connecting to their partner’s configured heartbeat IP and port.
@@ -56,18 +70,7 @@ Consider a cluster with members named Node1, the configured active, and Node2.
 
 ### Cluster Timeout
 The cluster will wait a configurable amount of time before considering a failed member as lost. This timeout is configurable on the cluster page.
-### Configured Active
 
-Each cluster will have one configured or preferred active member. This is reflected in the overview section.
-
-{{<tgimg src="cluster-nodes-list.png" width="75%" alt="Cluster Nodes List" caption="Cluster Members list showing configured and current active member" >}}
-
-
-#### Change Configured Active
-To change the configured active member:
-1.  Click the make active button in the row for the desired node. {{<tgimg src="make-active-button.png" width="75%" alt="Make Active Button" caption="Make Active Button in cluster member row" >}}
-1. A prompt will appear asking for confirmation. Click the "Confirm" button. {{<tgimg src="make-active-prompt.png" width="50%" alt="Confirm Make Active Button" caption="Prompt to confirm change of active member" >}}
-1. This change will be pushed to each member. They will then attempt to transfer the active role to the new configured active member assuming it is online and healthy. After this change the "Current Active" will be updated to reflect the new active member.
 ## Cluster Member Health
 
 There may be situations where both cluster members are online and can communicate with each other, but external conditions exist that make a node unsuitable to hold the active role. The Trustgrid node service monitors for such conditions and will make a node as unhealthy if one occurs. The node will release the active role and its standby member will take over if it is online and healthy.
@@ -84,23 +87,68 @@ When the condition clears the node will declare itself healthy and inform its pa
   - Example: If an upstream internet provider or device experiences failure the node will not be able to provide any services.
 - WAN Interface DHCP failure - If the WAN interface is configured to use DHCP and it does not receive a DHCP lease it will mark itself unhealthy.
 
-## Cluster Member Shared Configuration
+## Active Member Determination
 
-Cluster members can share the configuration for the following services:
+The active member of a cluster is determined by the following factors:
 
-- Networking
-  - Interfaces
-    - Interface routes
-    - Cluster VIP (supported in on-premise, traditional network environment)
-    - AWS/Azure/GCP route table entries
-  - VPN
-  - Tunnels
-  - VRFs
-  - ZTNA gateway endpoints
-  - Layer 4 services and connectors
-- Compute
-  - Container and command definitions
-  - Resource limits
+- Cluster heartbeat communication
+- Cluster mode
+- Configured active member
+- Cluster member health
+
+### Configured Active
+
+Each cluster will have one configured or preferred active member. This is reflected in the overview section.
+
+{{<tgimg src="cluster-nodes-list.png" width="75%" alt="Cluster Nodes List" caption="Cluster Members list showing configured and current active member" >}}
+
+
+#### Change Configured Active
+To change the configured active member:
+1.  Click the make active button in the row for the desired node. {{<tgimg src="make-active-button.png" width="75%" alt="Make Active Button" caption="Make Active Button in cluster member row" >}}
+1. A prompt will appear asking for confirmation. Click the "Confirm" button. {{<tgimg src="make-active-prompt.png" width="50%" alt="Confirm Make Active Button" caption="Prompt to confirm change of active member" >}}
+1. This change will be pushed to each member. They will then attempt to transfer the active role to the new configured active member assuming it is online and healthy. After this change the "Current Active" will be updated to reflect the new active member.
+
+### View Cluster Health
+
+## Cluster Health Tools
+These tools can be used to help diagnose issues with cluster members and their communication.
+
+### View Cluster Health
+This tool will trigger both nodes to run a service that evaluates the health of the cluster members and their communication. This can be helpful to determine why a member is not taking or retaining the active role.  
+
+Just click the "View Cluster Health" button on the cluster overview page.    {{<tgimg src="view-cluster-health-button.png" width="40%" alt="View Cluster Health Button" caption="View Cluster Health button on cluster overview page" >}}
+
+After a few moments a dialog will appear showing the health state of each member. Under each member you will see the results of the health checks performed.  
+
+The first section will report information about the node itself.  
+{{<tgimg src="view-cluster-health-state.png" width="80%" alt="View Cluster Health State" caption="Cluster Health State dialog" >}}
+{{<fields>}}
+{{<field "Name">}}The node's name.{{</field>}}
+{{<field "State">}}The current role of the node in the cluster (e.g., Active or Standby).{{</field>}}
+{{<field "Upgrading">}}Indicates whether the node is performing a software upgrade.{{</field>}}
+{{<field "Healthy">}}Indicates whether the node's[ health checks currently report it as healthy]({{<relref "docs/clusters#cluster-member-health-conditions">}}).{{</field>}}
+{{<field "Node Version">}}Software build or version reported by the node.{{</field>}}
+{{<field "Active Config Version">}}The active configuration version applied to the node. This number increases each time the configured active member is changed. If peers differ, the nodes will defer to the node with the highest version.{{</field>}}
+{{<field "Active From Config">}}This will report "Yes" if the Active Configuration specifies this member should be the active member.{{</field>}}
+{{<field "Node Info Timestamp">}}Timestamp for when the node last reported node-specific info. This file includes the Active Configuration.{{</field>}}
+{{<field "Domain Info Timestamp">}}Timestamp for when domain-related information was last reported. This file includes which nodes are members of the cluster.{{</field>}}
+{{</fields>}}
+The second section will report information learned about from its peer member.
+{{<fields>}}
+{{<field "Name">}}The peer node's name.{{</field>}}
+{{<field "State">}}The current role of the peer node in the cluster (e.g., Active or Standby).{{</field>}}
+{{<field "Node Version">}}Software build or version reported by the peer node.{{</field>}}
+{{<field "Active Config Version">}}The active configuration version applied to the peer node. This number increases each time the configured active member is changed. If peers differ, the nodes will defer to the node with the highest version.{{</field>}}
+{{</fields>}}
+
+### Restart Cluster Server
+Some changes and conditions can result in a cluster with both members reporting as active or both reporting as standby. In these situations, a cluster server restart may be required to restore normal operation. This will not restart other node services but can still impact connectivity if it results in a cluster IP or route changing.  But it is less disruptive than a full node restart.
+
+{{<tgimg src="restart-cluster-server-button.png" width="40%" alt="Restart Cluster Server Button" caption="Restart Cluster Server button on cluster overview page" >}}
+
+{{<alert color="info">}}Typically it is best to start by restarting the cluster server on the expected standby member first, then the active member if needed. This minimizes disruption as the active member will remain active during the standby member restart.{{</alert>}}
+
 
 ## Tags
 
