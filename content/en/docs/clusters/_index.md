@@ -42,7 +42,8 @@ Cluster members can share the configuration for the following services:
 
 
 ## Cluster Configuration Settings
-These setting determine how the cluster itself operates and how members communicate with each other.
+These settings determine how the cluster itself operates and how members communicate with each other.
+
 ### Cluster Heartbeat Communication
 
 Cluster members utilize a direct TCP connection to each other to determine if their partner is online and share their health status. Each node will listen on a configured heartbeat IP and port, while at the same time connecting to their partner’s configured heartbeat IP and port.
