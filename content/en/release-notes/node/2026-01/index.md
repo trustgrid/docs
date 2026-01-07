@@ -10,6 +10,8 @@ description: "Release notes for the January 2026 Minor Trustgrid Appliance relea
 
 <br />
 
+{{<alert color="warning">}}Shortly after publishing we discovered that appliances using the NCA-1210 and Dell R250 platforms running Ubuntu 22.04 hit a significant package conflict that caused the upgrade to fail. Because of the failure mode, this release has been effectively revoked until the conflict can be resolved; please do not upgrade devices at this time.{{</alert>}}
+
 This release updates the APT repository to a mirror from **December 15, 2025**, which includes packages available on that date. There are no changes to Trustgrid software in this release.
 
 This update ensures appliances have access to the latest security patches for underlying system packages without waiting for a major release.
