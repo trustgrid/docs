@@ -78,3 +78,12 @@ The [event]({{<ref "docs/alarms/events" >}}) data is delivered in JSON, as shown
 ### Example Formatted Slack Event
 Below is an example of a formatted Slack event.
 {{<tgimg src="formatted-slack-example.png" width="80%" caption="Example Slack Event">}}
+
+## Testing Channels
+You can test a channel independent of any alarm or event by using the **Send Test Event** option under **Actions** in the channel details page. This will send a sample event to the configured endpoint to verify connectivity and formatting.
+
+1. Navigate to **Alarms > Channels** and select the channel you wish to test.
+1. Select the channel(s) you wish to test.
+1. Click **Actions > Send Test Event**.
+1. In the popup dialog select the Node, Event Type, and Level you wish to send.
+1. Click **Submit** to send the test event.
