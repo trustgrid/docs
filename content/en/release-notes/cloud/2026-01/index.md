@@ -40,7 +40,7 @@ This release includes several enhancements to the Events and Alarms system to im
 -  `/v2/event` API endpoint now paginates results. Previously only the first page was returned regardless of the number of events.
 - Resolves an issue where many events were being logged when an Alert Suppression window closed.
 
-### Deprecations
+## Deprecations
 - With this release ZTNA Applications and related pages have been removed. 
 - VM Management functionality has been removed. 
 
