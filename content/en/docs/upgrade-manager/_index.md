@@ -29,10 +29,17 @@ To plan a new upgrade:
 
 {{<alert>}}Be sure to save changes before starting an upgrade.{{</alert>}}
 
-
 ### Special Behaviors
 
-- **Require approval before failover**: When checked, this option requires manual approval before proceeding with failovers during the upgrade process. This allows for additional control and verification steps.
+#### Require Approval Before Failover
+
+- When this option is selected during upgrade planning, the system will not automatically failover any cluster members.
+- Failovers will only occur after explicit user approval through the UI.
+- This feature allows for greater control and manual verification during critical stages of the upgrade process.
+
+#### Manual Updates
+
+- Nodes tagged with `manualupdate` as `true` will not be upgraded and will transition to the `skipped` state immediately.
 
 ## Nodes
 
@@ -161,24 +168,12 @@ A completed upgrade can be exported to CSV for record-keeping and further analys
 - Behavior: Dry runs do not actually upgrade any nodes or clusters.
 - Use Case: Ideal for validating upgrade plans and identifying potential issues before initiating a real upgrade.
 
-### Special Behaviors
-
-#### Require Approval Before Failover
-
-- When this option is selected during upgrade planning, the system will not automatically failover any cluster members.
-- Failovers will only occur after explicit user approval through the UI.
-- This feature allows for greater control and manual verification during critical stages of the upgrade process.
-
-#### Manual Updates
-
-- Nodes tagged with `manualupdate` as `true` will not be upgraded and will transition to the `skipped` state immediately.
-
 ## Best Practices
 
 1. **Always Perform Dry Runs**: Before initiating an actual upgrade, use the dry run feature to validate your upgrade plan and identify any potential issues.
 2. **Use Tags Effectively**: Carefully consider your include and exclude tags to target the correct set of nodes and clusters for your upgrade.
 3. **Monitor the Timeline**: Keep a close eye on the Timeline during the upgrade process to quickly identify and address any issues.
-4. **Use the "Require Approval" Feature for Critical Systems**: For high-priority or sensitive clusters, use the require-approval feature to maintain manual control over the failover process.
+4. **Use the "Require Approval" Feature for Critical Systems**: For high-priority or sensitive clusters, use the require-approval feature to maintain manual control over the failover process. This behavior affects all clusters in the workflow.
 
 ## Troubleshooting
 
