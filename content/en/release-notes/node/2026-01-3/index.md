@@ -6,7 +6,7 @@ date: 2026-01-16
 description: "Release notes for the January 2026 Third Minor Trustgrid Appliance release"
 ---
 
-{{< node-release package-version="TBD" core-version="TBD" release="TBD" >}}
+{{< node-release package-version="1.5.20260116-2361" core-version="20260116-153629.64ac9d4" release="n-2.23.6" >}}
 
 <br />
 
