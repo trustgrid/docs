@@ -142,7 +142,7 @@ The second section will report information learned about from its peer member.
 {{</fields>}}
 
 ### Restart Cluster Server
-{{<alert color="warning">}} This tool should only be used if a cluster has remained in a dual active or dual standby state for several minutes. Use the View Cluster Health State tool to diagnose the issue first. It is not intended to be used as a routine operation after every failover event. {{</alert>}}
+{{<alert color="warning">}} This tool should only be used if a cluster has remained in a dual active or dual standby state for several minutes. Use the **View Cluster Health State** tool to diagnose the issue first. It is not intended to be used as a routine operation after every failover event. {{</alert>}}
 
 Some changes and conditions can result in a cluster with both members reporting as active or both reporting as standby. In these situations, a cluster server restart may be required to restore normal operation. This will not restart other node services but can still impact connectivity if it results in a cluster IP or route changing.  But it is less disruptive than a full node restart.
 
