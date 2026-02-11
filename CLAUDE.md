@@ -8,7 +8,7 @@ This is the **Trustgrid documentation site** ([docs.trustgrid.io](https://docs.t
 
 ## Build & Development Commands
 
-- **Local dev server:** `hugo server` or `make run`
+- **Local dev server:** `hugo server -F` or `make run`
 - **Production build:** `hugo --minify` or `make build`
 - **Clean build output:** `make clean` (removes `public/`)
 - **Install JS dependencies:** `npm i` (required before build in CI; installs autoprefixer/postcss)
