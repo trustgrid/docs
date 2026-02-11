@@ -156,11 +156,10 @@ The security group for the data path interface.
 - If the EC2 instance node will be clustered, the security group should allow communication between the private IPs of all the clustered nodes on the [cluster heartbeat port]({{<relref "/docs/nodes/appliances/cluster#heartbeat">}}), typically port TCP 9000.
 
 {{% /field %}}
-
 {{% field "Subnet" %}}
 The VPC subnet for the data path interface.
 {{% /field %}}
-
+{{</fields>}}
 
 ## Trustgrid Configuration
 {{<fields>}}
