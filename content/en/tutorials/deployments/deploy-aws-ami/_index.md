@@ -48,8 +48,6 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
 
 - Security group for data NIC - No configuration for now
 
-- An IP in the private subnet that will be used by the data NIC
-
 - An SSH key-pair that can be used to SSH to the instance if necessary
 
 - VPC must have unallocated public IP that will be claimed during provisioning
@@ -61,13 +59,9 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
    - Note: The node will not be visible in the portal until the registration process is complete.
    - Download the license to local storage in case the clipboard is cleared. You cannot reissue a license without recreating the node.
 
-1. Select the appropriate Cloud Formation Template based on the AWS region in which the Trustgrid node is being deployed
-   - US-EAST-1: https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast1.json
-   - US-EAST-2: https://console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-useast2.json
-   - US-WEST-1: https://console.aws.amazon.com/cloudformation/home?region=us-west-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest1.json
-   - US-WEST-2: https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node-uswest2.json
+1. Fill out the fields in the CloudFormation template
+https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node.json
 
-1. Fill out the fields in the CloudFormation form
 ## Parameters
 
 ### Stack Name
@@ -162,17 +156,10 @@ The security group for the data path interface.
 - If the EC2 instance node will be clustered, the security group should allow communication between the private IPs of all the clustered nodes on the [cluster heartbeat port]({{<relref "/docs/nodes/appliances/cluster#heartbeat">}}), typically port TCP 9000.
 
 {{% /field %}}
-
 {{% field "Subnet" %}}
 The VPC subnet for the data path interface.
 {{% /field %}}
-
-{{% field "Data IP" %}}
-The private IP for the data path - must belong to the subnet and not already be allocated.
-{{% /field %}}
-
 {{</fields>}}
-
 
 ## Trustgrid Configuration
 {{<fields>}}
