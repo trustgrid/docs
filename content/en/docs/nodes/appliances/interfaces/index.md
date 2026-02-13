@@ -29,7 +29,7 @@ Used in configurations with more than one interface for local network connectivi
 
 A virtual interface created under a physical LAN interface that applies a VLAN tag to traffic. VLAN subinterfaces can be configured on individual nodes or at the cluster level for all cluster members.
 
-![VLAN Subinterface UI](vlan-subinterface.png)
+{{<tgimg src="vlan-subinterface.png" alt="VLAN Subinterface Configuration" caption="VLAN Subinterface UI showing physical interface and VLAN options" width="50%" class="float-start">}}
 
 
 ## Configuration

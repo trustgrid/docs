@@ -60,7 +60,7 @@ This is the interface on which the SNMP service will listen. This should always 
 
 {{</fields>}}
 
-![SNMP Server Configuration](snmp.png)
+{{<tgimg src="snmp.png" alt="SNMP Server Configuration" caption="SNMP Server configuration form" width="60%" class="float-start">}}
 
 #### Query the SNMP Service
 
