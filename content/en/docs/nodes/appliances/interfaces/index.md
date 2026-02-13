@@ -25,8 +25,9 @@ This interface is always used to build the outbound TLS tunnels for control and 
 
 Used in configurations with more than one interface for local network connectivity.
 
-#### VLAN Subinterface 
- Virtual under a physical LAN interface that will apply a VLAN tag to traffic
+#### VLAN Subinterface
+
+A virtual interface created under a physical LAN interface that applies a VLAN tag to traffic. VLAN subinterfaces can be configured on individual nodes or at the cluster level for all cluster members.
 
 
 ## Configuration

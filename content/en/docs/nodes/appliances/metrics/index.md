@@ -1,7 +1,6 @@
 ---
 title: Additional Metrics
 linkTitle: Metrics
-description: The Metrics section under History shows stats in addition to those displayed on the overview page
 aliases: 
     - /docs/nodes/metrics
 description: View additional metrics and statistics for the node

@@ -54,6 +54,8 @@ This is the interface on which the SNMP service will listen. This should always 
 
 - ETH1 for dual interface setups
 
+- VLAN Subinterfaces - Can be used to listen on a specific VLAN sub-interface configured on an LAN interface
+
 {{</field >}}
 
 {{</fields>}}
