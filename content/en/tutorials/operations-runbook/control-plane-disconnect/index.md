@@ -53,7 +53,7 @@ If connectivity cannot be established from the node, you can attempt to connect 
     1. Using `nslookup` (on Windows) or `dig` (Linux or MacOS) to confirm you can resolve zuul.trustgrid.io
     1. Open a browser and navigate to https://zuul.trustgrid.io:8443
         1. If the device can connect to that server and port you should see a warning like this because Trustgrid uses its own Certificate Authority (CA) {{<tgimg src="link.png" width="50%" caption="Certificate security warning">}}
-        1. Click `Not Secure` and then click `Certificate (invalid)` to view the certificate chain. {{<tgimg src="certificate-invalid.png" width="50%" caption="Expanded certificate security warning">}}
+        1. Click **Not Secure** and then click **Certificate (invalid)** to view the certificate chain. {{<tgimg src="certificate-invalid.png" width="50%" caption="Expanded certificate security warning">}}
         1. You should expect to see a chain like the below example: {{<tgimg src="chain.png" width="70%">}}If any different certificates or CAs indicate something like DPI-SSL/HTTPS Proxy is [interfering with the TLS Certificate Chain]({{<relref "help-center/kb/startup-process/ssl-tls-tampering#resolution">}}).  
         1. If the browser says it cannot connect this indicates a firewall or routing issue upstream.
 

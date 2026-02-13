@@ -6,7 +6,7 @@ Title: "Configuration Changes"
 Trustgrid records information about changes users make to all configuration. This can be helpful when troubleshooting recent changes.
 {{% /pageinfo %}}
 
-Changes can be viewed for a specific node and for the entire organization. To view changes for a specific node, navigate to a node and select `Changes` under the `History` section. To view changes for the entire organization, navigate to `Operations`->`Changes`.
+Changes can be viewed for a specific node and for the entire organization. To view changes for a specific node, navigate to a node and select **Changes** under the **History** section. To view changes for the entire organization, navigate to **Operations**->**Changes**.
 
 ![img](changes-list.png)
 
@@ -31,4 +31,4 @@ The last 90 days' worth of changes can be downloaded as a CSV by clicking the li
 
 ![img](advanced-search.png)
 
-The `Advanced Search` button allows you to search for changes by date, user, IP address, and event type. The search is case-sensitive.
+The **Advanced Search** button allows you to search for changes by date, user, IP address, and event type. The search is case-sensitive.

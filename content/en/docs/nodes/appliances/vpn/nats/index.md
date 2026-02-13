@@ -13,7 +13,7 @@ NATs allow Trustgrid to alter the source and/or destination IP address of layer 
 
 ## Adding an Interface
 
-NATs are scoped to an interface. Add an interface from the `Actions` menu.
+NATs are scoped to an interface. Add an interface from the **Actions** menu.
 
 {{<tgimg src="add-interface.png" caption="Add Interface dialog" alt="Dialog to add interface. Options to select an interface, provide a description">}}
 

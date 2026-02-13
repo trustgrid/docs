@@ -71,15 +71,15 @@ A custom role needs to be created in the Azure subscription that allows the Trus
 1. Save the JSON above to a file named `azure-custom-role-sample.json`.
 1. Select “Start from JSON” and from the file selector, select the downloaded json file. {{<tgimg src="../create-custom-role.png" alt="Create Custom Role" width="80%">}}
 1. Optionally, update the role name to meet your internal naming conventions.
-1. Click `Next`. 
-1. On the Permissions page you will see the permissions that will be granted. Click `Next` again.
+1. Click **Next**. 
+1. On the Permissions page you will see the permissions that will be granted. Click **Next** again.
 1. On the Assignable Scopes page click +Add Assignable Scope
     1. From the Type select Resource Group
     1. From the Subscription, select the subscription containing your VMs.
     1. From the Select pane on the right search for and select the Resource Group containing you VM’s {{<tgimg src="../select-group.png" alt="Select Resource Group" width="90%">}}
-    1. Click `Select` and then `Next`.
+    1. Click **Select** and then **Next**.
     1. Repeat for the resource group containing the VMs' virtual network (if different than the VMs).  Alternatively, you can set the assignable scopes to the entire subscription that contain the VMs and virtual network.
-1. On the JSON page, click the `Next` button.
+1. On the JSON page, click the **Next** button.
 1. Click Review + Create, then click Create.
 ##### Assign the custom role to your Trustgrid VM’s system-assigned
 1. In the Azure portal search for Resource Groups and select the service

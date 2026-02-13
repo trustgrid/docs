@@ -159,21 +159,21 @@ Some changes and conditions can result in a cluster with both members reporting 
 
 To add a tag:
 
-1. Click `Add Tag`.
-1. A new row will appear at the bottom of the tags table. There will be a list of existing tag names for your organization. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting `New selection: tagName`. {{<tgimg src="new-tag-name.png" alt="Add Tag Name" width="40%" caption="Creating a new tag name for a cluster" >}}
+1. Click **Add Tag**.
+1. A new row will appear at the bottom of the tags table. There will be a list of existing tag names for your organization. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting **New selection: tagName**. {{<tgimg src="new-tag-name.png" alt="Add Tag Name" width="40%" caption="Creating a new tag name for a cluster" >}}
 1. Next move to the values field. As with the name, existing values will be listed. To enter a new value type it in completely.
-1. Click `Save`
+1. Click **Save**
 
-Tag rows can be edited in-place. Change the name or value, then click `Save`.
+Tag rows can be edited in-place. Change the name or value, then click **Save**.
 
-To remove a tag, click the red X next to the tag name, then click `Save`.
+To remove a tag, click the red X next to the tag name, then click **Save**.
 
 ### Applying a Tag Filter to the Clusters Table
 
 The clusters table can also be filtered to only show clusters with a specific tag name:value.
 
-1. On the clusters table click `Actions` and select `Add Tag Filter` from the drop-down menu. {{<tgimg src="add-tag-filter-2.png" width="50%" alt="Add Tag Filter" caption="Add Tag Filter option in clusters table" >}}
-1. After clicking `Add Tag Filter`, select the tag-name field and you will see a list of tag-names available. Select the desired tag. {{<tgimg src="pick-tag-filter-name2.png" width="80%" alt="Pick Tag Filter Name" caption="Selecting a tag name for filtering clusters" >}} You can also start typing to filter what tag names are shown.
+1. On the clusters table click **Actions** and select **Add Tag Filter** from the drop-down menu. {{<tgimg src="add-tag-filter-2.png" width="50%" alt="Add Tag Filter" caption="Add Tag Filter option in clusters table" >}}
+1. After clicking **Add Tag Filter**, select the tag-name field and you will see a list of tag-names available. Select the desired tag. {{<tgimg src="pick-tag-filter-name2.png" width="80%" alt="Pick Tag Filter Name" caption="Selecting a tag name for filtering clusters" >}} You can also start typing to filter what tag names are shown.
 1. Select the tag value field and you will see a list of available values. Select the desired value.
-1. (Optional) Click `Add Tag Filter` to include an additional filter. Note that the two filters will be applied using AND only clusters with both tag name:value combinations matching will be shown.
-1. Click `Apply Tag Filter` and the table will only show matching clusters.{{<tgimg src="applied-filters2.png" width="80%" alt="Applied Tag Filters" caption="Clusters table filtered by tag name and value" >}}
+1. (Optional) Click **Add Tag Filter** to include an additional filter. Note that the two filters will be applied using AND only clusters with both tag name:value combinations matching will be shown.
+1. Click **Apply Tag Filter** and the table will only show matching clusters.{{<tgimg src="applied-filters2.png" width="80%" alt="Applied Tag Filters" caption="Clusters table filtered by tag name and value" >}}

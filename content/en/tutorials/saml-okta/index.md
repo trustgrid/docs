@@ -8,11 +8,11 @@ Further Information on configuring SAML Application in Okta Classic UI: https://
 
 ![img](okta.png)
 
-Create an Application, then select `Web` and `SAML 2.0`.
+Create an Application, then select **Web** and **SAML 2.0**.
 
 ![img](okta2.png)
 
-When configuring SAML, enter the [Trustgrid Portal](https://portal.trustgrid.io/saml) and select `EmailAddress` for Name ID format and `Email` for Application username.
+When configuring SAML, enter the [Trustgrid Portal](https://portal.trustgrid.io/saml) and select **EmailAddress** for Name ID format and **Email** for Application username.
 
 ![img](saml-settings.png)
 
