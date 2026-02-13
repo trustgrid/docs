@@ -10,7 +10,7 @@ User Management Groups defined can be used to make Remote Access applications vi
 
 ### Trustgrid-Native Groups
 
-These groups are created in the Portal via the `Add Group` button. Membership is managed directly within the Portal by administrators.
+These groups are created in the Portal via the **Add Group** button. Membership is managed directly within the Portal by administrators.
 
 ### Identity Provider-Synchronized Groups
 
@@ -28,7 +28,7 @@ This tab can also be used to add or remove group members for Trustgrid-native gr
 #### Add Users to Group
 1. Navigate to the group's detail page by going to User Management > Groups and selecting the desired group. 
 1. The Users tab should already be selected. 
-1. Click the `+Add Member` button.
+1. Click the **+Add Member** button.
 1. Search for and select the email address of the desired user. 
 1. Click Save.
 1. Optionally, repeat with additional users. 
@@ -49,7 +49,7 @@ The permissions tab will also show the effective permissions of all policies att
 #### Attach Policy to Group
 1. Navigate to the group's detail page by going to User Management > Groups and selecting the desired group. 
 1. Select the Permissions tab.
-1. Click the `+Attach Policy` button.
+1. Click the **+Attach Policy** button.
 1. Select the desired group.
 1. Click Attach
 1. Optionally, repeat with additional policies.

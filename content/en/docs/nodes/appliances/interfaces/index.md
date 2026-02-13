@@ -9,11 +9,11 @@ aliases:
 
 ## Network Interfaces
 
-Navigate to a node, then select `Interfaces` under the `Network` section.
+Navigate to a node, then select **Interfaces** under the **Network** section.
 
 {{<tgimg src="interfaces.png" width="70%" caption="Interfaces panel">}}
 
-The `Interface` dropdown at the top allows you to select which interface to manage.
+The **Interface** dropdown at the top allows you to select which interface to manage.
 
 ![Interface Dropdown](select-interface.png)
 
@@ -65,7 +65,7 @@ A virtual interface created under a physical LAN interface that applies a VLAN t
 These routes are used to access networks that are not in the same network as a configured interface **and that are not accessed using the default gateway IP configured for ETH0 - WAN Interface**. It is rare to need to define these on the ETH0 interface.
 
 1. Select the interface from the Network Interface dropdown.
-1. Click the `+ Add Entry` button.
+1. Click the **+ Add Entry** button.
 1. Enter the route information There are three fields:
 
 	{{<fields>}}
@@ -76,7 +76,7 @@ These routes are used to access networks that are not in the same network as a c
 
 1. Click the green check <i class="fa-solid fa-circle-check" style="color: green;"></i> to confirm the route.
 1. Repeat steps 2-4 with any additional routes.
-1. Click the `Save` button.
+1. Click the **Save** button.
 
 ## Additional IPs
 IP address entries added to the list below will be bound to the current interface.

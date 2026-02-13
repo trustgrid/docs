@@ -7,13 +7,13 @@ Tags: ["events", "alarms"]
 Events are emitted from nodes and from the Trustgrid control plane when actionable things happen. Events are the basis for alarms and notifications.
 {{% /pageinfo %}}
 
-Events can be viewed for individual nodes by navigating to `Events` under the `History` section.
+Events can be viewed for individual nodes by navigating to **Events** under the **History** section.
 
 ![img](node-events-list.png)
 
-Events for the entire organization can be viewed by navigating to `Events` under the `Alarms` section.
+Events for the entire organization can be viewed by navigating to **Events** under the **Alarms** section.
 
-Clicking the `Test` button will send the event through your configured alarms to help verify channels are configured as expected.
+Clicking the **Test** button will send the event through your configured alarms to help verify channels are configured as expected.
 
 #### Event Times
 

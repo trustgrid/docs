@@ -10,13 +10,13 @@ description: Describes how to restart the Trustgrid service on a node appliance
 Restarting the Trustgrid service is faster than a full node reboot and resolves many non-recurring problems.
 {{% /pageinfo %}}
 
-1. Go to the `Node` detail page for the node affected.
+1. Go to the **Node** detail page for the node affected.
 
-2. Select `Restart` located in the top right corner of the page
+2. Select **Restart** located in the top right corner of the page
 
 ![img](restart1.png)
 
-3. After clicking, type in the name of the node and click `Confirm` to execute the action
+3. After clicking, type in the name of the node and click **Confirm** to execute the action
 
 ![img](execute2.png)
 

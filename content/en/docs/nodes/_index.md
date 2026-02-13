@@ -75,19 +75,19 @@ Many additional fields can be added to the Nodes table. These include:
 To add the column:
 
 1. Navigate to the nodes table page
-1. Click `Actions` and then select `Columns` from the dropdown menu. {{<tgimg src="add-column.png"  width="40%" caption="Actions dropdown on Nodes page">}}
-1. Towards the bottom you will see all the available tags in the format `tag: tag-name`. Select the desired tag and click `Save`. {{<tgimg src="select-column.png"  width="50%" caption="Select Tag Column dialog">}}
+1. Click **Actions** and then select **Columns** from the dropdown menu. {{<tgimg src="add-column.png"  width="40%" caption="Actions dropdown on Nodes page">}}
+1. Towards the bottom you will see all the available tags in the format `tag: tag-name`. Select the desired tag and click **Save**. {{<tgimg src="select-column.png"  width="50%" caption="Select Tag Column dialog">}}
 1. The column will be added and the table can now be sorted by that column. Any node that does not have that tag set will be listed as blank. {{<tgimg src="tag-column2.png"  width="90%" caption="Example Tag Column added to Nodes table">}}
 
 ### Applying a Tag Filter to the Nodes Table
 
 The nodes table can also be filtered to only show nodes with a specific tag name:value.
 
-1. On the nodes table click `Actions` and select `Add Tag Filter` from the drop-down menu.
+1. On the nodes table click **Actions** and select **Add Tag Filter** from the drop-down menu.
 
 ![img](add-tag-filter-2.png)
 
-1. After clicking `Add Tag Filter`, select the tag-name field and you will see a list of tag-names available. Select the desired tag.
+1. After clicking **Add Tag Filter**, select the tag-name field and you will see a list of tag-names available. Select the desired tag.
 
 ![img](pick-tag-filter-name2.png)
 
@@ -95,8 +95,8 @@ You can also start typing to filter what tag names are shown.
 
 3. Select the tag value field and you will see a list of available values. Select the desired value.
 
-4. (Optional) Click `Add Tag Filter` to include an additional filter. Note that the two filters will be applied using AND only nodes with both tag name:value combinations matching will be shown.
+4. (Optional) Click **Add Tag Filter** to include an additional filter. Note that the two filters will be applied using AND only nodes with both tag name:value combinations matching will be shown.
 
-5. Click `Apply Tag Filter` and the table will only show matching nodes.
+5. Click **Apply Tag Filter** and the table will only show matching nodes.
 
 ![img](applied-filters2.png)

@@ -23,7 +23,7 @@ Specifies the Azure App secret value (not the secret ID). This is the value that
 {{</fields>}}
 
 {{<alert color="info">}}
-Before being able to save the configuration, validation of the Issuer needs to be performed by pressing the `Test` button.
+Before being able to save the configuration, validation of the Issuer needs to be performed by pressing the **Test** button.
 {{</alert>}}
 
 Once the validation has been performed and the configuration saved, the sync section will be available.
@@ -43,7 +43,7 @@ Once the validation has been performed and the configuration saved, the sync sec
 The following information is only partial Azure AD reference for configuring an App registration via the Microsoft Azure Portal.  Information presented in the following images might have changed.
 {{</alert>}}
 
-1. Create a new `App Registration`
+1. Create a new **App Registration**
 
 ![img](app_register.png)
 
