@@ -5,7 +5,7 @@ aliases:
 description: Configure import and export rules for dynamic routes on the virtual network
 ---
 
-Dynamic routing allows a node to export and import routes from other nodes in the virtual network. Find dynamic route definitions and change them under the `Dynamic Routing` section of the VPN configuration.
+Dynamic routing allows a node to export and import routes from other nodes in the virtual network. Find dynamic route definitions and change them under the **Dynamic Routing** section of the VPN configuration.
 
 {{<tgimg src="list.png" caption="Dynamic Routing table" alt="A table for Export Routes and a table for Imports" width="85%">}}
 

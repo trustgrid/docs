@@ -18,9 +18,9 @@ When a customer has selected manual failover, a portal user will need to adjust 
 
 > There will usually be [routes]({{<ref "docs/domain/virtual-networks/routes" >}}) for the [nodes']({{<ref "docs/nodes" >}}) Virtual Management IP. These should not be changed in this process.
 
-1. In the portal, navigate to `Domain` → `Virtual Networks` and then select the appropriate Virtual network.
+1. In the portal, navigate to **Domain** → **Virtual Networks** and then select the appropriate Virtual network.
 
-2. Select the `Routes` panel from the left navigation bar.
+2. Select the **Routes** panel from the left navigation bar.
 
 3. Filter the route table either using the node/cluster names or network to be failed over (shown below).
 
@@ -32,9 +32,9 @@ When a customer has selected manual failover, a portal user will need to adjust 
 
 ![img](destination-field.png)
 
-1. Click `Save`. Then select `Review Changes`.
+1. Click **Save**. Then select **Review Changes**.
 
-2. You should see a modified [route]({{<ref "docs/domain/virtual-networks/routes" >}}) for each network you adjusted showing the previous and current destination. If everything looks correct click `Apply Changes`.
+2. You should see a modified [route]({{<ref "docs/domain/virtual-networks/routes" >}}) for each network you adjusted showing the previous and current destination. If everything looks correct click **Apply Changes**.
 
 ![img](apply-changes.png)
 
@@ -62,9 +62,9 @@ If it is necessary to move traffic to the secondary site without the primary sit
 
 Also, if a failure of the primary site has occurred and you want to ensure traffic does not automatically return to that site if it comes online (e.g. it is unstable) you can follow the same process.
 
-1. In the portal, navigate to `Domain` → `Virtual Networks` and then select the appropriate Virtual network.
+1. In the portal, navigate to **Domain** → **Virtual Networks** and then select the appropriate Virtual network.
 
-2. Select `Routes` from the left navigation bar.
+2. Select **Routes** from the left navigation bar.
 
 3. Filter the route table either using the node/cluster names or network to be failed over (shown below)
 
@@ -76,9 +76,9 @@ Also, if a failure of the primary site has occurred and you want to ensure traff
 
 ![img](metric.png)
 
-Click `Save` and navigate to `Review Changes`
+Click **Save** and navigate to **Review Changes**
 
-You should see a change like below for each route adjusted. Click `Apply Changes` if all looks correct.
+You should see a change like below for each route adjusted. Click **Apply Changes** if all looks correct.
 
 ![img](apply-changes-metric.png)
 
@@ -88,9 +88,9 @@ You should see a change like below for each route adjusted. Click `Apply Changes
 
    a. If it's a cluster, navigate to the cluster and then select the currently active node from the overview page. If a single node site, navigate directly to that node.
 
-   b. From the toolbar select `Restart`
+   b. From the toolbar select **Restart**
 
-   c. Enter the node’s name and click `confirm`
+   c. Enter the node’s name and click **confirm**
 
 ### Restore Traffic to Primary Site
 

@@ -22,12 +22,12 @@ The [Ping Remote Node]({{<ref "/tutorials/gateway-tools/ping-remote-node">}}) to
 ## Usage
 
 1. Login to the Trustgrid portal and navigate to the Node from which you want to test connectivity.
-1. Select `VPN` under the `Network` section.
-1. Click the `Tools` button and select the `Ping Remote Virtual Host` option from the `Select a service` dropdown.
+1. Select **VPN** under the **Network** section.
+1. Click the **Tools** button and select the **Ping Remote Virtual Host** option from the **Select a service** dropdown.
 
 	![Ping Remote Host Dialog](ping-remote-modal.png)
 
-1. Modify the host parameter to the target virtual IP address and click `Execute`.
+1. Modify the host parameter to the target virtual IP address and click **Execute**.
 
 1. A window will pop up with the content like below.
 

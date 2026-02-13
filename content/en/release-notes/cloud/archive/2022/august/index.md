@@ -10,7 +10,7 @@ weight: 8
 
 The [May 2022 release]({{<ref "may">}}) enabled the creation of more granular permissions policies. With this release we’ve added the ability to grant permissions to specific [node]({{<ref "/docs/nodes">}}) or [cluster]({{<ref "/docs/clusters">}}) resources.  This enables you to limit a user to only see specific devices with very limited permissions. 
 
-Polices now have a `Resources` section. This can be populated with a list of Trustgrid Resource Names (TGRN) to limit where the defined permissions are applied. See the documentation on [Resource-Scoped Polices]({{<ref "/docs/user-management/policies#resource-scoped-policies">}}) for more info. 
+Polices now have a **Resources** section. This can be populated with a list of Trustgrid Resource Names (TGRN) to limit where the defined permissions are applied. See the documentation on [Resource-Scoped Polices]({{<ref "/docs/user-management/policies#resource-scoped-policies">}}) for more info. 
 
 ## Monitor Network Hops
 

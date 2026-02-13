@@ -134,14 +134,14 @@ Each section has two fields:
 
 ### Creating/Editing Policies
 
-1. Navigate to `User Management` → `Policies` {{<tgimg src="policy-management.png" width="40%" caption="Policy Management Page">}}
-2. For a new policy click `Create Policy`. To edit an existing find it in the list and click on its name.
+1. Navigate to **User Management** → **Policies** {{<tgimg src="policy-management.png" width="40%" caption="Policy Management Page">}}
+2. For a new policy click **Create Policy**. To edit an existing find it in the list and click on its name.
 3. The policy wizard has two sections. The left section groups permissions by category and is where you allow or deny permissions. The right section shows the resulting JSON of the policy and is read only.
 As an example, we will create a role to grant users the ability to see, edit, and comment on Provisioning orders.
    1. Under Permissions, search for `orders`
    1. Click the green check box next to each of the desired permissions. (Clicking the X would explicitly deny that permission which will take precedent over any other policy that allows that permission)
    1. You will notice the Policy JSON updated as you select permissions
-   1. Click `Save`{{<tgimg src="new-policy.png" caption="Policy updated notification" >}}
+   1. Click **Save**{{<tgimg src="new-policy.png" caption="Policy updated notification" >}}
 
 ### Clone Existing Policy
 To clone an existing policy click the copy button on the far right of the policy row. This will create a new policy with the same permissions pre-selected which can then be edited and named as desired. 

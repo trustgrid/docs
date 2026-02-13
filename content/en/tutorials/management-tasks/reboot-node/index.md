@@ -7,7 +7,7 @@ description: Describes how to completely reboot a node appliance including the o
 ---
 
 1. Click on the Node from the node page you wish to reboot
-2. Select `Reboot` from the top right corner of the page
+2. Select **Reboot** from the top right corner of the page
 
 ![img](reboot.png)
 

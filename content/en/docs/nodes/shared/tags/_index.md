@@ -37,7 +37,7 @@ After navigating to a specific node’s detail page you can view the tag by:
 	
 	![img](node-tags-yay4.png)
 
-* Opening the info panel by clicking `Info` in the top right or by clicking the ` (backtick) key
+* Opening the info panel by clicking **Info** in the top right or by clicking the ` (backtick) key
 
 	![img](info-panel-nodes2.png)
 
@@ -45,18 +45,18 @@ After navigating to a specific node’s detail page you can view the tag by:
 
 To add a tag:
 
-1. Navigate to the `Tags` section of a node. 
+1. Navigate to the **Tags** section of a node. 
 
-1. Click `Add Tag`.
+1. Click **Add Tag**.
 
-1. A new row will appear at the bottom of the tags table. There will be a list of existing tag names for your organization. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting `New selection: tagName`.
+1. A new row will appear at the bottom of the tags table. There will be a list of existing tag names for your organization. You can filter the list by typing in the field. You can either select an existing tag name, or create a new one by typing it out in full and then selecting **New selection: tagName**.
 
 	![img](new-tag-name.png)
 
 1. Next move to the values field. As with the name, existing values will be listed. To enter a new value type it in completely.
 
-1. Click `Save`
+1. Click **Save**
 
-Tag rows can be edited in-place. Change the name or value, then click `Save`.
+Tag rows can be edited in-place. Change the name or value, then click **Save**.
 
-To remove a tag, click the red X next to the tag name, then click `Save`.
+To remove a tag, click the red X next to the tag name, then click **Save**.

@@ -112,7 +112,7 @@ To view Flow Logs only for traffic through a specific node, navigate to that nod
 
 ### Advanced Search
 
-Flow logs can be filtered by any of the fields listed above. To filter by a field, click the `Advanced Search` button at the top right of the flow logs table.
+Flow logs can be filtered by any of the fields listed above. To filter by a field, click the **Advanced Search** button at the top right of the flow logs table.
 
 In addition, the ordering can be changed so that the oldest flows (or flows closest to the time range specified) can be shown first. There is a limit of 10,000 flows returned per search.
 

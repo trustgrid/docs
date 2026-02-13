@@ -11,4 +11,4 @@ Trustgrid uses each node's public IP address to derive location information. If 
 ![img](node-location.png)
 
 ###### To change the Node Location:
-Change the details to desired settings then click `Save` when done.
+Change the details to desired settings then click **Save** when done.
