@@ -1,0 +1,33 @@
+## Codebase Patterns
+- Use `{{<tgimg>}}` shortcode for images with src, width, caption parameters
+- Use `{{<fields>}}` and `{{<field "Name">}}description{{</field>}}` for field definition tables
+- Use `{{% pageinfo %}}` for callout boxes at top of pages
+- Use `{{<alert title="..." color="...">}}` for inline alerts (info, warning)
+- Screenshots are stored co-located in the same directory as the markdown file
+- Front matter uses YAML with: title, linkTitle, weight, description, tags, categories
+- Section landing pages use _index.md, content pages use index.md
+- Run `npm i` before `hugo --minify` for production builds
+
+---
+
+## 2026-02-19 - US-001 through US-005: AWS Interface ENA Stats Documentation
+- Created new documentation page at content/en/tutorials/interface-tools/aws-interface-stats/index.md
+- Documented the AWS ENA Stats tool for viewing Elastic Network Adapter statistics
+- Added screenshots: aws-stats-button.png, aws-stats-modal.png
+- Used {{<fields>}} shortcode for ENA statistics definitions
+- Added troubleshooting use cases and remediation guidance table
+- Linked to AWS documentation for additional context
+
+**Files changed:**
+- content/en/tutorials/interface-tools/aws-interface-stats/index.md (new)
+- content/en/tutorials/interface-tools/aws-interface-stats/aws-stats-button.png (new)
+- content/en/tutorials/interface-tools/aws-interface-stats/aws-stats-modal.png (new)
+- docs/prd.json (updated all stories to passes: true)
+
+**Learnings for future iterations:**
+- The interface-tools directory already exists with _index.md, no need to create it
+- Follow existing patterns from tcp-port-test and sniff-interface-traffic for similar tools
+- Hugo requires npm dependencies (autoprefixer/postcss) before production build
+- The tgimg shortcode accepts width as percentage string (e.g., "95%")
+- Modal dialogs typically use smaller width (75%) while full page screenshots use larger (95%)
+---
