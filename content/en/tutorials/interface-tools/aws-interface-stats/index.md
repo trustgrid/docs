@@ -8,7 +8,7 @@ categories: ["interface-tools"]
 ---
 
 {{% pageinfo %}}
-The AWS Stats tool displays Elastic Network Adapter (ENA) statistics for AWS-hosted nodes. These statistics help identify when AWS is throttling network traffic due to instance limits being exceeded. This feature was introduced in node version 5.28 and requires the `service:network-status` permission.
+The AWS Stats tool displays Elastic Network Adapter (ENA) statistics for AWS-hosted nodes. These statistics help identify when AWS is throttling network traffic due to instance limits being exceeded. Access requires the `service:network-status` permission.
 {{% /pageinfo %}}
 
 ## Overview
@@ -16,7 +16,7 @@ The AWS Stats tool displays Elastic Network Adapter (ENA) statistics for AWS-hos
 When running Trustgrid nodes on AWS EC2 instances, network performance is subject to instance-type-specific limits for bandwidth, packets per second, and connection tracking. The AWS Interface ENA Stats tool allows you to view counters that indicate when these limits have been exceeded, helping diagnose network performance issues.
 
 {{<alert title="Note" color="info">}}
-The **AWS Stats** button is only visible on nodes running on AWS EC2 instances with ENA-enabled network interfaces.
+The **AWS Stats** button is only visible on nodes running on AWS EC2 instances with ENA-enabled network interfaces. If you do not see this button on an AWS node, upgrade the device to a version that includes AWS Interface ENA Stats support.
 {{</alert>}}
 
 ## Accessing AWS Stats
