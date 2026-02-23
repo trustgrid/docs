@@ -1,0 +1,85 @@
+{
+  "project": "AWS Interface ENA Stats Documentation",
+  "branchName": "gh/685/doc-interface-aws-stats-tool",
+  "description": "Document the AWS Interface ENA Stats tool introduced in node version 5.28, helping users view and interpret AWS Elastic Network Adapter statistics for troubleshooting network performance issues on AWS-hosted nodes.",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Create AWS ENA Stats Documentation Page",
+      "description": "As a documentation writer, I need to create a new page for the AWS Interface ENA Stats tool in the interface tools section so that users can learn how to use this feature.",
+      "acceptanceCriteria": [
+        "Create new page at content/en/tutorials/interface-tools/aws-interface-stats/index.md",
+        "Include appropriate front matter with title, linkTitle, and description",
+        "Document that this tool is only available on AWS-hosted nodes",
+        "Document the required permission (service:network-status)",
+        "Document that this feature was introduced in node version 5.28",
+        "Typecheck/lint passes with hugo server -F"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": "Created index.md with title, linkTitle, description, tags, categories. Documented AWS-only availability, service:network-status permission, and node version 5.28 requirement."
+    },
+    {
+      "id": "US-002",
+      "title": "Document Navigation and Access Steps",
+      "description": "As a user, I want to know how to access the AWS Stats tool so that I can view my node's ENA statistics.",
+      "acceptanceCriteria": [
+        "Document the navigation path: Node > Interfaces > AWS Stats button",
+        "Explain that the button only appears on AWS-hosted nodes",
+        "Include screenshot showing the AWS Stats button location on the Interfaces page",
+        "Document the interface selector dropdown that allows choosing which network interface to view",
+        "Include screenshot of the AWS Interface ENA Stats modal dialog",
+        "Typecheck/lint passes with hugo server -F"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": "Documented navigation path, AWS-only visibility, included screenshots aws-stats-button.png and aws-stats-modal.png, documented interface selector dropdown."
+    },
+    {
+      "id": "US-003",
+      "title": "Document ENA Statistics Definitions",
+      "description": "As a network administrator, I want to understand what each ENA statistic means so that I can properly interpret the data for troubleshooting.",
+      "acceptanceCriteria": [
+        "Document all five ENA metrics: bw_in_allowance_exceeded, bw_out_allowance_exceeded, conntrack_allowance_exceeded, linklocal_allowance_exceeded, pps_allowance_exceeded",
+        "Use the {{<fields>}} shortcode to format the field definitions table",
+        "Explain that non-zero values indicate AWS is throttling traffic",
+        "Link to AWS documentation on ENA metrics for additional context",
+        "Typecheck/lint passes with hugo server -F"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": "Documented all 5 ENA metrics using {{<fields>}} shortcode. Explained non-zero values indicate throttling. Added links to AWS documentation."
+    },
+    {
+      "id": "US-004",
+      "title": "Document Troubleshooting Use Cases",
+      "description": "As a network administrator, I want to understand when and why to use this tool so that I can effectively diagnose network performance issues.",
+      "acceptanceCriteria": [
+        "Explain common scenarios where this tool is useful (bandwidth throttling, packet drops, connection issues)",
+        "Document what non-zero values mean for each metric",
+        "Provide guidance on remediation (e.g., upgrading to larger instance type)",
+        "Reference AWS instance network specifications documentation",
+        "Typecheck/lint passes with hugo server -F"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": "Added troubleshooting scenarios, interpretation table with remediation guidance, and link to AWS EC2 instance types documentation."
+    },
+    {
+      "id": "US-005",
+      "title": "Capture and Add Screenshots",
+      "description": "As a documentation writer, I need to add screenshots of the tool interface so that users can visually identify the UI elements.",
+      "acceptanceCriteria": [
+        "Capture screenshot of the Interfaces page with AWS Stats button visible",
+        "Capture screenshot of the AWS Interface ENA Stats modal showing the interface selector and statistics table",
+        "Save screenshots in the same directory as the documentation page",
+        "Use the {{<tgimg>}} shortcode for image embedding",
+        "Screenshots should be clear and at appropriate resolution",
+        "Verify in browser using browser-use skill"
+      ],
+      "priority": 5,
+      "passes": true,
+      "notes": "Copied screenshots from /tmp/aws-stats-screenshots/ as aws-stats-button.png and aws-stats-modal.png. Used {{<tgimg>}} shortcode for embedding. Screenshots are clear and show full UI."
+    }
+  ]
+}
