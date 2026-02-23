@@ -1,7 +1,6 @@
 ---
 title: "AWS Interface ENA Stats"
 linkTitle: "AWS Stats"
-weight: 50
 description: "View AWS Elastic Network Adapter (ENA) statistics to troubleshoot network performance issues on AWS-hosted nodes"
 tags: ["aws", "networking", "troubleshooting", "interface"]
 categories: ["interface-tools"]
