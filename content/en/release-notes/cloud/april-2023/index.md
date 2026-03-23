@@ -13,7 +13,7 @@ As a start, we've created a link called Documentation under the Management secti
 Additionally, we've created a section for release notes that will allow you to monitor release for [Control Plane](https://docs.trustgrid.io/release-notes/cloud/) and [Node](https://docs.trustgrid.io/release-notes/node/) releases via RSS feeds going forward. 
 
 ### Swagger API Documentation Move
-As part of this change we are moving our API documentation from https://portal.trustgrid.io/api-docs/ to https://docs.trustgrid.io/docs/api/. This will allow updating this documentation outside our normal release process. 
+As part of this change we are moving our API documentation from https://portal.trustgrid.io/api-docs/ to https://apidocs.trustgrid.io/. This will allow updating this documentation outside our normal release process.
 
 
 ## Cluster Configuration
