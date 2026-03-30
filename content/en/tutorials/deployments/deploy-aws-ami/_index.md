@@ -14,13 +14,13 @@ Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes
 
 ## Prerequisites
 
+### Instance Type
 
 | Known Supported Instance Types                | Architecture |
 |-----------------------------------------|--------------|
 | t2, t3, t3a, c5, c5n, c6i, c6in, c6a   | x86_64 only  |
 
 Additional x86_64 instances types may work but have not been tested. Contact Trustgrid support if a different type is believed necessary.
-
 
 > **Note:** ARM-based instances (such as Graviton) are not supported.
 
@@ -32,6 +32,8 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
 - Configure monitoring of your CPU Credit Balance to alert if your credits are being consumed or you are being charged for additional CPU usage which might warrant resizing your devices. [Monitor your CPU credits - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-monitoring-cpu-credits.html)
 {{</alert>}}
 
+### Networking
+
 - VPC with public and private subnets - Management NIC goes in the public subnet, Data NIC goes in the private subnet
   - Note: If doing a multi-AZ cluster deployment the private subnets need to use the same route table for automated route management to work
 - Security group for management NIC that allows the following traffic:
@@ -42,15 +44,39 @@ If using a burstable performance instance types (T2, T3 and T3a) the following i
   - Inbound & Outbound to/from management NIC security group on cluster port (typically TCP port 9000)
   - For the initial deployment outbound access for TCP 80/443 should be allowed. Upon successful registration with the Trustgrid Portal, this can be removed.
 
-- IAM role for the instance with policies allowing changes to the routing table of the data NIC - See attached doc
-
 - All Interfaces on the Trustgrid Gateway should have source/destination check disabled in AWS
 
 - Security group for data NIC - No configuration for now
 
+- VPC must have unallocated public IP that will be claimed during provisioning
+
+#### AWS Network Firewall and UDP Tunnels
+
+If nodes are deployed behind an [AWS Network Firewall](https://aws.amazon.com/network-firewall/) and UDP tunnels are used, **explicit rules must be added in both directions**. Unlike TCP, AWS Network Firewall does not maintain UDP connection state during maintenance events. If the first packet the firewall sees after a maintenance event arrives from the opposite direction of the original flow (e.g., a gateway initiating a keepalive back toward an edge node), it will not recognize the tuple as an established session and will block it.
+
+{{<alert color="warning">}}
+This bidirectional rule requirement applies **only when using UDP tunnels**. TCP tunnels are not affected because AWS Network Firewall tracks TCP state normally.
+{{</alert>}}
+
+**Gateway node — required rules:**
+
+| Direction | Source IP | Source Port | Destination IP | Destination Port |
+|-----------|-----------|-------------|----------------|-----------------|
+| Inbound   | Remote edge node IPs (or `any`) | Any | Gateway IP | UDP 8443 (or configured gateway port) |
+| Outbound  | Gateway IP | Any (ephemeral UDP source port) | Remote edge node IPs (or `any`) | Any |
+
+**Edge node — required rules:**
+
+| Direction | Source IP | Source Port | Destination IP | Destination Port |
+|-----------|-----------|-------------|----------------|-----------------|
+| Outbound  | Edge node IP | Any | Known gateway IPs | UDP 8443 (or configured gateway port) |
+| Inbound   | Known gateway IPs | UDP 8443 (or configured gateway port) | Edge node IP | Any |
+
+### Security
+
 - An SSH key-pair that can be used to SSH to the instance if necessary
 
-- VPC must have unallocated public IP that will be claimed during provisioning
+- An IAM role must be attached to the instance. The role requires policies to allow the node to manage routing table entries on the data NIC — this is necessary for automated failover in clustered deployments. See the [IAM Role Requirements section below](#iam-role-requirements) for the specific policy JSON. For HA gateway cluster deployments, refer to [Configure HA Trustgrid Gateway Cluster in AWS]({{<relref "configure-ha-gateway-cluster-in-aws">}}) for additional context on how the IAM role is used during cluster failover.
 
 ## Process
 
