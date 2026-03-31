@@ -4,54 +4,57 @@ linkTitle: "Deploy to GCP"
 title: "Deploy a Trustgrid Node in GCP"
 ---
 
-Standing up a Trustgrid node in GCP uses a published Trustgrid machine image and the `gcloud` CLI. Trustgrid nodes in GCP use two network interfaces — a WAN interface for management and tunnel traffic, and a LAN interface for internal data traffic. Each interface must be on a separate VPC network.
+Trustgrid nodes in GCP are deployed from a published Trustgrid machine image. Each node requires two network interfaces — a **Management** interface for control plane communication and tunnel traffic, and a **Data** interface for internal data traffic. Each interface must be attached to a separate VPC network. Nodes can be registered automatically on first boot using a license key, or manually using the GCP Serial Console.
 
 ## Prerequisites
 
 ### GCP Project Setup
 
-- Compute Engine API must be enabled in your GCP project.
-- Two VPC networks, each with a subnet in the target deployment zone:
-  - **WAN network** — internet-facing, used for management traffic to the Trustgrid control plane and tunnel traffic to remote nodes.
-  - **LAN network** — private, used for internal data traffic and, in clustered deployments, for inter-node communication.
+The **Compute Engine API** must be enabled in your GCP project. This API is required to create and manage VM instances and associated resources (disks, network interfaces, firewall rules, and VPC routes). To enable it:
+
+```bash
+gcloud services enable compute.googleapis.com --project=PROJECT_ID
+```
+
+You will also need two VPC networks, each with a subnet in the target deployment zone:
+- **Management network** — internet-facing, used for management traffic to the Trustgrid control plane and tunnel traffic to remote nodes.
+- **Data network** — private, used for internal data traffic and, in clustered deployments, for inter-node communication.
 
 ### Machine Type
 
-The validated and supported machine type for Trustgrid nodes in GCP is **`e2-medium`**. If your deployment requires a different machine type, contact Trustgrid support before proceeding.
+The validated and supported machine type family for Trustgrid nodes in GCP is **e2**. Any e2 instance size may be used depending on your deployment requirements. If your deployment requires a machine type outside the e2 family, contact Trustgrid support before proceeding.
 
 ### Networking
 
-#### WAN Network
+#### Management Network
 
-The WAN network must allow outbound access to the Trustgrid control plane. See [Network Requirements for All Nodes]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}}) for the full list of required IPs and ports.
+The Management network must allow outbound access to the Trustgrid control plane. See [Network Requirements for All Nodes]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}}) for the full list of required IPs and ports.
 
 {{<alert color="warning">}}
-Inbound TCP 8443 on the WAN network is only required if the node will act as a **gateway**. Edge nodes do not require any inbound WAN firewall rules.
+Inbound TCP/UDP 8443 on the Management network is only required if the node will act as a **gateway** (a node that terminates tunnels from remote edge nodes). Edge nodes do not require any inbound Management firewall rules.
 {{</alert>}}
 
-#### LAN Network
+#### Data Network
 
 {{<alert>}}
-The LAN firewall rules for TCP 9000 and ICMP are only required for **clustered deployments**. Standalone nodes do not need these rules.
+The Data network firewall rule for TCP 9000 is only required for **clustered deployments**. Standalone nodes do not need this rule.
 {{</alert>}}
 
 The following table summarizes the firewall rules required across both networks:
 
 | Network | Direction | Protocol | Ports | Source/Destination | Purpose |
 |---------|-----------|----------|-------|--------------------|---------|
-| WAN | Egress | TCP | 80, 443, 8443 | Trustgrid control plane IPs | Control plane communication |
-| WAN | Ingress | TCP | 8443 | 0.0.0.0/0 | Gateway tunnel traffic (gateway nodes only) |
-| LAN | Ingress | TCP | 9000 | LAN subnet CIDR | Cluster communication (clustered nodes only) |
-| LAN | Ingress | ICMP | — | LAN subnet CIDR | Cluster health checks (clustered nodes only) |
-| LAN | Egress | TCP | 9000 | LAN subnet CIDR | Cluster communication (clustered nodes only) |
-| LAN | Egress | ICMP | — | 0.0.0.0/0 | Cluster health checks (clustered nodes only) |
+| Management | Egress | TCP | 443, 8443 | Trustgrid control plane IPs — see [Network Requirements]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}}) | Control plane communication |
+| Management | Ingress | TCP/UDP | 8443 | 0.0.0.0/0 | Data plane tunnel traffic (gateway nodes that terminate tunnels from remote edge nodes only) |
+| Data | Ingress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
+| Data | Egress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
 
-### IAM — Service Account for HA Route Failover
+### IAM — Service Account for Cluster Route Failover
 
-In [clustered deployments]({{<relref "/docs/clusters">}}), Trustgrid nodes automatically manage GCP VPC routes to handle failover. This requires a service account bound to a custom IAM role with the minimum permissions needed to create and delete routes.
+In [clustered deployments]({{<relref "/docs/clusters">}}), Trustgrid nodes automatically manage GCP VPC routes to handle cluster failover. This requires a service account bound to a custom IAM role with the minimum permissions needed to create and delete routes.
 
 {{<alert>}}
-If you are deploying a standalone (non-clustered) node, you can skip this section. The service account is only required for HA cluster route failover.
+If you are deploying a standalone (non-clustered) node, you can skip this section. The service account is only required for cluster route failover.
 {{</alert>}}
 
 #### Step 1: Create the custom IAM role
@@ -60,7 +63,7 @@ If you are deploying a standalone (non-clustered) node, you can skip this sectio
 gcloud iam roles create tgNodeRouteManager \
   --project=PROJECT_ID \
   --title="TrustGrid Node Route Manager" \
-  --description="Allows TrustGrid nodes to manage VPC routes for HA failover" \
+  --description="Allows TrustGrid nodes to manage VPC routes for cluster failover" \
   --permissions=compute.routes.list,compute.routes.get,compute.routes.create,compute.routes.delete,compute.networks.updatePolicy
 ```
 
@@ -90,14 +93,14 @@ Choose one of the following methods to deploy and register the node:
 
 ### Option 1: Automated Deployment via gcloud CLI
 
-In this path, you create the node in the Trustgrid portal first to obtain a license key, then pass the key as instance metadata when deploying the VM. The node registers automatically on first boot — no additional portal steps are required after the VM is running.
+In this path, you create the node in the Trustgrid portal first to obtain a license key, then pass the key as instance metadata when deploying the VM. The node registers automatically with the Trustgrid control plane on first boot.
 
-#### Step 1: Create a Node in the Trustgrid Portal
+#### Step 1: Obtain a License Key from the Trustgrid Portal
 
-Add a new node in the Trustgrid portal. When the node is created, a license key will be generated and copied to your clipboard. Save this key — you will need it in the next step and it cannot be reissued without recreating the node.
+Generate a license key for the new node from the [Nodes page]({{<relref "/docs/nodes">}}) in the Trustgrid portal. Save this key — you will need it in the next step.
 
 {{<alert>}}
-The node will not appear as active in the portal until the VM boots and completes registration.
+The node will not appear in the portal until the VM instance successfully completes registration with the Trustgrid control plane.
 {{</alert>}}
 
 #### Step 2: Deploy the VM
@@ -108,13 +111,13 @@ Run the following command, replacing all placeholder values:
 gcloud compute instances create NODE_NAME \
   --project=PROJECT_ID \
   --zone=ZONE \
-  --machine-type=e2-medium \
+  --machine-type=MACHINE_TYPE \
   --image-family=trustgrid-node \
   --image-project=trustgrid-images \
   --boot-disk-size=30GB \
   --can-ip-forward \
-  --network-interface=network=WAN_NETWORK,subnet=WAN_SUBNET,nic-type=GVNIC \
-  --network-interface=network=LAN_NETWORK,subnet=LAN_SUBNET,no-address,nic-type=GVNIC \
+  --network-interface=network=MANAGEMENT_NETWORK,subnet=MANAGEMENT_SUBNET,nic-type=GVNIC \
+  --network-interface=network=DATA_NETWORK,subnet=DATA_SUBNET,no-address,nic-type=GVNIC \
   --service-account=tg-node@PROJECT_ID.iam.gserviceaccount.com \
   --scopes=https://www.googleapis.com/auth/compute \
   --tags=tg-node \
@@ -129,16 +132,19 @@ The name for the GCP VM instance.
 Your GCP project ID.
 {{% /field %}}
 {{% field "ZONE" %}}
-The GCP zone to deploy into (e.g., `us-central1-a`). Must match the zone where your WAN and LAN subnets are configured.
+The GCP zone to deploy into (e.g., `us-central1-a`). Must match the zone where your Management and Data subnets are configured.
 {{% /field %}}
-{{% field "WAN_NETWORK / WAN_SUBNET" %}}
+{{% field "MACHINE_TYPE" %}}
+The e2 instance size appropriate for your deployment (e.g., `e2-standard-2`). See [Machine Type](#machine-type) above.
+{{% /field %}}
+{{% field "MANAGEMENT_NETWORK / MANAGEMENT_SUBNET" %}}
 The name of your internet-facing VPC network and its subnet.
 {{% /field %}}
-{{% field "LAN_NETWORK / LAN_SUBNET" %}}
-The name of your private VPC network and its subnet. Note the `no-address` flag — the LAN interface should not have an external IP.
+{{% field "DATA_NETWORK / DATA_SUBNET" %}}
+The name of your private VPC network and its subnet. Note the `no-address` flag — the Data interface should not have an external IP.
 {{% /field %}}
 {{% field "LICENSE_KEY" %}}
-The license key generated when you created the node in the Trustgrid portal.
+The license key generated from the Trustgrid portal.
 {{% /field %}}
 {{</fields>}}
 
@@ -153,7 +159,7 @@ Once registration is complete, the node will appear as online in the portal and 
 
 ---
 
-### Option 2: Manual Deployment with Remote Console Registration
+### Option 2: Manual Deployment with Serial Console Registration
 
 In this path, you deploy the VM without a license key and then register the node manually using the GCP Serial Console and the Trustgrid remote registration utility. Use this approach if you need to register a node without pre-generating a license key from the portal.
 
@@ -163,13 +169,13 @@ In this path, you deploy the VM without a license key and then register the node
 gcloud compute instances create NODE_NAME \
   --project=PROJECT_ID \
   --zone=ZONE \
-  --machine-type=e2-medium \
+  --machine-type=MACHINE_TYPE \
   --image-family=trustgrid-node \
   --image-project=trustgrid-images \
   --boot-disk-size=30GB \
   --can-ip-forward \
-  --network-interface=network=WAN_NETWORK,subnet=WAN_SUBNET,nic-type=GVNIC \
-  --network-interface=network=LAN_NETWORK,subnet=LAN_SUBNET,no-address,nic-type=GVNIC \
+  --network-interface=network=MANAGEMENT_NETWORK,subnet=MANAGEMENT_SUBNET,nic-type=GVNIC \
+  --network-interface=network=DATA_NETWORK,subnet=DATA_SUBNET,no-address,nic-type=GVNIC \
   --service-account=tg-node@PROJECT_ID.iam.gserviceaccount.com \
   --scopes=https://www.googleapis.com/auth/compute \
   --tags=tg-node \
@@ -182,22 +188,30 @@ The `--metadata=serial-port-enable=true` flag is required to allow access to the
 
 Once the VM is running, open the **Serial Console** for the instance from the GCP console (navigate to **Compute Engine → VM instances**, click the instance name, then select **Connect to serial console**).
 
+{{<alert>}}
+When prompted to log in at the serial console, use username `tgadmin` and the **GCP instance name** (the value of `NODE_NAME`) as the password.
+{{</alert>}}
+
+{{<alert color="warning">}}
+Completing remote registration requires access to the Trustgrid portal. This step must be performed by someone with portal access — either the end customer or Trustgrid support.
+{{</alert>}}
+
 From the serial console, follow the Trustgrid remote registration process to register the node with the control plane. See [Remote Registration]({{<relref "/tutorials/local-console-utility/remote-registration">}}) for full instructions.
 
 ---
 
-## HA Cluster Configuration
+## Cluster Configuration
 
-When deployed as a [cluster]({{<relref "/docs/clusters">}}), Trustgrid nodes manage GCP VPC routes to provide automatic failover. The active cluster master creates a route in the LAN VPC pointing the VPN network CIDR to its own LAN IP as the next hop. On failover, the new master deletes the old route and creates a replacement pointing to itself.
+When deployed as a [cluster]({{<relref "/docs/clusters">}}), Trustgrid nodes manage GCP VPC routes to provide automatic cluster failover. The active cluster master creates a route in the Data VPC pointing the VPN network CIDR to its own Data IP as the next hop. On failover, the new master deletes the old route and creates a replacement pointing to itself.
 
 ### Requirements
 
 - **IP forwarding** must be enabled on both nodes (`--can-ip-forward` in the deploy command).
-- **Both nodes** must be on the same LAN VPC network.
-- The **service account** (`tg-node@PROJECT_ID.iam.gserviceaccount.com`) with the `tgNodeRouteManager` role must be attached to each node. See [IAM — Service Account for HA Route Failover](#iam--service-account-for-ha-route-failover) above.
+- **Both nodes** must be on the same Data VPC network.
+- The **service account** (`tg-node@PROJECT_ID.iam.gserviceaccount.com`) with the `tgNodeRouteManager` role must be attached to each node. See [IAM — Service Account for Cluster Route Failover](#iam--service-account-for-cluster-route-failover) above.
 
-### LAN Subnet Route
+### Data Network Route
 
-GCP assigns `/32` addresses to VM interfaces and only programs a default route on the first NIC (the WAN interface). The LAN interface does not automatically have a route for its own subnet. Without an explicit route, cluster nodes cannot reach each other directly over the LAN network.
+GCP assigns `/32` addresses to VM interfaces and only programs a default route on the first NIC (the Management interface). The Data interface does not automatically have a route for its own subnet. Without an explicit route, cluster nodes cannot reach each other directly over the Data network.
 
-Each node in the cluster must have a route configured for the LAN subnet on its LAN interface. This is configured within the Trustgrid portal on the cluster's LAN interface settings — it is not a `gcloud` step.
+A single cluster interface route must be configured for the Data network subnet on the Data interface — both nodes share this route. This is configured in the Trustgrid portal under the cluster's [interface settings]({{<relref "/docs/nodes/appliances/interfaces">}}), not via `gcloud`.
