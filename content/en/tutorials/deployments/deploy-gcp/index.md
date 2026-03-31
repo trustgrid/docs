@@ -49,42 +49,6 @@ The following table summarizes the firewall rules required across both networks:
 | Data | Ingress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
 | Data | Egress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
 
-### IAM — Service Account for Cluster Route Failover
-
-In [clustered deployments]({{<relref "/docs/clusters">}}), Trustgrid nodes automatically manage GCP VPC routes to handle cluster failover. This requires a service account bound to a custom IAM role with the minimum permissions needed to create and delete routes.
-
-{{<alert>}}
-If you are deploying a standalone (non-clustered) node, you can skip this section. The service account is only required for cluster route failover.
-{{</alert>}}
-
-#### Step 1: Create the custom IAM role
-
-```bash
-gcloud iam roles create tgNodeRouteManager \
-  --project=PROJECT_ID \
-  --title="TrustGrid Node Route Manager" \
-  --description="Allows TrustGrid nodes to manage VPC routes for cluster failover" \
-  --permissions=compute.routes.list,compute.routes.get,compute.routes.create,compute.routes.delete,compute.networks.updatePolicy
-```
-
-#### Step 2: Create the service account
-
-```bash
-gcloud iam service-accounts create tg-node \
-  --project=PROJECT_ID \
-  --display-name="TrustGrid Node"
-```
-
-#### Step 3: Bind the role to the service account
-
-```bash
-gcloud projects add-iam-policy-binding PROJECT_ID \
-  --member="serviceAccount:tg-node@PROJECT_ID.iam.gserviceaccount.com" \
-  --role="projects/PROJECT_ID/roles/tgNodeRouteManager"
-```
-
-Replace `PROJECT_ID` with your GCP project ID in all three commands.
-
 ---
 
 ## Deployment Options
@@ -208,7 +172,38 @@ When deployed as a [cluster]({{<relref "/docs/clusters">}}), Trustgrid nodes man
 
 - **IP forwarding** must be enabled on both nodes (`--can-ip-forward` in the deploy command).
 - **Both nodes** must be on the same Data VPC network.
-- The **service account** (`tg-node@PROJECT_ID.iam.gserviceaccount.com`) with the `tgNodeRouteManager` role must be attached to each node. See [IAM — Service Account for Cluster Route Failover](#iam--service-account-for-cluster-route-failover) above.
+
+### IAM — Service Account for Cluster Route Failover
+
+Trustgrid nodes require a GCP service account with permission to create and delete VPC routes to manage cluster failover. This must be configured before deploying the VMs.
+
+#### Step 1: Create the custom IAM role
+
+```bash
+gcloud iam roles create tgNodeRouteManager \
+  --project=PROJECT_ID \
+  --title="TrustGrid Node Route Manager" \
+  --description="Allows TrustGrid nodes to manage VPC routes for cluster failover" \
+  --permissions=compute.routes.list,compute.routes.get,compute.routes.create,compute.routes.delete,compute.networks.updatePolicy
+```
+
+#### Step 2: Create the service account
+
+```bash
+gcloud iam service-accounts create tg-node \
+  --project=PROJECT_ID \
+  --display-name="TrustGrid Node"
+```
+
+#### Step 3: Bind the role to the service account
+
+```bash
+gcloud projects add-iam-policy-binding PROJECT_ID \
+  --member="serviceAccount:tg-node@PROJECT_ID.iam.gserviceaccount.com" \
+  --role="projects/PROJECT_ID/roles/tgNodeRouteManager"
+```
+
+Replace `PROJECT_ID` with your GCP project ID in all three commands. The service account must be attached to each node VM via the `--service-account` flag in the deploy command.
 
 ### Data Network Route
 
