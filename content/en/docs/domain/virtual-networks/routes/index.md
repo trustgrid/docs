@@ -121,7 +121,7 @@ On domain routes, route monitor changes are staged with the route change set. Af
 - If the node does not have the required virtual network connectivity or a usable virtual management IP, the monitor may not behave as expected.
 - If you have multiple routes for the same destination CIDR, route monitors affect which routes are considered available for traffic.
 
-For monitor behavior, limitations, and recommendations, see [Route Monitor Best Practices]({{<relref "/tutorials/monitoring/route-monitors">}}).
+For monitor behavior, limitations, and recommendations, see [Route Monitor Best Practices]({{<relref "tutorials/monitoring/route-monitors">}}).
 
 ### Manual Failover
 
