@@ -97,5 +97,5 @@ Route monitor behavior is the same after configuration reaches the node, but the
 
 For configuration steps, see:
 
-- [Static Routing]({{<relref "/docs/nodes/appliances/vpn/static-routing">}})
-- [Virtual Network Routes]({{<relref "/docs/domain/virtual-networks/routes">}})
+- [Static Routing]({{<relref "docs/nodes/appliances/vpn/static-routing">}})
+- [Virtual Network Routes]({{<relref "docs/domain/virtual-networks/routes">}})
