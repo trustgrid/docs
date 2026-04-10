@@ -94,6 +94,35 @@ However, there are some circumstances where this is not desirable. For example, 
 
 To preemptively reroute traffic to the backup site, update the backup route to have a lower metric than the primary route.
 
+## Route Monitors
+
+Route monitors can also be configured on virtual network routes. Domain-level support for route monitors was added in the [June 2025 cloud release]({{<ref "/release-notes/cloud/2025-06/index.md">}}).
+
+{{<tgimg src="route-monitors-domain-routes.png" caption="Domain virtual network Routes view with monitor count and Save workflow" width="90%">}}
+
+Route monitors at the domain level use the same monitor settings available on node or cluster static routes:
+
+- ICMP or TCP monitoring
+- destination IP
+- destination port for TCP monitors
+- monitor interval
+- failures count
+- optional maximum latency
+
+### Important Domain Workflow Difference
+
+On domain routes, route monitor changes are staged with the route change set. After adding, updating, or deleting route monitors you must still save the route changes and then [review and apply changes]({{<ref "/docs/domain/virtual-networks/review-changes">}}) before the updated monitor configuration is published to nodes.
+
+{{<alert color="warning">}}Changing route monitors in the domain Routes view does not immediately publish those changes. Save the route changes and apply the pending domain changes.{{</alert>}}
+
+### Notes
+
+- Route monitor traffic still runs from the node or cluster that owns the route after the domain changes are published.
+- If the node does not have the required virtual network connectivity or a usable virtual management IP, the monitor may not behave as expected.
+- If you have multiple routes for the same destination CIDR, route monitors affect which routes are considered available for traffic.
+
+For monitor behavior, limitations, and recommendations, see [Route Monitor Best Practices]({{<relref "/tutorials/monitoring/route-monitors">}}).
+
 ### Manual Failover
 
 In some circumstances, it may be preferable for failover to only occur with manual intervention. In this situation, you will have a single route under the [domain]({{<ref "docs/domain" >}}).  To initiate a failover you'll need to update the destination [cluster]({{<ref "docs/clusters" >}})/[node]({{<ref "docs/nodes" >}}).
