@@ -5,7 +5,7 @@ aliases:
 description: Configure static routes for the virtual network for the selected node or cluster
 ---
 
-Static routing allows a node to route traffic to a remote network in addition to virtual network-defined routes({{<ref "/docs/domain/virtual-networks/routes">}}). Routes defined at this level can be created for destination CIDRs outside the [virtual network's Network CIDR]({{<relref "/docs/domain/virtual-networks#network-cidr">}})
+Static routing allows a node to route traffic to a remote network in addition to virtual network-defined routes({{<ref "/docs/domain/virtual-networks/routes">}}). Routes defined at this level can be created for destination CIDRs outside the [virtual network's Network CIDR]({{<relref "docs/domain/virtual-networks#network-cidr">}})
 
 Find static route definitions and change them under the **Static Routing** section of the VPN configuration.
 
@@ -76,4 +76,4 @@ Route monitors affect whether a route is considered available. If you have multi
 
 If a failed route starts passing its monitors again, it can become eligible for traffic again automatically. Trustgrid reuses existing monitor instances during route updates to reduce unnecessary monitor flapping, but unstable targets can still cause route changes if the monitor repeatedly fails and recovers.
 
-For guidance on choosing good monitor targets and avoiding false failures, see [Route Monitor Best Practices]({{<relref "/tutorials/monitoring/route-monitors">}}).
+For guidance on choosing good monitor targets and avoiding false failures, see [Route Monitor Best Practices]({{<relref "tutorials/monitoring/route-monitors">}}).
