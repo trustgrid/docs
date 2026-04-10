@@ -22,7 +22,7 @@ Find static route definitions and change them under the **Static Routing** secti
 
 Route monitors let Trustgrid test a route destination and mark the route unavailable when the configured monitor checks fail. They are configured per static route.
 
-{{<tgimg src="route-monitors-route-table.png" caption="Static Routing table with route monitor management" width="90%">}}
+{{<tgimg src="route-monitors-route-table.png" caption="Static Routing table with route monitor management" width="80%">}}
 
 ### Prerequisites
 
@@ -38,13 +38,13 @@ Route monitors let Trustgrid test a route destination and mark the route unavail
 1. Find the route you want to monitor.
 1. Select **Manage Monitors** on that route.
 
-{{<tgimg src="route-monitors-modal.png" caption="Route Monitors dialog" width="90%">}}
+{{<tgimg src="route-monitors-modal.png" caption="Route Monitors dialog" width="80%">}}
 
 1. Select **Add Monitor**.
 1. Enter the monitor settings.
 1. Select **Save**.
 
-{{<tgimg src="route-monitors-add-modal.png" caption="Add Route Monitor dialog" width="65%">}}
+{{<tgimg src="route-monitors-add-modal.png" caption="Add Route Monitor dialog" width="55%">}}
 
 ### Route Monitor Fields
 

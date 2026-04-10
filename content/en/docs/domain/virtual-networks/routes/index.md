@@ -98,7 +98,7 @@ To preemptively reroute traffic to the backup site, update the backup route to h
 
 Route monitors can also be configured on virtual network routes. Domain-level support for route monitors was added in the [June 2025 cloud release]({{<ref "/release-notes/cloud/2025-06/index.md">}}).
 
-{{<tgimg src="route-monitors-domain-routes.png" caption="Domain virtual network Routes view with monitor count and Save workflow" width="90%">}}
+{{<tgimg src="route-monitors-domain-routes.png" caption="Domain virtual network Routes view with monitor count and Save workflow" width="80%">}}
 
 Route monitors at the domain level use the same monitor settings available on node or cluster static routes:
 
