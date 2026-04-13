@@ -6,7 +6,7 @@ date: 2026-03-30
 description: "Release notes for the March 2026 Minor Trustgrid Appliance release"
 ---
 
-{{< node-release package-version="1.5.20260116-2361" core-version="20260116-153629.64ac9d4" release="n-2.23.6" >}}
+{{< node-release package-version="1.5.20260116-2361" core-version="20260116-153629.64ac9d4" release="n-2.23.7" >}}
 
 <br />
 
