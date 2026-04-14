@@ -84,7 +84,7 @@ Optional: Provide a custom CA certificate (in PEM format) for TLS validation.
 
 ### HTTP Exporter Settings
 
-{{<tgimg src="http-exporter.png" width="75%">}}
+{{<tgimg src="http-exporter-auth-basic.png" width="75%" caption="HTTP exporter configuration with Basic Auth selected">}}
 {{<fields>}}
 {{<field "Status">}}
 Current exporter status.
@@ -100,6 +100,21 @@ Current categories of data exported by Trustgrid (e.g. Metrics).
 {{</field>}}
 {{<field "Endpoint">}}
 Base URL for sending telemetry data via HTTP.
+{{</field>}}
+{{<field "Auth Type">}}
+The authentication method used when sending data to the HTTP endpoint. Options:
+- **None** - No authentication
+- **Bearer Token** - Authenticates using a bearer token in the `Authorization` header
+- **Basic Auth** - Authenticates using a username and password
+{{</field>}}
+{{<field "Bearer Token">}}
+The token value sent in the `Authorization: Bearer` header. Only visible when **Auth Type** is set to **Bearer Token**.
+{{</field>}}
+{{<field "Username">}}
+Username credential for Basic Auth. Only visible when **Auth Type** is set to **Basic Auth**.
+{{</field>}}
+{{<field "Password">}}
+Password credential for Basic Auth. Only visible when **Auth Type** is set to **Basic Auth**.
 {{</field>}}
 {{<field "Metrics Endpoint">}}
 Optional override for the metrics-specific HTTP endpoint (e.g. https://hrl/v2/metrics).
@@ -129,3 +144,7 @@ Disable TLS certificate validation.
 Optional: Provide a custom CA certificate (in PEM format) for TLS validation.
 {{</field>}}
 {{</fields>}}
+
+When **Bearer Token** is selected as the Auth Type, the Username and Password fields are replaced with a single **Bearer Token** field.
+
+{{<tgimg src="http-exporter-auth-bearer.png" width="50%" caption="HTTP exporter configuration with Bearer Token selected">}}
