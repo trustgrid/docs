@@ -9,7 +9,7 @@ Maintenance and other planned disruptive activity can generate a large amount of
 
 ## Define Alert Suppression Window
 
-1. Navigate to `Alarms` -> `Alert Suppression`.
+1. Navigate to **Alarms** -> **Alert Suppression**.
 
 2. Enter a message to users. During the window this will be displayed on the dashboard when users first log in.
 
@@ -27,19 +27,19 @@ Maintenance and other planned disruptive activity can generate a large amount of
 
 ![img](schedule-time1.png)
 
-6. Click the `Schedule` button. You will see a notification that the window has been scheduled and a notice of when it will begin.
+6. Click the **Schedule** button. You will see a notification that the window has been scheduled and a notice of when it will begin.
 
 ![img](alert-suppression.png)
 
-To update a scheduled window, make the desired changes and click the `Update` button.
+To update a scheduled window, make the desired changes and click the **Update** button.
 
 ## Cancel Alert Suppression Window
 
-1. Navigate to `Alarms` -> `Alert Suppression`.
+1. Navigate to **Alarms** -> **Alert Suppression**.
 
 2. You should see a notification with the scheduled window at the top. Confirm this is the window you wish to cancel.
 
-3. Click the `Cancel Schedule` button.
+3. Click the **Cancel Schedule** button.
 
 ![img](cancel.png)
 

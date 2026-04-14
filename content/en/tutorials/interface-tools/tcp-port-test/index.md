@@ -11,9 +11,9 @@ The TCP Port Test tool initiates a TCP session with a target IP address and port
 ## Usage
 
 1. Login to the Trustgrid portal and navigate to the Node from which you want to test connectivity.
-1. Select `Interfaces` under the `Network` section.
-1. Click the `Interface TCP Port Test` button {{<tgimg src="network-tools.png" width="85%" caption="Selecting TCP Port Test">}}
-1. Update the host with the target IP address and the port with the target TCP port. Click `Execute` to test connectivity. {{<tgimg src="config.png" width="60%" caption="Configuring the TCP Port Test">}}
+1. Select **Interfaces** under the **Network** section.
+1. Click the **Interface TCP Port Test** button {{<tgimg src="network-tools.png" width="85%" caption="Selecting TCP Port Test">}}
+1. Update the host with the target IP address and the port with the target TCP port. Click **Execute** to test connectivity. {{<tgimg src="config.png" width="60%" caption="Configuring the TCP Port Test">}}
 1. A new window will open with the results. If a new window does not open, check your browser's pop-up blocker settings.
    - A successful test will look like this: {{<tgimg src="success.png" width="85%" caption="Successful TCP Port Test result">}}
    - A failed connection will depend on the nature of the failure. Examples include

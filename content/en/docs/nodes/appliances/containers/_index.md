@@ -15,7 +15,7 @@ Reading and managing containers requires `node-exec::read` and `node-exec::modif
 
 ## Management
 
-Navigate to `Container Management` under `Compute` on a node or cluster.
+Navigate to **Container Management** under **Compute** on a node or cluster.
 
 ![Containers List View](containers-list.png)
 

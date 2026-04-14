@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR\"/.claude/hooks/verify-hugo-build.sh",
+            "timeout": 30,
+            "statusMessage": "Verifying Hugo build..."
+          }
+        ]
+      }
+    ]
+  }
+}

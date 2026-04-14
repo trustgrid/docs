@@ -74,7 +74,7 @@ Navigate to Container Management → Containers
     1. Select the image
         - If you followed the above process to push the image to your private repository: 
             1. From the image drop down select the image you pushed to the Trustgrid repository above. `<orgname>.trustgrid.io/thousandeyes-enterprise-agent`
-            1. From the tag drop down select `latest` (or the version tag you applied)
+            1. From the tag drop down select **latest** (or the version tag you applied)
         - If you chose to pull directly from hub.docker.com:
             1. Enter `thousandeyes/enterprise-agent` in the image section
             1. Leave `latest` in the tag field unless you want to specify a different version tag published

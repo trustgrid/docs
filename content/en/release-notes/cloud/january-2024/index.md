@@ -18,7 +18,7 @@ As part of this process users will be prompted to migrate their accounts from th
 1. A verification email will then be sent to the invited user's email address. They will need to click the link in the email to verify their email and complete registration.
 1. After verifying their email address the user will be prompted to configure Multi-Factor Authentication (MFA). Trustgrid recommends using a one-time password MFA such as Authy or Google Authenticator.
    1. Scan the QR code with your app. 
-   1. Enter the passcode and click the `Submit` button. {{<tgimg src="/docs/user-management/users/sign-up-4.png" width="50%" >}}
+   1. Enter the passcode and click the **Submit** button. {{<tgimg src="/docs/user-management/users/sign-up-4.png" width="50%" >}}
 1. The user is returned to the login screen. Login with the newly created email, password, and MFA code.  You will then be redirected back to the Trustgrid portal. 
    1. If you are not automatically redirected click the Portal link in the top right. {{<tgimg src="auth-portal-link.png" width="50%">}}
 

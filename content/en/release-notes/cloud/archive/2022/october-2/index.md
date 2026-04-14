@@ -39,7 +39,7 @@ You can now add Hyperlinks within an order to provide support documentation on t
 
 ### “In Production” Orders moved to Closed
 
-Now when an order’s status is changed to `In Production`, it will appear in the `Closed` page of orders.  This will make is easier to see how many open orders are in process. 
+Now when an order’s status is changed to **In Production**, it will appear in the **Closed** page of orders.  This will make is easier to see how many open orders are in process. 
 
 <img src="orders-search.png" width="200px"/>
 

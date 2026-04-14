@@ -40,7 +40,7 @@ output {
 ---
 ### Step 2: Configure the Exporter
 
-- **Type**: Select `http`.
+- **Type**: Select **http**.
 - **Exporter Name**: Enter a descriptive name (e.g., `logstash`).
 - **Description**: Optional.
 - **Instrumentation Types**: Select one or more:

@@ -63,7 +63,7 @@ The rule needs the settings shown below:
 ## Viewing Network Hop Data
 
 1. Navigate to the node you want to view
-1. Select `Data Plane` on the left
+1. Select **Data Plane** on the left
 1. Select the peer you wish to view data for. You will see a table of hops appear in the bottom right. ![img](network-hops.png)
 1. You can select a time point on the latency chart, and the hops table will update to show the data for that time point. ![img](monitoring.png)
 

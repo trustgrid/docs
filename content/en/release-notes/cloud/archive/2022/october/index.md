@@ -71,7 +71,7 @@ When a node is upgraded and successfully reconnects, the Node Audits section wil
 
 ### Swagger API Improvements
 
-A number of new areas are now documented in our public swagger documentation: https://portal.trustgrid.io/api-docs/
+A number of new areas are now documented in our public swagger documentation: https://apidocs.trustgrid.io/
 
 The new sections include:
 

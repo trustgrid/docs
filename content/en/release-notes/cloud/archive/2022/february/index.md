@@ -18,7 +18,7 @@ Clicking that link or just selecting the Data Plane panel from the left navigati
 
 ### Data Plane Historical Stats
 
-You can now load historical latency data about a connection between this node and a connected gateway. Simply select the gateway from the table by clicking it, choose a start and end time and click `Load`.
+You can now load historical latency data about a connection between this node and a connected gateway. Simply select the gateway from the table by clicking it, choose a start and end time and click **Load**.
 
 ![Data Plane View](data-plane-view.png)
 
@@ -124,7 +124,7 @@ Define a new threshold value or duration
 
 ![Threshold Configuration](threshold.png)
 
-After you click `Save`, the value will have a yellow square to indicate it is an override.
+After you click **Save**, the value will have a yellow square to indicate it is an override.
 
 ![Threshold Override](overridden-threshold.png)
 

@@ -31,7 +31,7 @@ Because of the risk of data being visible, there are several restrictions and co
 ## Using Traffic Capture 
 ### Starting Traffic Capture
 1. Log in to the Trustgrid portal and navigate to the node you want to capture traffic from.
-1. Select `Interfaces` under the `Network` section. 
+1. Select **Interfaces** under the **Network** section. 
 1. On the right side under Interface Tools use the dropdown to select Traffic Capture. {{<tgimg src="capture-dropdown.png" width="85%">}}.
 1. The capture tool prompt will be displayed. Select the interface to capture from using the dropdown and enter a filter if desired. Click the start button to begin capturing. {{<tgimg src="capture-prompt.png" width="75%" caption="Traffic Capture management popup">}}{{<fields>}}
 {{<field Status>}} Will display **Stopped** if the capture is idle or **Running** if there is an active capture. {{</field>}}
@@ -48,7 +48,7 @@ See [useful filters](#useful-filters) below for additional information.{{</field
 Once it is believe the desired traffic has been captured you will need to stop the running capture to get access to the pcap files. 
 
 1. Log in to the Trustgrid portal and navigate to the node you want to capture traffic from.
-1. Select `Interfaces` under the `Network` section. 
+1. Select **Interfaces** under the **Network** section. 
 1. On the right side under Interface Tools use the dropdown to select Traffic Capture. {{<tgimg src="capture-dropdown.png" width="85%">}}.
 1. Click the Stop button to end the capture. A message will display to indicate the capture has stopped and the files are being written.
 
@@ -76,8 +76,8 @@ Once you are in the terminal with the above configured an example scp command wo
 If the destination file server is across a Trustgrid virtual network you will need to use the VPN Admin terminal to run the file transfer commands. This uses the nodes configured Virtual Management IP to communicate to remote resources.
 
 1. Navigate to the node
-1. Select the VPN panel. You may need to select the virtual network to use, if your device is connected to multiple.
-1. Select the `Admin Terminal` button from the tools dropdown.
+1. Select the **VPN** panel. You may need to select the virtual network to use, if your device is connected to multiple.
+1. Select the **Admin Terminal** button from the tools dropdown.
 
    ![img](admin-terminal.png)
 

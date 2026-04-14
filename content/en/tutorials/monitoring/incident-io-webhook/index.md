@@ -16,19 +16,19 @@ The Incident.io site is subject to change so any screenshots or instructions may
 
 1. Log in to your [Incident.io](https://app.incident.io/) account.
 1. Click on your organization name at the top and then select **Settings**.
-1. Under `On Call`, click on `Alerts`.
-1. Click the `+` to the right of `Sources` to create a new source. {{<tgimg src="incident-io-webhook-create-source.png" width="40%" caption="Creating a new Alert source in Incident.io">}}
+1. Under **On Call**, click on **Alerts**.
+1. Click the **+** to the right of **Sources** to create a new source. {{<tgimg src="incident-io-webhook-create-source.png" width="40%" caption="Creating a new Alert source in Incident.io">}}
 1. Follow these steps to create the source {{<tgimg src="incident-io-webhook-create-source-steps.png" width="800%" caption="Steps to create the source in Incident.io">}}
     1. Search for `http`.
     1. Select the HTTP type from the list and provide a unique name.
     1. For `Type of HTTP Source` select [custom](https://help.incident.io/articles/2353344082-custom-http-alert-sources).  This allows the source to use the native Trustgrid JSON payload which can be transformed into the Incident.io format.
     1. Click **Continue** to proceed to the next step.
 1. Capture the generated webhook URL and save it for later use.
-    1. Select the `Query Authentication` tab. 
+    1. Select the **Query Authentication** tab. 
     1. Click the copy icon to the right of the URL.  Save this as you will need it later .
 1. Set the `Transform Expression` and `Deduplication key path`
-    1. Scroll down until you see the `Transform expression` section.  There will be existing JavaScript there. Select all and delete.
-    1. Copy and paste the following code into the `Transform expression` section: {{<codeblock>}}var resolvedFlag = !!$.resolved; // force boolean
+    1. Scroll down until you see the **Transform expression** section.  There will be existing JavaScript there. Select all and delete.
+    1. Copy and paste the following code into the **Transform expression** section: {{<codeblock>}}var resolvedFlag = !!$.resolved; // force boolean
 var statusValue = resolvedFlag ? "resolved" : "firing";
 
 return {
@@ -46,7 +46,7 @@ return {
   }
 };
 {{</codeblock>}} {{<tgimg src="incident-io-webhook-transform-expression.png" width="80%" caption="Transform expression in Incident.io">}}
-    1. Scroll below to the `Deduplication key path` section and set the value to `$.uid`.
+    1. Scroll below to the **Deduplication key path** section and set the value to `$.uid`.
     1. Click **Save configuration** to finish creating the webhook source. {{<tgimg src="incident-io-webhook-save-configuration.png" width="80%" caption="Saving the webhook configuration in Incident.io">}}
 1. On the right side, you should see a section saying `No alerts received yet`. In the next section, you will create a Webhook channel in Trustgrid and trigger events to generate sample Alerts for Incident.io to use to complete the configuration.
 
@@ -55,7 +55,7 @@ To complete the below step it is idea to identify a node that you can use to gen
 
 1. Login to the Trustgrid portal.
 1. Navigate to Alarms > Channels.
-1. Click the `+Create Channel` button. (Or optionally select and choose Edit from Actions to add to an existing Channel)
+1. Click the **+Create Channel** button. (Or optionally select and choose Edit from Actions to add to an existing Channel)
 1. In the channel configuration, set the following:
    1. **Name**: Give your channel a descriptive name.
    1. **Generic Webhook**: Paste the URL you copied from Incident.io.
@@ -63,7 +63,7 @@ To complete the below step it is idea to identify a node that you can use to gen
    {{<tgimg src="incident-io-webhook-create-channel.png" width="100%" caption="Creating a new Webhook channel in Trustgrid">}}
 1. Setup an Alarm Filter to test the new channel. (If you have an existing Alarm Filter that you can use for testing, just edit and select the channel created above and save. Then proceed to the next step.)
     1. Navigate to Alarms > Alarm Filters.
-    1. Click the `+Create Alarm` button.
+    1. Click the **+Create Alarm** button.
     1. In the filter configuration, set the following:
        1. **Name**: Give your filter a descriptive name. This example is just for testing.
        1. Make sure **Enabled** is checked.
@@ -88,11 +88,11 @@ To complete the configuration we will use the generated Alerts to extract additi
     1. You should now see example alert in the bottom right.  
     1. Click Continue.
     {{<tgimg src="incident-io-webhook-example-alert.png" width="80%" caption="Example alert in Incident.io">}}
-1.  On the `Configure your setup` page, you can map the attributes from the incoming alerts to the fields in Incident.io. Use the example alert to help you identify the relevant fields.
+1.  On the **Configure your setup** page, you can map the attributes from the incoming alerts to the fields in Incident.io. Use the example alert to help you identify the relevant fields.
     1. Leave the default `Alert title` and `Description` mappings unless you need to customize them.
     1. Click the **Edit** pencil icon to the right of `Attributes`. {{<tgimg src="incident-io-webhook-edit-attributes.png" width="80%" caption="Editing attributes in Incident.io">}}
-        1. In the `Alert Payload` section, click **+"nodeName"**. As the name implies, this will include the name of the Node the event relates to. {{<tgimg src="incident-io-webhook-click-nodename.png" width="70%" caption="Adding a new attribute in Incident.io">}}
-            1. Unless you have an existing relevant attribute defined, such as `Server Name`, you can create a new one. Scroll down and select `+ Add new attribute`. {{<tgimg src="incident-io-webhook-add-attribute.png" width="50%" caption="Adding a new attribute in Incident.io">}}
+        1. In the **Alert Payload** section, click **+"nodeName"**. As the name implies, this will include the name of the Node the event relates to. {{<tgimg src="incident-io-webhook-click-nodename.png" width="70%" caption="Adding a new attribute in Incident.io">}}
+            1. Unless you have an existing relevant attribute defined, such as `Server Name`, you can create a new one. Scroll down and select **+ Add new attribute**. {{<tgimg src="incident-io-webhook-add-attribute.png" width="50%" caption="Adding a new attribute in Incident.io">}}
             1. In the new attribute configuration: 
                 1. Give the attribute something descriptive, like `Node Name`. Leave all other settings at their defaults.
                 1. Click **Add**

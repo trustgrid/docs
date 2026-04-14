@@ -6,8 +6,8 @@ description: View the routing table on a node
 ## Usage
 
 1. Login to the Trustgrid portal and navigate to the Node from which you want to test connectivity.
-1. Select `VPN` under the `Network` section.
-1. Click the `Tools` button and click the `View Virtual Routes` button
+1. Select **VPN** under the **Network** section.
+1. Click the **Tools** button and click the **View Virtual Routes** button
 
 	![Virtual Network Tools](network-tools.png)
 

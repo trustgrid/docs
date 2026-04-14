@@ -18,7 +18,7 @@ The Trustgrid VPN feature provides the capability to securely route IP packets b
 
 To use VPN functionality, a node or cluster must be attached to a domain [virtual network]({{<ref "docs/domain/virtual-networks">}}).
 
-Navigate to the `VPN` section for your node or cluster, and select `Actions`->`Attach`.
+Navigate to the **VPN** section for your node or cluster, and select **Actions**->**Attach**.
 
 {{<tgimg src="attach-vnet.png" caption="Attach Virtual Network dialog on a Node" alt="Attach Network dialog with options to select network, Validation CIDR and Virtual Management IP" width="60%" >}}
 

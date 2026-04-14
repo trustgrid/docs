@@ -2,7 +2,7 @@
 Title: "API Access"
 ---
 #### Generating an API Key
-Navigate to `User Management` -> `API Access`, and click `Regenerate API keys`. This will invalidate your existing API key, if it exists. The API key is tied to your user and will have the same permissions.
+Navigate to **User Management** -> **API Access**, and click **Regenerate API keys**. This will invalidate your existing API key, if it exists. The API key is tied to your user and will have the same permissions.
 
 > The client secret key will only be available at time of generation - if it's lost, the key will need to be regenerated
 
@@ -14,7 +14,7 @@ To query the API for all nodes, for example, you could run:
 
 `curl -H "Authorization: trustgrid-token YOUR-CLIENT-ID:YOUR-CLIENT-SECRET" https://api.trustgrid.io/node`
 
-In the [API documentation](https://apidocs.trustgrid.io/), clicking `Authorize` at the top right will prompt for the API header.
+In the [API documentation](https://apidocs.trustgrid.io/), clicking **Authorize** at the top right will prompt for the API header.
 
 ![img](api-access.png)
 

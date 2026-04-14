@@ -77,6 +77,22 @@ For configuration details, see the [Alarm Filters]({{<relref "docs/alarms/alarm-
 
 ---
 
+## Network Threshold Alerts for Gateways
+
+For any node acting as a [public or hub gateway]({{<relref "docs/nodes/appliances/gateway/gateway-server" >}}), it is recommended to configure a [Domain-level Network Threshold]({{<relref "docs/domain/thresholds#network-thresholds" >}}) alert monitoring latency. This provides early warning of network degradation that could impact all connected edge nodes.
+
+### Recommended Configuration
+
+- **Telemetry:** Latency
+- **Threshold:** 500 ms
+- **Duration:** 5 minutes or greater
+- **Target:** Each public or hub gateway node
+
+A 500 ms latency threshold over a 5-minute duration helps identify sustained network performance issues without triggering on brief, transient spikes. Because these gateways serve as connection points for many edge nodes, elevated latency on a gateway can have a widespread impact across your environment.
+
+Configuring this at the [domain level]({{<relref "docs/domain/thresholds" >}}) ensures the threshold applies to all nodes, but you can also [override it per node]({{<relref "docs/nodes/appliances/thresholds" >}}) if specific gateways require different values. When the threshold is exceeded, a `Metric Threshold Violation` [event]({{<relref "docs/alarms/event-types" >}}) is generated and can be routed through your [alarm filters]({{<relref "docs/alarms/alarm-filters" >}}).
+
+---
 
 ## Monitoring Individual Nodes with SNMP
 

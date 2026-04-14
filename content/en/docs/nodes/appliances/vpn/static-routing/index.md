@@ -7,7 +7,7 @@ description: Configure static routes for the virtual network for the selected no
 
 Static routing allows a node to route traffic to a remote network in addition to virtual network-defined routes({{<ref "/docs/domain/virtual-networks/routes">}}). Routes defined at this level can be created for destination CIDRs outside the [virtual network's Network CIDR]({{<relref "/docs/domain/virtual-networks#network-cidr">}})
 
-Find static route definitions and change them under the `Static Routing` section of the VPN configuration.
+Find static route definitions and change them under the **Static Routing** section of the VPN configuration.
 
 {{<tgimg src="add-modal.png" caption="Add Route dialog" >}}
 

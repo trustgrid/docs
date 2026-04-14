@@ -8,9 +8,9 @@ Routes are used to allocate a portion of the virtual network overlay address spa
 
 The example below will walk through adding routes for new Trustgrid Node. This can be either a single node or a cluster.  If it is a cluster then the routes need to be pointed to the cluster rather than either of the individual nodes. 
 
-1. In the Trustgrid portal, navigate to the domains page, and select the `Virtual Networks` page.
+1. In the Trustgrid portal, navigate to the domains page, and select the **Virtual Networks** page.
 2. Next, select the virtual network you wish to add a route to.
-3. To add a Route, click `Add Route`
+3. To add a Route, click **Add Route**
 
 ![img](add-route.png)
 

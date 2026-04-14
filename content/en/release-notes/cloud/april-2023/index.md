@@ -13,7 +13,7 @@ As a start, we've created a link called Documentation under the Management secti
 Additionally, we've created a section for release notes that will allow you to monitor release for [Control Plane](https://docs.trustgrid.io/release-notes/cloud/) and [Node](https://docs.trustgrid.io/release-notes/node/) releases via RSS feeds going forward. 
 
 ### Swagger API Documentation Move
-As part of this change we are moving our API documentation from https://portal.trustgrid.io/api-docs/ to https://docs.trustgrid.io/docs/api/. This will allow updating this documentation outside our normal release process. 
+As part of this change we are moving our API documentation from https://portal.trustgrid.io/api-docs/ to https://apidocs.trustgrid.io/. This will allow updating this documentation outside our normal release process.
 
 
 ## Cluster Configuration
@@ -47,7 +47,7 @@ Just like with container configuration import, the source must match the destina
 ### Flow Log Ordering
 Our flow logs have historically been searched starting with the oldest in the time range first. This sometimes forced you to load more results multiple times to see the most current information. With this release we now can search either with oldest or newest first. By default the Flow Logs page will now show the last two hours with the most recent first. 
 
-Additionally, in the Advanced Search there is a new option to select the `Flow Log Order` depending on your needs.
+Additionally, in the Advanced Search there is a new option to select the **Flow Log Order** depending on your needs.
 
 
 {{< tgimg src="FlowLogOrderOption.png" caption="Flow Log Order selector" width="50%">}}

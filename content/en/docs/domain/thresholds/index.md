@@ -9,7 +9,7 @@ Thresholds provide a way to trigger events when different measurements exceed a 
 
 To view thresholds, a user will need `domains::read` permissions. To configure them, they will need `domains::configure:threshold` permissions.
 
-Navigate to your domain, and click `Thresholds` on the left.
+Navigate to your domain, and click **Thresholds** on the left.
 
 {{<tgimg src="domain-thresholds.png" width="85%">}}
 

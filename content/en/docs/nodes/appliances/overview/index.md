@@ -32,7 +32,7 @@ shows the number of other nodes connected. This will change based on the node ty
 {{<field "VPN Flows" >}}
 shows new and active flows, across all VPNs and for the selected virtual network
 {{</field >}}
-{{<field "TCP Errors" >}}
-shows TCP errors across all interfaces
+{{<field "TCP Stats" >}}
+shows aggregate TCP packet and state statistics across all interfaces
 {{</field >}}
 {{</fields>}}

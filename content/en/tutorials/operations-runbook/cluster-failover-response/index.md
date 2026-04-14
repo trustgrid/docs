@@ -36,7 +36,7 @@ After a failover or failback it is necessary to verify that traffic is flowing a
 
 2. Verify that only a single [node]({{<ref "docs/nodes" >}}) shows as master
 
-3. On the `Configuration` → `Network` tab note the [cluster]({{<ref "docs/clusters" >}}) VIP
+3. On the **Configuration** → **Network** tab note the [cluster]({{<ref "docs/clusters" >}}) VIP
 
 ![img](cluster-virtual-ip2.png)
 
@@ -44,7 +44,7 @@ After a failover or failback it is necessary to verify that traffic is flowing a
 
     a. Verify the VPN Route Table shows
 
-        i. Navigate to the `Configuration` → `VPN` tab
+        i. Navigate to the **Configuration** → **VPN** tab
 
         ii. Launch the "View Virtual Route Table" tool
 
@@ -60,7 +60,7 @@ After a failover or failback it is necessary to verify that traffic is flowing a
 
     b. Verify traffic is flowing through the appropriate node.
 
-        i. Navigate to the `Configuration` → `Network` tab
+        i. Navigate to the **Configuration** → **Network** tab
 
         ii. Confirm the interface associated with the Cluster VIP is selected
 
@@ -68,9 +68,9 @@ After a failover or failback it is necessary to verify that traffic is flowing a
 
            4. For dual interface nodes: ETH1 / Network Adapter 2 - LAN Adapter
 
-        iii. Open the `Sniff Interface Traffic` tool.
+        iii. Open the **Sniff Interface Traffic** tool.
 
-            5. Set the filter to “host clusterVIP” without quotes and replacing clusterVIP with the appropriate Cluster virtual IP. Click `start session`.
+            5. Set the filter to “host clusterVIP” without quotes and replacing clusterVIP with the appropriate Cluster virtual IP. Click **start session**.
 
             6. Confirm that you see traffic flowing through the interface. **Continue monitoring for several minutes to confirm the traffic is maintained.**
 
