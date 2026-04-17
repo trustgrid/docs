@@ -23,7 +23,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 
 1. From the Grafana Cloud Navigation Menu, select **Connections** --> **Add new connection**
 
-{{<tgimg src="grafana-connections-menu.png" width="95%" caption="Grafana Cloud Connections menu">}}
+{{<tgimg src="grafana-connections-menu.png" width="80%" caption="Grafana Cloud Connections menu">}}
 
 ---
 
@@ -32,7 +32,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 1. In the **Search Connections** box, search for `OTLP`
 2. Select **OpenTelemetry (OTLP)** from the results
 
-{{<tgimg src="grafana-search-otlp.png" width="95%" caption="Searching for OTLP in Add new connection">}}
+{{<tgimg src="grafana-search-otlp.png" width="80%" caption="Searching for OTLP in Add new connection">}}
 
 ---
 
@@ -40,7 +40,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 
 1. Under **Choose your instrumentation method**, select **OpenTelemetry SDK**
 
-{{<tgimg src="grafana-instrumentation-method.png" width="95%" caption="Selecting OpenTelemetry SDK as the instrumentation method">}}
+{{<tgimg src="grafana-instrumentation-method.png" width="80%" caption="Selecting OpenTelemetry SDK as the instrumentation method">}}
 
 ---
 
@@ -49,7 +49,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 1. Under **Choose your language**, select **Other**
 2. Click **Next**
 
-{{<tgimg src="grafana-choose-language.png" width="95%" caption="Selecting Other as the language">}}
+{{<tgimg src="grafana-choose-language.png" width="80%" caption="Selecting Other as the language">}}
 
 ---
 
@@ -58,7 +58,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 1. Under **Choose your infrastructure**, select **Linux**
 2. Click **Next**
 
-{{<tgimg src="grafana-choose-infrastructure.png" width="95%" caption="Selecting Linux as the infrastructure">}}
+{{<tgimg src="grafana-choose-infrastructure.png" width="80%" caption="Selecting Linux as the infrastructure">}}
 
 ---
 
@@ -66,7 +66,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 
 1. Under **Choose your instrumentation method**, select **OpenTelemetry Collector**
 
-{{<tgimg src="grafana-instrumentation-collector.png" width="95%" caption="Selecting OpenTelemetry Collector as the instrumentation method">}}
+{{<tgimg src="grafana-instrumentation-collector.png" width="80%" caption="Selecting OpenTelemetry Collector as the instrumentation method">}}
 
 ---
 
@@ -75,7 +75,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 1. In the **Create a Grafana Cloud access token** box, enter a name for your new token
 2. Click **Create token**
 
-{{<tgimg src="grafana-create-token.png" width="95%" caption="Creating a Grafana Cloud access token">}}
+{{<tgimg src="grafana-create-token.png" width="80%" caption="Creating a Grafana Cloud access token">}}
 
 ---
 
@@ -87,7 +87,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
    - `GRAFANA_CLOUD_INSTANCE_ID`
    - `GRAFANA_CLOUD_API_KEY`
 
-{{<tgimg src="grafana-configure-collector.png" width="95%" caption="Configure the OpenTelemetry Collector section showing the required values">}}
+{{<tgimg src="grafana-configure-collector.png" width="80%" caption="Configure the OpenTelemetry Collector section showing the required values">}}
 
 ---
 
@@ -95,7 +95,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 
 1. Select **Next** until you reach the **Finish set up** screen. This will begin watching for OTEL data being sent to Grafana Cloud from your exporter.
 
-{{<tgimg src="grafana-finish-setup.png" width="95%" caption="Grafana Cloud Finish set up screen checking for incoming OTEL data">}}
+{{<tgimg src="grafana-finish-setup.png" width="80%" caption="Grafana Cloud Finish set up screen checking for incoming OTEL data">}}
 
 ---
 
@@ -106,7 +106,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 1. In the Trustgrid Portal, navigate to [Observability]({{<ref "/docs/observability" >}})
 2. Click **+ Create Exporter**
 
-{{<tgimg src="trustgrid-observability-exporters.png" width="95%" caption="Trustgrid Observability Exporters page">}}
+{{<tgimg src="trustgrid-observability-exporters.png" width="80%" caption="Trustgrid Observability Exporters page">}}
 
 ---
 
@@ -118,7 +118,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
    - Select the **Instrumentation Types** you want to send to Grafana Cloud
 2. Click **Save**
 
-{{<tgimg src="trustgrid-add-exporter.png" width="95%" caption="Add Exporter dialog">}}
+{{<tgimg src="trustgrid-add-exporter.png" width="80%" caption="Add Exporter dialog">}}
 
 ---
 
@@ -131,7 +131,7 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
    - Set the **Password** to the value from `GRAFANA_CLOUD_API_KEY`
 2. Click **Save**
 
-{{<tgimg src="trustgrid-exporter-config.png" width="95%" caption="Trustgrid exporter configuration with Grafana Cloud values">}}
+{{<tgimg src="trustgrid-exporter-config.png" width="80%" caption="Trustgrid exporter configuration with Grafana Cloud values">}}
 
 ---
 
