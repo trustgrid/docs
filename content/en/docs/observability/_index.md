@@ -16,7 +16,7 @@ To enable this feature for your account, please contact Trustgrid Support.
 
 ## Exporters
 
-Trustgrid currently supports an OpenTelemetry exporter for [Splunk]({{<ref "/tutorials/observability-platforms/splunk" >}}), as well as a generic HTTP exporter for platforms that accept either JSON or OTLP-encoded data, such as [Logstash]({{<ref "/tutorials/observability-platforms/logstash" >}}) and [Grafana Cloud]({{<ref "/tutorials/observability-platforms/grafana-cloud" >}}).
+Trustgrid currently supports an OpenTelemetry exporter for [Splunk]({{<ref "/tutorials/observability-platforms/splunk" >}}), as well as a generic HTTP exporter for platforms that accept either JSON or OTLP-encoded data, such as [Logstash]({{<ref "/tutorials/observability-platforms/logstash" >}}) or [Grafana Cloud]({{<ref "/tutorials/observability-platforms/grafana-cloud" >}}).
 
 {{<tgimg src="observability-exporters.png" width="75%">}}
 
