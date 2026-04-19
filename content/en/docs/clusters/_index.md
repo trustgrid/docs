@@ -38,6 +38,8 @@ Cluster members can share the configuration for the following services:
   - Container and command definitions
   - Resource limits
 
+Cluster-level command behavior is documented in [Commands]({{<ref "docs/nodes/shared/commands">}}).
+
   [Some configuration items are only available on clusters.]({{<ref "docs/clusters/cluster-only-config">}})
 
 
