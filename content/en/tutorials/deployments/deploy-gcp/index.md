@@ -40,6 +40,16 @@ Inbound TCP/UDP 8443 on the Management network is only required if the node will
 The Data network firewall rule for TCP 9000 is only required for **clustered deployments**. Standalone nodes do not need this rule.
 {{</alert>}}
 
+##### MTU Configuration
+
+{{<alert color="warning">}}
+**Temporary workaround:** GCP's default VPC MTU of 1460 bytes must be manually configured on the Data (LAN) interface. Without this, traffic may silently drop or underperform due to packet fragmentation.
+
+After the node is registered and visible in the portal, set the MTU on the Data interface to **1460** under the node's [interface settings]({{<relref "/docs/nodes/appliances/interfaces#mtu">}}).
+
+This step will no longer be required once the next node release is available, which will detect and apply the correct MTU automatically.
+{{</alert>}}
+
 The following table summarizes the firewall rules required across both networks:
 
 | Network | Direction | Protocol | Ports | Source/Destination | Purpose |
@@ -161,6 +171,34 @@ Completing remote registration requires access to the Trustgrid portal. This ste
 {{</alert>}}
 
 From the serial console, follow the Trustgrid remote registration process to register the node with the control plane. See [Remote Registration]({{<relref "/tutorials/local-console-utility/remote-registration">}}) for full instructions.
+
+---
+
+### Option 3: Terraform Deployment
+
+The [trustgrid-infra-as-code](https://github.com/trustgrid/trustgrid-infra-as-code) repository provides purpose-built Terraform modules for deploying Trustgrid nodes in GCP. These modules encapsulate the prerequisite setup (IAM, firewall rules, compute instances) and are the recommended approach for repeatable or infrastructure-as-code deployments.
+
+#### Available Modules
+
+| Module | Path | Purpose |
+|--------|------|---------|
+| `trustgrid_single_node` | `gcp/terraform/modules/compute/trustgrid_single_node` | Deploys a Trustgrid node VM with two NICs, IP forwarding, and optional automatic registration |
+| `trustgrid_node_service_account` | `gcp/terraform/modules/iam/trustgrid_node_service_account` | Creates a dedicated GCP service account for Trustgrid nodes |
+| `trustgrid_cluster_route_role` | `gcp/terraform/modules/iam/trustgrid_cluster_route_role` | Creates and binds the custom IAM role required for HA cluster route failover |
+| `trustgrid_mgmt_firewall` | `gcp/terraform/modules/network/trustgrid_mgmt_firewall` | Creates egress firewall rules for control plane, DNS, and metadata server access on the management network |
+| `trustgrid_gateway_firewall` | `gcp/terraform/modules/network/trustgrid_gateway_firewall` | Creates the ingress firewall rule for gateway nodes to accept data-plane tunnel connections |
+
+#### Examples
+
+Complete, ready-to-use examples are maintained in the repository:
+
+- [Single node (manual registration)](https://github.com/trustgrid/trustgrid-infra-as-code/tree/main/gcp/terraform/examples/single-node-manual)
+- [Gateway cluster (HA)](https://github.com/trustgrid/trustgrid-infra-as-code/tree/main/gcp/terraform/examples/gateway-cluster-ha)
+- [Gateway cluster (HA, full)](https://github.com/trustgrid/trustgrid-infra-as-code/tree/main/gcp/terraform/examples/gateway-cluster-ha-full)
+
+{{<alert>}}
+After deploying via Terraform, you will still need to configure the Data interface MTU to 1460. See [MTU Configuration]({{<relref "/tutorials/deployments/deploy-gcp/#mtu-configuration">}}).
+{{</alert>}}
 
 ---
 
