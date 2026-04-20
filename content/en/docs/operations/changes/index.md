@@ -29,6 +29,14 @@ The last 90 days' worth of changes can be downloaded as a CSV by clicking the li
 
 ## Searching for Changes
 
+### Date Range
+
+{{<tgimg src="date-range-selector.png" width="60%" caption="Date range selector showing the active range">}}
+
+The date range selector is always visible above the changes table, showing the currently active time window. The default range is **Last 2h**. Click the date range button to change the range.
+
+### Advanced Search
+
 ![img](advanced-search.png)
 
 The **Advanced Search** button allows you to search for changes by date, user, IP address, and event type. The search is case-sensitive.
