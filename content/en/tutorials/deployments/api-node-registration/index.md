@@ -20,7 +20,7 @@ The API-based registration replaces steps 1–2 with a single `GET /node/license
 ## Prerequisites
 
 - A Trustgrid API key (client ID and client secret). See [API Access]({{<ref "/docs/user-management/API-access">}}) for instructions on generating one. For automated pipelines, consider using a [Service User]({{<ref "/docs/user-management/service-users">}}) credential instead of a personal API key.
-- The API key's associated user must have permission to create node licenses. Users with the `builtin-tg-admin` policy have this access.
+- The API key's associated user must have the `nodes::manage` permission. This is included in the `builtin-tg-admin` policy.
 - A Trustgrid node running a supported image that is ready to be registered.
 - `curl` and (for the verification step) [`jq`](https://jqlang.github.io/jq/) installed on the machine running these commands.
 
