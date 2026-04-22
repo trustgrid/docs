@@ -111,7 +111,7 @@ Example output for a successfully registered node:
 ```
 
 {{<alert color="info">}}
-A newly registered node will show `"online": false` until it establishes its first connection to the Trustgrid control plane. `"state": "ACTIVE"` confirms the license is valid and the node is registered. The full node FQDN suffix (`.your-domain.trustgrid.io`) is specific to your organization.
+A newly registered node will show `"online": false` until it establishes its first connection to the Trustgrid control plane. `"state": "ACTIVE"` means the node will attempt to connect to data plane peers once online. The full node FQDN suffix (`.your-domain.trustgrid.io`) is specific to your organization.
 {{</alert>}}
 
 ### Scripted Example
