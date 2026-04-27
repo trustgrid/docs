@@ -17,6 +17,10 @@ If you want direct read tools or node diagnostics instead, replace the URL with 
 Auth placeholder syntax is client-specific. Examples using `${...}` rely on that client's native variable interpolation. Examples using values like `YOUR_TG_JWT` are literal placeholders that you must replace manually before saving the config.
 {{% /alert %}}
 
+{{% alert color="warning" %}}
+The snippets below are example configurations based on each client's documented MCP config shape at the time of writing. These clients change fast, because apparently shipping stable config formats would be too fucking easy, so if a field name has moved check the client's current MCP docs and keep the Trustgrid URL and auth header format the same.
+{{% /alert %}}
+
 ## Claude Desktop
 
 Claude Desktop remote MCP uses **custom connectors**.

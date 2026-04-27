@@ -40,9 +40,6 @@ JWT auth is useful when:
 
 - your client supports custom HTTP headers but not MCP OAuth
 - you need to test with a known user session
-- you want to use the `switchOrg` MCP tool
-
-`switchOrg` only works with Bearer/JWT auth. It is not supported for API token auth.
 
 See [API Access]({{<relref "/docs/user-management/API-access" >}}) for general Trustgrid API credential guidance.
 
@@ -69,7 +66,6 @@ API tokens can be generated for users and [Service Users]({{<relref "/docs/user-
 | Interactive use in a client with MCP OAuth support | OAuth |
 | Interactive use in a client without MCP OAuth support | JWT Bearer token |
 | CI, agents, or long-lived automation | API token |
-| Multi-org switching with `switchOrg` | JWT Bearer token |
 
 ## Common auth failures
 

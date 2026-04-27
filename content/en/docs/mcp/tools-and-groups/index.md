@@ -25,7 +25,6 @@ This is the recommended default because it gives the model a small, high-signal 
 | `describe` | Return the full function signature and docs for a single Trustgrid API function |
 | `code` | Execute JavaScript that chains Trustgrid API calls and returns a shaped result |
 | `followUp` | Retrieve the next page of cached rows from a prior paginated result |
-| `switchOrg` | Switch the session to a different organization when using JWT/Bearer auth |
 
 ## Group: `read`
 
@@ -35,53 +34,25 @@ Path:
 https://mcp.trustgrid.io/mcp/read
 ```
 
-This surface exposes one direct MCP tool per read-oriented Trustgrid API operation. Tool names are normalized to `snake_case` from the API `operationId`.
+This surface exposes one direct MCP tool per read-oriented Trustgrid API operation from a curated public allowlist. Tool names are normalized to `snake_case` from the API `operationId`.
 
-Examples include tools such as `list_nodes`, `get_node`, `list_groups`, `get_domain`, and many more.
+Examples include tools such as `list_nodes`, `get_node`, `list_clusters`, `get_domain`, `list_virtual_networks`, `list_network_routes`, `list_alerts_v2`, and `tail_node_audit`.
 
 ### Read tool coverage
 
-The read surface is grouped by the same high-level API domains documented in the public API:
+The public `read` scope is intentionally narrower than the full Trustgrid API. It currently exposes a curated subset focused on these read paths:
 
-- **Alerts**
-  - alarms
-  - alerts
-- **Node**
-  - access applications
-  - agents
-  - appliances
-  - certificates
-  - clusters
-  - domains
-  - tags
-  - upgrade manager
-  - virtual networks
-- **Virtual Network**
-  - access policies
-  - change management
-  - DNS
-  - DNS zones
-  - DNS records
-  - network groups
-  - network objects
-  - port forwarding
-  - routes
-- **Compute**
-  - edge compute
-  - repositories
-- **Management**
-  - audits
-  - auth groups
-  - groups
-  - identity providers
-  - observability exporters
-  - organizations
-  - orders
-  - permissions
-  - service users
-  - users
+- alerts and event feeds
+- clusters and cluster VPN details
+- domains
+- nodes and node VPN details
+- virtual networks
+- network access policies, auth groups, groups, objects, port forwardings, and routes
+- config and node audit tail feeds
 
-For the full object model and endpoint details, see [apidocs.trustgrid.io](https://apidocs.trustgrid.io/).
+This is not a one-to-one mirror of every public API domain. If you need the exact current surface, connect to `/mcp/read` and inspect the advertised tools, or use `codemode` to search and describe available functions first.
+
+For the broader Trustgrid API object model and endpoint details, see [apidocs.trustgrid.io](https://apidocs.trustgrid.io/).
 
 ## Group: `tools`
 

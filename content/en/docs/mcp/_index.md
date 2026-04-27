@@ -33,7 +33,6 @@ That gives the model the smaller codemode tool surface:
 - `describe`
 - `code`
 - `followUp`
-- `switchOrg` (JWT/Bearer auth only)
 
 If you want other tool groups, append scope parts to the URL:
 
