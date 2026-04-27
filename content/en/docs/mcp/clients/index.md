@@ -18,7 +18,7 @@ Auth placeholder syntax is client-specific. Examples using `${...}` rely on that
 {{% /alert %}}
 
 {{% alert color="warning" %}}
-The snippets below are example configurations based on each client's documented MCP config shape at the time of writing. These clients change fast, because apparently shipping stable config formats would be too fucking easy, so if a field name has moved check the client's current MCP docs and keep the Trustgrid URL and auth header format the same.
+The snippets below are example configurations based on each client's documented MCP config shape at the time of writing. These clients change fast, so if a field name has moved check the client's current MCP docs and keep the Trustgrid URL and auth header format the same.
 {{% /alert %}}
 
 ## Claude Desktop
