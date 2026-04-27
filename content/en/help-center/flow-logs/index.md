@@ -110,12 +110,6 @@ To view Flow Logs only for traffic through a specific node, navigate to that nod
 
 {{<tgimg src="flow-logs-node.png" caption="Example flow log table for a node" width="80%" alt="table showing flow log entries for a node">}}
 
-### Date Range
-
-{{<tgimg src="date-range-selector.png" width="60%" caption="Date range selector showing the active range">}}
-
-The date range selector is always visible above the flow logs table, showing the currently active time window. The default range is **Last 2h**. Click the date range button to change the range.
-
 ### Advanced Search
 
 Flow logs can be filtered by any of the fields listed above. To filter by a field, click the **Advanced Search** button at the top right of the flow logs table.
