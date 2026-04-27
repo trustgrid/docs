@@ -7,9 +7,9 @@ description: "Reference information for the public Trustgrid MCP server."
 
 ## Transport
 
-The public Trustgrid MCP server supports **remote Streamable HTTP** endpoints.
+The public Trustgrid MCP server supports **remote Streamable HTTP** endpoints served over **HTTPS**.
 
-- Public transport: **HTTP only**
+- Public transport: **remote Streamable HTTP over HTTPS**
 - Primary production endpoint: `https://mcp.trustgrid.io/mcp`
 - Common recommended scoped endpoint: `https://mcp.trustgrid.io/mcp/codemode`
 

@@ -17,7 +17,7 @@ The production remote MCP endpoint is:
 https://mcp.trustgrid.io/mcp
 ```
 
-The public hosted server supports **HTTP only**. Local stdio binaries exist for internal and advanced workflows, but public client setup should use the hosted HTTP endpoint.
+The public hosted server supports **remote Streamable HTTP over HTTPS**. Local stdio binaries exist for internal and advanced workflows, but public client setup should use the hosted HTTPS endpoint.
 
 ## Recommended tool group
 
