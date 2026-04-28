@@ -9,6 +9,8 @@ description: "Reference information for the public Trustgrid MCP server."
 
 The public Trustgrid MCP server supports **remote Streamable HTTP** endpoints served over **HTTPS**.
 
+In practice, that means the client connects directly to a hosted HTTPS MCP endpoint rather than launching a local stdio server or using the older HTTP SSE transport.
+
 - Public transport: **remote Streamable HTTP over HTTPS**
 - Legacy SSE transport: **not used by the public hosted server**
 - Primary endpoint: `https://mcp.trustgrid.io/mcp`
@@ -21,6 +23,8 @@ The public Trustgrid MCP server supports **remote Streamable HTTP** endpoints se
 | MCP base URL | `https://mcp.trustgrid.io` |
 | API base URL | `https://api.trustgrid.io` |
 | Portal URL | `https://portal.trustgrid.io` |
+
+This reference page describes the **public hosted production service**. Non-production or privately hosted environments can use different base URLs and may not expose the same OAuth discovery or registration endpoints.
 
 ## MCP paths
 
@@ -36,13 +40,20 @@ For first-time exploration, start with `/mcp/read` so your client can discover a
 
 ## OAuth discovery endpoints
 
-Compatible clients can use the hosted OAuth metadata endpoints:
+Compatible clients can use these OAuth metadata endpoints on the MCP host for the environment they connect to:
 
 - `/.well-known/oauth-authorization-server`
 - `/.well-known/oauth-protected-resource/mcp/...`
 - `/oauth/register`
 - `/oauth/authorize`
 - `/oauth/token`
+
+Examples by environment:
+
+- production: `https://mcp.trustgrid.io/...`
+- stage: `https://mcp.stage.trustgrid.io/...`
+- test: `https://mcp.test.trustgrid.io/...`
+- dev: `https://mcp.dev.trustgrid.io/...`
 
 ## Error handling
 

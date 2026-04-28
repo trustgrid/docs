@@ -5,11 +5,12 @@ weight: 35
 description: "Comprehensive reference for every public Trustgrid MCP tool."
 ---
 
-This page documents every **publicly documented** MCP tool exposed by the hosted Trustgrid MCP server.
+This page documents every **public** MCP tool currently exposed by the hosted Trustgrid MCP server.
 
 - Sources inspected: `trustgrid/mcp/src/mcp/index.ts`, `trustgrid/mcp/src/mcp/node-tools.ts`, `trustgrid/mcp/src/mcp/scope-map.ts`, and `trustgrid/mcp/index.yaml`
 - `switchOrg` is intentionally omitted because it is **stdio-only/internal** and is not part of the public hosted MCP surface
 - Sample interactions below are realistic illustrative snippets, not exhaustive schemas
+- Public tool count from the current source: **50 total** (`4` codemode, `36` read, `10` node diagnostics)
 
 {{% alert color="info" %}}
 When the API spec declares an exact permission, this page lists it directly. When the spec does **not** declare a narrower per-endpoint permission, the table calls out the public MCP scope that exposes the tool instead of making up precision that is not actually present in the source. Lovely.
