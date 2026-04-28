@@ -20,20 +20,15 @@ Use OAuth when:
 - you want the session to run as your own Trustgrid user
 - you want token refresh handled by the client
 
-Trustgrid's public MCP server uses remote Streamable HTTP, which means the client connects to a hosted HTTPS MCP endpoint instead of launching a local stdio process.
+Trustgrid's public MCP server uses remote Streamable HTTP over HTTPS, which means the client connects directly to a hosted MCP endpoint and completes OAuth against the same environment.
 
 The hosted MCP server exposes the standard discovery and OAuth endpoints needed by compatible clients.
 
-Use the environment-specific base URL that matches the MCP endpoint you configured:
+Use the Trustgrid MCP base URL:
 
-| Environment | OAuth base URL | Discovery and OAuth endpoints |
-| --- | --- | --- |
-| Production | `https://mcp.trustgrid.io` | `https://mcp.trustgrid.io/.well-known/oauth-authorization-server`, `https://mcp.trustgrid.io/.well-known/oauth-protected-resource/mcp/...`, `https://mcp.trustgrid.io/oauth/authorize`, `https://mcp.trustgrid.io/oauth/token`, `https://mcp.trustgrid.io/oauth/register` |
-| Stage | `https://mcp.stage.trustgrid.io` | `https://mcp.stage.trustgrid.io/.well-known/oauth-authorization-server`, `https://mcp.stage.trustgrid.io/.well-known/oauth-protected-resource/mcp/...`, `https://mcp.stage.trustgrid.io/oauth/authorize`, `https://mcp.stage.trustgrid.io/oauth/token`, `https://mcp.stage.trustgrid.io/oauth/register` |
-| Test | `https://mcp.test.trustgrid.io` | `https://mcp.test.trustgrid.io/.well-known/oauth-authorization-server`, `https://mcp.test.trustgrid.io/.well-known/oauth-protected-resource/mcp/...`, `https://mcp.test.trustgrid.io/oauth/authorize`, `https://mcp.test.trustgrid.io/oauth/token`, `https://mcp.test.trustgrid.io/oauth/register` |
-| Dev | `https://mcp.dev.trustgrid.io` | `https://mcp.dev.trustgrid.io/.well-known/oauth-authorization-server`, `https://mcp.dev.trustgrid.io/.well-known/oauth-protected-resource/mcp/...`, `https://mcp.dev.trustgrid.io/oauth/authorize`, `https://mcp.dev.trustgrid.io/oauth/token`, `https://mcp.dev.trustgrid.io/oauth/register` |
-
-If you are using a non-production MCP endpoint, do not mix it with production OAuth endpoints. Keep the MCP URL, OAuth metadata URLs, and browser login flow on the same environment host.
+| OAuth base URL | Discovery and OAuth endpoints |
+| --- | --- |
+| `https://mcp.trustgrid.io` | `https://mcp.trustgrid.io/.well-known/oauth-authorization-server`, `https://mcp.trustgrid.io/.well-known/oauth-protected-resource/mcp/...`, `https://mcp.trustgrid.io/oauth/authorize`, `https://mcp.trustgrid.io/oauth/token`, `https://mcp.trustgrid.io/oauth/register` |
 
 ## JWT Bearer tokens
 

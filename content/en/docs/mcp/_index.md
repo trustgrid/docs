@@ -6,7 +6,7 @@ description: "Connect AI clients to Trustgrid with the public remote MCP server.
 ---
 
 {{% pageinfo %}}
-Trustgrid provides a public [Model Context Protocol](https://modelcontextprotocol.io/) server for AI clients that support remote MCP over HTTP. Use it to search the Trustgrid API surface, run scoped read tools, and trigger node diagnostics without hand-writing API calls.
+Trustgrid provides a public [Model Context Protocol](https://modelcontextprotocol.io/) server for AI clients that support remote MCP over HTTPS. Use it to search the Trustgrid API surface, run scoped read tools, and trigger node diagnostics without hand-writing API calls.
 {{% /pageinfo %}}
 
 ## Public endpoint
@@ -17,7 +17,7 @@ The production remote MCP endpoint is:
 https://mcp.trustgrid.io/mcp
 ```
 
-The public hosted server supports **remote Streamable HTTP over HTTPS**. Local stdio binaries exist for internal and advanced workflows, but public client setup should use the hosted HTTPS endpoint.
+The public hosted server supports **remote Streamable HTTP over HTTPS**.
 
 ## Recommended tool group
 
