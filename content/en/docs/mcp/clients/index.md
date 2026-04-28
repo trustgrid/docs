@@ -14,6 +14,10 @@ https://mcp.trustgrid.io/mcp/codemode
 If you want direct read tools or node diagnostics instead, replace the URL with another scoped path such as `/mcp/read`, `/mcp/tools`, or `/mcp/codemode/read`.
 
 {{% alert color="info" %}}
+The Trustgrid hosted server uses **remote Streamable HTTP over HTTPS**. Some client configs still label that connection type as `http`, but the server is **not** using the older HTTP SSE transport.
+{{% /alert %}}
+
+{{% alert color="info" %}}
 Auth placeholder syntax is client-specific. Examples using `${...}` rely on that client's native variable interpolation. Examples using values like `YOUR_TG_JWT` are literal placeholders that you must replace manually before saving the config.
 {{% /alert %}}
 
