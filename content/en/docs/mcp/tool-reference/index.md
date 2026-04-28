@@ -5,15 +5,16 @@ weight: 35
 description: "Comprehensive reference for every public Trustgrid MCP tool."
 ---
 
-This page documents every **public** MCP tool currently exposed by the hosted Trustgrid MCP server.
+This page documents every **public top-level MCP tool** currently exposed by the hosted Trustgrid MCP server.
 
 - Sources inspected: `trustgrid/mcp/src/mcp/index.ts`, `trustgrid/mcp/src/mcp/node-tools.ts`, `trustgrid/mcp/src/mcp/scope-map.ts`, and `trustgrid/mcp/index.yaml`
 - `switchOrg` is intentionally omitted because it is **stdio-only/internal** and is not part of the public hosted MCP surface
+- helper functions available *inside* `codemode` JavaScript (for example `codemode.listNodes(...)`) are not separate MCP tools, so they are not listed as standalone rows here
 - Sample interactions below are realistic illustrative snippets, not exhaustive schemas
 - Public tool count from the current source: **50 total** (`4` codemode, `36` read, `10` node diagnostics)
 
 {{% alert color="info" %}}
-When the API spec declares an exact permission, this page lists it directly. When the spec does **not** declare a narrower per-endpoint permission, the table calls out the public MCP scope that exposes the tool instead of inventing precision that is not present in the source.
+When the API spec declares an exact permission, this page lists it directly. When the spec does **not** declare a narrower per-endpoint permission, the table calls out the public MCP scope that exposes the tool instead of inventing precision that is not present in the source. For reference, the hosted `/mcp/read` scope bundle currently requires `alerts::read`, `audits::read:config`, `audits::read:node`, `domains::read`, `events::read`, `node-vpn::read`, `nodes::read`, `portal::access`, and `virtual-networks::read`.
 {{% /alert %}}
 
 ## `codemode` tools
@@ -33,7 +34,7 @@ These are the direct MCP tools registered on `https://mcp.trustgrid.io/mcp/read`
 
 | Tool Name | Brief Description | Permissions Required | Sample Interaction |
 | --- | --- | --- | --- |
-| `get_cluster` | Get one cluster's detailed config and status. | `nodes::read` (from the Cluster API/tag docs). | Request: `{"clusterFQDN":"ha-east.example.trustgrid.io"}`<br>Response: `{"fqdn":"ha-east.example.trustgrid.io","health":"healthy","mode":"manualFailback"}` |
+| `get_cluster` | Get one cluster's detailed config and status. | `/mcp/read` scope bundle; this endpoint is included in the hosted read surface but the operation itself does not declare a narrower per-endpoint permission in the public spec. | Request: `{"clusterFQDN":"ha-east.example.trustgrid.io"}`<br>Response: `{"fqdn":"ha-east.example.trustgrid.io","health":"healthy","mode":"manualFailback"}` |
 | `get_cluster_vpn_dns` | Get the DNS config for a cluster-attached VPN network. | `/mcp/read` scope bundle; the API spec does not declare a narrower per-endpoint permission here. | Request: `{"clusterFQDN":"ha-east.example.trustgrid.io","networkName":"corp"}`<br>Response: `{"enabled":true,"upstream":[{"ip":"10.20.0.53","port":"53"}]}` |
 | `get_cluster_vpn_network` | Get full inventory for one VPN network on a cluster. | `/mcp/read` scope bundle; the API spec does not declare a narrower per-endpoint permission here. | Request: `{"clusterFQDN":"ha-east.example.trustgrid.io","networkName":"corp"}`<br>Response: `{"name":"corp","ip":"10.30.0.10/24","routes":[...],"services":[...]}` |
 | `get_domain` | Get one domain's configuration. | `domains::read` | Request: `{"domainName":"prod"}`<br>Response: `{"name":"prod","gateway":{...},"thresholds":{...}}` |
@@ -49,7 +50,7 @@ These are the direct MCP tools registered on `https://mcp.trustgrid.io/mcp/read`
 | `list_cluster_vpn_networks` | List VPN networks attached to a cluster. | `/mcp/read` scope bundle; the API spec does not declare a narrower per-endpoint permission here. | Request: `{"clusterFQDN":"ha-east.example.trustgrid.io"}`<br>Response: `[{"name":"corp","ip":"10.30.0.10/24"},{"name":"dmz","ip":"10.31.0.10/24"}]` |
 | `list_cluster_vpn_routes` | List static routes for a cluster VPN network. | `/mcp/read` scope bundle; the API spec does not declare a narrower per-endpoint permission here. | Request: `{"clusterFQDN":"ha-east.example.trustgrid.io","networkName":"corp"}`<br>Response: `[{"networkCidr":"172.16.0.0/16","path":"vpn"}]` |
 | `list_cluster_vpn_services` | List services published on a cluster VPN network. | `/mcp/read` scope bundle; the API spec does not declare a narrower per-endpoint permission here. | Request: `{"clusterFQDN":"ha-east.example.trustgrid.io","networkName":"corp"}`<br>Response: `[{"name":"erp","ip":"10.30.0.50","port":443}]` |
-| `list_clusters` | List all clusters in the organization. | `nodes::read` (from the Cluster API/tag docs). | Request: `{}`<br>Response: `[{"fqdn":"ha-east.example.trustgrid.io","health":"healthy"},{"fqdn":"ha-west.example.trustgrid.io","health":"offline"}]` |
+| `list_clusters` | List all clusters in the organization. | `/mcp/read` scope bundle; this endpoint is included in the hosted read surface but the operation itself does not declare a narrower per-endpoint permission in the public spec. | Request: `{}`<br>Response: `[{"fqdn":"ha-east.example.trustgrid.io","health":"healthy"},{"fqdn":"ha-west.example.trustgrid.io","health":"offline"}]` |
 | `list_events` | List org-wide events in a time range with filters. | `events::read` | Request: `{"sTime":"2026-04-01T00:00:00.000Z","eTime":"2026-04-02T00:00:00.000Z","limit":2}`<br>Response: `[{"eventType":"NODE_CONNECTED","itemType":"Node"},{"eventType":"CONFIG_CHANGE","itemType":"Node"}]` |
 | `list_network_access_policies` | List access policies for a virtual network. | `virtual-networks::read` | Request: `{"domainName":"prod","networkName":"corp"}`<br>Response: `[{"action":"allow","source":"10.0.0.0/8","dest":"10.30.0.0/24"}]` |
 | `list_network_auth_groups` | List auth groups for a virtual network. | `virtual-networks::read` | Request: `{"domainName":"prod","networkName":"corp"}`<br>Response: `[{"name":"employees","groups":["okta-employees"]}]` |

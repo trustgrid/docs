@@ -24,7 +24,7 @@ In practice, that means the client connects directly to a hosted HTTPS MCP endpo
 | API base URL | `https://api.trustgrid.io` |
 | Portal URL | `https://portal.trustgrid.io` |
 
-This reference page describes the **public hosted production service**. Non-production or privately hosted environments can use different base URLs and may not expose the same OAuth discovery or registration endpoints.
+This reference page describes the **public hosted production service**. Trustgrid's hosted stage, test, and dev MCP environments use the same path layout and OAuth discovery pattern on their own hosts. Privately hosted deployments can differ.
 
 ## MCP paths
 
