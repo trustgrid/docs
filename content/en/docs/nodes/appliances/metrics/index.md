@@ -1,10 +1,9 @@
 ---
 title: Additional Metrics
 linkTitle: Metrics
-description: The Metrics section under History shows stats in addition to those displayed on the overview page
-aliases: 
+description: The Metrics section under History shows additional node metrics and statistics beyond the overview page.
+aliases:
     - /docs/nodes/metrics
-description: View additional metrics and statistics for the node
 ---
 
 The Metrics page will be used to display additional available statistics that are not displayed on the [overview]({{<relref "/docs/nodes/appliances/overview">}}) page. Similar to the overview page these stats are viewable in 1, 2, 6, 12, and 24-hour views, and 1 week and 1 month views. 
