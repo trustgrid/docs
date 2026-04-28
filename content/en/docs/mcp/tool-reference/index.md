@@ -21,6 +21,8 @@ Hosted `/mcp/read` currently advertises this OAuth scope bundle: `alerts::read`,
 Hosted `/mcp/codemode` currently advertises this OAuth scope bundle: `alarms::read`, `alerts::read`, `audits::read:config`, `audits::read:flows`, `audits::read:node`, `audits::read:user`, `certificates::read`, `documents::read`, `domains::read`, `events::read`, `groups::read`, `identity-providers::read`, `node-vpn::read`, `nodes::read`, `observability::read`, `orders::read`, `permissions::read`, `portal::access`, `repositories::read`, `stats::read`, `support::read`, `upgrade-manager::read`, `users::read`, and `virtual-networks::read`.
 
 Hosted `/mcp/tools` currently advertises this OAuth scope bundle: `nodes::read`, `nodes::service:dns-health`, `nodes::service:errors`, `nodes::service:gateway-latency`, `nodes::service:gateway-routes`, `nodes::service:network-status`, `nodes::service:outbound-connection-check`, `nodes::service:packet-sim`, `nodes::service:repo-connectivity`, `nodes::service:status`, `nodes::service:tg-tcpdump`, and `portal::access`.
+
+Rows that rely on tag-level inference say so explicitly; rows with per-operation permission text call that out as explicit.
 {{% /alert %}}
 
 ## `codemode` tools
