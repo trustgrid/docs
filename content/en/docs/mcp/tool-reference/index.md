@@ -13,7 +13,7 @@ This page documents every **public** MCP tool currently exposed by the hosted Tr
 - Public tool count from the current source: **50 total** (`4` codemode, `36` read, `10` node diagnostics)
 
 {{% alert color="info" %}}
-When the API spec declares an exact permission, this page lists it directly. When the spec does **not** declare a narrower per-endpoint permission, the table calls out the public MCP scope that exposes the tool instead of making up precision that is not actually present in the source. Lovely.
+When the API spec declares an exact permission, this page lists it directly. When the spec does **not** declare a narrower per-endpoint permission, the table calls out the public MCP scope that exposes the tool instead of inventing precision that is not present in the source.
 {{% /alert %}}
 
 ## `codemode` tools
