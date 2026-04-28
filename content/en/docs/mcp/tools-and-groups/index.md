@@ -100,6 +100,8 @@ Groups are composable. These URLs are equivalent regardless of part order:
 
 Use combined paths when your client benefits from both a compact codemode surface and direct read tools.
 
+If you want the full per-tool inventory instead of the high-level group summary on this page, see [Tool reference]({{<relref "/docs/mcp/tool-reference" >}}).
+
 Recommended progression for new users:
 
 1. Start with `/mcp/read`

@@ -73,5 +73,6 @@ See [Authentication]({{<relref "/docs/mcp/authentication" >}}) for the exact hea
 
 - [Authentication]({{<relref "/docs/mcp/authentication" >}})
 - [Tools and groups]({{<relref "/docs/mcp/tools-and-groups" >}})
+- [Tool reference]({{<relref "/docs/mcp/tool-reference" >}})
 - [Transport, endpoints, errors, and rate limits]({{<relref "/docs/mcp/reference" >}})
 - [Client installation guides]({{<relref "/docs/mcp/clients" >}})
