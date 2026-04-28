@@ -12,7 +12,7 @@ The public Trustgrid MCP server supports **remote Streamable HTTP** endpoints se
 - Public transport: **remote Streamable HTTP over HTTPS**
 - Legacy SSE transport: **not used by the public hosted server**
 - Primary endpoint: `https://mcp.trustgrid.io/mcp`
-- Common recommended scoped endpoint: `https://mcp.trustgrid.io/mcp/codemode`
+- Common recommended starting endpoint: `https://mcp.trustgrid.io/mcp/read`
 
 ## Endpoint URLs
 
@@ -27,10 +27,12 @@ The public Trustgrid MCP server supports **remote Streamable HTTP** endpoints se
 | Path | Meaning |
 | --- | --- |
 | `/mcp` | Bare MCP root. Public clients should generally use a scoped path instead. |
-| `/mcp/codemode` | Compact agent-oriented tool surface |
 | `/mcp/read` | Direct read tools |
+| `/mcp/codemode` | Compact agent-oriented tool surface |
 | `/mcp/tools` | Node diagnostics |
 | `/mcp/<combined-parts>` | Union of the requested groups |
+
+For first-time exploration, start with `/mcp/read` so your client can discover available Trustgrid data with direct query tools before you move on to broader workflows.
 
 ## OAuth discovery endpoints
 
@@ -73,7 +75,7 @@ Clients should:
 - retry with exponential backoff
 - honor `Retry-After` if it is returned
 - avoid firing many parallel tool calls against the same org unless needed
-- prefer `codemode` workflows when possible so the model can batch related reads into fewer round trips
+- start with `read` tools to discover the data you need, then prefer `codemode` workflows when batching related reads into fewer round trips helps
 
 Trustgrid does not currently publish a separate fixed public MCP rate-limit table in these docs.
 

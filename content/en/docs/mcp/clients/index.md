@@ -5,13 +5,17 @@ weight: 40
 description: "Install the Trustgrid MCP server in popular AI clients and editors."
 ---
 
-All examples below use the recommended scoped endpoint:
+All examples below use the recommended starting endpoint:
 
 ```text
-https://mcp.trustgrid.io/mcp/codemode
+https://mcp.trustgrid.io/mcp/read
 ```
 
-If you want direct read tools or node diagnostics instead, replace the URL with another scoped path such as `/mcp/read`, `/mcp/tools`, or `/mcp/codemode/read`.
+Start with `/mcp/read` to explore available Trustgrid data safely. If you want the programmable codemode surface or node diagnostics instead, replace the URL with another scoped path such as `/mcp/codemode`, `/mcp/tools`, or `/mcp/codemode/read`.
+
+{{% alert color="info" %}}
+Recommended flow: connect to `/mcp/read` first, inspect the available objects and results, then switch to `/mcp/codemode` or combined scopes when you need more advanced workflows.
+{{% /alert %}}
 
 {{% alert color="info" %}}
 The Trustgrid hosted server uses **remote Streamable HTTP over HTTPS**. Some client configs still label that connection type as `http`, but the server is **not** using the older HTTP SSE transport.
@@ -31,7 +35,7 @@ Claude Desktop remote MCP uses **custom connectors**.
 
 1. Open **Customize → Connectors**.
 2. Add a custom connector.
-3. Enter the server URL: `https://mcp.trustgrid.io/mcp/codemode`
+3. Enter the server URL: `https://mcp.trustgrid.io/mcp/read`
 4. If Claude Desktop offers OAuth, complete the browser login flow.
 5. If you are using manual auth instead, configure the Trustgrid auth header in the connector settings if your deployment exposes that option.
 
@@ -40,7 +44,7 @@ Claude Desktop remote MCP uses **custom connectors**.
 ### OAuth
 
 ```bash
-claude mcp add trustgrid --transport http https://mcp.trustgrid.io/mcp/codemode
+claude mcp add trustgrid --transport http https://mcp.trustgrid.io/mcp/read
 ```
 
 Then run `/mcp` in Claude Code and complete the browser login.
@@ -52,7 +56,7 @@ Then run `/mcp` in Claude Code and complete the browser login.
   "mcpServers": {
     "trustgrid": {
       "type": "http",
-      "url": "https://mcp.trustgrid.io/mcp/codemode",
+      "url": "https://mcp.trustgrid.io/mcp/read",
       "headers": {
         "Authorization": "Bearer ${TG_JWT}"
       }
@@ -72,7 +76,7 @@ Add Trustgrid to `~/.copilot/mcp-config.json`:
   "mcpServers": {
     "trustgrid": {
       "type": "http",
-      "url": "https://mcp.trustgrid.io/mcp/codemode",
+      "url": "https://mcp.trustgrid.io/mcp/read",
       "headers": {
         "Authorization": "Bearer YOUR_TG_JWT"
       },
@@ -95,7 +99,7 @@ Add Trustgrid to `~/.config/opencode/opencode.json`:
   "mcp": {
     "trustgrid": {
       "type": "remote",
-      "url": "https://mcp.trustgrid.io/mcp/codemode"
+      "url": "https://mcp.trustgrid.io/mcp/read"
     }
   }
 }
@@ -109,7 +113,7 @@ Add Trustgrid to `~/.config/opencode/opencode.json`:
     "trustgrid": {
       "type": "remote",
       "enabled": true,
-      "url": "https://mcp.trustgrid.io/mcp/codemode",
+      "url": "https://mcp.trustgrid.io/mcp/read",
       "oauth": false,
       "headers": {
         "Authorization": "Bearer YOUR_TG_JWT"
@@ -127,7 +131,7 @@ Add Trustgrid to `~/.codeium/windsurf/mcp_config.json`:
 {
   "mcpServers": {
     "trustgrid": {
-      "serverUrl": "https://mcp.trustgrid.io/mcp/codemode",
+      "serverUrl": "https://mcp.trustgrid.io/mcp/read",
       "headers": {
         "Authorization": "Bearer ${env:TG_JWT}"
       }
@@ -146,7 +150,7 @@ Add Trustgrid to `.kiro/settings/mcp.json` in your workspace or `~/.kiro/setting
 {
   "mcpServers": {
     "trustgrid": {
-      "url": "https://mcp.trustgrid.io/mcp/codemode",
+      "url": "https://mcp.trustgrid.io/mcp/read",
       "headers": {
         "Authorization": "Bearer YOUR_TG_JWT"
       },
@@ -168,7 +172,7 @@ Raw config shape:
 {
   "mcpServers": {
     "trustgrid": {
-      "serverUrl": "https://mcp.trustgrid.io/mcp/codemode",
+      "serverUrl": "https://mcp.trustgrid.io/mcp/read",
       "headers": {
         "Authorization": "Bearer YOUR_TG_JWT"
       }
@@ -186,7 +190,7 @@ Add Trustgrid to `.vscode/mcp.json` or your user MCP config:
   "servers": {
     "trustgrid": {
       "type": "http",
-      "url": "https://mcp.trustgrid.io/mcp/codemode",
+      "url": "https://mcp.trustgrid.io/mcp/read",
       "headers": {
         "Authorization": "Bearer ${input:tg-jwt}"
       }
@@ -215,7 +219,7 @@ Add Trustgrid to `~/.cursor/mcp.json` or `.cursor/mcp.json`:
 {
   "mcpServers": {
     "trustgrid": {
-      "url": "https://mcp.trustgrid.io/mcp/codemode"
+      "url": "https://mcp.trustgrid.io/mcp/read"
     }
   }
 }
@@ -227,7 +231,7 @@ Add Trustgrid to `~/.cursor/mcp.json` or `.cursor/mcp.json`:
 {
   "mcpServers": {
     "trustgrid": {
-      "url": "https://mcp.trustgrid.io/mcp/codemode",
+      "url": "https://mcp.trustgrid.io/mcp/read",
       "headers": {
         "Authorization": "Bearer ${env:TG_JWT}"
       }
@@ -244,7 +248,7 @@ Add Trustgrid to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.trustgrid]
-url = "https://mcp.trustgrid.io/mcp/codemode"
+url = "https://mcp.trustgrid.io/mcp/read"
 ```
 
 Then authenticate with:
@@ -257,7 +261,7 @@ codex mcp login trustgrid
 
 ```toml
 [mcp_servers.trustgrid]
-url = "https://mcp.trustgrid.io/mcp/codemode"
+url = "https://mcp.trustgrid.io/mcp/read"
 bearer_token_env_var = "TG_JWT"
 ```
 

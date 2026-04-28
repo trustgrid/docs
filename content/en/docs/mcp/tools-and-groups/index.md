@@ -7,24 +7,9 @@ description: "Understand the Trustgrid MCP tool groups and what each surface exp
 
 Trustgrid MCP exposes three public tool groups. You choose them by path.
 
-## Group: `codemode`
-
-Path:
-
-```text
-https://mcp.trustgrid.io/mcp/codemode
-```
-
-This is the recommended default because it gives the model a small, high-signal tool surface.
-
-### Tools in `codemode`
-
-| Tool | Purpose |
-| --- | --- |
-| `search` | Search available Trustgrid API functions and documentation by keyword |
-| `describe` | Return the full function signature and docs for a single Trustgrid API function |
-| `code` | Execute JavaScript that chains Trustgrid API calls and returns a shaped result |
-| `followUp` | Retrieve the next page of cached rows from a prior paginated result |
+{{% alert color="info" %}}
+Start with the `read` group unless you already know you need something else. It is the safest entry point for exploring nodes, clusters, routes, alerts, and other Trustgrid resources before moving to more advanced or stateful workflows.
+{{% /alert %}}
 
 ## Group: `read`
 
@@ -37,6 +22,12 @@ https://mcp.trustgrid.io/mcp/read
 This surface exposes one direct MCP tool per read-oriented Trustgrid API operation from a curated public allowlist. Tool names are normalized to `snake_case` from the API `operationId`.
 
 Examples include tools such as `list_nodes`, `get_node`, `list_clusters`, `get_domain`, `list_virtual_networks`, `list_network_routes`, `list_alerts_v2`, and `tail_node_audit`.
+
+### Why start with `read`
+
+- safest place to explore what data is available
+- direct mapping to common query operations
+- easy for users to inspect results before attempting diagnostics or automation
 
 ### Read tool coverage
 
@@ -54,6 +45,25 @@ This is not a one-to-one mirror of every public API domain. If you need the exac
 
 For the broader Trustgrid API object model and endpoint details, see [apidocs.trustgrid.io](https://apidocs.trustgrid.io/).
 
+## Group: `codemode`
+
+Path:
+
+```text
+https://mcp.trustgrid.io/mcp/codemode
+```
+
+Use this when you want a compact programmable surface after you have already explored the domain with `read`, or when your client works best with search/describe/code style workflows.
+
+### Tools in `codemode`
+
+| Tool | Purpose |
+| --- | --- |
+| `search` | Search available Trustgrid API functions and documentation by keyword |
+| `describe` | Return the full function signature and docs for a single Trustgrid API function |
+| `code` | Execute JavaScript that chains Trustgrid API calls and returns a shaped result |
+| `followUp` | Retrieve the next page of cached rows from a prior paginated result |
+
 ## Group: `tools`
 
 Path:
@@ -63,6 +73,8 @@ https://mcp.trustgrid.io/mcp/tools
 ```
 
 This surface exposes live node diagnostic tools. These are mostly read-only diagnostics that call node services through the Trustgrid API.
+
+Reach for `tools` after `read` when you need live diagnostics from a node, not just control-plane data. They are still safer than broad write APIs, but they are operational actions rather than plain queries.
 
 ### Tools in `tools`
 
@@ -87,3 +99,9 @@ Groups are composable. These URLs are equivalent regardless of part order:
 - `https://mcp.trustgrid.io/mcp/read/codemode`
 
 Use combined paths when your client benefits from both a compact codemode surface and direct read tools.
+
+Recommended progression for new users:
+
+1. Start with `/mcp/read`
+2. Add `/codemode` when you want search/describe/code workflows
+3. Add `/tools` when you need live diagnostics from nodes
