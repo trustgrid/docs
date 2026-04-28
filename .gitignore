@@ -4,3 +4,5 @@ resources/_gen/
 .vscode/
 node_modules
 .DS_Store
+docs/prd.json
+docs/review.md
