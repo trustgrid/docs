@@ -41,7 +41,6 @@ An explanation of the building blocks and core concepts for building with Trustg
 # Tools
 
 - [Swagger API](https://apidocs.trustgrid.io)
-- [Trustgrid MCP]({{<ref "/docs/mcp" >}})
 - [Terraform Provider](https://registry.terraform.io/providers/trustgrid/tg/latest)
 - [Status Page](https://status.trustgrid.io/)
 
