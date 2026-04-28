@@ -10,8 +10,8 @@ This page documents every **public top-level MCP tool** currently exposed by the
 - Sources inspected: `trustgrid/mcp/src/mcp/index.ts`, `trustgrid/mcp/src/mcp/node-tools.ts`, `trustgrid/mcp/src/mcp/scope-map.ts`, `trustgrid/mcp/src/mcp/read-tools.integration.test.ts`, and `trustgrid/mcp/index.yaml`
 - `switchOrg` is intentionally omitted because it is **stdio-only/internal** and is not part of the public hosted MCP surface
 - helper functions available *inside* `codemode` JavaScript (for example `codemode.listNodes(...)`) are not separate MCP tools, so they are not listed as standalone rows here
-- Sample interactions below are realistic illustrative snippets, not exhaustive schemas. For `read` and `tools`, the response examples show the decoded JSON payload the tool returns inside `content[0].text`, because copying the full MCP wrapper 46 times would be unreadable bullshit.
-- Public tool count from the current source: **50 total** (`4` codemode, `36` read, `10` node diagnostics)
+- Sample interactions below are realistic illustrative snippets, not exhaustive schemas. For `read` and `tools`, the response examples show the decoded JSON payload the tool returns inside `content[0].text`, because copying the full MCP wrapper 46 times would add a lot of noise.
+- Public tool count from the current source: **50 total** (`4` codemode, `36` read, `10` node diagnostics). That inventory is validated from `registerCodemodeTools` in `trustgrid/mcp/src/mcp/index.ts`, `READ_ONLY_OPERATION_IDS` in the same file, and `NODE_TOOLS` in `trustgrid/mcp/src/mcp/node-tools.ts`.
 
 {{% alert color="info" %}}
 When the API spec declares an exact permission, this page lists it directly. When the spec does **not** declare a narrower per-endpoint permission, the table calls out the public MCP scope that exposes the tool instead of inventing precision that is not present in the source. For reference, the hosted `/mcp/read` scope bundle currently requires `alerts::read`, `audits::read:config`, `audits::read:node`, `domains::read`, `events::read`, `node-vpn::read`, `nodes::read`, `portal::access`, and `virtual-networks::read`.
