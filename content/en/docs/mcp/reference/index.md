@@ -99,7 +99,7 @@ Some results are paginated.
 
 ## Auth header formats
 
-```text
+{{< codeblock lang="text" >}}
 Authorization: Bearer <jwt>
 Authorization: trustgrid-token <client-id>:<client-secret>
-```
+{{< /codeblock >}}

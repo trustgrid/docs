@@ -76,6 +76,8 @@ This surface exposes live node diagnostic tools. These are mostly read-only diag
 
 Reach for `tools` after `read` when you need live diagnostics from a node, not just control-plane data. They are still safer than broad write APIs, but they are operational actions rather than plain queries.
 
+For a comprehensive reference of all available tools across all groups, see the [Tool reference]({{<relref "/docs/mcp/tool-reference" >}}).
+
 ### Tools in `tools`
 
 | Tool | Purpose |
