@@ -20,7 +20,7 @@ Use OAuth when:
 - you want the session to run as your own Trustgrid user
 - you want token refresh handled by the client
 
-Trustgrid's public MCP server uses remote Streamable HTTP over HTTPS, which means the client connects directly to a hosted MCP endpoint and completes OAuth against the same environment.
+Trustgrid's public MCP server uses remote Streamable HTTP over HTTPS, which means the client connects directly to a hosted MCP endpoint and completes OAuth with the same base URL.
 
 The hosted MCP server exposes the standard discovery and OAuth endpoints needed by compatible clients.
 

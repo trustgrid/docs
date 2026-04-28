@@ -5,7 +5,7 @@ weight: 40
 description: "Install the Trustgrid MCP server in popular AI clients and editors."
 ---
 
-All examples below use the recommended production scoped endpoint:
+All examples below use the recommended scoped endpoint:
 
 ```text
 https://mcp.trustgrid.io/mcp/codemode

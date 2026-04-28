@@ -10,19 +10,16 @@ description: "Reference information for the public Trustgrid MCP server."
 The public Trustgrid MCP server supports **remote Streamable HTTP** endpoints served over **HTTPS**.
 
 - Public transport: **remote Streamable HTTP over HTTPS**
-- Primary production endpoint: `https://mcp.trustgrid.io/mcp`
+- Primary endpoint: `https://mcp.trustgrid.io/mcp`
 - Common recommended scoped endpoint: `https://mcp.trustgrid.io/mcp/codemode`
 
-## Endpoint URLs by environment
+## Endpoint URLs
 
-| Environment | MCP base URL | API base URL | Portal URL |
-| --- | --- | --- | --- |
-| Production | `https://mcp.trustgrid.io` | `https://api.trustgrid.io` | `https://portal.trustgrid.io` |
-| Stage | `https://mcp.stage.trustgrid.io` | `https://api.stage.trustgrid.io` | `https://portal.stage.trustgrid.io` |
-| Test | `https://mcp.test.trustgrid.io` | `https://api.test.trustgrid.io` | `https://portal.test.trustgrid.io` |
-| Dev | `https://mcp.dev.trustgrid.io` | `https://api.dev.trustgrid.io` | `https://portal.dev.trustgrid.io` |
-
-Most customers should use production unless Trustgrid has explicitly given them access to a non-production environment.
+| Service | URL |
+| --- | --- |
+| MCP base URL | `https://mcp.trustgrid.io` |
+| API base URL | `https://api.trustgrid.io` |
+| Portal URL | `https://portal.trustgrid.io` |
 
 ## MCP paths
 

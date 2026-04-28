@@ -135,7 +135,7 @@ report:
 3. If you want to filter by fields like `tags` or `name`, add those columns to the Nodes table in the portal and observe their API usage in DevTools.
 4. Once you know the fields you wish to modify and/or filter with, build the plan's input `url` to return those fields for processing. See the example plan and the <a href="https://github.com/trustgrid/jsoninator/blob/main/README.md" target="_blank" rel="noopener">JSONinator README</a> for details.
 
-Building a plan file may require some iteration. Start simple, test in dry-run mode, utilize a test/dev accounts if available, start with a single node/cluster and expand as needed. Trustgrid can assist with plan file creation on a best-effort basis during our business hours; contact your Trustgrid support for help.
+Building a plan file may require some iteration. Start simple, use dry-run mode, start with a single node or cluster, and expand as needed. Trustgrid can assist with plan file creation on a best-effort basis during our business hours; contact Trustgrid Support for help.
 
 ## Running JSONinator
 
@@ -199,11 +199,11 @@ jsoninator -plan=my-plan.yaml
 JSONinator will output progress to the console. Example output:
 
 ```shell
-Processing mctest-clusterip-az-gw1.mctest.trustgrid.io
+Processing cluster-a-gateway-1.example.trustgrid.io
 2025/11/13 14:57:59 INFO running processor type=plan.Filter
-Processing mctest-clusterip-az-gw2.mctest.trustgrid.io
+Processing cluster-a-gateway-2.example.trustgrid.io
 2025/11/13 14:57:59 INFO running processor type=plan.Filter
-Processing mctest-edge3-2204.mctest.trustgrid.io
+Processing edge-3.example.trustgrid.io
 2025/11/13 14:57:59 INFO running processor type=plan.Filter
 2025/11/13 14:57:59 INFO running processor type=plan.Map
 2025/11/13 14:57:59 INFO running processor type=plan.Transform
@@ -211,7 +211,7 @@ Processing mctest-edge3-2204.mctest.trustgrid.io
 This example was run using a filter:
 ```yaml
         prefix:
-          name: mctest-e
+          name: edge-
 ```
 You can see that the first two nodes were filtered out (no further processors run) because their names did not match. The third node passed the filter and was processed by the `Map` and `Transform` processors. 
 
@@ -225,9 +225,9 @@ After each run, review the report files in the `reports` directory to see which 
 
   ```csv
   name,field,before,after
-  mctest-edge3-2204.mctest.trustgrid.io,udpPort,<nil>,8443
-  mctest-edge3-2204.mctest.trustgrid.io,maxClientWriteMbps,0,<no value>
-  mctest-edge3-2204.mctest.trustgrid.io,udpEnabled,false,true
+  edge-3.example.trustgrid.io,udpPort,<nil>,8443
+  edge-3.example.trustgrid.io,maxClientWriteMbps,0,<no value>
+  edge-3.example.trustgrid.io,udpEnabled,false,true
   ...
   ```
 
@@ -235,8 +235,8 @@ After each run, review the report files in the `reports` directory to see which 
 
   ```csv
   name,filter
-  aws-agent1.mctest.trustgrid.io,"field ""name"" does not have prefix ""gw-"""
-  aws-agent2.mctest.trustgrid.io,"field ""name"" does not have prefix ""gw-"""
+  aws-agent1.example.trustgrid.io,"field ""name"" does not have prefix ""gw-"""
+  aws-agent2.example.trustgrid.io,"field ""name"" does not have prefix ""gw-"""
   ...
   ```
 
@@ -244,9 +244,8 @@ After each run, review the report files in the `reports` directory to see which 
 
   ```csv
   name
-  mctest-esxedge5.mctest.trustgrid.io
-  mctest-esxedge6.mctest.trustgrid.io
+  esx-edge5.example.trustgrid.io
+  esx-edge6.example.trustgrid.io
   ```
 
 These reports provide details on actions taken, nodes affected, and any errors encountered. Reviewing them helps ensure your plan is working as intended before and after applying changes.
-

@@ -80,7 +80,7 @@ Events are provided inside a `ctx` object.
     "details": {
         "alertId": "40e4a030-440a-4703-b33a-172416da4be2"
     },
-    "domain": "demo.dev.trustgrid.io",
+    "domain": "demo.example.trustgrid.io",
     "eventType": "Data Plane Disruption",
     "expires": 1699234335,
     "level": "WARNING",
@@ -90,8 +90,8 @@ Events are provided inside a `ctx` object.
     "node": {
         "uid": "59838ae6-a2b2-4c45-b7be-9378f0b265f5",
         "org": "aad89024-5927-4ebd-97e2-3cc605c1da5f",
-        "domain": "dev.dev.trustgrid.io",
-        "fqdn": "demo-node.demo.dev.trustgrid.io",
+        "domain": "example.trustgrid.io",
+        "fqdn": "demo-node.example.trustgrid.io",
         "lastip": "64.17.3.164",
         "last_connect": 1699158287000,
         "name": "demo-node",
@@ -190,7 +190,7 @@ Events are provided inside a `ctx` object.
                 "clients": [],
                 "monitorHops": true,
                 "maxmbps": 1001,
-                "cert": "proxy.dev.trustgrid.io",
+                "cert": "proxy.example.trustgrid.io",
                 "type": "private",
                 "connectToPublic": true,
                 "udpPort": 8443,

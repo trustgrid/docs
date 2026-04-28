@@ -11,7 +11,7 @@ Trustgrid provides a public [Model Context Protocol](https://modelcontextprotoco
 
 ## Public endpoint
 
-The production remote MCP endpoint is:
+The Trustgrid remote MCP endpoint is:
 
 ```text
 https://mcp.trustgrid.io/mcp
