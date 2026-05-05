@@ -33,7 +33,7 @@ AWS-specific requirements:
 - Source/destination check must be disabled on the data ENI of each cluster member.
 - The cluster IP must be an unused secondary private IPv4 address within the data subnet — it is not an Elastic IP.
 
-See [AWS Cluster IP Failover]({{<relref "/tutorials/deployments/deploy-aws-ami/cluster-ip-failover-in-aws">}}) for the full setup walkthrough.
+See [AWS Cluster IP Failover]({{<relref "/tutorials/deployments/deploy-aws/ip-failover">}}) for the full setup walkthrough.
 
 ### Google Cloud (GCP)
 

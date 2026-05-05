@@ -4,11 +4,14 @@ title: "AWS Cluster IP Failover"
 description: "Configure a floating cluster IP on an AWS HA Trustgrid cluster using secondary private IPs on the data ENI"
 linkTitle: "Cluster IP Failover in AWS"
 type: docs
+aliases:
+  - /tutorials/deployments/deploy-aws-ami/cluster-ip-failover-in-aws/
+  - /tutorials/deployments/deploy-aws/cluster-ip-failover-in-aws/
 ---
 
 This tutorial covers the cluster IP failover mechanism for AWS-hosted Trustgrid clusters. The active cluster member claims a configured IP as a secondary private IP on its data ENI via `ec2:AssignPrivateIpAddresses` (with `AllowReassignment=true`). On failover, the standby promotes itself and reclaims the same secondary IP on its own ENI — no AWS route-table updates required.
 
-For L3 overlay route failover instead, see [Configure HA Gateway Cluster in AWS]({{<relref "configure-ha-gateway-cluster-in-aws">}}).
+For L3 overlay route failover instead, see [Configure HA Gateway Cluster in AWS]({{<relref "route-failover">}}).
 
 ## How it works
 
@@ -97,6 +100,6 @@ Because the cluster IP follows the active member automatically, no route-table u
 
 ## Related
 
-- [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "configure-ha-gateway-cluster-in-aws">}}) — L3 overlay route failover alternative
+- [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "route-failover">}}) — L3 overlay route failover alternative
 - [Configure HA L4 Cluster in AWS]({{<relref "configure-ha-l4-in-aws">}}) — end-to-end L4 proxy use case using the cluster IP
 - [Cluster-Only Configuration Items]({{<relref "/docs/clusters/cluster-only-config">}}) — cluster IP reference documentation

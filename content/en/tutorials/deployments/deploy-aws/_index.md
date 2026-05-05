@@ -2,6 +2,8 @@
 tags: ["aws"]
 linkTitle: "Deploy to AWS"
 title: "Deploy a Trustgrid Node AMI in AWS"
+aliases:
+  - /tutorials/deployments/deploy-aws-ami/
 ---
 
 Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes in AWS use two network interfaces - a management and a data interface. The management interface communicates with Trustgrid Cloud Management systems. The data interface is used to terminate TLS tunnels from Edge Nodes.
@@ -212,6 +214,6 @@ Trustgrid supports multiple methods for clustered HA in AWS. These can be used i
 
 | Tutorial | Failover Method | Common Use Cases |
 |----------|-----------------|-----------------|
-| [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "configure-ha-gateway-cluster-in-aws">}}) | Updates AWS route-table entries (`ec2:CreateRoute`/`DeleteRoute`) to point overlay CIDRs at the active member's ENI. | L3 routed overlay; environments with a small number of route tables to manage. |
-| [AWS Cluster IP Failover]({{<relref "cluster-ip-failover-in-aws">}}) | Claims a secondary private IP on the active member's data ENI via `ec2:AssignPrivateIpAddresses`. No route-table updates required. | Environments with many route tables; L4 proxy (connector/service) deployments; backends that need a stable source IP. |
+| [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "route-failover">}}) | Updates AWS route-table entries (`ec2:CreateRoute`/`DeleteRoute`) to point overlay CIDRs at the active member's ENI. | L3 routed overlay; environments with a small number of route tables to manage. |
+| [AWS Cluster IP Failover]({{<relref "ip-failover">}}) | Claims a secondary private IP on the active member's data ENI via `ec2:AssignPrivateIpAddresses`. No route-table updates required. | Environments with many route tables; L4 proxy (connector/service) deployments; backends that need a stable source IP. |
 | [Configure HA L4 Cluster in AWS]({{<relref "configure-ha-l4-in-aws">}}) | End-to-end L4 proxy setup combining cluster IP failover on both sides of the tunnel. | Clients connecting to a stable cluster IP; backends needing a predictable source IP across failover. |

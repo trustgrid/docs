@@ -4,11 +4,14 @@ title: "Configure HA Gateway Cluster in AWS (Route Failover)"
 description: "Configure a high availability Trustgrid gateway cluster in AWS using route table failover (L3)"
 linkTitle: "HA Gateway Cluster in AWS"
 type: docs
+aliases:
+  - /tutorials/deployments/deploy-aws-ami/configure-ha-gateway-cluster-in-aws/
+  - /tutorials/deployments/deploy-aws/configure-ha-gateway-cluster-in-aws/
 ---
 
 This tutorial covers AWS route failover for a clustered Trustgrid gateway deployment. On failover, the active member updates AWS route-table entries (`ec2:CreateRoute` / `ec2:DeleteRoute`) so that overlay CIDRs always point at the active member's data ENI — no floating IP required.
 
-For the IP-based failover alternative, see [AWS Cluster IP Failover]({{<relref "cluster-ip-failover-in-aws">}}).
+For the IP-based failover alternative, see [AWS Cluster IP Failover]({{<relref "ip-failover">}}).
 
 ## How it works
 
@@ -45,11 +48,11 @@ Each cluster member's IAM instance profile must allow:
 }
 ```
 
-Set the `Resource` field to the ARN of the route table associated with the data NICs. See [Deploy a Trustgrid Node AMI in AWS]({{<relref "deploy-aws-ami">}}) for full IAM role setup steps.
+Set the `Resource` field to the ARN of the route table associated with the data NICs. See [Deploy a Trustgrid Node AMI in AWS]({{<relref "deploy-aws">}}) for full IAM role setup steps.
 
 ## Configuration Steps
 
-1. Deploy a pair of Trustgrid gateways. Gateways can be in the same availability zone or different ones for greater redundancy. [Deploy a Trustgrid Node AMI in AWS]({{<ref "deploy-aws-ami">}}).
+1. Deploy a pair of Trustgrid gateways. Gateways can be in the same availability zone or different ones for greater redundancy. [Deploy a Trustgrid Node AMI in AWS]({{<ref "deploy-aws">}}).
 
 1. Under Networking > Clusters, create a cluster with a descriptive, unique name.
    ![img](add-cluster.png)

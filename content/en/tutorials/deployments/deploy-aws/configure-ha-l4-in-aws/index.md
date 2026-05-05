@@ -4,11 +4,13 @@ title: "Configure HA L4 Cluster in AWS"
 description: "Configure a high availability L4 proxy cluster in AWS using a stable cluster IP that survives member failover"
 linkTitle: "HA L4 Cluster in AWS"
 type: docs
+aliases:
+  - /tutorials/deployments/deploy-aws-ami/configure-ha-l4-in-aws/
 ---
 
 This tutorial walks through setting up a two-member Trustgrid cluster in AWS for L4 proxy (connector/service) traffic, where clients and backends always see a consistent IP regardless of which cluster member is active.
 
-The cluster IP mechanism is explained in [AWS Cluster IP Failover]({{<relref "cluster-ip-failover-in-aws">}}). This page focuses on the end-to-end L4 use case.
+The cluster IP mechanism is explained in [AWS Cluster IP Failover]({{<relref "ip-failover">}}). This page focuses on the end-to-end L4 use case.
 
 ## Scenario
 
@@ -30,8 +32,8 @@ LAN clients
 
 ## Prerequisites
 
-- Two-member Trustgrid HA cluster in AWS with cluster heartbeat configured. See [Configure HA Gateway Cluster in AWS]({{<relref "configure-ha-gateway-cluster-in-aws">}}) for cluster setup.
-- Cluster IP configured on the LAN interface. See [AWS Cluster IP Failover]({{<relref "cluster-ip-failover-in-aws">}}) for IAM prerequisites, source/dest check, and configuration steps.
+- Two-member Trustgrid HA cluster in AWS with cluster heartbeat configured. See [Configure HA Gateway Cluster in AWS]({{<relref "route-failover">}}) for cluster setup.
+- Cluster IP configured on the LAN interface. See [AWS Cluster IP Failover]({{<relref "ip-failover">}}) for IAM prerequisites, source/dest check, and configuration steps.
 - Trustgrid VPN tunnel established between the local cluster and the remote cluster.
 
 ## Configure L4 Connectors (Local Cluster)
@@ -80,6 +82,6 @@ The following was confirmed on the Trustgrid test tenant (`20260504-220203.c0864
 
 ## Related
 
-- [AWS Cluster IP Failover]({{<relref "cluster-ip-failover-in-aws">}}) — underlying mechanism, IAM requirements, and configuration reference
-- [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "configure-ha-gateway-cluster-in-aws">}}) — L3 route-based failover alternative
+- [AWS Cluster IP Failover]({{<relref "ip-failover">}}) — underlying mechanism, IAM requirements, and configuration reference
+- [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "route-failover">}}) — L3 route-based failover alternative
 - [Cluster-Only Configuration Items]({{<relref "/docs/clusters/cluster-only-config">}}) — cluster IP reference
