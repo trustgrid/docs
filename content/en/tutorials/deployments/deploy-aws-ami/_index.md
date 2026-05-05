@@ -76,7 +76,7 @@ This bidirectional rule requirement applies **only when using UDP tunnels**. TCP
 
 - An SSH key-pair that can be used to SSH to the instance if necessary
 
-- An IAM role must be attached to the instance. The role requires policies to allow the node to manage routing table entries on the data NIC — this is necessary for automated failover in clustered deployments. See the [IAM Role Requirements section below](#iam-role-requirements) for the specific policy JSON. For HA gateway cluster deployments, refer to [Configure HA Trustgrid Gateway Cluster in AWS]({{<relref "configure-ha-gateway-cluster-in-aws">}}) for additional context on how the IAM role is used during cluster failover.
+- An IAM role must be attached to the instance. The role requires policies to allow the node to manage routing table entries on the data NIC — this is necessary for automated failover in clustered deployments. See the [IAM Role Requirements section below](#iam-role-requirements) for the specific policy JSON. For HA gateway cluster deployments, refer to the [High Availability](#high-availability) section below for the available failover options and their IAM requirements.
 
 ## Process
 
@@ -205,3 +205,13 @@ Note: It is critical that you copy/paste the license correctly.
 1. Create the stack. 
     - Check the box acknowledging that AWS CloudFormation might create IAM resources. This is required because we create an instance profile for the to-be-run EC2 instance.
 1. You can now manage the node as you would any other in the Portal UI.
+
+## High Availability
+
+Trustgrid supports multiple methods for clustered HA in AWS. These can be used independently or combined depending on your environment.
+
+| Tutorial | Failover Method | Common Use Cases |
+|----------|-----------------|-----------------|
+| [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "configure-ha-gateway-cluster-in-aws">}}) | Updates AWS route-table entries (`ec2:CreateRoute`/`DeleteRoute`) to point overlay CIDRs at the active member's ENI. | L3 routed overlay; environments with a small number of route tables to manage. |
+| [AWS Cluster IP Failover]({{<relref "cluster-ip-failover-in-aws">}}) | Claims a secondary private IP on the active member's data ENI via `ec2:AssignPrivateIpAddresses`. No route-table updates required. | Environments with many route tables; L4 proxy (connector/service) deployments; backends that need a stable source IP. |
+| [Configure HA L4 Cluster in AWS]({{<relref "configure-ha-l4-in-aws">}}) | End-to-end L4 proxy setup combining cluster IP failover on both sides of the tunnel. | Clients connecting to a stable cluster IP; backends needing a predictable source IP across failover. |

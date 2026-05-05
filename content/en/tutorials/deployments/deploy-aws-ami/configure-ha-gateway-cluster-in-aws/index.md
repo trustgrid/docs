@@ -1,29 +1,70 @@
 ---
 tags: ["aws"]
-title: "Configure HA Trustgrid Gateway Cluster in AWS"
-description: "Steps to configure a high availability Trustgrid gateway cluster in AWS"
+title: "Configure HA Gateway Cluster in AWS (Route Failover)"
+description: "Configure a high availability Trustgrid gateway cluster in AWS using route table failover (L3)"
 linkTitle: "HA Gateway Cluster in AWS"
 type: docs
 ---
 
-1. Deploy a pair of Trustgrid gateways. Deployment guide includes an example Cloud Formation template that can be used directly or customized for your environment or converted to Terraform if preferred. Gateways can be deployed in the same availability zone or different ones to provide greater redundancy across AWS. [Deploy a Trustgrid Node AMI in AWS]({{<ref "deploy-aws-ami">}}).
+This tutorial covers AWS **route failover** for a clustered Trustgrid gateway deployment. On failover, the active member updates AWS route-table entries (`ec2:CreateRoute` / `ec2:DeleteRoute`) so that overlay CIDRs always point at the active member's data ENI — no floating IP required.
 
-1. Under networking > clusters create a cluster using a descriptive and unique name as seen below.
+For the IP-based failover alternative, see [AWS Cluster IP Failover]({{<relref "cluster-ip-failover-in-aws">}}).
+
+## How it works
+
+### Graceful Failover
+1. The Trustgrid appliance relinquishing the active role removes its AWS route-table entries.
+1. The appliance gaining the active role creates new route-table entries pointing at its own ENI.
+
+### Ungraceful Failover
+1. After the [Cluster Timeout]({{<relref "/docs/clusters#cluster-timeout">}}) period elapses, the appliance taking the active role removes the prior active node's route-table entries.
+1. The now-active appliance creates new route-table entries pointing at its own ENI.
+
+## Requirements
+
+- AWS route table associated with the LAN subnet of the cluster members.
+- IAM instance profile on each cluster member granting the permissions below.
+
+### IAM Permissions Required
+
+Each cluster member's IAM instance profile must allow:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": "ec2:DescribeRouteTables",
+  "Resource": "*"
+},
+{
+  "Effect": "Allow",
+  "Action": [
+    "ec2:CreateRoute",
+    "ec2:DeleteRoute"
+  ],
+  "Resource": "arn:aws:ec2:<region>:<account-id>:route-table/<rtb-id>"
+}
+```
+
+Set the `Resource` field to the ARN of the route table associated with the data NICs. See [Deploy a Trustgrid Node AMI in AWS]({{<relref "deploy-aws-ami">}}) for full IAM role setup steps.
+
+## Configuration Steps
+
+1. Deploy a pair of Trustgrid gateways. Gateways can be in the same availability zone or different ones for greater redundancy. [Deploy a Trustgrid Node AMI in AWS]({{<ref "deploy-aws-ami">}}).
+
+1. Under **Networking > Clusters**, create a cluster with a descriptive, unique name.
    ![img](add-cluster.png)
 
-1. Select the cluster that was created and add both gateways to it using the actions drop down button as seen below.
+1. Select the cluster and add both gateways using the **Actions** dropdown.
    ![img](add-node.png)
 
-1. Configure the cluster heartbeat on each individual gateway node. This is located under system > cluster. The host should be the gateway interface on which you want to configure the heartbeat. This can be either the WAN facing or LAN facing interface. You can see what IP is configured from the node page under interfaces. The port defaults to TCP 9000 but can be any unused TCP port if desired. Security groups for both gateways will need to allow this communication in both directions. Both gateways send a heartbeat to each other on the configured IP and Port to determine if the other member is healthy. If the secondary is not able to get a response from the primary then it will become the active member of the cluster. Once this has been configured both nodes should show as green and healthy in the cluster as seen below.
+1. Configure the cluster heartbeat on each gateway node under **System > Cluster**. Set the host to the interface IP you want to use for heartbeat traffic (WAN or LAN). The port defaults to TCP 9000 but can be any unused TCP port. Both security groups must allow bidirectional traffic on this port. Both members send heartbeats to each other; if the standby cannot reach the active member it promotes itself. Once configured both nodes should show healthy in the cluster view.
    ![img](cluster-status.png)
    ![img](nodes-list.png)
 
-   {{<alert>}}If deploying gateways in different availability zones then LAN interface routes will need to be added to the cluster for both gateway LAN subnets as seen below. This is to ensure the heartbeat communication is routed over the correct interface instead of going out the WAN interface. {{</alert>}}
+   {{<alert>}}If deploying gateways in different availability zones, add LAN interface routes to the cluster for both gateway LAN subnets. This ensures heartbeat traffic routes over the correct interface rather than the WAN interface.{{</alert>}}
 
    ![img](interfaces.png)
 
-1. Under the cluster > interfaces > eth1 LAN > AWS Route Table Entries add the appropriate CIDR for the edge IP space. This should be the subnet that includes all virtual network IP space configured for edge node sites. For example if you have 100 different edge node sites carved out of 172.16.0.0/16 then you would just add this one CIDR. Once this has been added the route should be created in the routing table that is associated to the gateways LAN interface pointing to the ENI of the active member of the cluster.
+1. Under **Cluster > Interfaces > eth1 (LAN) > AWS Route Table Entries**, add the CIDR covering the edge node IP space. For example, if all edge virtual-network addresses are carved out of `172.16.0.0/16`, add that single CIDR. Once saved, a route is created in the AWS route table pointing the CIDR at the active member's ENI. On failover the route is updated automatically to the new active member's ENI.
 
-   There is an IAM profile that should have been associated to each gateway outlined in the deployment guide providing them permissions to manage the routes defined in the AWS Route Table Entries. When a failover event occurs an API Call is made to update the route to point to the ENI of the active member of the cluster.
-
-   This concludes the cluster configuration specifics for AWS deployment. Appropriate VPN configuration will need to be applied in order for traffic to pass end to end between the gateways and edge node sites.
+   Appropriate VPN configuration is still required for traffic to flow end-to-end between the gateway cluster and edge node sites.
