@@ -136,3 +136,17 @@ This guide will walk you through configuring Grafana Cloud to receive OpenTeleme
 ---
 
 Your Grafana Cloud OpenTelemetry configuration is now complete. You should begin seeing the instrumentation types you selected flowing into Grafana Cloud.
+
+---
+
+## Sample Dashboard
+
+Trustgrid provides a sample Grafana dashboard that visualizes key node metrics exported via OTEL. You can import it directly into your Grafana instance from the Grafana dashboard library:
+
+**[Trustgrid Node Dashboard](https://grafana.com/grafana/dashboards/25256-trustgrid-node-dashboard/)**
+
+To import it:
+
+1. In Grafana, go to **Dashboards** --> **Import**
+2. Enter the dashboard ID `25256` or paste the URL above
+3. Click **Load**, select your Prometheus/Mimir datasource, and click **Import**
