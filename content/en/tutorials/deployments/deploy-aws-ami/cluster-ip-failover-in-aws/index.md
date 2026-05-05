@@ -12,7 +12,7 @@ For L3 overlay route failover instead, see [Configure HA Gateway Cluster in AWS]
 
 ## How it works
 
-The cluster IP is an unused private IP in the data-interface subnet. Whichever cluster member is active assigns that IP to its data ENI as a secondary address. When the active member fails or relinquishes its role, the new active member calls `ec2:AssignPrivateIpAddresses` with `AllowReassignment=true`, which atomically migrates the secondary IP from the old ENI to the new one. AWS handles gratuitous-ARP propagation at the VPC networking layer automatically.
+The cluster IP is an unused private IP in the data-interface subnet. Whichever cluster member is active assigns that IP to its data ENI as a secondary address. When the active member fails or relinquishes its role, the new active member calls `ec2:AssignPrivateIpAddresses` with `AllowReassignment=true`, which atomically migrates the secondary IP from the old ENI to the new one.
 
 ### Graceful Failover
 1. The relinquishing member unassigns the secondary IP from its data ENI.
