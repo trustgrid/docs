@@ -6,7 +6,7 @@ linkTitle: "Cluster IP Failover in AWS"
 type: docs
 ---
 
-This tutorial covers the **cluster IP failover** mechanism for AWS-hosted Trustgrid clusters. The active cluster member claims a configured IP as a **secondary private IP on its data ENI** via `ec2:AssignPrivateIpAddresses` (with `AllowReassignment=true`). On failover, the standby promotes itself and reclaims the same secondary IP on its own ENI — no AWS route-table updates required.
+This tutorial covers the cluster IP failover mechanism for AWS-hosted Trustgrid clusters. The active cluster member claims a configured IP as a secondary private IP on its data ENI via `ec2:AssignPrivateIpAddresses` (with `AllowReassignment=true`). On failover, the standby promotes itself and reclaims the same secondary IP on its own ENI — no AWS route-table updates required.
 
 For L3 overlay route failover instead, see [Configure HA Gateway Cluster in AWS]({{<relref "configure-ha-gateway-cluster-in-aws">}}).
 
@@ -50,19 +50,19 @@ Replace `<eni-id>` with the ENI IDs for both cluster members' data interfaces, a
 
 ### Source/Destination Check
 
-The **source/destination check must be disabled** on each cluster member's data ENI. The CloudFormation template and the `aws-auto-reg` module disable this automatically. Verify in the AWS Console under **EC2 > Network Interfaces > Change Source/Dest Check**.
+The source/destination check must be disabled on each cluster member's data ENI. The CloudFormation template and the `aws-auto-reg` module disable this automatically. Verify in the AWS Console under EC2 > Network Interfaces > Change Source/Dest Check.
 
 ### Subnet IP Availability
 
-The cluster IP must be an **unused private IP** in the same subnet as the cluster members' data NICs. It is **not** an Elastic IP — it is a secondary private IPv4 address within the VPC CIDR.
+The cluster IP must be an unused private IP in the same subnet as the cluster members' data NICs. It is not an Elastic IP — it is a secondary private IPv4 address within the VPC CIDR.
 
 ## Configuration
 
 ### Portal
 
 1. Navigate to the cluster in the Trustgrid portal.
-1. Select **Interfaces**, then the LAN interface (typically `eth1`).
-1. Set the **Cluster IP** field to the reserved private IP.
+1. Select Interfaces, then the LAN interface (typically `eth1`).
+1. Set the Cluster IP field to the reserved private IP.
 1. Save. The active cluster member will assign the secondary IP to its data ENI immediately. No restart is required.
 
 ### Terraform
@@ -81,7 +81,7 @@ The `cluster_ip` field is applied in-place — changing it on a running cluster 
 
 ## How LAN Hosts Use the Cluster IP
 
-LAN hosts typically use the cluster IP as their **next-hop gateway** for remote virtual-network CIDRs. For example, on a Linux host on the same subnet:
+LAN hosts typically use the cluster IP as their next-hop gateway for remote virtual-network CIDRs. For example, on a Linux host on the same subnet:
 
 ```bash
 ip route add 172.16.0.0/12 via 10.0.1.50
@@ -91,9 +91,9 @@ Because the cluster IP follows the active member automatically, no route-table u
 
 ## Failover Behavior
 
-- **New TCP connections** succeed within seconds of a failover — the secondary IP migrates to the new active member and AWS propagates the change at the VPC level.
-- **Existing TCP sessions** are torn down; clients must reconnect.
-- **Cluster IP changes** (e.g. updating the configured value) take effect live on the active member and are reconciled on the standby member when it restarts or becomes active. Cluster IP changes made while the active member is stopped are picked up cleanly on restart at both the AWS ENI and OS levels.
+- New TCP connections succeed within seconds of a failover — the secondary IP migrates to the new active member and AWS propagates the change at the VPC level.
+- Existing TCP sessions are torn down; clients must reconnect.
+- Cluster IP changes (e.g. updating the configured value) take effect live on the active member and are reconciled on the standby member when it restarts or becomes active. Cluster IP changes made while the active member is stopped are picked up cleanly on restart at both the AWS ENI and OS levels.
 
 ## Related
 
