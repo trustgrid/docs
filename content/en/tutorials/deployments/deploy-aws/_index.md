@@ -1,219 +1,213 @@
 ---
 tags: ["aws"]
 linkTitle: "Deploy to AWS"
-title: "Deploy a Trustgrid Node AMI in AWS"
+title: "Deploy a Trustgrid Node in AWS"
+no_list: true
 aliases:
   - /tutorials/deployments/deploy-aws-ami/
 ---
 
-Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes in AWS use two network interfaces - a management and a data interface. The management interface communicates with Trustgrid Cloud Management systems. The data interface is used to terminate TLS tunnels from Edge Nodes.
-
-## Notes
-
-- The cloudformation template below works with an AMI currently published in US-EAST-1/2 and US-WEST-1/2. Deploying in other regions requires working with Trustgrid Support
-- Requires VPC and public subnet
-- Does not create security groups or roles - those have to be managed separately (more below)
+Standing up a Trustgrid node in AWS uses a published Amazon Machine Image (AMI). Each node has two network interfaces — a WAN interface for control plane communication and TLS/UDP tunnel traffic, and a LAN interface for internal data traffic.
 
 ## Prerequisites
 
-### Instance Type
+The Trustgrid AMI is published in us-east-1, us-east-2, us-west-1, and us-west-2. Deploying in other regions requires working with [Trustgrid Support]({{<relref "/help-center/trustgrid-support">}}) to copy the AMI into the target region.
 
-| Known Supported Instance Types                | Architecture |
-|-----------------------------------------|--------------|
-| t2, t3, t3a, c5, c5n, c6i, c6in, c6a   | x86_64 only  |
+You will also need:
 
-Additional x86_64 instances types may work but have not been tested. Contact Trustgrid support if a different type is believed necessary.
-
-> **Note:** ARM-based instances (such as Graviton) are not supported.
+- A VPC with a public subnet for the WAN interface and a private subnet for the LAN interface.
+- An available Elastic IP in the region — one EIP is associated with the WAN interface during provisioning.
+- An SSH key pair in the target region for troubleshooting if required.
 
 {{<alert>}}
-If using a burstable performance instance types (T2, T3 and T3a) the following is advised:
-
-- Set CPU Credits for all Gateway instances to unlimited to allow CPU to burst in the event there is a spike above the normal threshold. [Unlimited mode for burstable performance instances - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode.html)
-
-- Configure monitoring of your CPU Credit Balance to alert if your credits are being consumed or you are being charged for additional CPU usage which might warrant resizing your devices. [Monitor your CPU credits - Amazon Elastic Compute Cloud](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-monitoring-cpu-credits.html)
+Direct SSH access to the node is removed as part of the provisioning process. The SSH key pair is only used if troubleshooting is required during the initial deployment.
 {{</alert>}}
 
-### Networking
+### Instance Type
 
-- VPC with public and private subnets - Management NIC goes in the public subnet, Data NIC goes in the private subnet
-  - Note: If doing a multi-AZ cluster deployment the private subnets need to use the same route table for automated route management to work
-- Security group for management NIC that allows the following traffic:
+| Known Supported Instance Types | Architecture |
+|--------------------------------|--------------|
+| t3, t3a, c5, c5n, c6i, c6in, c6a | x86_64 only |
 
-  - Inbound traffic on designated Trustgrid gateway port (typical TCP 8443) for remote nodes. Access to this port can be secured to only allow access from remote nodes if desired. This is only required if deploying a Trustgrid gateway. If the node is acting as an edge then no inbound access is required.
-  - Outbound traffic to Trustgrid’s control plane IP (TCP 80/443 & 8443 to 35.171.100.16/28 & 34.223.12.192/28)
-  - Outbound traffic to AWS API (TCP 443) https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html (See [Public Cloud Appliance Requirements]({{<relref "/help-center/kb/site-requirements#public-cloud-appliance-requirements">}}) for more details)
-  - Inbound & Outbound to/from management NIC security group on cluster port (typically TCP port 9000)
-  - For the initial deployment outbound access for TCP 80/443 should be allowed. Upon successful registration with the Trustgrid Portal, this can be removed.
+Additional x86_64 instance types may work but have not been tested. ARM-based instances (Graviton) are not supported. Contact [Trustgrid Support]({{<relref "/help-center/trustgrid-support">}}) if a different type is believed necessary.
 
-- All Interfaces on the Trustgrid Gateway should have source/destination check disabled in AWS
+{{<alert>}}
+If using a burstable performance instance type (T3, T3a):
 
-- Security group for data NIC - No configuration for now
+- Set CPU Credits for all Gateway instances to unlimited so CPU can burst above the normal threshold. See [Unlimited mode for burstable performance instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-unlimited-mode.html).
+- Configure monitoring of your CPU Credit Balance to alert if credits are being consumed or you are being charged for additional CPU usage. See [Monitor your CPU credits](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances-monitoring-cpu-credits.html).
+{{</alert>}}
 
-- VPC must have unallocated public IP that will be claimed during provisioning
+## Networking
 
-#### AWS Network Firewall and UDP Tunnels
-
-If nodes are deployed behind an [AWS Network Firewall](https://aws.amazon.com/network-firewall/) and UDP tunnels are used, **explicit rules must be added in both directions**. Unlike TCP, AWS Network Firewall does not maintain UDP connection state during maintenance events. If the first packet the firewall sees after a maintenance event arrives from the opposite direction of the original flow (e.g., a gateway initiating a keepalive back toward an edge node), it will not recognize the tuple as an established session and will block it.
+The WAN interface lives in the public subnet and must allow outbound access to the Trustgrid control plane. See [Network Requirements for All Nodes]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}}) for the full list of required IPs and ports.
 
 {{<alert color="warning">}}
-This bidirectional rule requirement applies **only when using UDP tunnels**. TCP tunnels are not affected because AWS Network Firewall tracks TCP state normally.
+Inbound TCP/UDP 8443 on the WAN interface is only required if the node will act as a gateway (a node that terminates tunnels from remote edge nodes). Edge nodes do not require any inbound WAN security group rules.
 {{</alert>}}
 
-**Gateway node — required rules:**
+The LAN interface lives in the private subnet and is used for internal data traffic and, in clustered deployments, for inter-node communication on the cluster heartbeat port (typically TCP 9000).
+
+The following table summarizes the security group rules required across both interfaces:
+
+| Interface | Direction | Protocol | Ports     | Source/Destination | Purpose |
+|-----------|-----------|----------|-----------|--------------------|---------|
+| WAN       | Egress    | TCP      | 443, 8443 | Trustgrid control plane IPs — see [Network Requirements]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}}) | Control plane communication |
+| WAN       | Egress    | TCP      | 443       | AWS API endpoints — see [AWS IP ranges](https://docs.aws.amazon.com/general/latest/gr/aws-ip-ranges.html) | EC2 API calls for cluster failover |
+| WAN       | Ingress   | TCP/UDP  | 8443      | 0.0.0.0/0 (or known edge IPs) | TLS/UDP tunnel traffic (gateway nodes only) |
+| LAN       | Ingress/Egress | TCP | 9000      | LAN subnet CIDR | Cluster heartbeat (clustered nodes only) |
+
+## AWS Network Firewall and UDP Tunnels
+
+If nodes are deployed behind an [AWS Network Firewall](https://aws.amazon.com/network-firewall/) and UDP tunnels are used, explicit rules must be added in both directions. Unlike TCP, AWS Network Firewall does not maintain UDP connection state during maintenance events. If the first packet the firewall sees after a maintenance event arrives from the opposite direction of the original flow (e.g., a gateway initiating a keepalive back toward an edge node), it will not recognize the tuple as an established session and will block it.
+
+{{<alert color="warning">}}
+This bidirectional rule requirement applies only when using UDP tunnels. TCP tunnels are not affected because AWS Network Firewall tracks TCP state normally.
+{{</alert>}}
+
+Gateway node — required rules:
 
 | Direction | Source IP | Source Port | Destination IP | Destination Port |
-|-----------|-----------|-------------|----------------|-----------------|
+|-----------|-----------|-------------|----------------|------------------|
 | Inbound   | Remote edge node IPs (or `any`) | Any | Gateway IP | UDP 8443 (or configured gateway port) |
 | Outbound  | Gateway IP | Any (ephemeral UDP source port) | Remote edge node IPs (or `any`) | Any |
 
-**Edge node — required rules:**
+Edge node — required rules:
 
 | Direction | Source IP | Source Port | Destination IP | Destination Port |
-|-----------|-----------|-------------|----------------|-----------------|
+|-----------|-----------|-------------|----------------|------------------|
 | Outbound  | Edge node IP | Any | Known gateway IPs | UDP 8443 (or configured gateway port) |
 | Inbound   | Known gateway IPs | UDP 8443 (or configured gateway port) | Edge node IP | Any |
 
-### Security
+## Security
 
-- An SSH key-pair that can be used to SSH to the instance if necessary
+Source/destination check must be disabled on both interfaces of every Trustgrid node. The CloudFormation and Terraform deployment paths configure this automatically; for [Remote Registration](#remote-registration) deployments it must be disabled manually after the instance is launched.
 
-- An IAM role must be attached to the instance. The role requires policies to allow the node to manage routing table entries on the data NIC — this is necessary for automated failover in clustered deployments. See the [IAM Role Requirements section below](#iam-role-requirements) for the specific policy JSON. For HA gateway cluster deployments, refer to the [High Availability](#high-availability) section below for the available failover options and their IAM requirements.
+An IAM role is only required if the node will be deployed as part of an HA cluster using one of the failover mechanisms below. Each tutorial documents the specific permissions required:
 
-## Process
+- [IP Failover]({{<relref "ip-failover">}}) — `ec2:AssignPrivateIpAddresses` on the LAN ENI.
+- [Route Failover]({{<relref "route-failover">}}) — `ec2:DescribeRouteTables`, `ec2:CreateRoute`, `ec2:DeleteRoute` on the LAN route table.
 
-1. Create a new Node. When complete the Node license will copy to clipboard.
+---
 
-   - Note: The node will not be visible in the portal until the registration process is complete.
-   - Download the license to local storage in case the clipboard is cleared. You cannot reissue a license without recreating the node.
+## Deployment Methods
 
-1. Deploy the Cloudformation Template
-  
-- https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node.json
-- Change the region in the template URL to the region you are deploying in
-- All fields are required
+Choose one of the following methods to deploy and register the node.
 
-## Parameters
+### Terraform
 
-### Stack Name
-Unique name to describe this deployment
+The [trustgrid-infra-as-code](https://github.com/trustgrid/trustgrid-infra-as-code) repository provides purpose-built Terraform modules for deploying Trustgrid nodes in AWS. These modules encapsulate the EC2 instance, two ENIs, EIP, source/destination check, and IAM wiring.
 
-### Instance Configuration
+| Module | Path | Purpose |
+|--------|------|---------|
+| `trustgrid_single_node_auto_reg` | `aws/terraform/modules/compute/trustgrid_single_node_auto_reg` | Deploys a node with two ENIs and automatic registration via license key |
+| `trustgrid_single_node_manual_reg` | `aws/terraform/modules/compute/trustgrid_single_node_manual_reg` | Deploys a node with two ENIs without a license key, to be registered after launch via [Remote Registration](#remote-registration) |
+| `trustgrid_cluster_route_role` | `aws/terraform/modules/iam/trustgrid_cluster_route_role` | Creates and binds the IAM role required for HA cluster route failover |
+
+### CloudFormation
+
+In this path, you create the node in the Trustgrid portal first to obtain a license key, then pass the key as a parameter to the CloudFormation stack. The node registers automatically with the Trustgrid control plane on first boot.
+
+#### Step 1: Add the Node and Obtain a License Key
+
+In the Trustgrid portal, go to the [Nodes page]({{<relref "/docs/nodes">}}), click **Add Node**, enter a name for the node, and click **Create License**. The portal generates a license key — copy it to your clipboard or click **Download License** to save it locally. See [Adding Node Appliances]({{<relref "/docs/nodes#adding-node-appliances---generating-licenses">}}) for the full walkthrough with screenshots.
+
+{{<alert>}}
+Generating a license requires a Trustgrid portal account. If you are not a direct Trustgrid customer, work with your vendor or contact [Trustgrid Support]({{<relref "/help-center/trustgrid-support">}}) to have a license generated for you.
+{{</alert>}}
+
+{{<alert>}}
+The node will not appear in the portal until the EC2 instance successfully completes registration with the Trustgrid control plane. You cannot reissue a license without recreating the node, so download the license to local storage in case the clipboard is cleared.
+{{</alert>}}
+
+#### Step 2: Launch the CloudFormation Stack
+
+Open the CloudFormation template in the AWS console:
+
+[https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node.json](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create/review?templateURL=https://s3.amazonaws.com/tg-dev-public/cf-trustgrid-node.json)
+
+Change the `region=` query parameter in the URL to the region you are deploying in. All template fields are required.
 
 {{<fields>}}
+{{% field "Stack Name" %}}
+A unique name describing this deployment.
+{{% /field %}}
 {{% field "Instance Type" %}}
-Set the instance type of the EC2 instance to deploy (bigger instances cost more)
+The EC2 instance type. See [Instance Type](#instance-type) above.
 {{% /field %}}
 {{% field "SSH Keypair" %}}
-SSH keypair to SSH to the instance as ubuntu user if necessary
+SSH keypair used to SSH to the instance as the `ubuntu` user if necessary.
 
-> SSH access requires a security group change allowing access. We strongly recommend that SSH is not allowed from anywhere (0.0.0.0/0).
+> SSH access requires a security group rule allowing inbound port 22. We strongly recommend SSH not be allowed from `0.0.0.0/0`.
 {{% /field %}}
-
-
-{{%field "Host IAM Role" %}}
-An IAM role needs to be created with the permissions listed in the [IAM Role Requirements section below](#iam-role-requirements).
+{{% field "Host IAM Role" %}}
+Optional. Only required if the node will participate in an HA cluster — see [Security](#security).
 {{% /field %}}
-
-{{</fields>}}
-
-#### IAM Role Requirements
-##### Encrypted EBS Volume 
-> Required for all nodes
-
-By default, the cloud formation template provided will configure an encrypted EBS volume on the Trustgrid Node.
-The following permissions need to be applied to the associated IAM role to provide access to the default EBS key. 
-Note you will need to input your applicable AWS account ID/region where this node is being deployed.
-
-```json
- {
-	"Effect": "Allow",
-	"Action": [
-        "kms:Decrypt",
-        "kms:DescribeKey",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*"
-        ],
-        "Resource": "arn:aws:kms:us-east-1:$aws_accountid:alias/aws/ebs"        
-}
-```
-##### Route Table
-> Required for [clustered nodes]({{<relref "/docs/clusters">}})
-
-If the node will be clustered the IAM role requires the following permissions (`ec2:DescribeRouteTables` for all resources and `ec2:CreateRoute` and `ec2:DeleteRoute` on the route table):
-
-Route Table Policy
-
-```json
-{
-	"Effect": "Allow",
-	"Action": "ec2:DescribeRouteTables",
-	"Resource": "*"
-},
-{
-	"Effect": "Allow",
-	"Action": [
-		"ec2:CreateRoute",
-		"ec2:DeleteRoute"
-	],
-	"Resource": "arn:aws:ec2:us-east-1:$aws_accountid:route-table/rtb-f428d58b"
-}
-```
-**NOTE**: Set the Resource field to the ARN of the Routing Table associated with the data NICs of the instance. 
-
-
-## Management Configuration
-This section covers the configuration of the outside, internet-facing interface of the EC2 instance.
-{{<fields>}}
-{{% field "Security Group" %}}
-
-- Needs to allow outbound traffic to other gateways and the [Trustgrid public IP range]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}}), at a minimum.
-- If it's a gateway node, needs to allow inbound access on the gateway port, typically TCP/UDP 8443.
-
+{{% field "WAN — Security Group / Subnet" %}}
+The security group and public VPC subnet for the WAN interface. The EIP created by the template is associated with the interface in this subnet.
 {{% /field %}}
-{{% field "Subnet" %}}
-The VPC subnet for the public, internet-facing interface. The EIP that is created by the CloudFormation template will be associated with the interface on this subnet.
+{{% field "LAN — Security Group / Subnet" %}}
+The security group and private VPC subnet for the LAN interface.
 {{% /field %}}
-{{</fields>}}
-
-## Data Path Configuration
-This section covers the configuration of the inward, private-facing interface of the EC2 instance.
-
-{{<fields>}}
-{{% field "Security Group" %}}
-The security group for the data path interface. 
-
-- Needs to allow communication between any private AWS network resources that need to access the Trustgrid EC2 node's private IP or any [virtual network]({{<relref "docs/domain/virtual-networks">}}) resources that will be accessed across the Trustgrid network.
-- If the EC2 instance node will be clustered, the security group should allow communication between the private IPs of all the clustered nodes on the [cluster heartbeat port]({{<relref "/docs/nodes/appliances/cluster#heartbeat">}}), typically port TCP 9000.
-
-{{% /field %}}
-{{% field "Subnet" %}}
-The VPC subnet for the data path interface.
-{{% /field %}}
-{{</fields>}}
-
-## Trustgrid Configuration
-{{<fields>}}
 {{% field "Trustgrid License" %}}
-Copy/paste the license from the portal.
-
-Note: It is critical that you copy/paste the license correctly.
+Paste the license key from the portal (see Step 1 above). It is critical that the license is copied exactly.
 {{% /field %}}
-
-{{<alert>}}If you are not a direct Trustgrid customer please work with your vendor to get these licenses generated and sent to you.{{</alert>}}
 {{</fields>}}
-## Creating the Stack
 
-1. Create the stack. 
-    - Check the box acknowledging that AWS CloudFormation might create IAM resources. This is required because we create an instance profile for the to-be-run EC2 instance.
-1. You can now manage the node as you would any other in the Portal UI.
+When creating the stack, check the box acknowledging that AWS CloudFormation may create IAM resources — this is required because the template creates an instance profile for the EC2 instance.
+
+The CloudFormation template configures an encrypted EBS volume. If you supply a custom IAM role, it must include access to the default EBS KMS key:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": [
+    "kms:Decrypt",
+    "kms:DescribeKey",
+    "kms:ReEncrypt*",
+    "kms:GenerateDataKey*"
+  ],
+  "Resource": "arn:aws:kms:REGION:ACCOUNT_ID:alias/aws/ebs"
+}
+```
+
+Once registration is complete, the node appears as online in the portal and is ready to manage like any other.
+
+### Remote Registration
+
+In this path, you launch an EC2 instance from the Trustgrid AMI without a license key and then register the node using the Trustgrid remote registration utility over SSH. Use this approach if you need to register a node without pre-generating a license key from the portal.
+
+#### Step 1: Launch the EC2 Instance
+
+Launch an EC2 instance from the Trustgrid AMI in the target region. The AMI is published with a name prefixed `trustgrid-node-prod` — search the AMI catalog by that prefix and select the most recent version. Configure the instance with:
+
+- The instance type from [Instance Type](#instance-type) above.
+- A primary network interface in the public subnet with the WAN security group attached and an Elastic IP associated.
+- A secondary network interface in the private subnet with the LAN security group attached.
+- Source/destination check disabled on both interfaces.
+- An IAM instance profile attached if the node will participate in an HA cluster — see [Security](#security) for the permissions required by IP Failover or Route Failover.
+- The SSH key pair for the region.
+
+#### Step 2: Register via the EC2 Serial Console
+
+Once the instance is running, open the [EC2 Serial Console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-serial-console.html) for the instance from the AWS console and log in to the Trustgrid local console utility. From there, initiate the remote registration process — the console will generate a short activation code that someone with Trustgrid portal access can use to license the node.
+
+{{<alert color="warning">}}
+Completing remote registration requires access to the Trustgrid portal. This step must be performed by someone with portal access — either the end customer or [Trustgrid Support]({{<relref "/help-center/trustgrid-support">}}).
+{{</alert>}}
+
+See [Remote Registration]({{<relref "/tutorials/local-console-utility/remote-registration">}}) for full instructions.
+
+---
 
 ## High Availability
 
-Trustgrid supports multiple methods for clustered HA in AWS. These can be used independently or combined depending on your environment.
+High availability for a Trustgrid cluster in AWS is achieved using one of two failover mechanisms. Either mechanism can support L3 or L4 traffic patterns.
 
-| Tutorial | Failover Method | Common Use Cases |
-|----------|-----------------|-----------------|
-| [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "route-failover">}}) | Updates AWS route-table entries (`ec2:CreateRoute`/`DeleteRoute`) to point overlay CIDRs at the active member's ENI. | L3 routed overlay; environments with a small number of route tables to manage. |
-| [AWS Cluster IP Failover]({{<relref "ip-failover">}}) | Claims a secondary private IP on the active member's data ENI via `ec2:AssignPrivateIpAddresses`. No route-table updates required. | Environments with many route tables; L4 proxy (connector/service) deployments; backends that need a stable source IP. |
-| [Configure HA L4 Cluster in AWS]({{<relref "configure-ha-l4-in-aws">}}) | End-to-end L4 proxy setup combining cluster IP failover on both sides of the tunnel. | Clients connecting to a stable cluster IP; backends needing a predictable source IP across failover. |
+- [IP Failover]({{<relref "ip-failover">}}) — Claims a secondary private IP on the active member's LAN ENI. No route-table changes; works in environments with many route tables and for backends that need a stable source IP.
+- [Route Failover]({{<relref "route-failover">}}) — Updates AWS route-table entries to point overlay CIDRs at the active member's ENI. Best suited for L3 routed overlays with a small number of route tables.
+
+### Use Case Tutorials
+
+- [HA L4 Cluster in AWS]({{<relref "configure-ha-l4-in-aws">}}) — End-to-end L4 proxy setup with a stable cluster IP across both sides of the tunnel.
+- [HA Wireguard Cluster]({{<relref "aws-ha-cluster">}}) — Fronting Wireguard listeners with an AWS Network Load Balancer.

@@ -65,8 +65,10 @@ The cluster IP must be an unused private IP in the same subnet as the cluster me
 
 1. Navigate to the cluster in the Trustgrid portal.
 1. Select Interfaces, then the LAN interface (typically `eth1`).
-1. Set the Cluster IP field to the reserved private IP.
+1. Set the Cluster Elastic IP field to the reserved private IP.
 1. Save. The active cluster member will assign the secondary IP to its data ENI immediately. No restart is required.
+
+{{<tgimg src="cluster-interfaces-cluster-ip.png" alt="Cluster Interfaces page showing the eth1 LAN interface with a Cluster Elastic IP set" caption="Cluster Elastic IP set on the eth1 (LAN) interface">}}
 
 ### Terraform
 
