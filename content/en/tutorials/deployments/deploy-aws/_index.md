@@ -204,10 +204,10 @@ See [Remote Registration]({{<relref "/tutorials/local-console-utility/remote-reg
 
 High availability for a Trustgrid cluster in AWS is achieved using one of two failover mechanisms. Either mechanism can support L3 or L4 traffic patterns.
 
-- [IP Failover]({{<relref "ip-failover">}}) — Claims a secondary private IP on the active member's LAN ENI. No route-table changes; works in environments with many route tables and for backends that need a stable source IP.
-- [Route Failover]({{<relref "route-failover">}}) — Updates AWS route-table entries to point overlay CIDRs at the active member's ENI. Best suited for L3 routed overlays with a small number of route tables.
+- [IP Failover]({{<relref "ip-failover">}}) — Claims a secondary private IP on the active member's LAN ENI. Does not require route-table changes.
+- [Route Failover]({{<relref "route-failover">}}) — Updates AWS route-table entries to point overlay CIDRs at the active member's ENI.
 
 ### Use Case Tutorials
 
-- [HA L4 Cluster in AWS]({{<relref "configure-ha-l4-in-aws">}}) — End-to-end L4 proxy setup with a stable cluster IP across both sides of the tunnel.
-- [HA Wireguard Cluster]({{<relref "aws-ha-cluster">}}) — Fronting Wireguard listeners with an AWS Network Load Balancer.
+- [HA L4 Cluster in AWS]({{<relref "l4-cluster">}}) — Using the cluster IP on L4 connectors and services so the cluster presents a stable IP across member failover.
+- [HA Wireguard Cluster]({{<relref "wireguard-cluster">}}) — Fronting Wireguard listeners with an AWS Network Load Balancer.

@@ -26,14 +26,7 @@ The Cluster IP is supported in Azure. It is managed through the Azure API by ass
 
 ### AWS
 
-The Cluster IP is supported in AWS. The active cluster member claims the configured IP as a secondary private IP on its data ENI via `ec2:AssignPrivateIpAddresses` (with `AllowReassignment=true`). On failover, the newly active member atomically migrates the secondary IP to its own ENI — no AWS route-table updates are required.
-
-AWS-specific requirements:
-- IAM instance profile must allow `ec2:AssignPrivateIpAddresses`, `ec2:UnassignPrivateIpAddresses`, `ec2:DescribeNetworkInterfaces`, and `ec2:DescribeInstances` on the cluster members' data ENIs.
-- Source/destination check must be disabled on the data ENI of each cluster member.
-- The cluster IP must be an unused secondary private IPv4 address within the data subnet — it is not an Elastic IP.
-
-See [AWS Cluster IP Failover]({{<relref "/tutorials/deployments/deploy-aws/ip-failover">}}) for the full setup walkthrough.
+The Cluster IP is supported in AWS. It is managed through the AWS API by assigning it as a secondary private IP address on the network interface of the active node. This requires API-level permissions and is automatically handled by the control plane. See [AWS Cluster IP Failover]({{<relref "/tutorials/deployments/deploy-aws/ip-failover">}}) for setup details.
 
 ### Google Cloud (GCP)
 

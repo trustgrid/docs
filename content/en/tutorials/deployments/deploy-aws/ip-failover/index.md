@@ -102,6 +102,6 @@ Because the cluster IP follows the active member automatically, no route-table u
 
 ## Related
 
-- [Configure HA Gateway Cluster in AWS (Route Failover)]({{<relref "route-failover">}}) — L3 overlay route failover alternative
-- [Configure HA L4 Cluster in AWS]({{<relref "configure-ha-l4-in-aws">}}) — end-to-end L4 proxy use case using the cluster IP
+- [AWS Cluster Route Failover]({{<relref "route-failover">}}) — route-table failover alternative
+- [HA L4 Cluster in AWS]({{<relref "l4-cluster">}}) — using the cluster IP on L4 connectors and services
 - [Cluster-Only Configuration Items]({{<relref "/docs/clusters/cluster-only-config">}}) — cluster IP reference documentation
