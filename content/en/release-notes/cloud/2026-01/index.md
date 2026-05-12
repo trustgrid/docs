@@ -27,7 +27,7 @@ The [View Cluster Health]({{<relref "docs/clusters#view-cluster-health">}}) tool
 {{<tgimg src="/docs/clusters/view-cluster-health-state.png" width="80%" alt="View Cluster Health results" caption="Results of the view cluster health tool" >}}
 
 ### Restart Cluster Server
-The [Restart Cluster Server]({{<relref "docs/clusters#restart-cluster-server">}}) tool allows you to restart the cluster server service on a cluster member without restarting the entire node. This can be useful in situations where both members are reporting as active or standby, and a restart is needed to restore normal operation. The control is now launched from the **Actions** menu in the cluster **Nodes** table and requires confirmation before the restart request is sent, which helps prevent accidental restarts during failover or failback.
+The [Restart Cluster Server]({{<relref "docs/clusters#restart-cluster-server">}}) tool allows you to restart the cluster server service on a cluster member without restarting the entire node. This can be useful in situations where both members are reporting as active or standby, and a restart is needed to restore normal operation.
 
 ## Events and Alarm Improvements
 This release includes several enhancements to the Events and Alarms system to improve usability and functionality.
