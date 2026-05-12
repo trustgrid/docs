@@ -67,7 +67,18 @@ Tracker for things discovered while writing/validating the container docs. Nothi
 - **Evidence:** Coincides on the same node with intermittent `Repo Connectivity failed` events and `CRITICAL Connection to Gateway=... Unauthorized` events around restart time. Repo connectivity recovered after the next reconnect, suggesting the misspelled call is non-fatal but contributes to startup noise and possibly to slow / blocked container image pulls.
 - **Suggested action:** grep the node codebase for `trustrid` (note missing g) and fix the literal. May be a single character typo with surprising blast radius.
 
-## 9. Cluster-scope container does not appear in node-config
+## Retractions / corrections after cluster retest
+
+Re-validated the clustered env (`nate-edge-cls-0427-2048`) with the amd64-indexed `nginx:amd64-test` tag. Container **`docs-amd64-cluster`** comes up `RUNNING` on the same node previously reporting `startup.error: true` and previously showing `STOPPED` for arm64 containers. Earlier conclusions from the clustered env need revision in light of this:
+
+- **#6 "All 4 nodes report `startup.error: true`":** the alarm is real but it does NOT prevent containers from starting. The clustered node ran the amd64 image fine. `startup.error: true` should still be investigated as a possibly stale alarm, but is **not** the root cause of containers staying `STOPPED`. Downgrade priority.
+- **#9 "Cluster-scope container does not appear in node-config":** confirmed the cluster-scoped container DOES not show in the `node-config` trigger output even when it's actually running on the node. So the *config* trigger output is incomplete for cluster-scoped containers, but propagation works through a different channel — the node runs the container correctly. This is a **diagnostic-output gap**, not a propagation bug. Re-classify as "node-config trigger should report cluster-scoped containers too, for diagnostic completeness."
+- **#7 "POST creates duplicates by name":** still real, reproduced cleanly via API. Not arm64-related.
+- **#8 "PUT appears to append port mappings":** I observed this on an older container record; on the clean upgraded single-node it did not reproduce (`PUT config` replaced port mappings cleanly). May be a pre-existing record artifact on the older node rather than current behavior. Worth one more confirmation on a fully clean state before filing.
+- **#5 "DELETE container schema rejects own response shape":** still real, reproduced cleanly. Not arm64-related.
+- **Port mapping on the unhealthy cluster:** the container's port mapping doesn't reach host iptables on the clustered node (curl refused on all three of edge1/edge2/cluster-vIP at port 8090). The single node and the API both show the mapping recorded. This MIGHT be a separate bug specific to the cluster being in a degenerate state (1 of 2 nodes bound, "unhealthy" banner). On the healthy standalone node, port mappings worked fine end-to-end (HTTP 200). Need a healthy 2-node cluster to retest cleanly.
+
+## (original #9) Cluster-scope container does not appear in node-config
 
 - **Where:** `POST /v2/cluster/{fqdn}/exec/container` then `POST /node/{id}/trigger/node-config`.
 - **What:** Created `docs-nginx` at cluster scope (cluster `nate-edge-cls-0427-2048`, id `740fd2d7-...`). Cluster-scope GET returns the record. Node `node-config` trigger fires within seconds and still does not include the cluster container; it shows only the 3 node-scope records.
