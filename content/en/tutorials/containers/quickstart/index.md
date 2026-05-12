@@ -23,6 +23,10 @@ docker.<your-domain>/<your-namespace>/<image>:<tag>
 
 For example, on the org with domain `acme.trustgrid.io` the path for an image called `myapp` tagged `v1` is `docker.acme.trustgrid.io/acme.trustgrid.io/myapp:v1`. Your exact namespace is shown on the **Repositories** page.
 
+{{<alert color="warning">}}
+**Pushing from Apple Silicon?** Docker Desktop and Colima on M-series Macs push `linux/arm64` OCI manifests by default. The Trustgrid registry only indexes `linux/amd64` Docker schema 2 manifests — an arm64 push completes silently but the tag will be invisible to the portal and unreachable by nodes. Use `docker buildx build --platform linux/amd64 --push ...` or run the push from an amd64 Linux host. See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
+{{</alert>}}
+
 Authenticate. From the Trustgrid portal, navigate to **Repositories** and copy the **Docker Login** command — it includes a short-lived token. Paste it in your terminal:
 
 ```bash

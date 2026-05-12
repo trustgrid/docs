@@ -15,9 +15,9 @@ What it does **not** tell you:
 - Whether the failure was authentication (401), missing manifest (404), TLS handshake, or timeout.
 - Which `Accept` header the node sent.
 
-Known causes:
+Known causes, in order of likelihood:
 
-1. **Image was pushed but never replicated to the node-pull registry.** Customer pushes go to `docker.<env>.trustgrid.io`. Nodes pull from `repo.<env>.trustgrid.io` (per the `repo.uri` field in `/var/lib/trustgrid/config/node-profile.json`). If you've just pushed and nodes immediately can't pull, raise it with TrustGrid Support — image replication between push and pull hosts is part of the platform, not something a customer controls.
+1. **Image was pushed as `linux/arm64` or as a multi-arch OCI manifest.** The Trustgrid registry only indexes `linux/amd64` Docker schema 2 manifests. Pushes from Apple Silicon (M-series Macs) using default Docker Desktop or Colima settings will silently land in the registry but never be indexed — the portal **Repositories → `<image>`** page will not list the tag and nodes cannot pull it. Re-push with `docker buildx build --platform linux/amd64 --push ...` or from an amd64 Linux host. See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
 2. **Multi-segment image name** (e.g. `mynamespace/sub/dir/image`). Historical bug in node URL construction. Fixed in node release `n-2.23.0` (Aug 2025). If you're seeing this on an older node, upgrade.
 3. **Tag does not exist.** Confirm via **Repositories** in the portal that the tag is actually listed for your image. The portal list lags pushes by a few seconds.
 4. **Registry unreachable from the node.** Run `Actions → Test Repo Connectivity` on the node — it should return `connected`. If not, fix control-plane connectivity first.
