@@ -13,6 +13,20 @@ Before adding a container to a node, push an image to your [repository]({{<ref "
 
 Reading and managing containers requires `node-exec::read` and `node-exec::modify` permissions, respectively. Executing a container requires `node-exec::compute` permission.
 
+## Where to start
+
+- **New to running containers on Trustgrid?** Start with the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) — push an image, run it, reach it from the LAN in about 10 minutes.
+- **Need to reach the container from a peer node over VPN?** Follow [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}).
+- **Want to understand how the container plugs into the network?** See [Container networking concepts]({{<ref "concepts/networking">}}).
+- **Operating a running container — logs, terminal, restart?** See [Container Tools]({{<ref "tools">}}). This is the user-facing answer to "how do I tail logs / shell in?".
+- **Something is broken?** Jump to [Container Troubleshooting]({{<ref "troubleshooting">}}).
+
+The rest of this page is a reference for the configuration fields on the Add Container modal and the per-container detail screens.
+
+## Cluster scope vs node scope
+
+Container configuration is set at the **cluster** level on a cluster, or at the **node** level on a standalone node. The runtime controls — Start, Stop, Logs, Terminal — are always on the **node** that's running the container. The portal redirects you between these views as appropriate. See [Container Tools]({{<ref "tools">}}) for the full breakdown.
+
 ## Management
 
 Navigate to **Container Management** under **Compute** on a node or cluster.
