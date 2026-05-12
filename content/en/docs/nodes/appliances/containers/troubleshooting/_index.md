@@ -6,6 +6,32 @@ weight: 90
 
 This page is organized by symptom. Each section starts with a one-line summary and lists what to check first.
 
+## `RegistryMediator: Retries exhausted downloading https://repo.*/v2/...`
+
+This appears in `/var/log/trustgrid/tg-default.log` on the node and is the most common cause of a container staying in `Stopped` after a fresh deploy. The exception text is generic — the underlying cause is *not* the same across reports — but in most cases it means **the node could not retrieve the image manifest from the configured pull host** (the value of `repo.uri` in the node's profile, typically `repo.<env>.trustgrid.io`).
+
+What it does **not** tell you:
+- The HTTP status code returned by the registry.
+- Whether the failure was authentication (401), missing manifest (404), TLS handshake, or timeout.
+- Which `Accept` header the node sent.
+
+Known causes:
+
+1. **Image was pushed but never replicated to the node-pull registry.** Customer pushes go to `docker.<env>.trustgrid.io`. Nodes pull from `repo.<env>.trustgrid.io` (per the `repo.uri` field in `/var/lib/trustgrid/config/node-profile.json`). If you've just pushed and nodes immediately can't pull, raise it with TrustGrid Support — image replication between push and pull hosts is part of the platform, not something a customer controls.
+2. **Multi-segment image name** (e.g. `mynamespace/sub/dir/image`). Historical bug in node URL construction. Fixed in node release `n-2.23.0` (Aug 2025). If you're seeing this on an older node, upgrade.
+3. **Tag does not exist.** Confirm via **Repositories** in the portal that the tag is actually listed for your image. The portal list lags pushes by a few seconds.
+4. **Registry unreachable from the node.** Run `Actions → Test Repo Connectivity` on the node — it should return `connected`. If not, fix control-plane connectivity first.
+
+To collect more detail before raising:
+
+```bash
+# From the node shell:
+sudo grep -h "RegistryMediator\|manifests" /var/log/trustgrid/tg-default.log | tail -20
+sudo cat /var/lib/trustgrid/config/node-profile.json | grep repo.uri
+```
+
+The manifest URL the node tries follows the pattern `<repo.uri>/v2/<namespace>/<image>/manifests/<tag>` — verify it matches the image you pushed.
+
 ## Container stays in "Stopped" state
 
 The configuration is present and the container is `Enabled`, but **State** in the node-scoped container list never moves off `Stopped`.
