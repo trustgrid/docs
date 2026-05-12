@@ -146,7 +146,9 @@ The second section will report information learned about from its peer member.
 
 Some changes and conditions can result in a cluster with both members reporting as active or both reporting as standby. In these situations, a cluster server restart may be required to restore normal operation. This will not restart other node services but can still impact connectivity if it results in a cluster IP or route changing.  But it is less disruptive than a full node restart.
 
-{{<tgimg src="restart-cluster-server-button.png" width="40%" alt="Restart Cluster Server Button" caption="Restart Cluster Server button on cluster overview page" >}}
+To restart the cluster server, open the cluster **Overview** page, select the cluster member in the **Nodes** table, click **Actions**, and then select **Restart Cluster Server**. The portal displays a confirmation dialog before sending the restart request.
+
+{{<alert color="info">}}The restart action was moved under **Actions** and now requires confirmation to help prevent accidental restarts during failover or failback activity. This change was made after an accidental restart during failback contributed to a dual-active split-brain incident.{{</alert>}}
 
 {{<alert color="info">}}Typically it is best to start by restarting the cluster server on the expected standby member first, then the active member if needed. This minimizes disruption as the active member will remain active during the standby member restart.{{</alert>}}
 
