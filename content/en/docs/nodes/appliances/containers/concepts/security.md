@@ -57,7 +57,7 @@ Capability names follow the Linux convention (`CAP_NET_BIND_SERVICE`, `CAP_SYS_P
 
 ## Privileged
 
-The **Privileged** toggle on the Overview screen allows workloads that need elevated access at the container level. Common cases: nested container runtimes, low-level kernel-state managers, anything that needs more than the named [Linux Capabilities](#linux-capabilities) list can express. Most container deployments do not require it.
+The **Privileged** toggle on the Overview screen allows workloads that need elevated access at the container level. Enable it only when the image's documentation tells you to — usually phrased as "must run with `--privileged`" or "requires root access." Most container deployments do not require it. If you're unsure, leave it off and start the container — if the image actually needs Privileged it will fail with an error in the logs telling you so, and you can flip it on then.
 
 When you do know which specific capabilities your workload needs, prefer adding them via [Linux Capabilities](#linux-capabilities) rather than enabling Privileged — narrower grants are easier to audit.
 
