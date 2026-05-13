@@ -10,8 +10,8 @@ This tutorial walks through the shortest path from a Docker image on your laptop
 
 - A Trustgrid organization with at least one enrolled appliance node.
 - Permissions: `repositories::modify`, `node-exec::modify`, `node-exec::compute` on the target node or cluster.
-- Docker (or another OCI registry client like [`crane`](https://github.com/google/go-containerregistry/tree/main/cmd/crane)) on your local machine.
-- The image you want to run, available locally. We'll use the public `nginx:alpine` as the example.
+- Docker on your local machine. We'll use the public `nginx:alpine` as the example image.
+- **If you're on an Apple Silicon Mac (M1/M2/M3),** Docker Buildx (ships with Docker Desktop and recent Colima). You'll need it to produce a `linux/amd64` image — the only format the Trustgrid registry indexes.
 
 ## 1. Push the image to your Trustgrid registry
 
@@ -24,7 +24,7 @@ docker.<your-domain>/<your-namespace>/<image>:<tag>
 For example, on the org with domain `acme.trustgrid.io` the path for an image called `myapp` tagged `v1` is `docker.acme.trustgrid.io/acme.trustgrid.io/myapp:v1`. Your exact namespace is shown on the **Repositories** page.
 
 {{<alert color="warning">}}
-**Pushing from Apple Silicon?** Docker Desktop and Colima on M-series Macs push `linux/arm64` OCI manifests by default. The Trustgrid registry only indexes `linux/amd64` Docker schema 2 manifests — an arm64 push completes silently but the tag will be invisible to the portal and unreachable by nodes. Use `docker buildx build --platform linux/amd64 --push ...` or run the push from an amd64 Linux host. See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
+The Trustgrid registry only indexes `linux/amd64` Docker schema 2 manifests. If you push an `arm64` or OCI manifest, the push will appear to succeed but the tag will be invisible to the portal and unreachable by nodes. **From an Apple Silicon Mac, always push with `--platform linux/amd64`.** See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
 {{</alert>}}
 
 Authenticate. From the Trustgrid portal, navigate to **Repositories** and copy the **Docker Login** command — it includes a short-lived token. Paste it in your terminal:
@@ -33,7 +33,9 @@ Authenticate. From the Trustgrid portal, navigate to **Repositories** and copy t
 docker login -u trustgrid -p <token> https://docker.<your-domain>
 ```
 
-Tag and push:
+Push the image. Pick the section that matches your machine:
+
+**From an amd64 Linux host:**
 
 ```bash
 docker pull nginx:alpine
@@ -41,7 +43,24 @@ docker tag nginx:alpine docker.acme.trustgrid.io/acme.trustgrid.io/nginx:alpine
 docker push docker.acme.trustgrid.io/acme.trustgrid.io/nginx:alpine
 ```
 
-Verify the tag landed by navigating to **Repositories → nginx** in the portal. You should see the `alpine` tag listed with its digest.
+**From an Apple Silicon Mac (M1/M2/M3):** use Buildx with an explicit platform so the push produces an amd64 manifest:
+
+```bash
+docker buildx imagetools create \
+  --tag docker.acme.trustgrid.io/acme.trustgrid.io/nginx:alpine \
+  docker.io/library/nginx:alpine@sha256:<amd64-digest>
+```
+
+Or, if you have a Dockerfile rather than a pre-built image:
+
+```bash
+docker buildx build \
+  --platform linux/amd64 \
+  --tag docker.acme.trustgrid.io/acme.trustgrid.io/nginx:alpine \
+  --push .
+```
+
+Verify the tag landed by navigating to **Repositories → nginx** in the portal. You should see the `alpine` tag listed with its digest. **If the tag doesn't appear, the push went through but wasn't indexed — almost always because the manifest is arm64/OCI.** Re-push with `--platform linux/amd64`.
 
 {{<alert color="info">}}
 The token in the `docker login` command expires after about 24 hours. Re-fetch it from the portal when it does.
