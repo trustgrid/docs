@@ -69,7 +69,7 @@ Inside the container, lookups fail with "Could not resolve host."
 **Check:**
 
 1. **The container's resolver.** Inside the container, `/etc/resolv.conf` should show `172.18.1.2` — the node's resolver. If you set a custom **DNS** address on the container's Overview, that resolver is used instead — make sure it's reachable.
-2. **The node's own DNS works.** Run **Actions → Test DNS** on the node. The container's resolver forwards external lookups to the node — so if the node's DNS is broken, the container's is too.
+2. **The node's own DNS works.** Run **Actions → Test DNS** on the node. The container's resolver forwards external lookups to the node — so if the node's DNS isn't resolving, the container's won't either.
 
 ## Container can't reach the internet
 

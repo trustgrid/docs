@@ -19,7 +19,7 @@ Reading and managing containers requires `node-exec::read` and `node-exec::modif
 - **Need to reach the container from a peer node over VPN?** Follow [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}).
 - **Persist data or mount a config file?** See [Bind-mount a config file]({{<ref "/tutorials/containers/bind-mount-config">}}) and [Container storage]({{<ref "concepts/storage">}}).
 - **Operating a running container — logs, terminal, restart?** See [Container Tools]({{<ref "tools">}}).
-- **Something is broken?** Jump to [Container Troubleshooting]({{<ref "troubleshooting">}}).
+- **Running into an issue?** See [Container Troubleshooting]({{<ref "troubleshooting">}}).
 
 ## Concepts
 

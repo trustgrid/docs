@@ -90,7 +90,7 @@ See [Container storage]({{<ref "/docs/nodes/appliances/containers/concepts/stora
 
 - **`Permission denied` in the container logs.** The container's user can't read the bind mount. `chown` the host path to the right UID/GID, or run the container as a user that has access (see [Container security — User]({{<ref "/docs/nodes/appliances/containers/concepts/security#user">}})).
 - **Host path doesn't exist.** The mount won't be created automatically. Create the directory on the host first.
-- **Symlinks point outside the mount.** The container sees a broken link — bind mounts don't follow symlinks out of the bound directory.
+- **Symlinks point outside the mount.** Bind mounts don't follow symlinks out of the bound directory — the container sees the symlink but not its target.
 - **SELinux on the node.** If you're running on a hardened distribution with SELinux enforcing, you may need to label the host directory with the right context. Trustgrid's default node OS does not enable SELinux.
 
 ## Related
