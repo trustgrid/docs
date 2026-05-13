@@ -1,6 +1,5 @@
 ---
 title: "Container Security"
-description: Container permissions and user execution.
 weight: 40
 ---
 
