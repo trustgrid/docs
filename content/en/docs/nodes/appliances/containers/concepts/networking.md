@@ -86,6 +86,9 @@ A web service container that's reachable from the LAN for admin and from other T
    ├─────────────────────┴───────────────────────────────────────────────┤
    │                            Trustgrid node                           │
    │                                                                     │
+   │            │ NAT in          │ NAT in            ▲ NAT out          │
+   │            │ (port map)      │ (virtual network) │ (to internet)    │
+   │            ▼                 ▼                   │                  │
    │       ┌───────────────────────────────────────────────────┐         │
    │       │  Container nginx                                  │         │
    │       │      Container address        172.18.0.7          │         │
