@@ -36,7 +36,7 @@ Adding a specific capability is preferred over enabling [Privileged](#privileged
 
 ## Privileged
 
-The **Privileged** toggle on the Overview screen allows workloads that need elevated access at the container level. Enable it only when the image's documentation tells you to — usually phrased as "must run with `--privileged`" or "requires root access." Most container deployments do not require it. If you're unsure, leave it off and start the container — if the image actually needs Privileged it will fail with an error in the logs telling you so, and you can flip it on then.
+The **Privileged** toggle on the Overview screen grants the container elevated access at the container level. It's commonly needed for workloads that manage kernel-level state, run a nested container runtime, or otherwise need more access than a specific Linux Capability can grant. Most container deployments do not require it. Where possible, use [Linux Capabilities](#linux-capabilities) instead — granting only the specific capability a workload needs follows the principle of least access.
 
 ## Use Init
 
