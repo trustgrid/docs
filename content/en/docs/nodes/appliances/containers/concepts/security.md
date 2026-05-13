@@ -48,10 +48,10 @@ It's cheap to turn on and a safe default for any container whose entrypoint isn'
 
 ## Require Connectivity
 
-The **Require Connectivity** toggle on the Overview gates container startup on the node being connected to Trustgrid.
+The **Require Connectivity** toggle on the Overview gates container startup on the node being online — meaning the node has a live connection to the Trustgrid management plane and shows as online in the portal.
 
-- **Off (default):** the container starts whenever the node tries to start it, online or offline.
-- **On:** the container won't start unless the node can reach Trustgrid.
+- **Off (default):** the container starts whenever the node tries to start it, whether or not the node is online.
+- **On:** the container won't start until the node is online.
 
 Use this with encrypted volumes — see [Container storage — Encrypted volumes]({{<ref "storage#encrypted-volumes">}}). It only affects startup; a container that's already running keeps running if the node goes offline.
 
