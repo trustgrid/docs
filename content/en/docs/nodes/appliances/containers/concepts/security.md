@@ -53,7 +53,7 @@ The **Require Connectivity** toggle on the Overview gates container startup on t
 - **Off (default):** the container starts whenever the node tries to start it, whether or not the node is connected to the control plane.
 - **On:** the container won't start until the node is connected to the control plane.
 
-Use this with encrypted volumes — see [Container storage — Encrypted volumes]({{<ref "storage#encrypted-volumes">}}). It only affects startup; a container that's already running keeps running if the node goes offline.
+Use this with encrypted volumes — see [Container storage — Encrypted volumes]({{<ref "storage#encrypted-volumes">}}). It only affects startup; a container that's already running keeps running if the node disconnects from the control plane.
 
 ## Save Output
 
