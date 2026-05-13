@@ -32,7 +32,7 @@ You only need to touch this if your image's documentation says it requires a spe
 | `CAP_SYS_PTRACE` | Attach a debugger or `strace` to a process inside the container. |
 | `CAP_NET_RAW` | Use raw sockets — `ping`, `traceroute`, custom network tools. |
 
-Adding a specific capability is preferred over enabling [Privileged](#privileged) — it's narrower and easier to reason about.
+Adding a specific capability is preferred over enabling [Privileged](#privileged) — it follows the principle of least access.
 
 ## Privileged
 
