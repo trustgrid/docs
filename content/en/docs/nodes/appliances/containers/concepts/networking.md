@@ -75,27 +75,30 @@ The **VRF** field on the Network screen lets you put the container in a specific
 A web service container that's reachable from the LAN for admin and from other Trustgrid nodes for application traffic:
 
 ```
-       LAN clients                    Trustgrid peers
-            │                                │
-       :8080│                                │ :443 (vnet IP)
-            ▼                                ▼
-    ┌─────────────────────────────────────────────┐
-    │  Node edge1                                 │
-    │  ens192=192.168.100.209  vnet0=10.50.0.5    │
-    │                                             │
-    │      ┌─────────────────────────────┐        │
-    │      │  Container nginx            │        │
-    │      │  container IP = 172.18.0.7  │        │
-    │      │  vnet IP   = 10.50.0.5      │        │
-    │      └─────────────────────────────┘        │
-    └─────────────────────────────────────────────┘
-                       ▲
-                       │ Outbound via the node's normal route
-                       ▼
-                  Internet
+        LAN client                  Trustgrid peer node
+            │                              │
+        port 8080                      port 443
+            │                              │
+            ▼                              ▼
+    ┌──────────────────────────────────────────────────┐
+    │  Trustgrid node "edge1"                          │
+    │     LAN address              192.168.100.209     │
+    │     Virtual-network address  10.50.0.5           │
+    │                                                  │
+    │     ┌────────────────────────────────────────┐   │
+    │     │  Container "nginx"                     │   │
+    │     │     Container address        172.18.0.7│   │
+    │     │     Virtual-network address  10.50.0.10│   │
+    │     └────────────────────────────────────────┘   │
+    └──────────────────────────────────────────────────┘
+                         │
+                         │  Outbound (e.g. internet)
+                         │  uses the node's normal route
+                         ▼
+                     Internet
 ```
 
-The container has two ways in (LAN port 8080, virtual network IP) and one way out (whatever route the node uses).
+Two ways into the container — a port mapping on the node's LAN, and an address on the Trustgrid virtual network reachable by peer nodes — and one way out (whatever route the node itself uses).
 
 ## Related
 
