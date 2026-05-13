@@ -62,7 +62,7 @@ The portal-side log viewer only shows output for the **currently running** conta
 
 ## Terminal
 
-Opens a new browser tab with an interactive shell inside the running container. Equivalent to `docker exec -it <container> /bin/sh`.
+Opens a new browser tab with an interactive shell inside the running container (analogous to `docker exec -it <container> /bin/sh` on a local Docker host).
 
 The terminal uses the same WebSocket session protocol as the log viewer, tunneled through the Trustgrid control plane. The container's shell is launched as the configured user — if no `User` is set on the Overview, the shell runs as the image's default user (typically `root`).
 

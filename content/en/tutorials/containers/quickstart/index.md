@@ -4,7 +4,7 @@ description: Push an image and run it on a Trustgrid node — no prior Trustgrid
 weight: 5
 ---
 
-This tutorial walks through the shortest path from a Docker image on your laptop to a running container on a Trustgrid node, with a port mapping you can reach from the node's LAN. If you already have a Trustgrid node enrolled and a Docker image you want to deploy, this should take about 10 minutes.
+This tutorial walks through the shortest path from a container image on your laptop to a running container on a Trustgrid node, with a port mapping you can reach from the node's LAN. (Trustgrid nodes don't run the Docker engine themselves — but they execute images built to the Docker/OCI spec, so you build and push with familiar Docker tooling.) If you already have a Trustgrid node enrolled and a Docker image you want to deploy, this should take about 10 minutes.
 
 ## What you need
 

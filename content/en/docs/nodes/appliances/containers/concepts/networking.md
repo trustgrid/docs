@@ -8,7 +8,7 @@ A container running on a Trustgrid node sits behind a node-managed bridge. This 
 
 ## The container bridge
 
-Every container is attached to a node-managed Docker bridge in the **`172.18.0.0/16`** range. The node assigns each container an IP in this network automatically unless you override it via the **IP** field on the Overview screen.
+Every container is attached to a node-managed bridge network in the **`172.18.0.0/16`** range. The node assigns each container an IP in this network automatically unless you override it via the **IP** field on the Overview screen.
 
 - The node side of the bridge holds **`172.18.1.2`**. This is also the address of the [DNS resolver](#dns-resolver) — containers should send queries here, not to a public resolver, in order to benefit from container-to-container name resolution.
 - Containers can address each other by **container name** within the same node. The node-side resolver maintains the mapping.

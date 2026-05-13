@@ -4,7 +4,7 @@ description: Capabilities, privileges, user identity, and connectivity gating fo
 weight: 40
 ---
 
-Trustgrid nodes run containers under Docker with a least-privilege defaults. This page covers the levers you have to tighten or relax those defaults — and the cases where you actually need to.
+Trustgrid nodes run containers with least-privilege defaults. This page covers the levers you have to tighten or relax those defaults — and the cases where you actually need to.
 
 ## The default sandbox
 
@@ -66,7 +66,7 @@ The **Privileged** toggle on the Overview screen disables most of the container 
 
 The container is effectively running as root on the node. **Almost no production workload needs this.** Reach for it only when:
 
-- The container itself runs Docker-in-Docker or another container runtime.
+- The container itself runs a nested container runtime.
 - The container manages low-level kernel state that capabilities can't express.
 - You're debugging and you need the container to behave like a privileged shell on the node.
 
@@ -82,7 +82,7 @@ By default, the container's main process is PID 1. PID 1 in Linux has special re
 - Container doesn't shut down cleanly on Stop; instead waits the full Stop Time grace period before being killed.
 - Container is using shell scripts as the entrypoint that don't forward signals to child processes.
 
-When enabled, a small init binary (Docker's `tini`) runs as PID 1 and your application runs as PID 2. **Cheap to enable; enable it for any service that spawns child processes.**
+When enabled, a small init binary runs as PID 1 and your application runs as PID 2. **Cheap to enable; enable it for any service that spawns child processes.**
 
 ## Require Connectivity
 

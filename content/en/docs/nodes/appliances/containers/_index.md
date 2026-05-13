@@ -5,7 +5,7 @@ aliases:
 description: Configure containers to run on appliance-based nodes
 ---
 
-Trustgrid nodes support running Docker containers which allows for ease of deployment across an organization. Any Docker container is supported with the exception of containers that require root level access.
+Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Trustgrid does not use the Docker engine itself on the node — you build and push images with familiar Docker tooling, but the runtime that executes them on the node is Trustgrid's own. Any image built to the standard spec is supported with the exception of workloads that require root-level access to the host.
 
 The container can be attached to both the local and virtual network space which allows both local and remote resources to communicate with the container. For example an API could be deployed on a Trustgrid Gateway which sends API Calls via the virtual network space to a container running on a Trustgrid Edge Node. The API call could then be translated to make a call to a database running on the local network and passed back up to the gateway host.
 
