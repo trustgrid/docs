@@ -1,6 +1,5 @@
 ---
 title: "Container Networking"
-description: How containers reach the network and how the network reaches containers on a Trustgrid node.
 weight: 10
 ---
 
