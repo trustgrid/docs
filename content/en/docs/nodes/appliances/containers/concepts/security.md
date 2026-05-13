@@ -40,15 +40,11 @@ The **Privileged** toggle on the Overview screen grants the container elevated a
 
 ## Use Init
 
-The **Use Init** toggle on the Overview is a small reliability fix.
+The **Use Init** toggle on the Overview helps containers shut down cleanly.
 
-**Enable it when:**
+A typical case: an application launched through a shell script wrapper (e.g. `start.sh` that runs `java -jar app.jar`). When you click **Stop**, the shutdown signal goes to the shell instead of the application — so the application keeps running until the node force-kills it after the Stop Time grace period. Use Init forwards the signal correctly so the application shuts down as expected.
 
-- The container takes a long time to stop (waits the full Stop Time before being killed).
-- You see "defunct" or "zombie" processes piling up inside the container over time.
-- The container's entrypoint is a shell script that launches other processes.
-
-It's cheap to turn on — if you're not sure, enabling it is a safe default for any service that spawns child processes.
+It's cheap to turn on and a safe default for any container whose entrypoint isn't the application itself.
 
 ## Require Connectivity
 
