@@ -32,10 +32,6 @@ Reading and managing containers requires `node-exec::read` and `node-exec::modif
 
 Container configuration is set at the **cluster** level on a cluster, or at the **node** level on a standalone node. The runtime controls — Start, Stop, Logs, Terminal — are always on the **node** that's running the container. The portal redirects you between these views as appropriate. See [Container Tools]({{<ref "tools">}}) for the full breakdown.
 
----
-
-The rest of this page is a **field reference** for the Add Container modal and the per-container detail screens. For the *why* behind each section, follow the concept-page links.
-
 ## Management
 
 Navigate to **Container Management** under **Compute** on a node or cluster.
