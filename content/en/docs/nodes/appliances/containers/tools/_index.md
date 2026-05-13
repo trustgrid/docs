@@ -39,7 +39,7 @@ Requires `node-exec::compute` permission.
 
 Stops the container. For Service containers the node waits up to **Stop Time** (default 30 seconds) for the container to shut down cleanly, then forces it.
 
-A manual Stop doesn't keep the container down — Service containers will restart on the next config change or node reboot. To keep it down for longer, change its Status to `Disabled` from the cluster-level configuration.
+A manual Stop doesn't keep the container down — to the node, the Stop is just an exit, and Service containers are restarted whenever they exit. To keep it down, change its Status to `Disabled` from the cluster-level configuration.
 
 Requires `node-exec::compute` permission.
 
