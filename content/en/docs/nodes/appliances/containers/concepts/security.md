@@ -57,7 +57,7 @@ Capability names follow the Linux convention (`CAP_NET_BIND_SERVICE`, `CAP_SYS_P
 
 ## Privileged
 
-The **Privileged** toggle on the Overview screen relaxes the container sandbox so workloads that need elevated access can run. Common cases: nested container runtimes, low-level kernel-state managers, anything that needs more than the named [Linux Capabilities](#linux-capabilities) list can express. If your image needs it, turn it on; if you don't know whether you need it, you probably don't.
+The **Privileged** toggle on the Overview screen allows workloads that need elevated access at the container level. Common cases: nested container runtimes, low-level kernel-state managers, anything that needs more than the named [Linux Capabilities](#linux-capabilities) list can express. If your image needs it, turn it on; if you don't know whether you need it, you probably don't.
 
 When you do know which specific capabilities your workload needs, prefer adding them via [Linux Capabilities](#linux-capabilities) rather than enabling Privileged — narrower grants are easier to audit.
 
