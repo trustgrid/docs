@@ -80,12 +80,12 @@ A web service container that's reachable from the LAN for admin and from other T
        :8080│                                │ :443 (vnet IP)
             ▼                                ▼
     ┌─────────────────────────────────────────────┐
-    │  Node nate-edge1                            │
+    │  Node edge1                                 │
     │  ens192=192.168.100.209  vnet0=10.50.0.5    │
     │                                             │
     │      ┌─────────────────────────────┐        │
-    │      │  Container docs-nginx       │        │
-    │      │  bridge IP = 172.18.0.7     │        │
+    │      │  Container nginx            │        │
+    │      │  container IP = 172.18.0.7  │        │
     │      │  vnet IP   = 10.50.0.5      │        │
     │      └─────────────────────────────┘        │
     └─────────────────────────────────────────────┘
