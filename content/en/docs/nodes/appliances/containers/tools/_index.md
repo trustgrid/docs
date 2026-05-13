@@ -71,7 +71,7 @@ Opens a new browser tab with an interactive shell running inside the container â
 The shell runs as the configured user. If you didn't set one, it runs as whatever user the image was built to run as. The Terminal button is disabled if the container isn't currently `Running`.
 
 {{<alert color="info">}}
-The Terminal needs a shell to exist inside the image. Most images include one, but some intentionally don't (often called "distroless" or "scratch" images). If the Terminal won't open, check that the image has `/bin/sh` or similar.
+The Terminal needs a shell to exist inside the image. Most images include one, but some intentionally don't. If the Terminal won't open, check that the image has `/bin/sh` or similar.
 {{</alert>}}
 
 Requires `node-exec::compute` permission.
@@ -81,6 +81,8 @@ Requires `node-exec::compute` permission.
 The **History** section in the left sidebar of a running container shows:
 
 - **Connections** â€” recent inbound and outbound network connections for this container. Useful to verify that port mappings and virtual networks are wired up right.
+
+{{<tgimg src="connections.png" caption="Active and Completed connections for a container" width="90%">}}
 
 ## Related
 
