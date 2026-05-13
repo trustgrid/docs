@@ -66,7 +66,7 @@ This viewer only shows logs from the container's current run — if the containe
 
 Opens a new browser tab with an interactive shell running inside the container — useful for debugging, poking around the filesystem, or running ad-hoc commands.
 
-The shell runs as the configured user. If you didn't set one, it runs as whatever user the image was built to run as (often `root` inside the container).
+The shell runs as the configured user. If you didn't set one, it runs as whatever user the image was built to run as.
 
 The Terminal button is disabled if the container isn't currently `Running`.
 

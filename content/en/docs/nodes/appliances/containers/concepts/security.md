@@ -8,7 +8,7 @@ By default, a container on a Trustgrid node runs with safe, restrictive settings
 
 ## User
 
-The **User** field on the Overview screen sets which user inside the container runs the application. Leave it blank to use the user the image was built to run as (often `root` inside the container).
+The **User** field on the Overview screen sets which user inside the container runs the application. Leave it blank to use the user the image was built to run as.
 
 **When to set it:**
 
