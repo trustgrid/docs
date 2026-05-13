@@ -66,12 +66,12 @@ This viewer only shows logs from the container's current run — if the containe
 
 Opens a new browser tab with an interactive shell running inside the container — useful for debugging, poking around the filesystem, or running ad-hoc commands.
 
-The shell runs as the configured user. If you didn't set one, it runs as whatever user the image was built to run as.
+{{<tgimg src="terminal.png" caption="Terminal session inside an Alpine container" width="65%">}}
 
-The Terminal button is disabled if the container isn't currently `Running`.
+The shell runs as the configured user. If you didn't set one, it runs as whatever user the image was built to run as. The Terminal button is disabled if the container isn't currently `Running`.
 
 {{<alert color="info">}}
-If the container's image doesn't include a shell (some minimal images don't), the Terminal won't be able to open. You can set the **Command** field on the Overview to launch a temporary diagnostic shell instead.
+The Terminal needs a shell to exist inside the image. Most images include one, but some intentionally don't (often called "distroless" or "scratch" images). If the Terminal won't open, check that the image has `/bin/sh` or similar.
 {{</alert>}}
 
 Requires `node-exec::compute` permission.
