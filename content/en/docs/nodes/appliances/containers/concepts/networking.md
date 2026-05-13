@@ -83,8 +83,6 @@ A web service container that's reachable from the LAN for admin and from other T
    ┌─────────────────────┬───────────────────────────────────────────────┐
    │   LAN interface     │              WAN interface                    │
    │  192.168.100.209    │              172.16.0.10                      │
-   │                     │  (Trustgrid VPN runs here; container          │
-   │                     │   outbound traffic also exits here)           │
    ├─────────────────────┴───────────────────────────────────────────────┤
    │                            Trustgrid node                           │
    │                                                                     │
