@@ -62,7 +62,7 @@ Trustgrid node appliances authenticate automatically with the Trustgrid containe
 Images must be pushed as **`linux/amd64`**. Other architectures are not supported.
 
 {{<alert color="warning">}}
-Apple Silicon Macs (M1/M2/M3) and Windows on ARM push `arm64` images by default. Use `docker buildx build --platform linux/amd64 --push -t docker.<your-domain>/<your-namespace>/<image>:<tag> .` to push an amd64 image, or push from an amd64 host.
+Apple Silicon Macs (M1/M2/M3) and Windows on ARM push `arm64` images by default and cannot be used to push to the Trustgrid registry directly. Push from an amd64 host instead — a Linux VM, a build server, or CI.
 {{</alert>}}
 
 If you push an unsupported image, the push command will succeed but the tag will not appear in the **Repositories** view and nodes will not be able to pull it.

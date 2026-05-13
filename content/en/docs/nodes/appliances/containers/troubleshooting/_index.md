@@ -17,7 +17,7 @@ What it does **not** tell you:
 
 Known causes, in order of likelihood:
 
-1. **Image was not pushed as `linux/amd64`.** Pushes from Apple Silicon Macs or Windows on ARM default to `arm64` and the tag will not appear in the portal nor be pullable by nodes. Re-push with `docker buildx build --platform linux/amd64 --push ...` or push from an amd64 host. See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
+1. **Image was not pushed as `linux/amd64`.** Pushes from Apple Silicon Macs or Windows on ARM default to `arm64` and the tag will not appear in the portal nor be pullable by nodes. Re-push from an amd64 host. See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
 2. **Multi-segment image name** (e.g. `mynamespace/sub/dir/image`). Historical bug in node URL construction. Fixed in node release `n-2.23.0` (Aug 2025). If you're seeing this on an older node, upgrade.
 3. **Tag does not exist.** Confirm via **Repositories** in the portal that the tag is actually listed for your image. The portal list lags pushes by a few seconds.
 4. **Registry unreachable from the node.** Run `Actions → Test Repo Connectivity` on the node — it should return `connected`. If not, fix control-plane connectivity first.

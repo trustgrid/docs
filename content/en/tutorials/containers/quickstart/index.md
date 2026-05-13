@@ -10,10 +10,10 @@ This tutorial walks through the shortest path from a container image on your lap
 
 - A Trustgrid organization with at least one enrolled appliance node.
 - Permissions: `repositories::modify`, `node-exec::modify`, `node-exec::compute` on the target node or cluster.
-- Docker on your local machine, running on a `linux/amd64` host. We'll use the public `nginx:alpine` as the example image.
+- Docker on a `linux/amd64` machine. We'll use the public `nginx:alpine` as the example image.
 
 {{<alert color="warning">}}
-Images must be pushed as `linux/amd64`. Pushes from Apple Silicon Macs (M1/M2/M3) or Windows on ARM default to `arm64` and will not work — use the `--platform linux/amd64` flag with `docker buildx`, or push from an amd64 machine.
+Images must be pushed as `linux/amd64`. If your workstation is an Apple Silicon Mac or Windows on ARM, push from an amd64 host (a Linux VM, a build server, or CI).
 {{</alert>}}
 
 ## 1. Push the image to your Trustgrid registry
@@ -32,24 +32,15 @@ Authenticate. From the Trustgrid portal, navigate to **Repositories** and copy t
 docker login -u trustgrid -p <token> https://docker.<your-domain>
 ```
 
-Push the image:
+From your amd64 host, push the image:
 
 ```bash
-docker pull --platform linux/amd64 nginx:alpine
+docker pull nginx:alpine
 docker tag nginx:alpine docker.acme.trustgrid.io/acme.trustgrid.io/nginx:alpine
 docker push docker.acme.trustgrid.io/acme.trustgrid.io/nginx:alpine
 ```
 
-Or, if you have a Dockerfile, build and push with `buildx`:
-
-```bash
-docker buildx build \
-  --platform linux/amd64 \
-  --tag docker.acme.trustgrid.io/acme.trustgrid.io/nginx:alpine \
-  --push .
-```
-
-Verify the tag landed by navigating to **Repositories → nginx** in the portal. You should see the `alpine` tag listed with its digest. If it doesn't appear, the push was likely not `linux/amd64` — re-push with `--platform linux/amd64`.
+Verify the tag landed by navigating to **Repositories → nginx** in the portal. You should see the `alpine` tag listed with its digest. If it doesn't appear, the push was not `linux/amd64` — push from an amd64 host.
 
 {{<alert color="info">}}
 The token in the `docker login` command expires after about 24 hours. Re-fetch it from the portal when it does.
