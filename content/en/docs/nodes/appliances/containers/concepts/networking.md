@@ -84,7 +84,7 @@ A web service container that's reachable from the LAN for admin and from other T
               │ 192.168.100.209                │ to 10.50.0.10
               ▼                                ▼
    ┌────────────────────────────────────────────────────────┐
-   │  Trustgrid node edge1                                  │
+   │  Trustgrid node                                        │
    │     LAN address              192.168.100.209           │
    │     Virtual-network address  10.50.0.5                 │
    │                                                        │
