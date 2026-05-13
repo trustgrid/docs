@@ -76,7 +76,7 @@ A web service container with three traffic paths:
 
 - **LAN clients** reach it through a port mapping on the node's LAN interface.
 - **Other Trustgrid nodes** reach it on its virtual network address.
-- **The container itself** reaches the internet through the node's WAN — for package updates, calling external services, and so on.
+- **The container itself** reaches the internet through the node's WAN — for package updates, calling external services, etc.
 
 ```
       LAN client          Trustgrid peer node                       Internet
