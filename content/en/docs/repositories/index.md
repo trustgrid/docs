@@ -59,16 +59,13 @@ Trustgrid node appliances authenticate automatically with the Trustgrid containe
 
 ## Supported image platforms
 
-The Trustgrid registry indexes images that are pushed as **`linux/amd64`** with the classic Docker schema 2 manifest format (`application/vnd.docker.distribution.manifest.v2+json`). Pushes of other shapes — `linux/arm64`, multi-architecture OCI image indexes, or OCI image manifests (`application/vnd.oci.image.manifest.v1+json`) — currently complete at the wire level but are not indexed, which means the tag will not appear in the Repositories view and Trustgrid nodes will not be able to pull it.
+Images must be pushed as **`linux/amd64`**. Other architectures are not supported.
 
 {{<alert color="warning">}}
-**Pushing from Apple Silicon (M1/M2/M3 Macs):** by default Docker Desktop and Colima build and push `linux/arm64` OCI manifests, which the Trustgrid registry does not index. Use `docker buildx build --platform linux/amd64 --push -t docker.<your-domain>/<your-namespace>/<image>:<tag> .` to push an amd64 image, or push from an x86_64 Linux host.
+Apple Silicon Macs (M1/M2/M3) and Windows on ARM push `arm64` images by default. Use `docker buildx build --platform linux/amd64 --push -t docker.<your-domain>/<your-namespace>/<image>:<tag> .` to push an amd64 image, or push from an amd64 host.
 {{</alert>}}
 
-Symptoms that you've pushed an unsupported image:
-
-- The tag does not appear in the **Repositories → `<image>`** view in the portal, even though `docker push` completed successfully.
-- A container configured against that tag stays in `Stopped` state, and the node log shows `RegistryMediator: Retries exhausted downloading https://repo.<env>.trustgrid.io/v2/...manifests/<tag>`. See [Container troubleshooting]({{<ref "/docs/nodes/appliances/containers/troubleshooting">}}).
+If you push an unsupported image, the push command will succeed but the tag will not appear in the **Repositories** view and nodes will not be able to pull it.
 
 ## Example Usage
 In the below example we will show how to pull down a container image (Alpine Linux) from the public hub.docker.com registry and then push it to the Trustgrid private registry under our namespace.
