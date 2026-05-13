@@ -1,6 +1,6 @@
 ---
 title: "Container Security"
-description: Settings that control what a container can do and which user it runs as.
+description: Container permissions and user execution.
 weight: 40
 ---
 
