@@ -57,20 +57,15 @@ Capability names follow the Linux convention (`CAP_NET_BIND_SERVICE`, `CAP_SYS_P
 
 ## Privileged
 
-The **Privileged** toggle on the Overview screen disables most of the container sandbox. With it set:
+The **Privileged** toggle on the Overview screen drops most of the container sandbox. With it set:
 
 - All Linux capabilities are granted.
 - Cgroup restrictions are relaxed.
-- The container can access host devices.
 - AppArmor/SELinux confinement is disabled.
 
-The container is effectively running as root on the node. **Almost no production workload needs this.** Reach for it only when:
+Some workloads legitimately need this — nested container runtimes, low-level kernel-state managers, anything that requires capabilities beyond what the named [Linux Capabilities](#linux-capabilities) list can express. If your image needs it, turn it on; if you don't know whether you need it, you probably don't.
 
-- The container itself runs a nested container runtime.
-- The container manages low-level kernel state that capabilities can't express.
-- You're debugging and you need the container to behave like a privileged shell on the node.
-
-For anything else, the right answer is to identify the specific capabilities needed and add them via [Linux Capabilities](#linux-capabilities) instead.
+When you do know which specific capabilities your workload needs, prefer adding them via [Linux Capabilities](#linux-capabilities) rather than enabling Privileged — narrower grants are easier to audit and review.
 
 ## Use Init
 
