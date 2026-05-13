@@ -75,29 +75,26 @@ The **VRF** field on the Network screen lets you put the container in a specific
 A web service container that's reachable from the LAN for admin and from other Trustgrid nodes for application traffic:
 
 ```
-        LAN client                  Trustgrid peer node
-            │                              │
-            │ port 8080                    │ port 443 to 10.50.0.10
-            │                              │ over the virtual network
-            ▼                              ▼
-   ┌─────────────────────────┬───────────────────────────────┐
-   │      LAN interface      │        WAN interface          │
-   │     192.168.100.209     │   (carries Trustgrid VPN)     │
-   ├─────────────────────────┴───────────────────────────────┤
-   │                    Trustgrid node                       │
-   │                                                         │
-   │     ┌─────────────────────────────────────────────┐     │
-   │     │  Container nginx                            │     │
-   │     │     Container address        172.18.0.7     │     │
-   │     │     Virtual-network address  10.50.0.10     │     │
-   │     └─────────────────────────────────────────────┘     │
-   │                                                         │
-   └─────────────────────────────────────────────────────────┘
-                                │
-                                │  Container outbound (e.g. internet)
-                                │  leaves via the WAN interface
-                                ▼
-                            Internet
+      LAN client          Trustgrid peer node                       Internet
+           │                       │                                   ▲
+           │ port 8080             │ port 443 to 10.50.0.10            │ container
+           │                       │ over the virtual network          │ outbound
+           ▼                       ▼                                   │
+   ┌─────────────────────┬───────────────────────────────────────────────┐
+   │   LAN interface     │              WAN interface                    │
+   │  192.168.100.209    │              172.16.0.10                      │
+   │                     │  (Trustgrid VPN runs here; container          │
+   │                     │   outbound traffic also exits here)           │
+   ├─────────────────────┴───────────────────────────────────────────────┤
+   │                            Trustgrid node                           │
+   │                                                                     │
+   │       ┌───────────────────────────────────────────────────┐         │
+   │       │  Container nginx                                  │         │
+   │       │      Container address        172.18.0.7          │         │
+   │       │      Virtual-network address  10.50.0.10          │         │
+   │       └───────────────────────────────────────────────────┘         │
+   │                                                                     │
+   └─────────────────────────────────────────────────────────────────────┘
 ```
 
 Two ways into the container — a port mapping on the node's LAN, and an address on the Trustgrid virtual network reachable by peer nodes — and one way out (whatever route the node itself uses).
