@@ -48,8 +48,7 @@ State is `Running`, but trying to reach the container from another machine on th
 
 1. **Port mapping is on the right interface.** Under **Network → Host Port Mappings**, the **Host Interface** has to be the one that's on the LAN you're connecting from. A mapping on the WAN interface won't be reachable from the LAN.
 2. **The container is actually listening.** Open the **Terminal** for the container and run `ss -tlnp` (or `netstat -tlnp` if `ss` isn't available). The container needs to be listening on `0.0.0.0:<container-port>`, not just `127.0.0.1`. nginx, Postgres, and Redis all default to localhost-only in some configurations.
-3. **Node firewall.** Node-level firewall rules apply before the port mapping — check **Networking → Interfaces → Firewall**.
-4. **Cluster member.** On a cluster, only the active member forwards traffic on the shared cluster IP. Try the active member's individual IP if the cluster IP isn't reachable.
+3. **Cluster member.** On a cluster, only the active member forwards traffic on the shared cluster IP. Try the active member's individual IP if the cluster IP isn't reachable.
 
 ## Container is running but unreachable from another Trustgrid node
 

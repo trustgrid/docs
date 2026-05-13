@@ -63,7 +63,7 @@ Use this when the container itself needs to manage the interface — running its
 When a container makes an outbound connection:
 
 - **To another container on the same node** — goes directly between them.
-- **To anything else (the internet, the node's LAN, an internal server)** — leaves the node using the same network path the node itself uses for outbound traffic. Any firewall rules on the node also apply to the container.
+- **To anything else (the internet, the node's LAN, an internal server)** — leaves the node using the same network path the node itself uses for outbound traffic.
 - **To a peer over Trustgrid VPN** — only works if the container has a [virtual network attachment](#2-virtual-networks) with Allow Outbound on, or if you've placed it in a VRF that routes there.
 
 ### VRFs
