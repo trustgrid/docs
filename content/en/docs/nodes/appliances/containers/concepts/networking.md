@@ -8,11 +8,11 @@ By default a container is reachable only from the node it runs on. To make it re
 
 ## Container addresses and DNS
 
-When a container starts, the node gives it an IP address in `172.18.0.0/16`. The container can reach the node at `172.18.1.2`, and any other container on the same node by **container name** — the name you typed into the Overview screen.
+When a container starts, the node gives it an IP address in `172.18.0.0/16` (the default container network — contact Trustgrid support if you need to change it). The container can reach the node at `172.18.1.2`, and any other container on the same node by **container name** — the name you typed into the Overview screen.
 
 You normally don't need to change any of this. The two relevant overrides on the Overview screen:
 
-- **IP** — pin the container to a specific address (within `172.18.0.0/16`, anything except `172.18.1.2`). Only needed if another container has to reach this one by address rather than name.
+- **IP** — pin the container to a specific address within `172.18.0.0/16`. Only needed if another container has to reach this one by address rather than name.
 - **DNS** — point the container at a custom DNS server. Doing this means the container can no longer resolve its sibling containers by name, so only set it if you specifically need a different resolver.
 
 ## Three ways to expose a container
