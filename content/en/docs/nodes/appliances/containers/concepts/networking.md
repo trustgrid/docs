@@ -70,7 +70,7 @@ When a container makes an outbound connection:
 
 The **VRF** field on the Network screen lets you put the container in a specific routing context defined on the node — useful for forcing all of a container's outbound traffic out a particular tunnel, separate from the rest of the node. Leave it blank to use the node's normal routing.
 
-## A common pattern
+## Deployment example
 
 A web service container that's reachable from the LAN for admin and from other Trustgrid nodes for application traffic:
 
