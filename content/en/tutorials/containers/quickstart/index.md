@@ -58,19 +58,19 @@ Fill in:
 
 | Field | Value |
 | --- | --- |
-| **Name** | `hello-nginx` |
+| **Name** | `nginx` |
 | **Execution Type** | `Service` (will run as a daemon and auto-restart) |
 | **Status** | `Enabled` |
 | **Image Name** | `<your-namespace>/nginx` |
 | **Image Tag** | `alpine` |
 
-Click **Save**. The portal returns to the container list with `hello-nginx` shown as `Enabled`.
+Click **Save**. The portal returns to the container list with `nginx` shown as `Enabled`.
 
 ## 3. Expose a port
 
 By default the container is reachable only from the node itself. To make it reachable from the node's local network, add a host port mapping.
 
-1. Click into `hello-nginx`, then **Network** on the left sidebar.
+1. Click into `nginx`, then **Network** on the left sidebar.
 2. Under **Host Port Mappings** click **Add**.
 3. Fill in:
 
@@ -87,7 +87,6 @@ By default the container is reachable only from the node itself. To make it reac
 
 Go back to the container list at **node scope** (not cluster scope — the runtime state lives on the node). The container's **State** column transitions through `Pulling` → `Stopped` → `Running` within a minute or two for a small image.
 
-If it sticks at `Stopped`, see [Troubleshooting]({{<ref "/docs/nodes/appliances/containers/troubleshooting">}}).
 
 ## 5. Reach it
 

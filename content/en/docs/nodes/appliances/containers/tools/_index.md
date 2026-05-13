@@ -23,7 +23,7 @@ The container list at node scope shows two columns side by side:
 - **Status** — `Enabled` or `Disabled`. Whether the node is *supposed* to run it.
 - **State** — what's actually happening right now: `Running`, `Stopped`, `Restarting`, or `Pulling` (downloading the image).
 
-A container can show `Enabled` and `Stopped` at the same time — usually because the image couldn't be pulled, or because it's between restart attempts. See [troubleshooting]({{<ref "../troubleshooting">}}) if it stays that way.
+A container can show `Enabled` and `Stopped` at the same time — usually because the image couldn't be pulled, or because it's between restart attempts.
 
 {{<tgimg src="node-container-list.png" caption="Container list at node scope, showing runtime State alongside configured Status" width="90%">}}
 
@@ -80,11 +80,10 @@ Requires `node-exec::compute` permission.
 
 The **History** section in the left sidebar of a running container shows:
 
-- **Connections** — recent inbound and outbound network connections for this container. Useful to verify that port mappings and virtual networks are wired up right.
+- **Connections** — recent inbound and outbound network connections for this container.
 
 {{<tgimg src="connections.png" caption="Active and Completed connections for a container" width="90%">}}
 
 ## Related
 
-- [Container troubleshooting]({{<ref "../troubleshooting">}}) — what to check when Start does nothing, the logs are empty, or the Terminal refuses to open.
 - [Container networking]({{<ref "../concepts/networking">}}) — how port mappings, virtual networks, and DNS resolution work.

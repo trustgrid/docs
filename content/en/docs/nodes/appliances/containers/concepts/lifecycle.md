@@ -55,7 +55,7 @@ Common combinations:
 |---|---|---|
 | `Enabled` | `Running` | Healthy — a Service container that's up. |
 | `Enabled` | `Pulling` | Node is downloading the image. Will become `Running` if successful. |
-| `Enabled` | `Stopped` | The node is trying to run it but it isn't running — either between restart attempts or unable to start. See [troubleshooting]({{<ref "../troubleshooting">}}). |
+| `Enabled` | `Stopped` | The node is trying to run it but it isn't running — either between restart attempts or unable to start. |
 | `Disabled` | `Stopped` | Configured but the node won't try to run it. Useful when you're staging changes. |
 
 ## Manual Start and Stop
@@ -80,5 +80,4 @@ Recurring and On Demand containers do not restart on exit, so they don't have th
 ## Related
 
 - [Container Tools]({{<ref "../tools">}}) — Start, Stop, Logs, Terminal
-- [Container troubleshooting]({{<ref "../troubleshooting">}}) — when containers won't start or keep restarting
 - [Health Check]({{<ref "../#health-check">}}) — field reference

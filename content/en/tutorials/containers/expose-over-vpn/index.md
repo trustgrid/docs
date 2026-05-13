@@ -6,25 +6,33 @@ weight: 10
 
 A host port mapping makes a container reachable on the **node's local network**. To reach the container from a peer Trustgrid node — for example, a gateway in another datacenter — attach the container to a **virtual network** instead.
 
-This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) and have a running `hello-nginx` container on an edge node, and that you have a gateway node connected to the same organization with a working VPN tunnel to the edge.
+This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) and have a running `nginx` container on an edge node, and that you have a gateway node connected to the same organization with a working VPN tunnel to the edge.
 
 ## Topology
 
 ```
-   ┌──────────────────┐       Trustgrid          ┌──────────────────┐
-   │  gateway-node    │       virtual            │  edge-node       │
-   │                  │       network            │                  │
-   │ vIP=10.50.0.1    │◄────────────────────────►│ vIP=10.50.0.2    │
-   │                  │       my-vnet            │                  │
-   │                  │                          │   ┌────────────┐ │
-   │                  │                          │   │ container  │ │
-   │                  │                          │   │ vIP=10.50  │ │
-   │                  │                          │   │     .0.10  │ │
-   │                  │                          │   └────────────┘ │
-   └──────────────────┘                          └──────────────────┘
+   ┌──────────────┐
+   │  test host   │
+   │ 10.60.0.42   │ (routes 10.50.0.0/24 via the gateway)
+   └──────┬───────┘
+          │  curl 10.50.0.10:8080
+          ▼
+   ┌─────────────────────┐                            ┌─────────────────────────────────┐
+   │       gateway       │   Trustgrid VPN tunnel     │              edge               │
+   │                     │ ─────────────────────────► │                                 │
+   │                     │   my-vnet (10.50.0.0/24)   │      │ NAT in                   │
+   │                     │                            │      │ (virtual network)        │
+   │                     │                            │      ▼                          │
+   │                     │                            │  ┌──────────────────────────┐   │
+   │                     │                            │  │  Container nginx         │   │
+   │                     │                            │  │    container 172.18.0.7  │   │
+   │                     │                            │  │    vnet      10.50.0.10  │   │
+   │                     │                            │  │    listening on :8080    │   │
+   │                     │                            │  └──────────────────────────┘   │
+   └─────────────────────┘                            └─────────────────────────────────┘
 ```
 
-The container will get its own address inside the virtual network — `10.50.0.10` in this example. From the gateway, traffic to `10.50.0.10:80` arrives at the edge node, is delivered directly to the container, and is answered without ever touching the edge node's LAN interface.
+The container will get its own address inside the virtual network — `10.50.0.10` in this example. From the gateway, traffic to `10.50.0.10:8080` arrives at the edge node, is delivered directly to the container, and is answered without ever touching the edge node's LAN interface.
 
 ## 1. Confirm the virtual network is attached to both nodes
 
@@ -32,7 +40,6 @@ The container can only join a virtual network that is already attached to the no
 
 1. On the edge node, navigate to **Networking → VPN**. Verify `my-vnet` is listed.
 2. On the gateway, do the same. Verify the same `my-vnet` is listed.
-3. From the gateway, ping the edge's virtual IP (`10.50.0.2` here) using **Actions → Trustgrid Ping**. If this fails, fix VPN connectivity first — see the [gateway diagnostic tools]({{<ref "/docs/nodes/appliances/gateway/gateway-diag">}}).
 
 ## 2. Attach the container to the virtual network
 
@@ -52,10 +59,10 @@ The container does not need a host port mapping for this to work. The virtual ne
 
 ## 3. Reach the container from the gateway
 
-From any host that can route to the virtual network — typically a test host behind the gateway, or the gateway itself via SSH — make a request to the container's virtual IP on the port it's actually listening on inside the container (port `80` for nginx, not the host-mapped `8080`):
+From any host that can route to the virtual network — typically a test host behind the gateway, or the gateway itself via SSH — make a request to the container's virtual IP on the port it's actually listening on inside the container (`8080` in this example):
 
 ```bash
-curl http://10.50.0.10:80/
+curl http://10.50.0.10:8080/
 ```
 
 You should see the nginx welcome page. The traffic path:
@@ -72,7 +79,7 @@ You should see the nginx welcome page. The traffic path:
 | Listens on | Node's physical NIC | Container's own vnet interface |
 | Reachable from | Same node, same LAN | Any node attached to the same virtual network |
 | In a cluster | Each member's NIC needs the mapping; reach the active member's IP | Container runs on every member, all attached to the virtual network |
-| Address you reach | `<node-IP>:<host-port>` | `<container-vIP>:<container-port>` |
+| Address you reach | `<node-IP>:<host-port>` | `<container-VIP>:<container-port>` |
 | Common use | Local admin tools, sidecar agents, on-prem services | Microservices, APIs reached by other Trustgrid sites |
 
 You can do both — a typical pattern is a port mapping for local admin access plus a virtual network attachment for application traffic.

@@ -78,5 +78,4 @@ If you want a starting point for a service that's exposed to the public internet
 ## Related
 
 - [Container Tools]({{<ref "../tools">}}) — viewing logs and opening a shell in a running container
-- [Container troubleshooting]({{<ref "../troubleshooting">}}) — `Permission denied` and related errors
 - [Container storage]({{<ref "storage">}}) — encrypted volumes and Require Connectivity

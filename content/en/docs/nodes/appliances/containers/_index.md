@@ -17,9 +17,8 @@ Reading and managing containers requires `node-exec::read` and `node-exec::modif
 
 - **New to running containers on Trustgrid?** Start with the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) — push an image, run it, reach it from the LAN in about 10 minutes.
 - **Need to reach the container from a peer node over VPN?** Follow [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}).
-- **Persist data or mount a config file?** See [Bind-mount a config file]({{<ref "/tutorials/containers/bind-mount-config">}}) and [Container storage]({{<ref "concepts/storage">}}).
+- **Persist data?** See [Container storage]({{<ref "concepts/storage">}}).
 - **Operating a running container — logs, terminal, restart?** See [Container Tools]({{<ref "tools">}}).
-- **Running into an issue?** See [Container Troubleshooting]({{<ref "troubleshooting">}}).
 
 ## Concepts
 
@@ -124,8 +123,6 @@ Persist data either as an externally defined [volume]({{<ref "volumes">}}), or a
 {{<field "Source">}}For volumes, the volume name. For bind mounts, the absolute path on the node's filesystem.{{</field>}}
 {{<field "Destination">}}The mount location inside the container.{{</field>}}
 {{</fields>}}
-
-See [Tutorial: bind-mount a config file]({{<ref "/tutorials/containers/bind-mount-config">}}).
 
 ## Resource Limits
 

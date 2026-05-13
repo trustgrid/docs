@@ -105,4 +105,3 @@ A web service container with three traffic paths:
 ## Related
 
 - [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}})
-- [Container troubleshooting — networking section]({{<ref "../troubleshooting#networking">}})

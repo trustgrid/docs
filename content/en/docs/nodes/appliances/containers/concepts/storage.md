@@ -28,7 +28,6 @@ A bind mount makes a file or folder from the node visible inside the container.
 
 - The path has to exist on every node the container runs on. Cluster-scoped containers run on every cluster member, so if `/etc/myapp` exists on one cluster member but not the other, the container will fail on the member that's missing it.
 - The container needs permission to read or write the path. If it can't, you'll see a `Permission denied` error in the container's logs.
-- Bind-mounted data is not part of node backups. If the node is replaced, the data goes with it unless you've backed it up separately.
 
 ## Volumes
 
@@ -49,15 +48,12 @@ A volume is a piece of managed storage that lives alongside the container, set u
 
 ### Encrypted volumes
 
-When creating a volume you can mark it **Encrypted**. Trustgrid encrypts the data on disk using a key it fetches from the Trustgrid control plane when the container starts. Two things to know:
+Mark a volume **Encrypted** to have Trustgrid encrypt its contents at rest. The key is fetched from the Trustgrid control plane when the container starts, so the volume can only be unlocked while the node is connected to the control plane.
 
-- A volume can only be unlocked while the node is connected to Trustgrid. If the node is offline, the data stays encrypted.
-- This protects the data if someone gets the node's disk — they can't read the volume without also having a working node and a connection to the control plane.
+The **Require Connectivity** toggle on the container's Overview controls what happens when the node is disconnected from the control plane:
 
-There's one related setting, **Require Connectivity** on the container's Overview, which controls what happens to a stopped container when the node is offline:
-
-- **Require Connectivity: On** + encrypted volume → if the node loses its connection while the container is stopped, it won't start until the connection comes back. Use this when running offline is worse than not running.
-- **Require Connectivity: Off** + encrypted volume → a container that's already running stays running, but one trying to start while disconnected will fail because the volume can't unlock.
+- **On** — the container won't start until the node reconnects to the control plane. Use this when running offline is worse than not running.
+- **Off** — a container that's already running keeps running; one trying to start while disconnected will fail because the volume can't unlock.
 
 Require Connectivity has no effect on unencrypted volumes.
 
@@ -67,9 +63,8 @@ Require Connectivity has no effect on unencrypted volumes.
 |---|---|---|
 | Storage location | A path you pick on the node | Trustgrid manages it |
 | Survives container restart / image change | Yes | Yes |
-| Survives node replacement | No | No |
 | Encryption available | No | Yes |
-| Works automatically on all cluster members | Only if you keep the path in sync yourself | Yes — volumes are defined at the cluster level |
+| Works automatically on all cluster members | No | Yes — volumes are defined at the cluster level |
 | Good fit for config files | ✔ | Overkill |
 | Good fit for application data (databases, app state) | Not ideal — no encryption, manual cluster setup | ✔ |
 
@@ -83,4 +78,3 @@ Under **Container Management → Volumes** there's an **Import** action that cop
 
 - [Container Tools]({{<ref "../tools">}}) — opening a shell inside a running container
 - [Volumes reference]({{<ref "../volumes">}}) — every field on the Volumes screen
-- [Tutorial: bind-mount a config file]({{<ref "/tutorials/containers/bind-mount-config">}}) — end-to-end walkthrough
