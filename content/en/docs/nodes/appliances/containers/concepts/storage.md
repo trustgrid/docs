@@ -26,7 +26,7 @@ A bind mount makes a file or folder from the node visible inside the container.
 
 **Limitations:**
 
-- The path has to exist on every node the container might run on. For a clustered container that means every cluster member; if `/etc/myapp` exists on one cluster member but not the other, the container will break after failover.
+- The path has to exist on every node the container runs on. Cluster-scoped containers run on every cluster member, so if `/etc/myapp` exists on one cluster member but not the other, the container will fail on the member that's missing it.
 - The container needs permission to read or write the path. If it can't, you'll see a `Permission denied` error in the container's logs.
 - Bind-mounted data is not part of node backups. If the node is replaced, the data goes with it unless you've backed it up separately.
 

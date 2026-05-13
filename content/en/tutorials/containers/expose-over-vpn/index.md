@@ -71,7 +71,7 @@ You should see the nginx welcome page. The traffic path:
 | --- | --- | --- |
 | Listens on | Node's physical NIC | Container's own vnet interface |
 | Reachable from | Same node, same LAN | Any node attached to the same virtual network |
-| Survives node failover (clustered) | Yes — fail over to the next active node | Yes — fail over to the next active node |
+| In a cluster | Each member's NIC needs the mapping; reach the active member's IP | Container runs on every member, all attached to the virtual network |
 | Address you reach | `<node-IP>:<host-port>` | `<container-vIP>:<container-port>` |
 | Common use | Local admin tools, sidecar agents, on-prem services | Microservices, APIs reached by other Trustgrid sites |
 

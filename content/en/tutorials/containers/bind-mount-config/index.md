@@ -38,7 +38,7 @@ sudo chown -R 101:101 /etc/trustgrid-apps/hello-nginx
 If you skip the chown the container will start but nginx will log `Permission denied` and serve `403 Forbidden`. See [troubleshooting]({{<ref "/docs/nodes/appliances/containers/troubleshooting">}}).
 
 {{<alert color="warning">}}
-On a **clustered** node, the host path needs to exist on every cluster member. If you stage `/etc/trustgrid-apps/hello-nginx` on edge1 but not edge2, the container will work until failover and then break. For data that needs to be shared across members, use a [volume]({{<ref "/docs/nodes/appliances/containers/concepts/storage#volumes">}}) instead.
+On a **clustered** node, the host path needs to exist on every cluster member, since the container runs on each one. If you stage `/etc/trustgrid-apps/hello-nginx` on edge1 but not edge2, the container will fail on edge2. For data that needs to be shared between members, use a [volume]({{<ref "/docs/nodes/appliances/containers/concepts/storage#volumes">}}) instead.
 {{</alert>}}
 
 ## 2. Add the bind mount to the container

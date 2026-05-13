@@ -51,7 +51,7 @@ The token in the `docker login` command expires after about 24 hours. Re-fetch i
 Navigate to the cluster or node where you want to run the container, then **Compute → Container Management → Containers**, and click **Add Container**.
 
 {{<alert color="warning">}}
-If your target node is a member of a cluster, **create the container at the cluster level**, not on the individual node. Cluster-scoped containers automatically follow the active cluster member and survive failover. The portal will redirect node-level changes back to the cluster for a clustered node.
+If your target node is a member of a cluster, **create the container at the cluster level**, not on the individual node. Cluster-scoped containers are deployed to every member of the cluster, so the container is running on both nodes regardless of which one is active. The portal will redirect node-level changes back to the cluster for a clustered node.
 {{</alert>}}
 
 Fill in:
