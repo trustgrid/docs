@@ -23,12 +23,10 @@ Reading and managing containers requires `node-exec::read` and `node-exec::modif
 
 ## Concepts
 
-The container model has four moving parts; each gets its own page:
-
-- [**Container networking**]({{<ref "concepts/networking">}}) — bridge, resolver, VRF, port mappings, virtual networks, egress.
-- [**Container lifecycle**]({{<ref "concepts/lifecycle">}}) — Service vs Recurring vs On Demand, restart behavior, Status vs State.
-- [**Container storage**]({{<ref "concepts/storage">}}) — bind mounts vs volumes, encrypted volumes, Require Connectivity.
-- [**Container security**]({{<ref "concepts/security">}}) — capabilities, privileged, user identity, init, save output.
+- [**Container networking**]({{<ref "concepts/networking">}})
+- [**Container lifecycle**]({{<ref "concepts/lifecycle">}})
+- [**Container storage**]({{<ref "concepts/storage">}})
+- [**Container security**]({{<ref "concepts/security">}})
 
 ## Cluster scope vs node scope
 
