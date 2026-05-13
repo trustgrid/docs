@@ -72,7 +72,11 @@ The **VRF** field on the Network screen lets you put the container in a specific
 
 ## Deployment example
 
-A web service container that's reachable from the LAN for admin and from other Trustgrid nodes for application traffic. Two ways into the container — a port mapping on the node's LAN, and an address on the Trustgrid virtual network reachable by peer nodes — and outbound internet access via the node's WAN interface for package updates, connecting to external services, and so on.
+A web service container with three traffic paths:
+
+- **LAN clients** reach it through a port mapping on the node's LAN interface.
+- **Other Trustgrid nodes** reach it on its virtual network address.
+- **The container itself** reaches the internet through the node's WAN — for package updates, calling external services, and so on.
 
 ```
       LAN client          Trustgrid peer node                       Internet
