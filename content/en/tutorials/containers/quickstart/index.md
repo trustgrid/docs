@@ -87,7 +87,6 @@ By default the container is reachable only from the node itself. To make it reac
 
 Go back to the container list at **node scope** (not cluster scope — the runtime state lives on the node). The container's **State** column transitions through `Pulling` → `Stopped` → `Running` within a minute or two for a small image.
 
-
 ## 5. Reach it
 
 From any host on the same LAN as the node's host interface (e.g. an admin workstation):

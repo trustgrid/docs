@@ -47,7 +47,7 @@ The container only runs when you start it manually from the portal.
 The container list shows two columns that look similar but mean different things:
 
 - **Status** — whether the container is *configured* to run. `Enabled` means the node will run it; `Disabled` means the node will leave it alone.
-- **State** — what's actually happening on the node right now: `Running`, `Stopped`, `Pulling` (downloading the image), or `Restarting`.
+- **State** — what's actually happening on the node right now: `Running`, `Stopped`, or `Pulling` (downloading the image).
 
 Common combinations:
 

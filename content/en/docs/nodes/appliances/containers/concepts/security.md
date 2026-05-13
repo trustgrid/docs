@@ -72,7 +72,7 @@ If you want a starting point for a service that's exposed to the public internet
 3. Leave **Linux Capabilities** at defaults unless the image asks for one.
 4. Enable **Use Init**.
 5. Leave **Save Output** off unless you've checked the container's output for sensitive data.
-6. Use [bind mounts]({{<ref "storage#bind-mounts">}}) for read-only config files and [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) for application data.
+6. Use [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) for application data.
 7. Add a [Health Check]({{<ref "../#health-check">}}) so the node restarts the container if it stops responding.
 
 ## Related

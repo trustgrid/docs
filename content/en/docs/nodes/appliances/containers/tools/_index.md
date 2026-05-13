@@ -21,7 +21,7 @@ If the node is a member of a cluster, the portal shows a banner that the configu
 The container list at node scope shows two columns side by side:
 
 - **Status** — `Enabled` or `Disabled`. Whether the node is *supposed* to run it.
-- **State** — what's actually happening right now: `Running`, `Stopped`, `Restarting`, or `Pulling` (downloading the image).
+- **State** — what's actually happening right now: `Running`, `Stopped`, or `Pulling` (downloading the image).
 
 A container can show `Enabled` and `Stopped` at the same time — usually because the image couldn't be pulled, or because it's between restart attempts.
 
@@ -59,7 +59,7 @@ A **CONNECTED** badge in the corner means the stream is live. Click **Terminate*
 {{<tgimg src="logs-stream.png" caption="Streaming log viewer with the CONNECTED indicator and Terminate button" width="65%">}}
 
 {{<alert color="warning">}}
-This viewer only shows logs from the container's current run — if the container restarts, the history is gone. To keep logs across restarts, enable **Save Output** on the container's Overview. Saved logs are visible in **Observability** afterward. (Note: anything sensitive your container prints will be saved too.)
+This viewer only shows logs from the container's current run — if the container restarts, the history is gone. To keep logs across restarts, enable **Save Output** on the container's Overview. Saved logs are downloadable from **Compute → Output Artifacts** on the node. (Note: anything sensitive your container prints will be saved too.)
 {{</alert>}}
 
 ## Terminal

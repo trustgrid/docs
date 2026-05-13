@@ -15,7 +15,7 @@ This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tut
    │  test host   │
    │ 10.60.0.42   │ (routes 10.50.0.0/24 via the gateway)
    └──────┬───────┘
-          │  curl 10.50.0.10:8080
+          │  curl 10.50.0.10:80
           ▼
    ┌─────────────────────┐                            ┌─────────────────────────────────┐
    │       gateway       │   Trustgrid VPN tunnel     │              edge               │
@@ -27,12 +27,12 @@ This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tut
    │                     │                            │  │  Container nginx         │   │
    │                     │                            │  │    container 172.18.0.7  │   │
    │                     │                            │  │    vnet      10.50.0.10  │   │
-   │                     │                            │  │    listening on :8080    │   │
+   │                     │                            │  │    listening on :80      │   │
    │                     │                            │  └──────────────────────────┘   │
    └─────────────────────┘                            └─────────────────────────────────┘
 ```
 
-The container will get its own address inside the virtual network — `10.50.0.10` in this example. From the gateway, traffic to `10.50.0.10:8080` arrives at the edge node, is delivered directly to the container, and is answered without ever touching the edge node's LAN interface.
+The container will get its own address inside the virtual network — `10.50.0.10` in this example. From the gateway, traffic to `10.50.0.10:80` arrives at the edge node, is delivered directly to the container, and is answered without ever touching the edge node's LAN interface.
 
 ## 1. Confirm the virtual network is attached to both nodes
 
@@ -51,7 +51,7 @@ Open the container's **Network** screen at cluster scope (or node scope for a st
 | **Virtual IP** | `10.50.0.10` |
 | **Allow Outbound** | Enable if the container also needs to make connections out onto the virtual network (e.g. to fetch from another peer). Leave disabled if the container is purely inbound-serving. |
 
-Save. The container will restart to pick up the new interface.
+Save and apply. The container picks up the new interface once the config update lands.
 
 {{<alert color="warning">}}
 The container does not need a host port mapping for this to work. The virtual network attachment is independent — you can leave the port mapping for LAN access, or remove it if the container should only be reachable over the overlay.
@@ -59,10 +59,10 @@ The container does not need a host port mapping for this to work. The virtual ne
 
 ## 3. Reach the container from the gateway
 
-From any host that can route to the virtual network — typically a test host behind the gateway, or the gateway itself via SSH — make a request to the container's virtual IP on the port it's actually listening on inside the container (`8080` in this example):
+From any host that can route to the virtual network — typically a test host behind the gateway — make a request to the container's virtual IP on the port the container is actually listening on inside the container (`80` for the default nginx image):
 
 ```bash
-curl http://10.50.0.10:8080/
+curl http://10.50.0.10:80/
 ```
 
 You should see the nginx welcome page. The traffic path:
@@ -70,7 +70,7 @@ You should see the nginx welcome page. The traffic path:
 1. `curl` sends to `10.50.0.10`.
 2. The gateway's routing table sends `10.50.0.0/24` out the `my-vnet` tunnel toward the edge.
 3. The edge node delivers the packet to the container's `my-vnet` interface.
-4. nginx replies; the response is NAT'd back through the tunnel.
+4. nginx replies on the same path.
 
 ## What's different from a host port mapping?
 

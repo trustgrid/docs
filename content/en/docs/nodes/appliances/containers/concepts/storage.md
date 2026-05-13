@@ -18,15 +18,10 @@ A bind mount makes a file or folder from the node visible inside the container.
 | **Source** | The path on the node, e.g. `/etc/myapp` or `/var/log/myapp`. The path must already exist on the node before the container starts. |
 | **Destination** | Where the container should see it. |
 
-**When to use a bind mount:**
-
-- You need to give the container a config file you maintain on the node.
-- You want logs or output written somewhere you can grab from the node side.
-- The data is managed by something outside the container — config rolled out by Ansible, certs rotated by another process, etc.
-
 **Limitations:**
 
-- The path has to exist on every node the container runs on. Cluster-scoped containers run on every cluster member, so if `/etc/myapp` exists on one cluster member but not the other, the container will fail on the member that's missing it.
+- The path has to already exist on the node — there's no portal mechanism to populate an arbitrary node path. For shipping configuration in, use environment variables or bake the config into the image.
+- On a cluster, the path has to exist on every member or the container will fail on the member that's missing it.
 - The container needs permission to read or write the path. If it can't, you'll see a `Permission denied` error in the container's logs.
 
 ## Volumes
@@ -65,10 +60,9 @@ Require Connectivity has no effect on unencrypted volumes.
 | Survives container restart / image change | Yes | Yes |
 | Encryption available | No | Yes |
 | Works automatically on all cluster members | No | Yes — volumes are defined at the cluster level |
-| Good fit for config files | ✔ | Overkill |
 | Good fit for application data (databases, app state) | Not ideal — no encryption, manual cluster setup | ✔ |
 
-A common pattern: **bind-mount config files, use a volume for application data.** A database container might bind-mount `/etc/myapp/config.yaml` from the host and use a volume for `/var/lib/myapp/data`.
+For most workloads, **use volumes**. Bind mounts are a fit only when there's already a node-side path the container needs to see (e.g. a path created by another Trustgrid feature).
 
 ## Importing volumes between nodes
 
