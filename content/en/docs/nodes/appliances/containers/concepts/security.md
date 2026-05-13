@@ -21,7 +21,7 @@ Accepted formats: `user`, `user:group`, `uid`, `uid:gid`, or a mix.
 
 The **Linux Capabilities** screen lets you grant the container specific abilities it doesn't have by default, or remove abilities it does have.
 
-You only need to touch this if your image's documentation says it requires a specific capability — for example "requires `NET_ADMIN`" or "needs `SYS_PTRACE`." If it doesn't, leave it alone.
+You only need to touch this if your image's documentation says it requires a specific capability — for example "requires `NET_ADMIN`" or "needs `SYS_PTRACE`."
 
 **Examples of when an image might ask for one:**
 
