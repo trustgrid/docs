@@ -4,141 +4,110 @@ description: Diagnose containers that won't start, won't pull, can't reach the n
 weight: 90
 ---
 
-This page is organized by symptom. Each section starts with a one-line summary and lists what to check first.
-
-## `RegistryMediator: Retries exhausted downloading https://repo.*/v2/...`
-
-This appears in `/var/log/trustgrid/tg-default.log` on the node and is the most common cause of a container staying in `Stopped` after a fresh deploy. The exception text is generic — the underlying cause is *not* the same across reports — but in most cases it means **the node could not retrieve the image manifest from the configured pull host** (the value of `repo.uri` in the node's profile, typically `repo.<env>.trustgrid.io`).
-
-What it does **not** tell you:
-- The HTTP status code returned by the registry.
-- Whether the failure was authentication (401), missing manifest (404), TLS handshake, or timeout.
-- Which `Accept` header the node sent.
-
-Known causes, in order of likelihood:
-
-1. **Image was not pushed as `linux/amd64`.** Pushes from Apple Silicon Macs or Windows on ARM default to `arm64` and the tag will not appear in the portal nor be pullable by nodes. Re-push from an amd64 host. See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
-2. **Multi-segment image name** (e.g. `mynamespace/sub/dir/image`). Historical bug in node URL construction. Fixed in node release `n-2.23.0` (Aug 2025). If you're seeing this on an older node, upgrade.
-3. **Tag does not exist.** Confirm via **Repositories** in the portal that the tag is actually listed for your image. The portal list lags pushes by a few seconds.
-4. **Registry unreachable from the node.** Run `Actions → Test Repo Connectivity` on the node — it should return `connected`. If not, fix control-plane connectivity first.
-
-To collect more detail before raising:
-
-```bash
-# From the node shell:
-sudo grep -h "RegistryMediator\|manifests" /var/log/trustgrid/tg-default.log | tail -20
-sudo cat /var/lib/trustgrid/config/node-profile.json | grep repo.uri
-```
-
-The manifest URL the node tries follows the pattern `<repo.uri>/v2/<namespace>/<image>/manifests/<tag>` — verify it matches the image you pushed.
+This page is organized by symptom — find the section that matches what you're seeing.
 
 ## Container stays in "Stopped" state
 
-The configuration is present and the container is `Enabled`, but **State** in the node-scoped container list never moves off `Stopped`.
+The container is `Enabled` but its **State** never moves off `Stopped`.
 
 **Check, in order:**
 
-1. **Image and tag exist in the registry.** Open **Repositories**, click into the image, and verify the tag is listed. The list of tags can lag the registry by a few minutes; if you just pushed, wait or verify directly with `crane ls docker.<your-domain>/<namespace>/<image>`.
-2. **Node can reach the registry.** Run **Actions → Test Repo Connectivity** on the node. The Trustgrid registry is reached through the control plane, so internet connectivity isn't enough — control-plane connectivity is what matters. If repo connectivity fails, fix that before continuing.
-3. **Node has the latest config.** Cluster-scoped containers are propagated to nodes asynchronously. If you just created the container at cluster scope, wait 30–60 seconds and refresh. The node-scoped container list will show the container once it has the config.
-4. **Node startup error.** Check the node's overview for the `startup.error` flag. If set, the node's container runtime may not have started cleanly — restart the node service from the node's action bar (**Restart**) and re-check.
-5. **Image is incompatible.** A pulled image that targets a different CPU architecture (e.g. an ARM-only image on an x86 node) will pull successfully but fail to start. Re-tag the image as multi-arch or push a build for the node's architecture.
+1. **The image and tag exist in the registry.** Open **Repositories**, click into the image, and verify the tag is listed. The list can take a few minutes to update after a push.
+2. **The node can reach the registry.** Run **Actions → Test Repo Connectivity** on the node. The Trustgrid registry is reached through the Trustgrid control plane — internet access alone isn't enough.
+3. **The node has the latest config.** Cluster-level container configs take 30–60 seconds to propagate to nodes. If you just created the container, wait and refresh.
+4. **The image works on this node's architecture.** A container built only for ARM won't run on an x86 node. Re-push as `linux/amd64` (see [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}})).
 
 ## Image pull fails
 
-State alternates between `Pulling` and `Stopped`, or stays at `Pulling` indefinitely.
+State alternates between `Pulling` and `Stopped`, or stays at `Pulling` indefinitely. Or the node log shows `RegistryMediator: Retries exhausted` (the generic "couldn't get the image" error).
 
 **Check:**
 
-1. **Image name format.** The full path is `<your-namespace>/<image>` (the registry hostname is added by the node automatically). For example, `acme.trustgrid.io/nginx`, not `docker.acme.trustgrid.io/acme.trustgrid.io/nginx`.
-2. **Registry control-plane connectivity.** As above — **Test Repo Connectivity**.
-3. **Disk space.** Run **Actions → Node Info** and check the storage gauge. A node with full disk cannot pull. Old container layers are cleaned automatically but can take time; if needed, manually remove unused volumes from **Compute → Container Management → Volumes**.
+1. **Image name format.** The full path is `<your-namespace>/<image>` — the registry hostname is added by the node. Example: `acme.trustgrid.io/nginx`, not `docker.acme.trustgrid.io/acme.trustgrid.io/nginx`.
+2. **Image was pushed as `linux/amd64`.** Pushes from Apple Silicon Macs or Windows on ARM are `arm64` by default and won't appear in the portal or be pullable. Re-push from an amd64 host. See [Repositories — Supported image platforms]({{<ref "/docs/repositories#supported-image-platforms">}}).
+3. **Repo connectivity.** Run **Actions → Test Repo Connectivity** on the node.
+4. **Disk space.** Check **Actions → Node Info** on the node. A full disk can't pull. Unused container layers are cleaned up automatically but it takes time; if needed, remove unused volumes under **Compute → Container Management → Volumes**.
 
 ## Container starts, then crashes immediately
 
-State reads `Running` briefly, then `Stopped`. Repeats every few seconds.
+State shows `Running` briefly, then `Stopped`, repeatedly.
 
 **Check:**
 
-1. **Logs.** Open the **Logs** viewer for the container. Most application-level startup failures (missing env var, missing file, permission denied) print to stdout/stderr before exiting.
-2. **Save Output.** If the container crashes before you can attach the live log viewer, enable **Save Output** on the Overview screen. Logs will be persisted and visible in **Observability** even across restarts.
-3. **Required environment variables.** Compare the container's **Environment Variables** screen against the image's documented requirements.
-4. **Required mounts.** A container that expects a config file at `/etc/myapp/config.yaml` will exit if no mount provides it. Add a **Bind** or **Volume** mount on the Mounts screen.
-5. **User / UID mismatch.** If the image expects to run as a specific UID and you've set **User** on the Overview to something else, the entrypoint may fail. Either match the image's expected user or use **Linux Capabilities** to grant the needed permissions.
+1. **Logs.** Open the **Logs** viewer. Most application startup errors (missing environment variable, missing file, permission denied) print before the container exits.
+2. **Save Output.** If the container crashes too fast to see in the live viewer, turn on **Save Output** on the Overview. Restart attempts will then be visible in **Observability**.
+3. **Environment variables.** Check the container's **Environment Variables** screen against what the image's documentation says it needs.
+4. **Required files.** A container that expects a config file at, say, `/etc/myapp/config.yaml` will crash if no mount provides it. Add a bind mount or volume.
+5. **User mismatch.** If the image expects a specific UID and you set **User** to something else, the entrypoint may fail.
 
 ## Container is running but unreachable from the LAN
 
-State is `Running`. `nc -zv <node-LAN-IP> <host-port>` returns connection refused or times out.
+State is `Running`, but trying to reach the container from another machine on the LAN times out.
 
 **Check:**
 
-1. **Port mapping bound to the right interface.** Open **Network → Host Port Mappings**. The **Host Interface** field must be the NIC that's actually on the LAN you're connecting from. A mapping on `ens160` (WAN) will not be reachable from a host plugged into `ens192` (LAN).
-2. **Container is actually listening.** Open the **Terminal** for the container and run `ss -tlnp` (or `netstat -tlnp`). The container must be listening on `0.0.0.0:<container-port>`, not just on `127.0.0.1`. nginx, Postgres, and Redis all default to localhost-only on some distributions.
-3. **Node firewall.** Node-level firewall rules apply to inbound traffic before it reaches the port-mapping rules. Check **Networking → Interfaces → Firewall** on the node.
-4. **Cluster active member.** If the node is a clustered edge, only the active member is forwarding traffic on the cluster's shared IP. Verify the active member from **Cluster → Overview** and try the active member's individual IP if the shared IP is unreachable.
+1. **Port mapping is on the right interface.** Under **Network → Host Port Mappings**, the **Host Interface** has to be the one that's on the LAN you're connecting from. A mapping on the WAN interface won't be reachable from the LAN.
+2. **The container is actually listening.** Open the **Terminal** for the container and run `ss -tlnp` (or `netstat -tlnp` if `ss` isn't available). The container needs to be listening on `0.0.0.0:<container-port>`, not just `127.0.0.1`. nginx, Postgres, and Redis all default to localhost-only in some configurations.
+3. **Node firewall.** Node-level firewall rules apply before the port mapping — check **Networking → Interfaces → Firewall**.
+4. **Cluster member.** On a cluster, only the active member forwards traffic on the shared cluster IP. Try the active member's individual IP if the cluster IP isn't reachable.
 
-## Container is running but unreachable from a peer node over a virtual network
+## Container is running but unreachable from another Trustgrid node
 
-State is `Running`. The host port mapping works locally, but a peer node can't reach the container's virtual IP.
+The container's host port mapping works locally, but a peer node can't reach the container's virtual IP.
 
 **Check:**
 
-1. **Container has the virtual network attachment.** Open **Network → Virtual Networks** on the container. Verify the network name and **Virtual IP**.
-2. **Virtual network is attached to the node.** **Networking → VPN** on the node should list the same network. The container can only join a virtual network already attached to the node.
-3. **VPN tunnel is up.** Use **Actions → Trustgrid Ping** from the peer node, targeting the *node's* virtual IP (not the container's). If the node-to-node ping fails, fix VPN connectivity first.
-4. **Address inside the container.** Open the **Terminal** and run `ip -br addr`. You should see an additional interface with the configured virtual IP. If it's missing, the attachment didn't apply — try toggling **Status** to `Disabled` and back to `Enabled` to force a restart.
-5. **Allow Outbound (for replies in some configurations).** Inbound-only attachments should respond to incoming connections fine, but if you're seeing one-way traffic, verify the attachment isn't NAT-translating in an unexpected direction. Use **Actions → VPN NATs** on the node to see the active translation table.
+1. **The virtual network is attached to the container.** Under **Network → Virtual Networks** on the container, verify the network name and **Virtual IP**.
+2. **The virtual network is also attached to the node.** Look at **Networking → VPN** on the node — the same network needs to be there. The container can only join networks the node has.
+3. **VPN is up.** Try **Actions → Trustgrid Ping** from the peer node targeting the **node's** virtual IP (not the container's). If that fails, fix VPN connectivity first.
+4. **The container actually got the address.** Open the **Terminal** and run `ip -br addr`. You should see an interface with the virtual IP. If not, toggle the container's Status to `Disabled` and back to force a restart.
 
 ## Container can't resolve DNS
 
-`getaddrinfo` failures inside the container; logs show `Could not resolve host`.
+Inside the container, lookups fail with "Could not resolve host."
 
 **Check:**
 
-1. **Default resolver.** Inside the container, `/etc/resolv.conf` should point to `172.18.1.2` (the node-side resolver). If you've set the **DNS** field on the Overview, the container uses that resolver instead — verify the address is correct and reachable from the container's network space.
-2. **Node DNS is healthy.** **Actions → Test DNS** on the node. The container's resolver forwards external lookups to the node's resolvers — if those are broken, container DNS breaks too.
-3. **DNS over a virtual network.** If you set **DNS** to an address only reachable via a virtual network, the container must also be attached to that virtual network with at least the resolver as a reachable route.
+1. **The container's resolver.** Inside the container, `/etc/resolv.conf` should show `172.18.1.2` — the node's resolver. If you set a custom **DNS** address on the container's Overview, that resolver is used instead — make sure it's reachable.
+2. **The node's own DNS works.** Run **Actions → Test DNS** on the node. The container's resolver forwards external lookups to the node — so if the node's DNS is broken, the container's is too.
 
 ## Container can't reach the internet
 
-State is `Running` but the container can't `curl https://example.com`.
+State is `Running` but the container can't reach external sites.
 
 **Check:**
 
-1. **Node can reach the internet.** **Actions → Speed Test**. Containers egress through the node's default route — if the node is offline, the container is offline.
-2. **VRF.** If you set a **VRF** on the container's Network screen, outbound traffic is restricted to that VRF's routing table. Confirm the VRF has a default route, or unset it to use the node's default routing.
-3. **Allow Outbound on virtual networks.** If the container has a virtual network attachment with **Allow Outbound** enabled, some traffic may be routed onto the virtual network instead of egress. Check the virtual network's routes.
+1. **The node can reach the internet.** Run **Actions → Speed Test** on the node. Containers leave the node through the node's normal route.
+2. **VRF.** If you set a VRF on the container's Network screen, the container is limited to that VRF's routing. Either make sure the VRF has a default route or unset it to use the node's normal routing.
 
 ## Health check keeps restarting the container
 
-The container is healthy from a user's perspective but the configured health check fails and the node restarts it on the configured interval.
+The container looks fine in the logs but the health check fails and the node restarts it.
 
 **Check:**
 
-1. **Health check command.** Run it manually from the **Terminal** to see what it returns. A non-zero exit code is a failure. Common gotchas: `wget`/`curl` not present in the image, the command needs an absolute path, the check probes `localhost` but the service binds to `0.0.0.0` only.
-2. **Start Period.** The check starts running this many seconds after the container starts. If your application takes 30s to come up but **Start Period** is `0`, the first checks will fail and accumulate against **Retries**.
-3. **Interval / Timeout.** A `curl` health check against a slow endpoint with **Timeout: 1** will fail intermittently.
+1. **Run the health check command manually.** Open the **Terminal** and run it yourself. Non-zero exit = failure. Common issues: `wget` or `curl` isn't installed in the image, the path needs to be absolute, the check probes `localhost` but the service only listens on `0.0.0.0`.
+2. **Start Period.** The check kicks in this many seconds after the container starts. If the app takes 30 seconds to come up but Start Period is `0`, the first checks fail and count toward Retries.
+3. **Timeout.** A 1-second timeout on a slow endpoint will fail intermittently.
 
-## Container hits a resource limit
+## Container is being killed for using too much memory or CPU
 
-OOM kills, throttling, or slow IO.
+OOM kills, slow performance, or throttling.
 
 **Check:**
 
-1. **Resource Limits screen.** Default CPU max is 50% and default Memory max is 50% of the host. For a container that genuinely needs more, raise the limits explicitly.
-2. **IO limits.** Disabled by default. If you set `IO Max Read (B/s)` or similar and the container is doing more disk activity than expected, it may be throttled.
-3. **Health-check restart loops.** A restarting container repeatedly burns the same memory budget — the OOM you see may be a symptom of the health-check failure above, not a real over-budget condition.
+1. **Resource Limits screen.** Defaults are CPU 50% and Memory 50% of the node. Raise them if your workload legitimately needs more.
+2. **IO limits.** Off by default. If you set IO limits explicitly and the container is doing heavier disk activity than expected, it'll get throttled.
+3. **Restart loop.** A container that's crashing and restarting will keep hitting the same memory limit. Fix the underlying crash first.
 
 ## Diagnostic checklist for any container issue
 
-When you don't know what's wrong, collect these in order:
+When you're not sure what's wrong, gather these in order:
 
-1. **Container state** — from the node-scoped container list.
-2. **Container logs** — Logs viewer, with **Follow** off and a high line count to grab history.
-3. **Node startup.error** — from the node's Overview.
-4. **Node service status** — **Actions → Test Runtime Status**.
-5. **Repo connectivity** — **Actions → Test Repo Connectivity**.
-6. **DNS health** — **Actions → Test DNS**.
-7. **Active flows** — **Actions → Active Flows**, filtered by `containerId`.
+1. **Container State** — from the node-scoped container list.
+2. **Container logs** — Logs viewer, with a high line count to capture history.
+3. **Node Repo connectivity** — **Actions → Test Repo Connectivity**.
+4. **Node DNS** — **Actions → Test DNS**.
+5. **Active flows** — **Actions → Active Flows** filtered by `containerId`.
 
-A container issue almost always falls out from one of these seven views.
+A container issue almost always shows up in one of these.

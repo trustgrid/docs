@@ -1,91 +1,86 @@
 ---
 title: "Container Storage"
-description: Bind mounts, volumes, and the interaction with encryption and connectivity requirements.
+description: How to give a container persistent storage or access to host files.
 weight: 30
 ---
 
-A container has only an ephemeral filesystem by default — anything written inside the container is lost when it stops and is recreated. To persist data, or to make host files available to the container, configure a **mount** on the container's Mounts screen.
+By default, anything a container writes is lost when it stops — the filesystem is reset every time the container restarts. To keep data around, or to share a file from the node with the container, configure a **mount** on the container's Mounts screen.
 
-There are two mount types: **bind** and **volume**.
+There are two mount types: **bind** and **volume**. Pick a volume for application data you want to keep; pick a bind mount when you want to share a specific file or folder that already exists on the node.
 
 ## Bind mounts
 
-A bind mount maps a path on the node's filesystem directly into the container.
+A bind mount makes a file or folder from the node visible inside the container.
 
 | Field | Notes |
 |---|---|
 | **Type** | `BIND` |
-| **Source** | Absolute path on the node, e.g. `/etc/myapp` or `/var/log/myapp`. The path must already exist on the node before the container starts. |
-| **Destination** | Mount location inside the container. |
+| **Source** | The path on the node, e.g. `/etc/myapp` or `/var/log/myapp`. The path must already exist on the node before the container starts. |
+| **Destination** | Where the container should see it. |
 
 **When to use a bind mount:**
 
-- You need to share an existing host file or directory with the container — a config file from `/etc`, a log directory, a TLS cert bundle.
-- You need the path to be inspectable from the node side (e.g., to copy a log file off the node manually).
-- The data is managed by something outside the container's lifecycle (config managed by Ansible, certs rotated by another process, etc.).
+- You need to give the container a config file you maintain on the node.
+- You want logs or output written somewhere you can grab from the node side.
+- The data is managed by something outside the container — config rolled out by Ansible, certs rotated by another process, etc.
 
 **Limitations:**
 
-- The host path must exist on every node the container can run on. For a clustered container, that means **every cluster member** — if a path exists on edge1 but not edge2, the container will fail on edge2 (or after failover).
-- Permissions follow the host filesystem. If the container's user can't read or write the path, it will fail at runtime — typically with a `Permission denied` in the container logs.
-- Bind mounts are **not** included in node backups. If the node is replaced, you lose them unless you've backed them up out-of-band.
+- The path has to exist on every node the container might run on. For a clustered container that means every cluster member; if `/etc/myapp` exists on one cluster member but not the other, the container will break after failover.
+- The container needs permission to read or write the path. If it can't, you'll see a `Permission denied` error in the container's logs.
+- Bind-mounted data is not part of node backups. If the node is replaced, the data goes with it unless you've backed it up separately.
 
 ## Volumes
 
-A volume is a managed storage location with a lifecycle independent of any container.
+A volume is a piece of managed storage that lives alongside the container, set up under **Compute → Container Management → Volumes**. Volumes have a name and can be reused across containers.
 
 | Field | Notes |
 |---|---|
 | **Type** | `VOLUME` |
-| **Source** | The name of a pre-existing volume on the node or cluster (configured under **Container Management → Volumes**). |
-| **Destination** | Mount location inside the container. |
-
-Volumes are created under **Compute → Container Management → Volumes**. Each volume is named and can be reused across containers — typical pattern is one volume per application that needs persistent state.
+| **Source** | The name of a volume you already created. |
+| **Destination** | Where the container should see it. |
 
 **When to use a volume:**
 
-- You want Trustgrid to manage the storage rather than wiring up a host directory yourself.
-- You want the data to survive container replacement, node config changes, or image updates.
-- You want to share storage between containers on the same node.
-- You want the option to **encrypt** the data at rest (see below).
+- You want Trustgrid to handle the storage location instead of picking a host path yourself.
+- You want the data to survive container restarts, image updates, or container reconfiguration.
+- You want to share storage between two containers running on the same node.
+- You want to encrypt the data at rest (see below).
 
 ### Encrypted volumes
 
-When creating a volume you can mark it **Encrypted**. Encrypted volume data is encrypted on the node disk using a key the node fetches from the Trustgrid control plane at runtime. This means:
+When creating a volume you can mark it **Encrypted**. Trustgrid encrypts the data on disk using a key it fetches from the Trustgrid control plane when the container starts. Two things to know:
 
-- An attacker with raw disk access to the node cannot read volume data without also obtaining a working node identity and a path to the control plane.
-- The node must have **control plane connectivity** to unlock the volume. If the node is offline from Trustgrid's control plane, the volume is unreadable.
+- A volume can only be unlocked while the node is connected to Trustgrid. If the node is offline, the data stays encrypted.
+- This protects the data if someone gets the node's disk — they can't read the volume without also having a working node and a connection to the control plane.
 
-There's an interaction with container behavior on disconnect, controlled by the **Require Connectivity** field on the container's Overview:
+There's one related setting, **Require Connectivity** on the container's Overview, which controls what happens to a stopped container when the node is offline:
 
-- **Require Connectivity: enabled** + encrypted volume → if the node loses control-plane connectivity while the container is stopped, the container will not start. Once connectivity returns, the volume unlocks and the container starts normally. **Use this when the data in the volume is sensitive enough that running offline is worse than running not at all.**
-- **Require Connectivity: disabled** + encrypted volume → behavior on disconnect depends on whether the volume was already unlocked. Containers with unlocked encrypted volumes keep running; containers attempting to start while disconnected will fail to mount the volume.
+- **Require Connectivity: On** + encrypted volume → if the node loses its connection while the container is stopped, it won't start until the connection comes back. Use this when running offline is worse than not running.
+- **Require Connectivity: Off** + encrypted volume → a container that's already running stays running, but one trying to start while disconnected will fail because the volume can't unlock.
 
-For unencrypted volumes Require Connectivity has no effect on storage.
+Require Connectivity has no effect on unencrypted volumes.
 
-## Choosing between bind and volume
+## Bind or volume — quick comparison
 
 | | Bind | Volume |
 |---|---|---|
-| Storage managed by | You (on the node filesystem) | Trustgrid |
-| Survives container replacement | Yes (host path persists) | Yes |
-| Survives node replacement | No (data on the old node) | No (data on the old node) |
-| Can be encrypted | No | Yes, with control-plane key |
-| Available on all cluster members | Only if you ensure it | Yes (volume defined at cluster level) |
-| Inspect from host shell | Yes (it's a host path) | Yes, but path is under Trustgrid-managed location |
-| Right for config files | ✔ | ✘ (overkill) |
-| Right for application state / databases | ✘ (no encryption, manual cluster sync) | ✔ |
+| Storage location | A path you pick on the node | Trustgrid manages it |
+| Survives container restart / image change | Yes | Yes |
+| Survives node replacement | No | No |
+| Encryption available | No | Yes |
+| Works automatically on all cluster members | Only if you keep the path in sync yourself | Yes — volumes are defined at the cluster level |
+| Good fit for config files | ✔ | Overkill |
+| Good fit for application data (databases, app state) | Not ideal — no encryption, manual cluster setup | ✔ |
 
-A common pattern: **bind mount for static config, volume for application state.** For example, a database container would bind-mount `/etc/myapp/config.yaml` from the host and use a volume for `/var/lib/myapp/data`.
+A common pattern: **bind-mount config files, use a volume for application data.** A database container might bind-mount `/etc/myapp/config.yaml` from the host and use a volume for `/var/lib/myapp/data`.
 
 ## Importing volumes between nodes
 
-Under **Container Management → Volumes**, the **Import** action copies a volume's definition (name, encryption flag) from another node or cluster. This is useful for replicating a container configuration to a new edge — import the volumes first, then the container that references them.
-
-Importing copies the **definition**, not the data. The new volume starts empty.
+Under **Container Management → Volumes** there's an **Import** action that copies a volume's name and settings from another node or cluster — handy when you're rolling out the same container to a new edge. It copies the **definition only**; the new volume starts empty.
 
 ## Related
 
-- [Container Tools]({{<ref "../tools">}}) — how to access the container filesystem from the portal Terminal
-- [Volumes reference]({{<ref "../volumes">}}) — field-by-field reference for the Volumes screen
+- [Container Tools]({{<ref "../tools">}}) — opening a shell inside a running container
+- [Volumes reference]({{<ref "../volumes">}}) — every field on the Volumes screen
 - [Tutorial: bind-mount a config file]({{<ref "/tutorials/containers/bind-mount-config">}}) — end-to-end walkthrough

@@ -1,113 +1,89 @@
 ---
 title: "Container Security"
-description: Capabilities, privileges, user identity, and connectivity gating for containers on Trustgrid nodes.
+description: Settings that control what a container can do and which user it runs as.
 weight: 40
 ---
 
-Trustgrid nodes run containers with least-privilege defaults. This page covers the levers you have to tighten or relax those defaults — and the cases where you actually need to.
+By default, a container on a Trustgrid node runs with safe, restrictive settings — it can't see the host filesystem, can't touch host devices, and can't interfere with the node or other containers. The toggles on this page let you grant additional access when a specific workload needs it.
 
-## The default sandbox
-
-Out of the box, a container on a Trustgrid node runs with:
-
-- A reduced Linux capability set (no `CAP_SYS_ADMIN`, no `CAP_NET_ADMIN`, etc.).
-- Its own PID, network, IPC, and mount namespaces.
-- No access to the host filesystem unless explicit [bind mounts]({{<ref "storage#bind-mounts">}}) say otherwise.
-- As the image's default user (typically `root` *inside* the container, but isolated from the node's `root` by namespacing).
-
-Most containers don't need anything beyond that. Reach for the controls below only when something doesn't work without them.
+Most container deployments only need to set **User** (sometimes) and leave everything else at the defaults.
 
 ## User
 
-The **User** field on the Overview screen sets the user/group the container's main process runs as. Accepted formats:
+The **User** field on the Overview screen sets which user inside the container runs the application. Leave it blank to use the user the image was built to run as (often `root` inside the container).
 
-- `user` — username defined inside the image
-- `user:group` — username and group both defined inside the image
-- `uid` — numeric user ID (does not need to exist inside the image)
-- `uid:gid` — numeric user and group
-- `user:gid` or `uid:group` — mixed
+**When to set it:**
 
-If left blank, the container runs as the image's default user (specified by `USER` in the Dockerfile, defaulting to `root`).
+- The image runs as `root` by default and you want it to run as a specific UID instead — usually for ownership of files in a mounted volume.
+- Several containers share a volume and need to agree on the same UID so they can all read/write the files.
+- You have a compliance requirement that nothing runs as UID 0.
 
-**Common reasons to set this:**
-
-- Image runs as root by default but you'd rather a specific UID for ownership of mounted volumes.
-- Multiple containers share a volume and you need consistent UIDs across them.
-- Compliance requirement that nothing run as UID 0.
+Accepted formats: `user`, `user:group`, `uid`, `uid:gid`, or a mix.
 
 ## Linux Capabilities
 
-The **Linux Capabilities** screen lets you add or drop specific kernel capabilities the container has access to.
+The **Linux Capabilities** screen lets you grant the container specific abilities it doesn't have by default, or remove abilities it does have.
 
-- **Add Caps** — grant a capability not in the default set. Pick narrowly; granting `CAP_SYS_ADMIN` is effectively granting root.
-- **Drop Caps** — remove a capability from the default set. Use for paranoid hardening.
+You only need to touch this if your image's documentation says it requires a specific capability — for example "requires `NET_ADMIN`" or "needs `SYS_PTRACE`." If it doesn't, leave it alone.
 
-Capability names follow the Linux convention (`CAP_NET_BIND_SERVICE`, `CAP_SYS_PTRACE`, etc.). See [capabilities(7)](https://man7.org/linux/man-pages/man7/capabilities.7.html) for the full list and what each grants.
+**Examples of when an image might ask for one:**
 
-**Examples of when to add:**
-
-| Capability | Why you'd add it |
+| Capability | Typical use |
 |---|---|
-| `CAP_NET_BIND_SERVICE` | Container needs to bind to a privileged port (< 1024) without running as root. |
-| `CAP_NET_ADMIN` | Container manages network interfaces or routing inside its namespace — VPN clients, packet sniffers. |
-| `CAP_SYS_PTRACE` | Container needs to attach a debugger or strace to a process inside it. |
-| `CAP_NET_RAW` | Container uses raw sockets (e.g., ping, traceroute, custom protocols). |
+| `CAP_NET_BIND_SERVICE` | Listen on a privileged port (under 1024) without running as `root`. |
+| `CAP_NET_ADMIN` | Manage network interfaces or routing inside the container — VPN clients, packet capture tools. |
+| `CAP_SYS_PTRACE` | Attach a debugger or `strace` to a process inside the container. |
+| `CAP_NET_RAW` | Use raw sockets — `ping`, `traceroute`, custom network tools. |
 
-**Always prefer adding specific capabilities over enabling `Privileged`.** Each cap you add is documented; `Privileged` removes the entire sandbox.
+Adding a specific capability is preferred over enabling [Privileged](#privileged) — it's narrower and easier to reason about.
 
 ## Privileged
 
 The **Privileged** toggle on the Overview screen allows workloads that need elevated access at the container level. Enable it only when the image's documentation tells you to — usually phrased as "must run with `--privileged`" or "requires root access." Most container deployments do not require it. If you're unsure, leave it off and start the container — if the image actually needs Privileged it will fail with an error in the logs telling you so, and you can flip it on then.
 
-When you do know which specific capabilities your workload needs, prefer adding them via [Linux Capabilities](#linux-capabilities) rather than enabling Privileged — narrower grants are easier to audit.
-
 ## Use Init
 
-The **Use Init** toggle enables a tiny init process (PID 1) inside the container.
+The **Use Init** toggle on the Overview is a small reliability fix.
 
-By default, the container's main process is PID 1. PID 1 in Linux has special responsibilities — reaping zombie children, handling signals — that most application processes don't implement correctly. Symptoms of needing Use Init:
+**Enable it when:**
 
-- Defunct/zombie processes accumulating inside the container over time.
-- Container doesn't shut down cleanly on Stop; instead waits the full Stop Time grace period before being killed.
-- Container is using shell scripts as the entrypoint that don't forward signals to child processes.
+- The container takes a long time to stop (waits the full Stop Time before being killed).
+- You see "defunct" or "zombie" processes piling up inside the container over time.
+- The container's entrypoint is a shell script that launches other processes.
 
-When enabled, a small init binary runs as PID 1 and your application runs as PID 2. **Cheap to enable; enable it for any service that spawns child processes.**
+It's cheap to turn on — if you're not sure, enabling it is a safe default for any service that spawns child processes.
 
 ## Require Connectivity
 
-The **Require Connectivity** toggle on the Overview gates container startup on the node having control-plane connectivity to Trustgrid.
+The **Require Connectivity** toggle on the Overview gates container startup on the node being connected to Trustgrid.
 
-- **Disabled (default):** the container starts whenever the node tries to start it, regardless of whether the node can reach the Trustgrid control plane.
-- **Enabled:** the container will not start if the node has lost control-plane connectivity. Used in combination with encrypted volumes to ensure sensitive data never decrypts on an offline node.
+- **Off (default):** the container starts whenever the node tries to start it, online or offline.
+- **On:** the container won't start unless the node can reach Trustgrid.
 
-This only affects **startup**. A running container that loses control-plane connectivity mid-run is not stopped automatically. To enforce continuous connectivity, also configure a Health Check that probes a control-plane-only endpoint.
-
-See [storage — encrypted volumes]({{<ref "storage#encrypted-volumes">}}) for the typical use case.
+Use this with encrypted volumes — see [Container storage — Encrypted volumes]({{<ref "storage#encrypted-volumes">}}). It only affects startup; a container that's already running keeps running if the node goes offline.
 
 ## Save Output
 
-The **Save Output** toggle on the Overview persists the container's `stdout` and `stderr` to the Trustgrid cloud, where it's visible in **Observability** and survives container restarts.
+The **Save Output** toggle on the Overview saves the container's log output (everything it prints to the terminal) to Trustgrid, where you can view it later in **Observability** even after the container restarts.
 
-This is a **security knob** as well as an observability one:
+**Be careful what you save.** If your container prints API keys, customer information, or other sensitive data, that ends up in Trustgrid's log store. It is the customer's responsibility to ensure no sensitive information appears in the output.
 
-- **It is the customer's responsibility to ensure no privileged information is included in the output.** If your container logs API keys, customer PII, or session tokens, those end up in the Trustgrid log store.
-- The log retention follows your org's log retention policy.
-- If you're unsure whether the container's output contains sensitive data, leave Save Output disabled and use the [portal Logs viewer]({{<ref "../tools#logs">}}) for live debugging instead — that streams logs without persisting.
+If you're unsure about a container's output, leave Save Output off and use the [Logs viewer]({{<ref "../tools#logs">}}) for live debugging instead — that shows logs as they happen without keeping a copy.
 
-## Putting it together
+## A secure setup for an internet-facing service
 
-A common hardening profile for an internet-facing service:
+If you want a starting point for a service that's exposed to the public internet:
 
-1. Set **User** to a non-root UID (or use an image that sets it).
+1. Set **User** to a non-root user (or use an image that already does).
 2. Leave **Privileged** off.
-3. Under **Linux Capabilities**, drop everything you don't need (`CAP_CHOWN`, `CAP_DAC_OVERRIDE`, etc.) and add only the specific capabilities the service requires (e.g., `CAP_NET_BIND_SERVICE` if it listens on port 80).
-4. Enable **Use Init** so signal handling and zombie reaping work correctly.
-5. Leave **Save Output** off unless you've confirmed nothing sensitive ends up in stdout/stderr.
-6. Use [bind mounts]({{<ref "storage#bind-mounts">}}) for config (read-only paths) and [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) for application state.
-7. Add a [Health Check]({{<ref "../#health-check">}}) so the node restarts the container on application-level failure.
+3. Leave **Linux Capabilities** at defaults unless the image asks for one.
+4. Enable **Use Init**.
+5. Leave **Save Output** off unless you've checked the container's output for sensitive data.
+6. Use [bind mounts]({{<ref "storage#bind-mounts">}}) for read-only config files and [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) for application data.
+7. Add a [Health Check]({{<ref "../#health-check">}}) so the node restarts the container if it stops responding.
 
 ## Related
 
-- [Container Tools]({{<ref "../tools">}}) — Logs / Terminal access to a running container
-- [Container troubleshooting]({{<ref "../troubleshooting">}}) — `Permission denied` and capability-related symptoms
-- [Container storage]({{<ref "storage">}}) — encrypted volumes interaction with Require Connectivity
+- [Container Tools]({{<ref "../tools">}}) — viewing logs and opening a shell in a running container
+- [Container troubleshooting]({{<ref "../troubleshooting">}}) — `Permission denied` and related errors
+- [Container storage]({{<ref "storage">}}) — encrypted volumes and Require Connectivity

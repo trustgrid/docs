@@ -4,92 +4,76 @@ description: How containers reach the network and how the network reaches contai
 weight: 10
 ---
 
-A container running on a Trustgrid node sits behind a node-managed bridge. This page explains the bridge, the DNS resolver, the three ways traffic can enter the container, and how outbound traffic leaves.
+By default a container is reachable only from the node it runs on. To make it reachable from somewhere else — the LAN, another Trustgrid node over VPN, or the internet — you attach it to the network in one of three ways. This page covers those three ways plus how outbound traffic from the container leaves the node.
 
-## The container bridge
+## Container addresses and DNS
 
-Every container is attached to a node-managed bridge network in the **`172.18.0.0/16`** range. The node assigns each container an IP in this network automatically unless you override it via the **IP** field on the Overview screen.
+When a container starts, the node gives it an IP address in `172.18.0.0/16`. The container can reach the node at `172.18.1.2`, and any other container on the same node by **container name** — the name you typed into the Overview screen.
 
-- The node side of the bridge holds **`172.18.1.2`**. This is also the address of the [DNS resolver](#dns-resolver) — containers should send queries here, not to a public resolver, in order to benefit from container-to-container name resolution.
-- Containers can address each other by **container name** within the same node. The node-side resolver maintains the mapping.
-- The node itself reaches the container at the container's bridge IP. The container reaches the node at `172.18.1.2`.
+You normally don't need to change any of this. The two relevant overrides on the Overview screen:
 
-You can override a container's IP by setting **IP** on the Overview to an address within `172.18.0.0/16` (other than `172.18.1.2`). This is rarely needed — pin an IP only when another container needs to reach this one by address rather than by name.
+- **IP** — pin the container to a specific address (within `172.18.0.0/16`, anything except `172.18.1.2`). Only needed if another container has to reach this one by address rather than name.
+- **DNS** — point the container at a custom DNS server. Doing this means the container can no longer resolve its sibling containers by name, so only set it if you specifically need a different resolver.
 
-## DNS resolver
+## Three ways to expose a container
 
-Inside the container, `resolv.conf` points at `172.18.1.2`. The node-side resolver:
-
-1. Resolves any container running on the same node by its `name` (the value set on the Overview screen).
-2. Forwards anything else to the node's configured DNS servers (see **Networking → Interfaces** for the node's resolvers).
-
-You can override this by setting **DNS** on the container's Overview — for example, to point a container directly at an internal DNS server reachable over a virtual network. This bypasses the node's resolver and disables container-to-container name resolution.
-
-## Inbound traffic — three attach modes
-
-There are three independent ways to expose a container to traffic. They can be combined.
+You can use any of these, or combine them.
 
 ### 1. Host port mappings
 
-A host port mapping listens on one of the **node's** physical interfaces and forwards matching traffic to a port inside the container.
+A host port mapping puts the container on one of the node's network interfaces — so something else on the same LAN as the node (a workstation, another server) can reach it.
 
 | Field | Notes |
 | --- | --- |
-| **Protocol** | `tcp`, `udp`, or unspecified (forwards all protocols). |
-| **Host Interface** | The node NIC to listen on, e.g. `ens192`. The node's Networking → Interfaces page lists available NICs. |
-| **Host Port** | Port on the host interface. |
-| **Container Port** | Port inside the container that receives the traffic. |
+| **Protocol** | `tcp`, `udp`, or leave blank for both. |
+| **Host Interface** | The node's network port to listen on, e.g. `ens192`. The list of interfaces is on the node's **Networking → Interfaces** page. |
+| **Host Port** | The port to listen on. |
+| **Container Port** | The port inside the container that should receive the traffic. |
 
-Use this when something on the node's local network needs to reach the container — for example, a workstation on the same LAN curling an HTTP API.
+Use this when something on the node's LAN needs to reach the container.
 
 {{<alert color="info">}}
-Host port mappings are bound to a specific node NIC, not to `0.0.0.0`. To expose a container on more than one node interface, add one mapping per interface.
+Each mapping listens on one specific node interface. To expose a container on more than one interface, add one mapping per interface.
 {{</alert>}}
 
 ### 2. Virtual networks
 
-Attaching a virtual network to a container grafts a second interface into the container. The container is assigned an IP within the virtual network's CIDR, and traffic arriving on that virtual network is delivered to the container.
+Attaching a Trustgrid virtual network to a container lets it talk to other Trustgrid nodes over the VPN overlay, as if it were a peer.
 
 | Field | Notes |
 | --- | --- |
-| **Virtual Network** | The virtual network to attach. |
-| **Virtual IP** | The address to assign on that network. Must be within the network's configured CIDR. |
-| **Allow Outbound** | When enabled, the container can also originate connections out onto the virtual network. When disabled, the attachment is inbound-only. |
+| **Virtual Network** | The Trustgrid virtual network to attach. |
+| **Virtual IP** | The address the container should use on that network. |
+| **Allow Outbound** | When on, the container can also originate connections out onto the virtual network. When off, traffic only flows into the container. |
 
-This is how you expose a container to other Trustgrid nodes over a VPN — see [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}).
+Use this when a container needs to reach (or be reached by) other Trustgrid nodes. See the [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}) tutorial for the end-to-end walkthrough.
 
 ### 3. Virtual interfaces
 
-A virtual interface forwards **all** traffic from a node-level interface (typically a tunnel adapter) directly into the container, where it appears as a dedicated interface.
+A virtual interface forwards **all** traffic from a node-level interface (typically a tunnel) directly into the container, where it shows up as one of the container's own network interfaces.
 
 | Field | Notes |
 | --- | --- |
-| **Name** | The node-side virtual interface to attach. |
-| **Destination** | The interface name to present inside the container (e.g. `eth1`). |
+| **Name** | The node-side interface to forward. |
+| **Destination** | The interface name to use inside the container (e.g. `eth1`). |
 
-Use this when the container itself needs to manage the interface — for example, a container running its own VPN client or a packet sniffer.
+Use this when the container itself needs to manage the interface — running its own VPN client, capturing packets, that sort of thing.
 
 ## Outbound traffic — where does it go?
 
-When a container originates a connection:
+When a container makes an outbound connection:
 
-1. **To another container on the same node** — routed across the bridge directly, no NAT.
-2. **To anything else** — the connection is source-NAT'd onto whichever node interface routes to the destination. By default this is the node's default gateway, i.e. the same path the node itself uses to reach the internet.
-3. **To a peer over a virtual network** — only available if the container has a [virtual network attachment](#2-virtual-networks) with **Allow Outbound** enabled, or has the destination route inside its **VRF**.
+- **To another container on the same node** — goes directly between them.
+- **To anything else (the internet, the node's LAN, an internal server)** — leaves the node using the same network path the node itself uses for outbound traffic. Any firewall rules on the node also apply to the container.
+- **To a peer over Trustgrid VPN** — only works if the container has a [virtual network attachment](#2-virtual-networks) with Allow Outbound on, or if you've placed it in a VRF that routes there.
 
 ### VRFs
 
-The **VRF** field on the Network screen scopes the container's routing table to a specific VRF defined on the node. Use this to keep a container's outbound traffic isolated from the node's default routing — for example, forcing all traffic out a specific tunnel.
+The **VRF** field on the Network screen lets you put the container in a specific routing context defined on the node — useful for forcing all of a container's outbound traffic out a particular tunnel, separate from the rest of the node. Leave it blank to use the node's normal routing.
 
-When no VRF is selected, the container uses the node's default routing table.
+## A common pattern
 
-### Internet egress and firewalling
-
-There is no separate "container firewall" — outbound traffic from a container that exits the node goes through the node's network stack, so any node-level firewall rules apply. To block specific destinations from a container, configure node-level rules or detach **Allow Outbound** from any virtual network attachments the container doesn't actually need.
-
-## Putting it together
-
-A common pattern: a service container with port mappings on the node's LAN interface (for local administrative access) plus a virtual network attachment (for application traffic over the Trustgrid overlay):
+A web service container that's reachable from the LAN for admin and from other Trustgrid nodes for application traffic:
 
 ```
        LAN clients                    Trustgrid peers
@@ -102,18 +86,17 @@ A common pattern: a service container with port mappings on the node's LAN inter
     │                                             │
     │      ┌─────────────────────────────┐        │
     │      │  Container docs-nginx       │        │
-    │      │  br0  = 172.18.0.7          │        │
-    │      │  vnet0 = 10.50.0.5          │        │
-    │      │  resolver: 172.18.1.2       │        │
+    │      │  bridge IP = 172.18.0.7     │        │
+    │      │  vnet IP   = 10.50.0.5      │        │
     │      └─────────────────────────────┘        │
     └─────────────────────────────────────────────┘
                        ▲
-                       │ NAT'd through ens160 (WAN)
-                       │
-                  Internet egress
+                       │ Outbound via the node's normal route
+                       ▼
+                  Internet
 ```
 
-The container has three ways in (LAN port 8080, virtual network 10.50.0.5, no virtual interface in this example) and one way out (NAT'd through the node's default route).
+The container has two ways in (LAN port 8080, virtual network IP) and one way out (whatever route the node uses).
 
 ## Related
 
