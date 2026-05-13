@@ -8,7 +8,7 @@ This tutorial walks through wiring a host file into a container as a bind mount.
 
 ## What you need
 
-- A container running on a Trustgrid node — follow the [Quickstart]({{<ref "../quickstart">}}) if you don't have one yet.
+- A container running on a Trustgrid node — follow the [Quickstart]({{<ref "/tutorials/containers/quickstart">}}) if you don't have one yet.
 - SSH or another way to write files on the node (you'll place the host-side config file there).
 - The node's `node-exec::modify` permission.
 

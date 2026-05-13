@@ -6,7 +6,7 @@ weight: 10
 
 A host port mapping makes a container reachable on the **node's local network**. To reach the container from a peer Trustgrid node — for example, a gateway in another datacenter — attach the container to a **virtual network** instead.
 
-This tutorial assumes you have completed the [Container Quickstart]({{<ref "../quickstart">}}) and have a running `hello-nginx` container on an edge node, and that you have a gateway node connected to the same organization with a working VPN tunnel to the edge.
+This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) and have a running `hello-nginx` container on an edge node, and that you have a gateway node connected to the same organization with a working VPN tunnel to the edge.
 
 ## Topology
 
@@ -32,7 +32,7 @@ The container can only join a virtual network that is already attached to the no
 
 1. On the edge node, navigate to **Networking → VPN**. Verify `my-vnet` is listed.
 2. On the gateway, do the same. Verify the same `my-vnet` is listed.
-3. From the gateway, ping the edge's virtual IP (`10.50.0.2` here) using **Actions → Trustgrid Ping**. If this fails, fix VPN connectivity first — see [VPN troubleshooting]({{<ref "/docs/nodes/shared/diag-tools">}}).
+3. From the gateway, ping the edge's virtual IP (`10.50.0.2` here) using **Actions → Trustgrid Ping**. If this fails, fix VPN connectivity first — see the [gateway diagnostic tools]({{<ref "/docs/nodes/appliances/gateway/gateway-diag">}}).
 
 ## 2. Attach the container to the virtual network
 
