@@ -5,7 +5,7 @@ aliases:
 description: Configure containers to run on appliance-based nodes
 ---
 
-Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Workloads that need root-equivalent host access require enabling [**Privileged**]({{<ref "concepts/security#privileged">}}) mode on the container.
+Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Containers run with least-privilege defaults; workloads that need elevated access can opt into specific [Linux Capabilities]({{<ref "concepts/security#linux-capabilities">}}) or full [Privileged]({{<ref "concepts/security#privileged">}}) mode — see [Container security]({{<ref "concepts/security">}}) for the implications of each.
 
 The container can be attached to both the local and virtual network space which allows both local and remote resources to communicate with the container. For example an API could be deployed on a Trustgrid Gateway which sends API Calls via the virtual network space to a container running on a Trustgrid Edge Node. The API call could then be translated to make a call to a database running on the local network and passed back up to the gateway host.
 
