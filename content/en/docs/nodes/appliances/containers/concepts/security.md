@@ -57,7 +57,7 @@ Use this with encrypted volumes — see [Container storage — Encrypted volumes
 
 ## Save Output
 
-The **Save Output** toggle on the Overview saves the container's log output (everything it prints to the terminal) to Trustgrid, where you can view it later in **Observability** even after the container restarts.
+The **Save Output** toggle on the Overview saves the container's log output (everything it prints to the terminal) to the Trustgrid portal, where you can download it later from **Compute → Output Artifacts** on the node — even after the container restarts.
 
 **Be careful what you save.** If your container prints API keys, customer information, or other sensitive data, that ends up in Trustgrid's log store. It is the customer's responsibility to ensure no sensitive information appears in the output.
 
