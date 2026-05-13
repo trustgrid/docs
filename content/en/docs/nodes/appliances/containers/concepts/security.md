@@ -6,8 +6,6 @@ weight: 40
 
 By default, a container on a Trustgrid node runs with safe, restrictive settings — it can't see the host filesystem, can't touch host devices, and can't interfere with the node or other containers. The toggles on this page let you grant additional access when a specific workload needs it.
 
-Most container deployments only need to set **User** (sometimes) and leave everything else at the defaults.
-
 ## User
 
 The **User** field on the Overview screen sets which user inside the container runs the application. Leave it blank to use the user the image was built to run as (often `root` inside the container).
