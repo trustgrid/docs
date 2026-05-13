@@ -76,7 +76,17 @@ Re-validated the clustered env (`nate-edge-cls-0427-2048`) with the amd64-indexe
 - **#7 "POST creates duplicates by name":** still real, reproduced cleanly via API. Not arm64-related.
 - **#8 "PUT appears to append port mappings":** I observed this on an older container record; on the clean upgraded single-node it did not reproduce (`PUT config` replaced port mappings cleanly). May be a pre-existing record artifact on the older node rather than current behavior. Worth one more confirmation on a fully clean state before filing.
 - **#5 "DELETE container schema rejects own response shape":** still real, reproduced cleanly. Not arm64-related.
-- **Port mapping on the unhealthy cluster:** the container's port mapping doesn't reach host iptables on the clustered node (curl refused on all three of edge1/edge2/cluster-vIP at port 8090). The single node and the API both show the mapping recorded. This MIGHT be a separate bug specific to the cluster being in a degenerate state (1 of 2 nodes bound, "unhealthy" banner). On the healthy standalone node, port mappings worked fine end-to-end (HTTP 200). Need a healthy 2-node cluster to retest cleanly.
+- **Port mapping on the unhealthy cluster (FOLLOWUP):** previously suspected this was a cluster bug. Re-tested on a freshly-deployed healthy 2-node L3 cluster (`docs-edge-cls-0512-2354`, both edge1 and edge2 bound and online). Cluster-scoped container with amd64 image deploys cleanly: RUNNING on **both** edge nodes, port mapping serves HTTP 200 on both LAN IPs (192.168.100.214 and 192.168.100.215). So the iptables-doesn't-apply behavior was specific to the unhealthy 1-of-2-member cluster state, not a general cluster bug. Healthy clusters work end-to-end.
+
+## Verified end-to-end behavior (passing)
+
+These are not bugs — included so future readers know what the validated end state is:
+
+- **Healthy 2-node L3 cluster + amd64 image:** cluster-scoped container deploys; runs on **both** cluster members concurrently; LAN port mapping serves HTTP 200 on both members' LAN IPs. (Repro env: `docs-edge-cls-0512-2354`, edge1 + edge2, image `nate.test.trustgrid.io/nginx:amd64-test`.)
+- **Standalone single node + amd64 image:** node-scoped container deploys, runs, serves HTTP 200 on the configured WAN/LAN port. (Repro env: `docs-edge1-0512-2236`.)
+- **Pre-existing indexed tag (`nginx:latest` pushed long ago):** runs fine on both single-node and clustered envs. Indexing was correct at push time.
+
+All three were verified on May 12, 2026 against test tenant `nate.test.trustgrid.io`, against node firmware `1.5.20260512-2447`.
 
 ## (original #9) Cluster-scope container does not appear in node-config
 
