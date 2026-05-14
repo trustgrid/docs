@@ -56,6 +56,8 @@ The container does not need a host port mapping for this to work. The virtual ne
 
 ## 3. Reach the container from the gateway
 
+Before testing, make sure the virtual network has a route that sends the container virtual IP (or its containing subnet) to the edge node running the container.
+
 From any host that can route to the virtual network — typically a test host behind the gateway — make a request to the container's virtual IP on the port the container is actually listening on inside the container (`80` for the default nginx image):
 
 ```bash

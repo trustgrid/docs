@@ -3,7 +3,7 @@ title: "Container Tools"
 description: Operate running containers — start, stop, view logs, and open a shell from the portal.
 ---
 
-A container is configured at the cluster level (or node level on a standalone appliance) — that's where you describe what it should do. The buttons described on this page act on the running container on a specific node — Start, Stop, view live logs, open a shell.
+A container is configured at the cluster level (or at node level on a standalone appliance), but these tools are only shown in the node-scoped container view for a node where that container is configured. They act on the running container on that specific node: Start, Stop, view live logs, or open a shell.
 
 ## Where to find them
 
@@ -39,7 +39,7 @@ Requires `node-exec::compute` permission.
 
 Stops the container. For Service containers there's a wait of up to **Stop Time** (default 30 seconds) for the container to shut down cleanly, then it's forced.
 
-A manual Stop on a Service container is temporary — the container is brought back up on the next configuration sync. To keep it down, change its **Status** to `Disabled` from the cluster-level configuration.
+A manual Stop on a Service container is temporary — it starts again after the appliance process restarts or the appliance reboots. To keep it down, change its **Status** to `Disabled` from the cluster-level configuration.
 
 Requires `node-exec::compute` permission.
 
@@ -80,7 +80,7 @@ Requires `node-exec::compute` permission.
 
 The **History** section in the left sidebar of a running container shows:
 
-- **Connections** — recent inbound and outbound network connections for this container.
+- **Connections** — **Active Connections** are live flows and can be terminated from that screen. **Completed Connections** are flow-log history for recently finished flows.
 
 {{<tgimg src="connections.png" caption="Active and Completed connections for a container" width="90%">}}
 
