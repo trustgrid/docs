@@ -1,7 +1,6 @@
 ---
 title: "Container Quickstart"
 description: Push an image and run it on a Trustgrid node — no prior Trustgrid knowledge assumed.
-weight: 5
 ---
 
 This tutorial walks through the shortest path from a container image on your laptop to a running container on a Trustgrid appliance, with a port mapping you can reach from its LAN. If you already have a Trustgrid appliance enrolled and a Docker image you want to deploy, this should take about 10 minutes.

@@ -1,7 +1,6 @@
 ---
 title: "Container Lifecycle"
 description: How Trustgrid containers start, stop, restart, and run on a schedule.
-weight: 20
 ---
 
 A container's **Execution Type** controls when and how often it runs. Pick the one that matches the workload.

@@ -1,7 +1,6 @@
 ---
 title: "Container Storage"
 description: How to give a container persistent storage or access to host files.
-weight: 30
 ---
 
 By default, anything a container writes is lost when it stops — the filesystem is reset every time the container restarts. To keep data around, or to share a file from the appliance with the container, configure a **mount** on the container's Mounts screen.

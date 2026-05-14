@@ -1,6 +1,5 @@
 ---
 title: "Container Security"
-weight: 40
 ---
 
 By default, a container on a Trustgrid appliance runs with safe, restrictive settings — it can't see the host filesystem, can't touch host devices, and can't interfere with the appliance or other containers. The toggles on this page let you grant additional access when a specific workload needs it.

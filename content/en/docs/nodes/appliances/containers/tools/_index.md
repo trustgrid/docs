@@ -1,7 +1,6 @@
 ---
 title: "Container Tools"
 description: Operate running containers — start, stop, view logs, and open a shell from the portal.
-weight: 50
 ---
 
 A container is configured at the cluster level (or node level on a standalone appliance) — that's where you describe what it should do. The buttons described on this page act on the running container on a specific node — Start, Stop, view live logs, open a shell.

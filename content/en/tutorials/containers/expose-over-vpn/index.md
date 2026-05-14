@@ -1,7 +1,6 @@
 ---
 title: "Expose a Container over a Virtual Network"
 description: Reach a container running on one Trustgrid node from a peer node over the Trustgrid overlay.
-weight: 10
 ---
 
 A host port mapping makes a container reachable on the appliance's **local network**. To reach the container from a peer Trustgrid node — for example, a gateway in another datacenter — give the container a **virtual IP** on a virtual network instead.

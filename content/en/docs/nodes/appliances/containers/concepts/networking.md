@@ -1,6 +1,5 @@
 ---
 title: "Container Networking"
-weight: 10
 ---
 
 By default a container is reachable only from the appliance it runs on. To make it reachable from somewhere else — the LAN, another Trustgrid node over VPN, or the internet — attach it to the network in one of three ways. This page covers those three ways plus how outbound traffic from the container leaves the appliance.
