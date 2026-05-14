@@ -4,7 +4,7 @@ title: "Repositories"
 
 ## Summary 
 
-Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy [containerized applications securely to their Trustgrid node appliances.]({{<ref "/docs/nodes/appliances/containers">}}) 
+Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy [containerized applications securely to their Trustgrid node appliances.]({{<relref "/docs/nodes/appliances/containers">}}) 
 
 ## Container Namespace
 
@@ -55,7 +55,7 @@ Use the copy button to copy the docker login command and paste it into your term
 
 ### Appliance Authentication
 
-Trustgrid appliances authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry. All communication between the appliance and the registry occurs using the [Trustgrid control plane networks and ports]({{<ref "/help-center/kb/site-requirements#trustgrid-control-plane">}}).
+Trustgrid appliances authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry. All communication between the appliance and the registry occurs using the [Trustgrid control plane networks and ports]({{<relref "/help-center/kb/site-requirements#trustgrid-control-plane">}}).
 
 ## Supported image platforms
 
@@ -72,6 +72,6 @@ In the below example we will show how to pull down a container image (Alpine Lin
 
 1. First pull the Alpine image from Docker Hub with the command `docker pull alpine` {{<tgimg src="docker-example-pull.png" caption="Pull Alpine image from Docker Hub" width="75%">}}. {{<alert color="info">}} Note the tag is automatically set to `latest` by Docker. If desired you can manually specify a specific tag to get a specific version. {{</alert>}}
 1. Tag the image with your namespace prefix. `docker tag alpine:latest docker.trustgrid.io/namespace.trustgrid.io/alpine:latest` make sure you replace `namespace.trustgrid.io` with your actual namespace. {{<tgimg src="docker-example-tag.png" caption="Tag image with namespace prefix" width="90%">}}
-1. If you haven't already, Authenticate your Docker client with the Trustgrid registry using the [Docker login command provided on the Repositories page]({{<ref "#docker-login">}})
+1. If you haven't already, Authenticate your Docker client with the Trustgrid registry using the [Docker login command provided on the Repositories page]({{<relref "#docker-login">}})
 1. Push the tagged image to the private registry. `docker push docker.trustgrid.io/namespace.trustgrid.io/alpine:latest` {{<tgimg src="docker-example-push.png" caption="Push tagged image to private registry" width="75%">}}
 1. Back on the Trustgrid portal, navigate to Repositories and you should see the pushed image listed. {{<tgimg src="docker-example-repo.png" caption="Pushed image listed in portal" width="80%">}}

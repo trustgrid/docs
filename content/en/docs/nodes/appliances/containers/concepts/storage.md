@@ -70,5 +70,5 @@ Under **Container Management → Volumes** there's an **Import** action that cop
 
 ## Related
 
-- [Container Tools]({{<ref "../tools">}}) — opening a shell inside a running container
-- [Volumes reference]({{<ref "../volumes">}}) — every field on the Volumes screen
+- [Container Tools]({{<relref "../tools">}}) — opening a shell inside a running container
+- [Volumes reference]({{<relref "../volumes">}}) — every field on the Volumes screen

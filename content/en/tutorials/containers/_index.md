@@ -7,9 +7,9 @@ title: "Container Deployment Walkthrough"
 
 Start here if you're new:
 
-- **[Container Quickstart]({{<ref "quickstart">}})** — push an image and run it on a node end-to-end in about 10 minutes. No prior Trustgrid background assumed.
-- **[Expose a container over a virtual network]({{<ref "expose-over-vpn">}})** — reach a container running on one node from a peer node over the Trustgrid overlay.
+- **[Container Quickstart]({{<relref "quickstart">}})** — push an image and run it on a node end-to-end in about 10 minutes. No prior Trustgrid background assumed.
+- **[Expose a container over a virtual network]({{<relref "expose-over-vpn">}})** — reach a container running on one node from a peer node over the Trustgrid overlay.
 
 Application-specific walkthroughs:
 
-- [Run ThousandEyes Enterprise Agent in a container]({{<ref "thousand-eyes">}})
+- [Run ThousandEyes Enterprise Agent in a container]({{<relref "thousand-eyes">}})

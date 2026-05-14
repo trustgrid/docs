@@ -53,7 +53,7 @@ The **Require Connectivity** toggle on the Overview gates container startup on t
 - **Off (default):** the container starts whenever a start is attempted, whether or not the appliance is connected to the control plane.
 - **On:** the container won't start until the appliance is connected to the control plane.
 
-Pair this with [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) so volume contents stay sealed until the appliance is back online. It only affects startup; a container that's already running keeps running if the appliance disconnects from the control plane.
+Pair this with [encrypted volumes]({{<relref "storage#encrypted-volumes">}}) so volume contents stay sealed until the appliance is back online. It only affects startup; a container that's already running keeps running if the appliance disconnects from the control plane.
 
 ## Save Output
 
@@ -61,7 +61,7 @@ The **Save Output** toggle on the Overview saves the container's log output (eve
 
 **Be careful what you save.** If your container prints API keys, customer information, or other sensitive data, that ends up in Trustgrid's log store. It is the customer's responsibility to ensure no sensitive information appears in the output.
 
-If you're unsure about a container's output, leave Save Output off and use the [Logs viewer]({{<ref "../tools#logs">}}) for live debugging instead — that shows logs as they happen without keeping a copy.
+If you're unsure about a container's output, leave Save Output off and use the [Logs viewer]({{<relref "../tools#logs">}}) for live debugging instead — that shows logs as they happen without keeping a copy.
 
 ## A secure setup for an internet-facing service
 
@@ -72,10 +72,10 @@ If you want a starting point for a service that's exposed to the public internet
 3. Leave **Linux Capabilities** at defaults unless the image asks for one.
 4. Enable **Use Init**.
 5. Leave **Save Output** off unless you've checked the container's output for sensitive data.
-6. Use [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) for application data.
-7. Add a [Health Check]({{<ref "../#health-check">}}) so the container is flagged in the portal if it stops responding.
+6. Use [encrypted volumes]({{<relref "storage#encrypted-volumes">}}) for application data.
+7. Add a [Health Check]({{<relref "../#health-check">}}) so the container is flagged in the portal if it stops responding.
 
 ## Related
 
-- [Container Tools]({{<ref "../tools">}}) — viewing logs and opening a shell in a running container
-- [Container storage]({{<ref "storage">}}) — encrypted volumes and Require Connectivity
+- [Container Tools]({{<relref "../tools">}}) — viewing logs and opening a shell in a running container
+- [Container storage]({{<relref "storage">}}) — encrypted volumes and Require Connectivity

@@ -14,7 +14,7 @@ The container runs continuously and is kept running.
 
 - Starts automatically when the appliance comes up.
 - If the container exits — clean or not — it's restarted automatically. A container with a config problem that exits immediately will keep being restarted; to break the cycle, set **Status** to `Disabled` while you fix it, or switch **Execution Type** to `On Demand` for debugging.
-- A [Health Check]({{<ref "../#health-check">}}) reports the container as healthy or unhealthy in the portal. Restarts are driven by the container exiting; the health-check result is reporting only.
+- A [Health Check]({{<relref "../#health-check">}}) reports the container as healthy or unhealthy in the portal. Restarts are driven by the container exiting; the health-check result is reporting only.
 - **Use for:** web services, background agents, anything that should always be up.
 
 ### Recurring
@@ -64,9 +64,9 @@ Each container has **Start** and **Stop** buttons on its detail page at node sco
 - **Stop** halts the container. There's a wait of up to **Stop Time** (default 30 seconds) for a clean shutdown before it's forced. For a Service container, Stop is temporary — the container is brought back up on the next configuration sync. To keep it down, set **Status** to `Disabled`.
 - **Start** launches the container. For an On Demand container this is the only way to run it. For Service or Recurring containers, Start is useful when you want to run it immediately rather than waiting for the next scheduled run.
 
-See [Container Tools]({{<ref "../tools">}}) for the full set of per-container actions.
+See [Container Tools]({{<relref "../tools">}}) for the full set of per-container actions.
 
 ## Related
 
-- [Container Tools]({{<ref "../tools">}}) — Start, Stop, Logs, Terminal
-- [Health Check]({{<ref "../#health-check">}}) — field reference
+- [Container Tools]({{<relref "../tools">}}) — Start, Stop, Logs, Terminal
+- [Health Check]({{<relref "../#health-check">}}) — field reference

@@ -6,7 +6,7 @@ weight: 10
 
 A host port mapping makes a container reachable on the appliance's **local network**. To reach the container from a peer Trustgrid node — for example, a gateway in another datacenter — give the container a **virtual IP** on a virtual network instead.
 
-This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) and have a running `nginx` container on an edge node, and a gateway node connected to the same organization with a working VPN tunnel to the edge.
+This tutorial assumes you have completed the [Container Quickstart]({{<relref "/tutorials/containers/quickstart">}}) and have a running `nginx` container on an edge node, and a gateway node connected to the same organization with a working VPN tunnel to the edge.
 
 ## Topology
 
@@ -85,4 +85,4 @@ You can do both — a typical pattern is a port mapping for local admin access p
 
 If the container needs to reach a service on a peer node (rather than serve traffic from one), enable **Allow Outbound** on the attachment. With it enabled, the container can originate connections to anything reachable on `my-vnet`. With it disabled, the container can only respond to incoming traffic on the virtual IP.
 
-For more granular outbound control, set a **VRF** on the container's **Network** screen. See [Container networking — Outbound traffic]({{<ref "/docs/nodes/appliances/containers/concepts/networking#outbound-traffic--where-does-it-go">}}).
+For more granular outbound control, set a **VRF** on the container's **Network** screen. See [Container networking — Outbound traffic]({{<relref "/docs/nodes/appliances/containers/concepts/networking#outbound-traffic--where-does-it-go">}}).

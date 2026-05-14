@@ -22,7 +22,7 @@ The container list at node scope shows three columns side by side:
 
 - **Status** — `Enabled` or `Disabled`. Whether the container is *configured* to run.
 - **State** — what's actually happening right now: `Running`, `Initializing` (image is downloading or the container is starting up), or `Stopped`.
-- **Health** — `Healthy` or `Unhealthy`, populated by the configured [Health Check]({{<ref "../#health-check">}}). Blank if no health check is set.
+- **Health** — `Healthy` or `Unhealthy`, populated by the configured [Health Check]({{<relref "../#health-check">}}). Blank if no health check is set.
 
 A container can show `Enabled` and `Stopped` at the same time — usually because the image couldn't be pulled, or because it's between restart attempts.
 
@@ -87,4 +87,4 @@ The **History** section in the left sidebar of a running container shows:
 
 ## Related
 
-- [Container networking]({{<ref "../concepts/networking">}}) — how port mappings, virtual networks, and DNS resolution work.
+- [Container networking]({{<relref "../concepts/networking">}}) — how port mappings, virtual networks, and DNS resolution work.

@@ -45,7 +45,7 @@ Attaching a Trustgrid virtual network to a container lets it talk to other Trust
 | **Virtual IP** | The address the container should use on that network. |
 | **Allow Outbound** | When on, the container can also originate connections out onto the virtual network. When off, traffic only flows into the container. |
 
-Use this when a container needs to reach (or be reached by) other Trustgrid nodes. See the [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}) tutorial for the end-to-end walkthrough.
+Use this when a container needs to reach (or be reached by) other Trustgrid nodes. See the [Expose a container over a virtual network]({{<relref "/tutorials/containers/expose-over-vpn">}}) tutorial for the end-to-end walkthrough.
 
 ### 3. Virtual interfaces
 
@@ -104,4 +104,4 @@ A web service container with three traffic paths:
 
 ## Related
 
-- [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}})
+- [Expose a container over a virtual network]({{<relref "/tutorials/containers/expose-over-vpn">}})

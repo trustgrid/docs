@@ -105,10 +105,10 @@ From the container's detail page at node scope, the action bar at the top has:
 - **Logs** — open a streaming viewer for the container's `stdout` / `stderr`.
 - **Terminal** — open a shell inside the running container.
 
-These are described in [Container Tools]({{<ref "/docs/nodes/appliances/containers/tools">}}).
+These are described in [Container Tools]({{<relref "/docs/nodes/appliances/containers/tools">}}).
 
 ## Next steps
 
-- [Expose the container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}) so peer Trustgrid nodes can reach it without going through the LAN.
-- Add a [Health Check]({{<ref "/docs/nodes/appliances/containers/#health-check">}}) so the container is flagged in the portal if it stops responding.
-- Persist data with a [bind mount or volume]({{<ref "/docs/nodes/appliances/containers/#mounts">}}).
+- [Expose the container over a virtual network]({{<relref "/tutorials/containers/expose-over-vpn">}}) so peer Trustgrid nodes can reach it without going through the LAN.
+- Add a [Health Check]({{<relref "/docs/nodes/appliances/containers/#health-check">}}) so the container is flagged in the portal if it stops responding.
+- Persist data with a [bind mount or volume]({{<relref "/docs/nodes/appliances/containers/#mounts">}}).

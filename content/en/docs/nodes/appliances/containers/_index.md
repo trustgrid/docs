@@ -5,31 +5,31 @@ aliases:
 description: Configure containers to run on appliance-based nodes
 ---
 
-Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Containers run with least-privilege defaults; workloads that need elevated access can opt into specific Linux Capabilities or full Privileged mode. [Container security]({{<ref "concepts/security">}}) covers the implications of each.
+Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Containers run with least-privilege defaults; workloads that need elevated access can opt into specific Linux Capabilities or full Privileged mode. [Container security]({{<relref "concepts/security">}}) covers the implications of each.
 
 The container can be attached to both the local and virtual network space which allows both local and remote resources to communicate with the container. For example an API could be deployed on a Trustgrid Gateway which sends API Calls via the virtual network space to a container running on a Trustgrid Edge Node. The API call could then be translated to make a call to a database running on the local network and passed back up to the gateway host.
 
-Before adding a container to a node, push an image to your [repository]({{<ref "repositories">}}). Pushes must be `linux/amd64`; [supported image platforms]({{<ref "repositories#supported-image-platforms">}}) covers the Apple-Silicon caveat.
+Before adding a container to a node, push an image to your [repository]({{<relref "repositories">}}). Pushes must be `linux/amd64`; [supported image platforms]({{<relref "repositories#supported-image-platforms">}}) covers the Apple-Silicon caveat.
 
 Reading and managing containers requires `node-exec::read` and `node-exec::modify` permissions, respectively. Executing a container requires `node-exec::compute` permission.
 
 ## Where to start
 
-- **New to running containers on Trustgrid?** Start with the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) — push an image, run it, reach it from the LAN in about 10 minutes.
-- **Need to reach the container from a peer node over VPN?** Follow [Expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}).
-- **Persist data?** See [Container storage]({{<ref "concepts/storage">}}).
-- **Operating a running container — logs, terminal, restart?** See [Container Tools]({{<ref "tools">}}).
+- **New to running containers on Trustgrid?** Start with the [Container Quickstart]({{<relref "/tutorials/containers/quickstart">}}) — push an image, run it, reach it from the LAN in about 10 minutes.
+- **Need to reach the container from a peer node over VPN?** Follow [Expose a container over a virtual network]({{<relref "/tutorials/containers/expose-over-vpn">}}).
+- **Persist data?** See [Container storage]({{<relref "concepts/storage">}}).
+- **Operating a running container — logs, terminal, restart?** See [Container Tools]({{<relref "tools">}}).
 
 ## Concepts
 
-- [**Container networking**]({{<ref "concepts/networking">}})
-- [**Container lifecycle**]({{<ref "concepts/lifecycle">}})
-- [**Container storage**]({{<ref "concepts/storage">}})
-- [**Container security**]({{<ref "concepts/security">}})
+- [**Container networking**]({{<relref "concepts/networking">}})
+- [**Container lifecycle**]({{<relref "concepts/lifecycle">}})
+- [**Container storage**]({{<relref "concepts/storage">}})
+- [**Container security**]({{<relref "concepts/security">}})
 
 ## Cluster scope vs node scope
 
-Container configuration is set at the **cluster** level on a cluster, or at **node scope** on a standalone appliance. The runtime controls — Start, Stop, Logs, Terminal — are always at the node scope of the appliance running the container. The portal redirects you between these views as appropriate. See [Container Tools]({{<ref "tools">}}) for the full breakdown.
+Container configuration is set at the **cluster** level on a cluster, or at **node scope** on a standalone appliance. The runtime controls — Start, Stop, Logs, Terminal — are always at the node scope of the appliance running the container. The portal redirects you between these views as appropriate. See [Container Tools]({{<relref "tools">}}) for the full breakdown.
 
 ## Management
 
@@ -51,7 +51,7 @@ Available actions from the **Actions** menu:
 {{<fields>}}
 {{<field "Name" >}}The name of the container.{{</field>}}
 {{<field "Description" >}}Free-text description for the container.{{</field>}}
-{{<field "Execution Type" >}}`Service`, `Recurring`, or `On Demand`. Determines when and how often the container runs and whether it restarts on exit. See [Container lifecycle]({{<ref "concepts/lifecycle">}}).{{</field>}}
+{{<field "Execution Type" >}}`Service`, `Recurring`, or `On Demand`. Determines when and how often the container runs and whether it restarts on exit. See [Container lifecycle]({{<relref "concepts/lifecycle">}}).{{</field>}}
 {{<field "Status" >}}Only `Enabled` containers will run.{{</field>}}
 {{<field "Image Name" >}}The name of the image to execute, in the form `<your-namespace>/<image>`.{{</field>}}
 {{<field "Image Tag" >}}The image tag to execute.{{</field>}}
@@ -64,17 +64,17 @@ The overview section allows editing basic information about the container's exec
 {{<tgimg src="overview.png" caption="Container Overview" alt="Container overview section" width="90%">}}
 
 {{<fields>}}
-{{<field "Save Output">}}Persist standard output/standard error to the Trustgrid cloud for analysis. **It is the customer's responsibility to ensure no privileged information is included in the output.** See [Container security — Save Output]({{<ref "concepts/security#save-output">}}).{{</field>}}
-{{<field "Schedule">}}Cron expression or rate (e.g. `rate(1 hour)`) that governs when the container runs. Shown only when **Execution Type** is `Recurring`. See [Container lifecycle — Recurring]({{<ref "concepts/lifecycle#recurring">}}) for the accepted formats.{{</field>}}
+{{<field "Save Output">}}Persist standard output/standard error to the Trustgrid cloud for analysis. **It is the customer's responsibility to ensure no privileged information is included in the output.** See [Container security — Save Output]({{<relref "concepts/security#save-output">}}).{{</field>}}
+{{<field "Schedule">}}Cron expression or rate (e.g. `rate(1 hour)`) that governs when the container runs. Shown only when **Execution Type** is `Recurring`. See [Container lifecycle — Recurring]({{<relref "concepts/lifecycle#recurring">}}) for the accepted formats.{{</field>}}
 {{<field "Command">}}The command to execute inside the container. Overrides the image's entrypoint. Useful for troubleshooting.{{</field>}}
 {{<field "Hostname">}}The hostname set inside the container. Defaults to the appliance's name.{{</field>}}
 {{<field "Stop Time">}}Grace period (in seconds) to allow a container to stop before killing it. Defaults to 30 seconds.{{</field>}}
-{{<field "User">}}Sets the username/group/UID/GID the container's main process runs as. See [Container security — User]({{<ref "concepts/security#user">}}).{{</field>}}
-{{<field "DNS">}}DNS server for resolution inside the container. By default the container uses the appliance-side resolver at `172.18.1.2` which resolves other containers by name and forwards external lookups. See [Container networking — DNS resolver]({{<ref "concepts/networking#dns-resolver">}}).{{</field>}}
-{{<field "IP">}}Pins the container to a specific IP in `172.18.0.0/16`. By default the address is assigned dynamically. See [Container networking — The container bridge]({{<ref "concepts/networking#the-container-bridge">}}).{{</field>}}
-{{<field "Privileged">}}Grant the container extended privileges — disables most of the sandbox. **Almost no workload should need this.** Prefer [Linux Capabilities]({{<ref "concepts/security#linux-capabilities">}}).{{</field>}}
-{{<field "Use Init">}}Run an init process as PID 1 inside the container. Recommended for any service that spawns child processes. See [Container security — Use Init]({{<ref "concepts/security#use-init">}}).{{</field>}}
-{{<field "Require Connectivity">}}Gates container startup on the appliance having control-plane connectivity. Used with encrypted volumes. See [Container storage — Encrypted volumes]({{<ref "concepts/storage#encrypted-volumes">}}).{{</field>}}
+{{<field "User">}}Sets the username/group/UID/GID the container's main process runs as. See [Container security — User]({{<relref "concepts/security#user">}}).{{</field>}}
+{{<field "DNS">}}DNS server for resolution inside the container. By default the container uses the appliance-side resolver at `172.18.1.2` which resolves other containers by name and forwards external lookups. See [Container networking — DNS resolver]({{<relref "concepts/networking#dns-resolver">}}).{{</field>}}
+{{<field "IP">}}Pins the container to a specific IP in `172.18.0.0/16`. By default the address is assigned dynamically. See [Container networking — The container bridge]({{<relref "concepts/networking#the-container-bridge">}}).{{</field>}}
+{{<field "Privileged">}}Grant the container extended privileges — disables most of the sandbox. **Almost no workload should need this.** Prefer [Linux Capabilities]({{<relref "concepts/security#linux-capabilities">}}).{{</field>}}
+{{<field "Use Init">}}Run an init process as PID 1 inside the container. Recommended for any service that spawns child processes. See [Container security — Use Init]({{<relref "concepts/security#use-init">}}).{{</field>}}
+{{<field "Require Connectivity">}}Gates container startup on the appliance having control-plane connectivity. Used with encrypted volumes. See [Container storage — Encrypted volumes]({{<relref "concepts/storage#encrypted-volumes">}}).{{</field>}}
 {{</fields>}}
 
 ## Environment Variables
@@ -85,7 +85,7 @@ Environment variables can be added to a container to provide configuration at ru
 
 ## Network
 
-Configure the container's VRF, port mappings, virtual networks, and virtual interfaces. **Conceptual background:** [Container networking]({{<ref "concepts/networking">}}).
+Configure the container's VRF, port mappings, virtual networks, and virtual interfaces. **Conceptual background:** [Container networking]({{<relref "concepts/networking">}}).
 
 ![Container Network](network.png)
 
@@ -110,7 +110,7 @@ Attach a Trustgrid virtual network so peer nodes can reach the container.
 {{<field "Allow Outbound">}}Whether the container may originate connections onto the virtual network.{{</field>}}
 {{</fields>}}
 
-See [Tutorial: expose a container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}).
+See [Tutorial: expose a container over a virtual network]({{<relref "/tutorials/containers/expose-over-vpn">}}).
 
 ### Virtual Interfaces
 
@@ -123,12 +123,12 @@ Forward all traffic from an appliance-side virtual interface into the container 
 
 ## Mounts
 
-Persist data either as an externally defined [volume]({{<ref "volumes">}}), or a bind mount of the appliance's filesystem. **Conceptual background:** [Container storage]({{<ref "concepts/storage">}}).
+Persist data either as an externally defined [volume]({{<relref "volumes">}}), or a bind mount of the appliance's filesystem. **Conceptual background:** [Container storage]({{<relref "concepts/storage">}}).
 
 ![Container Mounts](mounts.png)
 
 {{<fields>}}
-{{<field "Type">}}`BIND` or `VOLUME`. For `VOLUME`, the source must reference an existing [volume]({{<ref "volumes">}}).{{</field>}}
+{{<field "Type">}}`BIND` or `VOLUME`. For `VOLUME`, the source must reference an existing [volume]({{<relref "volumes">}}).{{</field>}}
 {{<field "Source">}}For volumes, the volume name. For bind mounts, the absolute path on the appliance's filesystem.{{</field>}}
 {{<field "Destination">}}The mount location inside the container.{{</field>}}
 {{</fields>}}
@@ -167,7 +167,7 @@ Configure a probe that monitors container health. A health check periodically ru
 
 ## Linux Capabilities
 
-Add or drop specific Linux capabilities. Always prefer this over enabling `Privileged`. See [Container security — Linux Capabilities]({{<ref "concepts/security#linux-capabilities">}}).
+Add or drop specific Linux capabilities. Always prefer this over enabling `Privileged`. See [Container security — Linux Capabilities]({{<relref "concepts/security#linux-capabilities">}}).
 
 ![Container Linux Capabilities](capabilities.png)
 
