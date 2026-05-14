@@ -60,7 +60,7 @@ Common combinations:
 
 Each container has **Start** and **Stop** buttons on its detail page at node scope:
 
-- **Stop** halts the container. There's a wait of up to **Stop Time** (default 30 seconds) for a clean shutdown before it's forced. For a Service container, Stop is temporary — the container is brought back up on the next configuration sync. To keep it down, set **Status** to `Disabled`.
+- **Stop** halts the container. There's a wait of up to **Stop Time** (default 30 seconds) for a clean shutdown before it's forced.
 - **Start** launches the container. For an On Demand container this is the only way to run it. For Service or Recurring containers, Start is useful when you want to run it immediately rather than waiting for the next scheduled run.
 
 See [Container Tools]({{<relref "../tools">}}) for the full set of per-container actions.
