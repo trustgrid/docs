@@ -4,11 +4,11 @@ description: Push an image and run it on a Trustgrid node — no prior Trustgrid
 weight: 5
 ---
 
-This tutorial walks through the shortest path from a container image on your laptop to a running container on a Trustgrid node, with a port mapping you can reach from the node's LAN. If you already have a Trustgrid node enrolled and a Docker image you want to deploy, this should take about 10 minutes.
+This tutorial walks through the shortest path from a container image on your laptop to a running container on a Trustgrid appliance, with a port mapping you can reach from its LAN. If you already have a Trustgrid appliance enrolled and a Docker image you want to deploy, this should take about 10 minutes.
 
 ## What you need
 
-- A Trustgrid organization with at least one enrolled appliance node.
+- A Trustgrid organization with at least one enrolled appliance.
 - Permissions: `repositories::modify`, `node-exec::modify`, `node-exec::compute` on the target node or cluster.
 - Docker on a `linux/amd64` machine. We'll use the public `nginx:alpine` as the example image.
 
@@ -51,7 +51,7 @@ The token in the `docker login` command expires after about 24 hours. Re-fetch i
 Navigate to the cluster or node where you want to run the container, then **Compute → Container Management → Containers**, and click **Add Container**.
 
 {{<alert color="warning">}}
-If your target node is a member of a cluster, **create the container at the cluster level**, not on the individual node. Cluster-scoped containers are deployed to every member of the cluster, so the container is running on both nodes regardless of which one is active. The portal will redirect node-level changes back to the cluster for a clustered node.
+If your target node is a member of a cluster, **create the container at the cluster level**, not on the individual node. Cluster-scoped containers are deployed to every member of the cluster, so the container is running on both members regardless of which one is active. The portal will redirect node-level changes back to the cluster for a clustered node.
 {{</alert>}}
 
 Fill in:
@@ -68,7 +68,7 @@ Click **Save**. The portal returns to the container list with `nginx` shown as `
 
 ## 3. Expose a port
 
-By default the container is reachable only from the node itself. To make it reachable from the node's local network, add a host port mapping.
+By default the container is reachable only from the appliance itself. To make it reachable from the appliance's local network, add a host port mapping.
 
 1. Click into `nginx`, then **Network** on the left sidebar.
 2. Under **Host Port Mappings** click **Add**.
@@ -77,7 +77,7 @@ By default the container is reachable only from the node itself. To make it reac
    | Field | Value |
    | --- | --- |
    | **Protocol** | `tcp` |
-   | **Host Interface** | The LAN-facing NIC on the node (e.g. `ens192`). Check **Networking → Interfaces** on the node if you're not sure. |
+   | **Host Interface** | The LAN-facing NIC on the appliance (e.g. `ens192`). Check **Networking → Interfaces** if you're not sure. |
    | **Host Port** | `8080` |
    | **Container Port** | `80` |
 
@@ -85,14 +85,14 @@ By default the container is reachable only from the node itself. To make it reac
 
 ## 4. Wait for it to start
 
-Go back to the container list at **node scope** (not cluster scope — the runtime state lives on the node). The container's **State** column transitions through `Pulling` → `Stopped` → `Running` within a minute or two for a small image.
+Go back to the container list at **node scope** (not cluster scope — runtime state lives at the node scope). The container's **State** column transitions through `Initializing` → `Running` within a minute or two for a small image.
 
 ## 5. Reach it
 
-From any host on the same LAN as the node's host interface (e.g. an admin workstation):
+From any host on the same LAN as the appliance's host interface (e.g. an admin workstation):
 
 ```bash
-curl http://<node-LAN-IP>:8080/
+curl http://<appliance-LAN-IP>:8080/
 ```
 
 You should see the default nginx welcome page.
@@ -110,5 +110,5 @@ These are described in [Container Tools]({{<ref "/docs/nodes/appliances/containe
 ## Next steps
 
 - [Expose the container over a virtual network]({{<ref "/tutorials/containers/expose-over-vpn">}}) so peer Trustgrid nodes can reach it without going through the LAN.
-- Add a [Health Check]({{<ref "/docs/nodes/appliances/containers/#health-check">}}) so the node restarts the container if it stops responding.
+- Add a [Health Check]({{<ref "/docs/nodes/appliances/containers/#health-check">}}) so the container is flagged in the portal if it stops responding.
 - Persist data with a [bind mount or volume]({{<ref "/docs/nodes/appliances/containers/#mounts">}}).

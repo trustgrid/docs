@@ -4,17 +4,17 @@ description: How Trustgrid containers start, stop, restart, and run on a schedul
 weight: 20
 ---
 
-A container's **Execution Type** controls when and how often the node runs it. Pick the one that matches the workload.
+A container's **Execution Type** controls when and how often it runs. Pick the one that matches the workload.
 
 ## Execution types
 
 ### Service
 
-The container runs continuously and the node keeps it running.
+The container runs continuously and is kept running.
 
-- Starts automatically with the node.
-- If the container stops for any reason, the node starts it again right away.
-- A failing [Health Check]({{<ref "../#health-check">}}) counts as a stop and triggers a restart.
+- Starts automatically when the appliance comes up.
+- If the container exits — clean or not — it's restarted automatically. A container with a config problem that exits immediately will keep being restarted; to break the cycle, set **Status** to `Disabled` while you fix it, or switch **Execution Type** to `On Demand` for debugging.
+- A [Health Check]({{<ref "../#health-check">}}) reports the container as healthy or unhealthy in the portal. Restarts are driven by the container exiting; the health-check result is reporting only.
 - **Use for:** web services, background agents, anything that should always be up.
 
 ### Recurring
@@ -22,7 +22,7 @@ The container runs continuously and the node keeps it running.
 The container runs on a schedule, like a cron job.
 
 - The **Schedule** field accepts either a simple rate or a cron expression.
-- Each run is independent — the node starts a fresh container, lets it finish, then waits for the next time.
+- Each run is independent — a fresh container starts, runs to completion, then waits for the next time.
 - If a previous run is still going when the next one is due, the new run is skipped.
 - **Use for:** scheduled batch jobs, periodic data pulls, cleanup scripts, reports.
 
@@ -38,7 +38,7 @@ For cron expressions, [crontab.guru](https://crontab.guru/examples.html) is a us
 
 The container only runs when you start it manually from the portal.
 
-- Does not start with the node.
+- Does not start with the appliance.
 - Does not restart after it stops.
 - **Use for:** diagnostic tools, one-time tasks, testing a new container before switching it to Service.
 
@@ -46,36 +46,25 @@ The container only runs when you start it manually from the portal.
 
 The container list shows two columns that look similar but mean different things:
 
-- **Status** — whether the container is *configured* to run. `Enabled` means the node will run it; `Disabled` means the node will leave it alone.
-- **State** — what's actually happening on the node right now: `Running`, `Stopped`, or `Pulling` (downloading the image).
+- **Status** — whether the container is *configured* to run. `Enabled` means it will be run; `Disabled` means it will be left alone.
+- **State** — what's actually happening right now, such as `Running` or `Stopped`.
 
 Common combinations:
 
 | Status | State | What's going on |
 |---|---|---|
 | `Enabled` | `Running` | Healthy — a Service container that's up. |
-| `Enabled` | `Pulling` | Node is downloading the image. Will become `Running` if successful. |
-| `Enabled` | `Stopped` | The node is trying to run it but it isn't running — either between restart attempts or unable to start. |
-| `Disabled` | `Stopped` | Configured but the node won't try to run it. Useful when you're staging changes. |
+| `Enabled` | `Stopped` | Configured to run but isn't running right now — between restart attempts, or unable to start. |
+| `Disabled` | `Stopped` | Configured but won't be run. Useful when you're staging changes. |
 
 ## Manual Start and Stop
 
 Each container has **Start** and **Stop** buttons on its detail page at node scope:
 
-- **Stop** halts the container. The node waits up to **Stop Time** (default 30 seconds) for a clean shutdown before forcing it. Note: a manual Stop on a Service container is just an exit, so the node will start it again — set Status to `Disabled` if you want it to stay down.
-- **Start** launches the container. This is the only way to launch an On Demand container. For Service or Recurring containers, it's useful when you want to test a new image immediately.
+- **Stop** halts the container. There's a wait of up to **Stop Time** (default 30 seconds) for a clean shutdown before it's forced. For a Service container, Stop is temporary — the container is brought back up on the next configuration sync. To keep it down, set **Status** to `Disabled`.
+- **Start** launches the container. For an On Demand container this is the only way to run it. For Service or Recurring containers, Start is useful when you want to run it immediately rather than waiting for the next scheduled run.
 
 See [Container Tools]({{<ref "../tools">}}) for the full set of per-container actions.
-
-## When a Service container restarts in a tight loop
-
-Service containers restart immediately when they stop. If a container has a config problem and exits as soon as it starts, the node will keep restarting it as fast as it can. To break the loop:
-
-- Add a [Health Check]({{<ref "../#health-check">}}) with a **Start Period** long enough for your application to come up, so the node gives it time before considering it failed.
-- Change Execution Type to **On Demand** while you debug, then change it back when fixed.
-- Set Status to **Disabled** while you fix the underlying problem.
-
-Recurring and On Demand containers do not restart on exit, so they don't have this problem.
 
 ## Related
 

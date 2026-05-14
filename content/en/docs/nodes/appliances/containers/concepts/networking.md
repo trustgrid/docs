@@ -3,11 +3,11 @@ title: "Container Networking"
 weight: 10
 ---
 
-By default a container is reachable only from the node it runs on. To make it reachable from somewhere else — the LAN, another Trustgrid node over VPN, or the internet — you attach it to the network in one of three ways. This page covers those three ways plus how outbound traffic from the container leaves the node.
+By default a container is reachable only from the appliance it runs on. To make it reachable from somewhere else — the LAN, another Trustgrid node over VPN, or the internet — attach it to the network in one of three ways. This page covers those three ways plus how outbound traffic from the container leaves the appliance.
 
 ## Container addresses and DNS
 
-When a container starts, the node gives it an IP address in `172.18.0.0/16` (the default container network — contact Trustgrid support if you need to change it). The container can communicate with its Trustgrid parent node and with any other container running on the same node by **container name** — the name you typed into the Overview screen.
+When a container starts, an IP address in `172.18.0.0/16` (the default container network — contact Trustgrid support if you need to change it) is assigned. The container can communicate with its parent appliance and with any other container running on the same appliance by **container name** — the name you typed into the Overview screen.
 
 You normally don't need to change any of this. The two relevant overrides on the Overview screen:
 
@@ -20,19 +20,19 @@ You can use any of these, or combine them.
 
 ### 1. Host port mappings
 
-A host port mapping puts the container on one of the node's network interfaces — so something else on the same LAN as the node (a workstation, another server) can reach it.
+A host port mapping puts the container on one of the appliance's network interfaces — so something else on the same LAN (a workstation, another server) can reach it.
 
 | Field | Notes |
 | --- | --- |
 | **Protocol** | `tcp`, `udp`, or leave blank for both. |
-| **Host Interface** | The node's network port to listen on, e.g. `ens192`. The list of interfaces is on the node's **Networking → Interfaces** page. |
+| **Host Interface** | The appliance's network port to listen on, e.g. `ens192`. The list of interfaces is on the **Networking → Interfaces** page. |
 | **Host Port** | The port to listen on. |
 | **Container Port** | The port inside the container that should receive the traffic. |
 
-Use this when something on the node's LAN needs to reach the container.
+Use this when something on the appliance's LAN needs to reach the container.
 
 {{<alert color="info">}}
-Each mapping listens on one specific node interface. To expose a container on more than one interface, add one mapping per interface.
+Each mapping listens on one specific appliance interface. To expose a container on more than one interface, add one mapping per interface.
 {{</alert>}}
 
 ### 2. Virtual networks
@@ -49,11 +49,11 @@ Use this when a container needs to reach (or be reached by) other Trustgrid node
 
 ### 3. Virtual interfaces
 
-A virtual interface forwards **all** traffic from a node-level interface (typically a tunnel) directly into the container, where it shows up as one of the container's own network interfaces.
+A virtual interface forwards **all** traffic from an appliance-level interface (typically a tunnel) directly into the container, where it shows up as one of the container's own network interfaces.
 
 | Field | Notes |
 | --- | --- |
-| **Name** | The node-side interface to forward. |
+| **Name** | The appliance-side interface to forward. |
 | **Destination** | The interface name to use inside the container (e.g. `eth1`). |
 
 Use this when the container itself needs to manage the interface — running its own VPN client, capturing packets, that sort of thing.
@@ -62,21 +62,21 @@ Use this when the container itself needs to manage the interface — running its
 
 When a container makes an outbound connection:
 
-- **To another container on the same node** — goes directly between them.
-- **To anything else (the internet, the node's LAN, an internal server)** — leaves the node using the same network path the node itself uses for outbound traffic.
+- **To another container on the same appliance** — goes directly between them.
+- **To anything else (the internet, the appliance's LAN, an internal server)** — leaves the appliance using the same network path the appliance itself uses for outbound traffic.
 - **To a peer over Trustgrid VPN** — only works if the container has a [virtual network attachment](#2-virtual-networks) with Allow Outbound on, or if you've placed it in a VRF that routes there.
 
 ### VRFs
 
-The **VRF** field on the Network screen lets you put the container in a specific routing context defined on the node — useful for forcing all of a container's outbound traffic out a particular tunnel, separate from the rest of the node. Leave it blank to use the node's normal routing.
+The **VRF** field on the Network screen lets you put the container in a specific routing context — useful for forcing all of a container's outbound traffic out a particular tunnel, separate from the rest of the appliance. Leave it blank to use the appliance's normal routing.
 
 ## Deployment example
 
 A web service container with three traffic paths:
 
-- **LAN clients** reach it through a port mapping on the node's LAN interface.
+- **LAN clients** reach it through a port mapping on the appliance's LAN interface.
 - **Other Trustgrid nodes** reach it on its virtual network address.
-- **The container itself** reaches the internet through the node's WAN — for package updates, calling external services, etc.
+- **The container itself** reaches the internet through the appliance's WAN — for package updates, calling external services, etc.
 
 ```
       LAN client          Trustgrid peer node                       Internet

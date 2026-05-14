@@ -5,11 +5,11 @@ aliases:
 description: Configure containers to run on appliance-based nodes
 ---
 
-Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Containers run with least-privilege defaults; workloads that need elevated access can opt into specific [Linux Capabilities]({{<ref "concepts/security#linux-capabilities">}}) or full [Privileged]({{<ref "concepts/security#privileged">}}) mode — see [Container security]({{<ref "concepts/security">}}) for the implications of each.
+Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Containers run with least-privilege defaults; workloads that need elevated access can opt into specific Linux Capabilities or full Privileged mode. [Container security]({{<ref "concepts/security">}}) covers the implications of each.
 
 The container can be attached to both the local and virtual network space which allows both local and remote resources to communicate with the container. For example an API could be deployed on a Trustgrid Gateway which sends API Calls via the virtual network space to a container running on a Trustgrid Edge Node. The API call could then be translated to make a call to a database running on the local network and passed back up to the gateway host.
 
-Before adding a container to a node, push an image to your [repository]({{<ref "repositories">}}). Pushes must be `linux/amd64` — see [Repositories — Supported image platforms]({{<ref "repositories#supported-image-platforms">}}) for the Apple-Silicon caveat.
+Before adding a container to a node, push an image to your [repository]({{<ref "repositories">}}). Pushes must be `linux/amd64`; [supported image platforms]({{<ref "repositories#supported-image-platforms">}}) covers the Apple-Silicon caveat.
 
 Reading and managing containers requires `node-exec::read` and `node-exec::modify` permissions, respectively. Executing a container requires `node-exec::compute` permission.
 
@@ -29,7 +29,7 @@ Reading and managing containers requires `node-exec::read` and `node-exec::modif
 
 ## Cluster scope vs node scope
 
-Container configuration is set at the **cluster** level on a cluster, or at the **node** level on a standalone node. The runtime controls — Start, Stop, Logs, Terminal — are always on the **node** that's running the container. The portal redirects you between these views as appropriate. See [Container Tools]({{<ref "tools">}}) for the full breakdown.
+Container configuration is set at the **cluster** level on a cluster, or at **node scope** on a standalone appliance. The runtime controls — Start, Stop, Logs, Terminal — are always at the node scope of the appliance running the container. The portal redirects you between these views as appropriate. See [Container Tools]({{<ref "tools">}}) for the full breakdown.
 
 ## Management
 
@@ -37,12 +37,20 @@ Navigate to **Container Management** under **Compute** on a node or cluster.
 
 ![Containers List View](containers-list.png)
 
-Here you can add, enable, disable, delete, and import a container.
+Available actions from the **Actions** menu:
+
+- **Add Container** — opens the Add Container modal.
+- **Delete** — removes the selected container after a confirmation.
+- **Enable** — enables the selected container so it will run.
+- **Disable** — disables the selected container so it will not run.
+- **Import** — copies a container definition from another node or cluster.
+- **Export** — exports the selected container definitions to a file.
 
 ![Add Container Modal](add-container.png)
 
 {{<fields>}}
 {{<field "Name" >}}The name of the container.{{</field>}}
+{{<field "Description" >}}Free-text description for the container.{{</field>}}
 {{<field "Execution Type" >}}`Service`, `Recurring`, or `On Demand`. Determines when and how often the container runs and whether it restarts on exit. See [Container lifecycle]({{<ref "concepts/lifecycle">}}).{{</field>}}
 {{<field "Status" >}}Only `Enabled` containers will run.{{</field>}}
 {{<field "Image Name" >}}The name of the image to execute, in the form `<your-namespace>/<image>`.{{</field>}}
@@ -57,15 +65,16 @@ The overview section allows editing basic information about the container's exec
 
 {{<fields>}}
 {{<field "Save Output">}}Persist standard output/standard error to the Trustgrid cloud for analysis. **It is the customer's responsibility to ensure no privileged information is included in the output.** See [Container security — Save Output]({{<ref "concepts/security#save-output">}}).{{</field>}}
+{{<field "Schedule">}}Cron expression or rate (e.g. `rate(1 hour)`) that governs when the container runs. Shown only when **Execution Type** is `Recurring`. See [Container lifecycle — Recurring]({{<ref "concepts/lifecycle#recurring">}}) for the accepted formats.{{</field>}}
 {{<field "Command">}}The command to execute inside the container. Overrides the image's entrypoint. Useful for troubleshooting.{{</field>}}
-{{<field "Hostname">}}The hostname set inside the container. Defaults to the node name.{{</field>}}
+{{<field "Hostname">}}The hostname set inside the container. Defaults to the appliance's name.{{</field>}}
 {{<field "Stop Time">}}Grace period (in seconds) to allow a container to stop before killing it. Defaults to 30 seconds.{{</field>}}
 {{<field "User">}}Sets the username/group/UID/GID the container's main process runs as. See [Container security — User]({{<ref "concepts/security#user">}}).{{</field>}}
-{{<field "DNS">}}DNS server for resolution inside the container. By default the container uses the node-side resolver at `172.18.1.2` which resolves other containers by name and forwards external lookups. See [Container networking — DNS resolver]({{<ref "concepts/networking#dns-resolver">}}).{{</field>}}
+{{<field "DNS">}}DNS server for resolution inside the container. By default the container uses the appliance-side resolver at `172.18.1.2` which resolves other containers by name and forwards external lookups. See [Container networking — DNS resolver]({{<ref "concepts/networking#dns-resolver">}}).{{</field>}}
 {{<field "IP">}}Pins the container to a specific IP in `172.18.0.0/16`. By default the address is assigned dynamically. See [Container networking — The container bridge]({{<ref "concepts/networking#the-container-bridge">}}).{{</field>}}
 {{<field "Privileged">}}Grant the container extended privileges — disables most of the sandbox. **Almost no workload should need this.** Prefer [Linux Capabilities]({{<ref "concepts/security#linux-capabilities">}}).{{</field>}}
 {{<field "Use Init">}}Run an init process as PID 1 inside the container. Recommended for any service that spawns child processes. See [Container security — Use Init]({{<ref "concepts/security#use-init">}}).{{</field>}}
-{{<field "Require Connectivity">}}Gates container startup on the node having control-plane connectivity. Used with encrypted volumes. See [Container storage — Encrypted volumes]({{<ref "concepts/storage#encrypted-volumes">}}).{{</field>}}
+{{<field "Require Connectivity">}}Gates container startup on the appliance having control-plane connectivity. Used with encrypted volumes. See [Container storage — Encrypted volumes]({{<ref "concepts/storage#encrypted-volumes">}}).{{</field>}}
 {{</fields>}}
 
 ## Environment Variables
@@ -82,11 +91,11 @@ Configure the container's VRF, port mappings, virtual networks, and virtual inte
 
 ### Host Port Mappings
 
-Expose a port on the node to the container.
+Expose a port on the appliance to the container.
 
 {{<fields>}}
 {{<field "Protocol">}}`tcp` or `udp`. If unspecified, all traffic is forwarded.{{</field>}}
-{{<field "Host Interface">}}The host NIC to listen on (e.g. `ens192`).{{</field>}}
+{{<field "Host Interface">}}The appliance NIC to listen on (e.g. `ens192`).{{</field>}}
 {{<field "Host Port">}}The host port to listen on.{{</field>}}
 {{<field "Container Port">}}The container port that receives the mapped traffic.{{</field>}}
 {{</fields>}}
@@ -105,22 +114,22 @@ See [Tutorial: expose a container over a virtual network]({{<ref "/tutorials/con
 
 ### Virtual Interfaces
 
-Forward all traffic from a node-side virtual interface into the container as a dedicated interface.
+Forward all traffic from an appliance-side virtual interface into the container as a dedicated interface.
 
 {{<fields>}}
-{{<field "Name">}}The virtual interface name on the node.{{</field>}}
+{{<field "Name">}}The virtual interface name on the appliance.{{</field>}}
 {{<field "Destination">}}The interface name presented inside the container.{{</field>}}
 {{</fields>}}
 
 ## Mounts
 
-Persist data either as an externally defined [volume]({{<ref "volumes">}}), or a bind mount of the node's filesystem. **Conceptual background:** [Container storage]({{<ref "concepts/storage">}}).
+Persist data either as an externally defined [volume]({{<ref "volumes">}}), or a bind mount of the appliance's filesystem. **Conceptual background:** [Container storage]({{<ref "concepts/storage">}}).
 
 ![Container Mounts](mounts.png)
 
 {{<fields>}}
 {{<field "Type">}}`BIND` or `VOLUME`. For `VOLUME`, the source must reference an existing [volume]({{<ref "volumes">}}).{{</field>}}
-{{<field "Source">}}For volumes, the volume name. For bind mounts, the absolute path on the node's filesystem.{{</field>}}
+{{<field "Source">}}For volumes, the volume name. For bind mounts, the absolute path on the appliance's filesystem.{{</field>}}
 {{<field "Destination">}}The mount location inside the container.{{</field>}}
 {{</fields>}}
 
@@ -140,11 +149,11 @@ Restrict the resources a container can consume from the host.
 {{<field "IO Max Write Operations (ops/s)">}}Max IO write ops/sec. Disabled by default.{{</field>}}
 {{</fields>}}
 
-Linux `ulimit`s can also be set per container. Supported ulimits: `CORE`, `DATA`, `FSIZE`, `LOCKS`, `MEMLOCK`, `MSGQUE`, `NICE`, `NOFILE`, `NPROC`, `RSS`, `RTPRIO`, `RTTIME`, `SIGPENDING`, `STACK`.
+Linux `ulimit`s can also be set per container. Supported ulimits: `CORE`, `DATA`, `FSIZE`, `LOCKS`, `MEMLOCK`, `MSGQUEUE`, `NICE`, `NOFILE`, `NPROC`, `RSS`, `RTPRIO`, `RTTIME`, `SIGPENDING`, `STACK`.
 
 ## Health Check
 
-Configure a probe that monitors container health. A failing health check restarts the container. **Conceptual background:** [Container lifecycle — Restart semantics]({{<ref "concepts/lifecycle#restart-semantics-in-detail">}}).
+Configure a probe that monitors container health. A health check periodically runs a command inside the container and uses its exit code to mark the container `Healthy` or `Unhealthy` in the portal. It's a reporting mechanism only — the container is not automatically restarted on failure.
 
 ![Container Health Check](health-check.png)
 

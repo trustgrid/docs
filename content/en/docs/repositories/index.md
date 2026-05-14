@@ -20,7 +20,7 @@ To push a container to your private registry it must be named with your namespac
 
 {{<tgimg src="docker-repo-list.png" caption="Repositories list view" width="80%">}}
 
-From this view you can se all containers uploaded to your namespace. 
+From this view you can see all containers uploaded to your namespace. 
 
 ### Container Repository View
 
@@ -30,14 +30,14 @@ Each repository can be managed. Clicking into a container will show its uploaded
 ### Deleting Container Repositories
 Next to each container repository name is a box that can be selected. This allows deleting the entire repository and all its tags with a single action.
 1. Select the desired container repository.
-1. From the Actions dropdown select **Delete**. 
-1. When prompted enter the repository name and click **Confirm**. {{<tgimg src="docker-repo-delete-prompt.png" caption="Prompt to delete an example nginx repository" width="50%">}}
+1. From the Actions dropdown select **Delete**.
+1. Click **Confirm**. {{<tgimg src="docker-repo-delete-prompt.png" caption="Prompt to delete an example nginx repository" width="50%">}}
 
 ### Deleting Specific Container Tags
 1. Navigate into the desired repository.
 1. Select the desired tag version.
-1. From the Actions dropdown select **Delete**. 
-1. When prompted enter the tag name and click **Confirm**. {{<tgimg src="docker-tag-delete-prompt.png" caption="Prompt to delete an example nginx tag version" width="50%">}}
+1. From the Actions dropdown select **Delete**.
+1. Click **Confirm**. {{<tgimg src="docker-tag-delete-prompt.png" caption="Prompt to delete an example nginx tag version" width="50%">}}
 
 
 
@@ -53,9 +53,9 @@ Use the copy button to copy the docker login command and paste it into your term
 
 {{<tgimg src="docker-login-example.png" caption="Example docker login command" width="80%">}}
 
-### Node Container Authentication
+### Appliance Authentication
 
-Trustgrid node appliances authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry. All communication between the node appliance and the registry occurs using the [Trustgrid control plane networks and ports]({{<ref "/help-center/kb/site-requirements#trustgrid-control-plane">}})
+Trustgrid appliances authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry. All communication between the appliance and the registry occurs using the [Trustgrid control plane networks and ports]({{<ref "/help-center/kb/site-requirements#trustgrid-control-plane">}}).
 
 ## Supported image platforms
 
@@ -65,7 +65,7 @@ Images must be pushed as **`linux/amd64`**. Other architectures are not supporte
 Apple Silicon Macs (M1/M2/M3) and Windows on ARM push `arm64` images by default and cannot be used to push to the Trustgrid registry directly. Push from an amd64 host instead — a Linux VM, a build server, or CI.
 {{</alert>}}
 
-If you push an unsupported image, the push command will succeed but the tag will not appear in the **Repositories** view and nodes will not be able to pull it.
+If you push an unsupported image, the push command will succeed but the tag will not appear in the **Repositories** view and appliances will not be able to pull it.
 
 ## Example Usage
 In the below example we will show how to pull down a container image (Alpine Linux) from the public hub.docker.com registry and then push it to the Trustgrid private registry under our namespace.

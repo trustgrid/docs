@@ -2,7 +2,7 @@
 linkTitle: Container Deployments
 title: "Container Deployment Walkthrough"
 ---
-{{<pageinfo>}}Example use cases for utilizing the Trustgrid Compute ability to run containers on a Trustgrid Node appliance. 
+{{<pageinfo>}}Walkthroughs for running containers on Trustgrid appliances.
 {{</pageinfo>}}
 
 Start here if you're new:

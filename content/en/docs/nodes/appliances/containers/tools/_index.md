@@ -4,24 +4,25 @@ description: Operate running containers — start, stop, view logs, and open a s
 weight: 50
 ---
 
-A container is configured at the cluster level (or node level on a standalone node) — that's where you describe what it should do. The buttons described on this page act on the running container on a specific node — Start, Stop, view live logs, open a shell.
+A container is configured at the cluster level (or node level on a standalone appliance) — that's where you describe what it should do. The buttons described on this page act on the running container on a specific node — Start, Stop, view live logs, open a shell.
 
 ## Where to find them
 
 Navigate to a node, then **Compute → Container Management → Containers**, and click the container's name.
 
 {{<alert color="info">}}
-If the node is a member of a cluster, the portal shows a banner that the configuration fields can only be changed at the cluster level. The **Start / Stop / Logs / Terminal** buttons described below still work — they act on the live container on this specific node.
+If the node is a member of a cluster, the portal shows a banner that the configuration fields can only be changed at the cluster level. The **Start / Stop / Logs / Terminal** buttons described below still work — they act on the live container at node scope.
 {{</alert>}}
 
 {{<tgimg src="container-action-bar.png" caption="Per-container action bar (Start, Stop, Logs, Terminal) on the node-scoped detail view" width="90%">}}
 
-## State
+## Status, State, and Health
 
-The container list at node scope shows two columns side by side:
+The container list at node scope shows three columns side by side:
 
-- **Status** — `Enabled` or `Disabled`. Whether the node is *supposed* to run it.
-- **State** — what's actually happening right now: `Running`, `Stopped`, or `Pulling` (downloading the image).
+- **Status** — `Enabled` or `Disabled`. Whether the container is *configured* to run.
+- **State** — what's actually happening right now: `Running`, `Initializing` (image is downloading or the container is starting up), or `Stopped`.
+- **Health** — `Healthy` or `Unhealthy`, populated by the configured [Health Check]({{<ref "../#health-check">}}). Blank if no health check is set.
 
 A container can show `Enabled` and `Stopped` at the same time — usually because the image couldn't be pulled, or because it's between restart attempts.
 
@@ -29,7 +30,7 @@ A container can show `Enabled` and `Stopped` at the same time — usually becaus
 
 ## Start
 
-Starts the container immediately on the node.
+Starts the container immediately.
 
 This is the only way to launch an **On Demand** container. For **Service** containers it's useful when you've stopped one manually and want it back up without waiting.
 
@@ -37,9 +38,9 @@ Requires `node-exec::compute` permission.
 
 ## Stop
 
-Stops the container. For Service containers the node waits up to **Stop Time** (default 30 seconds) for the container to shut down cleanly, then forces it.
+Stops the container. For Service containers there's a wait of up to **Stop Time** (default 30 seconds) for the container to shut down cleanly, then it's forced.
 
-A manual Stop doesn't keep the container down — to the node, the Stop is just an exit, and Service containers are restarted whenever they exit. To keep it down, change its Status to `Disabled` from the cluster-level configuration.
+A manual Stop on a Service container is temporary — the container is brought back up on the next configuration sync. To keep it down, change its **Status** to `Disabled` from the cluster-level configuration.
 
 Requires `node-exec::compute` permission.
 
@@ -59,7 +60,7 @@ A **CONNECTED** badge in the corner means the stream is live. Click **Terminate*
 {{<tgimg src="logs-stream.png" caption="Streaming log viewer with the CONNECTED indicator and Terminate button" width="65%">}}
 
 {{<alert color="warning">}}
-This viewer only shows logs from the container's current run — if the container restarts, the history is gone. To keep logs across restarts, enable **Save Output** on the container's Overview. Saved logs are downloadable from **Compute → Output Artifacts** on the node. (Note: anything sensitive your container prints will be saved too.)
+This viewer only shows logs from the container's current run — if the container restarts, the history is gone. To keep logs across restarts, enable **Save Output** on the container's Overview. Saved logs are downloadable from **Compute → Output Artifacts** at node scope. (Note: anything sensitive your container prints will be saved too.)
 {{</alert>}}
 
 ## Terminal

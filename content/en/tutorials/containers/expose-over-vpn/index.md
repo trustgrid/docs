@@ -4,9 +4,9 @@ description: Reach a container running on one Trustgrid node from a peer node ov
 weight: 10
 ---
 
-A host port mapping makes a container reachable on the **node's local network**. To reach the container from a peer Trustgrid node — for example, a gateway in another datacenter — give the container a **virtual IP** on a virtual network instead.
+A host port mapping makes a container reachable on the appliance's **local network**. To reach the container from a peer Trustgrid node — for example, a gateway in another datacenter — give the container a **virtual IP** on a virtual network instead.
 
-This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) and have a running `nginx` container on an edge node, and that you have a gateway node connected to the same organization with a working VPN tunnel to the edge.
+This tutorial assumes you have completed the [Container Quickstart]({{<ref "/tutorials/containers/quickstart">}}) and have a running `nginx` container on an edge node, and a gateway node connected to the same organization with a working VPN tunnel to the edge.
 
 ## Topology
 
@@ -34,7 +34,7 @@ The container is reachable on the virtual network at `10.50.0.10` — the IP you
 
 ## 1. Confirm the virtual network is attached to both nodes
 
-The container can only be exposed on a virtual network that is already attached to the node it runs on.
+The container can only be exposed on a virtual network that is already attached to the appliance running it.
 
 1. On the edge node, navigate to **Networking → VPN**. Verify `my-vnet` is listed.
 2. On the gateway, do the same. Verify the same `my-vnet` is listed.
@@ -49,7 +49,7 @@ Open the container's **Network** screen at cluster scope (or node scope for a st
 | **Virtual IP** | `10.50.0.10` |
 | **Allow Outbound** | Enable if the container also needs to make connections out onto the virtual network (e.g. to fetch from another peer). Leave disabled if the container is purely inbound-serving. |
 
-Save. The container is reachable at `10.50.0.10` as soon as the config update lands on the node.
+Save. The container is reachable at `10.50.0.10` as soon as the config update lands on the appliance.
 
 {{<alert color="warning">}}
 The container does not need a host port mapping for this to work. The virtual network attachment is independent — you can leave the port mapping for LAN access, or remove it if the container should only be reachable over the overlay.
@@ -67,7 +67,7 @@ You should see the nginx welcome page. The traffic path:
 
 1. `curl` sends to `10.50.0.10`.
 2. The gateway's routing table sends `10.50.0.0/24` out the `my-vnet` tunnel toward the edge.
-3. The edge node delivers the traffic to the container.
+3. The edge appliance delivers the traffic to the container.
 4. nginx replies on the same path.
 
 ## What's different from a host port mapping?

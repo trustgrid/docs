@@ -3,7 +3,7 @@ title: "Container Security"
 weight: 40
 ---
 
-By default, a container on a Trustgrid node runs with safe, restrictive settings — it can't see the host filesystem, can't touch host devices, and can't interfere with the node or other containers. The toggles on this page let you grant additional access when a specific workload needs it.
+By default, a container on a Trustgrid appliance runs with safe, restrictive settings — it can't see the host filesystem, can't touch host devices, and can't interfere with the appliance or other containers. The toggles on this page let you grant additional access when a specific workload needs it.
 
 ## User
 
@@ -42,22 +42,22 @@ The **Privileged** toggle on the Overview screen grants the container elevated a
 
 The **Use Init** toggle on the Overview helps containers shut down cleanly.
 
-A typical case: an application launched through a shell script wrapper (e.g. `start.sh` that runs `java -jar app.jar`). When you click **Stop**, the shutdown signal goes to the shell instead of the application — so the application keeps running until the node force-kills it after the Stop Time grace period. Use Init forwards the signal correctly so the application shuts down as expected.
+A typical case: an application launched through a shell script wrapper (e.g. `start.sh` that runs `java -jar app.jar`). When you click **Stop**, the shutdown signal goes to the shell instead of the application — so the application keeps running until it's force-killed after the Stop Time grace period. Use Init forwards the signal correctly so the application shuts down as expected.
 
 It's cheap to turn on and a safe default for any container whose entrypoint isn't the application itself.
 
 ## Require Connectivity
 
-The **Require Connectivity** toggle on the Overview gates container startup on the node being online — meaning the node has a live connection to the Trustgrid control plane and shows as online in the portal.
+The **Require Connectivity** toggle on the Overview gates container startup on the appliance being online — meaning the appliance has a live connection to the Trustgrid control plane and shows as online in the portal.
 
-- **Off (default):** the container starts whenever the node tries to start it, whether or not the node is connected to the control plane.
-- **On:** the container won't start until the node is connected to the control plane.
+- **Off (default):** the container starts whenever a start is attempted, whether or not the appliance is connected to the control plane.
+- **On:** the container won't start until the appliance is connected to the control plane.
 
-Use this with encrypted volumes — see [Container storage — Encrypted volumes]({{<ref "storage#encrypted-volumes">}}). It only affects startup; a container that's already running keeps running if the node disconnects from the control plane.
+Pair this with [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) so volume contents stay sealed until the appliance is back online. It only affects startup; a container that's already running keeps running if the appliance disconnects from the control plane.
 
 ## Save Output
 
-The **Save Output** toggle on the Overview saves the container's log output (everything it prints to the terminal) to the Trustgrid portal, where you can download it later from **Compute → Output Artifacts** on the node — even after the container restarts.
+The **Save Output** toggle on the Overview saves the container's log output (everything it prints to the terminal) to the Trustgrid portal, where you can download it later from **Compute → Output Artifacts** at node scope — even after the container restarts.
 
 **Be careful what you save.** If your container prints API keys, customer information, or other sensitive data, that ends up in Trustgrid's log store. It is the customer's responsibility to ensure no sensitive information appears in the output.
 
@@ -73,7 +73,7 @@ If you want a starting point for a service that's exposed to the public internet
 4. Enable **Use Init**.
 5. Leave **Save Output** off unless you've checked the container's output for sensitive data.
 6. Use [encrypted volumes]({{<ref "storage#encrypted-volumes">}}) for application data.
-7. Add a [Health Check]({{<ref "../#health-check">}}) so the node restarts the container if it stops responding.
+7. Add a [Health Check]({{<ref "../#health-check">}}) so the container is flagged in the portal if it stops responding.
 
 ## Related
 
