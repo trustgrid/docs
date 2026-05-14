@@ -2,16 +2,16 @@
 title: "Container Networking"
 ---
 
-By default a container is reachable only from the appliance it runs on. To make it reachable from somewhere else — the LAN, another Trustgrid node over VPN, or the internet — attach it to the network in one of three ways. This page covers those three ways plus how outbound traffic from the container leaves the appliance.
+By default a container can make outbound connections, but bridge networking keeps anything outside the appliance from reaching it. To make it reachable from somewhere else — the LAN, another Trustgrid node over VPN, or the internet — attach it to the network in one of three ways. This page covers those three ways plus how outbound traffic from the container leaves the appliance.
 
 ## Container addresses and DNS
 
-When a container starts, an IP address in `172.18.0.0/16` (the default container network — contact Trustgrid support if you need to change it) is assigned. The container can communicate with its parent appliance and with any other container running on the same appliance by **container name** — the name you typed into the Overview screen.
+When a container starts, an IP address in `172.18.0.0/16` (the default container network — contact Trustgrid support if you need to change it) is assigned. By default the container's DNS resolver points at a relay on the appliance, which lets containers running on the same appliance reach each other by **container name** — the name you typed into the Overview screen — instead of by IP. External lookups are forwarded upstream.
 
 You normally don't need to change any of this. The two relevant overrides on the Overview screen:
 
 - **IP** — pin the container to a specific address within `172.18.0.0/16`. Only needed if another container has to reach this one by address rather than name.
-- **DNS** — point the container at a custom DNS server. Doing this means the container can no longer resolve its sibling containers by name, so only set it if you specifically need a different resolver.
+- **DNS** — point the container at a custom DNS server. Overriding this bypasses the appliance's DNS relay, so the container can no longer resolve its sibling containers by name — only set it if you specifically need a different resolver.
 
 ## Three ways to expose a container
 
