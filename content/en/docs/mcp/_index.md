@@ -40,7 +40,7 @@ The server exposes three tool groups, each at its own path:
 
 You can put any number of suffixes after `/mcp` to combine groups as needed. For example, `/mcp/codemode/tools` gives you both codemode and traditional MCP tools access.
 
-See [Tools]({{<ref "docs/mcp/tools">}}) for details on what each group provides.
+See [Tools]({{<relref "docs/mcp/tools" >}}) for details on what each group provides.
 
 ## Transport
 
@@ -53,11 +53,11 @@ The server accepts two authentication types:
 - **OAuth 2.0** - Clients that implement the MCP OAuth handshake (Claude Desktop, Claude Code, and others) will trigger a browser-based login automatically — no manual token needed.
 - **API token** — a `clientId:clientSecret` pair generated in the Trustgrid portal. 
 
-See [Authentication]({{<ref "docs/mcp/authentication">}}) for setup details.
+See [Authentication]({{<relref "docs/mcp/authentication" >}}) for setup details.
 
 ## Rate limits
 
-Requests are rate-limited per request:
+Requests are rate-limited per token:
 
 | Group | Limit |
 |---|---|
@@ -69,7 +69,7 @@ The server returns `429 Too Many Requests` with `Retry-After` and `X-RateLimit-*
 
 ## Next steps
 
-- [Authentication]({{<ref "docs/mcp/authentication">}}) — get credentials and understand auth options
-- [Tools]({{<ref "docs/mcp/tools">}}) — explore available tool groups
-- [Installation]({{<ref "docs/mcp/installation">}}) — connect your AI client
-- [Troubleshooting]({{<ref "docs/mcp/troubleshooting">}}) — common setup issues
+- [Authentication]({{<relref "docs/mcp/authentication" >}}) — get credentials and understand auth options
+- [Tools]({{<relref "docs/mcp/tools" >}}) — explore available tool groups
+- [Installation]({{<relref "docs/mcp/installation" >}}) — connect your AI client
+- [Troubleshooting]({{<relref "docs/mcp/troubleshooting" >}}) — common setup issues

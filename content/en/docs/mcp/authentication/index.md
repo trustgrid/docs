@@ -1,7 +1,6 @@
 ---
 title: "Authentication"
 linkTitle: "Authentication"
-weight: 10
 description: "How to authenticate to the Trustgrid MCP server using OAuth or API tokens."
 ---
 

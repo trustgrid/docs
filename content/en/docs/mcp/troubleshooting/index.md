@@ -1,7 +1,6 @@
 ---
 title: "Troubleshooting"
 linkTitle: "Troubleshooting"
-weight: 40
 description: "Common MCP server setup issues and how to fix them."
 ---
 
@@ -19,7 +18,7 @@ https://mcp.trustgrid.io              ✗ missing /mcp
 https://mcp.trustgrid.io/mcp/         ✓ trailing slash is fine
 ```
 
-**Check your domain.** If your organization has a tenant-specific endpoint (e.g., `mcp.acme.trustgrid.io`), use that rather than the default `mcp.trustgrid.io`. If you use the portal at <your-company-name>.trustgrid.io, your MCP endpoint is mcp.<your-company-name>.trustgrid.io.
+**Check your domain.** If your organization has a tenant-specific endpoint (e.g., `mcp.acme.trustgrid.io`), use that rather than the default `mcp.trustgrid.io`. If you use the portal at `your-company-name.trustgrid.io`, your MCP endpoint is `mcp.your-company-name.trustgrid.io`.
 
 ---
 

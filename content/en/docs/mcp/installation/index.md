@@ -1,7 +1,6 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 30
 description: "How to configure the Trustgrid MCP server in Claude, Cursor, VS Code, Copilot, and other AI clients."
 ---
 
@@ -9,9 +8,9 @@ description: "How to configure the Trustgrid MCP server in Claude, Cursor, VS Co
 
 You need two things:
 
-1. **Your MCP endpoint URL** — `https://mcp.<domain>.trustgrid.io/mcp` where `<domain>` matches your Trustgrid organization. The default is `https://mcp.trustgrid.io/mcp`. The path suffix selects the [tool group]({{<ref "docs/mcp/tools">}}): `/mcp/codemode` (codemode), `/mcp/read`, `/mcp/tools`, or a combination like `/mcp/codemode/read`.
+1. **Your MCP endpoint URL** — `https://mcp.<domain>.trustgrid.io/mcp` where `<domain>` matches your Trustgrid organization. The default is `https://mcp.trustgrid.io/mcp`. The path suffix selects the [tool group]({{<relref "docs/mcp/tools" >}}): `/mcp/codemode` (codemode), `/mcp/read`, `/mcp/tools`, or a combination like `/mcp/codemode/read`.
 
-2. **Credentials** — OAuth is the preferred method: if your client supports it, point it at the URL and it will handle login automatically — no token management required. For clients that don't support OAuth, generate an API token (`clientId:clientSecret`) from **User Management** → **API Access** in the portal. See [Authentication]({{<ref "docs/mcp/authentication">}}).
+2. **Credentials** — OAuth is the preferred method: if your client supports it, point it at the URL and it will handle login automatically — no token management required. For clients that don't support OAuth, generate an API token (`clientId:clientSecret`) from **User Management** → **API Access** in the portal. See [Authentication]({{<relref "docs/mcp/authentication" >}}).
 
 Examples below use `https://mcp.trustgrid.io/mcp/codemode` as the URL. OAuth examples are shown first where supported; API token examples follow as a fallback. Replace URLs and credentials with your actual values.
 

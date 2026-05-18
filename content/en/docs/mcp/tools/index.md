@@ -1,7 +1,6 @@
 ---
 title: "Available Tools"
 linkTitle: "Tools"
-weight: 20
 description: "Tool groups exposed by the Trustgrid MCP server and what each tool does."
 ---
 
@@ -16,7 +15,7 @@ The codemode group is the default when no path suffix is specified. It provides 
 | Tool       | Description                                                                                                                           |
 | ---------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | `search`   | Semantic and keyword search across Trustgrid documentation. Returns relevant excerpts with source links.                              |
-| `describe` | Describe a codemode function. This provide the full signature to help your agent write valid code.                                    |
+| `describe` | Describe a codemode function. This provides the full signature to help your agent write valid code.                                   |
 | `code`     | Execute sandboxed JavaScript with access to the full read-only Trustgrid API. Use for custom queries, aggregations, and bulk lookups. |
 | `followUp` | Paginate through results from a prior `code` or `search` call.                                                                        |
 
@@ -24,7 +23,7 @@ The `code` tool gives the AI direct access to all Trustgrid API endpoints within
 
 Codemode also includes all [node diagnostic tools](#tools-mcptools) from the `tools` group.
 
-The codemode scope requires broad read permissions. See [Authentication]({{<ref "docs/mcp/authentication">}}) for credential setup.
+The codemode scope requires broad read permissions. See [Authentication]({{<relref "docs/mcp/authentication" >}}) for credential setup.
 
 ### read (`/mcp/read`)
 
