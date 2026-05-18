@@ -1,89 +1,126 @@
 ---
 title: "Expose a Container over a Virtual Network"
-description: Reach a container running on one Trustgrid node from a peer node over the Trustgrid overlay.
+description: Connect a container to a Trustgrid virtual network so it's reachable from another site — the overlay is the only inbound path, while the container can still call out to its local LAN and the public internet.
 ---
 
-A host port mapping makes a container reachable on the appliance's **local network**. To reach the container from a peer Trustgrid node — for example, a gateway in another datacenter — give the container a **virtual IP** on a virtual network instead.
+This tutorial walks through making a container reachable across sites by attaching it to a Trustgrid virtual network.
 
-This tutorial assumes you have completed the [Container Quickstart]({{<relref "/tutorials/containers/quickstart">}}) and have a running `nginx` container on an edge node, and a gateway node connected to the same organization with a working VPN tunnel to the edge.
+- **Inbound:** the container is reachable across the virtual network via the configured virtual IP.
+- **Outbound to the LAN:** the container can call services on the appliance's local network.
+- **Outbound to the internet:** the container can call public services through the appliance's WAN.
+- **No other inbound path:** there is no inbound access to the container from outside the appliance unless you explicitly configure a host port mapping. The overlay is the only way in.
 
-## Topology
+The walk-through uses a small example: `acme-api`, a container running on Acme Bank's edge cluster, queried by a fintech provider via the overlay. The container fetches data from Acme's on-prem core (LAN) and is able to make outbound calls to a SaaS endpoint (WAN).
 
-```
-   ┌──────────────┐
-   │  test host   │
-   │ 10.60.0.42   │ (routes 10.50.0.0/24 via the gateway)
-   └──────┬───────┘
-          │  curl 10.50.0.10:80
-          ▼
-   ┌─────────────────────┐                            ┌─────────────────────────────────┐
-   │       gateway       │   Trustgrid VPN tunnel     │              edge               │
-   │                     │ ─────────────────────────► │                                 │
-   │                     │   my-vnet (10.50.0.0/24)   │   reaches container at          │
-   │                     │                            │   10.50.0.10:80                 │
-   │                     │                            │                                 │
-   │                     │                            │   ┌──────────────────────────┐  │
-   │                     │                            │   │  Container nginx         │  │
-   │                     │                            │   │    listening on :80      │  │
-   │                     │                            │   └──────────────────────────┘  │
-   └─────────────────────┘                            └─────────────────────────────────┘
-```
+**Starting point**
 
-The container is reachable on the virtual network at `10.50.0.10` — the IP you assign on the container's **Network** screen. From the gateway, traffic to `10.50.0.10:80` arrives at the edge and is delivered to the container.
+Both clusters already exist — nodes are deployed and paired into a cluster, but no virtual-network configuration is applied yet. See [Clusters]({{<relref "/docs/clusters">}}) for cluster setup.
 
-## 1. Confirm the virtual network is attached to both nodes
+- An edge cluster running the container, set up via the [Container Quickstart]({{<relref "/tutorials/containers/quickstart">}}).
+- A gateway cluster with nothing configured on it yet beyond cluster membership.
 
-The container can only be exposed on a virtual network that is already attached to the appliance running it.
+{{<tgimg src="topology.svg" caption="The fintech app reaches the container at its overlay IP over the Trustgrid Data Plane. From there, the container can reach the FI Core on the institution LAN and SaaS apps on the public internet, both through the edge appliance. The container has no other inbound path." width="95%">}}
 
-1. On the edge node, navigate to **Networking → VPN**. Verify `my-vnet` is listed.
-2. On the gateway, do the same. Verify the same `my-vnet` is listed.
+## 1. Enable each gateway appliance as a public gateway
 
-## 2. Attach the container to the virtual network
-
-Open the container's **Network** screen at cluster scope (or node scope for a standalone node). Under **Virtual Networks**, click **Add**.
+**Nodes → Node Name → Gateway → Server**
 
 | Field | Value |
 | --- | --- |
-| **Virtual Network** | `my-vnet` |
-| **Virtual IP** | `10.50.0.10` |
-| **Allow Outbound** | Enable if the container also needs to make connections out onto the virtual network (e.g. to fetch from another peer). Leave disabled if the container is purely inbound-serving. |
+| Enable | `Enabled` |
+| Public IP or DNS | The public endpoint that terminates the TLS / UDP Data Plane tunnels from connecting nodes |
+| Port | `8443` |
+| UDP Port | `8443` |
+| Gateway Type | `Public` |
 
-Save. The container is reachable at `10.50.0.10` as soon as the config update lands on the appliance.
+See [Gateway Server]({{<relref "/docs/nodes/appliances/gateway/gateway-server">}}) for the full options reference.
 
-{{<alert color="warning">}}
-The container does not need a host port mapping for this to work. The virtual network attachment is independent — you can leave the port mapping for LAN access, or remove it if the container should only be reachable over the overlay.
-{{</alert>}}
+{{<tgimg src="tutorial-gw-server.png" caption="Gateway Server settings on a gateway node" width="90%">}}
 
-## 3. Reach the container from the gateway
+## 2. Create the virtual network
 
-Before testing, make sure the virtual network has a route that sends the container virtual IP (or its containing subnet) to the edge node running the container.
+**Domain → Virtual Networks → Add**: name it `acme-vnet-0515-1538`, CIDR `172.20.0.0/16`. A subnet is allocated to each cluster.
 
-From any host that can route to the virtual network — typically a test host behind the gateway — make a request to the container's virtual IP on the port the container is actually listening on inside the container (`80` for the default nginx image):
+{{<tgimg src="tutorial-vnet-list.png" caption="Virtual networks" width="90%">}}
+
+## 3. Add virtual network routes
+
+Routes tell the overlay where to send traffic for each destination subnet — packets are forwarded to the active cluster master:
+
+| CIDR | Destination |
+| --- | --- |
+| `172.20.0.0/24` | gateway cluster |
+| `172.21.0.0/24` | edge cluster |
+
+{{<tgimg src="tutorial-vnet-routes.png" caption="Virtual network routes — one per side" width="90%">}}
+
+## 4. Add access policies
+
+Trustgrid virtual networks are zero trust — all traffic is denied by default. Add a single rule that permits exactly the traffic the integration needs — the fintech side reaching the container on its API port:
+
+| Protocol | Source | Destination | Ports | Action |
+| --- | --- | --- | --- | --- |
+| `tcp` | `172.20.0.0/24` (fintech slice) | `172.21.0.10/32` (container VIP) | `80` | Allow |
+
+{{<tgimg src="tutorial-vnet-policies.png" caption="A single scoped allow rule — fintech site to the acme-api container on port 80" width="90%">}}
+
+## 5. Attach virtual network to gateway cluster interface
+
+**Clusters → Gateway Cluster → Network → VPN → Actions → Attach**
+
+- Virtual Network: `acme-vnet-0515-1538`
+- Validation CIDR: `172.20.0.0/24`
+- Interface: gateway-side LAN NIC (e.g. `ens192`)
+- Inside NAT: `172.20.0.0/24 ← 192.168.200.0/24`
+
+{{<tgimg src="tutorial-gw-vpn-nats.png" caption="Gateway cluster VPN attachment" width="90%">}}
+
+## 6. Attach the virtual network to the edge cluster
+
+**Clusters → Edge Cluster → Network → VPN → Actions → Attach**
+
+- Virtual Network: `acme-vnet-0515-1538`
+- Validation CIDR: `172.21.0.0/24`
+
+{{<tgimg src="tutorial-edge-vpn-nats.png" caption="Edge cluster VPN attachment" width="90%">}}
+
+## 7. Attach the container to the virtual network
+
+Open the container on the edge cluster → **Network → Virtual Networks → Add Entry**:
+
+| Field | Value |
+| --- | --- |
+| Virtual Network | `acme-vnet-0515-1538` |
+| Virtual IP | `172.21.0.10` |
+| Allow Outbound | off |
+
+{{<tgimg src="tutorial-container-network-vnet.png" caption="Container attached at 172.21.0.10" width="90%">}}
+
+## Verify — the fintech queries the FI Core through the container API
+
+Run the test from the fintech side. The fintech provider's backend — a host on the gateway-side LAN — calls the `acme-api` container at its overlay IP:
 
 ```bash
-curl http://10.50.0.10:80/
+$ curl http://172.21.0.10/v1/accounts
+{
+  "service": "acme-fintech-core",
+  "host": "edge-host",
+  "timestamp": "2026-05-15T17:26:19.329926Z",
+  "accounts": [
+    { "id": "ACC-1001", "balance": 4218.55 },
+    { "id": "ACC-1002", "balance": 19234.10 }
+  ]
+}
 ```
 
-You should see the nginx welcome page. The traffic path:
+That response is what Acme Bank's on-prem core returned. The request path:
 
-1. `curl` sends to `10.50.0.10`.
-2. The gateway's routing table sends `10.50.0.0/24` out the `my-vnet` tunnel toward the edge.
-3. The edge appliance delivers the traffic to the container.
-4. nginx replies on the same path.
+1. The fintech provider's backend calls `http://172.21.0.10/v1/accounts`. The call is routed to the Trustgrid gateway cluster IP, which is always served by the cluster's active node.
+2. The Trustgrid virtual network overlay carries the request across the secure, encrypted Data Plane to Acme's edge appliance.
+3. The `acme-api` container receives the request at its overlay VIP.
+4. The container's nginx forwards the request to Acme's FI Core at `192.168.100.72:8443` over the appliance's LAN.
+5. The FI Core returns the account data, which retraces the path back to the fintech.
 
-## What's different from a host port mapping?
+One request, end to end. The fintech never touches Acme's LAN; Acme never exposes the core publicly. The container is the only thing either side talks to, and the integration's policy is enforced by the single zero-trust ACL.
 
-| | Host Port Mapping | Virtual Network |
-| --- | --- | --- |
-| Reachable from | Same node, same LAN | Any node attached to the same virtual network |
-| In a cluster | Each member's NIC needs the mapping; reach the active member's IP | Container runs on every member, all attached to the virtual network |
-| Address you reach | `<node-IP>:<host-port>` | `<container-VIP>:<container-port>` |
-| Common use | Local admin tools, sidecar agents, on-prem services | Microservices, APIs reached by other Trustgrid sites |
-
-You can do both — a typical pattern is a port mapping for local admin access plus a virtual network attachment for application traffic.
-
-## Outbound
-
-If the container needs to reach a service on a peer node (rather than serve traffic from one), enable **Allow Outbound** on the attachment. With it enabled, the container can originate connections to anything reachable on `my-vnet`. With it disabled, the container can only respond to incoming traffic on the virtual IP.
-
-For more granular outbound control, set a **VRF** on the container's **Network** screen. See [Container networking — Outbound traffic]({{<relref "/docs/nodes/appliances/containers/concepts/networking#outbound-traffic--where-does-it-go">}}).
+Traffic flows one way. The FI cannot initiate connections back to the fintech — the container's **Allow Outbound** is off and the ACL only permits fintech → container.
