@@ -8,7 +8,7 @@ description: "How to configure the Trustgrid MCP server in Claude, Cursor, VS Co
 
 You need two things:
 
-1. **Your MCP endpoint URL** — `https://mcp.<domain>.trustgrid.io/mcp` where `<domain>` matches your Trustgrid organization. The default is `https://mcp.trustgrid.io/mcp`. The path suffix selects the [tool group]({{<relref "docs/mcp/tools" >}}): `/mcp/codemode` (codemode), `/mcp/read`, `/mcp/tools`, or a combination like `/mcp/codemode/read`.
+1. **Your MCP endpoint URL** — The default is `https://mcp.trustgrid.io/mcp`. If your organization uses a tenant-specific portal domain (for example, `acme.trustgrid.io`), use `https://mcp.acme.trustgrid.io/mcp` instead. The path suffix selects the [tool group]({{<relref "docs/mcp/tools" >}}): `/mcp/codemode` (codemode), `/mcp/read`, `/mcp/tools`, or a combination like `/mcp/codemode/read`.
 
 2. **Credentials** — OAuth is the preferred method: if your client supports it, point it at the URL and it will handle login automatically — no token management required. For clients that don't support OAuth, generate an API token (`clientId:clientSecret`) from **User Management** → **API Access** in the portal. See [Authentication]({{<relref "docs/mcp/authentication" >}}).
 
