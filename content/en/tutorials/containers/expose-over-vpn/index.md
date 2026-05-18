@@ -1,6 +1,6 @@
 ---
 title: "Expose a Container over a Virtual Network"
-description: Connect a container to a Trustgrid virtual network so it's reachable from another site — the overlay is the only inbound path, while the container can still call out to its local LAN and the public internet.
+description: Connect a container to a Trustgrid virtual network so it's reachable from another site.
 ---
 
 This tutorial walks through making a container reachable across sites by attaching it to a Trustgrid virtual network.
@@ -52,6 +52,8 @@ Routes tell the overlay where to send traffic for each destination subnet — pa
 | `172.20.0.0/24` | gateway cluster |
 | `172.21.0.0/24` | edge cluster |
 
+Routes are staged when added — they don't take effect until applied in step 5.
+
 {{<tgimg src="tutorial-vnet-routes.png" caption="Virtual network routes — one per side" width="90%">}}
 
 ## 4. Add access policies
@@ -62,20 +64,42 @@ Trustgrid virtual networks are zero trust — all traffic is denied by default. 
 | --- | --- | --- | --- | --- |
 | `tcp` | `172.20.0.0/24` (fintech slice) | `172.21.0.10/32` (container VIP) | `80` | Allow |
 
+Like routes, the rule is staged when added.
+
 {{<tgimg src="tutorial-vnet-policies.png" caption="A single scoped allow rule — fintech site to the acme-api container on port 80" width="90%">}}
 
-## 5. Attach virtual network to gateway cluster interface
+## 5. Review and apply the staged changes
+
+Open **Review Changes** for the virtual network. The three staged adds — both routes and the access policy — are listed together. Click **Apply Changes** to commit them all at once.
+
+{{<tgimg src="tutorial-vnet-review-changes.png" caption="All three staged changes — two routes and one access policy — applied together from Review Changes" width="90%">}}
+
+## 6. Attach the virtual network to the gateway cluster
 
 **Clusters → Gateway Cluster → Network → VPN → Actions → Attach**
 
 - Virtual Network: `acme-vnet-0515-1538`
 - Validation CIDR: `172.20.0.0/24`
-- Interface: gateway-side LAN NIC (e.g. `ens192`)
-- Inside NAT: `172.20.0.0/24 ← 192.168.200.0/24`
 
-{{<tgimg src="tutorial-gw-vpn-nats.png" caption="Gateway cluster VPN attachment" width="90%">}}
+The validation CIDR is the slice of the overlay this cluster is allowed to NAT into — it must match the route added in step 3.
 
-## 6. Attach the virtual network to the edge cluster
+{{<tgimg src="tutorial-gw-cluster-attach.png" caption="The virtual network attached to the gateway cluster, with its validation CIDR" width="90%">}}
+
+## 7. Attach the LAN interface and configure the NAT
+
+With the virtual network attached at the cluster level, open it and go to **Address Translation**. Select the LAN interface that the fintech app uses to reach the appliance, then add an Inside NAT that maps the fintech LAN to the overlay:
+
+| Field | Value |
+| --- | --- |
+| Interface | gateway-side LAN NIC (e.g. `Network Adapter 2`) |
+| Inside NAT — Virtual CIDR | `172.20.0.0/24` |
+| Inside NAT — Local CIDR | `192.168.200.0/24` |
+
+The Inside NAT means: when a host on `192.168.200.0/24` sends traffic into the overlay, it appears on the overlay as the matching address in `172.20.0.0/24`.
+
+{{<tgimg src="tutorial-gw-vpn-nats.png" caption="The LAN interface attached to the virtual network with the Inside NAT mapping the fintech LAN to the overlay slice" width="90%">}}
+
+## 8. Attach the virtual network to the edge cluster
 
 **Clusters → Edge Cluster → Network → VPN → Actions → Attach**
 
@@ -84,7 +108,7 @@ Trustgrid virtual networks are zero trust — all traffic is denied by default. 
 
 {{<tgimg src="tutorial-edge-vpn-nats.png" caption="Edge cluster VPN attachment" width="90%">}}
 
-## 7. Attach the container to the virtual network
+## 9. Attach the container to the virtual network
 
 Open the container on the edge cluster → **Network → Virtual Networks → Add Entry**:
 
