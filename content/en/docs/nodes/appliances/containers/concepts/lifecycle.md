@@ -22,7 +22,7 @@ The container runs on a schedule, like a cron job.
 
 - The **Schedule** field accepts either a simple rate or a cron expression.
 - Each run is independent — a fresh container starts, runs to completion, then waits for the next time.
-- If a previous run is still going when the next one is due, the new run is skipped.
+- If a previous run is still going when the next one is due, the next run is still queued; overlapping runs can stack up.
 - **Use for:** scheduled batch jobs, periodic data pulls, cleanup scripts, reports.
 
 | Rate | Description |
@@ -53,7 +53,7 @@ Common combinations:
 | Status | State | What's going on |
 |---|---|---|
 | `Enabled` | `Running` | Healthy — a Service container that's up. |
-| `Enabled` | `Stopped` | Configured to run but isn't running right now — between restart attempts, or unable to start. |
+| `Enabled` | `Stopped` | Configured to run but isn't running right now - for example, after a final failure, after a manual stop, or because it was unable to start. |
 | `Disabled` | `Stopped` | Configured but won't be run. Useful when you're staging changes. |
 
 ## Manual Start and Stop
@@ -62,6 +62,8 @@ Each container has **Start** and **Stop** buttons on its detail page at node sco
 
 - **Stop** halts the container. There's a wait of up to **Stop Time** (default 30 seconds) for a clean shutdown before it's forced.
 - **Start** launches the container. For an On Demand container this is the only way to run it. For Service or Recurring containers, Start is useful when you want to run it immediately rather than waiting for the next scheduled run.
+
+For a **Service** container, a manual **Stop** keeps it stopped until something in the config changes or you start it again manually. Normal config reconciliation does not restart an unchanged, enabled service that you stopped by hand.
 
 See [Container Tools]({{<relref "../tools">}}) for the full set of per-container actions.
 

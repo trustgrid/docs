@@ -23,7 +23,7 @@ The container list at node scope shows three columns side by side:
 - **State** — what's actually happening right now: `Running`, `Initializing` (image is downloading or the container is starting up), or `Stopped`.
 - **Health** — `Healthy` or `Unhealthy`, populated by the configured [Health Check]({{<relref "../#health-check">}}). Blank if no health check is set.
 
-A container can show `Enabled` and `Stopped` at the same time — usually because the image couldn't be pulled, or because it's between restart attempts.
+A container can show `Enabled` and `Stopped` at the same time - usually because the image couldn't be pulled, because it hit a final failure, or because it was stopped manually.
 
 {{<tgimg src="node-container-list.png" caption="Container list at node scope, showing runtime State alongside configured Status" width="90%">}}
 

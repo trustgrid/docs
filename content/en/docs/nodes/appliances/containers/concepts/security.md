@@ -47,12 +47,9 @@ It's cheap to turn on and a safe default for any container whose entrypoint isn'
 
 ## Require Connectivity
 
-The **Require Connectivity** toggle on the Overview gates container startup on the appliance being online — meaning the appliance has a live connection to the Trustgrid control plane and shows as online in the portal.
+**Require Connectivity** is part of encrypted volume mount configuration, not a general container Overview setting.
 
-- **Off (default):** the container starts whenever a start is attempted, whether or not the appliance is connected to the control plane.
-- **On:** the container won't start until the appliance is connected to the control plane.
-
-Pair this with [encrypted volumes]({{<relref "storage#encrypted-volumes">}}) so volume contents stay sealed until the appliance is back online. It only affects startup; a container that's already running keeps running if the appliance disconnects from the control plane.
+Pair it with [encrypted volumes]({{<relref "storage#encrypted-volumes">}}) so startup waits until the appliance can reach the Trustgrid control plane and unlock the volume. It only affects startup; a container that's already running keeps running if the appliance disconnects from the control plane.
 
 ## Save Output
 

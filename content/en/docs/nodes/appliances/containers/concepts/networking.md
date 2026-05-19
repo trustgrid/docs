@@ -23,7 +23,7 @@ A host port mapping puts the container on one of the appliance's network interfa
 
 | Field | Notes |
 | --- | --- |
-| **Protocol** | `tcp`, `udp`, or leave blank for both. |
+| **Protocol** | Must be set explicitly to `tcp` or `udp`. Blank or invalid values are ignored. |
 | **Host Interface** | The appliance's network port to listen on, e.g. `ens192`. The list of interfaces is on the **Networking → Interfaces** page. |
 | **Host Port** | The port to listen on. |
 | **Container Port** | The port inside the container that should receive the traffic. |

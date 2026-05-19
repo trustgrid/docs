@@ -44,10 +44,10 @@ A volume is a piece of managed storage that lives alongside the container, set u
 
 Mark a volume **Encrypted** to have Trustgrid encrypt its contents at rest. The key is fetched from the Trustgrid control plane when the container starts, so the volume can only be unlocked while the appliance is connected to the control plane.
 
-The **Require Connectivity** toggle on the container's Overview controls what happens when the appliance is disconnected from the control plane:
+When mounting an encrypted volume, the mount configuration includes **Require Connectivity**, which controls what happens when the appliance is disconnected from the control plane:
 
-- **On** — the container won't start until the appliance reconnects to the control plane. Use this when running offline is worse than not running.
-- **Off** — a container that's already running keeps running; one trying to start while disconnected will fail because the volume can't unlock.
+- **On** - the container won't start until the appliance reconnects to the control plane and the volume can be unlocked. Use this when running offline is worse than not running.
+- **Off** - a container that's already running keeps running; one trying to start while disconnected will fail because the volume can't unlock.
 
 Require Connectivity has no effect on unencrypted volumes.
 

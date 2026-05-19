@@ -66,7 +66,7 @@ The overview section allows editing basic information about the container's exec
 {{<fields>}}
 {{<field "Save Output">}}Persist standard output/standard error to the Trustgrid cloud for analysis. **It is the customer's responsibility to ensure no privileged information is included in the output.** See [Container security — Save Output]({{<relref "concepts/security#save-output">}}).{{</field>}}
 {{<field "Schedule">}}Cron expression or rate (e.g. `rate(1 hour)`) that governs when the container runs. Shown only when **Execution Type** is `Recurring`. See [Container lifecycle — Recurring]({{<relref "concepts/lifecycle#recurring">}}) for the accepted formats.{{</field>}}
-{{<field "Command">}}The command to execute inside the container. Overrides the image's entrypoint. Useful for troubleshooting.{{</field>}}
+{{<field "Command">}}The command to execute inside the container. Replaces the image's default command or arguments while preserving its entrypoint. Useful for troubleshooting.{{</field>}}
 {{<field "Hostname">}}The hostname set inside the container. Defaults to the appliance's name.{{</field>}}
 {{<field "Stop Time">}}Grace period (in seconds) to allow a container to stop before killing it. Defaults to 30 seconds.{{</field>}}
 {{<field "User">}}Sets the username/group/UID/GID the container's main process runs as. See [Container security — User]({{<relref "concepts/security#user">}}).{{</field>}}
@@ -74,7 +74,6 @@ The overview section allows editing basic information about the container's exec
 {{<field "IP">}}Pins the container to a specific IP in `172.18.0.0/16`. By default the address is assigned dynamically. See [Container networking — The container bridge]({{<relref "concepts/networking#the-container-bridge">}}).{{</field>}}
 {{<field "Privileged">}}Grant the container extended privileges — disables most of the sandbox. **Almost no workload should need this.** Prefer [Linux Capabilities]({{<relref "concepts/security#linux-capabilities">}}).{{</field>}}
 {{<field "Use Init">}}Run an init process as PID 1 inside the container. Recommended for any service that spawns child processes. See [Container security — Use Init]({{<relref "concepts/security#use-init">}}).{{</field>}}
-{{<field "Require Connectivity">}}Gates container startup on the appliance having control-plane connectivity. Used with encrypted volumes. See [Container storage — Encrypted volumes]({{<relref "concepts/storage#encrypted-volumes">}}).{{</field>}}
 {{</fields>}}
 
 ## Environment Variables
@@ -94,7 +93,7 @@ Configure the container's VRF, port mappings, virtual networks, and virtual inte
 Expose a port on the appliance to the container.
 
 {{<fields>}}
-{{<field "Protocol">}}`tcp` or `udp`. If unspecified, all traffic is forwarded.{{</field>}}
+{{<field "Protocol">}}Protocol to listen for. Must be set explicitly to `tcp` or `udp`; blank values are ignored.{{</field>}}
 {{<field "Host Interface">}}The appliance NIC to listen on (e.g. `ens192`).{{</field>}}
 {{<field "Host Port">}}The host port to listen on.{{</field>}}
 {{<field "Container Port">}}The container port that receives the mapped traffic.{{</field>}}
@@ -132,6 +131,8 @@ Persist data either as an externally defined [volume]({{<relref "volumes">}}), o
 {{<field "Source">}}For volumes, the volume name. For bind mounts, the absolute path on the appliance's filesystem.{{</field>}}
 {{<field "Destination">}}The mount location inside the container.{{</field>}}
 {{</fields>}}
+
+When mounting an encrypted volume, the mount also exposes **Require Connectivity**. Enable it to block startup until the appliance can reach the control plane and unlock the volume. See [Container storage - Encrypted volumes]({{<relref "concepts/storage#encrypted-volumes">}}).
 
 ## Resource Limits
 
