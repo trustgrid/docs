@@ -74,6 +74,7 @@ The overview section allows editing basic information about the container's exec
 {{<field "IP">}}Pins the container to a specific IP in `172.18.0.0/16`. By default the address is assigned dynamically. See [Container networking — The container bridge]({{<relref "concepts/networking#the-container-bridge">}}).{{</field>}}
 {{<field "Privileged">}}Grant the container extended privileges — disables most of the sandbox. **Almost no workload should need this.** Prefer [Linux Capabilities]({{<relref "concepts/security#linux-capabilities">}}).{{</field>}}
 {{<field "Use Init">}}Run an init process as PID 1 inside the container. Recommended for any service that spawns child processes. See [Container security — Use Init]({{<relref "concepts/security#use-init">}}).{{</field>}}
+{{<field "Require Connectivity">}}Gates container startup on the appliance having control-plane connectivity before its encrypted volumes can be mounted. See [Container storage — Encrypted volumes]({{<relref "concepts/storage#encrypted-volumes">}}).{{</field>}}
 {{</fields>}}
 
 ## Environment Variables
