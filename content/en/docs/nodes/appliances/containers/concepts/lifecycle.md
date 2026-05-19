@@ -22,7 +22,7 @@ The container runs on a schedule, like a cron job.
 
 - The **Schedule** field accepts either a simple rate or a cron expression.
 - Each run is independent — a fresh container starts, runs to completion, then waits for the next time.
-- If a previous run is still going when the next one is due, the next run is still queued; overlapping runs can stack up.
+- If a previous run is still going when the next one is due, the next run is skipped.
 - **Use for:** scheduled batch jobs, periodic data pulls, cleanup scripts, reports.
 
 | Rate | Description |
