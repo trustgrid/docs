@@ -1,17 +1,18 @@
 ---
 tags: ["aws"]
 title: "AWS Cluster IP Failover"
-description: "Configure a floating cluster IP on an AWS HA Trustgrid cluster using secondary private IPs on the data ENI"
-linkTitle: "Cluster IP Failover in AWS"
+description: "Configure a floating cluster IP on an AWS HA Trustgrid cluster using a secondary private IP on the data ENI"
+linkTitle: "Cluster IP Failover"
 type: docs
 aliases:
   - /tutorials/deployments/deploy-aws-ami/cluster-ip-failover-in-aws/
   - /tutorials/deployments/deploy-aws/cluster-ip-failover-in-aws/
+  - /tutorials/deployments/deploy-aws/ip-failover/
 ---
 
 This tutorial covers the cluster IP failover mechanism for AWS-hosted Trustgrid clusters. The active cluster member claims a configured IP as a secondary private IP on its data ENI via `ec2:AssignPrivateIpAddresses` (with `AllowReassignment=true`). On failover, the standby promotes itself and reclaims the same secondary IP on its own ENI — no AWS route-table updates required.
 
-For L3 overlay route failover instead, see [Configure HA Gateway Cluster in AWS]({{<relref "route-failover">}}).
+For L3 overlay route failover instead, see [VPC Route Failover]({{<relref "vpc-route-failover">}}).
 
 ## How it works
 
@@ -76,11 +77,13 @@ Use the `tg_node_interface` resource with the `cluster_ip` argument:
 
 ```hcl
 resource "tg_node_interface" "lan" {
-  node_fqdn  = var.node_fqdn
-  nic        = "eth1"
-  cluster_ip = "10.0.1.50"   # unused IP in the data subnet
+  cluster_fqdn = var.cluster_fqdn
+  nic          = "eth1"
+  cluster_ip   = "10.0.1.50"   # unused IP in the data subnet
 }
 ```
+
+`cluster_ip` is a cluster-only attribute and must be paired with `cluster_fqdn` (it conflicts with `node_id`).
 
 The `cluster_ip` field is applied in-place — changing it on a running cluster takes effect immediately without a service restart.
 
@@ -102,6 +105,6 @@ Because the cluster IP follows the active member automatically, no route-table u
 
 ## Related
 
-- [AWS Cluster Route Failover]({{<relref "route-failover">}}) — route-table failover alternative
+- [AWS VPC Route Failover]({{<relref "vpc-route-failover">}}) — route-table failover alternative
 - [HA L4 Cluster in AWS]({{<relref "l4-cluster">}}) — using the cluster IP on L4 connectors and services
 - [Cluster-Only Configuration Items]({{<relref "/docs/clusters/cluster-only-config">}}) — cluster IP reference documentation

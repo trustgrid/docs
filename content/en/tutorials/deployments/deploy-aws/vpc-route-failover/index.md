@@ -1,17 +1,18 @@
 ---
 tags: ["aws"]
-title: "AWS Cluster Route Failover"
-description: "Configure a high availability Trustgrid cluster in AWS using AWS route-table failover"
-linkTitle: "Cluster Route Failover in AWS"
+title: "AWS VPC Route Failover"
+description: "Configure a high availability Trustgrid cluster in AWS using AWS VPC route-table failover"
+linkTitle: "VPC Route Failover"
 type: docs
 aliases:
   - /tutorials/deployments/deploy-aws-ami/configure-ha-gateway-cluster-in-aws/
   - /tutorials/deployments/deploy-aws/configure-ha-gateway-cluster-in-aws/
+  - /tutorials/deployments/deploy-aws/route-failover/
 ---
 
 This tutorial covers AWS route failover for a clustered Trustgrid deployment. On failover, the active member updates AWS route-table entries (`ec2:CreateRoute` / `ec2:DeleteRoute`) so that overlay CIDRs always point at the active member's data ENI — no floating IP required.
 
-For the IP-based failover alternative, see [AWS Cluster IP Failover]({{<relref "ip-failover">}}).
+For the Cluster IP based failover alternative, see [AWS Cluster IP Failover]({{<relref "cluster-ip-failover">}}).
 
 ## How it works
 

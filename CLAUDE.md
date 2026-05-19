@@ -35,8 +35,8 @@ All content lives under `content/en/` with these top-level sections:
 ### Content Conventions
 
 - Section landing pages use `_index.md`
-- Front matter uses YAML with fields: `title`, `linkTitle`, `weight` (for ordering), `tags`, `categories`, `description`
-- Cross-references use Hugo ref shortcodes: `{{<ref "docs/nodes">}}`
+- Front matter uses YAML with fields: `title`, `linkTitle`, `tags`, `categories`, `description`. **Do not use `weight`** — pages without a weight order unpredictably alongside weighted ones, so the project orders alphabetically. Remove `weight` if you encounter it.
+- Cross-references use the **`relref`** shortcode, not `ref`: `{{<relref "docs/nodes">}}`. `ref` resolves against the public site and can produce broken links during local preview and on PR builds.
 - The `{{<readfile>}}` shortcode includes shared markdown fragments (e.g., `content/en/docs/nodes/agent-v-app.md`)
 
 ### Custom Shortcodes (`layouts/shortcodes/`)

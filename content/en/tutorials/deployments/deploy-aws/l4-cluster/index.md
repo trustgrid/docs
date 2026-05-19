@@ -17,7 +17,7 @@ In an HA cluster, the cluster IP gives you a stable address that survives member
 ## Prerequisites
 
 - A two-member [Trustgrid HA cluster]({{<ref "/docs/clusters">}}) deployed in AWS.
-- A cluster IP configured on the LAN interface. See [AWS Cluster IP Failover]({{<ref "ip-failover">}}) for IAM permissions, source/destination check, and configuration steps.
+- A cluster IP configured on the LAN interface. See [AWS Cluster IP Failover]({{<ref "cluster-ip-failover">}}) for IAM permissions, source/destination check, and configuration steps.
 
 ## Connectors — Stable Destination IP for Clients
 
