@@ -47,7 +47,7 @@ It's cheap to turn on and a safe default for any container whose entrypoint isn'
 
 ## Require Connectivity
 
-**Require Connectivity** is part of encrypted volume mount configuration, not a general container Overview setting.
+**Require Connectivity** will prevent containers with encrypted volumes from starting until they can reach the control plane. 
 
 Pair it with [encrypted volumes]({{<relref "storage#encrypted-volumes">}}) so startup waits until the appliance can reach the Trustgrid control plane and unlock the volume. It only affects startup; a container that's already running keeps running if the appliance disconnects from the control plane.
 
