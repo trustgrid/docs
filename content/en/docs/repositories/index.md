@@ -4,7 +4,7 @@ title: "Repositories"
 
 ## Summary 
 
-Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy [containerized applications securely to their Trustgrid node appliances.]({{<ref "/docs/nodes/appliances/containers">}}) 
+Trustgrid provides a fully managed private container registry for each customer account. This allows customers to deploy [containerized applications securely to their Trustgrid node appliances.]({{<relref "/docs/nodes/appliances/containers">}}) 
 
 ## Container Namespace
 
@@ -20,7 +20,7 @@ To push a container to your private registry it must be named with your namespac
 
 {{<tgimg src="docker-repo-list.png" caption="Repositories list view" width="80%">}}
 
-From this view you can se all containers uploaded to your namespace. 
+From this view you can see all containers uploaded to your namespace. 
 
 ### Container Repository View
 
@@ -30,14 +30,14 @@ Each repository can be managed. Clicking into a container will show its uploaded
 ### Deleting Container Repositories
 Next to each container repository name is a box that can be selected. This allows deleting the entire repository and all its tags with a single action.
 1. Select the desired container repository.
-1. From the Actions dropdown select **Delete**. 
-1. When prompted enter the repository name and click **Confirm**. {{<tgimg src="docker-repo-delete-prompt.png" caption="Prompt to delete an example nginx repository" width="50%">}}
+1. From the Actions dropdown select **Delete**.
+1. Click **Confirm**. {{<tgimg src="docker-repo-delete-prompt.png" caption="Prompt to delete an example nginx repository" width="50%">}}
 
 ### Deleting Specific Container Tags
 1. Navigate into the desired repository.
 1. Select the desired tag version.
-1. From the Actions dropdown select **Delete**. 
-1. When prompted enter the tag name and click **Confirm**. {{<tgimg src="docker-tag-delete-prompt.png" caption="Prompt to delete an example nginx tag version" width="50%">}}
+1. From the Actions dropdown select **Delete**.
+1. Click **Confirm**. {{<tgimg src="docker-tag-delete-prompt.png" caption="Prompt to delete an example nginx tag version" width="50%">}}
 
 
 
@@ -53,15 +53,25 @@ Use the copy button to copy the docker login command and paste it into your term
 
 {{<tgimg src="docker-login-example.png" caption="Example docker login command" width="80%">}}
 
-### Node Container Authentication
+### Appliance Authentication
 
-Trustgrid node appliances authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry. All communication between the node appliance and the registry occurs using the [Trustgrid control plane networks and ports]({{<ref "/help-center/kb/site-requirements#trustgrid-control-plane">}})
+Trustgrid appliances authenticate automatically with the Trustgrid container registry and can pull any image uploaded to the registry. All communication between the appliance and the registry occurs using the [Trustgrid control plane networks and ports]({{<relref "/help-center/kb/site-requirements#trustgrid-control-plane">}}).
+
+## Supported image platforms
+
+Images must be pushed as **`linux/amd64`**. Other architectures are not supported.
+
+{{<alert color="warning">}}
+Apple Silicon Macs (M1/M2/M3) and Windows on ARM push `arm64` images by default and cannot be used to push to the Trustgrid registry directly. Push from an amd64 host instead — a Linux VM, a build server, or CI.
+{{</alert>}}
+
+If you push an unsupported image, the push command will succeed but the tag will not appear in the **Repositories** view and appliances will not be able to pull it.
 
 ## Example Usage
 In the below example we will show how to pull down a container image (Alpine Linux) from the public hub.docker.com registry and then push it to the Trustgrid private registry under our namespace.
 
 1. First pull the Alpine image from Docker Hub with the command `docker pull alpine` {{<tgimg src="docker-example-pull.png" caption="Pull Alpine image from Docker Hub" width="75%">}}. {{<alert color="info">}} Note the tag is automatically set to `latest` by Docker. If desired you can manually specify a specific tag to get a specific version. {{</alert>}}
 1. Tag the image with your namespace prefix. `docker tag alpine:latest docker.trustgrid.io/namespace.trustgrid.io/alpine:latest` make sure you replace `namespace.trustgrid.io` with your actual namespace. {{<tgimg src="docker-example-tag.png" caption="Tag image with namespace prefix" width="90%">}}
-1. If you haven't already, Authenticate your Docker client with the Trustgrid registry using the [Docker login command provided on the Repositories page]({{<ref "#docker-login">}})
+1. If you haven't already, Authenticate your Docker client with the Trustgrid registry using the [Docker login command provided on the Repositories page]({{<relref "#docker-login">}})
 1. Push the tagged image to the private registry. `docker push docker.trustgrid.io/namespace.trustgrid.io/alpine:latest` {{<tgimg src="docker-example-push.png" caption="Push tagged image to private registry" width="75%">}}
 1. Back on the Trustgrid portal, navigate to Repositories and you should see the pushed image listed. {{<tgimg src="docker-example-repo.png" caption="Pushed image listed in portal" width="80%">}}

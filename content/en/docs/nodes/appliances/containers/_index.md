@@ -5,13 +5,31 @@ aliases:
 description: Configure containers to run on appliance-based nodes
 ---
 
-Trustgrid nodes support running Docker containers which allows for ease of deployment across an organization. Any Docker container is supported with the exception of containers that require root level access.
+Trustgrid nodes can run container images built to the Docker/OCI image spec, which allows for ease of deployment across an organization. Containers run with least-privilege defaults; workloads that need elevated access can opt into specific Linux Capabilities or full Privileged mode. [Container security]({{<relref "concepts/security">}}) covers the implications of each.
 
 The container can be attached to both the local and virtual network space which allows both local and remote resources to communicate with the container. For example an API could be deployed on a Trustgrid Gateway which sends API Calls via the virtual network space to a container running on a Trustgrid Edge Node. The API call could then be translated to make a call to a database running on the local network and passed back up to the gateway host.
 
-Before adding a container to a node, push an image to your [repository]({{<ref "repositories">}}).
+Before adding a container to a node, push an image to your [repository]({{<relref "repositories">}}). Pushes must be `linux/amd64`; [supported image platforms]({{<relref "repositories#supported-image-platforms">}}) covers the Apple-Silicon caveat.
 
 Reading and managing containers requires `node-exec::read` and `node-exec::modify` permissions, respectively. Executing a container requires `node-exec::compute` permission.
+
+## Where to start
+
+- **New to running containers on Trustgrid?** Start with the [Container Quickstart]({{<relref "/tutorials/containers/quickstart">}}) — push an image, run it, reach it from the LAN in about 10 minutes.
+- **Need to reach the container from a peer node over VPN?** Follow [Expose a container over a virtual network]({{<relref "/tutorials/containers/expose-over-vpn">}}).
+- **Persist data?** See [Container storage]({{<relref "concepts/storage">}}).
+- **Operating a running container — logs, terminal, restart?** See [Container Tools]({{<relref "tools">}}).
+
+## Concepts
+
+- [**Container networking**]({{<relref "concepts/networking">}})
+- [**Container lifecycle**]({{<relref "concepts/lifecycle">}})
+- [**Container storage**]({{<relref "concepts/storage">}})
+- [**Container security**]({{<relref "concepts/security">}})
+
+## Cluster scope vs node scope
+
+Container configuration is set at the **cluster** level on a cluster, or at **node scope** on a standalone appliance. The runtime controls — Start, Stop, Logs, Terminal — are always at the node scope of the appliance running the container. The portal redirects you between these views as appropriate. See [Container Tools]({{<relref "tools">}}) for the full breakdown.
 
 ## Management
 
@@ -19,174 +37,149 @@ Navigate to **Container Management** under **Compute** on a node or cluster.
 
 ![Containers List View](containers-list.png)
 
-Here you can add, enable, disable, delete, and import a container.
+Available actions from the **Actions** menu:
+
+- **Add Container** — opens the Add Container modal.
+- **Delete** — removes the selected container after a confirmation.
+- **Enable** — enables the selected container so it will run.
+- **Disable** — disables the selected container so it will not run.
+- **Import** — copies a container definition from another node or cluster.
+- **Export** — exports the selected container definitions to a file.
 
 ![Add Container Modal](add-container.png)
 
 {{<fields>}}
 {{<field "Name" >}}The name of the container.{{</field>}}
-{{<field "Execution Type" >}}A container can be deployed as one of three types.
-
-1. **Service** - the container is created and will run as a daemon. If the node reboots, the container will start up automatically.
-1. **Recurring** - the container will run on a defined schedule. A schedule parameter is defined for the frequency, either as a rate or a [cron expression](https://crontab.guru/examples.html).
-
-   | Rate               | Description          |
-   | ------------------ | -------------------- |
-   | `rate(30 minutes)` | Run every 30 minutes |
-   | `rate(1 hour)`     | Run every hour       |
-   | `rate(1 day)`      | Run every day        |
-
-1. **On Demand** - typically used for testing. The container is executed for a single session, but will not restart on its own.
-   {{</field>}}
-   {{<field "Status" >}}Only enabled containers will run.{{</field>}}
-   {{<field "Image Name" >}}The name of the image to execute.{{</field>}}
-   {{<field "Image Tag" >}}The image tag to execute.{{</field>}}
-   {{</fields>}}
+{{<field "Description" >}}Free-text description for the container.{{</field>}}
+{{<field "Execution Type" >}}`Service`, `Recurring`, or `On Demand`. Determines when and how often the container runs and whether it restarts on exit. See [Container lifecycle]({{<relref "concepts/lifecycle">}}).{{</field>}}
+{{<field "Status" >}}Only `Enabled` containers will run.{{</field>}}
+{{<field "Image Name" >}}The name of the image to execute, in the form `<your-namespace>/<image>`.{{</field>}}
+{{<field "Image Tag" >}}The image tag to execute.{{</field>}}
+{{</fields>}}
 
 ## Overview
 
-Navigating into a container, the overview section allows editing basic information about the container's execution environment.
+The overview section allows editing basic information about the container's execution environment.
 
-{{<tgimg src="overview.png"caption="Container Overview" alt="Container overview section" width="90%">}}
-
-In addition to the fields above, you can modify the below **optional** fields after saving the new container configuration.
+{{<tgimg src="overview.png" caption="Container Overview" alt="Container overview section" width="90%">}}
 
 {{<fields>}}
-{{<field "Save Output">}}Persist standard output/standard error to the Trustgrid cloud for analysis.
-
-**It is the customer's responsibility to ensure no privileged information is included in the output. If in doubt, do not utilize this feature.**
-{{</field>}}
-{{<field "Command">}}The command to execute inside the container. This overrides the start command configured by the dockerfile used to build the image and can be useful for troubleshooting. {{</field>}}
-{{<field "Hostname">}}The hostname set inside the container.
-
- Defaults to the the node name.{{</field>}}
-{{<field "Stop Time">}}The grace period (in seconds) to allow a container to stop before killing it. Defaults to 30 seconds.{{</field>}}
-{{<field "User">}}Sets the username or group or uid or gid in the container.{{</field>}}
-{{<field "DNS">}}Configures the container to utilize the specified DNS server for resolution. 
-
-By default the container uses a local resolver managed by the node software that can resolve other containers by name and will forward to the node's configured DNS servers for external resolution.{{</field>}}
-{{<field "IP">}}Configures the container to use the specified IP address. The IP address needs to be in the 172.18.0.0/16 network and cannot be 172.18.1.2. 
-
-By default this is assigned dynamically in that network.{{</field>}}
-{{<field "Privileged">}}Grant the container extended privileges. Best practice would be to utilize [linux capabilities]({{<ref "#linux-capabilities">}}) to grant the least privileges needed to run the container.{{</field>}}
-{{<field "Use Init">}}Use an init process inside the container as PID 1. This ensures responsibilities of an init system are performed inside the container (e.g., handling exit signals).{{</field>}}
-{{<field "Require Connectivity">}}Ensures that the container will not start if it has encrypted volumes and is unable to reach the control plane.{{</field>}}
+{{<field "Save Output">}}Persist standard output/standard error to the Trustgrid cloud for analysis. **It is the customer's responsibility to ensure no privileged information is included in the output.** See [Container security — Save Output]({{<relref "concepts/security#save-output">}}).{{</field>}}
+{{<field "Schedule">}}Cron expression or rate (e.g. `rate(1 hour)`) that governs when the container runs. Shown only when **Execution Type** is `Recurring`. See [Container lifecycle — Recurring]({{<relref "concepts/lifecycle#recurring">}}) for the accepted formats.{{</field>}}
+{{<field "Command">}}The command to execute inside the container. Replaces the image's default command or arguments while preserving its entrypoint. Useful for troubleshooting.{{</field>}}
+{{<field "Hostname">}}The hostname set inside the container. Defaults to the appliance's name.{{</field>}}
+{{<field "Stop Time">}}Grace period (in seconds) to allow a container to stop before killing it. Defaults to 30 seconds.{{</field>}}
+{{<field "User">}}Sets the username/group/UID/GID the container's main process runs as. See [Container security — User]({{<relref "concepts/security#user">}}).{{</field>}}
+{{<field "DNS">}}DNS server for resolution inside the container. By default the container uses the appliance-side resolver at `172.18.1.2` which resolves other containers by name and forwards external lookups. See [Container networking — DNS resolver]({{<relref "concepts/networking#dns-resolver">}}).{{</field>}}
+{{<field "IP">}}Pins the container to a specific IP in `172.18.0.0/16`. By default the address is assigned dynamically. See [Container networking — The container bridge]({{<relref "concepts/networking#the-container-bridge">}}).{{</field>}}
+{{<field "Privileged">}}Grant the container extended privileges — disables most of the sandbox. **Almost no workload should need this.** Prefer [Linux Capabilities]({{<relref "concepts/security#linux-capabilities">}}).{{</field>}}
+{{<field "Use Init">}}Run an init process as PID 1 inside the container. Recommended for any service that spawns child processes. See [Container security — Use Init]({{<relref "concepts/security#use-init">}}).{{</field>}}
+{{<field "Require Connectivity">}}Gates container startup on the appliance having control-plane connectivity before its encrypted volumes can be mounted. See [Container storage — Encrypted volumes]({{<relref "concepts/storage#encrypted-volumes">}}).{{</field>}}
 {{</fields>}}
 
 ## Environment Variables
 
-Environment variables can be added to a container to provide configuration information to the container at runtime.
+Environment variables can be added to a container to provide configuration at runtime.
 
 ![Environment Variables](envvars.png)
 
 ## Network
 
-The networking section allows you to configure the container's VRF, its port mappings, and its virtual networks and interfaces.
+Configure the container's VRF, port mappings, virtual networks, and virtual interfaces. **Conceptual background:** [Container networking]({{<relref "concepts/networking">}}).
 
 ![Container Network](network.png)
 
 ### Host Port Mappings
 
-Host port mappings allow you to expose a port on the host to the container. This is useful for exposing a service running in the container to the local network.
+Expose a port on the appliance to the container.
 
 {{<fields>}}
-{{<field "Protocol">}}The protocol to listen for. If not specified, all traffic is forwarded to the container.{{</field>}}
-{{<field "Host Interface">}}The host interface to listen on.{{</field>}}
+{{<field "Protocol">}}Protocol to listen for. Must be set explicitly to `tcp` or `udp`; blank values are ignored.{{</field>}}
+{{<field "Host Interface">}}The appliance NIC to listen on (e.g. `ens192`).{{</field>}}
 {{<field "Host Port">}}The host port to listen on.{{</field>}}
-{{<field "Container Port">}}The container port that will receive the mapped traffic.{{</field>}}
+{{<field "Container Port">}}The container port that receives the mapped traffic.{{</field>}}
 {{</fields>}}
 
 ### Virtual Networks
 
-Attaching a virtual network to a container allows virtual network traffic to reach it.
+Attach a Trustgrid virtual network so peer nodes can reach the container.
 
 {{<fields>}}
 {{<field "Virtual Network">}}The virtual network to attach.{{</field>}}
 {{<field "Virtual IP">}}The virtual IP to assign to the container.{{</field>}}
-{{<field "Allow Outbound">}}Whether the container should be allowed to make outbound connections into the virtual network.{{</field>}}
+{{<field "Allow Outbound">}}Whether the container may originate connections onto the virtual network.{{</field>}}
 {{</fields>}}
+
+See [Tutorial: expose a container over a virtual network]({{<relref "/tutorials/containers/expose-over-vpn">}}).
 
 ### Virtual Interfaces
 
-A virtual interface can be mapped to a container to forward all traffic.
+Forward all traffic from an appliance-side virtual interface into the container as a dedicated interface.
 
 {{<fields>}}
-{{<field "Name">}}The virtual interface name.{{</field>}}
-{{<field "Destination">}}The interface destination inside the container.{{</field>}}
+{{<field "Name">}}The virtual interface name on the appliance.{{</field>}}
+{{<field "Destination">}}The interface name presented inside the container.{{</field>}}
 {{</fields>}}
 
 ## Mounts
 
-Mounts allow a container to persist data either as an externally defined [volume]({{<ref "volumes">}}), or a bind mount of the node's filesystem.
+Persist data either as an externally defined [volume]({{<relref "volumes">}}), or a bind mount of the appliance's filesystem. **Conceptual background:** [Container storage]({{<relref "concepts/storage">}}).
 
 ![Container Mounts](mounts.png)
 
 {{<fields>}}
-{{<field "Type">}}Either `BIND` or `VOLUME`. For type `VOLUME`, the mount must reference an existing [volume]({{<ref "volumes">}}).{{</field>}}
-{{<field "Source">}}For volumes, the name of the volume. For bind mounts, the path on the node's filesystem.{{</field>}}
+{{<field "Type">}}`BIND` or `VOLUME`. For `VOLUME`, the source must reference an existing [volume]({{<relref "volumes">}}).{{</field>}}
+{{<field "Source">}}For volumes, the volume name. For bind mounts, the absolute path on the appliance's filesystem.{{</field>}}
 {{<field "Destination">}}The mount location inside the container.{{</field>}}
 {{</fields>}}
 
+When mounting an encrypted volume, the mount also exposes **Require Connectivity**. Enable it to block startup until the appliance can reach the control plane and unlock the volume. See [Container storage - Encrypted volumes]({{<relref "concepts/storage#encrypted-volumes">}}).
+
 ## Resource Limits
 
-Containers can be restricted to limit the amount of resources they can consume from the host.
+Restrict the resources a container can consume from the host.
 
 ![Container Resource Limits](limits.png)
 
 {{<fields>}}
 {{<field "CPU Max %">}}Maximum CPU allocation. Default is 50%.{{</field>}}
-{{<field "Memory Max (MB)">}}Hard limit for RAM allocation. Default is 50% of the host's memory.{{</field>}}
-{{<field "Memory High (MB)">}}Soft limit for RAM allocation. Cannot exceed hard limit. Default is 45% of the host's memory.{{</field>}}
-{{<field "IO Max Read (B/s)">}}Max allowed bytes per second of IO reads. Disabled by default.{{</field>}}
-{{<field "IO Max Write (B/s)">}}Max allowed bytes per second of IO writes. Disabled by default.{{</field>}}
-{{<field "IO Max Read Operations (ops/s)">}}Max allowed IO read operations per second. Disabled by default.{{</field>}}
-{{<field "IO Max Write Operations (ops/s)">}}Max allowed IO write operations per second. Disabled by default.{{</field>}}
+{{<field "Memory Max (MB)">}}Hard RAM limit. Default is 50% of host memory.{{</field>}}
+{{<field "Memory High (MB)">}}Soft RAM limit. Cannot exceed hard limit. Default is 45% of host memory.{{</field>}}
+{{<field "IO Max Read (B/s)">}}Max IO read bytes/sec. Disabled by default.{{</field>}}
+{{<field "IO Max Write (B/s)">}}Max IO write bytes/sec. Disabled by default.{{</field>}}
+{{<field "IO Max Read Operations (ops/s)">}}Max IO read ops/sec. Disabled by default.{{</field>}}
+{{<field "IO Max Write Operations (ops/s)">}}Max IO write ops/sec. Disabled by default.{{</field>}}
 {{</fields>}}
 
-Linux ulimits can be set for each container. Supported ulimits are:
-
-- CORE
-- DATA
-- FSIZE
-- LOCKS
-- MEMLOCK
-- MSGQUE
-- NICE
-- NOFILE
-- NPROC
-- RSS
-- RTPRIO
-- RTTIME
-- SIGPENDING
-- STACK
+Linux `ulimit`s can also be set per container. Supported ulimits: `CORE`, `DATA`, `FSIZE`, `LOCKS`, `MEMLOCK`, `MSGQUEUE`, `NICE`, `NOFILE`, `NPROC`, `RSS`, `RTPRIO`, `RTTIME`, `SIGPENDING`, `STACK`.
 
 ## Health Check
 
-A health check can be configured to monitor the container's health. If the health check fails, the container will be restarted.
+Configure a probe that monitors container health. A health check periodically runs a command inside the container and uses its exit code to mark the container `Healthy` or `Unhealthy` in the portal. It's a reporting mechanism only — the container is not automatically restarted on failure.
 
 ![Container Health Check](health-check.png)
 
 {{<fields>}}
-{{<field "Command">}}The command to run. A non-zero return code indicates a health check failure.{{</field>}}
-{{<field "Interval">}}The frequency (in seconds) to run the health check.{{</field>}}
-{{<field "Timeout">}}How long (in seconds) to wait for the health check to complete. A timeout is considered a failure.{{</field>}}
-{{<field "Start Period">}}Grace period (in seconds) during container startup before health checks should start.{{</field>}}
-{{<field "Retries">}}Number of allowed health check failures before marking the container unhealthy.{{</field>}}
+{{<field "Command">}}Command to run. Non-zero exit means failure.{{</field>}}
+{{<field "Interval">}}Seconds between checks.{{</field>}}
+{{<field "Timeout">}}Seconds to wait for a check; timeout counts as failure.{{</field>}}
+{{<field "Start Period">}}Grace seconds during container startup before checks begin.{{</field>}}
+{{<field "Retries">}}Failures allowed before marking the container unhealthy.{{</field>}}
 {{</fields>}}
 
 ## Linux Capabilities
 
-Linux capabilities can be added to or removed from a container, allowing fine-grained control over kernel-level features and device access.
+Add or drop specific Linux capabilities. Always prefer this over enabling `Privileged`. See [Container security — Linux Capabilities]({{<relref "concepts/security#linux-capabilities">}}).
 
 ![Container Linux Capabilities](capabilities.png)
 
 ## Logging Configuration
 
-Log files (when persisting container output) are rotated based on a size threshold.
+Rotate persisted container logs (when **Save Output** is enabled).
 
 ![Container Logging Configuration](logging.png)
 
 {{<fields>}}
-{{<field "Max File Size (MB)">}}The maximum size (in MB) of a log file before it is rotated.{{</field>}}
-{{<field "Max Files">}}The maximum number of log files to keep.{{</field>}}
+{{<field "Max File Size (MB)">}}Maximum log file size before rotation.{{</field>}}
+{{<field "Max Files">}}Maximum number of rotated log files to keep.{{</field>}}
 {{</fields>}}
