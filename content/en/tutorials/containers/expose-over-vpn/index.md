@@ -62,7 +62,7 @@ Trustgrid virtual networks are zero trust — all traffic is denied by default. 
 
 | Protocol | Source | Destination | Ports | Action |
 | --- | --- | --- | --- | --- |
-| `tcp` | `172.20.0.0/24` (fintech slice) | `172.21.0.10/32` (container VIP) | `80` | Allow |
+| `tcp` | `172.20.0.0/24` (fintech overlay subnet) | `172.21.0.10/32` (container VIP) | `80` | Allow |
 
 Like routes, the rule is staged when added.
 
@@ -81,23 +81,27 @@ Open **Review Changes** for the virtual network. The three staged adds — both 
 - Virtual Network: `acme-vnet-0515-1538`
 - Validation CIDR: `172.20.0.0/24`
 
-The validation CIDR is the slice of the overlay this cluster is allowed to NAT into — it must match the route added in step 3.
+The validation CIDR is the overlay subnet this cluster is allowed to NAT into — it must match the route added in step 3.
 
 {{<tgimg src="tutorial-gw-cluster-attach.png" caption="The virtual network attached to the gateway cluster, with its validation CIDR" width="90%">}}
 
-## 7. Attach the LAN interface and configure the NAT
+## 7. Attach the LAN interface and configure the NATs
 
-With the virtual network attached at the cluster level, open it and go to **Address Translation**. Select the LAN interface that the fintech app uses to reach the appliance, then add an Inside NAT that maps the fintech LAN to the overlay:
+With the virtual network attached at the cluster level, open it and go to **Address Translation**. Select the LAN interface that the fintech app uses to reach the appliance, then add the two NATs that bridge the fintech LAN and the overlay:
 
 | Field | Value |
 | --- | --- |
 | Interface | gateway-side LAN NIC (e.g. `Network Adapter 2`) |
 | Inside NAT — Virtual CIDR | `172.20.0.0/24` |
 | Inside NAT — Local CIDR | `192.168.200.0/24` |
+| Outside NAT — Local CIDR | `172.21.0.0/24` |
+| Outside NAT — Network Group | `172.21.0.0/24` |
 
-The Inside NAT means: when a host on `192.168.200.0/24` sends traffic into the overlay, it appears on the overlay as the matching address in `172.20.0.0/24`.
+The **Inside NAT** maps the fintech LAN `192.168.200.0/24` to the overlay subnet `172.20.0.0/24` — hosts on the fintech LAN appear on the overlay as the matching address in `172.20.0.0/24`.
 
-{{<tgimg src="tutorial-gw-vpn-nats.png" caption="The LAN interface attached to the virtual network with the Inside NAT mapping the fintech LAN to the overlay slice" width="90%">}}
+The **Outside NAT** exposes the edge overlay subnet `172.21.0.0/24` on the fintech LAN with the same `172.21.0.0/24` addresses, so the container at `172.21.0.10` is reachable directly from the fintech LAN.
+
+{{<tgimg src="tutorial-gw-vpn-nats.png" width="90%">}}
 
 ## 8. Attach the virtual network to the edge cluster
 
