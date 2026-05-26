@@ -10,7 +10,7 @@ The Trustgrid MCP server requires authentication for every request. There are tw
 
 The server implements OAuth 2.0 with the [MCP authorization spec](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization). Clients that support the OAuth handshake will automatically open a browser-based login when you first connect. After you authorize, the client manages token refresh without further intervention.
 
-No manual token setup is required for OAuth-capable clients. For Claude Desktop specifically, use the built-in Connectors flow or `mcp-remote` as described in [Installation]({{<relref "docs/mcp/installation" >}}).
+No manual token setup is required for OAuth-capable clients. Just point the client at the MCP URL.
 
 The OAuth authorization server metadata is available at:
 
