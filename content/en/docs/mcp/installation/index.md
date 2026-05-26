@@ -18,7 +18,40 @@ Examples below use `https://mcp.trustgrid.io/mcp/codemode` as the URL. OAuth exa
 
 ## Claude Desktop
 
-Claude Desktop supports OAuth. Edit the config file and omit the `headers` block — it will open a browser login on first connection:
+Claude Desktop users have two supported options:
+
+### Option 1: Add Trustgrid as a custom connector
+
+This is the preferred setup for Claude Desktop because it uses Anthropic's built-in remote MCP connector flow.
+
+**For Pro and Max plans:**
+
+1. Navigate to **Customize > Connectors**.
+2. Click **+** then **Add custom connector**.
+3. Add your connector's remote MCP server URL: `https://mcp.trustgrid.io/mcp/all`
+4. Finish configuring your connector by clicking **Add**.
+
+**For Team and Enterprise plans:**
+
+The user adding the connector must have permission to add a custom connector. In Anthropic's current documentation, that means an **Owner** or **Primary Owner** must first add the connector for the organization:
+
+1. Navigate to **Organization settings > Connectors**.
+2. Click the **Add** button.
+3. Hover over **Custom**, then select **Web**.
+4. Add your connector's remote MCP server URL: `https://mcp.trustgrid.io/mcp/all`
+4. Finish configuring your connector by clicking **Add**.
+
+After the connector has been added, each member can enable it:
+
+1. Navigate to **Customize > Connectors**.
+2. Find the custom connector your Owner added in the list. It will have a **Custom** label.
+3. Click **Connect** to authenticate and start using the connector with Claude.
+
+After configuration, you can enable the connector in an individual conversation from the **+** button in the lower-left of the chat interface, then **Connectors**.
+
+### Option 2: Use `mcp-remote` in `claude_desktop_config.json`
+
+If you prefer Claude Desktop's local MCP config, use `mcp-remote` to bridge Claude Desktop to the Trustgrid remote MCP server.
 
 - **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
 - **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
@@ -27,30 +60,14 @@ Claude Desktop supports OAuth. Edit the config file and omit the `headers` block
 {
   "mcpServers": {
     "trustgrid": {
-      "type": "http",
-      "url": "https://mcp.trustgrid.io/mcp"
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.trustgrid.io/mcp/all"]
     }
   }
 }
 ```
 
-If you prefer an API token instead, add a `headers` block:
-
-```json
-{
-  "mcpServers": {
-    "trustgrid": {
-      "type": "http",
-      "url": "https://mcp.trustgrid.io/mcp",
-      "headers": {
-        "Authorization": "trustgrid-token YOUR_CLIENT_ID:YOUR_CLIENT_SECRET"
-      }
-    }
-  }
-}
-```
-
-Restart Claude Desktop after saving the config. The Trustgrid tools will appear in the tool selector.
+Restart Claude Desktop after saving the config. On first connection, `mcp-remote` will open the OAuth login flow in your browser.
 
 ---
 
@@ -71,14 +88,14 @@ claude mcp add --transport http trustgrid https://mcp.trustgrid.io/mcp/codemode 
 
 Or add the API token directly in `~/.claude/settings.json`:
 
-```json
+```jsonc
 {
   "mcpServers": {
     "trustgrid": {
       "type": "http",
       "url": "https://mcp.trustgrid.io/mcp/codemode",
       "headers": {
-        "Authorization": "trustgrid-token YOUR_CLIENT_ID:YOUR_CLIENT_SECRET"
+        "Authorization": "trustgrid-token YOUR_CLIENT_ID:YOUR_CLIENT_SECRET" // optional
       }
     }
   }
