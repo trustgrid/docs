@@ -1,6 +1,7 @@
 ---
 title: "Troubleshooting"
 linkTitle: "Troubleshooting"
+weight: 40
 description: "Common MCP server setup issues and how to fix them."
 ---
 

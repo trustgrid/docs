@@ -50,7 +50,7 @@ The Trustgrid MCP server uses **Streamable HTTP transport**. This is the only tr
 
 The server accepts two authentication types:
 
-- **OAuth 2.0** - Clients that implement the MCP OAuth handshake (Claude Desktop, Claude Code, and others) will trigger a browser-based login automatically — no manual token needed.
+- **OAuth 2.0** - Many MCP clients can use OAuth directly. In Claude Desktop, use either the built-in Connectors flow or a local `mcp-remote` bridge as shown in [Installation]({{<ref "docs/mcp/installation">}}).
 - **API token** — a `clientId:clientSecret` pair generated in the Trustgrid portal. 
 
 See [Authentication]({{<relref "docs/mcp/authentication" >}}) for setup details.
