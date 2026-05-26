@@ -1,7 +1,6 @@
 ---
 title: "Installation"
 linkTitle: "Installation"
-weight: 30
 description: "How to configure the Trustgrid MCP server in Claude, Cursor, VS Code, Copilot, and other AI clients."
 ---
 

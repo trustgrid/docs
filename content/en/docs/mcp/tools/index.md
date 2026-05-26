@@ -1,7 +1,6 @@
 ---
 title: "Available Tools"
 linkTitle: "Tools"
-weight: 20
 description: "Tool groups exposed by the Trustgrid MCP server and what each tool does."
 ---
 
