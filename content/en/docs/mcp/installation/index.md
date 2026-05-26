@@ -29,8 +29,7 @@ This is the preferred setup for Claude Desktop because it uses Anthropic's built
 1. Navigate to **Customize > Connectors**.
 2. Click **+** then **Add custom connector**.
 3. Add your connector's remote MCP server URL: `https://mcp.trustgrid.io/mcp/all`
-4. Optionally, click **Advanced settings** to specify an OAuth Client ID and OAuth Client Secret for your server.
-5. Finish configuring your connector by clicking **Add**.
+4. Finish configuring your connector by clicking **Add**.
 
 **For Team and Enterprise plans:**
 
@@ -40,8 +39,7 @@ The user adding the connector must have permission to add a custom connector. In
 2. Click the **Add** button.
 3. Hover over **Custom**, then select **Web**.
 4. Add your connector's remote MCP server URL: `https://mcp.trustgrid.io/mcp/all`
-5. Optionally, click **Advanced settings** to specify an OAuth Client ID and OAuth Client Secret for your server.
-6. Finish configuring your connector by clicking **Add**.
+4. Finish configuring your connector by clicking **Add**.
 
 After the connector has been added, each member can enable it:
 
@@ -90,14 +88,14 @@ claude mcp add --transport http trustgrid https://mcp.trustgrid.io/mcp/codemode 
 
 Or add the API token directly in `~/.claude/settings.json`:
 
-```json
+```jsonc
 {
   "mcpServers": {
     "trustgrid": {
       "type": "http",
       "url": "https://mcp.trustgrid.io/mcp/codemode",
       "headers": {
-        "Authorization": "trustgrid-token YOUR_CLIENT_ID:YOUR_CLIENT_SECRET"
+        "Authorization": "trustgrid-token YOUR_CLIENT_ID:YOUR_CLIENT_SECRET" // optional
       }
     }
   }
