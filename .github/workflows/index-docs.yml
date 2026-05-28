@@ -1,0 +1,43 @@
+name: index docs to cloudflare
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b3a381659b7f30086495d72b9dc # v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changed markdown files
+        id: changed
+        run: |
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+          # On brand-new branches or force-pushes, fallback to all markdown files
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "New branch or force-push detected; indexing all markdown files."
+            git ls-files 'content/en/**/*.md' | while read f; do echo -e "A\t${f}"; done > changed_files.txt
+          else
+            git diff --name-status "$BEFORE" "$AFTER" > changed_files.txt
+          fi
+          echo "=== Changed files ==="
+          cat changed_files.txt
+          echo "====================="
+
+          if grep -Eq '^(A|M|D)\tcontent/en/.*\.md$|^R[0-9]+\tcontent/en/.*\.md\tcontent/en/.*\.md$' changed_files.txt; then
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Re-index changed docs to Cloudflare
+        if: steps.changed.outputs.has_changes == 'true'
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: python3 .github/scripts/index_changed_docs.py changed_files.txt
