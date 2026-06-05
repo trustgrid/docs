@@ -10,38 +10,55 @@ These settings only apply to appliance-based Trustgrid nodes
 {{</alert>}}
 
 ## Memory Settings
-The Java Virtual Machine (JVM) is responsible for managing the memory used by the Trustgrid service on appliances. Two key parameters that control this memory management are the minimum (min) and maximum (max) memory values.
+The Java Virtual Machine (JVM) manages the memory used by the Trustgrid service on appliances. The two customer-tunable settings are the minimum heap size (Xms) and maximum heap size (Xmx).
 
-1. **Minimum Memory:** This is the initial memory allocation for the JVM. When your Java application starts, the JVM allocates this amount of memory right away. It's like setting a base size for the memory footprint of your application.
-
-2. **Maximum Memory:** This is the maximum amount of memory the JVM is allowed to use. If your application needs more memory than the initial amount (set by min), it will continue to use more up to this maximum limit.
-
-
-|Parameter| Default | Recommendations|
+|Parameter|Default|Recommendations|
 |---|---|---|
-|Minimum | 512MB | 512MB is the recommended smallest value | 
-|Maximum | 1GB | - Start with the total available system memory <br>- Subtract ~ 1G for OS and other processes <br> - If running containers or virtual machines on the appliance subtract their expected memory usage <br> - Set the value so that it does not exceed about 75% of remaining memory|
+|Minimum heap (Xms)|512 MiB|512 MiB is the recommended smallest value.|
+|Maximum heap (Xmx)|1 GiB|Use the formula and sizing table below. Do not set Xmx close to total RAM.|
 
-### Why Increase the Max Memory?
+### Maximum heap (Xmx)
 
-- **Handling Larger Workloads:** If your Trustgrid appliance is managing a large number of flows or processing large amounts of data, increasing the maximum memory can help accommodate spikes in memory usage without triggering garbage collection as frequently.
+To raise Xmx, first reserve memory for the operating system, JVM off-heap usage, and any container workload, then cap by appliance size:
 
-- **Performance Optimization:** Increasing the max memory can reduce the frequency of garbage collection (a process that frees up memory by removing unused objects), which can improve performance.
+```text
+Xmx ≤ Total RAM − 1 GiB (OS reserve) − 512 MiB (JVM off-heap) − Container memory budget
+```
 
-Remember, while increasing max memory can help, it's important to balance it with the available system resources to avoid starving other processes or causing system-wide issues.
+|Total RAM|Suggested Xmx ceiling|% of RAM|
+|---|---|---|
+|2 GiB|0.7 GiB|35%|
+|4 GiB|2.0 GiB|50%|
+|8 GiB|5.0 GiB|62%|
+|16 GiB|11 GiB|69%|
+|32 GiB|22 GiB|69%|
+
+The percentage rises with appliance size because the OS and off-heap reserves (~1.5 GiB) are roughly fixed in absolute terms. On a 2 GiB appliance this leaves little room for the Java heap, so use a larger appliance for sustained throughput workloads.
+
+**Do not set Xmx close to total RAM.** Xmx at 75% of a 4 GiB appliance has caused production memory pressure incidents.
+
+### Container memory budgeting
+
+Container workloads vary widely in memory use. Subtract the container's expected memory budget (from its developer's documentation) before computing Xmx. If the resulting Xmx falls below 1 GiB, use a larger appliance.
+
+{{<alert color="info" title="Note:">}}
+On OpenJDK 8 (Trustgrid's current JDK), the JVM does not return committed heap memory to the operating system during normal operation. The portal's **JVM Heap Usage** chart shows the application's view of the heap and oscillates with GC activity, but the operating system continues to see the JVM holding the expanded heap until the service restarts. When sizing Xmx, treat it as the memory the appliance will eventually carry, not a soft target.
+{{</alert>}}
+
+### Why this matters / how to recognize misconfiguration
+
+Oversized Xmx is the most common Trustgrid memory misconfiguration. Symptoms:
+
+- Process RSS climbs to near Xmx and stays there even when traffic drops.
+- The portal's heap usage chart shows usage well below Xmx.
+- Other processes get squeezed and system swap usage rises.
+- Forcing a full GC briefly drops RSS, which then re-climbs under load.
+
+If you see this pattern, lower Xmx using the formula above and restart the node.
 
 ## Java Garbage Collection
-The Java Garbage Collection system:
-- Automatically frees up memory by removing unused objects.
-- Essential for managing memory in the JVM.
 
-There are multiple different garbage collectors, each with its own strategy and performance characteristics. The default garbage collector on Trustgrid appliances is the Parallel GC.  Optionally, we also support using the G1 Garbage Collector.
-
-### Switching to G1 Garbage Collector
-- Better Performance: G1 offers more predictable garbage collection pauses, reducing latency.
-- Handling Large Memory: Efficient for applications with large heaps.
-
-Despite these advantages, Trustgrid has not yet been able to see significant performance improvements by switching to G1 over Parallel GC in most customer environments. Unless you are experiencing specific performance issues, we recommend leaving the default Parallel GC.
+Trustgrid nodes use **G1 GC** by default and it should remain the default for any node processing live network traffic. Do not switch to ParallelGC. ParallelGC keeps memory bounded via frequent stop-the-world full collections, which add latency and drop packets on a node processing live traffic.
 
 
 {{<alert color="info">}}Contact Trustgrid support if you need to adjust these settings{{</alert>}}
