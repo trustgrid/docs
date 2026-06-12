@@ -8,14 +8,14 @@ tags:
   - authentication
 ---
 
-This tutorial walks through configuring Okta as a SAML identity provider for the Trustgrid Portal using the self-service IDP configuration in **Organization Settings**.
+This tutorial walks through configuring Okta as a SAML identity provider for the Trustgrid Portal using the self-service IdP configuration in **Organization Settings**.
 
 ## Prerequisites
 
 - A Trustgrid organization with an [authentication domain]({{<relref "docs/idps#authentication-domain" >}}) configured.
 - An Okta account with admin access.
 
-## Part 1: Configure the IDP in the Trustgrid Portal
+## Part 1: Configure the IdP in the Trustgrid Portal
 
 1. Navigate to **Organization Settings -> Identity Providers**.
 2. Find your **Authentication Domain** on this page. If you haven't configured one yet, set it now. It must be in the form `<your-desired-name>.trustgrid.io`. Note this value; you will need it when configuring Okta.
@@ -54,14 +54,14 @@ After finishing, you land on the app's **Sign On** tab. Under **Metadata details
 
 1. Click **Copy** next to the Metadata URL, then open that URL in a new browser tab.
 2. You will see raw XML. Save the file using **File -> Save Page As**, and make sure it is saved with a `.xml` extension (not `.html` or `.txt`).
-3. On the Trustgrid IDP **Configuration** page, click **Choose File** and select the saved XML file.
+3. On the Trustgrid IdP **Configuration** page, click **Choose File** and select the saved XML file.
 4. The Issuer, Login URL, and Identity Provider Signing Certificate fields populate automatically.
 5. Click **Save**.
 
 ### Option B: Manual entry
 
 1. Click **More details** on the Okta **Sign On** tab.
-2. Copy the following into the [SAML IDP fields]({{<relref "docs/idps/saml-idp-fields" >}}) in Trustgrid:
+2. Copy the following into the [SAML IdP fields]({{<relref "docs/idps/saml-idp-fields" >}}) in Trustgrid:
    - **Sign on URL** -> Login URL
    - **Issuer** -> Issuer
    - **Signing Certificate** -> Identity Provider Signing Certificate (paste the contents without the `-----BEGIN CERTIFICATE-----` and `-----END CERTIFICATE-----` headers)
@@ -79,7 +79,7 @@ Follow the [Adding Users with Identity Providers]({{<relref "docs/user-managemen
 
 - Use **Add User**, not **Invite User**.
 - The email must exactly match what Okta sends in the SAML assertion.
-- Select the Okta IDP when prompted.
+- Select the Okta IdP when prompted.
 
 ## Part 6: Test the Login
 
