@@ -16,9 +16,15 @@ Standing up a Trustgrid node in AWS is easy using an Amazon AMI. Trustgrid nodes
 
 ### Instance Type
 
-| Known Supported Instance Types                | Architecture |
-|-----------------------------------------|--------------|
-| t2, t3, t3a, c5, c5n, c6i, c6in, c6a   | x86_64 only  |
+Trustgrid's AWS platform support is grouped into generations based on the EC2 instance types and their network interface naming. The generation a node uses is shown by its **Device Type** in the portal.
+
+| Generation | Portal Device Type | Example Instance Types | Architecture |
+|------------|--------------------|------------------------|--------------|
+| Gen1       | `AWS T2`           | t2                     | x86_64 only  |
+| Gen2       | `AWS T3` or `AWS C5` | t3, t3a, c5, c5n, c6i, c6in, c6a | x86_64 only  |
+| Gen3       | `AWS Gen3`         | c7i, c7a, m8i, m8a     | x86_64 only  |
+
+The gen3 platform requires the [June 2026 major appliance release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later and supports most current-generation x86_64 instance types.
 
 Additional x86_64 instances types may work but have not been tested. Contact Trustgrid support if a different type is believed necessary.
 
