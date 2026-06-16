@@ -22,6 +22,8 @@ This feature collects traceroute-like data from all its connected peers and stor
 
 Starting with the June 2026 release you can choose how the node probes the path using the **Monitor Hops Protocol** setting in the [Client]({{<relref "/docs/nodes/appliances/gateway/gateway-client#hop-monitoring-settings">}}) panel:
 
+{{<tgimg src="monitor-hops-protocol.png" width="50%" caption="The Monitor Hops Protocol options: ICMP, SYN, and SACK." alt="Monitor Hops Protocol dropdown showing ICMP, SYN, and SACK options">}}
+
 - **SYN** probes using TCP SYN packets, reusing the gateway's TCP port so traffic already allowed out to the gateway is allowed for monitoring. This is the default and is the method prior versions used.
 - **ICMP** probes using ICMP. Both the edge and gateway must allow the traffic, and it makes a lower-than-expected MTU along the path easier to detect.
 - **SACK** builds a full TCP session and sends 1-byte TCP packets within it until it gets a response, then closes the session. This helps on paths where network devices do not handle bare SYN traces well.
