@@ -44,6 +44,32 @@ Determines if the node will send reset (RST) packets for the TCP connections it 
 {{</field>}}
 {{<field "Monitor Hops SYN Payload Size" >}} Determines the size of the TCP SYN payload sent. By default the payload is 0. Can be set between 0 and 1440. Recommended max is the lower of 1440 or the WAN MTU minus 60 bytes. {{</field>}}
 {{</fields>}}
+## Gateway Latency Monitors
+{{<alert color="info">}}Gateway Latency Monitors require the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later.{{</alert>}}
+
+A gateway latency monitor watches the round trip time (RTT) of the node's tunnel to a gateway and reacts when it exceeds a threshold. RTT is the time a packet takes to travel to the gateway and back. The purpose is to let a cluster member mark itself unhealthy when its tunnel latency to a gateway gets too high, triggering a failover to a healthier member. If the node is not in a cluster, the monitor still sends a [Gateway Latency Exceeded]({{<relref "/docs/alarms/event-types#gateway-latency-exceeded">}}) event, but traffic stays on the node.
+
+{{<tgimg src="gateway-latency-monitors.png" width="85%" caption="Gateway Latency Monitors" alt="Gateway Latency Monitors settings with a Failure Mode and a table of monitors">}}
+
+### Failure Mode
+Determines how triggered monitors affect the node's health:
+- **None** - The node is not marked unhealthy when monitors trigger, unless a monitor is marked as [Critical](#monitor-fields). This is the default.
+- **Any** - The node is marked unhealthy when any single monitor triggers. All monitors must recover before the node becomes healthy again.
+- **All** - The node is marked unhealthy only when every monitor is triggered. The node recovers as soon as any single monitor recovers.
+
+### Monitor Fields
+Use **Add Latency Monitor** to add a monitor.
+{{<fields>}}
+{{<field "Gateway Node">}}The gateway to monitor latency to.{{</field>}}
+{{<field "Gateway Path">}}(Optional) A specific [gateway path](#gateway-paths) to use for the monitor. Configure this if you want to monitor latency over a second path.{{</field>}}
+{{<field "Max Latency">}}The maximum acceptable latency, in milliseconds, for the monitor.{{</field>}}
+{{<field "Trigger Count">}}The number of consecutive RTT values that must be above the Max Latency before the monitor triggers.{{</field>}}
+{{<field "Recover Count">}}The number of consecutive RTT values that must be below the Max Latency before the monitor marks itself healthy again.{{</field>}}
+{{<field "Critical">}}When enabled, the monitor is treated as essential. Its failure alone marks the node unhealthy, and the node cannot recover until this monitor recovers, regardless of the Failure Mode setting.{{</field>}}
+{{</fields>}}
+
+{{<alert color="info">}}RTT is tested every 20 seconds by default, so a Trigger Count of 6 requires latency above the threshold for roughly two minutes.{{</alert>}}
+
 ## Gateway Paths
 
 Allows you to define alternate paths to a gateway server

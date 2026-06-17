@@ -24,6 +24,9 @@ The `gateway latency exceeded` event now includes the destination gateway name, 
 - A node now throws an event if it cannot reach its cluster peer on the gossip port.
 - A node refreshes its node info when transitioning from unhealthy back to healthy, avoiding stale data that could confuse cluster decisions.
 
+## Gateway Latency Monitors
+[Gateway latency monitors]({{<relref "/docs/nodes/appliances/gateway/gateway-client#gateway-latency-monitors">}}) are now available in the portal under **Gateway > Client**. A monitor watches the round trip time of a node's tunnel to a gateway and reacts when it crosses a threshold you set. For a cluster member, a triggered monitor can mark the node unhealthy and fail traffic over to a healthier member. On a standalone node it raises a [Gateway Latency Exceeded]({{<relref "/docs/alarms/event-types#gateway-latency-exceeded">}}) event while traffic stays in place.
+
 ## Node Services for Automated Operations
 A number of node services were reworked to return structured, actionable results rather than a simple pass or fail. When these services are driven through the Trustgrid API, monitoring tooling and AI agents can read the specific reason a check failed and respond to it directly, instead of a person reading through logs.
 
