@@ -2,7 +2,7 @@
 title: June 2026 Major Appliance Release Notes
 linkTitle: June 2026 Major
 type: docs
-date: 2026-06-08
+date: 2026-06-17
 description: "Release notes for the June 2026 Major Trustgrid Appliance release"
 ---
 {{< node-release package-version="1.5.20260602-2472" core-version="20260606-003838.226.3724894" release="n-2.24.0" >}}
