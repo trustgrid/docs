@@ -33,7 +33,7 @@ Trustgrid's AWS platform support is grouped into generations based on the EC2 in
 | Gen2 | Supported | `AWS T3` or `AWS C5` | `ens5` (WAN) / `ens6` (LAN) | t3, t3a, c5, c5n, c6i, c6in, c6a | x86_64 only |
 | Gen3 | Supported | `AWS Gen3` | `enp39s0` (WAN) / `enp40s0` (LAN) | c7i, c7a, m8i, m8a | x86_64 only |
 
-The gen3 platform requires the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later and supports most current-generation x86_64 instance types. Deploy new nodes on Gen2 or Gen3 instance types; Gen1 is deprecated.
+The gen3 platform requires the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later and supports most current-generation x86_64 instance types.
 
 Additional x86_64 instance types may work but have not been tested. ARM-based instances (Graviton) are not supported. Contact [Trustgrid Support]({{<relref "/help-center/trustgrid-support">}}) if a different type is believed necessary.
 
