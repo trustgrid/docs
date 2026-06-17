@@ -17,7 +17,7 @@ A new **Monitor Hops Protocol** setting in the [Client]({{<relref "/docs/nodes/a
 The `gateway latency exceeded` event now includes the destination gateway name, so you can tell which path is slow without cross-referencing other data.
 
 ## Clustering and Failover
-- AWS clusters now support a floating [Cluster IP]({{<relref "/tutorials/deployments/deploy-aws-ami/ip-failover">}}), assigned as a secondary private IP on the ENI, bringing them to parity with Azure. The previous Elastic-IP-based cluster IP has been removed.
+- AWS clusters now support a floating [Cluster IP]({{<relref "/tutorials/deployments/deploy-aws/ip-failover">}}), assigned as a secondary private IP on the ENI, bringing them to parity with Azure. The previous Elastic-IP-based cluster IP has been removed.
 - Azure clusters could get permanently stuck attaching the floating cluster IP after a master change when Azure returned `PrivateIPAddressIsBeingCleanedUp`. The attach logic now backs off, retries the correct interface, and recovers on its own.
 - A race between a preferred-active change and a cluster server restart could leave both members active after a failback, causing split-brain and dropped connections. This is fixed, and cluster server restarts now write an [audit entry]({{<relref "/docs/nodes/shared/audits">}}) recording the time, node, and reason.
 - Cluster logic now handles two simultaneous unhealthy conditions (for example an interface down at the same time as a control and data plane outage) without ending in an unresolved dual-active state.
@@ -39,7 +39,7 @@ A number of node services were reworked to return structured, actionable results
 - The gateway routes service reports per-route bytes sent and received, and node stats report whether gateway client or server traffic shaping is currently active.
 
 ## Platform Support
-- Added the gen3 AWS platform, which supports most current-generation x86_64 EC2 instance types, including `c7i`, `c7a`, `m8i`, and `m8a`. Nodes on this platform appear in the portal with the `AWS Gen3` device type. See the [supported instance types]({{<relref "/tutorials/deployments/deploy-aws-ami#instance-type">}}).
+- Added the gen3 AWS platform, which supports most current-generation x86_64 EC2 instance types, including `c7i`, `c7a`, `m8i`, and `m8a`. Nodes on this platform appear in the portal with the `AWS Gen3` device type. See the [supported instance types]({{<relref "/tutorials/deployments/deploy-aws#instance-type">}}).
 - Added a KVM node adapter for deployments that pin NICs to consistent names.
 - On GCP, interfaces with no configured MTU now default to 1460 rather than 1500.
 - Removed legacy KVM functionality from the node, excluding the Datastore.
