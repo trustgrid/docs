@@ -30,14 +30,14 @@ Determines if the node will attempt to [monitor hops to gateway peers]({{<relref
 - **Never** - The node will never attempt to monitor hops to gateway peers, even if peers request it.
 {{</field>}}
 {{<field "Monitor Hops Protocol" >}}
-The protocol used to probe each hop. Requires the [June 2026 major appliance release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later.
+The protocol used to probe each hop. Requires the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later.
 - **SYN** - Probes using TCP SYN packets, reusing the gateway's TCP port so traffic already allowed out to the gateway is allowed for monitoring. This is the default and is the method prior versions used.
 - **ICMP** - Probes using ICMP. Both the edge and gateway must allow the traffic. ICMP makes it easier to detect a lower-than-expected MTU along the path.
 - **SACK** - Builds a full TCP session and sends 1-byte TCP packets within it until it gets a response, then closes the session. This helps on paths where network devices do not handle bare SYN traces well.
 {{</field>}}
 {{<field "Monitor Hops Interval" >}} The interval time, in seconds, between gathering hop monitoring data. Default is 20s. {{</field>}}
 {{<field "Support Monitor Hops Resets" >}}
-{{<alert color="warning">}}Deprecated as of the [June 2026 major appliance release]({{<ref "/release-notes/node/2026-06/index.md">}}). Hop monitoring no longer sends resets to intermediate hops, so this setting has no effect.{{</alert>}}
+{{<alert color="warning">}}Deprecated as of the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}). Hop monitoring no longer sends resets to intermediate hops, so this setting has no effect.{{</alert>}}
 Determines if the node will send reset (RST) packets for the TCP connections it attempts.  Doing so reduces, but does not eliminate the number of resets seen on the WAN interface.
 - **Enabled** - The node will send reset packets. This is the default state.
 - **Disabled** - The node will not send reset packets.

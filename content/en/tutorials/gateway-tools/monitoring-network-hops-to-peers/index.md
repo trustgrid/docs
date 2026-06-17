@@ -16,7 +16,7 @@ This feature collects traceroute-like data from all its connected peers and stor
 1. Any time a router receives a packet with a TTL value of 1 it will drop the packet and can reply with an ICMP packet saying “Time to Live has been exceeded”
 1. The node uses these ICMP packets to calculate the latency to each hop.
 
-{{<alert color="info">}}As of the [June 2026 major appliance release]({{<ref "/release-notes/node/2026-06/index.md">}}), hop monitoring behaves more like MTR to avoid being flagged as abnormal traffic by firewalls in the path. The node does not send resets to intermediate hops, completes the TCP handshake when a hop replies with a SYN/ACK, slows its probe rate further down the path, and stops once it reaches the gateway.{{</alert>}}
+{{<alert color="info">}}As of the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}), hop monitoring behaves more like MTR to avoid being flagged as abnormal traffic by firewalls in the path. The node does not send resets to intermediate hops, completes the TCP handshake when a hop replies with a SYN/ACK, slows its probe rate further down the path, and stops once it reaches the gateway.{{</alert>}}
 
 ### Monitor Hops Protocol
 

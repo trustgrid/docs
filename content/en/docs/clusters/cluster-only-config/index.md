@@ -26,7 +26,7 @@ The Cluster IP is supported in Azure. It is managed through the Azure API by ass
 
 ### AWS
 
-The Cluster IP is supported in AWS as of the [June 2026 major appliance release]({{<ref "/release-notes/node/2026-06/index.md">}}). It is managed through the AWS API by assigning it as a secondary private IP on the network interface (ENI) of the active node, on both the WAN and LAN interfaces. This requires the instance's IAM role to allow managing private IP addresses on the ENIs. See [AWS IP Failover]({{<relref "/tutorials/deployments/deploy-aws-ami/ip-failover">}}) for setup and the required permissions.
+The Cluster IP is supported in AWS as of the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}). It is managed through the AWS API by assigning it as a secondary private IP on the network interface (ENI) of the active node, on both the WAN and LAN interfaces. This requires the instance's IAM role to allow managing private IP addresses on the ENIs. See [AWS IP Failover]({{<relref "/tutorials/deployments/deploy-aws-ami/ip-failover">}}) for setup and the required permissions.
 
 ### Google Cloud (GCP)
 

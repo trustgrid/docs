@@ -50,7 +50,7 @@ This release updates the APT security repository to a mirror from **April 20, 20
 
 ## Improvements
 - Added a Packet Simulator tool. Enter a source IP, destination IP, and port, and the node returns the NAT rules and routing that would be applied. It currently covers VPN traffic only, not the L4 Proxy. The tool is available through the [MCP servers]({{<relref "/docs/mcp">}}) today, with access from the portal coming soon.
-- L4 and cluster services can now source traffic as the cluster VIP instead of the interface IP. The interface IP remains the default.
+- L4 [services]({{<relref "/docs/nodes/shared/services">}}) can now source traffic as the cluster IP instead of the interface IP. The interface IP remains the default.
 - L4 services and [Port Forwards]({{<relref "/docs/nodes/appliances/vpn/port-forwarding">}}) now send an event when the node runs out of ephemeral source ports, matching the existing warning for VPN traffic.
 - The node supports additional sub-interface IP configurations, including sub-interfaces defined at the node level on a clustered node.
 - Added the ability to manually set the local name resolver's host cache, for cases where DNS keeps failing back to bad entries.

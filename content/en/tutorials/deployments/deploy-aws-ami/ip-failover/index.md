@@ -3,7 +3,7 @@ title: "AWS IP Failover"
 linkTitle: "IP Failover"
 description: "Cluster IP failover for AWS appliances"
 ---
-{{<alert color="info">}}AWS Cluster IP failover requires the [June 2026 major appliance release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later.{{</alert>}}
+{{<alert color="info">}}AWS Cluster IP failover requires the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later.{{</alert>}}
 
 ## How it works
 Trustgrid provides the ability for a floating [Cluster IP]({{<relref "/docs/clusters/cluster-only-config#cluster-ip">}}) to be assigned to a cluster of AWS appliances. The Cluster IP is assigned as a secondary private IP on the network interface (ENI) of the active appliance, and is supported on both the WAN and LAN interfaces. When failover occurs, the appliance taking the active role claims the secondary private IP on its own ENI through the AWS API, which moves it from the previously active appliance.
