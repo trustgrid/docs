@@ -83,7 +83,7 @@ The node name provided in the `name` parameter becomes part of the FQDN used to 
 
 The license key generated in Step 1 is used exactly the same way as a license downloaded from the portal. Apply it during Trustgrid node installation per the relevant deployment guide:
 
-- [Deploy to AWS]({{<ref "/tutorials/deployments/deploy-aws-ami">}})
+- [Deploy to AWS]({{<ref "/tutorials/deployments/deploy-aws">}})
 - [Deploy to Azure]({{<ref "/tutorials/deployments/deploy-azure">}})
 - [Deploy to GCP]({{<ref "/tutorials/deployments/deploy-gcp">}})
 - [Deploy to vSphere]({{<ref "/tutorials/deployments/deploy-vsphere">}})

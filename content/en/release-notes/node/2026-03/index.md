@@ -12,6 +12,6 @@ description: "Release notes for the March 2026 Minor Trustgrid Appliance release
 
 - **Improved UDP tunnel recovery after AWS Network Firewall maintenance** - During AWS Network Firewall maintenance events, established tunnel state can be lost, causing the firewall to
   unintentionally block the existing UDP tunnel's source port. Trustgrid now better detects this type of disruption and automatically reconnects using a new source port, eliminating
-  orphaned tunnels that previously required manual intervention. Additionally, when nodes are deployed behind an [AWS Network Firewall and UDP tunnels are used, it is required to add explicit bidirectional rules]({{<relref "/tutorials/deployments/deploy-aws-ami/#aws-network-firewall-and-udp-tunnels">}}) to allow UDP traffic on the expected IPs and ports.
+  orphaned tunnels that previously required manual intervention. Additionally, when nodes are deployed behind an [AWS Network Firewall and UDP tunnels are used, it is required to add explicit bidirectional rules]({{<relref "/tutorials/deployments/deploy-aws/#aws-network-firewall-and-udp-tunnels">}}) to allow UDP traffic on the expected IPs and ports.
 - **Fixed UDP rekey interval calculation** — The gateway now correctly calculates rekey timing based on the last rekey event rather than session creation time, preventing unnecessary rekey
   churn.
