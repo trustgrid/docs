@@ -34,30 +34,29 @@ The Management network must allow outbound access to the Trustgrid control plane
 Inbound TCP/UDP 8443 on the Management network is only required if the node will act as a **gateway** (a node that terminates tunnels from remote edge nodes). Edge nodes do not require any inbound Management firewall rules.
 {{</alert>}}
 
+| Direction | Protocol | Ports | Source/Destination | Purpose |
+|-----------|----------|-------|--------------------|---------|
+| Egress | TCP | 443, 8443 | Trustgrid control plane IPs (see [Network Requirements]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}})) | Control plane communication |
+| Ingress | TCP/UDP | 8443 | 0.0.0.0/0 | Data plane tunnel traffic. Only required if the node acts as a **gateway** that terminates tunnels from remote edge nodes. |
+
 #### Data Network
 
 {{<alert>}}
 The Data network firewall rule for TCP 9000 is only required for **clustered deployments**. Standalone nodes do not need this rule.
 {{</alert>}}
 
+| Direction | Protocol | Ports | Source/Destination | Purpose |
+|-----------|----------|-------|--------------------|---------|
+| Ingress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
+| Egress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
+
 ##### MTU Configuration
 
-{{<alert color="warning">}}
-**Temporary workaround:** GCP's default VPC MTU of 1460 bytes must be manually configured on the Data (LAN) interface. Without this, traffic may silently drop or underperform due to packet fragmentation.
+{{<alert color="info">}}
+Nodes running the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later detect GCP's default VPC MTU and apply **1460** to the Data (LAN) interface automatically.
 
-After the node is registered and visible in the portal, set the MTU on the Data interface to **1460** under the node's [interface settings]({{<relref "/docs/nodes/appliances/interfaces#mtu">}}).
-
-This step will no longer be required once the next node release is available, which will detect and apply the correct MTU automatically.
+On releases prior to June 2026 this had to be set manually. After the node registered and was visible in the portal, the MTU on the Data interface had to be set to **1460** under the node's [interface settings]({{<relref "/docs/nodes/appliances/interfaces#mtu">}}). Without it, traffic could silently drop or underperform due to packet fragmentation.
 {{</alert>}}
-
-The following table summarizes the firewall rules required across both networks:
-
-| Network | Direction | Protocol | Ports | Source/Destination | Purpose |
-|---------|-----------|----------|-------|--------------------|---------|
-| Management | Egress | TCP | 443, 8443 | Trustgrid control plane IPs — see [Network Requirements]({{<relref "/help-center/kb/site-requirements#network-requirements-for-all-nodes">}}) | Control plane communication |
-| Management | Ingress | TCP/UDP | 8443 | 0.0.0.0/0 | Data plane tunnel traffic (gateway nodes that terminate tunnels from remote edge nodes only) |
-| Data | Ingress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
-| Data | Egress | TCP | 9000 | Data subnet CIDR | Cluster communication (clustered nodes only) |
 
 ---
 
@@ -197,7 +196,7 @@ Complete, ready-to-use examples are maintained in the repository:
 - [Gateway cluster (HA, full)](https://github.com/trustgrid/trustgrid-infra-as-code/tree/main/gcp/terraform/examples/gateway-cluster-ha-full)
 
 {{<alert>}}
-After deploying via Terraform, you will still need to configure the Data interface MTU to 1460. See [MTU Configuration]({{<relref "/tutorials/deployments/deploy-gcp/#mtu-configuration">}}).
+On releases prior to the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}), you must also configure the Data interface MTU to 1460 after deploying. June 2026 and later apply it automatically. See [MTU Configuration]({{<relref "/tutorials/deployments/deploy-gcp#mtu-configuration">}}).
 {{</alert>}}
 
 ---

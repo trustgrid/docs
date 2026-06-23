@@ -11,10 +11,22 @@ This feature collects traceroute-like data from all its connected peers and stor
 
 ## How it Works
 
-1. The node will send out TCP SYN packets to each peer's public IP and port (if a gateway) with incrementing Time To Live (TTL) values every 20 seconds.
+1. The node sends probes to each peer's public IP and port (if a gateway) with incrementing Time To Live (TTL) values.
 1. As the packets pass through each router (or hop) along the way the TTL is decreased by one.
 1. Any time a router receives a packet with a TTL value of 1 it will drop the packet and can reply with an ICMP packet saying “Time to Live has been exceeded”
 1. The node uses these ICMP packets to calculate the latency to each hop.
+
+{{<alert color="info">}}As of the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}), hop monitoring behaves more like MTR to avoid being flagged as abnormal traffic by firewalls in the path. The node does not send resets to intermediate hops, completes the TCP handshake when a hop replies with a SYN/ACK, slows its probe rate further down the path, and stops once it reaches the gateway.{{</alert>}}
+
+### Monitor Hops Protocol
+
+Starting with the June 2026 release you can choose how the node probes the path using the **Monitor Hops Protocol** setting in the [Client]({{<relref "/docs/nodes/appliances/gateway/gateway-client#hop-monitoring-settings">}}) panel:
+
+{{<tgimg src="monitor-hops-protocol.png" width="50%" caption="The Monitor Hops Protocol options: ICMP, SYN, and SACK." alt="Monitor Hops Protocol dropdown showing ICMP, SYN, and SACK options">}}
+
+- **SYN** probes using TCP SYN packets, reusing the gateway's TCP port so traffic already allowed out to the gateway is allowed for monitoring. This is the default and is the method prior versions used.
+- **ICMP** probes using ICMP. Both the edge and gateway must allow the traffic, and it makes a lower-than-expected MTU along the path easier to detect.
+- **SACK** builds a full TCP session and sends 1-byte TCP packets within it until it gets a response, then closes the session. This helps on paths where network devices do not handle bare SYN traces well.
 
 ## Known Limitations
 

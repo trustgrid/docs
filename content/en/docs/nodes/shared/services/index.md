@@ -19,6 +19,7 @@ Services define the host name or IP and port of a server that can be accessed by
 On the local network, a connection's **source IP** will be the node's interface IP.
 - If the service is defined on a cluster, the active cluster members IP will be used.
 - If the node has multiple interfaces, the source will be the interface that has a matching [interface route]({{<ref "docs/nodes/appliances/interfaces#interface-routes">}}) for the target IP.
+- As of the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}), the [Source Interface](#configuration) setting lets you choose the egress interface and source connections from the cluster IP instead of the interface IP.
 
 If the service's [host field]({{<ref "#host">}}) is set to a DNS name, the node will use its WAN interface DNS servers to resolve the address.
 
@@ -52,6 +53,19 @@ The IP or DNS address of the host to connect to.
 
 {{<field "Port" >}}
 The port to connect to on the host.
+{{</field >}}
+
+{{<field "Source Interface" >}}
+Determines the interface and source IP used for the connection to the host. Requires the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later, and is not shown on earlier versions.
+
+Select the interface to source the connection from, then choose how its IP is determined:
+- **Use Interface IP** - Source connections from the selected interface's IP. This is the default and matches the behavior of earlier releases.
+- **Use Cluster IP** - Source connections from the [cluster IP]({{<relref "/docs/clusters/cluster-only-config#cluster-ip">}}) instead of the interface IP. Available for clustered nodes with a configured cluster IP.
+{{<tgimg src="add-service-source-interface.png" width="40%" caption="The Source Interface options: Use Interface IP or Use Cluster IP." alt="Add Service dialog showing the Source Interface dropdown with Use Interface IP and Use Cluster IP options">}}
+{{</field >}}
+
+{{<field "Connect Timeout" >}}
+(Optional) The maximum amount of time, in seconds, a TCP connection will wait for a response before timing out. Defaults to 5 seconds.
 {{</field >}}
 
 {{<field "Description">}}

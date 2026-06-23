@@ -9,6 +9,8 @@ aliases:
   - /tutorials/deployments/deploy-aws/cluster-ip-failover-in-aws/
 ---
 
+{{<alert color="info">}}AWS Cluster IP failover requires the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later. On earlier releases the AWS cluster IP was assigned as an Elastic IP.{{</alert>}}
+
 This tutorial covers the cluster IP failover mechanism for AWS-hosted Trustgrid clusters. The active cluster member claims a configured IP as a secondary private IP on its data ENI via `ec2:AssignPrivateIpAddresses` (with `AllowReassignment=true`). On failover, the standby promotes itself and reclaims the same secondary IP on its own ENI — no AWS route-table updates required.
 
 For L3 overlay route failover instead, see [Configure HA Gateway Cluster in AWS]({{<relref "route-failover">}}).
