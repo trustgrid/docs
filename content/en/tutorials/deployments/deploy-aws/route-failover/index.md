@@ -75,6 +75,6 @@ List the ARN of every route table the cluster will manage in the `Resource` fiel
 
    {{<alert>}}If other subnets in the same VPC as the nodes need to reach the overlay during and after failover, the cluster must manage their route tables too. Only route tables in the cluster's own VPC apply here: a subnet in a different VPC reaches the overlay through transit gateway or VPC peering, with its route pointing at the Trustgrid VPC rather than being managed by the cluster. For each additional same-VPC subnet, identify its route table ID (for example `rtb-03d7b8e9f1a2c4d56` for a `10.20.0.0/16` application subnet), add that table's ARN to the IAM policy above, and list the table under Cluster > Interfaces > eth1 (LAN) > AWS VPC Route Tables. The overlay CIDRs are then maintained and failed over in every listed table, not just the one tied to the cluster's own LAN subnet.{{</alert>}}
 
-   {{<tgimg src="vpc-route-tables.png" width="70%" caption="List each route table the cluster should manage under AWS VPC Route Tables. Only tables in the same VPC as the nodes can be managed." >}}
+   ![img](vpc-route-tables.png)
 
    Appropriate VPN configuration is still required for traffic to flow end-to-end across the Trustgrid overlay.
