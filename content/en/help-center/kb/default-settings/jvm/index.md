@@ -10,7 +10,7 @@ These settings only apply to appliance-based Trustgrid nodes
 {{</alert>}}
 
 ## Memory Settings
-The Java Virtual Machine (JVM) is responsible for managing the memory used by the Trustgrid service on appliances. Two key parameters that control this memory management are the minimum (min) and maximum (max) memory values.
+The Java Virtual Machine (JVM) is responsible for managing the memory used by the Trustgrid service on appliances. Two key parameters that control this memory management are the minimum (min) and maximum (max) memory values. These settings can be adjusted under [Advanced > JVM]({{<relref "/docs/nodes/appliances/advanced#memory-settings" >}}) in the Trustgrid Management Portal.
 
 1. **Minimum Memory:** This is the initial memory allocation for the JVM. When your Java application starts, the JVM allocates this amount of memory right away. It's like setting a base size for the memory footprint of your application.
 
@@ -42,6 +42,3 @@ There are multiple different garbage collectors, each with its own strategy and 
 - Handling Large Memory: Efficient for applications with large heaps.
 
 Despite these advantages, Trustgrid has not yet been able to see significant performance improvements by switching to G1 over Parallel GC in most customer environments. Unless you are experiencing specific performance issues, we recommend leaving the default Parallel GC.
-
-
-{{<alert color="info">}}Contact Trustgrid support if you need to adjust these settings{{</alert>}}

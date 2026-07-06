@@ -16,7 +16,6 @@ The Config Options panel allows customizing various advanced settings for the no
 After changing a setting click the Save button. **Some changes may require a node restart to take effect.**
 
 ## JVM Memory
-{{<tgimg src="jvm-memory.png" width="40%" caption="Java Virtual Machine (JVM) memory settings">}}
 
 ### Execute Garbage Collection
 This button forces the Java process to clean up memory and execute garbage collection. This is useful if you are seeing memory issues and want to force the JVM to clean up memory.
@@ -25,6 +24,16 @@ This button forces the Java process to clean up memory and execute garbage colle
 
 ### Memory Settings
 
-The JVM Memory panel allows changing the [default JVM settings]({{<relref "/help-center/kb/default-settings/jvm">}}) for the node process. 
-
+The JVM Memory panel allows changing the default JVM settings for the node process. See the [JVM Knowledge Base article]({{<relref "/help-center/kb/default-settings/jvm" >}}) for more information on the default settings and recommendations for changing them.
+{{<fields>}}
+{{<field "Minimum Memory" >}} The starting amount of memory the JVM process will consume for heap usage. {{</field>}}
+{{<field "Maximum Memory" >}} The maximum amount of memory the JVM process can use for heap usage. {{</field>}}
+{{<field "Garbage Collector" >}} 
+<ul>
+  <li>Default (Parallel GC)</li>
+  <li>G1 GC</li>
+</ul>
+ {{</field>}}
+{{</fields>}}
 **The node must be restarted for any change to be effective.**
+{{<tgimg src="jvm-memory.png" width="40%" caption="Java Virtual Machine (JVM) memory settings">}}
