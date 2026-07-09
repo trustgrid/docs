@@ -47,6 +47,7 @@ Site with Trustgrid node(s) deployed and managed by the End-User.
 | Issue Type                                                      | Trustgrid           | Customer               | End-User               |
 | --------------------------------------------------------------- | ------------------- | ---------------------- | ---------------------- |
 | Trustgrid software or operating system issues                   | Full                | None                   | None                   |
+| Upgrading the Node<sup>2</sup>                                   | None<sup>3</sup>    | Full                   | None                   |
 | Hardware appliance | Shared | Shared | None |
 | Control Plane Connectivity                                      | Shared              | Shared - Customer Site | Shared - End-User Site |
 | Data Plane Connectivity                                         | Limited<sup>1</sup> | Shared                 | Shared                 |
@@ -59,6 +60,10 @@ Site with Trustgrid node(s) deployed and managed by the End-User.
 ---
 
 <sup>1</sup>Trustgrid can work with the Customer and End-User to confirm that the Trustgrid system is working as expected and provide additional information to aid in troubleshooting.
+
+<sup>2</sup>Upgrading the Trustgrid Node version also updates the operating system's security packages.
+
+<sup>3</sup>Customers who purchase Trustgrid Professional Services may have Trustgrid perform fleet-wide upgrades. The Customer remains responsible for scheduling them.
 
 ### Tier One Support
 

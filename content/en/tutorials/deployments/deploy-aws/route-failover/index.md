@@ -25,7 +25,7 @@ For the IP-based failover alternative, see [AWS Cluster IP Failover]({{<relref "
 
 ## Requirements
 
-- AWS route table associated with the LAN subnet of the cluster members.
+- AWS route table associated with the LAN subnet of the cluster members. Include every route table whose subnet needs to reach overlay destinations, not only the one tied to the cluster members' own LAN subnet. The cluster can only manage route tables that belong to the same VPC as the nodes, so any additional subnet in that VPC with its own route table must be included if its traffic should route through the active member over the VPN.
 - IAM instance profile on each cluster member granting the permissions below.
 
 ### IAM Permissions Required
@@ -44,11 +44,14 @@ Each cluster member's IAM instance profile must allow:
     "ec2:CreateRoute",
     "ec2:DeleteRoute"
   ],
-  "Resource": "arn:aws:ec2:<region>:<account-id>:route-table/<rtb-id>"
+  "Resource": [
+    "arn:aws:ec2:<region>:<account-id>:route-table/<rtb-id>",
+    "arn:aws:ec2:<region>:<account-id>:route-table/<rtb-id-2>"
+  ]
 }
 ```
 
-Set the `Resource` field to the ARN of the route table associated with the data NICs. See [Deploy a Trustgrid Node AMI in AWS]({{<relref "deploy-aws">}}) for full IAM role setup steps.
+List the ARN of every route table the cluster will manage in the `Resource` field, one entry per table. This includes the route table associated with the data NICs and any additional subnet route tables that need to reach overlay destinations. See [Deploy a Trustgrid Node AMI in AWS]({{<relref "deploy-aws">}}) for full IAM role setup steps.
 
 ## Configuration Steps
 
@@ -69,5 +72,9 @@ Set the `Resource` field to the ARN of the route table associated with the data 
    ![img](interfaces.png)
 
 1. Under Cluster > Interfaces > eth1 (LAN) > AWS Route Table Entries, add the CIDR covering the destination IP space the cluster needs to reach via the overlay. For example, if all remote virtual-network addresses are carved out of `172.16.0.0/16`, add that single CIDR. Once saved, a route is created in the AWS route table pointing the CIDR at the active member's ENI. On failover the route is updated automatically to the new active member's ENI.
+
+   {{<alert>}}If other subnets in the same VPC as the nodes need to reach the overlay during and after failover, the cluster must manage their route tables too. Only route tables in the cluster's own VPC apply here: a subnet in a different VPC reaches the overlay through transit gateway or VPC peering, with its route pointing at the Trustgrid VPC rather than being managed by the cluster. For each additional same-VPC subnet, identify its route table ID (for example `rtb-03d7b8e9f1a2c4d56` for a `10.20.0.0/16` application subnet), add that table's ARN to the IAM policy above, and list the table under Cluster > Interfaces > eth1 (LAN) > AWS VPC Route Tables. The overlay CIDRs are then maintained and failed over in every listed table, not just the one tied to the cluster's own LAN subnet.{{</alert>}}
+
+   ![img](vpc-route-tables.png)
 
    Appropriate VPN configuration is still required for traffic to flow end-to-end across the Trustgrid overlay.

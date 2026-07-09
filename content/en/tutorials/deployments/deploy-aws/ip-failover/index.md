@@ -61,6 +61,8 @@ The source/destination check must be disabled on each cluster member's data ENI.
 
 The cluster IP must be an unused private IP in the same subnet as the cluster members' data NICs. It is not an Elastic IP — it is a secondary private IPv4 address within the VPC CIDR.
 
+{{<alert color="warning">}}**Both cluster members must reside in the same Availability Zone.** A secondary private IP must fall within the ENI's subnet CIDR, and an AWS subnet is bound to a single AZ. Because both members share the data subnet, they share its AZ. Cluster IP failover cannot float an IP across AZs — for a cross-AZ HA topology, use [route failover]({{<relref "route-failover">}}) instead.{{</alert>}}
+
 ## Configuration
 
 ### Portal
