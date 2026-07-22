@@ -28,14 +28,14 @@ In place of backups Trustgrid recommends deploying clustered nodes on different 
 
 Trustgrid recommends setting the DRS level for a VM to either Partially Automated or Disabled.  Even the temporary loss of network connectivity during vMotion migrations can disrupt some network flows.
 
-* [Set a Custom Automation Level for a Virtual Machine](https://docs.vmware.com/en/VMware-vSphere/6.5/com.vmware.vsphere.resmgmt.doc/GUID-C21C0609-923B-46FB-920C-887F00DBCAB9.html)
-* [Change Storage DRS Automation Level for a Virtual Machine](https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.resmgmt.doc/GUID-B560341B-B377-4FA7-BF3B-98A4788AAE3A.html)
+* [Set a Custom Automation Level for a Virtual Machine](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-resource-management/creating-a-drs-cluster/set-a-custom-automation-level-for-a-virtual-machine.html)
+* [Change Storage DRS Automation Level for a Virtual Machine](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-resource-management/using-datastore-clusters-to-manage-storage-resources/change-storage-drs-automation-level-for-a-virtual-machine.html)
 
 #### (Recommended) Anti-Affinity
 
 If you have Trustgrid nodes clustered within a vSphere Cluster with DRS enabled you should create an anti-affinity rule.  This rule should keep the nodes running on independent hosts for additional hardware redundancy.
 
-* [Create VM Anti-Affinity Rules](https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.resmgmt.doc/GUID-FBE46165-065C-48C2-B775-7ADA87FF9A20.html#GUID-FBE46165-065C-48C2-B775-7ADA87FF9A20)
+* [Create a VM-VM Affinity Rule](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-resource-management/using-drs-clusters-to-manage-resources/create-a-vm-vm-affinity-rule.html) (select **Separate Virtual Machines** for anti-affinity)
 
 ## Deployment Process
 
