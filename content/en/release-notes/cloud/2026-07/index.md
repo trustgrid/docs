@@ -6,6 +6,10 @@ description: "July 2026 Cloud Release Notes"
 type: docs
 ---
 
+## July 29, 2026 - Minor Release
+### Other Improvements and Fixes
+- Updated underlying libraries across several control plane components to address reported security vulnerabilities.
+
 ## July 9, 2026 - Minor Release
 ### Other Improvements and Fixes
 - Resolves an issue that prevented users from changing [JVM Memory and Garbage Collector]({{<relref "docs/nodes/appliances/advanced#jvm-memory">}}) settings.
