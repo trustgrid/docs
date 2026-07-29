@@ -45,11 +45,11 @@ Use this pattern when clients should reach the cluster on a fixed IP:port. Set t
    - Listen Interface — set to the LAN interface where the cluster IP is configured (typically `eth1`).
    - Listen Port, Destination Node, Destination Service — set per the service being fronted.
 
-{{<tgimg src="l4-add-connector.png" alt="Connector configuration dialog with Listen Interface set to eth1, listening on port 8080 and forwarding to a remote cluster" caption="Connector configured with Listen Interface = eth1, which binds only the cluster IP" width="90%" >}}
+{{<tgimg src="l4-add-connector.png" alt="Connector configuration dialog with Listen Interface set to eth1, listening on port 5000 and forwarding to a service on the edge cluster" caption="Connector configured with Listen Interface = eth1, which binds only the cluster IP" width="90%" >}}
 
 The configured connector appears in the cluster's Connectors list:
 
-{{<tgimg src="l4-connectors-list.png" alt="Connectors list showing two TCP connectors" caption="Cluster Connectors list">}}
+{{<tgimg src="l4-connectors-list.png" alt="Connectors list showing a TCP connector on eth1, port 5000" caption="Cluster Connectors list" width="90%">}}
 
 ## Services — Stable Source IP Toward Backends
 
@@ -60,8 +60,8 @@ Use this pattern when the cluster originates connections to backends and the bac
    - Source Interface — set the interface dropdown to the LAN interface (typically `eth1`), then set the second dropdown to Use Cluster IP.
    - Host, Port, Protocol — set per the backend being reached.
 
-{{<tgimg src="l4-add-service.png" alt="Service configuration dialog with Source Interface set to eth1 and Use Cluster IP selected, forwarding to a backend on TCP 8080" caption="Service configured with Source Interface = eth1 and Use Cluster IP">}}
+{{<tgimg src="l4-add-service.png" alt="Service configuration dialog with Source Interface set to eth1 and Use Cluster IP selected, forwarding to a backend on TCP 5000" caption="Service configured with Source Interface = eth1 and Use Cluster IP" width="90%">}}
 
 The configured service appears in the cluster's Services list with the Source Interface column showing `eth1 (Use Cluster IP)`:
 
-{{<tgimg src="l4-services-list.png" alt="Services list showing one service with Source Interface eth1 (Use Cluster IP)" caption="Cluster Services list">}}
+{{<tgimg src="l4-services-list.png" alt="Services list showing one service with Source Interface eth1 (Use Cluster IP)" caption="Cluster Services list" width="90%">}}
