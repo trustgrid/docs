@@ -45,7 +45,7 @@ Use this pattern when clients should reach the cluster on a fixed IP:port. Set t
    - Listen Interface — set to the LAN interface where the cluster IP is configured (typically `eth1`).
    - Listen Port, Destination Node, Destination Service — set per the service being fronted.
 
-{{<tgimg src="l4-add-connector.png" alt="Connector configuration dialog with Listen Interface set to eth1, listening on port 8080 and forwarding to a remote cluster" caption="Connector configured with Listen Interface = eth1, which binds only the cluster IP" >}}
+{{<tgimg src="l4-add-connector.png" alt="Connector configuration dialog with Listen Interface set to eth1, listening on port 8080 and forwarding to a remote cluster" caption="Connector configured with Listen Interface = eth1, which binds only the cluster IP" width="90%" >}}
 
 The configured connector appears in the cluster's Connectors list:
 
