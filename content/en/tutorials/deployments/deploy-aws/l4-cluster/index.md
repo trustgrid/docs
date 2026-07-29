@@ -38,14 +38,14 @@ Set both, then return here to configure the L4 connector or service.
 
 ## Connectors — Stable Destination IP for Clients
 
-Use this pattern when clients should reach the cluster on a fixed IP:port. Set the connector's Listen Interface to **All** so it listens on every address on the member, including the cluster IP. On failover the cluster IP moves to the new active member, which is also listening, so clients reconnect to the same address.
+Use this pattern when clients should reach the cluster on a fixed IP:port. Set the connector's Listen Interface to the LAN interface. When a cluster IP is configured on that interface, the connector binds only the cluster IP, not the member's own LAN address. On failover the cluster IP moves to the new active member, which is listening on it, so clients reconnect to the same address.
 
 1. In the Trustgrid portal, navigate to your cluster and select Connectors from the Networking menu.
 1. Click Add Connector and configure:
-   - Listen Interface — set to **All**.
+   - Listen Interface — set to the LAN interface where the cluster IP is configured (typically `eth1`).
    - Listen Port, Destination Node, Destination Service — set per the service being fronted.
 
-{{<tgimg src="l4-add-connector.png" alt="Connector configuration dialog with Listen Interface set to All, listening on port 8080 and forwarding to a remote cluster" caption="Connector configured with Listen Interface = All" >}}
+{{<tgimg src="l4-add-connector.png" alt="Connector configuration dialog with Listen Interface set to eth1, listening on port 8080 and forwarding to a remote cluster" caption="Connector configured with Listen Interface = eth1, which binds only the cluster IP" >}}
 
 The configured connector appears in the cluster's Connectors list:
 
