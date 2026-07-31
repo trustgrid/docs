@@ -39,21 +39,21 @@ If the appliance also runs containers, subtract the sum of **all configured cont
 ### A Note on G1 and the Memory Usage Chart
 
 {{<alert color="info">}}
-Trustgrid appliances run the G1 garbage collector by default, which doesn't return memory to the operating system once it's allocated during normal operation. Because of this, the memory usage shown on the appliance [Overview]({{<relref "docs/nodes/appliances/overview#stats" >}}) can stay high even when the appliance is idle. A high, flat reading on its own isn't a sign of a problem. Size **Maximum Memory** for what you're comfortable committing long-term, not as a soft ceiling.
+Trustgrid appliances run the G1 garbage collector by default. G1's normal, incremental collections don't reclaim memory the Java process allocates outside the heap, such as Netty's direct buffers, so that usage builds up during normal operation. Because of this, the memory usage shown on the appliance [Overview]({{<relref "docs/nodes/appliances/overview#stats" >}}) can stay high even when the appliance is idle. A high, flat reading on its own isn't a sign of a problem. Size **Maximum Memory** for what you're comfortable committing long-term, not as a soft ceiling.
 {{</alert>}}
 
 ### Diagnosing a Suspected Memory Issue
 
 If the node is processing traffic normally and you have no other signs of trouble, leave the defaults alone. If you want to check further, look at the [JVM Heap metric]({{<relref "docs/nodes/appliances/metrics#jvm-heap" >}}) for one of these patterns:
 
-- **Heap stays pinned high** (above 80% of Maximum Memory) and doesn't drop after a GC run. This can indicate the appliance genuinely needs more memory.
+- **Heap stays pinned high** (above 80% of Maximum Memory) and doesn't drop after a forced GC run. This can indicate the appliance genuinely needs more memory.
 - **Heap rapidly fills and empties** in a repeating sawtooth pattern. This can indicate garbage collection is running very frequently, which adds overhead.
 
 If you see either pattern:
 
-1. [Force a GC run]({{<relref "docs/nodes/appliances/advanced#execute-garbage-collection" >}}) and watch the heap for a few minutes afterward.
+1. [Force a GC run]({{<relref "docs/nodes/appliances/advanced#execute-garbage-collection" >}}) and watch the heap for a few minutes afterward. A full GC reclaims off-heap allocations that build up during normal operation, so this gives you an accurate baseline instead of the inflated reading a regular, incremental collection leaves behind.
 2. If it stays pinned high, or keeps sawtoothing under normal traffic, increase **Maximum Memory** using the [sizing guidance above](#suggested-maximum-memory-by-total-system-memory).
-3. Restart the service only as a last resort. The Java process can also request memory outside the heap for certain activities, and a restart is the only way to release that.
+3. Restart the service only if the issue persists after the steps above.
 
 ## Java Garbage Collection
 The Java Garbage Collection system:

@@ -35,5 +35,5 @@ The JVM Memory panel allows changing the default JVM settings for the node proce
 </ul>
  {{</field>}}
 {{</fields>}}
-**The node must be restarted for any change to be effective.**
+**The node must be restarted for any change to take effect.**
 {{<tgimg src="jvm-memory.png" width="40%" caption="Java Virtual Machine (JVM) memory settings">}}
