@@ -50,7 +50,9 @@ The **Showing data for** time window controls how many data points the graphs pl
 | 1 Month | 6 hours |
 
 {{<alert title="Note" color="info">}}
-CPU, memory, disk, heap, uptime, gateway active/available, and local flows are point-in-time readings taken at the plotted interval, not averages over that interval.
+At 1 minute resolution (the **1 Hour** and **2 Hours** windows), CPU, memory, disk, heap, uptime, gateway active/available, and local flows are point-in-time readings taken at the plotted interval, not averages over that interval.
+
+At coarser resolutions (**6 Hours** and longer), these same metrics are the mean/average across the interval rather than a point-in-time reading.
 
 Traffic stats such as bytes sent/received, gateway bytes, and resets are deltas against the previous interval's cumulative counter, rather than point-in-time readings.
 {{</alert>}}
