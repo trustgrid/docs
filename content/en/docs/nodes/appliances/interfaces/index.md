@@ -28,6 +28,19 @@ Used in configurations with more than one interface for local network connectivi
 #### VLAN Subinterface 
  Virtual under a physical LAN interface that will apply a VLAN tag to traffic
 
+## Tools
+
+The **Interface Tools** section provides diagnostic tools scoped to the interface selected in the dropdown above.
+
+{{<tgimg src="/tutorials/interface-tools/tcp-port-test/network-tools.png" width="90%" caption="Interface Tools section">}}
+
+- [Speed Test]({{<relref "/tutorials/interface-tools/speed-test">}}) - Measure upload and download throughput between the node and the Trustgrid cloud over the selected interface.
+- [Sniff Traffic]({{<relref "/tutorials/interface-tools/sniff-interface-traffic">}}) - Monitor traffic on the interface in realtime.
+- [Interface TCP Port Test]({{<relref "/tutorials/interface-tools/tcp-port-test">}}) - Test layer 4 TCP connectivity to a target IP address and port.
+- [ARP Ping]({{<relref "/tutorials/interface-tools/arping">}}) - Send an ARP request to a specific IP address on the interface.
+- [AWS Interface ENA Stats]({{<relref "/tutorials/interface-tools/aws-interface-stats">}}) - View AWS ENA statistics to troubleshoot network performance on AWS-hosted nodes.
+- [AWS Route Tables]({{<relref "/tutorials/interface-tools/aws-route-tables">}}) - Query AWS route tables associated with the interface.
+- [Traffic Capture]({{<relref "/tutorials/interface-tools/traffic-capture">}}) - Capture interface traffic to a pcap file for analysis.
 
 ## Configuration
 
