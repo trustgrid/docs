@@ -5,7 +5,7 @@ type: docs
 date: 2026-06-17
 description: "Release notes for the June 2026 Major Trustgrid Appliance release"
 ---
-{{< node-release package-version="1.5.20260602-2472" core-version="20260606-003838.226.3724894" release="n-2.24.0" >}}
+{{< node-release package-version="1.5.20260608-2475" core-version="20260606-003838.226.3724894" release="n-2.24.0" >}}
 
 ## Hop Monitoring
 This release reworks how [Hop Monitoring]({{<relref "/tutorials/gateway-tools/monitoring-network-hops-to-peers">}}) probes the network path. On some networks the previous behavior was interpreted as abnormal traffic and triggered `Peer Timed Out` events that briefly disrupted the data plane.
