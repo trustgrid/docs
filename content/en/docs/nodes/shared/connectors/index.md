@@ -50,7 +50,7 @@ The maximum amount of throughput that will be allowed to traverse the tunnel whe
 {{</field >}}
 
 {{<field "Source Block">}}
-(Optional, Appliances Only) This comma separated list of Network CIDRs will restict what IPs can connect to the connector.
+(Optional) This comma separated list of Network CIDRs will restict what IPs can connect to the connector.
 {{</field>}}
 
 {{<field "Sniff Traffic">}}
