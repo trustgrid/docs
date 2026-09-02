@@ -8,9 +8,9 @@ description: "Release notes for the September 2026 Major Trustgrid Appliance rel
 {{< node-release package-version="1.5.20260827-2540" core-version="20260827-205421.cfa4c19" release="n-2.25.0" >}}
 
 ## TLS 1.3 and Post-Quantum Cryptography
-Nodes now negotiate TLS 1.3 for the TCP data plane, falling back to TLS 1.2 when the peer does not support it. TLS 1.3 connections use the `TLS_AES_128_GCM_SHA256` cipher. TLS 1.2 connections continue to use `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`.
+Data plane traffic between nodes is now protected against future quantum decryption. Nodes negotiate TLS 1.3 with `X25519MLKEM768` hybrid key exchange, so traffic an adversary records today cannot be unlocked later by a quantum computer.
 
-TLS 1.3 connections use `X25519MLKEM768` hybrid key exchange, which protects traffic captured today from being decrypted later by a quantum computer. Peers that do not support it fall back to a classical key exchange.
+Connections fall back to TLS 1.2 and classical key exchange when the peer does not support TLS 1.3. TLS 1.3 uses the `TLS_AES_128_GCM_SHA256` cipher. TLS 1.2 continues to use `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`.
 
 The [UDP data plane]({{<relref "getting-started/security#udp-data-plane-encryption" >}}) is unchanged.
 
