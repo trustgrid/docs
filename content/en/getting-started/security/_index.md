@@ -26,7 +26,7 @@ All data between Trustgrid nodes for both the control and data plane is encrypte
 
 The TLS version is negotiated per connection. Nodes running the [September 2026 release]({{<relref "release-notes/node/2026-09" >}}) or later prefer TLS 1.3 and fall back to TLS 1.2 when the peer does not support it.
 
-- TLS 1.3 connections use the [TLS_AES_128_GCM_SHA256 cipher](https://ciphersuite.info/cs/TLS_AES_128_GCM_SHA256/) and `X25519MLKEM768` hybrid key exchange, which protects traffic captured today from being decrypted later by a quantum computer. Peers that do not support it fall back to a classical key exchange.
+- TLS 1.3 connections use the [TLS_AES_128_GCM_SHA256 cipher](https://ciphersuite.info/cs/TLS_AES_128_GCM_SHA256/) and `X25519MLKEM768` key exchange, which pairs the classical X25519 curve with ML-KEM-768, the post-quantum key exchange NIST standardized as [FIPS 203](https://csrc.nist.gov/pubs/fips/203/final). This protects traffic captured today from being decrypted later by a quantum computer. Peers that do not support it fall back to a classical key exchange.
 - TLS 1.2 connections use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
 
 ### UDP Data Plane Encryption
