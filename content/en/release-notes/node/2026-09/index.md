@@ -22,7 +22,6 @@ See [Security]({{<relref "getting-started/security#tls-encryption" >}}).
 - On Azure, an unresponsive instance metadata endpoint could leave Azure API calls retrying indefinitely on the same threads that carry cluster traffic. Members lost sight of each other and could both go active, which effectively blocks traffic. A **Restart Cluster Server** request would then hang with the server stopped, and only a node reboot recovered it. Azure API calls now run off the cluster threads under enforced timeouts.
 - Restarting one member of an Azure cluster no longer causes the other member to flap in and out of the master role.
 - A brief loss of connectivity between cluster peers could leave a member with two connections to that peer, tracking the wrong one. Its view of which member was active then diverged from reality, leaving the cluster dual-active. A node now refuses a duplicate connection to a peer it already has an open session with, and closes a connection attempt that times out.
-- A gateway or cluster server holding a dead client connection would reject that client's reconnect with `Already have max number of client connections`, leaving the node unable to reconnect until the old connection timed out. If it never closed, the node stayed locked out. The server now closes the old session and accepts the reconnect.
 
 ## Gateway Latency Monitors
 [Gateway latency monitors]({{<relref "docs/nodes/appliances/gateway/gateway-client#gateway-latency-monitors" >}}) now separate reporting from health policy. A [Gateway Latency Exceeded]({{<relref "docs/alarms/event-types#gateway-latency-exceeded" >}}) event fires on every monitor trigger and recovery, whatever **Failure Mode** and **Critical** are set to. **Failure Mode** now decides only whether the node marks itself unhealthy, and counts only monitors marked **Critical**.
@@ -41,5 +40,6 @@ This release updates the APT security repository to a mirror from **July 20, 202
 - The **Node Startup Errors** alert now carries the errors themselves in its detail, so you can see what failed without opening the node.
 
 ## Fixes
+- A gateway holding a stale client session would reject that node's reconnect with `Already have max number of client connections` until the old session timed out, raising a max connection event each time. The gateway now closes the stale session and accepts the reconnect.
 - Nodes can now pull container images published in the OCI image index format. Previously a registry that returned an OCI manifest could fail the download.
 - Removed a spurious error and stack trace logged when both ends of an L4 proxy session closed it at the same moment.
