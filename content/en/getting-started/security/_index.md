@@ -30,7 +30,7 @@ The TLS version is negotiated per connection. Nodes running the [September 2026 
 - TLS 1.2 connections use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
 
 ### UDP Data Plane Encryption
-Trustgrid nodes with UDP enabled use [ChaCha20](https://cr.yp.to/chacha.html)-[Poly1305](https://cr.yp.to/mac.html) for encryption. This is unaffected by the TLS version negotiated for the TCP data plane. The encryption keys are securely generated on the server and shared with the client of the existing TLS tunnel to the client. The keys are rotated automatically every 5 minutes. 
+Trustgrid nodes with UDP enabled use [ChaCha20](https://cr.yp.to/chacha.html)-[Poly1305](https://cr.yp.to/mac.html) for encryption. This is unaffected by the TLS version negotiated for the TCP data plane. The encryption keys are securely generated on the server and shared with the client of the existing TLS tunnel to the client. The keys are rotated automatically every 15 minutes. 
 
 {{<alert color="info">}}The UDP server endpoint is also “dark” in the sense that it will not respond to any traffic unless it is verified to be encrypted/signed by an endpoint and key that is valid. {{</alert>}}
 
