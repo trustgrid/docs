@@ -36,9 +36,6 @@ This release updates the APT security repository to a mirror from **July 20, 202
 - Bundled third-party libraries were updated to versions with no open security findings. The earlier findings were not exploitable in the way the node uses those libraries, but the updates keep the appliance clean for vulnerability scanners.
 - Unattended upgrades no longer treat a "reboot required" result from the package manager as a failure. The node now reboots to finish the upgrade instead of logging an error.
 
-## Improvements
-- The **Node Startup Errors** alert now carries the errors themselves in its detail, so you can see what failed without opening the node.
-
 ## Fixes
 - A gateway holding a stale client session would reject that node's reconnect with `Already have max number of client connections` until the old session timed out, raising a max connection event each time. The gateway now closes the stale session and accepts the reconnect.
 - Nodes can now pull container images published in the OCI image index format. Previously a registry that returned an OCI manifest could fail the download.
