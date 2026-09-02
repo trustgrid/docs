@@ -22,10 +22,15 @@ Trustgrid uses a token to authorize communication between Trustgrid [nodes]({{<r
 
 ### TLS Encryption
 
-All data between Trustgrid nodes for both the control and data plane is encrypted using TLS Mutual Authentication. The Internet Engineering Task Force (IETF) recommends TLS as the replacement for IPSec VPN. The TLS tunnels use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
+All data between Trustgrid nodes for both the control and data plane is encrypted using TLS Mutual Authentication.
+
+The TLS version is negotiated per connection. Nodes running the [September 2026 release]({{<relref "release-notes/node/2026-09" >}}) or later prefer TLS 1.3 and fall back to TLS 1.2 when the peer does not support it.
+
+- TLS 1.3 connections use the [TLS_AES_128_GCM_SHA256 cipher](https://ciphersuite.info/cs/TLS_AES_128_GCM_SHA256/) and `X25519MLKEM768` hybrid key exchange, which protects traffic captured today from being decrypted later by a quantum computer. Peers that do not support it fall back to a classical key exchange.
+- TLS 1.2 connections use the [TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 cipher](https://ciphersuite.info/cs/TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384/).
 
 ### UDP Data Plane Encryption
-Trustgrid nodes with UDP enabled use [ChaCha20](https://cr.yp.to/chacha.html)-[Poly1305](https://cr.yp.to/mac.html) for encryption. The encryption keys are securely generated on the server and shared with the client of the existing TLS tunnel to the client. The keys are rotated automatically every 5 minutes. 
+Trustgrid nodes with UDP enabled use [ChaCha20](https://cr.yp.to/chacha.html)-[Poly1305](https://cr.yp.to/mac.html) for encryption. This is unaffected by the TLS version negotiated for the TCP data plane. The encryption keys are securely generated on the server and shared with the client of the existing TLS tunnel to the client. The keys are rotated automatically every 5 minutes. 
 
 {{<alert color="info">}}The UDP server endpoint is also “dark” in the sense that it will not respond to any traffic unless it is verified to be encrypted/signed by an endpoint and key that is valid. {{</alert>}}
 
