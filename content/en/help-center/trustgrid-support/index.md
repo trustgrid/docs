@@ -14,7 +14,7 @@ Paying Trustgrid customers can contact our support team for assistance for Tier 
 
 Below are the methods or requesting support from Trustgrid:
 
-- [Request support via the Portal]({{<relref "/docs/support/support-request">}}) - ** This is the recommended method to request support.
+- [Request support via the Portal]({{<relref "docs/support/support-request" >}}) - **this is the recommended method**. Requests opened here are tracked in the portal, where you can check status, reply, and close them.
 - Email: support@trustgrid.io **not .com**
 - Phone: 888-308-8995 x2
 
