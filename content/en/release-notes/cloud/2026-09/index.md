@@ -21,3 +21,17 @@ Each entry shows the subject, its current status, and when it was last updated. 
 Select a request to read the full conversation, including messages from Trustgrid Support and any status changes. Reply from the request itself and click **Send**, or click **Mark Ticket Resolved** once the issue is addressed. Replies are attributed to your portal user account.
 
 The request form is unchanged. It now opens from the **Create Request** button rather than sitting on the page.
+
+## September 11, 2026 - Minor Release
+
+### Search Flow Logs by Partial IP Address or CIDR
+
+Flow Log search now supports partial IP address matching and CIDR searches. Search for part of an address to find matching flow records, or use a CIDR range to search an entire network.
+
+### Improved Audit Search
+
+The **Changes**, **Node Audits**, and **Authentication Logs** tables now provide improved search performance with expanded filters, full-text search, and CSV export. You can filter by audit type, item type, IP address, user, node, item ID, category, and time range.
+
+### Timezone-Aware Audit and Flow Log Timestamps
+
+Flow Log and audit table timestamps now follow the **Local/UTC** selection in the time-range picker.
