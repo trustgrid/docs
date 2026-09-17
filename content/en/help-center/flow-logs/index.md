@@ -104,30 +104,59 @@ Node2 would report the flow after the NATs on Node1 were applied (changing the s
 {{<alert color="info" title="Note:">}} For simplicity, ports were excluded. Destination ports will not be changed by NATs.  Source ports would also be maintained for any 1:1 NAT, but would change if a many:1 (or overload) NAT was applied to the flow. {{</alert>}}
 
 ## Viewing Flow Logs
-Flow logs are visible at an organization level by navigating to [Operations > Flow Logs]({{<ref "/docs/operations/flow-logs">}}). This will show you the most recent 10,000 flows of **all** nodes in the organization.
+Flow logs are visible at an organization level by navigating to [Operations > Flow Logs]({{<ref "/docs/operations/flow-logs">}}). This will show you, by default, the last 2 hours of flows for **all** nodes in the organization.
 
-To view Flow Logs only for traffic through a specific node, navigate to that node and go to [History > Flow Logs]({{<ref "docs/nodes/shared/flow-logs">}}). This will show you the most recent 10,000 flows for the **currently selected** node.
+To view Flow Logs only for traffic through a specific node, navigate to that node and go to [History > Flow Logs]({{<ref "docs/nodes/shared/flow-logs">}}). This will show you the flows for the **currently selected** node.
 
-{{<tgimg src="flow-logs-node.png" caption="Example flow log table for a node" width="80%" alt="table showing flow log entries for a node">}}
+{{<tgimg src="flow-logs-node.png" caption="Example flow log table for a node" width="100%" alt="table showing flow log entries for a node">}}
+
+{{< alert color="info" >}}Viewing node audits requires `audits::read:flows` permissions.{{</ alert >}}
 
 ### Date Range
 
-{{<tgimg src="date-range-selector.png" width="60%" caption="Date range selector showing the active range">}}
+The date range selector is always visible above the flow logs table, showing the currently active time window. The default range is **Last 2h**. Click the date range button to change the range. The selector supports both relative ranges (e.g., Last 2h, Last 1w) and absolute date/time ranges. {{<tgimg src="date-range-selector.png" width="50%" caption="Date range selector showing the active range">}}
 
-The date range selector is always visible above the flow logs table, showing the currently active time window. The default range is **Last 2h**. Click the date range button to change the range.
+### Timezone
+
+Use the **UTC/Local** toggle on the date range selector to switch between UTC and your local timezone. This affects all timestamps displayed in the table. CSV exports are always in UTC.
+
+### Search Bar
+
+The search bar at the top of the table performs a full text search across all fields. Type a search term and press Enter to filter the results. Searches match the full value of a field or trailing `*` can be used to do a wildcard match (e.g. `172.16.*`).
 
 ### Advanced Search
 
-Flow logs can be filtered by any of the fields listed above. To filter by a field, click the **Advanced Search** button at the top right of the flow logs table.
+Click **Advanced Search** at the top right of the flow logs table to filter by any combination of the fields below. The ordering can also be changed so that the oldest flows appear first. There is a limit of 1,000 flows returned per paginated search.
 
-In addition, the ordering can be changed so that the oldest flows (or flows closest to the time range specified) can be shown first. There is a limit of 10,000 flows returned per search.
+{{<tgimg src="advanced-search.png" width="50%" caption="Filter by a specific set of fields" alt="Dialog showing the various search filter parameters available in advanced search.">}}
 
-{{<tgimg src="advanced-search.png" width="80%" caption="Advanced Search dialog" alt="Dialog showing the various search filter parameters available in advanced search.">}}
+#### IP Address Filtering
 
-### Exporting Flow Logs to CSV
-From the Flow logs table, you can export the current filtered logs to a CSV file for further analysis or reporting.
+The **Source IP** and **Dest IP** fields accept multiple values. Type an IP address and press Enter to add it, then repeat to filter on several addresses at once.
 
-#### Start and End 
-Both of these fields are exported in two different formats:
+These fields also support wildcard patterns using `*` to match any octet or partial octet. For example:
+- `192.168.*` matches any IP starting with `192.168.`
+- `10.*.1.*` matches any IP where the first octet is `10` and the third is `1`
+
+Leading wildcards (e.g., `*.168.1.1`) are not supported.
+
+#### CIDR Filtering
+
+The **Source IP CIDR** and **Dest IP CIDR** fields filter flows by a CIDR range (e.g., `172.16.0.0/16`). When both an IP filter and a CIDR filter are set for the same direction, the CIDR filter takes precedence and the IP filter is ignored.
+
+### Actions Menu
+
+The gear icon above the table provides access to:
+
+- **Refresh** - Refresh the table results
+- **Export** - Download the current filtered flow logs as a CSV file for further analysis or reporting.
+- **Column Selector** - Choose which columns are visible in the table.
+
+Large exports may take a moment to prepare. A download button appears when the file is ready.
+
+{{< alert color="info" >}}`Start Time` and `Stop Time` are both exported in two different formats:
 * Human friendly in the format: MM/DD/YYYY HH:MM:SS AM/PM
-* Timestamp in milliseconds since epoch for machine parsing and sorting
+* Timestamp in milliseconds since epoch for machine parsing and sorting{{< /alert >}}
+
+{{<tgimg src="export-modal.png" width="50%">}}
+
