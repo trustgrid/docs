@@ -110,7 +110,7 @@ To view Flow Logs only for traffic through a specific node, navigate to that nod
 
 {{<tgimg src="flow-logs-node.png" caption="Example flow log table for a node" width="100%" alt="table showing flow log entries for a node">}}
 
-{{< alert color="info" >}}Viewing node audits requires `audits::read:flows` permissions.{{</ alert >}}
+{{< alert color="info" >}}Viewing flows requires `audits::read:flows` permissions.{{</ alert >}}
 
 ### Date Range
 

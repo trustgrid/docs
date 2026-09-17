@@ -10,7 +10,7 @@ Trustgrid records information for authentication attempts into the control plane
 
 Authentication logs are available by navigating to **Operations** > **Authentication Logs**. {{<tgimg src="auth-audits.png" width="100%" caption="Authentication Logs">}}
 
-{{< alert color="info" >}}Viewing configuration changes requires `audits::read:user` permissions.{{</ alert >}}
+{{< alert color="info" >}}Viewing authentication logs requires `audits::read:user` permissions.{{</ alert >}}
 
 {{<alert color="warning">}}
 Successful logins from external identity providers are logged, but failed attempts are not. Check your IDP's documentation for information on how to view those.

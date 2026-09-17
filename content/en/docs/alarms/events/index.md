@@ -9,7 +9,7 @@ Events are emitted from nodes and from the Trustgrid control plane when actionab
 
 Events can be viewed for individual nodes by navigating to **Events** under the **History** section.
 
-{{< alert color="info" >}}Viewing configuration changes requires `events::read` permissions.{{</ alert >}}
+{{< alert color="info" >}}Viewing events requires `events::read` permissions.{{</ alert >}}
 
 {{<tgimg src="node-events-table.png" width="100%" caption="">}}
 

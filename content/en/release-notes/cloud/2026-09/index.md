@@ -18,6 +18,7 @@ The [Flow Logs]({{<relref "help-center/flow-logs" >}}), [Configuration Changes](
 
 #### Configuration Changes
 - The default time range is now **Last 4w** (previously 2 hours).
+- The **Clear** button in the date range selector removes the time filter to show all available records.
 - A new **Advanced Search** dialog provides multi-select filters for events, item types, IPs, user names, item IDs, and full text search.
 - The **Item Type** column now links to the changed item in the portal when a link is available.
 - Results can be exported to CSV with all matching records, not just the current page.
@@ -33,9 +34,9 @@ The [Flow Logs]({{<relref "help-center/flow-logs" >}}), [Configuration Changes](
 - Results can be exported to CSV.
 
 #### All Operations Pages
-- A **UTC/Local** toggle on the date range selector lets you switch between UTC and local timezone for all displayed timestamps and exports.
+- A **UTC/Local** toggle on the date range selector lets you switch between UTC and local timezone for all displayed timestamps.
+- CSV exports now use UTC timestamps for consistency.
 - The date range selector now supports month-based ranges (1, 3, 6, and 12 months).
-- An **All Time** option removes the time filter entirely.
 
 ## September 3, 2026 - Minor Release
 
