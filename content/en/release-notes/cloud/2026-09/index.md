@@ -22,7 +22,7 @@ Select a request to read the full conversation, including messages from Trustgri
 
 The request form is unchanged. It now opens from the **Create Request** button rather than sitting on the page.
 
-## September 11, 2026 - Minor Release
+## September 17, 2026 - Minor Release
 
 ### Search Flow Logs by Partial IP Address or CIDR
 
