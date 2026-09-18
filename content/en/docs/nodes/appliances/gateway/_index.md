@@ -19,6 +19,8 @@ The header bar contains settings that apply to both the node's client and server
 - On a server, this will determine if the server will listen for UDP tunnel connections on the configured [UDP port]({{<relref "./gateway-server/index.md#udp-port">}}).
 - On a client, this will determine if the client will attempt to build UDP tunnels to any server with UDP enabled.
 
+Firewalls between the client and server must permit UDP on the configured port end to end. See [Trustgrid Data Plane]({{<relref "help-center/kb/site-requirements#trustgrid-data-plane" >}}) for the requirements, including a note on [application-aware firewalls]({{<relref "help-center/kb/site-requirements#application-aware-layer-7-firewalls" >}}).
+
 {{</field>}}
 {{<field "Max Ingress">}} The maximum total amount of ingress traffic in megabits per second allowed on the node.{{</field>}}
 {{<field "Max Egress">}} The maximum total amount of egress traffic in megabits per second allowed on the node.{{</field>}}

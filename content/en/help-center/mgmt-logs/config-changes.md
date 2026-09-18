@@ -13,5 +13,7 @@ Date: 2022-12-30
   - Profile
   - Invite
 - Audits record the event type (add/remove/change), the user name, the IP address, and the date of the change
-- Audits are kept for 30 days
+- Audits are kept for 90 days
 - Audits can be downloaded as CSV on the operations page
+
+For detailed information on searching and filtering configuration changes, see [Operations > Changes]({{<ref "docs/operations/changes" >}}).

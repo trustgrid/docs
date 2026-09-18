@@ -1,10 +1,13 @@
 ---
 title: "Organization Flow Logs"
 linkTitle: "Flow Logs"
-
+Tags: ["flows"]
 ---
 
-{{<pageinfo>}}This page shows Flow Logs from all nodes in an organization. {{</pageinfo>}}
+{{% pageinfo %}}
+This page shows Flow Logs from all nodes in an organization.
+{{% /pageinfo %}}
+
 
 See this page for more info on [Flow Logs]({{<ref "/help-center/flow-logs">}})
 

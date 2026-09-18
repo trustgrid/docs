@@ -13,6 +13,12 @@ The `diag` command is designed to determine if an agent has the required connect
 ```
 tg-agent diag
 --------------------------------------------------------------------------------
+----------------------------------- PUBLIC IP ----------------------------------
+--------------------------------------------------------------------------------
+
+64.17.3.165
+
+--------------------------------------------------------------------------------
 -------------------------------------- DNS -------------------------------------
 --------------------------------------------------------------------------------
 
@@ -20,9 +26,9 @@ keymaster.trustgrid.io:
 	35.171.100.28
 
 gatekeeper.trustgrid.io:
+	35.171.100.27
 	35.171.100.26
 	35.171.100.25
-	35.171.100.27
 
 zuul.trustgrid.io:
 	35.171.100.19
@@ -39,13 +45,13 @@ keymaster.trustgrid.io:443:
 	35.171.100.28:443:              OK
 
 gatekeeper.trustgrid.io:8443:
+	35.171.100.25:8443:             OK
 	35.171.100.26:8443:             OK
 	35.171.100.27:8443:             OK
-	35.171.100.25:8443:             OK
 
 zuul.trustgrid.io:8443:
-	35.171.100.20:8443:             OK
 	35.171.100.19:8443:             OK
+	35.171.100.20:8443:             OK
 
 repo.trustgrid.io:443:
 	35.171.100.29:443:              OK
@@ -65,9 +71,9 @@ repo.trustgrid.io:443:
 --------------------------------------------------------------------------------
 
 gatekeeper.trustgrid.io:8443:
-	35.171.100.27:8443:             OK
 	35.171.100.26:8443:             OK
 	35.171.100.25:8443:             OK
+	35.171.100.27:8443:             OK
 
 zuul.trustgrid.io:8443:
 	35.171.100.20:8443:             OK
@@ -76,8 +82,15 @@ zuul.trustgrid.io:8443:
 
 ## Understanding the Output
 The `diag` command steps through several levels to help determine where a breakdown in connectivity may be occurring.
+### Public IP
+First, the agent reports the public IP address that the Trustgrid control plane sees it connecting from. On most networks this is the address of the NAT gateway or firewall the agent sits behind rather than an address configured on the host itself.
+
+Use this to confirm which egress address an agent is presenting. That matters when an allow list is keyed to that address, or when verifying which internet circuit the agent is using.
+
+This section requires the [August 2026]({{<relref "release-notes/agent/2026-08" >}}) agent release or later.
+
 ### DNS
-First, the agent will attempt to resolve key hostnames for Trustgrid control plane services using the agent OS's configured DNS servers. Some will return a single IP, some will return several.
+Next, the agent will attempt to resolve key hostnames for Trustgrid control plane services using the agent OS's configured DNS servers. Some will return a single IP, some will return several.
 
 Most likely, all or none of these services will show OK. If, any are failing investigate the DNS settings on the host OS.
 

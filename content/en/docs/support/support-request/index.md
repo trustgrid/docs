@@ -1,13 +1,25 @@
 ---
-title: Submit a Support Request
+title: Support Requests
 linkTitle: Support Request
-description: Allows customers to request support from within the portal
+description: Submit and track support requests from within the portal
 ---
 
-{{<tgimg src="support-req.png" caption="Support Request section" width="60%">}}
-This panel allows you to submit a request for assistance from the [Trustgrid Support Team]({{<relref "/help-center/trustgrid-support">}}) with the product or service. Please provide as much detail as possible about the issue you are experiencing so our support team can help resolve it quickly.
+The **Support Requests** section lets you open a request with the [Trustgrid Support Team]({{<relref "help-center/trustgrid-support" >}}) and follow it through to resolution without leaving the portal.
 
-{{<alert color="info">}}The support requests will be submitted with your user account email address.{{</alert>}}
+Requests are listed in two columns:
+
+- **Open Support Requests** - requests Trustgrid is still working.
+- **Past Support Requests** - requests that have been closed.
+
+Each entry shows the subject, its current status, and when it was last updated.
+
+{{<alert color="info">}}Support requests are submitted with your user account email address, and you see only the requests you opened.{{</alert>}}
+
+## Create a Request
+
+Click **Create Request** to open the request form. Please provide as much detail as possible about the issue you are experiencing so our support team can help resolve it quickly.
+
+{{<tgimg src="support-req.png" caption="Support Request form" width="60%">}}
 
 {{<fields>}}
 {{<field "Phone number">}}Provide the phone number you'd like to be contacted at regarding this issue.{{</field>}}
@@ -23,4 +35,12 @@ This panel allows you to submit a request for assistance from the [Trustgrid Sup
   {{</field>}}
   {{</fields>}}
 
-After providing the details of the issue, click the Submit button below to create the support request.
+Click **Submit** to create the support request. It appears under **Open Support Requests** immediately.
+
+## Reply to a Request
+
+Select any request to open it. The conversation shows each message with its author and timestamp, along with status changes as they happen.
+
+Type in the reply box and click **Send** to respond. Your reply is attributed to your portal user account and goes to the support engineer working the request.
+
+Click **Mark Ticket Resolved** once the issue is addressed. The request moves to **Past Support Requests**.

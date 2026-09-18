@@ -23,6 +23,16 @@ In order to connect to the Trustgrid Control Plane, the following outbound traff
   - 35.171.100.16/28
   - 34.223.12.192/28
 
+### Trustgrid Data Plane
+Nodes carry customer traffic over encrypted tunnels to gateway nodes. Each node must be able to reach every gateway it peers with on the gateway's configured public IP and port (typically TCP/UDP port 8443). UDP is only used when UDP tunnels are enabled on the gateway.
+
+The port is set per gateway. If a gateway listens on a non-default port, write the firewall rules for the port actually in use.
+
+#### Application-Aware (Layer 7) Firewalls
+Application-aware (Layer 7) firewalls need more than a port-based allow. The tunnel is encrypted, so the firewall cannot identify it. It passes the handshake while classifying the flow, then drops the rest as unidentified UDP. The tunnel looks healthy but carries no traffic.
+
+On these firewalls, allow UDP to the gateway addresses on the configured port with a rule that does not depend on application identification. Check your firewall vendor's documentation for how to write that rule. See [Edge Node Behavior When UDP Tunnels are Blocked by Application Inspection]({{<relref "help-center/kb/startup-process/udp-blocked-by-app-inspection" >}}) for symptoms and verification.
+
 ### Additional Required Network Access
 - TCP/UDP Port 53 to the configured DNS servers. These DNS servers must be accessible from the WAN/outside interface IP and be able to resolve DNS requests for the trustgrid.io domain
 
@@ -33,7 +43,7 @@ By default, Trustgrid uses the address space 172.18.0.0/16 for the container bri
 
 ## Gateway Node Network Requirements
 
-In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway.
+In addition to being able to connect to the Control Plane resource outlined above, Gateway Nodes must be allowed to receive inbound traffic on their configured public IP and port (typically TCP/UDP port 8443). Both the advertised public IP and port are configurable when enabling a node as a gateway. Client-side requirements are under [Trustgrid Data Plane](#trustgrid-data-plane), including a note on [application-aware firewalls](#application-aware-layer-7-firewalls).
 
 ## Public Cloud Appliance Requirements
 

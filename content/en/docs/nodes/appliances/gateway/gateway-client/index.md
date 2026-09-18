@@ -45,17 +45,27 @@ Determines if the node will send reset (RST) packets for the TCP connections it 
 {{<field "Monitor Hops SYN Payload Size" >}} Determines the size of the TCP SYN payload sent. By default the payload is 0. Can be set between 0 and 1440. Recommended max is the lower of 1440 or the WAN MTU minus 60 bytes. {{</field>}}
 {{</fields>}}
 ## Gateway Latency Monitors
-{{<alert color="info">}}Gateway Latency Monitors require the [June 2026 release]({{<ref "/release-notes/node/2026-06/index.md">}}) or later.{{</alert>}}
+{{<alert color="info">}}Gateway Latency Monitors require the [September 2026 release]({{<relref "release-notes/node/2026-09" >}}) or later.{{</alert>}}
 
-A gateway latency monitor watches the round trip time (RTT) of the node's tunnel to a gateway and reacts when it exceeds a threshold. RTT is the time a packet takes to travel to the gateway and back. The purpose is to let a cluster member mark itself unhealthy when its tunnel latency to a gateway gets too high, triggering a failover to a healthier member. If the node is not in a cluster, the monitor still sends a [Gateway Latency Exceeded]({{<relref "/docs/alarms/event-types#gateway-latency-exceeded">}}) event, but traffic stays on the node.
+A gateway latency monitor watches the round trip time (RTT) of the node's tunnel to a gateway and reacts when it exceeds a threshold. RTT is the time a packet takes to travel to the gateway and back.
+
+A monitor does two separate jobs. It always reports, and it optionally participates in the node's health.
+
+Every time a monitor triggers or recovers, the node sends a [Gateway Latency Exceeded]({{<relref "/docs/alarms/event-types#gateway-latency-exceeded">}}) event. This happens on every monitor no matter how **Failure Mode** and **Critical** are set. It fires on the transition only, so sustained high latency does not repeat the event.
+
+Separately, a monitor marked **Critical** takes part in the node's health decision. When enough critical monitors are triggered, the node marks itself unhealthy. For a cluster member that fails traffic over to a healthier member. On a standalone node the health change does not move traffic. A monitor that is not marked **Critical** never affects node health.
 
 {{<tgimg src="gateway-latency-monitors.png" width="85%" caption="Gateway Latency Monitors" alt="Gateway Latency Monitors settings with a Failure Mode and a table of monitors">}}
 
 ### Failure Mode
-Determines how triggered monitors affect the node's health:
-- **None** - The node is not marked unhealthy when monitors trigger, unless a monitor is marked as [Critical](#monitor-fields). This is the default.
-- **Any** - The node is marked unhealthy when any single monitor triggers. All monitors must recover before the node becomes healthy again.
-- **All** - The node is marked unhealthy only when every monitor is triggered. The node recovers as soon as any single monitor recovers.
+Determines how many triggered **Critical** monitors it takes to mark the node unhealthy. Monitors that are not marked **Critical** are not counted.
+- **None** - Gateway latency never marks the node unhealthy. Monitors still send events. This is the default.
+- **Any** - The node is marked unhealthy when any critical monitor is triggered.
+- **All** - The node is marked unhealthy only when every critical monitor is triggered at the same time.
+
+Under **Any** and **All**, the node becomes healthy again once every critical monitor has recovered.
+
+{{<alert color="warning">}}Before the [September 2026 release]({{<relref "release-notes/node/2026-09" >}}), **Failure Mode** counted every monitor rather than only the critical ones, and the event fired only when the node's health changed. If your configuration uses **Any** or **All** with no monitor marked **Critical**, latency will stop marking the node unhealthy after you upgrade. Enable **Critical** on the monitors that should drive a failover.{{</alert>}}
 
 ### Monitor Fields
 Use **Add Latency Monitor** to add a monitor.
@@ -65,7 +75,7 @@ Use **Add Latency Monitor** to add a monitor.
 {{<field "Max Latency">}}The maximum acceptable latency, in milliseconds, for the monitor.{{</field>}}
 {{<field "Trigger Count">}}The number of consecutive RTT values that must be above the Max Latency before the monitor triggers.{{</field>}}
 {{<field "Recover Count">}}The number of consecutive RTT values that must be below the Max Latency before the monitor marks itself healthy again.{{</field>}}
-{{<field "Critical">}}When enabled, the monitor is treated as essential. Its failure alone marks the node unhealthy, and the node cannot recover until this monitor recovers, regardless of the Failure Mode setting.{{</field>}}
+{{<field "Critical">}}When enabled, this monitor participates in the node's health decision according to the [Failure Mode](#failure-mode) setting. When disabled, the monitor still sends events but never marks the node unhealthy.{{</field>}}
 {{</fields>}}
 
 {{<alert color="info">}}RTT is tested every 20 seconds by default, so a Trigger Count of 6 requires latency above the threshold for roughly two minutes.{{</alert>}}
