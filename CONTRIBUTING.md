@@ -31,3 +31,12 @@ information on using pull requests.
 
 This project follows
 [Google's Open Source Community Guidelines](https://opensource.google.com/conduct/).
+
+## GitHub Actions workflow checks
+
+Pull requests run [actionlint](https://github.com/rhysd/actionlint) in the CI workflow. The check scans every workflow file under `.github/workflows/` and must pass before the pull request can merge. To run the same check locally, download actionlint and run it from the repository root:
+
+```sh
+bash <(curl -fsSL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+./actionlint -color
+```
