@@ -6,6 +6,12 @@ description: "September 2026 Cloud Release Notes"
 type: docs
 ---
 
+## September 21, 2026 - Minor Release
+
+### SAML Authentication Supports Alternate Methods
+
+SAML authentication now supports alternate authentication methods, including passkeys. Trustgrid no longer sends restrictive password-oriented authentication requirements by default, so identity providers can use the authentication method selected by the user. This applies to SAML identity providers generally, including Microsoft Entra ID.
+
 ## September 17, 2026 - Major Release
 
 ### Enhanced Search and Filtering for Operations Pages
