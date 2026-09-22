@@ -90,6 +90,24 @@ When creating or editing pages under the `content` directory, follow these conve
 - Use backticks (`` `text` ``) for user inputs, commands, or code.
 - Use bold (`**text**`) for UI elements or items that would be clicked on in the Trustgrid portal.
 
+## Service Naming
+
+Do not use internal service codenames in documentation. Use the descriptive service name instead:
+
+- Dana: authentication
+- Janine: provisioning
+- Peck: package hosting
+- Pellet Smoker: Upgrade Manager
+- Ray: metrics
+- Zuul: control plane connection
+- Keymaster: licensing service
+- Gatekeeper: config service
+- Weaver: authentication IDP relay
+- Librarian: search
+- Infrastructure: name the specific Lambda being updated instead of referring to the Infrastructure project
+
+`Portal`, `cloud-gateway`, and `multi-tenant-gateway` are descriptive service names, not codenames, and may be used as written.
+
 ## Writing Style
 
 - No em-dashes unless they give the most concise expression. Restructure otherwise.
