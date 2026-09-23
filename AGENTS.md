@@ -34,6 +34,8 @@ All content lives under `content/en/` with these top-level sections:
     - `release-notes/cloud` — Specific release notes for the Trustgrid Portal and Control Plane software
 - `help-center/` — Support resources
 
+Only node release notes publish Trustgrid's internal release version number. Do not include internal release version numbers in cloud or agent release notes.
+
 ### Custom Shortcodes (`layouts/shortcodes/`)
 
 - **`tgimg`** — Centered, click-to-expand image. Params: `src`, `alt`, `caption`, `width`, `height`, `class`

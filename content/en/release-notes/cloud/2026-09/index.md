@@ -6,7 +6,7 @@ description: "September 2026 Cloud Release Notes"
 type: docs
 ---
 
-## September 23, 2026 - Minor Release (pt-0.4.0)
+## September 23, 2026 - Minor Release
 
 ### Installed Packages
 The portal now lists the software packages installed on a node under **Advanced > Installed Packages**. See the [Installed Packages guide]({{<relref "docs/nodes/appliances/installed-packages" >}}) for details. The page requires the `nodes::service:installed-packages` permission, which is now included in every built-in role that grants `node::read`. Nodes must run [n-2.24.0]({{<relref "release-notes/node/2026-06" >}}) or later to provide the installed-packages service.
