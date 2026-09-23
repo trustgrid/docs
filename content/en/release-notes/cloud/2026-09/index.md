@@ -6,6 +6,12 @@ description: "September 2026 Cloud Release Notes"
 type: docs
 ---
 
+## September 23, 2026 - Minor Release
+
+### Installed Packages View in Node Advanced
+
+A new **Installed Packages** panel is available under [Node → Advanced]({{<relref "docs/nodes/appliances/advanced#installed-packages" >}}). It lists the software packages installed on a node with their name, description, version, and architecture. The table supports searching, sorting, and pagination.
+
 ## September 21, 2026 - Minor Release
 
 ### SAML Authentication Supports Alternate Methods

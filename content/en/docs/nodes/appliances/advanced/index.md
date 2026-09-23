@@ -37,3 +37,18 @@ The JVM Memory panel allows changing the default JVM settings for the node proce
 {{</fields>}}
 **The node must be restarted for any change to take effect.**
 {{<tgimg src="jvm-memory.png" width="40%" caption="Java Virtual Machine (JVM) memory settings">}}
+
+## Installed Packages
+
+{{<alert color="info">}}Viewing installed packages requires the `nodes::service:installed-packages` permission. The built-in policies **tg-monitor**, **tg-operator**, **tg-node-admin**, and **tg-admin** grant this permission by default.{{</alert>}}
+
+{{<alert color="info">}}The node must run [release n-2.24.0]({{<relref "release-notes/node/2026-06" >}}) or later, which introduced the installed-packages node service. The corresponding package version for n-2.24.0 is `1.5.20260608-2475`. The page is shown only for nodes that support the installed-packages service.{{</alert>}}
+
+The Installed Packages panel lists the software packages installed on the node. The table includes the following columns:
+
+{{<fields>}}
+{{<field "Name" >}} The package name. {{</field>}}
+{{<field "Description" >}} A short summary of the package. {{</field>}}
+{{<field "Version" >}} The installed version of the package. {{</field>}}
+{{<field "Architecture" >}} The CPU architecture the package was built for (e.g., `amd64`). {{</field>}}
+{{</fields>}}
