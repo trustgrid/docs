@@ -51,6 +51,4 @@ The Installed Packages panel lists the software packages installed on the node. 
 {{<field "Architecture" >}} The CPU architecture the package was built for (e.g., `amd64`). {{</field>}}
 {{</fields>}}
 
-The table supports searching, sorting by column, and pagination.
-
 {{<tgimg src="installed-packages.png" width="80%" caption="Installed packages list under Node Advanced." >}}
