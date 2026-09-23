@@ -40,6 +40,8 @@ The JVM Memory panel allows changing the default JVM settings for the node proce
 
 ## Installed Packages
 
+{{<alert color="info">}}Viewing installed packages requires the `nodes::service:installed-packages` permission. The built-in policies **tg-monitor**, **tg-operator**, **tg-node-admin**, and **tg-admin** grant this permission by default.{{</alert>}}
+
 The Installed Packages panel lists the software packages installed on the node. The table includes the following columns:
 
 {{<fields>}}
@@ -49,6 +51,6 @@ The Installed Packages panel lists the software packages installed on the node. 
 {{<field "Architecture" >}} The CPU architecture the package was built for (e.g., `amd64`). {{</field>}}
 {{</fields>}}
 
-The table supports searching, sorting by column, and pagination. Click the **Refresh** button to reload the package list from the node.
+The table supports searching, sorting by column, and pagination.
 
 {{<tgimg src="installed-packages.png" width="80%" caption="Installed packages list under Node Advanced." >}}
