@@ -37,3 +37,18 @@ The JVM Memory panel allows changing the default JVM settings for the node proce
 {{</fields>}}
 **The node must be restarted for any change to take effect.**
 {{<tgimg src="jvm-memory.png" width="40%" caption="Java Virtual Machine (JVM) memory settings">}}
+
+## Installed Packages
+
+The Installed Packages panel lists the software packages installed on the node. The table includes the following columns:
+
+{{<fields>}}
+{{<field "Name" >}} The package name. {{</field>}}
+{{<field "Description" >}} A short summary of the package. {{</field>}}
+{{<field "Version" >}} The installed version of the package. {{</field>}}
+{{<field "Architecture" >}} The CPU architecture the package was built for (e.g., `amd64`). {{</field>}}
+{{</fields>}}
+
+The table supports searching, sorting by column, and pagination. Click the **Refresh** button to reload the package list from the node.
+
+{{<tgimg src="installed-packages.png" width="80%" caption="Installed packages list under Node Advanced." >}}
