@@ -104,7 +104,6 @@ The [event]({{<relref "docs/alarms/events" >}}) data is delivered in JSON. The e
 | `uid` | — | Unique identifier for the alert record. |
 | `domain` | `domain` → **Domain** | Trustgrid domain associated with the node. |
 | `receivedTime` | `receivedTime` → **Received Time** | Unix epoch time when the event was received. |
-| `state` | `status` → **Status** | Current alert state. |
 | `nodeId` | `nodeId` → **Node ID** | Unique identifier of the node associated with the event. |
 | `timestamp` | `timestamp` → **Timestamp** | Unix epoch time when the event was first triggered. |
 | `tags` | `tags` → **Tags** | Map of tag names to values associated with the alert. |
