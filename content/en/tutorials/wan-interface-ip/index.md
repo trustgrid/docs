@@ -21,6 +21,8 @@ Trustgrid nodes have the ability to test a new IP configuration before permanent
     - If the device successfully reconnects to the control plane after the select time the user will have the option of importing and saving this new configuration permanently, or reverting to the previous configuration.
     - If the device does not reconnect within the chosen duration, the device will automatically revert to its previous IP address configuration.
 
+The node does not restart when **Try** is used. The new IP address is applied to the running node. The node remains in a degraded state until you select **Import** or **Revert** and then click **Save**. Reconnecting to the control plane does not finalize the change.
+
 {{<alert color="warning">}}The device will revert to the original IP if it is rebooted or power cycled after initiating the “try” option and before importing and saving those changes in the portal.{{</alert>}}
 
 ### Changing WAN via Try - Detail Process
@@ -34,7 +36,7 @@ Trustgrid nodes have the ability to test a new IP configuration before permanent
 1. Scroll down and select **Try** {{<tgimg src="try-button.png" width="40%" caption="Try Button">}}
 1. Select the duration of time the device should be allowed to be disconnected before reverting to the prior IP configuration and click **Confirm** {{<tgimg src="apply-confirmation.png" width="60%" caption="Apply Confirmation">}}.
 1. A warning will be presented notifying of the risks of changing the IP address. You will need to type in the word `yes` to confirm.
-1. At this point the device will apply the new IP address and attempt to reconnect. {{<tgimg src="try-pop-up.png" width="40%" caption="Notification that the device is applying the settings">}} {{<alert color="warning">}}This would be the point update the node's connectivity, either physically by moving a cable or logically by updating the connected switch port config, so that the new IP address can connect the device should come back online. 
+1. At this point the device will apply the new IP address without restarting and attempt to reconnect. {{<tgimg src="try-pop-up.png" width="40%" caption="Notification that the device is applying the settings">}} {{<alert color="warning">}}This would be the point update the node's connectivity, either physically by moving a cable or logically by updating the connected switch port config, so that the new IP address can connect the device should come back online. 
 
 This must be completed before the duration expires.{{</alert>}}
     - If the device cannot connect for the chosen duration the settings will revert to the original IP settings.
@@ -42,7 +44,7 @@ This must be completed before the duration expires.{{</alert>}}
         1. Refresh the page. You will be presented with the below options.{{<tgimg src="yellow-box.png" width="60%" caption="Import/Revert prompt" >}}
             - Import - This option will update the portal to show the new IP address information.
             - Revert - This option will revert the portal to show the original IP address information.
-        1. Select the desired option and then scroll down and select **Save**. Again you will be prompted to confirm the change. {{<alert color="info">}}Some older versions of the appliance software may require you to restart the node service after saving the import/revert settings.{{</alert>}}
+        1. Select the desired option and then scroll down and select **Save**. Again you will be prompted to confirm the change. The node stays in a degraded state until this step is complete. {{<alert color="info">}}Some older versions of the appliance software may require you to restart the node service after saving the import/revert settings.{{</alert>}}
 
 ## WAN IP Change - Save Method
 This process is very similar to the above with the exception that <mark>**the change is permanent**</mark>. The device will continue to use the configured IP address until either:
