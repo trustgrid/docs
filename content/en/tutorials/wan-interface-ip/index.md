@@ -21,7 +21,7 @@ Trustgrid nodes have the ability to test a new IP configuration before permanent
     - If the device successfully reconnects to the control plane after the select time the user will have the option of importing and saving this new configuration permanently, or reverting to the previous configuration.
     - If the device does not reconnect within the chosen duration, the device will automatically revert to its previous IP address configuration.
 
-The node service does not restart when **Try** is used. The node disconnects from the control plane when the new IP address is applied and reconnects once the local network matches the new configuration. The new configuration is only temporary until you select **Import** and click **Save**. Reconnecting to the control plane does not make it permanent.
+The node service does not restart when **Try** is used. The node disconnects from the control plane when the new IP address is applied and reconnects once the local network matches the new configuration. The new configuration is only temporary until you select **Import** and click **Save**. Reconnecting to the control plane does not make it permanent. Because the service has not restarted, some features that depend on the WAN IP address may not behave correctly until the change is saved and the node restarts.
 
 {{<alert color="warning">}}The device will revert to the original IP if it is rebooted or power cycled after initiating the “try” option and before importing and saving those changes in the portal. Until then the node is running on an unsaved configuration.{{</alert>}}
 
