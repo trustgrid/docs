@@ -21,9 +21,9 @@ Trustgrid nodes have the ability to test a new IP configuration before permanent
     - If the device successfully reconnects to the control plane after the select time the user will have the option of importing and saving this new configuration permanently, or reverting to the previous configuration.
     - If the device does not reconnect within the chosen duration, the device will automatically revert to its previous IP address configuration.
 
-The node does not restart when **Try** is used. The new IP address is applied to the running node. The node remains in a degraded state until you select **Import** or **Revert** and then click **Save**. Reconnecting to the control plane does not finalize the change.
+The node service does not restart when **Try** is used. The node briefly disconnects from the control plane while the new IP address is applied, then reconnects. The new configuration is only temporary until you select **Import** and click **Save**. Reconnecting to the control plane does not make it permanent.
 
-{{<alert color="warning">}}The device will revert to the original IP if it is rebooted or power cycled after initiating the “try” option and before importing and saving those changes in the portal.{{</alert>}}
+{{<alert color="warning">}}The device will revert to the original IP if it is rebooted or power cycled after initiating the “try” option and before importing and saving those changes in the portal. Until then the node is running on an unsaved configuration.{{</alert>}}
 
 ### Changing WAN via Try - Detail Process
 1. Login to the portal and navigate to the Node that you wish to reconfigure.
@@ -44,7 +44,7 @@ This must be completed before the duration expires.{{</alert>}}
         1. Refresh the page. You will be presented with the below options.{{<tgimg src="yellow-box.png" width="60%" caption="Import/Revert prompt" >}}
             - Import - This option will update the portal to show the new IP address information.
             - Revert - This option will revert the portal to show the original IP address information.
-        1. Select the desired option and then scroll down and select **Save**. Again you will be prompted to confirm the change. The node stays in a degraded state until this step is complete. {{<alert color="info">}}Some older versions of the appliance software may require you to restart the node service after saving the import/revert settings.{{</alert>}}
+        1. Select the desired option and then scroll down and select **Save**. Again you will be prompted to confirm the change. Saving makes the new configuration permanent. {{<alert color="info">}}Some older versions of the appliance software may require you to restart the node service after saving the import/revert settings.{{</alert>}}
 
 ## WAN IP Change - Save Method
 This process is very similar to the above with the exception that <mark>**the change is permanent**</mark>. The device will continue to use the configured IP address until either:
