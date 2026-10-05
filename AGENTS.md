@@ -90,6 +90,11 @@ When creating or editing pages under the `content` directory, follow these conve
 - Use backticks (`` `text` ``) for user inputs, commands, or code.
 - Use bold (`**text**`) for UI elements or items that would be clicked on in the Trustgrid portal.
 
+### 5. Cloud and MCP Release Notes
+
+- Do not include internal release-version identifiers in Cloud or MCP release-note page titles, headings, or prose. Use the established dated release heading and customer-facing feature titles.
+- Internal release-version identifiers may be used in branch names.
+
 ## Service Naming
 
 Do not use internal service codenames in documentation. Use the descriptive service name instead:
