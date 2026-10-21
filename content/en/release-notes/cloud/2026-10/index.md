@@ -6,6 +6,12 @@ description: "October 2026 Cloud Release Notes"
 type: docs
 ---
 
+## October 21, 2026 - Minor Release
+
+### Negotiated TLS details in Data Plane
+
+The Data Plane panel now offers **TLS Version** and **TLS Cipher** as optional per-peer columns for negotiated connection details. [Learn more]({{<relref "docs/nodes/appliances/data-plane" >}}).
+
 ## October 5, 2026 - Minor Release
 
 ### Custom Slack alarm messages

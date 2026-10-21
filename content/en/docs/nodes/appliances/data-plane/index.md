@@ -13,8 +13,11 @@ The Data Plane panel shows a list of all statistics known peers, their connectio
 
 
 
+## Select Data Plane Columns
+Select **Columns** to choose which columns appear in the peers table. The optional **TLS Version** and **TLS Cipher** columns show each peer's negotiated TLS version and cipher suite. A node can negotiate different TLS settings with different peers. These options appear only when at least one route reports TLS information.
+
 ## Export List of Peers
-You can export a CSV formatted list of all peers by clicking Actions -> Export
+You can export a CSV formatted list of all peers by clicking **Actions** > **Export**.
 {{<tgimg src="data-plane-export.png" caption="Export button" width="25%">}}
 
 The CSV file will include columns for:
@@ -26,6 +29,8 @@ The CSV file will include columns for:
 * Mode - TLS or TLS/UDP
 * Type - The role of the node to peer. SERVER = gateway, CLIENT = edge device
 * Ports - The ports used to establish the connection
+* TLS Version - The negotiated TLS version for the peer, when reported and selected
+* TLS Cipher - The negotiated cipher suite for the peer, when reported and selected
 
 ## Tools
 The far right column as links to launch the tools listed below:
