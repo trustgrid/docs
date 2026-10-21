@@ -28,9 +28,7 @@ Select **Columns** to choose which selectable columns appear in the peers table.
 | ISP | Internet service provider associated with the peer's public IP address. | Yes |
 | Location | Geographic location associated with the peer's public IP address. | Yes |
 
-{{<alert color="info">}}The TLS columns are available only on nodes running the [September 2026 Major Appliance release]({{<relref "release-notes/node/2026-09" >}}) or newer.{{</alert>}}
-
-The TLS columns appear only when at least one route reports TLS information.
+{{<alert color="info">}}The TLS columns are available only on nodes running the [September 2026 Major Appliance release]({{<relref "release-notes/node/2026-09" >}}) or newer. The TLS columns appear only when at least one route reports TLS information.{{</alert>}}
 
 ## Export List of Peers
 You can export a CSV formatted list of all peers by clicking **Actions** > **Export**.
