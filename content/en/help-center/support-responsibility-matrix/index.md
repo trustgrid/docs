@@ -76,7 +76,7 @@ Example tasks include:
 - [Changing Trustgrid node IP addresses]({{<relref "/tutorials/wan-interface-ip">}})
 - [Adding, modifying]({{<relref "/docs/nodes/appliances/vpn/nats">}}) and testing NATs on Edge devices
 - Modifying [interface]({{<relref "/docs/nodes/appliances/interfaces#interface-routes">}}) and [domain routes]({{<relref "/docs/domain/virtual-networks/routes#managing-virtual-network-routes">}}), including facilitating [failover between sites]({{<relref "/tutorials/operations-runbook/site-failover">}})
-- [Adding, disabling, and removing users]({{<relref "docs/user-management/users" >}}), and modifying user [permissions]({{<relref "docs/user-management/policies" >}}) (requires the `builtin-tg-access-admin` role)
+- [Adding users]({{<relref "docs/user-management/users" >}}), disabling and deleting users, and modifying user [permissions]({{<relref "docs/user-management/policies" >}}) (requires the `builtin-tg-access-admin` role or equivalent permissions)
 - [Disabling]({{<relref "/tutorials/management-tasks/changing-node-status">}}) and removing [nodes]({{<relref "/tutorials/management-tasks/deleting-nodes">}}), [clusters]({{<relref "/tutorials/management-tasks/deleting-clusters">}}), and related configurations (e.g. routes) when no longer needed
 - For customers with Enhanced Support SLA, Trustgrid provides advanced replacement for failed hardware appliances
 
