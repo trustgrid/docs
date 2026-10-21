@@ -14,7 +14,11 @@ The Data Plane panel shows a list of all statistics known peers, their connectio
 
 
 ## Select Data Plane Columns
-Select **Columns** to choose which columns appear in the peers table. The optional **TLS Version** and **TLS Cipher** columns show each peer's negotiated TLS version and cipher suite. A node can negotiate different TLS settings with different peers. These columns are available only on nodes running the [September 2026 Major Appliance release]({{<relref "release-notes/node/2026-09" >}}) or newer. They appear only when at least one route reports TLS information.
+Select **Columns** to choose which columns appear in the peers table. The optional **TLS Version** and **TLS Cipher** columns show each peer's negotiated TLS version and cipher suite. A node can negotiate different TLS settings with different peers.
+
+{{<alert color="info">}}These columns are available only on nodes running the [September 2026 Major Appliance release]({{<relref "release-notes/node/2026-09" >}}) or newer.{{</alert>}}
+
+They appear only when at least one route reports TLS information.
 
 ## Export List of Peers
 You can export a CSV formatted list of all peers by clicking **Actions** > **Export**.
