@@ -121,3 +121,9 @@ Do not use internal service codenames in documentation. Use the descriptive serv
 - No bold labels at the start of every paragraph. Bold is for things that genuinely need to stand out, not for fake headers inside a section.
 - Short sentences over long ones. If you can remove words and keep the meaning, do it.
 - If you find yourself hedging with "it's worth noting that" or "importantly," just cut it and say the thing directly.
+
+## Reviewing Documentation Changes
+
+Documentation is intentionally incomplete and evolves over time. Do not block approval or request changes solely because existing documentation or linked pages omit related details, or because additional documentation could be useful. Treat pre-existing and out-of-scope documentation gaps as non-blocking suggestions. Do not require unrelated pages to be completed as a condition of approving this change.
+
+Review the material changed in the PR for accuracy and usability within its stated scope. A documentation gap is blocking only when it makes content added or changed by the PR materially incorrect, misleading, unsafe, or unusable, or when the PR introduces a broken link or reference. Missing details on an existing linked page are not, by themselves, evidence that the PR is incorrect. Mark opportunities to expand otherwise correct documentation as non-blocking.
