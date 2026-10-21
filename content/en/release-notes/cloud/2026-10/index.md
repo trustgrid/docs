@@ -10,7 +10,7 @@ type: docs
 
 ### Negotiated TLS details in Data Plane
 
-The Data Plane panel now offers **TLS Version** and **TLS Cipher** as optional per-peer columns for negotiated connection details. [Learn more]({{<relref "docs/nodes/appliances/data-plane" >}}).
+The Data Plane panel now offers **TLS Version** and **TLS Cipher** as optional per-peer columns for nodes running the [September 2026 Major Appliance release]({{<relref "release-notes/node/2026-09" >}}) or newer. [Learn more]({{<relref "docs/nodes/appliances/data-plane" >}}).
 
 ## October 5, 2026 - Minor Release
 
