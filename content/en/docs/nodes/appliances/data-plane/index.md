@@ -14,11 +14,23 @@ The Data Plane panel shows a list of all statistics known peers, their connectio
 
 
 ## Select Data Plane Columns
-Select **Columns** to choose which columns appear in the peers table. The optional **TLS Version** and **TLS Cipher** columns show each peer's negotiated TLS version and cipher suite. A node can negotiate different TLS settings with different peers.
+Select **Columns** to choose which selectable columns appear in the peers table. All options are enabled by default except **TLS Version** and **TLS Cipher**.
 
-{{<alert color="info">}}These columns are available only on nodes running the [September 2026 Major Appliance release]({{<relref "release-notes/node/2026-09" >}}) or newer.{{</alert>}}
+| Column | Description | Enabled by default |
+| --- | --- | --- |
+| Path | Network path used to reach the peer, when available. | Yes |
+| RTT | Round-trip time observed when the panel is opened or refreshed. | Yes |
+| Mode | Connection mode: TLS or TLS/UDP. | Yes |
+| TLS Version | TLS version negotiated for this peer connection. | No |
+| TLS Cipher | Cipher suite negotiated for this peer connection. | No |
+| Type | Peer role: `SERVER` for gateway or `CLIENT` for edge. | Yes |
+| Port(s) | Ports used to establish the peer connection. | Yes |
+| ISP | Internet service provider associated with the peer's public IP address. | Yes |
+| Location | Geographic location associated with the peer's public IP address. | Yes |
 
-They appear only when at least one route reports TLS information.
+{{<alert color="info">}}The TLS columns are available only on nodes running the [September 2026 Major Appliance release]({{<relref "release-notes/node/2026-09" >}}) or newer.{{</alert>}}
+
+The TLS columns appear only when at least one route reports TLS information.
 
 ## Export List of Peers
 You can export a CSV formatted list of all peers by clicking **Actions** > **Export**.
