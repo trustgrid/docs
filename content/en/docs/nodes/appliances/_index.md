@@ -6,4 +6,6 @@ aliases:
     - /docs/nodes/datastore
 ---
  
- This section documents the configuration and functionality specific to appliance-based nodes in the Trustgrid system.
+This section documents the configuration and functionality specific to appliance-based nodes in the Trustgrid system.
+
+Use [Commands]({{<relref "docs/nodes/appliances/commands">}}) to configure repeatable diagnostics, recurring checks, and service processes on standalone nodes or cluster members.
