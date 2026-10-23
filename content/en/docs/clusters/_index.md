@@ -35,7 +35,7 @@ Cluster members can share the configuration for the following services:
   - ZTNA gateway endpoints
   - Layer 4 services and connectors
 - Compute
-  - Container and command definitions
+  - Container definitions and [commands]({{<relref "docs/nodes/appliances/commands">}})
   - Resource limits
 
   [Some configuration items are only available on clusters.]({{<ref "docs/clusters/cluster-only-config">}})
