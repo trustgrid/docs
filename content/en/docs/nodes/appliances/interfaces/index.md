@@ -38,6 +38,7 @@ The **Interface Tools** section provides diagnostic tools scoped to the interfac
 - [Sniff Traffic]({{<relref "/tutorials/interface-tools/sniff-interface-traffic">}}) - Monitor traffic on the interface in realtime.
 - [Interface TCP Port Test]({{<relref "/tutorials/interface-tools/tcp-port-test">}}) - Test layer 4 TCP connectivity to a target IP address and port.
 - [ARP Ping]({{<relref "/tutorials/interface-tools/arping">}}) - Send an ARP request to a specific IP address on the interface.
+- [Packet Simulator]({{<relref "tutorials/interface-tools/packet-simulator" >}}) - Simulate a packet entering the interface and trace its path through NAT, ACL, and routing rules.
 - [AWS Interface ENA Stats]({{<relref "/tutorials/interface-tools/aws-interface-stats">}}) - View AWS ENA statistics to troubleshoot network performance on AWS-hosted nodes.
 - [AWS Route Tables]({{<relref "/tutorials/interface-tools/aws-route-tables">}}) - Query AWS route tables associated with the interface.
 - [Traffic Capture]({{<relref "/tutorials/interface-tools/traffic-capture">}}) - Capture interface traffic to a pcap file for analysis.
