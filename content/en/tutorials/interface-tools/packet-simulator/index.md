@@ -19,7 +19,7 @@ Use it to confirm a virtual network configuration before sending real traffic, o
 1. Click the **Packet Simulator** button in the **Interface Tools** section. {{<tgimg src="packet-sim-button.png" width="50%" caption="Packet Simulator button in Interface Tools.">}}
 1. Fill in the form. {{<tgimg src="packet-sim-form.png" width="50%" caption="Packet Simulator form.">}}
     {{<fields>}}
-    {{<field "Interface">}}Required. The interface the simulated packet enters. Defaults to the interface selected on the page.{{</field>}}
+    {{<field "Ingress Interface">}}Required. The interface the simulated packet enters. Defaults to the interface selected on the page.{{</field>}}
     {{<field "Protocol">}}`TCP`, `UDP`, or `ICMP`. Defaults to `TCP`.{{</field>}}
     {{<field "Source IP">}}Required. The IPv4 source address of the packet.{{</field>}}
     {{<field "Source Port">}}Optional. The source port, from `1` to `65535`.{{</field>}}
@@ -39,7 +39,9 @@ A status line summarizes the outcome:
 
 - `Packet traversed the <network> network successfully` means the packet would be forwarded.
 - `Packet blocked at the <stage> stage` names the step that stopped the packet.
-- `Packet blocked: <error>` shows an error returned by the node, such as `Invalid sourceIp specified`.
+- `Packet blocked at the <stage> stage: <error>` is the same, with an error reported by the node. ACL denies and route failures currently append `Packet simulation timed out`; the packet was still blocked at the named stage.
+- `Packet blocked: <error>` appears only when the node reports an error and no step in the path is marked as blocking.
+If the node rejects the request itself, for example with `Invalid sourceIp specified`, the modal shows `Failed to run the packet simulation: <message>` instead of a result.
 
 Below the status line, the path lists each step the packet took in order. Steps that block the packet are shown in red.
 
