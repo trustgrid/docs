@@ -41,6 +41,7 @@ A status line summarizes the outcome:
 - `Packet blocked at the <stage> stage` names the step that stopped the packet.
 - `Packet blocked at the <stage> stage: <error>` is the same, with an error reported by the node. ACL denies and route failures currently append `Packet simulation timed out`; the packet was still blocked at the named stage.
 - `Packet blocked: <error>` appears only when the node reports an error and no step in the path is marked as blocking.
+
 If the node rejects the request itself, for example with `Invalid sourceIp specified`, the modal shows `Failed to run the packet simulation: <message>` instead of a result.
 
 Below the status line, the path lists each step the packet took in order. Steps that block the packet are shown in red.
