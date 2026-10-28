@@ -6,7 +6,7 @@ description: "October 2026 Cloud Release Notes"
 type: docs
 ---
 
-## October 26, 2026 - Minor Release
+## October 28, 2026 - Minor Release
 
 ### Packet Simulator in Interface Tools
 
