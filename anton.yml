@@ -1,0 +1,8 @@
+review:
+  prompts:
+    - id: documentation-gaps-nonblocking
+      paths: ["content/**"]
+      instructions: |
+        Do not block or request changes solely because documentation is incomplete outside the material changed by this pull request, because existing or adjacent pages omit related details, or because adding more documentation would be useful. Treat pre-existing gaps and optional expansions as non-blocking suggestions.
+
+        Review the changed content for accuracy, clarity, safety, and usability within its stated scope. Keep substantive findings on the changed content blocking when it is materially incorrect, misleading, unsafe, or unusable, and keep broken links or references introduced by this pull request blocking. Do not require unrelated pages to be completed as a condition of approval.
