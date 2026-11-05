@@ -41,7 +41,7 @@ All content lives under `content/en/` with these top-level sections:
 - **`codeblock`** — Code block with copy button
 - **`webm`** — Embedded video player. Params: `src`, `width`, `height`, `alt`, `caption`
 - **`node-release`** — Release info table. Params: `package-version`, `core-version`, `release`
-- **`agent-release`** — Agent release info table. Params: `package-version`, `release`
+- **`agent-release`** — Agent info table. Params: `package-version`, `release`
 
 ### Configuration
 
