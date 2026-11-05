@@ -62,6 +62,29 @@ The tools group exposes discrete, live diagnostic tools that execute directly on
 
 The tools group requires `nodes::read` plus service-specific scopes. The node does not need to be fully healthy to run most diagnostics — that's the point.
 
+### Historical telemetry
+
+These tools read the stored tunnel latency and [hop monitoring]({{<relref "tutorials/gateway-tools/monitoring-network-hops-to-peers" >}}) data shown in a node's **Data Plane** panel. They do not run anything on the node. They are available in the `codemode`, `read`, and `tools` groups.
+
+| Tool                          | Description                                                                                                                                                   |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_hop_monitoring`          | Per-hop RTT history to each gateway peer: hop number, IP and FQDN variants, min/max/mean RTT, sample counts, and coverage across the returned minute buckets. |
+| `get_gateway_latency_history` | Tunnel RTT history to each gateway and path: min/max/mean RTT, average per-minute standard deviation, sample counts, and coverage.                            |
+
+Both tools accept the same inputs:
+
+| Parameter               | Description                                                                                                                 |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `nodeID`                | Node UID, FQDN, or bare name. Required.                                                                                     |
+| `window`                | Relative lookback: `1h` (default) or `24h`. Cannot be combined with `startTime` and `endTime`.                              |
+| `startTime` / `endTime` | Absolute ISO-8601 timestamps with `Z` or a UTC offset. Both are required together. The range can be at most 24 hours.       |
+| `gateway`               | Optional exact gateway peer name. Case-insensitive.                                                                         |
+| `includeSeries`         | Set to `true` to include the per-minute series. Defaults to `false` so large ranges return summaries only.                  |
+
+Timestamps in the response are UTC ISO-8601. Ranges longer than one hour are fetched in sequential one-hour requests and combined.
+
+The source data is per-minute aggregates, not raw RTT samples. The tools do not calculate p95, jitter, or packet loss. Missing hop samples are reported as coverage gaps. The node must be an online appliance node.
+
 ## Combining groups
 
 Paths are combinable and order-independent. The server serves the union of all named groups:

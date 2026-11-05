@@ -79,6 +79,27 @@ The rule needs the settings shown below:
 1. Select the peer you wish to view data for. You will see a table of hops appear in the bottom right. ![img](network-hops.png)
 1. You can select a time point on the latency chart, and the hops table will update to show the data for that time point. ![img](monitoring.png)
 
+### Viewing Hop Data with MCP
+
+Agents connected to the [Trustgrid MCP server]({{<relref "docs/mcp" >}}) can read the same stored hop data with the `get_hop_monitoring` tool. The tool is read-only and runs nothing on the node.
+
+Ask the agent for the hop history of a node. For example:
+
+```
+Show the hop monitoring history for node edge-01 to gateway aws-gw1 over the last 24 hours.
+```
+
+The agent calls `get_hop_monitoring` with:
+
+- `nodeID`: the node UID, FQDN, or bare name.
+- `window`: `1h` (default) or `24h`. For a specific range, use `startTime` and `endTime` instead. The range can be at most 24 hours.
+- `gateway`: optional. Limits the result to one gateway peer.
+- `includeSeries`: optional. Set to `true` to include the per-minute hop data, the same data the hops table shows for a selected time point.
+
+The result lists each gateway peer and, for each hop on the path, the hop number, the IP and FQDN variants seen, the min, max, and mean RTT, the number of samples, and the percentage of returned minutes in which the hop reported. A hop with few samples or low coverage is a hop that did not respond to probes. See [Known Limitations](#known-limitations) for why this happens. The tool does not infer packet loss from missing samples.
+
+To read the tunnel RTT to each gateway instead of the per-hop path, use `get_gateway_latency_history` with the same inputs. See [Available Tools]({{<relref "docs/mcp/tools#historical-telemetry" >}}) for both tools.
+
 ## Advanced Client Settings
 
 In the [**Client**]({{<relref "/docs/nodes/appliances/gateway/gateway-client#hop-monitoring-settings">}}) panel there are additional settings that can be changed to alter how hop monitoring is performed. These settings include options for adjusting the monitoring interval, payload size, and if the node should send reset packets for the TCP connections it attempts.
