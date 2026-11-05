@@ -91,7 +91,7 @@ Show the hop monitoring history for node edge-01 to gateway aws-gw1 over the las
 
 The agent calls `get_hop_monitoring` with the node name, a time window, and the gateway. The result lists each hop on the path with its IP and FQDN variants, min, max, and mean RTT, sample count, and coverage. A hop with few samples or low coverage did not respond to probes. See [Known Limitations](#known-limitations) for why this happens.
 
-To read the tunnel RTT to each gateway instead of the per-hop path, use `get_gateway_latency_history`. See [Historical Telemetry]({{<relref "docs/mcp/tools/historical-telemetry" >}}) for the parameters and limits of both tools.
+Both tools accept a window of up to 24 hours and return per-minute aggregates. They do not report p95 or packet loss. To read the tunnel RTT to each gateway instead of the per-hop path, use `get_gateway_latency_history`. See [Available Tools]({{<relref "docs/mcp/tools" >}}) for both tools.
 
 ## Advanced Client Settings
 
