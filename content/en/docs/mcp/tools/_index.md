@@ -40,7 +40,7 @@ The read group exposes individual Trustgrid API operations as discrete MCP tools
 | VPN networks     | `list_node_vpn_networks`, `list_node_vpn_routes`, `list_node_vpn_services` | Node VPN topology, routes, interfaces, import/export routes, and services.            |
 | Virtual networks | `list_virtual_networks`, `list_network_routes`, `list_network_objects`     | Overlay network configuration including routes, objects, groups, and port forwarding. |
 | Flow logs        | `list_flow_logs`                                                           | Query network traffic flow logs with filters and pagination.                          |
-| Historical telemetry | `get_hop_monitoring`, `get_gateway_latency_history`                    | Stored per-minute tunnel RTT and hop data from the Data Plane panel, summarized per gateway and per hop. See [Historical Telemetry]({{<relref "docs/mcp/historical-telemetry" >}}). |
+| Historical telemetry | `get_hop_monitoring`, `get_gateway_latency_history`                    | Stored per-minute tunnel RTT and hop data from the Data Plane panel, summarized per gateway and per hop. See [Historical Telemetry]({{<relref "docs/mcp/tools/historical-telemetry" >}}). |
 
 The read group requires a smaller set of OAuth scopes than codemode, making it suitable for tightly scoped service integrations.
 
@@ -60,8 +60,8 @@ The tools group exposes discrete, live diagnostic tools that execute directly on
 | `test_gateway_latency`   | Run a latency trace from the node to a named gateway. Returns per-hop latency measurements.                    |
 | `test_packet_path`       | Simulate a TCP packet entering the node's virtual network and trace the path through routing and policy rules. |
 | `get_packet_capture`     | Run a bounded tcpdump on a node interface and return captured packet lines. Accepts BPF filter expressions.    |
-| `get_hop_monitoring`     | Per-hop RTT history to each gateway peer. Reads stored data; runs nothing on the node. See [Historical Telemetry]({{<relref "docs/mcp/historical-telemetry" >}}). |
-| `get_gateway_latency_history` | Tunnel RTT history to each gateway and path. Reads stored data; runs nothing on the node. See [Historical Telemetry]({{<relref "docs/mcp/historical-telemetry" >}}). |
+| `get_hop_monitoring`     | Per-hop RTT history to each gateway peer. Reads stored data; runs nothing on the node. See [Historical Telemetry]({{<relref "docs/mcp/tools/historical-telemetry" >}}). |
+| `get_gateway_latency_history` | Tunnel RTT history to each gateway and path. Reads stored data; runs nothing on the node. See [Historical Telemetry]({{<relref "docs/mcp/tools/historical-telemetry" >}}). |
 
 The tools group requires `nodes::read` plus service-specific scopes. The node does not need to be fully healthy to run most diagnostics — that's the point.
 
