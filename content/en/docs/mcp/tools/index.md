@@ -29,18 +29,18 @@ The codemode scope requires broad read permissions. See [Authentication]({{<relr
 
 The read group exposes individual Trustgrid API operations as discrete MCP tools — one tool per API endpoint, roughly.
 
-| Tool family      | Examples                                                                   | Description                                                                           |
-| ---------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| Nodes            | `list_nodes`, `get_node`, `list_node_events`                               | Node inventory, full node records, and node event history.                            |
-| Clusters         | `list_clusters`, `get_cluster`, `list_cluster_vpn_routes`                  | Cluster inventory plus cluster VPN topology, routes, interfaces, and services.        |
-| Domains          | `get_domain`                                                               | Domain details and configuration.                                                     |
-| Alerts           | `list_alerts_v2`, `list_node_alerts_v2`                                    | Active alert lists at the org or node level.                                          |
-| Audit logs       | `tail_config_audit`, `tail_node_audit`                                     | Configuration change history and node audit trails.                                   |
-| Events           | `list_events`                                                              | Platform event stream for the org.                                                    |
-| VPN networks     | `list_node_vpn_networks`, `list_node_vpn_routes`, `list_node_vpn_services` | Node VPN topology, routes, interfaces, import/export routes, and services.            |
-| Virtual networks | `list_virtual_networks`, `list_network_routes`, `list_network_objects`     | Overlay network configuration including routes, objects, groups, and port forwarding. |
-| Flow logs        | `list_flow_logs`                                                           | Query network traffic flow logs with filters and pagination.                          |
-| Historical telemetry | `get_hop_monitoring`, `get_gateway_latency_history`                   | Stored per-minute tunnel RTT and hop data from the Data Plane panel, summarized per gateway and per hop. Returns aggregates only; no p95 or loss figures. |
+| Tool family          | Examples                                                                   | Description                                                                                                                                                                                |
+| -------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Nodes                | `list_nodes`, `get_node`, `list_node_events`                               | Node inventory, full node records, and node event history.                                                                                                                                 |
+| Clusters             | `list_clusters`, `get_cluster`, `list_cluster_vpn_routes`                  | Cluster inventory plus cluster VPN topology, routes, interfaces, and services.                                                                                                             |
+| Domains              | `get_domain`                                                               | Domain details and configuration.                                                                                                                                                          |
+| Alerts               | `list_alerts_v2`, `list_node_alerts_v2`                                    | Active alert lists at the org or node level.                                                                                                                                               |
+| Audit logs           | `tail_config_audit`, `tail_node_audit`                                     | Configuration change history and node audit trails.                                                                                                                                        |
+| Events               | `list_events`                                                              | Platform event stream for the org.                                                                                                                                                         |
+| VPN networks         | `list_node_vpn_networks`, `list_node_vpn_routes`, `list_node_vpn_services` | Node VPN topology, routes, interfaces, import/export routes, and services.                                                                                                                 |
+| Virtual networks     | `list_virtual_networks`, `list_network_routes`, `list_network_objects`     | Overlay network configuration including routes, objects, groups, and port forwarding.                                                                                                      |
+| Flow logs            | `list_flow_logs`                                                           | Query network traffic flow logs with filters and pagination.                                                                                                                               |
+| Historical telemetry | `get_hop_monitoring`, `get_gateway_latency_history`                        | Stored per-minute tunnel RTT and hop data from the Data Plane panel, summarized per gateway and per hop. Returns summaries, plus the per-minute series on request; no p95 or loss figures. |
 
 The read group requires a smaller set of OAuth scopes than codemode, making it suitable for tightly scoped service integrations.
 
@@ -48,23 +48,22 @@ The read group requires a smaller set of OAuth scopes than codemode, making it s
 
 The tools group exposes discrete, live diagnostic tools that execute directly on Trustgrid nodes. Most tools invoke a service on the node and return the live result.
 
-| Tool                     | Description                                                                                                    |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| `get_runtime_status`     | Node runtime status: running services, disk usage, memory, systemd unit states.                                |
-| `get_network_status`     | Node networking: interface states, link status, assigned IP addresses as seen by the node right now.           |
-| `get_dataplane_status`   | Gateway route connectivity: which gateway routes are up or down, including per-route status.                   |
-| `get_errors_status`      | Currently reported errors from the node. Pass `startupOnly: true` to filter to startup-phase errors only.      |
-| `test_tcp_connectivity`  | Attempt a TCP handshake from the node to a `host:port` target and report success or failure.                   |
-| `test_repo_connectivity` | Verify the node can reach its configured Trustgrid apt repositories. Reports per-repo success.                 |
-| `test_dns_health`        | Test DNS resolution against the node's configured resolvers. Returns per-server results.                       |
-| `test_gateway_latency`   | Run a latency trace from the node to a named gateway. Returns per-hop latency measurements.                    |
-| `test_packet_path`       | Simulate a TCP packet entering the node's virtual network and trace the path through routing and policy rules. |
-| `get_packet_capture`     | Run a bounded tcpdump on a node interface and return captured packet lines. Accepts BPF filter expressions.    |
-| `get_hop_monitoring`     | Per-hop RTT history to each gateway peer over up to 24 hours. Reads stored data; runs nothing on the node. Low coverage means the hop did not respond, not loss. |
-| `get_gateway_latency_history` | Tunnel RTT history to each gateway and path over up to 24 hours. Reads stored data; runs nothing on the node. Returns per-minute aggregates; no p95 or loss figures. |
+| Tool                          | Description                                                                                                                                                                                  |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `get_runtime_status`          | Node runtime status: running services, disk usage, memory, systemd unit states.                                                                                                              |
+| `get_network_status`          | Node networking: interface states, link status, assigned IP addresses as seen by the node right now.                                                                                         |
+| `get_dataplane_status`        | Gateway route connectivity: which gateway routes are up or down, including per-route status.                                                                                                 |
+| `get_errors_status`           | Currently reported errors from the node. Pass `startupOnly: true` to filter to startup-phase errors only.                                                                                    |
+| `test_tcp_connectivity`       | Attempt a TCP handshake from the node to a `host:port` target and report success or failure.                                                                                                 |
+| `test_repo_connectivity`      | Verify the node can reach its configured Trustgrid apt repositories. Reports per-repo success.                                                                                               |
+| `test_dns_health`             | Test DNS resolution against the node's configured resolvers. Returns per-server results.                                                                                                     |
+| `test_gateway_latency`        | Run a latency trace from the node to a named gateway. Returns per-hop latency measurements.                                                                                                  |
+| `test_packet_path`            | Simulate a TCP packet entering the node's virtual network and trace the path through routing and policy rules.                                                                               |
+| `get_packet_capture`          | Run a bounded tcpdump on a node interface and return captured packet lines. Accepts BPF filter expressions.                                                                                  |
+| `get_hop_monitoring`          | Per-hop RTT history to each gateway peer over up to 24 hours. Reads stored data; runs nothing on the node. Low coverage means the hop did not answer probes; it is not a packet-loss figure. |
+| `get_gateway_latency_history` | Tunnel RTT history to each gateway and path over up to 24 hours. Reads stored data; runs nothing on the node. Returns per-minute aggregates; no p95 or loss figures.                         |
 
 The tools group requires `nodes::read` plus service-specific scopes. The node does not need to be fully healthy to run most diagnostics — that's the point.
-
 
 ## Combining groups
 
@@ -95,3 +94,4 @@ When a limit is exceeded the server returns `429 Too Many Requests` with:
 - `X-RateLimit-Limit: <n>` — the limit for this bucket
 - `X-RateLimit-Remaining: 0` — remaining requests in the window
 - `X-RateLimit-Reset: <unix timestamp>` — when the window resets
+
