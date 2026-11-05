@@ -79,6 +79,20 @@ The rule needs the settings shown below:
 1. Select the peer you wish to view data for. You will see a table of hops appear in the bottom right. ![img](network-hops.png)
 1. You can select a time point on the latency chart, and the hops table will update to show the data for that time point. ![img](monitoring.png)
 
+### Viewing Hop Data with MCP
+
+Agents connected to the [Trustgrid MCP server]({{<relref "docs/mcp" >}}) can read the same stored hop data with the `get_hop_monitoring` tool. The tool is read-only and runs nothing on the node.
+
+Ask the agent for the hop history of a node. For example:
+
+```
+Show the hop monitoring history for node edge-01 to gateway aws-gw1 over the last 24 hours.
+```
+
+The agent calls `get_hop_monitoring` with the node name, a time window, and the gateway. The result lists each hop on the path with its IP and FQDN variants, min, max, and mean RTT, sample count, and coverage. A hop with few samples or low coverage did not respond to probes. See [Known Limitations](#known-limitations) for why this happens.
+
+Both tools accept a window of up to 24 hours and return per-minute aggregates. They do not report p95 or packet loss. To read the tunnel RTT to each gateway instead of the per-hop path, use `get_gateway_latency_history`. See [Available Tools]({{<relref "docs/mcp/tools" >}}) for both tools.
+
 ## Advanced Client Settings
 
 In the [**Client**]({{<relref "/docs/nodes/appliances/gateway/gateway-client#hop-monitoring-settings">}}) panel there are additional settings that can be changed to alter how hop monitoring is performed. These settings include options for adjusting the monitoring interval, payload size, and if the node should send reset packets for the TCP connections it attempts.
