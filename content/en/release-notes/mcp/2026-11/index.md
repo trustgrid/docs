@@ -17,4 +17,4 @@ Agents can now read the historical tunnel latency and hop monitoring data shown 
 
 Both tools accept a node UID, FQDN, or bare name, a relative window of `1h` (default) or `24h`, or an absolute `startTime` and `endTime` range of up to 24 hours. An optional `gateway` filter limits the result to one peer. Set `includeSeries: true` to include the per-minute series.
 
-See [Available Tools]({{<relref "docs/mcp/tools#historical-telemetry" >}}) for details and [Monitoring Network Hops to Peers]({{<relref "tutorials/gateway-tools/monitoring-network-hops-to-peers#viewing-hop-data-with-mcp" >}}) for an example.
+See [Historical Telemetry]({{<relref "docs/mcp/historical-telemetry" >}}) for details and [Monitoring Network Hops to Peers]({{<relref "tutorials/gateway-tools/monitoring-network-hops-to-peers#viewing-hop-data-with-mcp" >}}) for an example.

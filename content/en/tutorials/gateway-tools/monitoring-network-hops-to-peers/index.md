@@ -89,16 +89,9 @@ Ask the agent for the hop history of a node. For example:
 Show the hop monitoring history for node edge-01 to gateway aws-gw1 over the last 24 hours.
 ```
 
-The agent calls `get_hop_monitoring` with:
+The agent calls `get_hop_monitoring` with the node name, a time window, and the gateway. The result lists each hop on the path with its IP and FQDN variants, min, max, and mean RTT, sample count, and coverage. A hop with few samples or low coverage did not respond to probes. See [Known Limitations](#known-limitations) for why this happens.
 
-- `nodeID`: the node UID, FQDN, or bare name.
-- `window`: `1h` (default) or `24h`. For a specific range, use `startTime` and `endTime` instead. The range can be at most 24 hours.
-- `gateway`: optional. Limits the result to one gateway peer.
-- `includeSeries`: optional. Set to `true` to include the per-minute hop data, the same data the hops table shows for a selected time point.
-
-The result lists each gateway peer and, for each hop on the path, the hop number, the IP and FQDN variants seen, the min, max, and mean RTT, the number of samples, and the percentage of returned minutes in which the hop reported. A hop with few samples or low coverage is a hop that did not respond to probes. See [Known Limitations](#known-limitations) for why this happens. The tool does not infer packet loss from missing samples.
-
-To read the tunnel RTT to each gateway instead of the per-hop path, use `get_gateway_latency_history` with the same inputs. See [Available Tools]({{<relref "docs/mcp/tools#historical-telemetry" >}}) for both tools.
+To read the tunnel RTT to each gateway instead of the per-hop path, use `get_gateway_latency_history`. See [Historical Telemetry]({{<relref "docs/mcp/historical-telemetry" >}}) for the parameters and limits of both tools.
 
 ## Advanced Client Settings
 
