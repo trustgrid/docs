@@ -5,7 +5,7 @@ type: docs
 date: 2026-11-06
 description: "Release notes for the November 2026 Minor Trustgrid Appliance release"
 ---
-{{< node-release package-version="1.5.20261102-2577" core-version="20261102-154059.2ba0317" release="n-2.26.1" >}}
+{{< node-release package-version="1.5.20261106-2578" core-version="20261106-145459.7b32679" release="n-2.26.1" >}}
 
 ## L4 Connector Stalls
 An [L4 connector]({{<relref "docs/nodes/shared/connectors" >}}) pointed at a service that does not respond could stall every other connector on the same node. This release fixes two causes.
