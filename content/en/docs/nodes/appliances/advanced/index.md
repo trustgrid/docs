@@ -15,6 +15,13 @@ The Config Options panel allows customizing various advanced settings for the no
 
 After changing a setting click the Save button. **Some changes may require a node restart to take effect.**
 
+### Drop IP-option SYNs
+Drops inbound TCP SYN packets that carry IPv4 options and are addressed to a listener on the node itself. The node normally counts and logs these packets and lets them through. This option is off by default. A change takes effect within a few minutes and does not need a restart. Traffic through outside NATs and traffic that transits the node are not affected.
+
+Trustgrid has tested known Trustgrid control and data plane traffic and example application traffic across the Trustgrid connection with this option enabled. We cannot guarantee how other application traffic might be affected. Monitor for issues after enabling it.
+
+{{<alert color="info">}}The node must run [release n-2.26.1]({{<relref "release-notes/node/2026-11" >}}) or later. For older nodes the checkbox is disabled and the panel shows an upgrade notice.{{</alert>}}
+
 ## JVM Memory
 
 ### Execute Garbage Collection
