@@ -7,28 +7,27 @@ description: "Release notes for the November 2026 Minor Trustgrid Appliance rele
 ---
 {{< node-release package-version="1.5.20261102-2577" core-version="20261102-154059.2ba0317" release="n-2.26.1" >}}
 
-## Multipath TCP Disabled
-Anthropic published a report, [Discovering vulnerabilities with Claude](https://www.anthropic.com/research/discovering-vulnerabilities-with-claude), that describes a remote root exploit against Linux servers with a Multipath TCP (MPTCP) listener. The report tracks it as CVE-2026-98432. Trustgrid does not use MPTCP. This release disables it on the node host and in every network namespace the node manages. The setting is applied at every node start and persists across reboots. Node traffic is not affected. Kernels without MPTCP support, including Ubuntu 18.04 appliances, are unchanged.
+## L4 Connector Stalls
+An [L4 connector]({{<relref "docs/nodes/shared/connectors" >}}) pointed at a service that does not respond could stall every other connector on the same node. This release fixes two causes.
 
-The report does not give enough detail to confirm that disabling MPTCP prevents the exploit. Disabling it removes the listener type the report names. It does not patch the kernel bug. Kernel updates remain necessary and continue to arrive through operating system security updates.
+On an edge node, each new connection waited on the shared gateway link for the full [Connect Timeout]({{<relref "docs/nodes/shared/services" >}}), 5 seconds by default. While it waited, all traffic over that link stopped. A connector that retried a dead host every 20 seconds froze the node for about half of every cycle. New connections no longer hold up the link.
 
-The setting is scoped to each network namespace. A workload with enough privilege can re-enable it in its own namespace.
+On a gateway, connection requests stayed queued after the client gave up. A burst of connections to a dead service could keep the healthy connectors on that gateway down for hours after the clients were gone, and only a gateway restart cleared it. The gateway now discards requests whose client has disconnected or timed out, and keeps each destination in its own queue so a dead service does not delay a healthy one. The node log reports how many requests were rejected or timed out.
 
-## Drop IP-Option SYNs
-The exploit in the report also depends on a TCP SYN packet that carries IPv4 options reaching a kernel TCP listener. The node now watches for these packets on its own listeners. By default it counts them, logs them in the node's kernel log with rate limiting, and lets them through.
+## CVE-2026-98432 Mitigations
+Anthropic published a report, [Discovering vulnerabilities with Claude](https://www.anthropic.com/research/discovering-vulnerabilities-with-claude), that describes a remote root exploit against Linux servers. It is tracked as CVE-2026-98432. The report names two conditions the exploit relies on: a Multipath TCP (MPTCP) listener, and a TCP SYN packet that carries IP options. This release addresses both. The report does not give enough detail to confirm that either change prevents the exploit. The real fix is a kernel update. As soon as Ubuntu publishes the kernel security packages, Trustgrid will fast track a release to make them available.
 
-A new **Drop IP-option SYNs** checkbox under **Advanced** > **Config Options** drops these packets instead. It is off by default. A change takes effect within a few minutes and does not need a restart. Clearing the checkbox returns the node to counting and logging. The rule only matches SYN packets addressed to a listener on the node itself. Traffic through outside NATs and traffic that transits the node are not affected. The checkbox is available only for nodes on this release or later.
+### Multipath TCP Disabled
+Trustgrid does not use MPTCP. This release turns it off on the node and in every network namespace the node manages. The setting is applied at every node start and survives reboots. Node traffic is not affected. Ubuntu 18.04 appliances have no MPTCP support and are unchanged. A container workload with enough privilege can turn MPTCP back on inside its own namespace.
+
+### Drop IP-Option SYNs
+The node now watches for incoming TCP SYN packets that carry IP options and are addressed to a service on the node itself. By default it counts and logs them and lets them through.
+
+A new **Drop IP-option SYNs** option under **Advanced** > **Config Options** drops them instead. It is off by default. A change takes effect within a few minutes and does not need a restart. Only packets addressed to the node itself are checked. Traffic through outside NATs and traffic that passes through the node are not affected.
 
 Trustgrid has tested known Trustgrid control and data plane traffic and example application traffic across the Trustgrid connection with this option enabled. We cannot guarantee how other application traffic might be affected. Monitor for issues after enabling it.
 
 See [Advanced Options]({{<relref "docs/nodes/appliances/advanced#config-options" >}}).
-
-## L4 Connector Stalls
-An [L4 connector]({{<relref "docs/nodes/shared/connectors" >}}) session to an unresponsive service could stall every other connector on the same node.
-
-On an edge node, each session open was handled on the thread that carries the gateway connection. If the service did not answer, that thread blocked for the full [Connect Timeout]({{<relref "docs/nodes/shared/services" >}}), 5 seconds by default, and every tunnel on that connection stopped moving. A site with a connector to a dead host that retried every 20 seconds was frozen for about half of every cycle. Session opens are now asynchronous, so a slow service no longer blocks the connection.
-
-On a gateway, session opens were queued and were still delivered after the client had disconnected. A burst of connections to a dead service could keep the healthy connectors on the same gateway down for hours after the clients were gone, and only a restart of the active gateway cleared it. The gateway now discards opens whose client has disconnected or timed out before dispatching them. Opens to different destinations are isolated, so a healthy connector does not wait behind a dead one, and each destination has an admission limit. The node log now reports rejected and timed-out opens with counts.
 
 ## Security Updates
 This release updates the APT security repository to a mirror from **October 26, 2026**, giving appliances the latest security patches for underlying system packages.
@@ -36,4 +35,4 @@ This release updates the APT security repository to a mirror from **October 26, 
 - The mirror includes the updated `ca-certificates` package that removes the root certificates cross-signing the compromised eMudhra certificate authority. See [Ubuntu's eMudhra CA compromise notice](https://ubuntu.com/blog/emudhra-ca-compromise-fixes-available).
 
 ## Fixes
-- The latest L4 connector configuration is preserved across a connector stop and restart, and a connector that times out waiting for an ephemeral port no longer leaks the listener.
+- L4 connector settings are kept across a connector stop and restart, and a connector that times out waiting for a port no longer leaves the port in use.
