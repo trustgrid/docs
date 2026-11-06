@@ -5,7 +5,7 @@ type: docs
 date: 2026-11-06
 description: "Release notes for the November 2026 Minor Trustgrid Appliance release"
 ---
-{{< node-release package-version="TBD" core-version="TBD" release="n-2.26.1" >}}
+{{< node-release package-version="1.5.20261102-2577" core-version="20261102-154059.2ba0317" release="n-2.26.1" >}}
 
 ## Multipath TCP Disabled
 Anthropic published a report, [Discovering vulnerabilities with Claude](https://www.anthropic.com/research/discovering-vulnerabilities-with-claude), that describes a remote root exploit against Linux servers with a Multipath TCP (MPTCP) listener. The report tracks it as CVE-2026-98432. Trustgrid does not use MPTCP. This release disables it on the node host and in every network namespace the node manages. The setting is applied at every node start and persists across reboots. Node traffic is not affected. Kernels without MPTCP support, including Ubuntu 18.04 appliances, are unchanged.
@@ -29,6 +29,11 @@ An [L4 connector]({{<relref "docs/nodes/shared/connectors" >}}) session to an un
 On an edge node, each session open was handled on the thread that carries the gateway connection. If the service did not answer, that thread blocked for the full [Connect Timeout]({{<relref "docs/nodes/shared/services" >}}), 5 seconds by default, and every tunnel on that connection stopped moving. A site with a connector to a dead host that retried every 20 seconds was frozen for about half of every cycle. Session opens are now asynchronous, so a slow service no longer blocks the connection.
 
 On a gateway, session opens were queued and were still delivered after the client had disconnected. A burst of connections to a dead service could keep the healthy connectors on the same gateway down for hours after the clients were gone, and only a restart of the active gateway cleared it. The gateway now discards opens whose client has disconnected or timed out before dispatching them. Opens to different destinations are isolated, so a healthy connector does not wait behind a dead one, and each destination has an admission limit. The node log now reports rejected and timed-out opens with counts.
+
+## Security Updates
+This release updates the APT security repository to a mirror from **October 26, 2026**, giving appliances the latest security patches for underlying system packages.
+
+- The mirror includes the updated `ca-certificates` package that removes the root certificates cross-signing the compromised eMudhra certificate authority. See [Ubuntu's eMudhra CA compromise notice](https://ubuntu.com/blog/emudhra-ca-compromise-fixes-available).
 
 ## Fixes
 - The latest L4 connector configuration is preserved across a connector stop and restart, and a connector that times out waiting for an ephemeral port no longer leaks the listener.
