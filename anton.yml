@@ -1,3 +1,12 @@
+approval:
+  auto_approve: true
+  whole_repo: true
+  judgement:
+    - id: whole-repo
+      description: >-
+        The whole repository is in scope. Say outside only when the change
+        reaches beyond it - a credential, a production endpoint, or a
+        deployment it can trigger elsewhere.
 review:
   prompts:
     - id: documentation-gaps-nonblocking
@@ -6,3 +15,27 @@ review:
         Do not block or request changes solely because documentation is incomplete outside the material changed by this pull request, because existing or adjacent pages omit related details, or because adding more documentation would be useful. Treat pre-existing gaps and optional expansions as non-blocking suggestions.
 
         Review the changed content for accuracy, clarity, safety, and usability within its stated scope. Keep substantive findings on the changed content blocking when it is materially incorrect, misleading, unsafe, or unusable, and keep broken links or references introduced by this pull request blocking. Do not require unrelated pages to be completed as a condition of approval.
+  
+    - id: hugo-devcontainer
+      paths:
+        - .devcontainer/**
+      context: >-
+        The Hugo devcontainer forwards port 1313 for a local documentation
+        preview and does not configure application credentials.
+      instructions: |
+        Do not report missing production CORS or CSP controls solely for the
+        private local Hugo preview. Verify that changed forwarding remains
+        local/private and introduces no production endpoint or credential;
+        report public exposure, shared external access, or production secrets.
+tasks:
+  - id: build
+    name: Build documentation
+    description: Create the production static site without publishing it
+    type: script
+    script: make build
+  - id: preview
+    name: Preview documentation
+    description: Start the local Hugo site bound to loopback
+    type: daemon
+    script: hugo server --bind 127.0.0.1
+    url: http://127.0.0.1:1313/
